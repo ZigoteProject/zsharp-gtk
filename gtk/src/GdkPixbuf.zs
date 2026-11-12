@@ -15,12 +15,16 @@ extern gdk_pixbuf_loader_get_type : unit -> usize
 extern gdk_pixbuf_non_anim_get_type : unit -> usize
 extern gdk_pixbuf_simple_anim_get_type : unit -> usize
 extern gdk_pixbuf_simple_anim_iter_get_type : unit -> usize
+extern zgtk_tramp_GdkPixbuf_PixbufDestroyNotify : unit -> cptr
+extern zgtk_tramp_GdkPixbuf_PixbufDestroyNotify_once : unit -> cptr
 extern zgtk_tramp_GdkPixbuf_PixbufModulePreparedFunc : unit -> cptr
 extern zgtk_tramp_GdkPixbuf_PixbufModulePreparedFunc_once : unit -> cptr
 extern zgtk_tramp_GdkPixbuf_PixbufModuleSizeFunc : unit -> cptr
 extern zgtk_tramp_GdkPixbuf_PixbufModuleSizeFunc_once : unit -> cptr
 extern zgtk_tramp_GdkPixbuf_PixbufModuleUpdatedFunc : unit -> cptr
 extern zgtk_tramp_GdkPixbuf_PixbufModuleUpdatedFunc_once : unit -> cptr
+extern zgtk_tramp_GdkPixbuf_PixbufSaveFunc : unit -> cptr
+extern zgtk_tramp_GdkPixbuf_PixbufSaveFunc_once : unit -> cptr
 
 /// This enumeration defines the color spaces that are supported by the gdk-pixbuf library.
 type Colorspace =
@@ -336,10 +340,13 @@ module Pixbuf =
   extern gdk_pixbuf_new_from_data : cptr -> i32 -> i32 -> i32 -> i32 -> i32 -> i32 -> cptr -> cptr -> cptr
 
   /// Creates a new #GdkPixbuf out of in-memory image data.
-  [<Unsafe>]
-  let createFromData (data: array<u8>) (colorspace: Colorspace) (hasAlpha: bool) (bitsPerSample: int) (width: int) (height: int) (rowstride: int) (destroyFn: cptr) (destroyFnData: cptr) : Pixbuf =
+  let createFromData (data: array<u8>) (colorspace: Colorspace) (hasAlpha: bool) (bitsPerSample: int) (width: int) (height: int) (rowstride: int) (destroyFn: cptr -> unit) : Pixbuf =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let pixels = Glue.argPointer 0
+        destroyFn pixels)
     let za2 = Glue.bytes data
-    let zr = gdk_pixbuf_new_from_data za2 (i32 colorspace.Int) (if hasAlpha then i32 1 else i32 0) (i32 bitsPerSample) (i32 width) (i32 height) (i32 rowstride) destroyFn destroyFnData
+    let zr = gdk_pixbuf_new_from_data za2 (i32 colorspace.Int) (if hasAlpha then i32 1 else i32 0) (i32 bitsPerSample) (i32 width) (i32 height) (i32 rowstride) (zgtk_tramp_GdkPixbuf_PixbufDestroyNotify_once ()) zcb1
     let zv = Pixbuf (Glue.wrap (zr) true)
     Glue.free za2
     zv
@@ -393,18 +400,18 @@ module Pixbuf =
 
   /// Deprecated. Creates a `GdkPixbuf` from a flat representation that is suitable for storing as inline data in a program.
   let createFromInline (data: array<u8>) (copyPixels: bool) : result<Pixbuf, Glue.Error> =
-    let za1 = Glue.bytes data
+    let za2 = Glue.bytes data
     Glue.outBegin ()
-    let zr = gdk_pixbuf_new_from_inline (i32 (Glue.countBytes data)) za1 (if copyPixels then i32 1 else i32 0) (Glue.err ())
+    let zr = gdk_pixbuf_new_from_inline (i32 (Glue.countBytes data)) za2 (if copyPixels then i32 1 else i32 0) (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Error ze
     | None ->
       let zv = Pixbuf (Glue.wrap (zr) true)
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Ok zv
 
   extern gdk_pixbuf_new_from_resource : cstr -> cptr -> cptr
@@ -721,21 +728,28 @@ module Pixbuf =
   extern gdk_pixbuf_save_to_callbackv : cptr -> cptr -> cptr -> cstr -> cptr -> cptr -> cptr -> i32
 
   /// Vector version of `gdk_pixbuf_save_to_callback()`.
-  [<Unsafe>]
-  let saveToCallbackv (self: Pixbuf) (saveFunc: cptr) (userData: cptr) (type_: string) (optionKeys: list<string>) (optionValues: list<string>) : result<bool, Glue.Error> =
+  let saveToCallbackv (self: Pixbuf) (saveFunc: array<u8> -> int -> cptr -> bool) (type_: string) (optionKeys: list<string>) (optionValues: list<string>) : result<bool, Glue.Error> =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let buf = Glue.bytesOf (Glue.argPointer 0) ((Glue.argInt 1)) false
+        let count = Glue.argInt 1
+        let error = Glue.argPointer 2
+        Glue.returnBool (saveFunc buf count error))
     let zv2 = Glue.strv optionKeys
     let zv3 = Glue.strv optionValues
     Glue.outBegin ()
-    let zr = gdk_pixbuf_save_to_callbackv (Glue.obj self.Id (gdk_pixbuf_get_type ())) saveFunc userData type_ zv2 zv3 (Glue.err ())
+    let zr = gdk_pixbuf_save_to_callbackv (Glue.obj self.Id (gdk_pixbuf_get_type ())) (zgtk_tramp_GdkPixbuf_PixbufSaveFunc ()) zcb1 type_ zv2 zv3 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
+      Glue.drop zcb1
       Glue.freeStrv zv2
       Glue.freeStrv zv3
       Error ze
     | None ->
       let zv = ((zr) <> i32 0)
       Glue.outEnd ()
+      Glue.drop zcb1
       Glue.freeStrv zv2
       Glue.freeStrv zv3
       Ok zv
@@ -1337,18 +1351,18 @@ module PixbufLoader =
 
   /// Parses the next `count` bytes in the given image buffer.
   let write (self: PixbufLoader) (buf: array<u8>) : result<bool, Glue.Error> =
-    let za1 = Glue.bytes buf
+    let za2 = Glue.bytes buf
     Glue.outBegin ()
-    let zr = gdk_pixbuf_loader_write (Glue.obj self.Id (gdk_pixbuf_loader_get_type ())) za1 (usize (Glue.countBytes buf)) (Glue.err ())
+    let zr = gdk_pixbuf_loader_write (Glue.obj self.Id (gdk_pixbuf_loader_get_type ())) za2 (usize (Glue.countBytes buf)) (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Error ze
     | None ->
       let zv = ((zr) <> i32 0)
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Ok zv
 
   extern gdk_pixbuf_loader_write_bytes : cptr -> cptr -> cptr -> i32

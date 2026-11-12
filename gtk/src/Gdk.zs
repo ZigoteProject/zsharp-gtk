@@ -2634,6 +2634,13 @@ module Clipboard =
   let setTexture (self: Clipboard) (texture: Texture) : unit =
     gdk_clipboard_set_texture (Glue.obj self.Id (gdk_clipboard_get_type ())) (Glue.obj texture.Id (gdk_texture_get_type ()))
 
+  extern gdk_clipboard_set_valist : cptr -> usize -> cptr -> unit
+
+  /// Sets the clipboard to contain the value collected from the given @args.
+  [<Unsafe>]
+  let setValist (self: Clipboard) (type_: usize) (args: cptr) : unit =
+    gdk_clipboard_set_valist (Glue.obj self.Id (gdk_clipboard_get_type ())) type_ args
+
   extern gdk_clipboard_set_value : cptr -> cptr -> unit
 
   /// Sets the @clipboard to contain the given @value.
@@ -2848,10 +2855,10 @@ module ContentFormats =
 
   /// Creates a new `GdkContentFormats` from an array of mime types.
   let create (mimeTypes: list<string>) : ContentFormats =
-    let zv1 = Glue.strv mimeTypes
-    let zr = gdk_content_formats_new zv1 (u32 (Glue.count mimeTypes))
+    let zv2 = Glue.strv mimeTypes
+    let zr = gdk_content_formats_new zv2 (u32 (Glue.count mimeTypes))
     let zv = ContentFormats (Glue.wrapBoxed (zr) (gdk_content_formats_get_type ()) true)
-    Glue.freeStrv zv1
+    Glue.freeStrv zv2
     zv
 
   extern gdk_content_formats_new_for_gtype : usize -> cptr
@@ -3059,8 +3066,8 @@ module ContentProvider =
 
   /// Creates a content provider that represents all the given @providers.
   let createUnion (providers: list<ContentProvider>) : ContentProvider =
-    let za1 = Glue.ptrs (Glue.mapList (fun (zo: ContentProvider) -> Glue.give (Glue.obj zo.Id (gdk_content_provider_get_type ()))) providers)
-    let zr = gdk_content_provider_new_union za1 (usize (Glue.count providers))
+    let za2 = Glue.ptrs (Glue.mapList (fun (zo: ContentProvider) -> Glue.give (Glue.obj zo.Id (gdk_content_provider_get_type ()))) providers)
+    let zr = gdk_content_provider_new_union za2 (usize (Glue.count providers))
     ContentProvider (Glue.wrap (zr) true)
 
   extern gdk_content_provider_content_changed : cptr -> unit
@@ -5181,10 +5188,10 @@ module FileList =
 
   /// Creates a new `GdkFileList` for the given array of files.
   let createFromArray (files: list<Gio.File>) : FileList =
-    let za1 = Glue.ptrs (Glue.mapList (fun (zo: Gio.File) -> Glue.obj zo.Id (Gio.g_file_get_type ())) files)
-    let zr = gdk_file_list_new_from_array za1 (usize (Glue.count files))
+    let za2 = Glue.ptrs (Glue.mapList (fun (zo: Gio.File) -> Glue.obj zo.Id (Gio.g_file_get_type ())) files)
+    let zr = gdk_file_list_new_from_array za2 (usize (Glue.count files))
     let zv = FileList (Glue.wrapBoxed (zr) (gdk_file_list_get_type ()) true)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern gdk_file_list_new_from_list : cptr -> cptr

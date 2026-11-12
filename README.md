@@ -5,7 +5,7 @@ Two packages for [Z#](../zsharp), for writing GNOME applications.
 - **`gtk/`**: GTK 4 and libadwaita, two ways that mix.
   - **The libraries themselves**, as modules to call directly: `Gtk4`, `Adw`, `Gio`, `Gdk`,
     `GLib`, `GObject`, `Pango`, `PangoCairo`, `Cairo`, `GdkPixbuf`, `Gsk`, `Graphene`. About
-    16,300 functions, signals, properties and virtual methods, written by a generator from the
+    16,500 functions, signals, properties and virtual methods, written by a generator from the
     libraries' own descriptions (`.gir`), so they are what the C documentation says.
   - **A tree of values** over them (`open Gtk`): a `view` function gives the window for a
     model, and the widgets on screen are changed only where the tree differs.
@@ -97,10 +97,11 @@ Gtk4.Button.onClicked button (fun () -> Gtk4.ListBox.append list row.Widget)
 - **GLib's error** is the record a failed call gives (`Glue.Error`), in a handler's arguments
   too; a `GPtrArray` or a GList is a list, a `GByteArray` an `array<u8>`, and a stream's
   `read` gives the bytes it read.
-- **What is left out** is about 180 of 16,500: functions that take a `va_list` (which only C
-  can make), in-out strings and arrays, a few out parameters the caller makes room for, and
-  virtual methods that give back records. `ZGIR_WHY=1 tools/zs-provider-gir <file.gir>` says
-  why each one is.
+- **Nothing the libraries export is left out.** Where a parameter or a result has no shape
+  of its own here (a `va_list`, an in-out string, an array with no length), it is C's
+  pointer, a `cptr`, and the function is `[<Unsafe>]`. The few functions a description lists
+  and its library doesn't have are not there, as there is nothing to call.
+  `ZGIR_WHY=1 tools/zs-provider-gir <file.gir>` says what was passed over, and why.
 - **Off Linux** the loop waits through a thread and a pipe where Linux has epoll; `./test`
   runs the libraries' tests both ways.
 - **A program's own names** (`Toggle`, `Search`) that are also the library's are the

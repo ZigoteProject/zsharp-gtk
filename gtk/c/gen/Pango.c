@@ -123,6 +123,21 @@ gint64 zgtk_get_Pango_Color_green(void *p) { return (gint64)((PangoColor *)p)->g
 void zgtk_set_Pango_Color_green(void *p, gint64 v) { ((PangoColor *)p)->green = v; }
 gint64 zgtk_get_Pango_Color_blue(void *p) { return (gint64)((PangoColor *)p)->blue; }
 void zgtk_set_Pango_Color_blue(void *p, gint64 v) { ((PangoColor *)p)->blue = v; }
+static hb_font_t* vf_Pango_Font_create_hb_font(PangoFont* a0) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 1;
+    c.args[0].p = (void *)a0;
+    void *f = zgtk_vfunc_find(a0, "Pango_Font.create_hb_font");
+    if (f) zgtk_dispatch(f, &c);
+    return (hb_font_t*)c.ret.p;
+}
+void zgtk_override_Pango_Font_create_hb_font(gsize type, void *closure) {
+    PangoFontClass *k = g_type_class_ref(type);
+    if (k) { zgtk_vfunc_set(type, "Pango_Font.create_hb_font", closure); k->create_hb_font = (gpointer)vf_Pango_Font_create_hb_font; }
+}
+hb_font_t* zgtk_parent_Pango_Font_create_hb_font(PangoFont* a0) {
+    PangoFontClass *k = zgtk_vfunc_parent(a0, "Pango_Font.create_hb_font", 0);
+    return k && k->create_hb_font ? k->create_hb_font(a0) : (hb_font_t*)0;
+}
 static PangoFontDescription* vf_Pango_Font_describe(PangoFont* a0) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 1;
     c.args[0].p = (void *)a0;
@@ -168,6 +183,23 @@ void zgtk_override_Pango_Font_get_coverage(gsize type, void *closure) {
 PangoCoverage* zgtk_parent_Pango_Font_get_coverage(PangoFont* a0, PangoLanguage* a1) {
     PangoFontClass *k = zgtk_vfunc_parent(a0, "Pango_Font.get_coverage", 0);
     return k && k->get_coverage ? k->get_coverage(a0, a1) : (PangoCoverage*)0;
+}
+static void vf_Pango_Font_get_features(PangoFont* a0, hb_feature_t* a1, guint a2, guint* a3) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 4;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].i = (gint64)a2;
+    c.args[3].p = (void *)a3;
+    void *f = zgtk_vfunc_find(a0, "Pango_Font.get_features");
+    if (f) zgtk_dispatch(f, &c);
+}
+void zgtk_override_Pango_Font_get_features(gsize type, void *closure) {
+    PangoFontClass *k = g_type_class_ref(type);
+    if (k) { zgtk_vfunc_set(type, "Pango_Font.get_features", closure); k->get_features = (gpointer)vf_Pango_Font_get_features; }
+}
+void zgtk_parent_Pango_Font_get_features(PangoFont* a0, hb_feature_t* a1, guint a2, guint* a3) {
+    PangoFontClass *k = zgtk_vfunc_parent(a0, "Pango_Font.get_features", 0);
+    if (k && k->get_features) k->get_features(a0, a1, a2, a3);
 }
 static PangoFontMap* vf_Pango_Font_get_font_map(PangoFont* a0) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 1;
@@ -277,6 +309,22 @@ gboolean zgtk_parent_Pango_FontFace_is_synthesized(PangoFontFace* a0) {
     PangoFontFaceClass *k = zgtk_vfunc_parent(a0, "Pango_FontFace.is_synthesized", 0);
     return k && k->is_synthesized ? k->is_synthesized(a0) : (gboolean)0;
 }
+static void vf_Pango_FontFace_list_sizes(PangoFontFace* a0, int** a1, int* a2) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 3;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].p = (void *)a2;
+    void *f = zgtk_vfunc_find(a0, "Pango_FontFace.list_sizes");
+    if (f) zgtk_dispatch(f, &c);
+}
+void zgtk_override_Pango_FontFace_list_sizes(gsize type, void *closure) {
+    PangoFontFaceClass *k = g_type_class_ref(type);
+    if (k) { zgtk_vfunc_set(type, "Pango_FontFace.list_sizes", closure); k->list_sizes = (gpointer)vf_Pango_FontFace_list_sizes; }
+}
+void zgtk_parent_Pango_FontFace_list_sizes(PangoFontFace* a0, int** a1, int* a2) {
+    PangoFontFaceClass *k = zgtk_vfunc_parent(a0, "Pango_FontFace.list_sizes", 0);
+    if (k && k->list_sizes) k->list_sizes(a0, a1, a2);
+}
 static PangoFontFace* vf_Pango_FontFamily_get_face(PangoFontFamily* a0, const char* a1) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 2;
     c.args[0].p = (void *)a0;
@@ -338,6 +386,22 @@ gboolean zgtk_parent_Pango_FontFamily_is_variable(PangoFontFamily* a0) {
     PangoFontFamilyClass *k = zgtk_vfunc_parent(a0, "Pango_FontFamily.is_variable", 0);
     return k && k->is_variable ? k->is_variable(a0) : (gboolean)0;
 }
+static void vf_Pango_FontFamily_list_faces(PangoFontFamily* a0, PangoFontFace*** a1, int* a2) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 3;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].p = (void *)a2;
+    void *f = zgtk_vfunc_find(a0, "Pango_FontFamily.list_faces");
+    if (f) zgtk_dispatch(f, &c);
+}
+void zgtk_override_Pango_FontFamily_list_faces(gsize type, void *closure) {
+    PangoFontFamilyClass *k = g_type_class_ref(type);
+    if (k) { zgtk_vfunc_set(type, "Pango_FontFamily.list_faces", closure); k->list_faces = (gpointer)vf_Pango_FontFamily_list_faces; }
+}
+void zgtk_parent_Pango_FontFamily_list_faces(PangoFontFamily* a0, PangoFontFace*** a1, int* a2) {
+    PangoFontFamilyClass *k = zgtk_vfunc_parent(a0, "Pango_FontFamily.list_faces", 0);
+    if (k && k->list_faces) k->list_faces(a0, a1, a2);
+}
 static void vf_Pango_FontMap_changed(PangoFontMap* a0) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 1;
     c.args[0].p = (void *)a0;
@@ -398,6 +462,22 @@ void zgtk_override_Pango_FontMap_get_serial(gsize type, void *closure) {
 guint zgtk_parent_Pango_FontMap_get_serial(PangoFontMap* a0) {
     PangoFontMapClass *k = zgtk_vfunc_parent(a0, "Pango_FontMap.get_serial", 0);
     return k && k->get_serial ? k->get_serial(a0) : (guint)0;
+}
+static void vf_Pango_FontMap_list_families(PangoFontMap* a0, PangoFontFamily*** a1, int* a2) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 3;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].p = (void *)a2;
+    void *f = zgtk_vfunc_find(a0, "Pango_FontMap.list_families");
+    if (f) zgtk_dispatch(f, &c);
+}
+void zgtk_override_Pango_FontMap_list_families(gsize type, void *closure) {
+    PangoFontMapClass *k = g_type_class_ref(type);
+    if (k) { zgtk_vfunc_set(type, "Pango_FontMap.list_families", closure); k->list_families = (gpointer)vf_Pango_FontMap_list_families; }
+}
+void zgtk_parent_Pango_FontMap_list_families(PangoFontMap* a0, PangoFontFamily*** a1, int* a2) {
+    PangoFontMapClass *k = zgtk_vfunc_parent(a0, "Pango_FontMap.list_families", 0);
+    if (k && k->list_families) k->list_families(a0, a1, a2);
 }
 static PangoFont* vf_Pango_FontMap_load_font(PangoFontMap* a0, PangoContext* a1, const PangoFontDescription* a2) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 3;

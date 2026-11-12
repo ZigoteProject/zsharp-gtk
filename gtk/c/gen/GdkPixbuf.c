@@ -2,6 +2,18 @@
 #include "zgtk.h"
 #include <string.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
+static void tramp_GdkPixbuf_PixbufDestroyNotify(guchar* a0, gpointer a1) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 2;
+    c.args[0].p = (void *)a0;
+    zgtk_dispatch(a1, &c);
+}
+void *zgtk_tramp_GdkPixbuf_PixbufDestroyNotify(void) { return tramp_GdkPixbuf_PixbufDestroyNotify; }
+static void tramp_GdkPixbuf_PixbufDestroyNotify_once(guchar* a0, gpointer a1) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 2;
+    c.args[0].p = (void *)a0;
+    zgtk_dispatch(a1, &c); zgtk_drop(a1);
+}
+void *zgtk_tramp_GdkPixbuf_PixbufDestroyNotify_once(void) { return tramp_GdkPixbuf_PixbufDestroyNotify_once; }
 static void tramp_GdkPixbuf_PixbufModulePreparedFunc(GdkPixbuf* a0, GdkPixbufAnimation* a1, gpointer a2) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 3;
     c.args[0].p = (void *)a0;
@@ -50,6 +62,24 @@ static void tramp_GdkPixbuf_PixbufModuleUpdatedFunc_once(GdkPixbuf* a0, int a1, 
     zgtk_dispatch(a5, &c); zgtk_drop(a5);
 }
 void *zgtk_tramp_GdkPixbuf_PixbufModuleUpdatedFunc_once(void) { return tramp_GdkPixbuf_PixbufModuleUpdatedFunc_once; }
+static gboolean tramp_GdkPixbuf_PixbufSaveFunc(const gchar* a0, gsize a1, GError** a2, gpointer a3) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 4;
+    c.args[0].p = (void *)a0;
+    c.args[1].i = (gint64)a1;
+    c.args[2].p = (void *)a2;
+    zgtk_dispatch(a3, &c);
+    return (gboolean)c.ret.i;
+}
+void *zgtk_tramp_GdkPixbuf_PixbufSaveFunc(void) { return tramp_GdkPixbuf_PixbufSaveFunc; }
+static gboolean tramp_GdkPixbuf_PixbufSaveFunc_once(const gchar* a0, gsize a1, GError** a2, gpointer a3) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 4;
+    c.args[0].p = (void *)a0;
+    c.args[1].i = (gint64)a1;
+    c.args[2].p = (void *)a2;
+    zgtk_dispatch(a3, &c); zgtk_drop(a3);
+    return (gboolean)c.ret.i;
+}
+void *zgtk_tramp_GdkPixbuf_PixbufSaveFunc_once(void) { return tramp_GdkPixbuf_PixbufSaveFunc_once; }
 static void vf_GdkPixbuf_PixbufLoader_area_prepared(GdkPixbufLoader* a0) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 1;
     c.args[0].p = (void *)a0;

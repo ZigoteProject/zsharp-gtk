@@ -77,7 +77,7 @@ SIZES = {"i8": (1, True), "u8": (1, False), "i16": (2, True), "u16": (2, False),
          "u32": (4, False), "i64": (8, True), "u64": (8, False), "usize": (8, False), "f32": (4, True),
          "f64": (8, True)}
 TEXT = ("utf8", "filename")
-RAW = ("gpointer", "gconstpointer")
+RAW = ("gpointer", "gconstpointer", "va_list")
 # what a handle's table manages: the program must not
 UNSAFE = {"ref", "unref", "ref_sink", "free", "destroy", "weak_ref", "weak_unref", "run_dispose",
           "force_floating", "steal_data", "steal_qdata", "add_weak_pointer",
@@ -750,12 +750,31 @@ class Gen:
         for i, p in enumerate(params):
             if i == skip:
                 continue
-            kind, name = self.classify(p)
             v = local(p.get("name") or "arg")
             while v in used or v in ("handler", "self", call):
                 v += "_"
             used.add(v)
             at = i + first
+            try:
+                kind, name = self.classify(p)
+                if p.get("direction", "in") != "in" and not (kind == "prim" or kind in ("enum", "flags", "text", "class", "iface", "boxed", "plain")):
+                    raise Skip("no shape")
+                if p.get("direction", "in") == "inout" and not (kind == "prim" and PRIMS[name].c in ("i32", "u32")):
+                    raise Skip("no shape")
+                if p.get("direction", "in") == "in" and kind not in ("raw", "callback", "pointer", "gerror", "ptrarray", "bytearray", "strv", "array", "list", "prim", "text", "enum", "flags", "class", "iface", "boxed", "counted", "plain"):
+                    raise Skip("no shape")
+                if kind in ("strv", "array") and p.get("direction", "in") == "in":
+                    # checked here: one of no known length is a pointer
+                    probe = dict(name)
+                    if probe["length"] is not None:
+                        probe["n"] = "0"
+                    self.of_c(kind, probe, ET.Element("x", {"transfer-ownership": "none"}), "x", [])
+            except Skip:
+                # no shape of its own: the pointer C passed, as it is
+                types.append("cptr")
+                lines.append("let %s = Glue.argPointer %d" % (v, at))
+                names.append(v)
+                continue
             if p.get("direction", "in") == "out":
                 # a number the handler gives back through a pointer: part of its result
                 full_out = p.get("transfer-ownership", "none") == "full"
@@ -778,7 +797,10 @@ class Gen:
                     size = "(%szgtk_sizeof_%s ())" % (self.mod(ens), self.cname(name))
                     outs.append((v, self.zs(name), "Glue.setRecord %d (Glue.obj %s.Id %s) %s" % (at, v, self.gt(name), size)))
                 else:
-                    raise Skip("a handler with an out parameter that is an array or a record of no size")
+                    # where C wants it written: the pointer, for the handler to fill
+                    types.append("cptr")
+                    lines.append("let %s = Glue.argPointer %d" % (v, at))
+                    names.append(v)
                 continue
             if p.get("direction", "in") == "inout" and kind == "prim" and PRIMS[name].c in ("i32", "u32"):
                 # a number at a pointer: the handler is given it, and gives what it is to be
@@ -819,7 +841,10 @@ class Gen:
             lines.append("let %s = %s" % (v, read))
             names.append(v)
         applied = "%s %s" % (call, " ".join(names) if names else "()")
-        kind, name = self.classify(ret)
+        try:
+            kind, name = self.classify(ret)
+        except Skip:
+            kind, name = "raw", "gpointer"
         if outs:
             # the function gives its result and the numbers together
             parts = ([] if kind == "none" else ["zres"]) + [v for v, _, _ in outs]
@@ -875,7 +900,10 @@ class Gen:
             else:
                 lines.append("Glue.returnPointer (%s)" % (give % ("Glue.obj (%s).Id %s" % (applied, gt))))
         else:
-            raise Skip("a handler with a result of a kind this can't take")
+            # a result this has no shape for: the pointer C is to be given
+            self.raw = True
+            rz = "cptr"
+            lines.append("Glue.returnPointer (%s)" % applied)
         return (lines, " -> ".join((types or ["unit"]) + [result(rz)]))
 
     def trampoline(self, full):
@@ -896,13 +924,19 @@ class Gen:
             sig.append("%s a%d" % (ct, i))
             if i == data:
                 continue
-            kind, name = self.classify(p)
+            try:
+                kind, name = self.classify(p)
+            except Skip:
+                kind, name = "raw", "gpointer"
             member = PRIMS[name].member if kind == "prim" else "i" if kind in ("enum", "flags") else "p"
             if p.get("direction", "in") != "in":
                 member = "p"
             cast = {"i": "(gint64)", "d": "(double)", "p": "(void *)"}[member]
             sets.append("c.args[%d].%s = %sa%d;" % (i, member, cast, i))
-        rkind, rname = self.classify(ret)
+        try:
+            rkind, rname = self.classify(ret)
+        except Skip:
+            rkind, rname = "raw", "gpointer"
         rct = "void" if rkind == "none" else ctype(ret)
         if rct is None:
             raise Skip("a callback with a result C has no type for")
@@ -932,9 +966,10 @@ class Gen:
         if el.get("moved-to") or el.get("shadowed-by"):
             raise Alias("another name of a function that is given")
         if not made and self.exported is not None and cname not in self.exported:
-            raise Skip("not in the library")
+            # the description lists it and the library has no such function: nothing to call
+            raise Alias("not in the library")
         if cname in self.seen:
-            raise Skip("given by a module before this one")
+            raise Alias("given by a module before this one")
         raw = el.get("name")
         ctor = el.tag == CORE + "constructor"
         # an object's `destroy` (a window's) leaves it valid; a boxed value's frees it
@@ -947,6 +982,9 @@ class Gen:
         if prefix:
             name = camel(prefix) + name[:1].upper() + name[1:]
         name = fname or name
+        if name in names:
+            # two C functions come to one name: the second keeps C's
+            name = camel(cname)
         if name in names:
             raise Skip("a second function of the same name")
         self.temp = 0
@@ -983,7 +1021,11 @@ class Gen:
                 fixed[int(arr.get("length"))] = ("length", i)
         # an array C gives says its length in an out parameter, which is read and not given
         ret = el.find(CORE + "return-value")
-        rkind, rname = self.classify(ret)
+        try:
+            rkind, rname = self.classify(ret)
+        except Skip:
+            # a result this has no shape for: C's pointer, as it is
+            rkind, rname = "raw", "gpointer"
         outlen, slot = {}, 0
         # a buffer the caller makes room for, as long as an in parameter says: its place, and
         # the parameter's
@@ -993,20 +1035,38 @@ class Gen:
             if (arr is not None and p.get("direction") == "out" and flag(p, "caller-allocates") and arr.get("length") is not None
                     and int(arr.get("length")) < len(plan) and plan[int(arr.get("length"))][1].get("direction", "in") == "in"):
                 buffers[i] = int(arr.get("length"))
-        given = [(rkind, rname)] + [self.classify(p) for i, p, _ in plan if p.get("direction") == "out" and p.find(CORE + "array") is not None and i not in buffers]
+        def shaped(p):
+            try:
+                return self.classify(p)
+            except Skip:
+                return ("raw", "gpointer")
+
+        given = [(rkind, rname)] + [shaped(p) for i, p, _ in plan if p.get("direction") == "out" and p.find(CORE + "array") is not None and i not in buffers]
         for kind, shape in given:
             if kind in ("array", "strv") and shape["length"] is not None and shape["length"] not in outlen:
                 at = shape["length"]
                 if at >= len(plan) or plan[at][1].get("direction") != "out":
-                    raise Skip("an array whose length isn't an out parameter")
-                lkind, lname = self.classify(plan[at][1])
+                    continue
+                lkind, lname = shaped(plan[at][1])
                 if lkind != "prim" or PRIMS[lname].out is None or PRIMS[lname].z != "int":
-                    raise Skip("an array whose length isn't a number")
+                    continue
                 outlen[at] = (slot, PRIMS[lname].out.format(slot))
                 slot += 1
         for kind, shape in given:
-            if kind in ("array", "strv") and shape["length"] is not None:
+            if kind in ("array", "strv") and shape["length"] is not None and shape["length"] in outlen:
                 shape["n"] = outlen[shape["length"]][1]
+        # an array this has no shape for is C's pointer, and its length a number like any other
+        for at, (what, i) in list(fixed.items()):
+            was = self.raw
+            try:
+                akind, ashape = self.classify(plan[i][1])
+                self.to_c(akind, ashape, plan[i][1], "x", [], [])
+                lkind, lname = self.classify(plan[at][1])
+                if lkind != "prim" or plan[at][1].get("direction", "in") != "in":
+                    raise Skip("no shape")
+            except Skip:
+                del fixed[at]
+            self.raw = was
         callbacks = {}
         destroys = {int(p.get("destroy")) for _, p, _ in plan if p.get("destroy") is not None}
         for i, p, pname in plan:
@@ -1068,108 +1128,118 @@ class Gen:
                     ext.append(PRIMS[pn].c)
                     args.append(PRIMS[pn].to_c.format("(Glue.%s %s)" % ("countBytes" if bytes_ else "count", plan[v][2])))
                 continue
-            direction = p.get("direction", "in")
-            t = p.find(CORE + "type")
-            tn = None if t is None else t.get("name")
-            if tn and tn not in PRIMS and tn not in TEXT and tn not in RAW and self.gir.types.get(self.full(tn), NOTHING).kind == "callback":
-                # C's function pointer and nothing to carry a closure: the caller's own to give
-                if direction != "in":
-                    raise Skip("a function pointer as an out parameter")
+            mark = (len(ext), len(pub), len(args), len(pre), len(post), len(outs), slot, len(primed))
+            try:
+                direction = p.get("direction", "in")
+                t = p.find(CORE + "type")
+                tn = None if t is None else t.get("name")
+                if tn and tn not in PRIMS and tn not in TEXT and tn not in RAW and self.gir.types.get(self.full(tn), NOTHING).kind == "callback":
+                    # C's function pointer and nothing to carry a closure: the caller's own to give
+                    if direction != "in":
+                        raise Skip("a function pointer as an out parameter")
+                    self.raw = True
+                    ext.append("cptr")
+                    pub.append("(%s: cptr)" % pname)
+                    args.append(pname)
+                    continue
+                kind, tname = self.classify(p)
+                if direction == "inout" and kind in ("boxed", "plain", "pointer"):
+                    # a record the function changes where it is: the handle's own
+                    direction = "in"
+                    p = ET.Element(p.tag, dict(p.attrib, **{"transfer-ownership": "none"}))
+                if direction == "out" and flag(p, "caller-allocates") and kind == "array" and tname.get("inline") \
+                        and (tname["fixed"] is not None or i in buffers):
+                    # room for records side by side, which the function fills in
+                    ens = tname["ename"].split(".", 1)[0]
+                    size = "(%szgtk_sizeof_%s ())" % (self.mod(ens), self.cname(tname["ename"]))
+                    n = str(tname["fixed"]) if tname["fixed"] is not None else plan[buffers[i]][2]
+                    buf = self.tmp("buf")
+                    pre.append("let %s = Glue.roomFor (%s) %s" % (buf, n, size))
+                    ext.append("cptr")
+                    args.append(buf)
+                    ghost = ET.Element("x", {"transfer-ownership": "container"})
+                    lets = []
+                    z, e = self.of_c("array", dict(tname, n=n, zt=False), ghost, buf, lets)
+                    outs.append((z, e, lets))
+                    continue
+                if direction == "out" and flag(p, "caller-allocates") and kind == "array" and tname["ekind"] == "prim" \
+                        and PRIMS[tname["ename"]].z != "usize" and (tname["fixed"] is not None or i in buffers):
+                    # room for numbers the function fills in: as many as the array's size, or as
+                    # the parameter that says how many
+                    c = PRIMS[tname["ename"]].c
+                    size = SIZES[c][0]
+                    n = str(tname["fixed"]) if tname["fixed"] is not None else plan[buffers[i]][2]
+                    buf = self.tmp("buf")
+                    pre.append("let %s = Glue.room (%s) %d" % (buf, n, size))
+                    ext.append("cptr")
+                    args.append(buf)
+                    shape = dict(tname, n=n, zt=False)
+                    ghost = ET.Element("x", {"transfer-ownership": "full"})
+                    z, e = self.of_c("array", shape, ghost, buf, [])
+                    outs.append((z, e, []))
+                    continue
+                if direction == "inout":
+                    # a number that goes in and comes back: given, and part of the result
+                    setter = {"f32": "outSetF32", "f64": "outSetF64"}.get(PRIMS[tname].c, "outSetInt") if kind == "prim" else None
+                    if setter is None or PRIMS[tname].out is None or slot >= 16:
+                        raise Skip("an in-out parameter that isn't a number")
+                    value = {"bool": "(if %s then 1 else 0)"}.get(PRIMS[tname].z, "%s") % pname
+                    primed.append("Glue.%s %d %s" % (setter, slot, value))
+                    ext.append("cptr")
+                    pub.append("(%s: %s)" % (pname, PRIMS[tname].z))
+                    args.append("(Glue.out %d)" % slot)
+                    outs.append((PRIMS[tname].z, PRIMS[tname].out.format(slot), []))
+                    slot += 1
+                    continue
+                if kind in ("none", "callback"):
+                    raise Skip("a parameter of no type")
+                if kind in ("array", "strv") and direction == "out" and tname["length"] is not None and i not in buffers and tname["length"] in outlen:
+                    tname["n"] = outlen[tname["length"]][1]
+                if direction == "out":
+                    ext.append("cptr")
+                    if kind in ("boxed", "plain") and flag(p, "caller-allocates"):
+                        if not self.gir.sized(tname):
+                            raise Skip("a record of a size C doesn't tell, to fill in")
+                        ns = tname.split(".", 1)[0]
+                        v = self.tmp("o")
+                        gt = self.gt(tname)
+                        pre.append("let %s = Glue.%s (%szgtk_sizeof_%s ()) %s" % (v, "allocPlain" if kind == "plain" else "alloc", self.mod(ns), self.cname(tname), gt))
+                        args.append("(Glue.obj %s %s)" % (v, gt))
+                        outs.append((self.zs(tname), "%s %s" % (self.zs(tname), v), []))
+                        continue
+                    if slot >= 16:
+                        raise Skip("more than sixteen out parameters")
+                    if flag(p, "caller-allocates"):
+                        raise Skip("an out parameter the caller makes room for")
+                    args.append("(Glue.out %d)" % slot)
+                    lets = []
+                    if kind == "prim":
+                        if PRIMS[tname].out is None:
+                            raise Skip("a small integer or a GType as an out parameter")
+                        outs.append((PRIMS[tname].z, PRIMS[tname].out.format(slot), lets))
+                    elif kind == "enum":
+                        outs.append((self.zs(tname), "%s (Glue.outI32 %d)" % (self.zs(tname), slot), lets))
+                    elif kind == "flags":
+                        outs.append((self.zs(tname), "%s (Glue.outU32 %d)" % (self.zs(tname), slot), lets))
+                    elif kind == "closure":
+                        raise Skip("a closure as an out parameter")
+                    else:
+                        z, e = self.of_c(kind, tname, p, "Glue.outPtr %d" % slot, lets)
+                        outs.append((z, e, lets))
+                    slot += 1
+                    continue
+                c, z, e = self.to_c(kind, tname, p, pname, pre, post)
+                ext.append(c)
+                pub.append("(%s: %s)" % (pname, z))
+                args.append(e)
+            except Skip:
+                # no shape of its own: C's pointer, given as it is by code that answers for it
+                del ext[mark[0]:], pub[mark[1]:], args[mark[2]:], pre[mark[3]:], post[mark[4]:], outs[mark[5]:], primed[mark[7]:]
+                slot = mark[6]
                 self.raw = True
                 ext.append("cptr")
                 pub.append("(%s: cptr)" % pname)
                 args.append(pname)
-                continue
-            kind, tname = self.classify(p)
-            if direction == "inout" and kind in ("boxed", "plain", "pointer"):
-                # a record the function changes where it is: the handle's own
-                direction = "in"
-                p = ET.Element(p.tag, dict(p.attrib, **{"transfer-ownership": "none"}))
-            if direction == "out" and flag(p, "caller-allocates") and kind == "array" and tname.get("inline") \
-                    and (tname["fixed"] is not None or i in buffers):
-                # room for records side by side, which the function fills in
-                ens = tname["ename"].split(".", 1)[0]
-                size = "(%szgtk_sizeof_%s ())" % (self.mod(ens), self.cname(tname["ename"]))
-                n = str(tname["fixed"]) if tname["fixed"] is not None else plan[buffers[i]][2]
-                buf = self.tmp("buf")
-                pre.append("let %s = Glue.roomFor (%s) %s" % (buf, n, size))
-                ext.append("cptr")
-                args.append(buf)
-                ghost = ET.Element("x", {"transfer-ownership": "container"})
-                lets = []
-                z, e = self.of_c("array", dict(tname, n=n, zt=False), ghost, buf, lets)
-                outs.append((z, e, lets))
-                continue
-            if direction == "out" and flag(p, "caller-allocates") and kind == "array" and tname["ekind"] == "prim" \
-                    and PRIMS[tname["ename"]].z != "usize" and (tname["fixed"] is not None or i in buffers):
-                # room for numbers the function fills in: as many as the array's size, or as
-                # the parameter that says how many
-                c = PRIMS[tname["ename"]].c
-                size = SIZES[c][0]
-                n = str(tname["fixed"]) if tname["fixed"] is not None else plan[buffers[i]][2]
-                buf = self.tmp("buf")
-                pre.append("let %s = Glue.room (%s) %d" % (buf, n, size))
-                ext.append("cptr")
-                args.append(buf)
-                shape = dict(tname, n=n, zt=False)
-                ghost = ET.Element("x", {"transfer-ownership": "full"})
-                z, e = self.of_c("array", shape, ghost, buf, [])
-                outs.append((z, e, []))
-                continue
-            if direction == "inout":
-                # a number that goes in and comes back: given, and part of the result
-                setter = {"f32": "outSetF32", "f64": "outSetF64"}.get(PRIMS[tname].c, "outSetInt") if kind == "prim" else None
-                if setter is None or PRIMS[tname].out is None or slot >= 8:
-                    raise Skip("an in-out parameter that isn't a number")
-                value = {"bool": "(if %s then 1 else 0)"}.get(PRIMS[tname].z, "%s") % pname
-                primed.append("Glue.%s %d %s" % (setter, slot, value))
-                ext.append("cptr")
-                pub.append("(%s: %s)" % (pname, PRIMS[tname].z))
-                args.append("(Glue.out %d)" % slot)
-                outs.append((PRIMS[tname].z, PRIMS[tname].out.format(slot), []))
-                slot += 1
-                continue
-            if kind in ("none", "callback"):
-                raise Skip("a parameter of no type")
-            if kind in ("array", "strv") and direction == "out" and tname["length"] is not None and i not in buffers:
-                tname["n"] = outlen[tname["length"]][1]
-            if direction == "out":
-                ext.append("cptr")
-                if kind in ("boxed", "plain") and flag(p, "caller-allocates"):
-                    if not self.gir.sized(tname):
-                        raise Skip("a record of a size C doesn't tell, to fill in")
-                    ns = tname.split(".", 1)[0]
-                    v = self.tmp("o")
-                    gt = self.gt(tname)
-                    pre.append("let %s = Glue.%s (%szgtk_sizeof_%s ()) %s" % (v, "allocPlain" if kind == "plain" else "alloc", self.mod(ns), self.cname(tname), gt))
-                    args.append("(Glue.obj %s %s)" % (v, gt))
-                    outs.append((self.zs(tname), "%s %s" % (self.zs(tname), v), []))
-                    continue
-                if slot >= 8:
-                    raise Skip("more than eight out parameters")
-                if flag(p, "caller-allocates"):
-                    raise Skip("an out parameter the caller makes room for")
-                args.append("(Glue.out %d)" % slot)
-                lets = []
-                if kind == "prim":
-                    if PRIMS[tname].out is None:
-                        raise Skip("a small integer or a GType as an out parameter")
-                    outs.append((PRIMS[tname].z, PRIMS[tname].out.format(slot), lets))
-                elif kind == "enum":
-                    outs.append((self.zs(tname), "%s (Glue.outI32 %d)" % (self.zs(tname), slot), lets))
-                elif kind == "flags":
-                    outs.append((self.zs(tname), "%s (Glue.outU32 %d)" % (self.zs(tname), slot), lets))
-                elif kind == "closure":
-                    raise Skip("a closure as an out parameter")
-                else:
-                    z, e = self.of_c(kind, tname, p, "Glue.outPtr %d" % slot, lets)
-                    outs.append((z, e, lets))
-                slot += 1
-                continue
-            c, z, e = self.to_c(kind, tname, p, pname, pre, post)
-            ext.append(c)
-            pub.append("(%s: %s)" % (pname, z))
-            args.append(e)
         throws = flag(el, "throws")
         if throws:
             ext.append("cptr")
@@ -1186,8 +1256,12 @@ class Gen:
             own = ret.get("transfer-ownership", "none") == "full"
             rexpr = "%s (%s)" % (rz, self.handle(self.gir.kind(owner), owner, "zr", own))
         else:
-            rc = PRIMS[rname].c if rkind == "prim" else self.c_of(rkind)
-            rz, rexpr = self.of_c(rkind, rname, ret, "zr", after)
+            try:
+                rc = PRIMS[rname].c if rkind == "prim" else self.c_of(rkind)
+                rz, rexpr = self.of_c(rkind, rname, ret, "zr", after)
+            except Skip:
+                del after[:]
+                rc, rz, rexpr = "cptr", "cptr", "zr"
         values = ([(rz, rexpr)] if rz else []) + [(z, e) for z, e, _ in outs]
         for _, _, lets in outs:
             after += lets
@@ -1380,12 +1454,18 @@ class Gen:
                     if ct is None:
                         raise Skip("a virtual method with a parameter C has no type for")
                     sig.append("%s a%d" % (ct, i))
-                    kind, kname = self.classify(p)
+                    try:
+                        kind, kname = self.classify(p)
+                    except Skip:
+                        kind, kname = "raw", "gpointer"
                     member = PRIMS[kname].member if kind == "prim" else "i" if kind in ("enum", "flags") else "p"
                     if p.get("direction", "in") != "in":
                         member = "p"
                     sets.append("c.args[%d].%s = %sa%d;" % (i, member, {"i": "(gint64)", "d": "(double)", "p": "(void *)"}[member], i))
-                rkind, rname = self.classify(ret)
+                try:
+                    rkind, rname = self.classify(ret)
+                except Skip:
+                    rkind, rname = "raw", "gpointer"
                 rct = "void" if rkind == "none" else ctype(ret)
                 if rct is None:
                     raise Skip("a virtual method with a result C has no type for")

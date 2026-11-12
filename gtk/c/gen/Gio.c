@@ -244,6 +244,30 @@ static void tramp_Gio_DBusSignalCallback_once(GDBusConnection* a0, const gchar* 
     zgtk_dispatch(a6, &c); zgtk_drop(a6);
 }
 void *zgtk_tramp_Gio_DBusSignalCallback_once(void) { return tramp_Gio_DBusSignalCallback_once; }
+static const GDBusInterfaceVTable* tramp_Gio_DBusSubtreeDispatchFunc(GDBusConnection* a0, const gchar* a1, const gchar* a2, const gchar* a3, const gchar* a4, gpointer* a5, gpointer a6) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 7;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].p = (void *)a2;
+    c.args[3].p = (void *)a3;
+    c.args[4].p = (void *)a4;
+    c.args[5].p = (void *)a5;
+    zgtk_dispatch(a6, &c);
+    return (const GDBusInterfaceVTable*)c.ret.p;
+}
+void *zgtk_tramp_Gio_DBusSubtreeDispatchFunc(void) { return tramp_Gio_DBusSubtreeDispatchFunc; }
+static const GDBusInterfaceVTable* tramp_Gio_DBusSubtreeDispatchFunc_once(GDBusConnection* a0, const gchar* a1, const gchar* a2, const gchar* a3, const gchar* a4, gpointer* a5, gpointer a6) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 7;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].p = (void *)a2;
+    c.args[3].p = (void *)a3;
+    c.args[4].p = (void *)a4;
+    c.args[5].p = (void *)a5;
+    zgtk_dispatch(a6, &c); zgtk_drop(a6);
+    return (const GDBusInterfaceVTable*)c.ret.p;
+}
+void *zgtk_tramp_Gio_DBusSubtreeDispatchFunc_once(void) { return tramp_Gio_DBusSubtreeDispatchFunc_once; }
 static gchar** tramp_Gio_DBusSubtreeEnumerateFunc(GDBusConnection* a0, const gchar* a1, const gchar* a2, gpointer a3) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 4;
     c.args[0].p = (void *)a0;
@@ -262,6 +286,26 @@ static gchar** tramp_Gio_DBusSubtreeEnumerateFunc_once(GDBusConnection* a0, cons
     return (gchar**)c.ret.p;
 }
 void *zgtk_tramp_Gio_DBusSubtreeEnumerateFunc_once(void) { return tramp_Gio_DBusSubtreeEnumerateFunc_once; }
+static GDBusInterfaceInfo** tramp_Gio_DBusSubtreeIntrospectFunc(GDBusConnection* a0, const gchar* a1, const gchar* a2, const gchar* a3, gpointer a4) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 5;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].p = (void *)a2;
+    c.args[3].p = (void *)a3;
+    zgtk_dispatch(a4, &c);
+    return (GDBusInterfaceInfo**)c.ret.p;
+}
+void *zgtk_tramp_Gio_DBusSubtreeIntrospectFunc(void) { return tramp_Gio_DBusSubtreeIntrospectFunc; }
+static GDBusInterfaceInfo** tramp_Gio_DBusSubtreeIntrospectFunc_once(GDBusConnection* a0, const gchar* a1, const gchar* a2, const gchar* a3, gpointer a4) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 5;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].p = (void *)a2;
+    c.args[3].p = (void *)a3;
+    zgtk_dispatch(a4, &c); zgtk_drop(a4);
+    return (GDBusInterfaceInfo**)c.ret.p;
+}
+void *zgtk_tramp_Gio_DBusSubtreeIntrospectFunc_once(void) { return tramp_Gio_DBusSubtreeIntrospectFunc_once; }
 static gboolean tramp_Gio_DatagramBasedSourceFunc(GDatagramBased* a0, GIOCondition a1, gpointer a2) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 3;
     c.args[0].p = (void *)a0;
@@ -386,6 +430,22 @@ static GVariant* tramp_Gio_SettingsBindSetMapping_once(const GValue* a0, const G
     return (GVariant*)c.ret.p;
 }
 void *zgtk_tramp_Gio_SettingsBindSetMapping_once(void) { return tramp_Gio_SettingsBindSetMapping_once; }
+static gboolean tramp_Gio_SettingsGetMapping(GVariant* a0, gpointer* a1, gpointer a2) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 3;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    zgtk_dispatch(a2, &c);
+    return (gboolean)c.ret.i;
+}
+void *zgtk_tramp_Gio_SettingsGetMapping(void) { return tramp_Gio_SettingsGetMapping; }
+static gboolean tramp_Gio_SettingsGetMapping_once(GVariant* a0, gpointer* a1, gpointer a2) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 3;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    zgtk_dispatch(a2, &c); zgtk_drop(a2);
+    return (gboolean)c.ret.i;
+}
+void *zgtk_tramp_Gio_SettingsGetMapping_once(void) { return tramp_Gio_SettingsGetMapping_once; }
 static gboolean tramp_Gio_SocketSourceFunc(GSocket* a0, GIOCondition a1, gpointer a2) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 3;
     c.args[0].p = (void *)a0;
@@ -744,6 +804,27 @@ gchar** zgtk_parent_Gio_ActionGroup_list_actions(GActionGroup* a0) {
     GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.list_actions", g_action_group_get_type());
     return k && k->list_actions ? k->list_actions(a0) : (gchar**)0;
 }
+static gboolean vf_Gio_ActionGroup_query_action(GActionGroup* a0, const gchar* a1, gboolean* a2, const GVariantType** a3, const GVariantType** a4, GVariant** a5, GVariant** a6) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 7;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].p = (void *)a2;
+    c.args[3].p = (void *)a3;
+    c.args[4].p = (void *)a4;
+    c.args[5].p = (void *)a5;
+    c.args[6].p = (void *)a6;
+    void *f = zgtk_vfunc_find(a0, "Gio_ActionGroup.query_action");
+    if (f) zgtk_dispatch(f, &c);
+    return (gboolean)c.ret.i;
+}
+void zgtk_override_Gio_ActionGroup_query_action(gsize type, void *closure) {
+    GActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_group_get_type());
+    if (k) { zgtk_vfunc_set(type, "Gio_ActionGroup.query_action", closure); k->query_action = (gpointer)vf_Gio_ActionGroup_query_action; }
+}
+gboolean zgtk_parent_Gio_ActionGroup_query_action(GActionGroup* a0, const gchar* a1, gboolean* a2, const GVariantType** a3, const GVariantType** a4, GVariant** a5, GVariant** a6) {
+    GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.query_action", g_action_group_get_type());
+    return k && k->query_action ? k->query_action(a0, a1, a2, a3, a4, a5, a6) : (gboolean)0;
+}
 static void vf_Gio_ActionMap_add_action(GActionMap* a0, GAction* a1) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 2;
     c.args[0].p = (void *)a0;
@@ -970,6 +1051,21 @@ void zgtk_override_Gio_AppInfo_get_name(gsize type, void *closure) {
 const char* zgtk_parent_Gio_AppInfo_get_name(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.get_name", g_app_info_get_type());
     return k && k->get_name ? k->get_name(a0) : (const char*)0;
+}
+static const char** vf_Gio_AppInfo_get_supported_types(GAppInfo* a0) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 1;
+    c.args[0].p = (void *)a0;
+    void *f = zgtk_vfunc_find(a0, "Gio_AppInfo.get_supported_types");
+    if (f) zgtk_dispatch(f, &c);
+    return (const char**)c.ret.p;
+}
+void zgtk_override_Gio_AppInfo_get_supported_types(gsize type, void *closure) {
+    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
+    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.get_supported_types", closure); k->get_supported_types = (gpointer)vf_Gio_AppInfo_get_supported_types; }
+}
+const char** zgtk_parent_Gio_AppInfo_get_supported_types(GAppInfo* a0) {
+    GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.get_supported_types", g_app_info_get_type());
+    return k && k->get_supported_types ? k->get_supported_types(a0) : (const char**)0;
 }
 static void vf_Gio_AppInfo_launch_uris_async(GAppInfo* a0, GList* a1, GAppLaunchContext* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 6;
@@ -1222,6 +1318,23 @@ void zgtk_override_Gio_Application_handle_local_options(gsize type, void *closur
 gint zgtk_parent_Gio_Application_handle_local_options(GApplication* a0, GVariantDict* a1) {
     GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.handle_local_options", 0);
     return k && k->handle_local_options ? k->handle_local_options(a0, a1) : (gint)0;
+}
+static gboolean vf_Gio_Application_local_command_line(GApplication* a0, gchar*** a1, int* a2) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 3;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].p = (void *)a2;
+    void *f = zgtk_vfunc_find(a0, "Gio_Application.local_command_line");
+    if (f) zgtk_dispatch(f, &c);
+    return (gboolean)c.ret.i;
+}
+void zgtk_override_Gio_Application_local_command_line(gsize type, void *closure) {
+    GApplicationClass *k = g_type_class_ref(type);
+    if (k) { zgtk_vfunc_set(type, "Gio_Application.local_command_line", closure); k->local_command_line = (gpointer)vf_Gio_Application_local_command_line; }
+}
+gboolean zgtk_parent_Gio_Application_local_command_line(GApplication* a0, gchar*** a1, int* a2) {
+    GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.local_command_line", 0);
+    return k && k->local_command_line ? k->local_command_line(a0, a1, a2) : (gboolean)0;
 }
 static gboolean vf_Gio_Application_name_lost(GApplication* a0) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 1;
@@ -1497,6 +1610,26 @@ void zgtk_parent_Gio_InputStream_close_async(GInputStream* a0, int a1, GCancella
     GInputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_InputStream.close_async", 0);
     if (k && k->close_async) k->close_async(a0, a1, a2, a3, a4);
 }
+static void vf_Gio_InputStream_read_async(GInputStream* a0, void* a1, gsize a2, int a3, GCancellable* a4, GAsyncReadyCallback a5, gpointer a6) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 7;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].i = (gint64)a2;
+    c.args[3].i = (gint64)a3;
+    c.args[4].p = (void *)a4;
+    c.args[5].p = (void *)a5;
+    c.args[6].p = (void *)a6;
+    void *f = zgtk_vfunc_find(a0, "Gio_InputStream.read_async");
+    if (f) zgtk_dispatch(f, &c);
+}
+void zgtk_override_Gio_InputStream_read_async(gsize type, void *closure) {
+    GInputStreamClass *k = g_type_class_ref(type);
+    if (k) { zgtk_vfunc_set(type, "Gio_InputStream.read_async", closure); k->read_async = (gpointer)vf_Gio_InputStream_read_async; }
+}
+void zgtk_parent_Gio_InputStream_read_async(GInputStream* a0, void* a1, gsize a2, int a3, GCancellable* a4, GAsyncReadyCallback a5, gpointer a6) {
+    GInputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_InputStream.read_async", 0);
+    if (k && k->read_async) k->read_async(a0, a1, a2, a3, a4, a5, a6);
+}
 static void vf_Gio_InputStream_skip_async(GInputStream* a0, gsize a1, int a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 6;
     c.args[0].p = (void *)a0;
@@ -1676,6 +1809,23 @@ void zgtk_override_Gio_Icon_serialize(gsize type, void *closure) {
 GVariant* zgtk_parent_Gio_Icon_serialize(GIcon* a0) {
     GIconIface *k = zgtk_vfunc_parent(a0, "Gio_Icon.serialize", g_icon_get_type());
     return k && k->serialize ? k->serialize(a0) : (GVariant*)0;
+}
+static gboolean vf_Gio_Icon_to_tokens(GIcon* a0, GPtrArray* a1, gint* a2) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 3;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].p = (void *)a2;
+    void *f = zgtk_vfunc_find(a0, "Gio_Icon.to_tokens");
+    if (f) zgtk_dispatch(f, &c);
+    return (gboolean)c.ret.i;
+}
+void zgtk_override_Gio_Icon_to_tokens(gsize type, void *closure) {
+    GIconIface *k = g_type_interface_peek(g_type_class_ref(type), g_icon_get_type());
+    if (k) { zgtk_vfunc_set(type, "Gio_Icon.to_tokens", closure); k->to_tokens = (gpointer)vf_Gio_Icon_to_tokens; }
+}
+gboolean zgtk_parent_Gio_Icon_to_tokens(GIcon* a0, GPtrArray* a1, gint* a2) {
+    GIconIface *k = zgtk_vfunc_parent(a0, "Gio_Icon.to_tokens", g_icon_get_type());
+    return k && k->to_tokens ? k->to_tokens(a0, a1, a2) : (gboolean)0;
 }
 static void vf_Gio_LoadableIcon_load_async(GLoadableIcon* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 5;
@@ -1981,6 +2131,21 @@ GVariant* zgtk_parent_Gio_DBusInterfaceSkeleton_get_properties(GDBusInterfaceSke
     GDBusInterfaceSkeletonClass *k = zgtk_vfunc_parent(a0, "Gio_DBusInterfaceSkeleton.get_properties", 0);
     return k && k->get_properties ? k->get_properties(a0) : (GVariant*)0;
 }
+static GDBusInterfaceVTable* vf_Gio_DBusInterfaceSkeleton_get_vtable(GDBusInterfaceSkeleton* a0) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 1;
+    c.args[0].p = (void *)a0;
+    void *f = zgtk_vfunc_find(a0, "Gio_DBusInterfaceSkeleton.get_vtable");
+    if (f) zgtk_dispatch(f, &c);
+    return (GDBusInterfaceVTable*)c.ret.p;
+}
+void zgtk_override_Gio_DBusInterfaceSkeleton_get_vtable(gsize type, void *closure) {
+    GDBusInterfaceSkeletonClass *k = g_type_class_ref(type);
+    if (k) { zgtk_vfunc_set(type, "Gio_DBusInterfaceSkeleton.get_vtable", closure); k->get_vtable = (gpointer)vf_Gio_DBusInterfaceSkeleton_get_vtable; }
+}
+GDBusInterfaceVTable* zgtk_parent_Gio_DBusInterfaceSkeleton_get_vtable(GDBusInterfaceSkeleton* a0) {
+    GDBusInterfaceSkeletonClass *k = zgtk_vfunc_parent(a0, "Gio_DBusInterfaceSkeleton.get_vtable", 0);
+    return k && k->get_vtable ? k->get_vtable(a0) : (GDBusInterfaceVTable*)0;
+}
 static void vf_Gio_DBusInterfaceSkeleton_method_dispatch(GDBusInterfaceSkeleton* a0, GDBusInterfaceMethodCallFunc a1, GDBusMethodInvocation* a2, GDBusInterfaceSkeletonFlags a3, GDBusObject* a4) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 5;
     c.args[0].p = (void *)a0;
@@ -2018,6 +2183,22 @@ GVariant* zgtk_parent_Gio_MenuModel_get_item_attribute_value(GMenuModel* a0, gin
     GMenuModelClass *k = zgtk_vfunc_parent(a0, "Gio_MenuModel.get_item_attribute_value", 0);
     return k && k->get_item_attribute_value ? k->get_item_attribute_value(a0, a1, a2, a3) : (GVariant*)0;
 }
+static void vf_Gio_MenuModel_get_item_attributes(GMenuModel* a0, gint a1, GHashTable** a2) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 3;
+    c.args[0].p = (void *)a0;
+    c.args[1].i = (gint64)a1;
+    c.args[2].p = (void *)a2;
+    void *f = zgtk_vfunc_find(a0, "Gio_MenuModel.get_item_attributes");
+    if (f) zgtk_dispatch(f, &c);
+}
+void zgtk_override_Gio_MenuModel_get_item_attributes(gsize type, void *closure) {
+    GMenuModelClass *k = g_type_class_ref(type);
+    if (k) { zgtk_vfunc_set(type, "Gio_MenuModel.get_item_attributes", closure); k->get_item_attributes = (gpointer)vf_Gio_MenuModel_get_item_attributes; }
+}
+void zgtk_parent_Gio_MenuModel_get_item_attributes(GMenuModel* a0, gint a1, GHashTable** a2) {
+    GMenuModelClass *k = zgtk_vfunc_parent(a0, "Gio_MenuModel.get_item_attributes", 0);
+    if (k && k->get_item_attributes) k->get_item_attributes(a0, a1, a2);
+}
 static GMenuModel* vf_Gio_MenuModel_get_item_link(GMenuModel* a0, gint a1, const gchar* a2) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 3;
     c.args[0].p = (void *)a0;
@@ -2034,6 +2215,22 @@ void zgtk_override_Gio_MenuModel_get_item_link(gsize type, void *closure) {
 GMenuModel* zgtk_parent_Gio_MenuModel_get_item_link(GMenuModel* a0, gint a1, const gchar* a2) {
     GMenuModelClass *k = zgtk_vfunc_parent(a0, "Gio_MenuModel.get_item_link", 0);
     return k && k->get_item_link ? k->get_item_link(a0, a1, a2) : (GMenuModel*)0;
+}
+static void vf_Gio_MenuModel_get_item_links(GMenuModel* a0, gint a1, GHashTable** a2) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 3;
+    c.args[0].p = (void *)a0;
+    c.args[1].i = (gint64)a1;
+    c.args[2].p = (void *)a2;
+    void *f = zgtk_vfunc_find(a0, "Gio_MenuModel.get_item_links");
+    if (f) zgtk_dispatch(f, &c);
+}
+void zgtk_override_Gio_MenuModel_get_item_links(gsize type, void *closure) {
+    GMenuModelClass *k = g_type_class_ref(type);
+    if (k) { zgtk_vfunc_set(type, "Gio_MenuModel.get_item_links", closure); k->get_item_links = (gpointer)vf_Gio_MenuModel_get_item_links; }
+}
+void zgtk_parent_Gio_MenuModel_get_item_links(GMenuModel* a0, gint a1, GHashTable** a2) {
+    GMenuModelClass *k = zgtk_vfunc_parent(a0, "Gio_MenuModel.get_item_links", 0);
+    if (k && k->get_item_links) k->get_item_links(a0, a1, a2);
 }
 static gint vf_Gio_MenuModel_get_n_items(GMenuModel* a0) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 1;
@@ -4322,6 +4519,23 @@ void zgtk_parent_Gio_MemoryMonitor_low_memory_warning(GMemoryMonitor* a0, GMemor
     GMemoryMonitorInterface *k = zgtk_vfunc_parent(a0, "Gio_MemoryMonitor.low_memory_warning", g_memory_monitor_get_type());
     if (k && k->low_memory_warning) k->low_memory_warning(a0, a1);
 }
+static gboolean vf_Gio_MenuAttributeIter_get_next(GMenuAttributeIter* a0, const gchar** a1, GVariant** a2) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 3;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].p = (void *)a2;
+    void *f = zgtk_vfunc_find(a0, "Gio_MenuAttributeIter.get_next");
+    if (f) zgtk_dispatch(f, &c);
+    return (gboolean)c.ret.i;
+}
+void zgtk_override_Gio_MenuAttributeIter_get_next(gsize type, void *closure) {
+    GMenuAttributeIterClass *k = g_type_class_ref(type);
+    if (k) { zgtk_vfunc_set(type, "Gio_MenuAttributeIter.get_next", closure); k->get_next = (gpointer)vf_Gio_MenuAttributeIter_get_next; }
+}
+gboolean zgtk_parent_Gio_MenuAttributeIter_get_next(GMenuAttributeIter* a0, const gchar** a1, GVariant** a2) {
+    GMenuAttributeIterClass *k = zgtk_vfunc_parent(a0, "Gio_MenuAttributeIter.get_next", 0);
+    return k && k->get_next ? k->get_next(a0, a1, a2) : (gboolean)0;
+}
 static gboolean vf_Gio_MenuLinkIter_get_next(GMenuLinkIter* a0, const gchar** a1, GMenuModel** a2) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 3;
     c.args[0].p = (void *)a0;
@@ -5700,6 +5914,22 @@ const gchar* zgtk_parent_Gio_TlsPassword_get_default_warning(GTlsPassword* a0) {
     GTlsPasswordClass *k = zgtk_vfunc_parent(a0, "Gio_TlsPassword.get_default_warning", 0);
     return k && k->get_default_warning ? k->get_default_warning(a0) : (const gchar*)0;
 }
+static const guchar* vf_Gio_TlsPassword_get_value(GTlsPassword* a0, gsize* a1) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 2;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    void *f = zgtk_vfunc_find(a0, "Gio_TlsPassword.get_value");
+    if (f) zgtk_dispatch(f, &c);
+    return (const guchar*)c.ret.p;
+}
+void zgtk_override_Gio_TlsPassword_get_value(gsize type, void *closure) {
+    GTlsPasswordClass *k = g_type_class_ref(type);
+    if (k) { zgtk_vfunc_set(type, "Gio_TlsPassword.get_value", closure); k->get_value = (gpointer)vf_Gio_TlsPassword_get_value; }
+}
+const guchar* zgtk_parent_Gio_TlsPassword_get_value(GTlsPassword* a0, gsize* a1) {
+    GTlsPasswordClass *k = zgtk_vfunc_parent(a0, "Gio_TlsPassword.get_value", 0);
+    return k && k->get_value ? k->get_value(a0, a1) : (const guchar*)0;
+}
 static void vf_Gio_TlsPassword_set_value(GTlsPassword* a0, guchar* a1, gssize a2, GDestroyNotify a3) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 4;
     c.args[0].p = (void *)a0;
@@ -5779,6 +6009,21 @@ void zgtk_override_Gio_Vfs_get_file_for_uri(gsize type, void *closure) {
 GFile* zgtk_parent_Gio_Vfs_get_file_for_uri(GVfs* a0, const char* a1) {
     GVfsClass *k = zgtk_vfunc_parent(a0, "Gio_Vfs.get_file_for_uri", 0);
     return k && k->get_file_for_uri ? k->get_file_for_uri(a0, a1) : (GFile*)0;
+}
+static const gchar* const* vf_Gio_Vfs_get_supported_uri_schemes(GVfs* a0) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 1;
+    c.args[0].p = (void *)a0;
+    void *f = zgtk_vfunc_find(a0, "Gio_Vfs.get_supported_uri_schemes");
+    if (f) zgtk_dispatch(f, &c);
+    return (const gchar* const*)c.ret.p;
+}
+void zgtk_override_Gio_Vfs_get_supported_uri_schemes(gsize type, void *closure) {
+    GVfsClass *k = g_type_class_ref(type);
+    if (k) { zgtk_vfunc_set(type, "Gio_Vfs.get_supported_uri_schemes", closure); k->get_supported_uri_schemes = (gpointer)vf_Gio_Vfs_get_supported_uri_schemes; }
+}
+const gchar* const* zgtk_parent_Gio_Vfs_get_supported_uri_schemes(GVfs* a0) {
+    GVfsClass *k = zgtk_vfunc_parent(a0, "Gio_Vfs.get_supported_uri_schemes", 0);
+    return k && k->get_supported_uri_schemes ? k->get_supported_uri_schemes(a0) : (const gchar* const*)0;
 }
 static gboolean vf_Gio_Vfs_is_active(GVfs* a0) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 1;

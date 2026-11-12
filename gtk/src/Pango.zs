@@ -2337,6 +2337,13 @@ module Color =
   let parse (self: Color) (spec: string) : bool =
     (((pango_color_parse (Glue.obj self.Id (pango_color_get_type ())) spec)) <> i32 0)
 
+  extern pango_color_parse_with_alpha : cptr -> cptr -> cstr -> i32
+
+  /// Fill in the fields of a color from a string specification.
+  [<Unsafe>]
+  let parseWithAlpha (self: Color) (alpha: cptr) (spec: string) : bool =
+    (((pango_color_parse_with_alpha (Glue.obj self.Id (pango_color_get_type ())) alpha spec)) <> i32 0)
+
   extern pango_color_to_string : cptr -> cptr
 
   /// Returns a textual specification of @color.
@@ -2629,11 +2636,11 @@ module Coverage =
 
   /// Deprecated. Convert data generated from [method@Pango.Coverage.to_bytes] back to a `PangoCoverage`.
   let fromBytes (bytes: array<u8>) : option<Coverage> =
-    let za1 = Glue.bytes bytes
-    let zr = pango_coverage_from_bytes za1 (i32 (Glue.countBytes bytes))
-    let zid2 = Glue.wrap (zr) true
-    let zv = (if zid2 = 0 then None else Some (Coverage zid2))
-    Glue.free za1
+    let za2 = Glue.bytes bytes
+    let zr = pango_coverage_from_bytes za2 (i32 (Glue.countBytes bytes))
+    let zid3 = Glue.wrap (zr) true
+    let zv = (if zid3 = 0 then None else Some (Coverage zid3))
+    Glue.free za2
     zv
 
 module Font =
@@ -2670,6 +2677,18 @@ module Font =
     let zid1 = Glue.wrap (zr) false
     (if zid1 = 0 then None else Some (FontFace zid1))
 
+  extern pango_font_get_features : cptr -> cptr -> u32 -> cptr -> unit
+
+  /// Obtain the OpenType features that are provided by the font.
+  [<Unsafe>]
+  let getFeatures (self: Font) (features: cptr) (len: int) (numFeatures: int) : int =
+    Glue.outBegin ()
+    Glue.outSetInt 0 numFeatures
+    pango_font_get_features (Glue.obj self.Id (pango_font_get_type ())) features (u32 len) (Glue.out 0)
+    let zv = Glue.outU32 0
+    Glue.outEnd ()
+    zv
+
   extern pango_font_get_font_map : cptr -> cptr
 
   /// Gets the font map for which the font was created.
@@ -2686,6 +2705,18 @@ module Font =
     let zo2 = Glue.allocPlain (zgtk_sizeof_Pango_Rectangle ()) (zgtk_tag_Pango_Rectangle ())
     pango_font_get_glyph_extents (Glue.obj self.Id (pango_font_get_type ())) (u32 glyph) (Glue.obj zo1 (zgtk_tag_Pango_Rectangle ())) (Glue.obj zo2 (zgtk_tag_Pango_Rectangle ()))
     (Rectangle zo1, Rectangle zo2)
+
+  extern pango_font_get_hb_font : cptr -> cptr
+
+  /// Get a `hb_font_t` object backing this font.
+  let getHbFont (self: Font) : cptr =
+    ((pango_font_get_hb_font (Glue.obj self.Id (pango_font_get_type ()))))
+
+  extern pango_font_get_languages : cptr -> cptr
+
+  /// Returns the languages that are supported by @font.
+  let getLanguages (self: Font) : cptr =
+    ((pango_font_get_languages (Glue.obj self.Id (pango_font_get_type ()))))
 
   extern pango_font_get_metrics : cptr -> cptr -> cptr
 
@@ -2710,6 +2741,13 @@ module Font =
   let serialize (self: Font) : GLib.Bytes =
     GLib.Bytes (Glue.wrapBoxed ((pango_font_serialize (Glue.obj self.Id (pango_font_get_type ())))) (GLib.g_bytes_get_type ()) true)
 
+  extern pango_font_descriptions_free : cptr -> i32 -> unit
+
+  /// Deprecated. Frees an array of font descriptions.
+  [<Unsafe>]
+  let descriptionsFree (descs: cptr) (nDescs: int) : unit =
+    pango_font_descriptions_free descs (i32 nDescs)
+
   extern pango_font_deserialize : cptr -> cptr -> cptr -> cptr
 
   /// Loads data previously created via [method@Pango.Font.serialize].
@@ -2725,6 +2763,22 @@ module Font =
       let zv = (if zid1 = 0 then None else Some (Font zid1))
       Glue.outEnd ()
       Ok zv
+
+  extern zgtk_override_Pango_Font_create_hb_font : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `create_hb_font`: a virtual method.
+  let overrideCreateHbFont (gtype: usize) (handler: Font -> cptr) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let font = Font (Glue.wrap (Glue.argPointer 0) false)
+        Glue.returnPointer (handler font))
+    zgtk_override_Pango_Font_create_hb_font gtype zcb
+
+  extern zgtk_parent_Pango_Font_create_hb_font : cptr -> cptr
+
+  /// `zgtk_parent_Pango_Font_create_hb_font`.
+  let parentCreateHbFont (self: Font) : cptr =
+    ((zgtk_parent_Pango_Font_create_hb_font (Glue.obj self.Id (pango_font_get_type ()))))
 
   extern zgtk_override_Pango_Font_describe : usize -> cptr -> unit
 
@@ -2774,6 +2828,32 @@ module Font =
   /// Computes the coverage map for a given font and language tag.
   let parentGetCoverage (self: Font) (language: Language) : Coverage =
     Coverage (Glue.wrap ((zgtk_parent_Pango_Font_get_coverage (Glue.obj self.Id (pango_font_get_type ())) (Glue.obj language.Id (pango_language_get_type ())))) true)
+
+  extern zgtk_override_Pango_Font_get_features : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_features`: Obtain the OpenType features that are provided by the font.
+  let overrideGetFeatures (gtype: usize) (handler: Font -> cptr -> int -> int -> int) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let font = Font (Glue.wrap (Glue.argPointer 0) false)
+        let features = Glue.argPointer 1
+        let len = Glue.argInt 2
+        let numFeatures = Glue.getI32 3
+        let numFeaturesAfter = handler font features len numFeatures
+        Glue.setI32 3 numFeaturesAfter)
+    zgtk_override_Pango_Font_get_features gtype zcb
+
+  extern zgtk_parent_Pango_Font_get_features : cptr -> cptr -> u32 -> cptr -> unit
+
+  /// Obtain the OpenType features that are provided by the font.
+  [<Unsafe>]
+  let parentGetFeatures (self: Font) (features: cptr) (len: int) (numFeatures: int) : int =
+    Glue.outBegin ()
+    Glue.outSetInt 0 numFeatures
+    zgtk_parent_Pango_Font_get_features (Glue.obj self.Id (pango_font_get_type ())) features (u32 len) (Glue.out 0)
+    let zv = Glue.outU32 0
+    Glue.outEnd ()
+    zv
 
   extern zgtk_override_Pango_Font_get_font_map : usize -> cptr -> unit
 
@@ -3202,6 +3282,28 @@ module FontFace =
   let parentIsSynthesized (self: FontFace) : bool =
     (((zgtk_parent_Pango_FontFace_is_synthesized (Glue.obj self.Id (pango_font_face_get_type ())))) <> i32 0)
 
+  extern zgtk_override_Pango_FontFace_list_sizes : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `list_sizes`: List the available sizes for a font.
+  let overrideListSizes (gtype: usize) (handler: FontFace -> cptr -> int) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let face = FontFace (Glue.wrap (Glue.argPointer 0) false)
+        let sizes = Glue.argPointer 1
+        let nSizes = handler face sizes
+        Glue.setI32 2 nSizes)
+    zgtk_override_Pango_FontFace_list_sizes gtype zcb
+
+  extern zgtk_parent_Pango_FontFace_list_sizes : cptr -> cptr -> cptr -> unit
+
+  /// List the available sizes for a font.
+  let parentListSizes (self: FontFace) : list<int> =
+    Glue.outBegin ()
+    zgtk_parent_Pango_FontFace_list_sizes (Glue.obj self.Id (pango_font_face_get_type ())) (Glue.out 1) (Glue.out 0)
+    let zv = Glue.intsOf (Glue.outPtr 1) (Glue.outI32 0) 4 true true
+    Glue.outEnd ()
+    zv
+
 module FontFamily =
   /// The same object as its interface.
   let toGioListModel (self: FontFamily) : Gio.ListModel = Gio.ListModel self.Id
@@ -3346,6 +3448,28 @@ module FontFamily =
   /// A variable font is a font which has axes that can be modified to produce different faces.
   let parentIsVariable (self: FontFamily) : bool =
     (((zgtk_parent_Pango_FontFamily_is_variable (Glue.obj self.Id (pango_font_family_get_type ())))) <> i32 0)
+
+  extern zgtk_override_Pango_FontFamily_list_faces : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `list_faces`: Lists the different font faces that make up @family.
+  let overrideListFaces (gtype: usize) (handler: FontFamily -> cptr -> int) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let family = FontFamily (Glue.wrap (Glue.argPointer 0) false)
+        let faces = Glue.argPointer 1
+        let nFaces = handler family faces
+        Glue.setI32 2 nFaces)
+    zgtk_override_Pango_FontFamily_list_faces gtype zcb
+
+  extern zgtk_parent_Pango_FontFamily_list_faces : cptr -> cptr -> cptr -> unit
+
+  /// Lists the different font faces that make up @family.
+  let parentListFaces (self: FontFamily) : list<FontFace> =
+    Glue.outBegin ()
+    zgtk_parent_Pango_FontFamily_list_faces (Glue.obj self.Id (pango_font_family_get_type ())) (Glue.out 1) (Glue.out 0)
+    let zv = Glue.mapList (fun zp -> FontFace (Glue.wrap (zp) false)) (Glue.ptrsOf (Glue.outPtr 1) (Glue.outI32 0) true)
+    Glue.outEnd ()
+    zv
 
 module FontMap =
   /// The same object as its interface.
@@ -3519,6 +3643,28 @@ module FontMap =
   /// Returns the current serial number of @fontmap.
   let parentGetSerial (self: FontMap) : int =
     (int ((zgtk_parent_Pango_FontMap_get_serial (Glue.obj self.Id (pango_font_map_get_type ())))))
+
+  extern zgtk_override_Pango_FontMap_list_families : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `list_families`: List all families for a fontmap.
+  let overrideListFamilies (gtype: usize) (handler: FontMap -> cptr -> int) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let fontmap = FontMap (Glue.wrap (Glue.argPointer 0) false)
+        let families = Glue.argPointer 1
+        let nFamilies = handler fontmap families
+        Glue.setI32 2 nFamilies)
+    zgtk_override_Pango_FontMap_list_families gtype zcb
+
+  extern zgtk_parent_Pango_FontMap_list_families : cptr -> cptr -> cptr -> unit
+
+  /// List all families for a fontmap.
+  let parentListFamilies (self: FontMap) : list<FontFamily> =
+    Glue.outBegin ()
+    zgtk_parent_Pango_FontMap_list_families (Glue.obj self.Id (pango_font_map_get_type ())) (Glue.out 1) (Glue.out 0)
+    let zv = Glue.mapList (fun zp -> FontFamily (Glue.wrap (zp) false)) (Glue.ptrsOf (Glue.outPtr 1) (Glue.outI32 0) true)
+    Glue.outEnd ()
+    zv
 
   extern zgtk_override_Pango_FontMap_load_font : usize -> cptr -> unit
 
@@ -3863,6 +4009,13 @@ module GlyphItem =
   let free (self: GlyphItem) : unit =
     pango_glyph_item_free (Glue.obj self.Id (pango_glyph_item_get_type ()))
 
+  extern pango_glyph_item_get_logical_widths : cptr -> cstr -> cptr -> unit
+
+  /// Given a `PangoGlyphItem` and the corresponding text, determine the width corresponding to each character.
+  [<Unsafe>]
+  let getLogicalWidths (self: GlyphItem) (text: string) (logicalWidths: cptr) : unit =
+    pango_glyph_item_get_logical_widths (Glue.obj self.Id (pango_glyph_item_get_type ())) text logicalWidths
+
   extern pango_glyph_item_letter_space : cptr -> cstr -> cptr -> i32 -> unit
 
   /// Adds spacing between the graphemes of @glyph_item to give the effect of typographic letter spacing.
@@ -4055,6 +4208,13 @@ module GlyphString =
   let free (self: GlyphString) : unit =
     pango_glyph_string_free (Glue.obj self.Id (pango_glyph_string_get_type ()))
 
+  extern pango_glyph_string_get_logical_widths : cptr -> cstr -> i32 -> i32 -> cptr -> unit
+
+  /// Given a `PangoGlyphString` and corresponding text, determine the width corresponding to each character.
+  [<Unsafe>]
+  let getLogicalWidths (self: GlyphString) (text: string) (length: int) (embeddingLevel: int) (logicalWidths: cptr) : unit =
+    pango_glyph_string_get_logical_widths (Glue.obj self.Id (pango_glyph_string_get_type ())) text (i32 length) (i32 embeddingLevel) logicalWidths
+
   extern pango_glyph_string_get_width : cptr -> i32
 
   /// Computes the logical width of the glyph string.
@@ -4246,6 +4406,12 @@ module Language =
   /// Returns the `PangoLanguage` for the current locale of the process.
   let getDefault () : Language =
     Language (Glue.wrapBoxed ((pango_language_get_default ())) (pango_language_get_type ()) false)
+
+  extern pango_language_get_preferred : unit -> cptr
+
+  /// Returns the list of languages that the user prefers.
+  let getPreferred () : cptr =
+    ((pango_language_get_preferred ()))
 
 module Layout =
   /// The same object as its ancestor.
@@ -5653,6 +5819,17 @@ module TabArray =
     Glue.outEnd ()
     zv
 
+  extern pango_tab_array_get_tabs : cptr -> cptr -> cptr -> unit
+
+  /// If non-%NULL, @alignments and @locations are filled with allocated arrays.
+  [<Unsafe>]
+  let getTabs (self: TabArray) (locations: cptr) : TabAlign =
+    Glue.outBegin ()
+    pango_tab_array_get_tabs (Glue.obj self.Id (pango_tab_array_get_type ())) (Glue.out 0) locations
+    let zv = TabAlign (Glue.outI32 0)
+    Glue.outEnd ()
+    zv
+
   extern pango_tab_array_resize : cptr -> i32 -> unit
 
   /// Resizes a tab array.
@@ -6017,6 +6194,13 @@ let itemizeWithBaseDir (context: Context) (baseDir: Direction) (text: string) (s
   let zr = pango_itemize_with_base_dir (Glue.obj context.Id (pango_context_get_type ())) (i32 baseDir.Int) text (i32 startIndex) (i32 length) (Glue.obj attrs.Id (pango_attr_list_get_type ())) zp1
   Glue.mapList (fun zp -> Item (Glue.wrapBoxed (zp) (pango_item_get_type ()) true)) (Glue.pointers (zr) false true)
 
+extern pango_log2vis_get_embedding_levels : cstr -> i32 -> cptr -> cptr
+
+/// Return the bidirectional embedding levels of the input paragraph.
+[<Unsafe>]
+let log2visGetEmbeddingLevels (text: string) (length: int) (pbaseDir: cptr) : cptr =
+  (pango_log2vis_get_embedding_levels text (i32 length) pbaseDir)
+
 extern pango_markup_parser_finish : cptr -> cptr -> cptr -> cptr -> cptr -> i32
 
 /// Finishes parsing markup.
@@ -6136,6 +6320,31 @@ let reorderItems (items: list<Item>) : list<Item> =
   Glue.freeGlist zl1 false
   zv
 
+extern pango_scan_int : cptr -> cptr -> i32
+
+/// Deprecated. Scans an integer.
+[<Unsafe>]
+let scanInt (pos: cptr) : (bool * int) =
+  Glue.outBegin ()
+  let zr = pango_scan_int pos (Glue.out 0)
+  let zv = (((zr) <> i32 0), Glue.outI32 0)
+  Glue.outEnd ()
+  zv
+
+extern pango_scan_string : cptr -> cptr -> i32
+
+/// Deprecated. Scans a string into a `GString` buffer.
+[<Unsafe>]
+let scanString (pos: cptr) (out: GLib.String) : bool =
+  (((pango_scan_string pos (Glue.obj out.Id (GLib.g_gstring_get_type ())))) <> i32 0)
+
+extern pango_scan_word : cptr -> cptr -> i32
+
+/// Deprecated. Scans a word into a `GString` buffer.
+[<Unsafe>]
+let scanWord (pos: cptr) (out: GLib.String) : bool =
+  (((pango_scan_word pos (Glue.obj out.Id (GLib.g_gstring_get_type ())))) <> i32 0)
+
 extern pango_shape : cstr -> i32 -> cptr -> cptr -> unit
 
 /// Convert the characters in @text into glyphs.
@@ -6180,6 +6389,13 @@ let shapeWithFlags (itemText: string) (itemLength: int) (paragraphText: option<s
   let zv = GlyphString zo2
   Glue.free zs1
   zv
+
+extern pango_skip_space : cptr -> i32
+
+/// Deprecated. Skips 0 or more characters of white space.
+[<Unsafe>]
+let skipSpace (pos: cptr) : bool =
+  (((pango_skip_space pos)) <> i32 0)
 
 extern pango_split_file_list : cstr -> cptr
 
@@ -6232,3 +6448,9 @@ extern pango_version_check : i32 -> i32 -> i32 -> cptr
 /// Checks that the Pango library in use is compatible with the given version.
 let versionCheck (requiredMajor: int) (requiredMinor: int) (requiredMicro: int) : option<string> =
   Glue.textOption ((pango_version_check (i32 requiredMajor) (i32 requiredMinor) (i32 requiredMicro)))
+
+extern pango_version_string : unit -> cptr
+
+/// Returns the version of Pango available at run-time.
+let pangoVersionString () : string =
+  Glue.text ((pango_version_string ()))

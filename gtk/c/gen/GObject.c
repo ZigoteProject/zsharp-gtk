@@ -43,6 +43,18 @@ static gboolean tramp_GObject_BindingTransformFunc_once(GBinding* a0, const GVal
     return (gboolean)c.ret.i;
 }
 void *zgtk_tramp_GObject_BindingTransformFunc_once(void) { return tramp_GObject_BindingTransformFunc_once; }
+static void tramp_GObject_ClosureNotify(gpointer a0, GClosure* a1) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 2;
+    c.args[1].p = (void *)a1;
+    zgtk_dispatch(a0, &c);
+}
+void *zgtk_tramp_GObject_ClosureNotify(void) { return tramp_GObject_ClosureNotify; }
+static void tramp_GObject_ClosureNotify_once(gpointer a0, GClosure* a1) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 2;
+    c.args[1].p = (void *)a1;
+    zgtk_dispatch(a0, &c); zgtk_drop(a0);
+}
+void *zgtk_tramp_GObject_ClosureNotify_once(void) { return tramp_GObject_ClosureNotify_once; }
 static gboolean tramp_GObject_SignalAccumulator(GSignalInvocationHint* a0, GValue* a1, const GValue* a2, gpointer a3) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 4;
     c.args[0].p = (void *)a0;

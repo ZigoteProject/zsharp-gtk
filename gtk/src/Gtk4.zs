@@ -12775,31 +12775,31 @@ module Accessible =
 
   /// Updates an array of accessible properties.
   let updateProperty (self: Accessible) (properties: list<AccessibleProperty>) (values: list<GObject.Value>) : unit =
-    let za1 = Glue.ints (Glue.mapList (fun (ze: AccessibleProperty) -> ze.Int) properties) 4
-    let za2 = Glue.records (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values) (GObject.zgtk_sizeof_GObject_Value ())
-    gtk_accessible_update_property_value (Glue.obj self.Id (gtk_accessible_get_type ())) (i32 (Glue.count values)) za1 za2
-    Glue.free za1
+    let za2 = Glue.ints (Glue.mapList (fun (ze: AccessibleProperty) -> ze.Int) properties) 4
+    let za3 = Glue.records (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values) (GObject.zgtk_sizeof_GObject_Value ())
+    gtk_accessible_update_property_value (Glue.obj self.Id (gtk_accessible_get_type ())) (i32 (Glue.count values)) za2 za3
     Glue.free za2
+    Glue.free za3
 
   extern gtk_accessible_update_relation_value : cptr -> i32 -> cptr -> cptr -> unit
 
   /// Updates an array of accessible relations.
   let updateRelation (self: Accessible) (relations: list<AccessibleRelation>) (values: list<GObject.Value>) : unit =
-    let za1 = Glue.ints (Glue.mapList (fun (ze: AccessibleRelation) -> ze.Int) relations) 4
-    let za2 = Glue.records (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values) (GObject.zgtk_sizeof_GObject_Value ())
-    gtk_accessible_update_relation_value (Glue.obj self.Id (gtk_accessible_get_type ())) (i32 (Glue.count values)) za1 za2
-    Glue.free za1
+    let za2 = Glue.ints (Glue.mapList (fun (ze: AccessibleRelation) -> ze.Int) relations) 4
+    let za3 = Glue.records (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values) (GObject.zgtk_sizeof_GObject_Value ())
+    gtk_accessible_update_relation_value (Glue.obj self.Id (gtk_accessible_get_type ())) (i32 (Glue.count values)) za2 za3
     Glue.free za2
+    Glue.free za3
 
   extern gtk_accessible_update_state_value : cptr -> i32 -> cptr -> cptr -> unit
 
   /// Updates an array of accessible states.
   let updateState (self: Accessible) (states: list<AccessibleState>) (values: list<GObject.Value>) : unit =
-    let za1 = Glue.ints (Glue.mapList (fun (ze: AccessibleState) -> ze.Int) states) 4
-    let za2 = Glue.records (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values) (GObject.zgtk_sizeof_GObject_Value ())
-    gtk_accessible_update_state_value (Glue.obj self.Id (gtk_accessible_get_type ())) (i32 (Glue.count values)) za1 za2
-    Glue.free za1
+    let za2 = Glue.ints (Glue.mapList (fun (ze: AccessibleState) -> ze.Int) states) 4
+    let za3 = Glue.records (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values) (GObject.zgtk_sizeof_GObject_Value ())
+    gtk_accessible_update_state_value (Glue.obj self.Id (gtk_accessible_get_type ())) (i32 (Glue.count values)) za2 za3
     Glue.free za2
+    Glue.free za3
 
   /// Calls `handler` when the `accessible-role` property changes.
   let onNotifyAccessibleRole (self: Accessible) (handler: unit -> unit) : unit =
@@ -13052,6 +13052,38 @@ module Buildable =
       | Some zo -> Glue.obj zo.Id (GObject.g_object_get_type ())
       | None -> Glue.none ()
     zgtk_parent_Gtk_Buildable_custom_tag_end (Glue.obj self.Id (gtk_buildable_get_type ())) (Glue.obj builder.Id (gtk_builder_get_type ())) zp1 tagname data
+
+  extern zgtk_override_Gtk_Buildable_custom_tag_start : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `custom_tag_start`: Called for each unknown element under `<child>`.
+  let overrideCustomTagStart (gtype: usize) (handler: Buildable -> Builder -> option<GObject.Object> -> string -> cptr -> (bool * BuildableParser)) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let buildable = Buildable (Glue.wrap (Glue.argPointer 0) false)
+        let builder = Builder (Glue.wrap (Glue.argPointer 1) false)
+        let zid1 = Glue.wrap (Glue.argPointer 2) false
+        let child = (if zid1 = 0 then None else Some (GObject.Object zid1))
+        let tagname = Glue.text (Glue.argPointer 3)
+        let data = Glue.argPointer 5
+        let (zres, parser) = handler buildable builder child tagname data
+        Glue.setRecord 4 (Glue.obj parser.Id (zgtk_tag_Gtk_BuildableParser ())) (zgtk_sizeof_Gtk_BuildableParser ())
+        Glue.returnBool (zres))
+    zgtk_override_Gtk_Buildable_custom_tag_start gtype zcb
+
+  extern zgtk_parent_Gtk_Buildable_custom_tag_start : cptr -> cptr -> cptr -> cstr -> cptr -> cptr -> i32
+
+  /// Called for each unknown element under `<child>`.
+  let parentCustomTagStart (self: Buildable) (builder: Builder) (child: option<GObject.Object>) (tagname: string) : (bool * BuildableParser * cptr) =
+    let zp1 =
+      match child with
+      | Some zo -> Glue.obj zo.Id (GObject.g_object_get_type ())
+      | None -> Glue.none ()
+    let zo2 = Glue.allocPlain (zgtk_sizeof_Gtk_BuildableParser ()) (zgtk_tag_Gtk_BuildableParser ())
+    Glue.outBegin ()
+    let zr = zgtk_parent_Gtk_Buildable_custom_tag_start (Glue.obj self.Id (gtk_buildable_get_type ())) (Glue.obj builder.Id (gtk_builder_get_type ())) zp1 tagname (Glue.obj zo2 (zgtk_tag_Gtk_BuildableParser ())) (Glue.out 0)
+    let zv = (((zr) <> i32 0), BuildableParser zo2, (Glue.outPtr 0))
+    Glue.outEnd ()
+    zv
 
   extern zgtk_override_Gtk_Buildable_get_id : usize -> cptr -> unit
 
@@ -16174,10 +16206,10 @@ module AccessibleList =
 
   /// Allocates a new list of accessible objects.
   let createFromArray (accessibles: list<Accessible>) : AccessibleList =
-    let za1 = Glue.ptrs (Glue.mapList (fun (zo: Accessible) -> Glue.obj zo.Id (gtk_accessible_get_type ())) accessibles)
-    let zr = gtk_accessible_list_new_from_array za1 (usize (Glue.count accessibles))
+    let za2 = Glue.ptrs (Glue.mapList (fun (zo: Accessible) -> Glue.obj zo.Id (gtk_accessible_get_type ())) accessibles)
+    let zr = gtk_accessible_list_new_from_array za2 (usize (Glue.count accessibles))
     let zv = AccessibleList (Glue.wrapBoxed (zr) (gtk_accessible_list_get_type ()) true)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern gtk_accessible_list_new_from_list : cptr -> cptr
@@ -16247,6 +16279,34 @@ module AccessibleText =
   let updateSelectionBound (self: AccessibleText) : unit =
     gtk_accessible_text_update_selection_bound (Glue.obj self.Id (gtk_accessible_text_get_type ()))
 
+  extern zgtk_override_Gtk_AccessibleText_get_attributes : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_attributes`: Retrieves the text attributes inside the accessible object.
+  let overrideGetAttributes (gtype: usize) (handler: AccessibleText -> int -> cptr -> cptr -> cptr -> (bool * int)) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let self_ = AccessibleText (Glue.wrap (Glue.argPointer 0) false)
+        let offset = Glue.argInt 1
+        let ranges = Glue.argPointer 3
+        let attributeNames = Glue.argPointer 4
+        let attributeValues = Glue.argPointer 5
+        let (zres, nRanges) = handler self_ offset ranges attributeNames attributeValues
+        Glue.setI64 2 nRanges
+        Glue.returnBool (zres))
+    zgtk_override_Gtk_AccessibleText_get_attributes gtype zcb
+
+  extern zgtk_parent_Gtk_AccessibleText_get_attributes : cptr -> u32 -> cptr -> cptr -> cptr -> cptr -> i32
+
+  /// Retrieves the text attributes inside the accessible object.
+  let parentGetAttributes (self: AccessibleText) (offset: int) : (bool * list<AccessibleTextRange> * list<string> * list<string>) =
+    Glue.outBegin ()
+    let zr = zgtk_parent_Gtk_AccessibleText_get_attributes (Glue.obj self.Id (gtk_accessible_text_get_type ())) (u32 offset) (Glue.out 0) (Glue.out 1) (Glue.out 2) (Glue.out 3)
+    let zrs1 = Glue.mapList (fun zp -> AccessibleTextRange (Glue.copyPlain (zp) (zgtk_sizeof_Gtk_AccessibleTextRange ()) (zgtk_tag_Gtk_AccessibleTextRange ()))) (Glue.ptrsOf (Glue.outPtr 1) (Glue.outI64 0) false)
+    Glue.free (Glue.outPtr 1)
+    let zv = (((zr) <> i32 0), zrs1, Glue.strvList (Glue.outPtr 2) 2, Glue.strvList (Glue.outPtr 3) 2)
+    Glue.outEnd ()
+    zv
+
   extern zgtk_override_Gtk_AccessibleText_get_caret_position : usize -> cptr -> unit
 
   /// Gives a type made with `Glue.subclass` its own `get_caret_position`: Retrieves the position of the caret inside the accessible object.
@@ -16306,6 +16366,28 @@ module AccessibleText =
     Glue.outEnd ()
     zv
 
+  extern zgtk_override_Gtk_AccessibleText_get_default_attributes : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_default_attributes`: Retrieves the default text attributes inside the accessible object.
+  let overrideGetDefaultAttributes (gtype: usize) (handler: AccessibleText -> cptr -> cptr -> unit) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let self_ = AccessibleText (Glue.wrap (Glue.argPointer 0) false)
+        let attributeNames = Glue.argPointer 1
+        let attributeValues = Glue.argPointer 2
+        handler self_ attributeNames attributeValues)
+    zgtk_override_Gtk_AccessibleText_get_default_attributes gtype zcb
+
+  extern zgtk_parent_Gtk_AccessibleText_get_default_attributes : cptr -> cptr -> cptr -> unit
+
+  /// Retrieves the default text attributes inside the accessible object.
+  let parentGetDefaultAttributes (self: AccessibleText) : (list<string> * list<string>) =
+    Glue.outBegin ()
+    zgtk_parent_Gtk_AccessibleText_get_default_attributes (Glue.obj self.Id (gtk_accessible_text_get_type ())) (Glue.out 0) (Glue.out 1)
+    let zv = (Glue.strvList (Glue.outPtr 0) 2, Glue.strvList (Glue.outPtr 1) 2)
+    Glue.outEnd ()
+    zv
+
   extern zgtk_override_Gtk_AccessibleText_get_extents : usize -> cptr -> unit
 
   /// Gives a type made with `Glue.subclass` its own `get_extents`: Obtains the extents of a range of text, in widget coordinates.
@@ -16345,6 +16427,31 @@ module AccessibleText =
     Glue.outBegin ()
     let zr = zgtk_parent_Gtk_AccessibleText_get_offset (Glue.obj self.Id (gtk_accessible_text_get_type ())) (Glue.obj point.Id (Graphene.graphene_point_get_type ())) (Glue.out 0)
     let zv = (((zr) <> i32 0), Glue.outU32 0)
+    Glue.outEnd ()
+    zv
+
+  extern zgtk_override_Gtk_AccessibleText_get_selection : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_selection`: Retrieves the selection ranges in the accessible object.
+  let overrideGetSelection (gtype: usize) (handler: AccessibleText -> cptr -> (bool * int)) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let self_ = AccessibleText (Glue.wrap (Glue.argPointer 0) false)
+        let ranges = Glue.argPointer 2
+        let (zres, nRanges) = handler self_ ranges
+        Glue.setI64 1 nRanges
+        Glue.returnBool (zres))
+    zgtk_override_Gtk_AccessibleText_get_selection gtype zcb
+
+  extern zgtk_parent_Gtk_AccessibleText_get_selection : cptr -> cptr -> cptr -> i32
+
+  /// Retrieves the selection ranges in the accessible object.
+  let parentGetSelection (self: AccessibleText) : (bool * list<AccessibleTextRange>) =
+    Glue.outBegin ()
+    let zr = zgtk_parent_Gtk_AccessibleText_get_selection (Glue.obj self.Id (gtk_accessible_text_get_type ())) (Glue.out 0) (Glue.out 1)
+    let zrs1 = Glue.mapList (fun zp -> AccessibleTextRange (Glue.copyPlain (zp) (zgtk_sizeof_Gtk_AccessibleTextRange ()) (zgtk_tag_Gtk_AccessibleTextRange ()))) (Glue.ptrsOf (Glue.outPtr 1) (Glue.outI64 0) false)
+    Glue.free (Glue.outPtr 1)
+    let zv = (((zr) <> i32 0), zrs1)
     Glue.outEnd ()
     zv
 
@@ -20013,6 +20120,14 @@ module Button =
   let parentClicked (self: Button) : unit =
     zgtk_parent_Gtk_Button_clicked (Glue.obj self.Id (gtk_button_get_type ()))
 
+module CClosureExpression =
+  extern gtk_cclosure_expression_new : usize -> cptr -> u32 -> cptr -> cptr -> cptr -> cptr -> cptr
+
+  /// Creates a `GtkExpression` that calls `callback_func` when it is evaluated.
+  [<Unsafe>]
+  let create (valueType: usize) (marshal: cptr) (nParams: int) (params: cptr) (callbackFunc: cptr) (userData: cptr) (userDestroy: cptr) : CClosureExpression =
+    CClosureExpression ((gtk_cclosure_expression_new valueType marshal (u32 nParams) params callbackFunc userData userDestroy))
+
 module Calendar =
   /// The same object as its interface.
   let toAccessible (self: Calendar) : Accessible = Accessible self.Id
@@ -20551,6 +20666,13 @@ module CellArea =
   let cellGetProperty (self: CellArea) (renderer: CellRenderer) (propertyName: string) (value: GObject.Value) : unit =
     gtk_cell_area_cell_get_property (Glue.obj self.Id (gtk_cell_area_get_type ())) (Glue.obj renderer.Id (gtk_cell_renderer_get_type ())) propertyName (Glue.obj value.Id (GObject.g_value_get_type ()))
 
+  extern gtk_cell_area_cell_get_valist : cptr -> cptr -> cstr -> cptr -> unit
+
+  /// Deprecated. Gets the values of one or more cell properties for @renderer in @area.
+  [<Unsafe>]
+  let cellGetValist (self: CellArea) (renderer: CellRenderer) (firstPropertyName: string) (varArgs: cptr) : unit =
+    gtk_cell_area_cell_get_valist (Glue.obj self.Id (gtk_cell_area_get_type ())) (Glue.obj renderer.Id (gtk_cell_renderer_get_type ())) firstPropertyName varArgs
+
   /// Deprecated. Sets one or more cell properties for @cell in @area. C's own function, of variable arguments: called as C calls it, by code that
   /// answers for what it passes.
   extern gtk_cell_area_cell_set : cptr -> cptr -> cstr -> ... -> unit
@@ -20560,6 +20682,13 @@ module CellArea =
   /// Deprecated. Sets a cell property for @renderer in @area.
   let cellSetProperty (self: CellArea) (renderer: CellRenderer) (propertyName: string) (value: GObject.Value) : unit =
     gtk_cell_area_cell_set_property (Glue.obj self.Id (gtk_cell_area_get_type ())) (Glue.obj renderer.Id (gtk_cell_renderer_get_type ())) propertyName (Glue.obj value.Id (GObject.g_value_get_type ()))
+
+  extern gtk_cell_area_cell_set_valist : cptr -> cptr -> cstr -> cptr -> unit
+
+  /// Deprecated. Sets one or more cell properties for @renderer in @area.
+  [<Unsafe>]
+  let cellSetValist (self: CellArea) (renderer: CellRenderer) (firstPropertyName: string) (varArgs: cptr) : unit =
+    gtk_cell_area_cell_set_valist (Glue.obj self.Id (gtk_cell_area_get_type ())) (Glue.obj renderer.Id (gtk_cell_renderer_get_type ())) firstPropertyName varArgs
 
   extern gtk_cell_area_copy_context : cptr -> cptr -> cptr
 
@@ -23756,6 +23885,14 @@ module CheckButton =
   let parentToggled (self: CheckButton) : unit =
     zgtk_parent_Gtk_CheckButton_toggled (Glue.obj self.Id (gtk_check_button_get_type ()))
 
+module ClosureExpression =
+  extern gtk_closure_expression_new : usize -> cptr -> u32 -> cptr -> cptr
+
+  /// Creates a `GtkExpression` that calls `closure` when it is evaluated.
+  [<Unsafe>]
+  let create (valueType: usize) (closure: (unit -> unit)) (nParams: int) (params: cptr) : ClosureExpression =
+    ClosureExpression ((gtk_closure_expression_new valueType (Glue.closure closure) (u32 nParams) params))
+
 module ColorChooser =
   /// The same object as its ancestor.
   let toGObjectObject (self: ColorChooser) : GObject.Object = GObject.Object self.Id
@@ -23768,9 +23905,9 @@ module ColorChooser =
 
   /// Deprecated. Adds a palette to the color chooser.
   let addPalette (self: ColorChooser) (orientation: Orientation) (colorsPerLine: int) (colors: list<Gdk.RGBA>) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Gdk.RGBA) -> Glue.obj zo.Id (Gdk.gdk_rgba_get_type ())) colors) (Gdk.zgtk_sizeof_Gdk_RGBA ())
-    gtk_color_chooser_add_palette (Glue.obj self.Id (gtk_color_chooser_get_type ())) (i32 orientation.Int) (i32 colorsPerLine) (i32 (Glue.count colors)) za1
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: Gdk.RGBA) -> Glue.obj zo.Id (Gdk.gdk_rgba_get_type ())) colors) (Gdk.zgtk_sizeof_Gdk_RGBA ())
+    gtk_color_chooser_add_palette (Glue.obj self.Id (gtk_color_chooser_get_type ())) (i32 orientation.Int) (i32 colorsPerLine) (i32 (Glue.count colors)) za2
+    Glue.free za2
 
   extern gtk_color_chooser_get_rgba : cptr -> cptr -> unit
 
@@ -23822,8 +23959,8 @@ module ColorChooser =
         let orientation = Orientation (int (Glue.argInt 1))
         let colorsPerLine = Glue.argInt 2
         let nColors = Glue.argInt 3
-        let zrs1 = Glue.mapList (fun zp -> Gdk.RGBA (Glue.wrapBoxed (zp) (Gdk.gdk_rgba_get_type ()) false)) (Glue.recordsOf (Glue.argPointer 4) ((Glue.argInt 2)) (Gdk.zgtk_sizeof_Gdk_RGBA ()))
-        let colors = zrs1
+        let zrs2 = Glue.mapList (fun zp -> Gdk.RGBA (Glue.wrapBoxed (zp) (Gdk.gdk_rgba_get_type ()) false)) (Glue.recordsOf (Glue.argPointer 4) ((Glue.argInt 2)) (Gdk.zgtk_sizeof_Gdk_RGBA ()))
+        let colors = zrs2
         handler chooser orientation colorsPerLine nColors colors)
     zgtk_override_Gtk_ColorChooser_add_palette gtype zcb
 
@@ -23831,9 +23968,9 @@ module ColorChooser =
 
   /// Deprecated. Adds a palette to the color chooser.
   let parentAddPalette (self: ColorChooser) (orientation: Orientation) (colorsPerLine: int) (colors: list<Gdk.RGBA>) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Gdk.RGBA) -> Glue.obj zo.Id (Gdk.gdk_rgba_get_type ())) colors) (Gdk.zgtk_sizeof_Gdk_RGBA ())
-    zgtk_parent_Gtk_ColorChooser_add_palette (Glue.obj self.Id (gtk_color_chooser_get_type ())) (i32 orientation.Int) (i32 colorsPerLine) (i32 (Glue.count colors)) za1
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: Gdk.RGBA) -> Glue.obj zo.Id (Gdk.gdk_rgba_get_type ())) colors) (Gdk.zgtk_sizeof_Gdk_RGBA ())
+    zgtk_parent_Gtk_ColorChooser_add_palette (Glue.obj self.Id (gtk_color_chooser_get_type ())) (i32 orientation.Int) (i32 colorsPerLine) (i32 (Glue.count colors)) za2
+    Glue.free za2
 
   extern zgtk_override_Gtk_ColorChooser_color_activated : usize -> cptr -> unit
 
@@ -26109,18 +26246,18 @@ module ConstraintLayout =
 
   /// Creates a list of constraints from a VFL description.
   let addConstraintsFromDescription (self: ConstraintLayout) (lines: list<string>) (hspacing: int) (vspacing: int) (views: GLib.HashTable) : result<list<Constraint>, Glue.Error> =
-    let zv1 = Glue.strv lines
+    let zv2 = Glue.strv lines
     Glue.outBegin ()
-    let zr = gtk_constraint_layout_add_constraints_from_descriptionv (Glue.obj self.Id (gtk_constraint_layout_get_type ())) zv1 (usize (Glue.count lines)) (i32 hspacing) (i32 vspacing) (Glue.obj views.Id (GLib.g_hash_table_get_type ())) (Glue.err ())
+    let zr = gtk_constraint_layout_add_constraints_from_descriptionv (Glue.obj self.Id (gtk_constraint_layout_get_type ())) zv2 (usize (Glue.count lines)) (i32 hspacing) (i32 vspacing) (Glue.obj views.Id (GLib.g_hash_table_get_type ())) (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.freeStrv zv1
+      Glue.freeStrv zv2
       Error ze
     | None ->
       let zv = Glue.mapList (fun zp -> Constraint (Glue.wrap (zp) false)) (Glue.pointers (zr) false true)
       Glue.outEnd ()
-      Glue.freeStrv zv1
+      Glue.freeStrv zv2
       Ok zv
 
   extern gtk_constraint_layout_add_guide : cptr -> cptr -> unit
@@ -27718,9 +27855,9 @@ module DropTarget =
 
   /// Sets the supported `GType`s for this drop target.
   let setGtypes (self: DropTarget) (types: list<usize>) : unit =
-    let za1 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
-    gtk_drop_target_set_gtypes (Glue.obj self.Id (gtk_drop_target_get_type ())) za1 (usize (Glue.count types))
-    Glue.free za1
+    let za2 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
+    gtk_drop_target_set_gtypes (Glue.obj self.Id (gtk_drop_target_get_type ())) za2 (usize (Glue.count types))
+    Glue.free za2
 
   extern gtk_drop_target_set_preload : cptr -> i32 -> unit
 
@@ -34108,6 +34245,17 @@ module GestureStylus =
   let create () : GestureStylus =
     GestureStylus (Glue.wrap ((gtk_gesture_stylus_new ())) true)
 
+  extern gtk_gesture_stylus_get_axes : cptr -> cptr -> cptr -> i32
+
+  /// Returns the current values for the requested @axes.
+  [<Unsafe>]
+  let getAxes (self: GestureStylus) (axes: list<Gdk.AxisUse>) (values: cptr) : bool =
+    let za1 = Glue.ints (Glue.mapList (fun (ze: Gdk.AxisUse) -> ze.Int) axes) 4
+    let zr = gtk_gesture_stylus_get_axes (Glue.obj self.Id (gtk_gesture_stylus_get_type ())) za1 values
+    let zv = ((zr) <> i32 0)
+    Glue.free za1
+    zv
+
   extern gtk_gesture_stylus_get_axis : cptr -> i32 -> cptr -> i32
 
   /// Returns the current value for the requested @axis.
@@ -35357,6 +35505,29 @@ module IMContext =
   let parentFocusOut (self: IMContext) : unit =
     zgtk_parent_Gtk_IMContext_focus_out (Glue.obj self.Id (gtk_im_context_get_type ()))
 
+  extern zgtk_override_Gtk_IMContext_get_preedit_string : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_preedit_string`: Retrieve the current preedit string for the input context, and a list of attributes to apply to the string.
+  let overrideGetPreeditString (gtype: usize) (handler: IMContext -> cptr -> (string * int)) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let context = IMContext (Glue.wrap (Glue.argPointer 0) false)
+        let attrs = Glue.argPointer 2
+        let (str, cursorPos) = handler context attrs
+        Glue.setPointer 1 (Glue.dup str)
+        Glue.setI32 3 cursorPos)
+    zgtk_override_Gtk_IMContext_get_preedit_string gtype zcb
+
+  extern zgtk_parent_Gtk_IMContext_get_preedit_string : cptr -> cptr -> cptr -> cptr -> unit
+
+  /// Retrieve the current preedit string for the input context, and a list of attributes to apply to the string.
+  let parentGetPreeditString (self: IMContext) : (string * Pango.AttrList * int) =
+    Glue.outBegin ()
+    zgtk_parent_Gtk_IMContext_get_preedit_string (Glue.obj self.Id (gtk_im_context_get_type ())) (Glue.out 0) (Glue.out 1) (Glue.out 2)
+    let zv = (Glue.takeText (Glue.outPtr 0), Pango.AttrList (Glue.wrapBoxed (Glue.outPtr 1) (Pango.pango_attr_list_get_type ()) true), Glue.outI32 2)
+    Glue.outEnd ()
+    zv
+
   extern zgtk_override_Gtk_IMContext_get_surrounding : usize -> cptr -> unit
 
   /// Gives a type made with `Glue.subclass` its own `get_surrounding`: Deprecated. Retrieves context around the insertion point.
@@ -35670,17 +35841,17 @@ module SymbolicPaintable =
 
   /// Snapshots the paintable with the given colors.
   let snapshotSymbolic (self: SymbolicPaintable) (snapshot: Gdk.Snapshot) (width: float) (height: float) (colors: list<Gdk.RGBA>) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Gdk.RGBA) -> Glue.obj zo.Id (Gdk.gdk_rgba_get_type ())) colors) (Gdk.zgtk_sizeof_Gdk_RGBA ())
-    gtk_symbolic_paintable_snapshot_symbolic (Glue.obj self.Id (gtk_symbolic_paintable_get_type ())) (Glue.obj snapshot.Id (Gdk.gdk_snapshot_get_type ())) width height za1 (usize (Glue.count colors))
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: Gdk.RGBA) -> Glue.obj zo.Id (Gdk.gdk_rgba_get_type ())) colors) (Gdk.zgtk_sizeof_Gdk_RGBA ())
+    gtk_symbolic_paintable_snapshot_symbolic (Glue.obj self.Id (gtk_symbolic_paintable_get_type ())) (Glue.obj snapshot.Id (Gdk.gdk_snapshot_get_type ())) width height za2 (usize (Glue.count colors))
+    Glue.free za2
 
   extern gtk_symbolic_paintable_snapshot_with_weight : cptr -> cptr -> f64 -> f64 -> cptr -> usize -> f64 -> unit
 
   /// Snapshots the paintable with the given colors and weight.
   let snapshotWithWeight (self: SymbolicPaintable) (snapshot: Gdk.Snapshot) (width: float) (height: float) (colors: list<Gdk.RGBA>) (weight: float) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Gdk.RGBA) -> Glue.obj zo.Id (Gdk.gdk_rgba_get_type ())) colors) (Gdk.zgtk_sizeof_Gdk_RGBA ())
-    gtk_symbolic_paintable_snapshot_with_weight (Glue.obj self.Id (gtk_symbolic_paintable_get_type ())) (Glue.obj snapshot.Id (Gdk.gdk_snapshot_get_type ())) width height za1 (usize (Glue.count colors)) weight
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: Gdk.RGBA) -> Glue.obj zo.Id (Gdk.gdk_rgba_get_type ())) colors) (Gdk.zgtk_sizeof_Gdk_RGBA ())
+    gtk_symbolic_paintable_snapshot_with_weight (Glue.obj self.Id (gtk_symbolic_paintable_get_type ())) (Glue.obj snapshot.Id (Gdk.gdk_snapshot_get_type ())) width height za2 (usize (Glue.count colors)) weight
+    Glue.free za2
 
   extern zgtk_override_Gtk_SymbolicPaintable_snapshot_symbolic : usize -> cptr -> unit
 
@@ -35692,8 +35863,8 @@ module SymbolicPaintable =
         let snapshot = Gdk.Snapshot (Glue.wrap (Glue.argPointer 1) false)
         let width = Glue.argFloat 2
         let height = Glue.argFloat 3
-        let zrs1 = Glue.mapList (fun zp -> Gdk.RGBA (Glue.wrapBoxed (zp) (Gdk.gdk_rgba_get_type ()) false)) (Glue.recordsOf (Glue.argPointer 4) ((Glue.argInt 4)) (Gdk.zgtk_sizeof_Gdk_RGBA ()))
-        let colors = zrs1
+        let zrs2 = Glue.mapList (fun zp -> Gdk.RGBA (Glue.wrapBoxed (zp) (Gdk.gdk_rgba_get_type ()) false)) (Glue.recordsOf (Glue.argPointer 4) ((Glue.argInt 4)) (Gdk.zgtk_sizeof_Gdk_RGBA ()))
+        let colors = zrs2
         let nColors = Glue.argInt 5
         handler paintable snapshot width height colors nColors)
     zgtk_override_Gtk_SymbolicPaintable_snapshot_symbolic gtype zcb
@@ -35702,9 +35873,9 @@ module SymbolicPaintable =
 
   /// Snapshots the paintable with the given colors.
   let parentSnapshotSymbolic (self: SymbolicPaintable) (snapshot: Gdk.Snapshot) (width: float) (height: float) (colors: list<Gdk.RGBA>) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Gdk.RGBA) -> Glue.obj zo.Id (Gdk.gdk_rgba_get_type ())) colors) (Gdk.zgtk_sizeof_Gdk_RGBA ())
-    zgtk_parent_Gtk_SymbolicPaintable_snapshot_symbolic (Glue.obj self.Id (gtk_symbolic_paintable_get_type ())) (Glue.obj snapshot.Id (Gdk.gdk_snapshot_get_type ())) width height za1 (usize (Glue.count colors))
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: Gdk.RGBA) -> Glue.obj zo.Id (Gdk.gdk_rgba_get_type ())) colors) (Gdk.zgtk_sizeof_Gdk_RGBA ())
+    zgtk_parent_Gtk_SymbolicPaintable_snapshot_symbolic (Glue.obj self.Id (gtk_symbolic_paintable_get_type ())) (Glue.obj snapshot.Id (Gdk.gdk_snapshot_get_type ())) width height za2 (usize (Glue.count colors))
+    Glue.free za2
 
   extern zgtk_override_Gtk_SymbolicPaintable_snapshot_with_weight : usize -> cptr -> unit
 
@@ -35716,8 +35887,8 @@ module SymbolicPaintable =
         let snapshot = Gdk.Snapshot (Glue.wrap (Glue.argPointer 1) false)
         let width = Glue.argFloat 2
         let height = Glue.argFloat 3
-        let zrs1 = Glue.mapList (fun zp -> Gdk.RGBA (Glue.wrapBoxed (zp) (Gdk.gdk_rgba_get_type ()) false)) (Glue.recordsOf (Glue.argPointer 4) ((Glue.argInt 4)) (Gdk.zgtk_sizeof_Gdk_RGBA ()))
-        let colors = zrs1
+        let zrs2 = Glue.mapList (fun zp -> Gdk.RGBA (Glue.wrapBoxed (zp) (Gdk.gdk_rgba_get_type ()) false)) (Glue.recordsOf (Glue.argPointer 4) ((Glue.argInt 4)) (Gdk.zgtk_sizeof_Gdk_RGBA ()))
+        let colors = zrs2
         let nColors = Glue.argInt 5
         let weight = Glue.argFloat 6
         handler paintable snapshot width height colors nColors weight)
@@ -35727,9 +35898,9 @@ module SymbolicPaintable =
 
   /// Snapshots the paintable with the given colors and weight.
   let parentSnapshotWithWeight (self: SymbolicPaintable) (snapshot: Gdk.Snapshot) (width: float) (height: float) (colors: list<Gdk.RGBA>) (weight: float) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Gdk.RGBA) -> Glue.obj zo.Id (Gdk.gdk_rgba_get_type ())) colors) (Gdk.zgtk_sizeof_Gdk_RGBA ())
-    zgtk_parent_Gtk_SymbolicPaintable_snapshot_with_weight (Glue.obj self.Id (gtk_symbolic_paintable_get_type ())) (Glue.obj snapshot.Id (Gdk.gdk_snapshot_get_type ())) width height za1 (usize (Glue.count colors)) weight
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: Gdk.RGBA) -> Glue.obj zo.Id (Gdk.gdk_rgba_get_type ())) colors) (Gdk.zgtk_sizeof_Gdk_RGBA ())
+    zgtk_parent_Gtk_SymbolicPaintable_snapshot_with_weight (Glue.obj self.Id (gtk_symbolic_paintable_get_type ())) (Glue.obj snapshot.Id (Gdk.gdk_snapshot_get_type ())) width height za2 (usize (Glue.count colors)) weight
+    Glue.free za2
 
 module IconPaintable =
   /// The same object as its interface.
@@ -35845,6 +36016,12 @@ module IconTheme =
   /// Lists the names of icons in the current icon theme.
   let getIconNames (self: IconTheme) : list<string> =
     Glue.strvList ((gtk_icon_theme_get_icon_names (Glue.obj self.Id (gtk_icon_theme_get_type ())))) 2
+
+  extern gtk_icon_theme_get_icon_sizes : cptr -> cstr -> cptr
+
+  /// Returns an array of integers describing the sizes at which the icon is available without scaling.
+  let getIconSizes (self: IconTheme) (iconName: string) : cptr =
+    (gtk_icon_theme_get_icon_sizes (Glue.obj self.Id (gtk_icon_theme_get_type ())) iconName)
 
   extern gtk_icon_theme_get_resource_path : cptr -> cptr
 
@@ -38680,6 +38857,13 @@ module TreeModel =
   let getStringFromIter (self: TreeModel) (iter: TreeIter) : option<string> =
     Glue.takeTextOption ((gtk_tree_model_get_string_from_iter (Glue.obj self.Id (gtk_tree_model_get_type ())) (Glue.obj iter.Id (gtk_tree_iter_get_type ()))))
 
+  extern gtk_tree_model_get_valist : cptr -> cptr -> cptr -> unit
+
+  /// Deprecated. Gets the value of one or more cells in the row referenced by @iter.
+  [<Unsafe>]
+  let getValist (self: TreeModel) (iter: TreeIter) (varArgs: cptr) : unit =
+    gtk_tree_model_get_valist (Glue.obj self.Id (gtk_tree_model_get_type ())) (Glue.obj iter.Id (gtk_tree_iter_get_type ())) varArgs
+
   extern gtk_tree_model_get_value : cptr -> cptr -> i32 -> cptr -> unit
 
   /// Deprecated. Initializes and sets @value to that at @column.
@@ -38783,13 +38967,13 @@ module TreeModel =
 
   /// Deprecated. Emits the ::rows-reordered signal on @tree_model.
   let rowsReordered (self: TreeModel) (path: TreePath) (iter: option<TreeIter>) (newOrder: list<int>) : unit =
-    let zp1 =
+    let zp2 =
       match iter with
       | Some zo -> Glue.obj zo.Id (gtk_tree_iter_get_type ())
       | None -> Glue.none ()
-    let za2 = Glue.ints newOrder 4
-    gtk_tree_model_rows_reordered_with_length (Glue.obj self.Id (gtk_tree_model_get_type ())) (Glue.obj path.Id (gtk_tree_path_get_type ())) zp1 za2 (i32 (Glue.count newOrder))
-    Glue.free za2
+    let za3 = Glue.ints newOrder 4
+    gtk_tree_model_rows_reordered_with_length (Glue.obj self.Id (gtk_tree_model_get_type ())) (Glue.obj path.Id (gtk_tree_path_get_type ())) zp2 za3 (i32 (Glue.count newOrder))
+    Glue.free za3
 
   extern gtk_tree_model_unref_node : cptr -> cptr -> unit
 
@@ -39427,10 +39611,10 @@ module ListStore =
 
   /// Deprecated. Creates a new `GtkListStore`.
   let create (types: list<usize>) : ListStore =
-    let za1 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
-    let zr = gtk_list_store_newv (i32 (Glue.count types)) za1
+    let za2 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
+    let zr = gtk_list_store_newv (i32 (Glue.count types)) za2
     let zv = ListStore (Glue.wrap (zr) true)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern gtk_list_store_append : cptr -> cptr -> unit
@@ -39483,13 +39667,13 @@ module ListStore =
 
   /// Deprecated. A variant of gtk_list_store_insert_with_values() which takes the columns and values as two arrays, instead of varargs.
   let insertWithValues (self: ListStore) (position: int) (columns: list<int>) (values: list<GObject.Value>) : TreeIter =
-    let zo1 = Glue.alloc (zgtk_sizeof_Gtk_TreeIter ()) (gtk_tree_iter_get_type ())
-    let za2 = Glue.ints columns 4
-    let za3 = Glue.records (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values) (GObject.zgtk_sizeof_GObject_Value ())
-    gtk_list_store_insert_with_valuesv (Glue.obj self.Id (gtk_list_store_get_type ())) (Glue.obj zo1 (gtk_tree_iter_get_type ())) (i32 position) za2 za3 (i32 (Glue.count values))
-    let zv = TreeIter zo1
-    Glue.free za2
+    let zo2 = Glue.alloc (zgtk_sizeof_Gtk_TreeIter ()) (gtk_tree_iter_get_type ())
+    let za3 = Glue.ints columns 4
+    let za4 = Glue.records (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values) (GObject.zgtk_sizeof_GObject_Value ())
+    gtk_list_store_insert_with_valuesv (Glue.obj self.Id (gtk_list_store_get_type ())) (Glue.obj zo2 (gtk_tree_iter_get_type ())) (i32 position) za3 za4 (i32 (Glue.count values))
+    let zv = TreeIter zo2
     Glue.free za3
+    Glue.free za4
     zv
 
   extern gtk_list_store_iter_is_valid : cptr -> cptr -> i32
@@ -39544,9 +39728,16 @@ module ListStore =
 
   /// Deprecated. Sets the types of the columns of a list store.
   let setColumnTypes (self: ListStore) (types: list<usize>) : unit =
-    let za1 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
-    gtk_list_store_set_column_types (Glue.obj self.Id (gtk_list_store_get_type ())) (i32 (Glue.count types)) za1
-    Glue.free za1
+    let za2 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
+    gtk_list_store_set_column_types (Glue.obj self.Id (gtk_list_store_get_type ())) (i32 (Glue.count types)) za2
+    Glue.free za2
+
+  extern gtk_list_store_set_valist : cptr -> cptr -> cptr -> unit
+
+  /// Deprecated. See gtk_list_store_set(); this version takes a va_list for use by language bindings.
+  [<Unsafe>]
+  let setValist (self: ListStore) (iter: TreeIter) (varArgs: cptr) : unit =
+    gtk_list_store_set_valist (Glue.obj self.Id (gtk_list_store_get_type ())) (Glue.obj iter.Id (gtk_tree_iter_get_type ())) varArgs
 
   extern gtk_list_store_set_value : cptr -> cptr -> i32 -> cptr -> unit
 
@@ -39558,11 +39749,11 @@ module ListStore =
 
   /// Deprecated. A variant of gtk_list_store_set_valist() which takes the columns and values as two arrays, instead of varargs.
   let set (self: ListStore) (iter: TreeIter) (columns: list<int>) (values: list<GObject.Value>) : unit =
-    let za1 = Glue.ints columns 4
-    let za2 = Glue.records (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values) (GObject.zgtk_sizeof_GObject_Value ())
-    gtk_list_store_set_valuesv (Glue.obj self.Id (gtk_list_store_get_type ())) (Glue.obj iter.Id (gtk_tree_iter_get_type ())) za1 za2 (i32 (Glue.count values))
-    Glue.free za1
+    let za2 = Glue.ints columns 4
+    let za3 = Glue.records (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values) (GObject.zgtk_sizeof_GObject_Value ())
+    gtk_list_store_set_valuesv (Glue.obj self.Id (gtk_list_store_get_type ())) (Glue.obj iter.Id (gtk_tree_iter_get_type ())) za2 za3 (i32 (Glue.count values))
     Glue.free za2
+    Glue.free za3
 
   extern gtk_list_store_swap : cptr -> cptr -> cptr -> unit
 
@@ -40033,6 +40224,13 @@ module MediaStream =
   /// Sets @self into an error state using a printf()-style format string. C's own function, of variable arguments: called as C calls it, by code that
   /// answers for what it passes.
   extern gtk_media_stream_error : cptr -> cptr -> i32 -> cstr -> ... -> unit
+
+  extern gtk_media_stream_error_valist : cptr -> u32 -> i32 -> cstr -> cptr -> unit
+
+  /// Sets @self into an error state using a printf()-style format string.
+  [<Unsafe>]
+  let errorValist (self: MediaStream) (domain: int) (code: int) (format: string) (args: cptr) : unit =
+    gtk_media_stream_error_valist (Glue.obj self.Id (gtk_media_stream_get_type ())) (u32 domain) (i32 code) format args
 
   extern gtk_media_stream_gerror : cptr -> cptr -> unit
 
@@ -42347,9 +42545,9 @@ module PadController =
 
   /// A convenience function to add a group of action entries on @controller.
   let setActionEntries (self: PadController) (entries: list<PadActionEntry>) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: PadActionEntry) -> Glue.obj zo.Id (zgtk_tag_Gtk_PadActionEntry ())) entries) (zgtk_sizeof_Gtk_PadActionEntry ())
-    gtk_pad_controller_set_action_entries (Glue.obj self.Id (gtk_pad_controller_get_type ())) za1 (i32 (Glue.count entries))
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: PadActionEntry) -> Glue.obj zo.Id (zgtk_tag_Gtk_PadActionEntry ())) entries) (zgtk_sizeof_Gtk_PadActionEntry ())
+    gtk_pad_controller_set_action_entries (Glue.obj self.Id (gtk_pad_controller_get_type ())) za2 (i32 (Glue.count entries))
+    Glue.free za2
 
   /// Calls `handler` when the `action-group` property changes.
   let onNotifyActionGroup (self: PadController) (handler: unit -> unit) : unit =
@@ -44191,6 +44389,13 @@ module PrintJob =
   let setNumCopies (self: PrintJob) (numCopies: int) : unit =
     gtk_print_job_set_num_copies (Glue.obj self.Id (gtk_print_job_get_type ())) (i32 numCopies)
 
+  extern gtk_print_job_set_page_ranges : cptr -> cptr -> i32 -> unit
+
+  /// Sets the page ranges for this job.
+  [<Unsafe>]
+  let setPageRanges (self: PrintJob) (ranges: cptr) (nRanges: int) : unit =
+    gtk_print_job_set_page_ranges (Glue.obj self.Id (gtk_print_job_get_type ())) ranges (i32 nRanges)
+
   extern gtk_print_job_set_page_set : cptr -> i32 -> unit
 
   /// Sets the `GtkPageSet` setting for this job.
@@ -45420,9 +45625,9 @@ module PrintSettings =
 
   /// Sets the value of %GTK_PRINT_SETTINGS_PAGE_RANGES.
   let setPageRanges (self: PrintSettings) (pageRanges: list<PageRange>) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: PageRange) -> Glue.obj zo.Id (zgtk_tag_Gtk_PageRange ())) pageRanges) (zgtk_sizeof_Gtk_PageRange ())
-    gtk_print_settings_set_page_ranges (Glue.obj self.Id (gtk_print_settings_get_type ())) za1 (i32 (Glue.count pageRanges))
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: PageRange) -> Glue.obj zo.Id (zgtk_tag_Gtk_PageRange ())) pageRanges) (zgtk_sizeof_Gtk_PageRange ())
+    gtk_print_settings_set_page_ranges (Glue.obj self.Id (gtk_print_settings_get_type ())) za2 (i32 (Glue.count pageRanges))
+    Glue.free za2
 
   extern gtk_print_settings_set_page_set : cptr -> i32 -> unit
 
@@ -49615,9 +49820,9 @@ module Snapshot =
 
   /// Appends a conic gradient node with the given stops to @snapshot.
   let appendConicGradient (self: Snapshot) (bounds: Graphene.Rect) (center: Graphene.Point) (rotation: float) (stops: list<Gsk.ColorStop>) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Gsk.ColorStop) -> Glue.obj zo.Id (Gsk.zgtk_tag_Gsk_ColorStop ())) stops) (Gsk.zgtk_sizeof_Gsk_ColorStop ())
-    gtk_snapshot_append_conic_gradient (Glue.obj self.Id (gtk_snapshot_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 rotation) za1 (usize (Glue.count stops))
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: Gsk.ColorStop) -> Glue.obj zo.Id (Gsk.zgtk_tag_Gsk_ColorStop ())) stops) (Gsk.zgtk_sizeof_Gsk_ColorStop ())
+    gtk_snapshot_append_conic_gradient (Glue.obj self.Id (gtk_snapshot_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 rotation) za2 (usize (Glue.count stops))
+    Glue.free za2
 
   extern gtk_snapshot_append_fill : cptr -> cptr -> i32 -> cptr -> unit
 
@@ -49641,9 +49846,9 @@ module Snapshot =
 
   /// Appends a linear gradient node with the given stops to @snapshot.
   let appendLinearGradient (self: Snapshot) (bounds: Graphene.Rect) (startPoint: Graphene.Point) (endPoint: Graphene.Point) (stops: list<Gsk.ColorStop>) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Gsk.ColorStop) -> Glue.obj zo.Id (Gsk.zgtk_tag_Gsk_ColorStop ())) stops) (Gsk.zgtk_sizeof_Gsk_ColorStop ())
-    gtk_snapshot_append_linear_gradient (Glue.obj self.Id (gtk_snapshot_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj startPoint.Id (Graphene.graphene_point_get_type ())) (Glue.obj endPoint.Id (Graphene.graphene_point_get_type ())) za1 (usize (Glue.count stops))
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: Gsk.ColorStop) -> Glue.obj zo.Id (Gsk.zgtk_tag_Gsk_ColorStop ())) stops) (Gsk.zgtk_sizeof_Gsk_ColorStop ())
+    gtk_snapshot_append_linear_gradient (Glue.obj self.Id (gtk_snapshot_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj startPoint.Id (Graphene.graphene_point_get_type ())) (Glue.obj endPoint.Id (Graphene.graphene_point_get_type ())) za2 (usize (Glue.count stops))
+    Glue.free za2
 
   extern gtk_snapshot_append_node : cptr -> cptr -> unit
 
@@ -49667,25 +49872,25 @@ module Snapshot =
 
   /// Appends a radial gradient node with the given stops to @snapshot.
   let appendRadialGradient (self: Snapshot) (bounds: Graphene.Rect) (center: Graphene.Point) (hradius: float) (vradius: float) (start: float) (end: float) (stops: list<Gsk.ColorStop>) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Gsk.ColorStop) -> Glue.obj zo.Id (Gsk.zgtk_tag_Gsk_ColorStop ())) stops) (Gsk.zgtk_sizeof_Gsk_ColorStop ())
-    gtk_snapshot_append_radial_gradient (Glue.obj self.Id (gtk_snapshot_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 hradius) (f32 vradius) (f32 start) (f32 end) za1 (usize (Glue.count stops))
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: Gsk.ColorStop) -> Glue.obj zo.Id (Gsk.zgtk_tag_Gsk_ColorStop ())) stops) (Gsk.zgtk_sizeof_Gsk_ColorStop ())
+    gtk_snapshot_append_radial_gradient (Glue.obj self.Id (gtk_snapshot_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 hradius) (f32 vradius) (f32 start) (f32 end) za2 (usize (Glue.count stops))
+    Glue.free za2
 
   extern gtk_snapshot_append_repeating_linear_gradient : cptr -> cptr -> cptr -> cptr -> cptr -> usize -> unit
 
   /// Appends a repeating linear gradient node with the given stops to @snapshot.
   let appendRepeatingLinearGradient (self: Snapshot) (bounds: Graphene.Rect) (startPoint: Graphene.Point) (endPoint: Graphene.Point) (stops: list<Gsk.ColorStop>) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Gsk.ColorStop) -> Glue.obj zo.Id (Gsk.zgtk_tag_Gsk_ColorStop ())) stops) (Gsk.zgtk_sizeof_Gsk_ColorStop ())
-    gtk_snapshot_append_repeating_linear_gradient (Glue.obj self.Id (gtk_snapshot_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj startPoint.Id (Graphene.graphene_point_get_type ())) (Glue.obj endPoint.Id (Graphene.graphene_point_get_type ())) za1 (usize (Glue.count stops))
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: Gsk.ColorStop) -> Glue.obj zo.Id (Gsk.zgtk_tag_Gsk_ColorStop ())) stops) (Gsk.zgtk_sizeof_Gsk_ColorStop ())
+    gtk_snapshot_append_repeating_linear_gradient (Glue.obj self.Id (gtk_snapshot_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj startPoint.Id (Graphene.graphene_point_get_type ())) (Glue.obj endPoint.Id (Graphene.graphene_point_get_type ())) za2 (usize (Glue.count stops))
+    Glue.free za2
 
   extern gtk_snapshot_append_repeating_radial_gradient : cptr -> cptr -> cptr -> f32 -> f32 -> f32 -> f32 -> cptr -> usize -> unit
 
   /// Appends a repeating radial gradient node with the given stops to @snapshot.
   let appendRepeatingRadialGradient (self: Snapshot) (bounds: Graphene.Rect) (center: Graphene.Point) (hradius: float) (vradius: float) (start: float) (end: float) (stops: list<Gsk.ColorStop>) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Gsk.ColorStop) -> Glue.obj zo.Id (Gsk.zgtk_tag_Gsk_ColorStop ())) stops) (Gsk.zgtk_sizeof_Gsk_ColorStop ())
-    gtk_snapshot_append_repeating_radial_gradient (Glue.obj self.Id (gtk_snapshot_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 hradius) (f32 vradius) (f32 start) (f32 end) za1 (usize (Glue.count stops))
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: Gsk.ColorStop) -> Glue.obj zo.Id (Gsk.zgtk_tag_Gsk_ColorStop ())) stops) (Gsk.zgtk_sizeof_Gsk_ColorStop ())
+    gtk_snapshot_append_repeating_radial_gradient (Glue.obj self.Id (gtk_snapshot_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 hradius) (f32 vradius) (f32 start) (f32 end) za2 (usize (Glue.count stops))
+    Glue.free za2
 
   extern gtk_snapshot_append_scaled_texture : cptr -> cptr -> i32 -> cptr -> unit
 
@@ -49845,9 +50050,9 @@ module Snapshot =
 
   /// Applies a shadow to an image.
   let pushShadow (self: Snapshot) (shadow: list<Gsk.Shadow>) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Gsk.Shadow) -> Glue.obj zo.Id (Gsk.zgtk_tag_Gsk_Shadow ())) shadow) (Gsk.zgtk_sizeof_Gsk_Shadow ())
-    gtk_snapshot_push_shadow (Glue.obj self.Id (gtk_snapshot_get_type ())) za1 (usize (Glue.count shadow))
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: Gsk.Shadow) -> Glue.obj zo.Id (Gsk.zgtk_tag_Gsk_Shadow ())) shadow) (Gsk.zgtk_sizeof_Gsk_Shadow ())
+    gtk_snapshot_push_shadow (Glue.obj self.Id (gtk_snapshot_get_type ())) za2 (usize (Glue.count shadow))
+    Glue.free za2
 
   extern gtk_snapshot_push_stroke : cptr -> cptr -> cptr -> unit
 
@@ -56123,16 +56328,16 @@ module TreeModelFilter =
 
   /// Deprecated. With the @n_columns and @types parameters, you give an array of column types for this model (which will be exposed to the parent model/view).
   let setModifyFunc (self: TreeModelFilter) (types: list<usize>) (func: TreeModel -> TreeIter -> int -> GObject.Value) : unit =
-    let zcb1 =
+    let zcb2 =
       Glue.hold (fun () ->
         let model = TreeModel (Glue.wrap (Glue.argPointer 0) false)
         let iter = TreeIter (Glue.wrapBoxed (Glue.argPointer 1) (gtk_tree_iter_get_type ()) false)
         let column = Glue.argInt 3
         let value = func model iter column
         Glue.setRecord 2 (Glue.obj value.Id (GObject.g_value_get_type ())) (GObject.zgtk_sizeof_GObject_Value ()))
-    let za2 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
-    gtk_tree_model_filter_set_modify_func (Glue.obj self.Id (gtk_tree_model_filter_get_type ())) (i32 (Glue.count types)) za2 (zgtk_tramp_Gtk_TreeModelFilterModifyFunc ()) zcb1 (Glue.dropFn ())
-    Glue.free za2
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
+    gtk_tree_model_filter_set_modify_func (Glue.obj self.Id (gtk_tree_model_filter_get_type ())) (i32 (Glue.count types)) za3 (zgtk_tramp_Gtk_TreeModelFilterModifyFunc ()) zcb2 (Glue.dropFn ())
+    Glue.free za3
 
   extern gtk_tree_model_filter_set_visible_column : cptr -> i32 -> unit
 
@@ -56302,10 +56507,10 @@ module TreePath =
 
   /// Deprecated. Creates a new path with the given @indices array of @length.
   let createFromIndices (indices: list<int>) : TreePath =
-    let za1 = Glue.ints indices 4
-    let zr = gtk_tree_path_new_from_indicesv za1 (usize (Glue.count indices))
+    let za2 = Glue.ints indices 4
+    let zr = gtk_tree_path_new_from_indicesv za2 (usize (Glue.count indices))
     let zv = TreePath (Glue.wrapBoxed (zr) (gtk_tree_path_get_type ()) true)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern gtk_tree_path_new_from_string : cstr -> cptr
@@ -56657,10 +56862,10 @@ module TreeStore =
 
   /// Deprecated. Creates a new tree store.
   let create (types: list<usize>) : TreeStore =
-    let za1 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
-    let zr = gtk_tree_store_newv (i32 (Glue.count types)) za1
+    let za2 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
+    let zr = gtk_tree_store_newv (i32 (Glue.count types)) za2
     let zv = TreeStore (Glue.wrap (zr) true)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern gtk_tree_store_append : cptr -> cptr -> cptr -> unit
@@ -56729,17 +56934,17 @@ module TreeStore =
 
   /// Deprecated. A variant of gtk_tree_store_insert_with_values() which takes the columns and values as two arrays, instead of varargs.
   let insertWithValues (self: TreeStore) (parent: option<TreeIter>) (position: int) (columns: list<int>) (values: list<GObject.Value>) : TreeIter =
-    let zo1 = Glue.alloc (zgtk_sizeof_Gtk_TreeIter ()) (gtk_tree_iter_get_type ())
-    let zp2 =
+    let zo2 = Glue.alloc (zgtk_sizeof_Gtk_TreeIter ()) (gtk_tree_iter_get_type ())
+    let zp3 =
       match parent with
       | Some zo -> Glue.obj zo.Id (gtk_tree_iter_get_type ())
       | None -> Glue.none ()
-    let za3 = Glue.ints columns 4
-    let za4 = Glue.records (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values) (GObject.zgtk_sizeof_GObject_Value ())
-    gtk_tree_store_insert_with_valuesv (Glue.obj self.Id (gtk_tree_store_get_type ())) (Glue.obj zo1 (gtk_tree_iter_get_type ())) zp2 (i32 position) za3 za4 (i32 (Glue.count values))
-    let zv = TreeIter zo1
-    Glue.free za3
+    let za4 = Glue.ints columns 4
+    let za5 = Glue.records (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values) (GObject.zgtk_sizeof_GObject_Value ())
+    gtk_tree_store_insert_with_valuesv (Glue.obj self.Id (gtk_tree_store_get_type ())) (Glue.obj zo2 (gtk_tree_iter_get_type ())) zp3 (i32 position) za4 za5 (i32 (Glue.count values))
+    let zv = TreeIter zo2
     Glue.free za4
+    Glue.free za5
     zv
 
   extern gtk_tree_store_is_ancestor : cptr -> cptr -> cptr -> i32
@@ -56814,9 +57019,16 @@ module TreeStore =
 
   /// Deprecated. Sets the type of the columns in a tree store.
   let setColumnTypes (self: TreeStore) (types: list<usize>) : unit =
-    let za1 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
-    gtk_tree_store_set_column_types (Glue.obj self.Id (gtk_tree_store_get_type ())) (i32 (Glue.count types)) za1
-    Glue.free za1
+    let za2 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
+    gtk_tree_store_set_column_types (Glue.obj self.Id (gtk_tree_store_get_type ())) (i32 (Glue.count types)) za2
+    Glue.free za2
+
+  extern gtk_tree_store_set_valist : cptr -> cptr -> cptr -> unit
+
+  /// Deprecated. A version of gtk_tree_store_set() using `va_list`.
+  [<Unsafe>]
+  let setValist (self: TreeStore) (iter: TreeIter) (varArgs: cptr) : unit =
+    gtk_tree_store_set_valist (Glue.obj self.Id (gtk_tree_store_get_type ())) (Glue.obj iter.Id (gtk_tree_iter_get_type ())) varArgs
 
   extern gtk_tree_store_set_value : cptr -> cptr -> i32 -> cptr -> unit
 
@@ -56828,11 +57040,11 @@ module TreeStore =
 
   /// Deprecated. A variant of gtk_tree_store_set_valist() which takes the columns and values as two arrays, instead of using variadic arguments.
   let set (self: TreeStore) (iter: TreeIter) (columns: list<int>) (values: list<GObject.Value>) : unit =
-    let za1 = Glue.ints columns 4
-    let za2 = Glue.records (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values) (GObject.zgtk_sizeof_GObject_Value ())
-    gtk_tree_store_set_valuesv (Glue.obj self.Id (gtk_tree_store_get_type ())) (Glue.obj iter.Id (gtk_tree_iter_get_type ())) za1 za2 (i32 (Glue.count values))
-    Glue.free za1
+    let za2 = Glue.ints columns 4
+    let za3 = Glue.records (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values) (GObject.zgtk_sizeof_GObject_Value ())
+    gtk_tree_store_set_valuesv (Glue.obj self.Id (gtk_tree_store_get_type ())) (Glue.obj iter.Id (gtk_tree_iter_get_type ())) za2 za3 (i32 (Glue.count values))
     Glue.free za2
+    Glue.free za3
 
   extern gtk_tree_store_swap : cptr -> cptr -> cptr -> unit
 
@@ -58464,6 +58676,14 @@ module TreeViewColumn =
   let onNotifyXOffset (self: TreeViewColumn) (handler: unit -> unit) : unit =
     Glue.connect (Glue.obj self.Id (gtk_tree_view_column_get_type ())) "notify::x-offset" handler
 
+module TryExpression =
+  extern gtk_try_expression_new : u32 -> cptr -> cptr
+
+  /// Creates a `GtkExpression` with an array of expressions.
+  [<Unsafe>]
+  let create (nExpressions: int) (expressions: cptr) : TryExpression =
+    TryExpression ((gtk_try_expression_new (u32 nExpressions) expressions))
+
 module UriLauncher =
   /// The same object as its ancestor.
   let toGObjectObject (self: UriLauncher) : GObject.Object = GObject.Object self.Id
@@ -58939,6 +59159,18 @@ module WidgetClass =
   [<Unsafe>]
   let installPropertyAction (self: WidgetClass) (actionName: string) (propertyName: string) : unit =
     gtk_widget_class_install_property_action self.Ptr actionName propertyName
+
+  extern gtk_widget_class_query_action : cptr -> u32 -> cptr -> cptr -> cptr -> cptr -> i32
+
+  /// Returns details about an action that has been installed for @widget_class.
+  [<Unsafe>]
+  let queryAction (self: WidgetClass) (index: int) (owner: cptr) : (bool * string * option<GLib.VariantType> * option<string>) =
+    Glue.outBegin ()
+    let zr = gtk_widget_class_query_action self.Ptr (u32 index) owner (Glue.out 0) (Glue.out 1) (Glue.out 2)
+    let zid1 = Glue.wrapBoxed (Glue.outPtr 1) (GLib.g_variant_type_get_gtype ()) false
+    let zv = (((zr) <> i32 0), Glue.text (Glue.outPtr 0), (if zid1 = 0 then None else Some (GLib.VariantType zid1)), Glue.textOption (Glue.outPtr 2))
+    Glue.outEnd ()
+    zv
 
   extern gtk_widget_class_set_accessible_role : cptr -> i32 -> unit
 
@@ -59562,6 +59794,21 @@ let acceleratorParse (accelerator: string) : (bool * int * Gdk.ModifierType) =
   Glue.outEnd ()
   zv
 
+extern gtk_accelerator_parse_with_keycode : cstr -> cptr -> cptr -> cptr -> cptr -> i32
+
+/// Parses a string representing an accelerator.
+[<Unsafe>]
+let acceleratorParseWithKeycode (accelerator: string) (display: option<Gdk.Display>) (acceleratorCodes: cptr) : (bool * int * Gdk.ModifierType) =
+  let zp1 =
+    match display with
+    | Some zo -> Glue.obj zo.Id (Gdk.gdk_display_get_type ())
+    | None -> Glue.none ()
+  Glue.outBegin ()
+  let zr = gtk_accelerator_parse_with_keycode accelerator zp1 (Glue.out 0) acceleratorCodes (Glue.out 1)
+  let zv = (((zr) <> i32 0), Glue.outU32 0, Gdk.ModifierType (Glue.outU32 1))
+  Glue.outEnd ()
+  zv
+
 extern gtk_accelerator_valid : u32 -> u32 -> i32
 
 /// Determines whether a given keyval and modifier mask constitute a valid keyboard accelerator.
@@ -59610,10 +59857,10 @@ extern gtk_distribute_natural_allocation : i32 -> u32 -> cptr -> i32
 
 /// Distributes @extra_space to child @sizes by bringing smaller children up to natural size first.
 let distributeNaturalAllocation (extraSpace: int) (sizes: list<RequestedSize>) : int =
-  let za1 = Glue.records (Glue.mapList (fun (zo: RequestedSize) -> Glue.obj zo.Id (zgtk_tag_Gtk_RequestedSize ())) sizes) (zgtk_sizeof_Gtk_RequestedSize ())
-  let zr = gtk_distribute_natural_allocation (i32 extraSpace) (u32 (Glue.count sizes)) za1
+  let za2 = Glue.records (Glue.mapList (fun (zo: RequestedSize) -> Glue.obj zo.Id (zgtk_tag_Gtk_RequestedSize ())) sizes) (zgtk_sizeof_Gtk_RequestedSize ())
+  let zr = gtk_distribute_natural_allocation (i32 extraSpace) (u32 (Glue.count sizes)) za2
   let zv = (int (zr))
-  Glue.free za1
+  Glue.free za2
   zv
 
 extern gtk_enumerate_printers : cptr -> cptr -> cptr -> i32 -> unit

@@ -6444,6 +6444,28 @@ module Swipeable =
   let parentGetProgress (self: Swipeable) : float =
     ((zgtk_parent_Adw_Swipeable_get_progress (Glue.obj self.Id (adw_swipeable_get_type ()))))
 
+  extern zgtk_override_Adw_Swipeable_get_snap_points : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_snap_points`: Gets the snap points of @self.
+  let overrideGetSnapPoints (gtype: usize) (handler: Swipeable -> (cptr * int)) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let self_ = Swipeable (Glue.wrap (Glue.argPointer 0) false)
+        let (zres, nSnapPoints) = handler self_
+        Glue.setI32 1 nSnapPoints
+        Glue.returnPointer (zres))
+    zgtk_override_Adw_Swipeable_get_snap_points gtype zcb
+
+  extern zgtk_parent_Adw_Swipeable_get_snap_points : cptr -> cptr -> cptr
+
+  /// Gets the snap points of @self.
+  let parentGetSnapPoints (self: Swipeable) : list<float> =
+    Glue.outBegin ()
+    let zr = zgtk_parent_Adw_Swipeable_get_snap_points (Glue.obj self.Id (adw_swipeable_get_type ())) (Glue.out 0)
+    let zv = Glue.floatsOf (zr) (Glue.outI32 0) 8 true
+    Glue.outEnd ()
+    zv
+
   extern zgtk_override_Adw_Swipeable_get_swipe_area : usize -> cptr -> unit
 
   /// Gives a type made with `Glue.subclass` its own `get_swipe_area`: Gets the area @self can start a swipe from for the given direction and gesture type.
@@ -6742,17 +6764,24 @@ module Breakpoint =
       | None -> Glue.none ()
     adw_breakpoint_add_setter (Glue.obj self.Id (adw_breakpoint_get_type ())) (Glue.obj object.Id (GObject.g_object_get_type ())) property zp1
 
+  extern adw_breakpoint_add_setters_valist : cptr -> cptr -> cstr -> cptr -> unit
+
+  /// Adds multiple setters to @self.
+  [<Unsafe>]
+  let addSettersValist (self: Breakpoint) (firstObject: GObject.Object) (firstProperty: string) (args: cptr) : unit =
+    adw_breakpoint_add_setters_valist (Glue.obj self.Id (adw_breakpoint_get_type ())) (Glue.obj firstObject.Id (GObject.g_object_get_type ())) firstProperty args
+
   extern adw_breakpoint_add_settersv : cptr -> i32 -> cptr -> cptr -> cptr -> unit
 
   /// Adds @n_setters setters to @self.
   let addSetters (self: Breakpoint) (objects: list<GObject.Object>) (names: list<string>) (values: list<GObject.Value>) : unit =
-    let za1 = Glue.ptrs (Glue.mapList (fun (zo: GObject.Object) -> Glue.obj zo.Id (GObject.g_object_get_type ())) objects)
-    let zv2 = Glue.strv names
-    let za3 = Glue.ptrs (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values)
-    adw_breakpoint_add_settersv (Glue.obj self.Id (adw_breakpoint_get_type ())) (i32 (Glue.count values)) za1 zv2 za3
-    Glue.free za1
-    Glue.freeStrv zv2
-    Glue.free za3
+    let za2 = Glue.ptrs (Glue.mapList (fun (zo: GObject.Object) -> Glue.obj zo.Id (GObject.g_object_get_type ())) objects)
+    let zv3 = Glue.strv names
+    let za4 = Glue.ptrs (Glue.mapList (fun (zo: GObject.Value) -> Glue.obj zo.Id (GObject.g_value_get_type ())) values)
+    adw_breakpoint_add_settersv (Glue.obj self.Id (adw_breakpoint_get_type ())) (i32 (Glue.count values)) za2 zv3 za4
+    Glue.free za2
+    Glue.freeStrv zv3
+    Glue.free za4
 
   extern adw_breakpoint_get_condition : cptr -> cptr
 
@@ -10293,17 +10322,17 @@ module NavigationView =
 
   /// Replaces the current navigation stack with @pages.
   let replace (self: NavigationView) (pages: list<NavigationPage>) : unit =
-    let za1 = Glue.ptrs (Glue.mapList (fun (zo: NavigationPage) -> Glue.obj zo.Id (adw_navigation_page_get_type ())) pages)
-    adw_navigation_view_replace (Glue.obj self.Id (adw_navigation_view_get_type ())) za1 (i32 (Glue.count pages))
-    Glue.free za1
+    let za2 = Glue.ptrs (Glue.mapList (fun (zo: NavigationPage) -> Glue.obj zo.Id (adw_navigation_page_get_type ())) pages)
+    adw_navigation_view_replace (Glue.obj self.Id (adw_navigation_view_get_type ())) za2 (i32 (Glue.count pages))
+    Glue.free za2
 
   extern adw_navigation_view_replace_with_tags : cptr -> cptr -> i32 -> unit
 
   /// Replaces the current navigation stack with pages with the tags @tags.
   let replaceWithTags (self: NavigationView) (tags: list<string>) : unit =
-    let zv1 = Glue.strv tags
-    adw_navigation_view_replace_with_tags (Glue.obj self.Id (adw_navigation_view_get_type ())) zv1 (i32 (Glue.count tags))
-    Glue.freeStrv zv1
+    let zv2 = Glue.strv tags
+    adw_navigation_view_replace_with_tags (Glue.obj self.Id (adw_navigation_view_get_type ())) zv2 (i32 (Glue.count tags))
+    Glue.freeStrv zv2
 
   extern adw_navigation_view_set_animate_transitions : cptr -> i32 -> unit
 
@@ -11753,9 +11782,9 @@ module Sidebar =
 
   /// Sets up a drop target on the items.
   let setupDropTarget (self: Sidebar) (actions: Gdk.DragAction) (types: list<usize>) : unit =
-    let za1 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
-    adw_sidebar_setup_drop_target (Glue.obj self.Id (adw_sidebar_get_type ())) (u32 actions.Int) za1 (usize (Glue.count types))
-    Glue.free za1
+    let za2 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
+    adw_sidebar_setup_drop_target (Glue.obj self.Id (adw_sidebar_get_type ())) (u32 actions.Int) za2 (usize (Glue.count types))
+    Glue.free za2
 
   /// Emitted when an item at @index has been activated.
   let onActivated (self: Sidebar) (handler: int -> unit) : unit =
@@ -13762,9 +13791,9 @@ module TabBar =
 
   /// Sets up an extra drop target on tabs.
   let setupExtraDropTarget (self: TabBar) (actions: Gdk.DragAction) (types: list<usize>) : unit =
-    let za1 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
-    adw_tab_bar_setup_extra_drop_target (Glue.obj self.Id (adw_tab_bar_get_type ())) (u32 actions.Int) za1 (usize (Glue.count types))
-    Glue.free za1
+    let za2 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
+    adw_tab_bar_setup_extra_drop_target (Glue.obj self.Id (adw_tab_bar_get_type ())) (u32 actions.Int) za2 (usize (Glue.count types))
+    Glue.free za2
 
   /// Emitted when content is dropped onto a tab.
   let onExtraDragDrop (self: TabBar) (handler: TabPage -> GObject.Value -> bool) : unit =
@@ -14066,9 +14095,9 @@ module TabOverview =
 
   /// Sets up an extra drop target on tabs.
   let setupExtraDropTarget (self: TabOverview) (actions: Gdk.DragAction) (types: list<usize>) : unit =
-    let za1 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
-    adw_tab_overview_setup_extra_drop_target (Glue.obj self.Id (adw_tab_overview_get_type ())) (u32 actions.Int) za1 (usize (Glue.count types))
-    Glue.free za1
+    let za2 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) types) 8
+    adw_tab_overview_setup_extra_drop_target (Glue.obj self.Id (adw_tab_overview_get_type ())) (u32 actions.Int) za2 (usize (Glue.count types))
+    Glue.free za2
 
   /// Emitted when a tab needs to be created.
   let onCreateTab (self: TabOverview) (handler: unit -> TabPage) : unit =

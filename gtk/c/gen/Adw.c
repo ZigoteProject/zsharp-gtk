@@ -130,6 +130,22 @@ double zgtk_parent_Adw_Swipeable_get_progress(AdwSwipeable* a0) {
     AdwSwipeableInterface *k = zgtk_vfunc_parent(a0, "Adw_Swipeable.get_progress", adw_swipeable_get_type());
     return k && k->get_progress ? k->get_progress(a0) : (double)0;
 }
+static double* vf_Adw_Swipeable_get_snap_points(AdwSwipeable* a0, int* a1) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 2;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    void *f = zgtk_vfunc_find(a0, "Adw_Swipeable.get_snap_points");
+    if (f) zgtk_dispatch(f, &c);
+    return (double*)c.ret.p;
+}
+void zgtk_override_Adw_Swipeable_get_snap_points(gsize type, void *closure) {
+    AdwSwipeableInterface *k = g_type_interface_peek(g_type_class_ref(type), adw_swipeable_get_type());
+    if (k) { zgtk_vfunc_set(type, "Adw_Swipeable.get_snap_points", closure); k->get_snap_points = (gpointer)vf_Adw_Swipeable_get_snap_points; }
+}
+double* zgtk_parent_Adw_Swipeable_get_snap_points(AdwSwipeable* a0, int* a1) {
+    AdwSwipeableInterface *k = zgtk_vfunc_parent(a0, "Adw_Swipeable.get_snap_points", adw_swipeable_get_type());
+    return k && k->get_snap_points ? k->get_snap_points(a0, a1) : (double*)0;
+}
 static void vf_Adw_Swipeable_get_swipe_area(AdwSwipeable* a0, AdwNavigationDirection a1, gboolean a2, GdkRectangle* a3) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 4;
     c.args[0].p = (void *)a0;

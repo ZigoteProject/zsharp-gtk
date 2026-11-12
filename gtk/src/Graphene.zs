@@ -486,10 +486,10 @@ module Box =
 
   /// Initializes the given #graphene_box_t with the given array of vertices.
   let initFromPoints (self: Box) (points: list<Point3D>) : Box =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Point3D) -> Glue.obj zo.Id (graphene_point3d_get_type ())) points) (zgtk_sizeof_Graphene_Point3D ())
-    let zr = graphene_box_init_from_points (Glue.obj self.Id (graphene_box_get_type ())) (u32 (Glue.count points)) za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: Point3D) -> Glue.obj zo.Id (graphene_point3d_get_type ())) points) (zgtk_sizeof_Graphene_Point3D ())
+    let zr = graphene_box_init_from_points (Glue.obj self.Id (graphene_box_get_type ())) (u32 (Glue.count points)) za2
     let zv = Box (Glue.wrapBoxed (zr) (graphene_box_get_type ()) false)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern graphene_box_init_from_vec3 : cptr -> cptr -> cptr -> cptr
@@ -511,10 +511,10 @@ module Box =
 
   /// Initializes the given #graphene_box_t with the given array of vertices.
   let initFromVectors (self: Box) (vectors: list<Vec3>) : Box =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Vec3) -> Glue.obj zo.Id (graphene_vec3_get_type ())) vectors) (zgtk_sizeof_Graphene_Vec3 ())
-    let zr = graphene_box_init_from_vectors (Glue.obj self.Id (graphene_box_get_type ())) (u32 (Glue.count vectors)) za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: Vec3) -> Glue.obj zo.Id (graphene_vec3_get_type ())) vectors) (zgtk_sizeof_Graphene_Vec3 ())
+    let zr = graphene_box_init_from_vectors (Glue.obj self.Id (graphene_box_get_type ())) (u32 (Glue.count vectors)) za2
     let zv = Box (Glue.wrapBoxed (zr) (graphene_box_get_type ()) false)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern graphene_box_intersection : cptr -> cptr -> cptr -> i32
@@ -2422,28 +2422,28 @@ module Sphere =
 
   /// Initializes the given #graphene_sphere_t using the given array of 3D coordinates so that the sphere includes them.
   let initFromPoints (self: Sphere) (points: list<Point3D>) (center: option<Point3D>) : Sphere =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Point3D) -> Glue.obj zo.Id (graphene_point3d_get_type ())) points) (zgtk_sizeof_Graphene_Point3D ())
-    let zp2 =
+    let za2 = Glue.records (Glue.mapList (fun (zo: Point3D) -> Glue.obj zo.Id (graphene_point3d_get_type ())) points) (zgtk_sizeof_Graphene_Point3D ())
+    let zp3 =
       match center with
       | Some zo -> Glue.obj zo.Id (graphene_point3d_get_type ())
       | None -> Glue.none ()
-    let zr = graphene_sphere_init_from_points (Glue.obj self.Id (graphene_sphere_get_type ())) (u32 (Glue.count points)) za1 zp2
+    let zr = graphene_sphere_init_from_points (Glue.obj self.Id (graphene_sphere_get_type ())) (u32 (Glue.count points)) za2 zp3
     let zv = Sphere (Glue.wrapBoxed (zr) (graphene_sphere_get_type ()) false)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern graphene_sphere_init_from_vectors : cptr -> u32 -> cptr -> cptr -> cptr
 
   /// Initializes the given #graphene_sphere_t using the given array of 3D coordinates so that the sphere includes them.
   let initFromVectors (self: Sphere) (vectors: list<Vec3>) (center: option<Point3D>) : Sphere =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Vec3) -> Glue.obj zo.Id (graphene_vec3_get_type ())) vectors) (zgtk_sizeof_Graphene_Vec3 ())
-    let zp2 =
+    let za2 = Glue.records (Glue.mapList (fun (zo: Vec3) -> Glue.obj zo.Id (graphene_vec3_get_type ())) vectors) (zgtk_sizeof_Graphene_Vec3 ())
+    let zp3 =
       match center with
       | Some zo -> Glue.obj zo.Id (graphene_point3d_get_type ())
       | None -> Glue.none ()
-    let zr = graphene_sphere_init_from_vectors (Glue.obj self.Id (graphene_sphere_get_type ())) (u32 (Glue.count vectors)) za1 zp2
+    let zr = graphene_sphere_init_from_vectors (Glue.obj self.Id (graphene_sphere_get_type ())) (u32 (Glue.count vectors)) za2 zp3
     let zv = Sphere (Glue.wrapBoxed (zr) (graphene_sphere_get_type ()) false)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern graphene_sphere_is_empty : cptr -> i32

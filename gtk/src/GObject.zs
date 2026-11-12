@@ -62,6 +62,8 @@ extern g_value_array_get_type : unit -> usize
 extern zgtk_sizeof_GObject_ValueArray : unit -> usize
 extern zgtk_tramp_GObject_BindingTransformFunc : unit -> cptr
 extern zgtk_tramp_GObject_BindingTransformFunc_once : unit -> cptr
+extern zgtk_tramp_GObject_ClosureNotify : unit -> cptr
+extern zgtk_tramp_GObject_ClosureNotify_once : unit -> cptr
 extern zgtk_tramp_GObject_SignalAccumulator : unit -> cptr
 extern zgtk_tramp_GObject_SignalAccumulator_once : unit -> cptr
 extern zgtk_tramp_GObject_SignalEmissionHook : unit -> cptr
@@ -892,26 +894,33 @@ module Object =
   /// answers for what it passes.
   extern g_object_new : usize -> cstr -> ... -> cptr
 
+  extern g_object_new_valist : usize -> cstr -> cptr -> cptr
+
+  /// Creates a new instance of a #GObject subtype and sets its properties.
+  [<Unsafe>]
+  let createValist (objectType: usize) (firstPropertyName: string) (varArgs: cptr) : Object =
+    Object (Glue.wrap ((g_object_new_valist objectType firstPropertyName varArgs)) true)
+
   extern g_object_new_with_properties : usize -> u32 -> cptr -> cptr -> cptr
 
   /// Creates a new instance of a #GObject subtype and sets its properties using the provided arrays.
   let createWithProperties (objectType: usize) (names: list<string>) (values: list<Value>) : Object =
-    let zv1 = Glue.strv names
-    let za2 = Glue.records (Glue.mapList (fun (zo: Value) -> Glue.obj zo.Id (g_value_get_type ())) values) (zgtk_sizeof_GObject_Value ())
-    let zr = g_object_new_with_properties objectType (u32 (Glue.count values)) zv1 za2
+    let zv2 = Glue.strv names
+    let za3 = Glue.records (Glue.mapList (fun (zo: Value) -> Glue.obj zo.Id (g_value_get_type ())) values) (zgtk_sizeof_GObject_Value ())
+    let zr = g_object_new_with_properties objectType (u32 (Glue.count values)) zv2 za3
     let zv = Object (Glue.wrap (zr) true)
-    Glue.freeStrv zv1
-    Glue.free za2
+    Glue.freeStrv zv2
+    Glue.free za3
     zv
 
   extern g_object_newv : usize -> u32 -> cptr -> cptr
 
   /// Deprecated. Creates a new instance of a #GObject subtype and sets its properties.
   let newv (objectType: usize) (parameters: list<Parameter>) : Object =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Parameter) -> Glue.obj zo.Id (zgtk_tag_GObject_Parameter ())) parameters) (zgtk_sizeof_GObject_Parameter ())
-    let zr = g_object_newv objectType (u32 (Glue.count parameters)) za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: Parameter) -> Glue.obj zo.Id (zgtk_tag_GObject_Parameter ())) parameters) (zgtk_sizeof_GObject_Parameter ())
+    let zr = g_object_newv objectType (u32 (Glue.count parameters)) za2
     let zv = Object (Glue.wrap (zr) true)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern g_object_add_toggle_ref : cptr -> cptr -> cptr -> unit
@@ -926,6 +935,13 @@ module Object =
         notify object isLastRef)
     g_object_add_toggle_ref (Glue.obj self.Id (g_object_get_type ())) (zgtk_tramp_GObject_ToggleNotify ()) zcb1
     Glue.drop zcb1
+
+  extern g_object_add_weak_pointer : cptr -> cptr -> unit
+
+  /// Adds a weak reference from weak_pointer to @object to indicate that the pointer located at @weak_pointer_location is only valid during the lifetime of @object.
+  [<Unsafe>]
+  let addWeakPointer (self: Object) (weakPointerLocation: cptr) : unit =
+    g_object_add_weak_pointer (Glue.obj self.Id (g_object_get_type ())) weakPointerLocation
 
   extern g_object_bind_property : cptr -> cstr -> cptr -> cstr -> u32 -> cptr
 
@@ -1010,15 +1026,22 @@ module Object =
   let getQdata (self: Object) (quark: int) : cptr =
     ((g_object_get_qdata (Glue.obj self.Id (g_object_get_type ())) (u32 quark)))
 
+  extern g_object_get_valist : cptr -> cstr -> cptr -> unit
+
+  /// Gets properties of an object.
+  [<Unsafe>]
+  let getValist (self: Object) (firstPropertyName: string) (varArgs: cptr) : unit =
+    g_object_get_valist (Glue.obj self.Id (g_object_get_type ())) firstPropertyName varArgs
+
   extern g_object_getv : cptr -> u32 -> cptr -> cptr -> unit
 
   /// Gets @n_properties properties for an @object.
   let getv (self: Object) (names: list<string>) (values: list<Value>) : unit =
-    let zv1 = Glue.strv names
-    let za2 = Glue.records (Glue.mapList (fun (zo: Value) -> Glue.obj zo.Id (g_value_get_type ())) values) (zgtk_sizeof_GObject_Value ())
-    g_object_getv (Glue.obj self.Id (g_object_get_type ())) (u32 (Glue.count values)) zv1 za2
-    Glue.freeStrv zv1
-    Glue.free za2
+    let zv2 = Glue.strv names
+    let za3 = Glue.records (Glue.mapList (fun (zo: Value) -> Glue.obj zo.Id (g_value_get_type ())) values) (zgtk_sizeof_GObject_Value ())
+    g_object_getv (Glue.obj self.Id (g_object_get_type ())) (u32 (Glue.count values)) zv2 za3
+    Glue.freeStrv zv2
+    Glue.free za3
 
   extern g_object_is_floating : cptr -> i32
 
@@ -1065,6 +1088,27 @@ module Object =
     g_object_remove_toggle_ref (Glue.obj self.Id (g_object_get_type ())) (zgtk_tramp_GObject_ToggleNotify ()) zcb1
     Glue.drop zcb1
 
+  extern g_object_remove_weak_pointer : cptr -> cptr -> unit
+
+  /// Removes a weak reference from @object that was previously added using g_object_add_weak_pointer().
+  [<Unsafe>]
+  let removeWeakPointer (self: Object) (weakPointerLocation: cptr) : unit =
+    g_object_remove_weak_pointer (Glue.obj self.Id (g_object_get_type ())) weakPointerLocation
+
+  extern g_object_replace_data : cptr -> cstr -> cptr -> cptr -> cptr -> cptr -> i32
+
+  /// Compares the user data for the key @key on @object with @oldval, and if they are the same, replaces @oldval with @newval.
+  [<Unsafe>]
+  let replaceData (self: Object) (key: string) (oldval: cptr) (newval: cptr) (destroy: cptr) (oldDestroy: cptr) : bool =
+    (((g_object_replace_data (Glue.obj self.Id (g_object_get_type ())) key oldval newval destroy oldDestroy)) <> i32 0)
+
+  extern g_object_replace_qdata : cptr -> u32 -> cptr -> cptr -> cptr -> cptr -> i32
+
+  /// Compares the user data for the key @quark on @object with @oldval, and if they are the same, replaces @oldval with @newval.
+  [<Unsafe>]
+  let replaceQdata (self: Object) (quark: int) (oldval: cptr) (newval: cptr) (destroy: cptr) (oldDestroy: cptr) : bool =
+    (((g_object_replace_qdata (Glue.obj self.Id (g_object_get_type ())) (u32 quark) oldval newval destroy oldDestroy)) <> i32 0)
+
   extern g_object_run_dispose : cptr -> unit
 
   /// Releases all references to other objects.
@@ -1110,15 +1154,22 @@ module Object =
   let setQdataFull (self: Object) (quark: int) (data: cptr) (destroy: cptr) : unit =
     g_object_set_qdata_full (Glue.obj self.Id (g_object_get_type ())) (u32 quark) data destroy
 
+  extern g_object_set_valist : cptr -> cstr -> cptr -> unit
+
+  /// Sets properties on an object.
+  [<Unsafe>]
+  let setValist (self: Object) (firstPropertyName: string) (varArgs: cptr) : unit =
+    g_object_set_valist (Glue.obj self.Id (g_object_get_type ())) firstPropertyName varArgs
+
   extern g_object_setv : cptr -> u32 -> cptr -> cptr -> unit
 
   /// Sets @n_properties properties for an @object.
   let setv (self: Object) (names: list<string>) (values: list<Value>) : unit =
-    let zv1 = Glue.strv names
-    let za2 = Glue.records (Glue.mapList (fun (zo: Value) -> Glue.obj zo.Id (g_value_get_type ())) values) (zgtk_sizeof_GObject_Value ())
-    g_object_setv (Glue.obj self.Id (g_object_get_type ())) (u32 (Glue.count values)) zv1 za2
-    Glue.freeStrv zv1
-    Glue.free za2
+    let zv2 = Glue.strv names
+    let za3 = Glue.records (Glue.mapList (fun (zo: Value) -> Glue.obj zo.Id (g_value_get_type ())) values) (zgtk_sizeof_GObject_Value ())
+    g_object_setv (Glue.obj self.Id (g_object_get_type ())) (u32 (Glue.count values)) zv2 za3
+    Glue.freeStrv zv2
+    Glue.free za3
 
   extern g_object_steal_data : cptr -> cstr -> cptr
 
@@ -1485,12 +1536,38 @@ module CClosure =
   let marshalBOOLEANBOXEDBOXED (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_BOOLEAN__BOXED_BOXED (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
 
+  extern g_cclosure_marshal_BOOLEAN__BOXED_BOXEDv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_BOOLEAN__BOXED_BOXED().
+  [<Unsafe>]
+  let marshalBOOLEANBOXEDBOXEDv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_BOOLEAN__BOXED_BOXEDv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
+
   extern g_cclosure_marshal_BOOLEAN__FLAGS : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
   /// A #GClosureMarshal function for use with signals with handlers that take a flags type as an argument and return a boolean.
   [<Unsafe>]
   let marshalBOOLEANFLAGS (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_BOOLEAN__FLAGS (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
+
+  extern g_cclosure_marshal_BOOLEAN__FLAGSv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_BOOLEAN__FLAGS().
+  [<Unsafe>]
+  let marshalBOOLEANFLAGSv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_BOOLEAN__FLAGSv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
 
   extern g_cclosure_marshal_STRING__OBJECT_POINTER : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
@@ -1499,12 +1576,38 @@ module CClosure =
   let marshalSTRINGOBJECTPOINTER (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_STRING__OBJECT_POINTER (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
 
+  extern g_cclosure_marshal_STRING__OBJECT_POINTERv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_STRING__OBJECT_POINTER().
+  [<Unsafe>]
+  let marshalSTRINGOBJECTPOINTERv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_STRING__OBJECT_POINTERv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
+
   extern g_cclosure_marshal_VOID__BOOLEAN : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
   /// A #GClosureMarshal function for use with signals with a single boolean argument.
   [<Unsafe>]
   let marshalVOIDBOOLEAN (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__BOOLEAN (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
+
+  extern g_cclosure_marshal_VOID__BOOLEANv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__BOOLEAN().
+  [<Unsafe>]
+  let marshalVOIDBOOLEANv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__BOOLEANv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
 
   extern g_cclosure_marshal_VOID__BOXED : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
@@ -1513,12 +1616,38 @@ module CClosure =
   let marshalVOIDBOXED (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__BOXED (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
 
+  extern g_cclosure_marshal_VOID__BOXEDv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__BOXED().
+  [<Unsafe>]
+  let marshalVOIDBOXEDv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__BOXEDv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
+
   extern g_cclosure_marshal_VOID__CHAR : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
   /// A #GClosureMarshal function for use with signals with a single character argument.
   [<Unsafe>]
   let marshalVOIDCHAR (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__CHAR (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
+
+  extern g_cclosure_marshal_VOID__CHARv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__CHAR().
+  [<Unsafe>]
+  let marshalVOIDCHARv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__CHARv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
 
   extern g_cclosure_marshal_VOID__DOUBLE : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
@@ -1527,12 +1656,38 @@ module CClosure =
   let marshalVOIDDOUBLE (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__DOUBLE (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
 
+  extern g_cclosure_marshal_VOID__DOUBLEv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__DOUBLE().
+  [<Unsafe>]
+  let marshalVOIDDOUBLEv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__DOUBLEv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
+
   extern g_cclosure_marshal_VOID__ENUM : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
   /// A #GClosureMarshal function for use with signals with a single argument with an enumerated type.
   [<Unsafe>]
   let marshalVOIDENUM (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__ENUM (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
+
+  extern g_cclosure_marshal_VOID__ENUMv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__ENUM().
+  [<Unsafe>]
+  let marshalVOIDENUMv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__ENUMv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
 
   extern g_cclosure_marshal_VOID__FLAGS : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
@@ -1541,12 +1696,38 @@ module CClosure =
   let marshalVOIDFLAGS (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__FLAGS (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
 
+  extern g_cclosure_marshal_VOID__FLAGSv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__FLAGS().
+  [<Unsafe>]
+  let marshalVOIDFLAGSv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__FLAGSv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
+
   extern g_cclosure_marshal_VOID__FLOAT : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
   /// A #GClosureMarshal function for use with signals with one single-precision floating point argument.
   [<Unsafe>]
   let marshalVOIDFLOAT (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__FLOAT (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
+
+  extern g_cclosure_marshal_VOID__FLOATv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__FLOAT().
+  [<Unsafe>]
+  let marshalVOIDFLOATv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__FLOATv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
 
   extern g_cclosure_marshal_VOID__INT : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
@@ -1555,12 +1736,38 @@ module CClosure =
   let marshalVOIDINT (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__INT (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
 
+  extern g_cclosure_marshal_VOID__INTv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__INT().
+  [<Unsafe>]
+  let marshalVOIDINTv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__INTv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
+
   extern g_cclosure_marshal_VOID__LONG : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
   /// A #GClosureMarshal function for use with signals with with a single long integer argument.
   [<Unsafe>]
   let marshalVOIDLONG (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__LONG (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
+
+  extern g_cclosure_marshal_VOID__LONGv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__LONG().
+  [<Unsafe>]
+  let marshalVOIDLONGv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__LONGv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
 
   extern g_cclosure_marshal_VOID__OBJECT : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
@@ -1569,12 +1776,38 @@ module CClosure =
   let marshalVOIDOBJECT (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__OBJECT (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
 
+  extern g_cclosure_marshal_VOID__OBJECTv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__OBJECT().
+  [<Unsafe>]
+  let marshalVOIDOBJECTv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__OBJECTv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
+
   extern g_cclosure_marshal_VOID__PARAM : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
   /// A #GClosureMarshal function for use with signals with a single argument of type #GParamSpec.
   [<Unsafe>]
   let marshalVOIDPARAM (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__PARAM (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
+
+  extern g_cclosure_marshal_VOID__PARAMv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__PARAM().
+  [<Unsafe>]
+  let marshalVOIDPARAMv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__PARAMv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
 
   extern g_cclosure_marshal_VOID__POINTER : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
@@ -1583,6 +1816,19 @@ module CClosure =
   let marshalVOIDPOINTER (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__POINTER (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
 
+  extern g_cclosure_marshal_VOID__POINTERv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__POINTER().
+  [<Unsafe>]
+  let marshalVOIDPOINTERv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__POINTERv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
+
   extern g_cclosure_marshal_VOID__STRING : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
   /// A #GClosureMarshal function for use with signals with a single string argument.
@@ -1590,12 +1836,38 @@ module CClosure =
   let marshalVOIDSTRING (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__STRING (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
 
+  extern g_cclosure_marshal_VOID__STRINGv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__STRING().
+  [<Unsafe>]
+  let marshalVOIDSTRINGv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__STRINGv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
+
   extern g_cclosure_marshal_VOID__UCHAR : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
   /// A #GClosureMarshal function for use with signals with a single unsigned character argument.
   [<Unsafe>]
   let marshalVOIDUCHAR (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__UCHAR (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
+
+  extern g_cclosure_marshal_VOID__UCHARv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__UCHAR().
+  [<Unsafe>]
+  let marshalVOIDUCHARv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__UCHARv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
 
   extern g_cclosure_marshal_VOID__UINT : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
@@ -1611,12 +1883,51 @@ module CClosure =
   let marshalVOIDUINTPOINTER (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__UINT_POINTER (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
 
+  extern g_cclosure_marshal_VOID__UINT_POINTERv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__UINT_POINTER().
+  [<Unsafe>]
+  let marshalVOIDUINTPOINTERv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__UINT_POINTERv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
+
+  extern g_cclosure_marshal_VOID__UINTv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__UINT().
+  [<Unsafe>]
+  let marshalVOIDUINTv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__UINTv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
+
   extern g_cclosure_marshal_VOID__ULONG : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
   /// A #GClosureMarshal function for use with signals with a single unsigned long integer argument.
   [<Unsafe>]
   let marshalVOIDULONG (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__ULONG (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
+
+  extern g_cclosure_marshal_VOID__ULONGv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__ULONG().
+  [<Unsafe>]
+  let marshalVOIDULONGv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__ULONGv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
 
   extern g_cclosure_marshal_VOID__VARIANT : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
@@ -1625,6 +1936,19 @@ module CClosure =
   let marshalVOIDVARIANT (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__VARIANT (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
 
+  extern g_cclosure_marshal_VOID__VARIANTv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__VARIANT().
+  [<Unsafe>]
+  let marshalVOIDVARIANTv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__VARIANTv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
+
   extern g_cclosure_marshal_VOID__VOID : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
   /// A #GClosureMarshal function for use with signals with no arguments.
@@ -1632,12 +1956,38 @@ module CClosure =
   let marshalVOIDVOID (closure: (unit -> unit)) (returnValue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_VOID__VOID (Glue.closure closure) (Glue.obj returnValue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
 
+  extern g_cclosure_marshal_VOID__VOIDv : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// The #GVaClosureMarshal equivalent to g_cclosure_marshal_VOID__VOID().
+  [<Unsafe>]
+  let marshalVOIDVOIDv (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (args: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_VOID__VOIDv (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
+
   extern g_cclosure_marshal_generic : cptr -> cptr -> u32 -> cptr -> cptr -> cptr -> unit
 
   /// A generic marshaller function implemented via [libffi](http://sourceware.org/libffi/).
   [<Unsafe>]
   let marshalGeneric (closure: (unit -> unit)) (returnGvalue: Value) (nParamValues: int) (paramValues: Value) (invocationHint: cptr) (marshalData: cptr) : unit =
     g_cclosure_marshal_generic (Glue.closure closure) (Glue.obj returnGvalue.Id (g_value_get_type ())) (u32 nParamValues) (Glue.obj paramValues.Id (g_value_get_type ())) invocationHint marshalData
+
+  extern g_cclosure_marshal_generic_va : cptr -> cptr -> cptr -> cptr -> cptr -> i32 -> cptr -> unit
+
+  /// A generic #GVaClosureMarshal function implemented via [libffi](http://sourceware.org/libffi/).
+  [<Unsafe>]
+  let marshalGenericVa (closure: (unit -> unit)) (returnValue: option<Value>) (instance: TypeInstance) (argsList: cptr) (marshalData: cptr) (paramTypes: list<usize>) : unit =
+    let zp2 =
+      match returnValue with
+      | Some zo -> Glue.obj zo.Id (g_value_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    g_cclosure_marshal_generic_va (Glue.closure closure) zp2 (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) argsList marshalData (i32 (Glue.count paramTypes)) za3
+    Glue.free za3
 
   extern g_cclosure_new : cptr -> cptr -> cptr -> cptr
 
@@ -1699,8 +2049,13 @@ module Closure =
 
   /// Adds a pair of notifiers which get invoked before and after the closure callback, respectively.
   [<Unsafe>]
-  let addMarshalGuards (self: Closure) (preMarshalData: cptr) (preMarshalNotify: cptr) (postMarshalData: cptr) (postMarshalNotify: cptr) : unit =
-    g_closure_add_marshal_guards (Glue.obj self.Id (g_closure_get_type ())) preMarshalData preMarshalNotify postMarshalData postMarshalNotify
+  let addMarshalGuards (self: Closure) (preMarshalData: cptr) (preMarshalNotify: cptr -> unit) (postMarshalNotify: cptr) : unit =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let closure = Glue.argPointer 1
+        preMarshalNotify closure)
+    g_closure_add_marshal_guards (Glue.obj self.Id (g_closure_get_type ())) preMarshalData (zgtk_tramp_GObject_ClosureNotify ()) zcb1 postMarshalNotify
+    Glue.drop zcb1
 
   extern g_closure_invalidate : cptr -> unit
 
@@ -1713,11 +2068,11 @@ module Closure =
   /// Invokes the closure, i.e.
   [<Unsafe>]
   let invoke (self: Closure) (paramValues: list<Value>) (invocationHint: cptr) : Value =
-    let zo1 = Glue.alloc (zgtk_sizeof_GObject_Value ()) (g_value_get_type ())
-    let za2 = Glue.records (Glue.mapList (fun (zo: Value) -> Glue.obj zo.Id (g_value_get_type ())) paramValues) (zgtk_sizeof_GObject_Value ())
-    g_closure_invoke (Glue.obj self.Id (g_closure_get_type ())) (Glue.obj zo1 (g_value_get_type ())) (u32 (Glue.count paramValues)) za2 invocationHint
-    let zv = Value zo1
-    Glue.free za2
+    let zo2 = Glue.alloc (zgtk_sizeof_GObject_Value ()) (g_value_get_type ())
+    let za3 = Glue.records (Glue.mapList (fun (zo: Value) -> Glue.obj zo.Id (g_value_get_type ())) paramValues) (zgtk_sizeof_GObject_Value ())
+    g_closure_invoke (Glue.obj self.Id (g_closure_get_type ())) (Glue.obj zo2 (g_value_get_type ())) (u32 (Glue.count paramValues)) za3 invocationHint
+    let zv = Value zo2
+    Glue.free za3
     zv
 
   extern g_closure_ref : cptr -> cptr
@@ -1907,9 +2262,9 @@ module ObjectClass =
   /// Installs new properties from an array of #GParamSpecs.
   [<Unsafe>]
   let installProperties (self: ObjectClass) (pspecs: list<ParamSpec>) : unit =
-    let za1 = Glue.ptrs (Glue.mapList (fun (zo: ParamSpec) -> Glue.obj zo.Id (zgtk_type_GObject_ParamSpec ())) pspecs)
-    g_object_class_install_properties self.Ptr (u32 (Glue.count pspecs)) za1
-    Glue.free za1
+    let za2 = Glue.ptrs (Glue.mapList (fun (zo: ParamSpec) -> Glue.obj zo.Id (zgtk_type_GObject_ParamSpec ())) pspecs)
+    g_object_class_install_properties self.Ptr (u32 (Glue.count pspecs)) za2
+    Glue.free za2
 
   extern g_object_class_install_property : cptr -> u32 -> cptr -> unit
 
@@ -3817,8 +4172,8 @@ let signalAddEmissionHook (signalId: int) (detail: int) (hookFunc: SignalInvocat
     Glue.hold (fun () ->
       let ihint = SignalInvocationHint (Glue.copyPlain (Glue.argPointer 0) (zgtk_sizeof_GObject_SignalInvocationHint ()) (zgtk_tag_GObject_SignalInvocationHint ()))
       let nParamValues = Glue.argInt 1
-      let zrs2 = Glue.mapList (fun zp -> Value (Glue.wrapBoxed (zp) (g_value_get_type ()) false)) (Glue.recordsOf (Glue.argPointer 2) ((Glue.argInt 1)) (zgtk_sizeof_GObject_Value ()))
-      let paramValues = zrs2
+      let zrs3 = Glue.mapList (fun zp -> Value (Glue.wrapBoxed (zp) (g_value_get_type ()) false)) (Glue.recordsOf (Glue.argPointer 2) ((Glue.argInt 1)) (zgtk_sizeof_GObject_Value ()))
+      let paramValues = zrs3
       Glue.returnBool (hookFunc ihint nParamValues paramValues))
   let zr = g_signal_add_emission_hook (u32 signalId) (u32 detail) (zgtk_tramp_GObject_SignalEmissionHook ()) zcb1 (Glue.dropFn ())
   (int (zr))
@@ -3873,6 +4228,13 @@ extern g_signal_emit : cptr -> u32 -> cptr -> ... -> unit
 /// Emits a signal. C's own function, of variable arguments: called as C calls it, by code that
 /// answers for what it passes.
 extern g_signal_emit_by_name : cptr -> cstr -> ... -> unit
+
+extern g_signal_emit_valist : cptr -> u32 -> u32 -> cptr -> unit
+
+/// Emits a signal.
+[<Unsafe>]
+let signalEmitValist (instance: TypeInstance) (signalId: int) (detail: int) (varArgs: cptr) : unit =
+  g_signal_emit_valist (Glue.obj instance.Id (zgtk_tag_GObject_TypeInstance ())) (u32 signalId) (u32 detail) varArgs
 
 extern g_signal_emitv : cptr -> u32 -> u32 -> cptr -> unit
 
@@ -3990,21 +4352,35 @@ extern g_signal_new : cstr -> usize -> cptr -> u32 -> cptr -> cptr -> cptr -> us
 /// answers for what it passes.
 extern g_signal_new_class_handler : cstr -> usize -> cptr -> cptr -> cptr -> cptr -> cptr -> usize -> u32 -> ... -> u32
 
-extern g_signal_newv : cstr -> usize -> u32 -> cptr -> cptr -> cptr -> cptr -> usize -> u32 -> cptr -> u32
+extern g_signal_new_valist : cstr -> usize -> u32 -> cptr -> cptr -> cptr -> cptr -> usize -> u32 -> cptr -> u32
 
 /// Creates a new signal.
 [<Unsafe>]
-let signalNewv (signalName: string) (itype: usize) (signalFlags: SignalFlags) (classClosure: (unit -> unit)) (accumulator: SignalInvocationHint -> Value -> Value -> bool) (cMarshaller: cptr) (returnType: usize) (paramTypes: list<usize>) : int =
+let signalNewValist (signalName: string) (itype: usize) (signalFlags: SignalFlags) (classClosure: (unit -> unit)) (accumulator: SignalInvocationHint -> Value -> Value -> bool) (cMarshaller: cptr) (returnType: usize) (nParams: int) (args: cptr) : int =
   let zcb1 =
     Glue.hold (fun () ->
       let ihint = SignalInvocationHint (Glue.copyPlain (Glue.argPointer 0) (zgtk_sizeof_GObject_SignalInvocationHint ()) (zgtk_tag_GObject_SignalInvocationHint ()))
       let returnAccu = Value (Glue.wrapBoxed (Glue.argPointer 1) (g_value_get_type ()) false)
       let handlerReturn = Value (Glue.wrapBoxed (Glue.argPointer 2) (g_value_get_type ()) false)
       Glue.returnBool (accumulator ihint returnAccu handlerReturn))
-  let za2 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
-  let zr = g_signal_newv signalName itype (u32 signalFlags.Int) (Glue.closure classClosure) (zgtk_tramp_GObject_SignalAccumulator ()) zcb1 cMarshaller returnType (u32 (Glue.count paramTypes)) za2
+  let zr = g_signal_new_valist signalName itype (u32 signalFlags.Int) (Glue.closure classClosure) (zgtk_tramp_GObject_SignalAccumulator ()) zcb1 cMarshaller returnType (u32 nParams) args
+  (int (zr))
+
+extern g_signal_newv : cstr -> usize -> u32 -> cptr -> cptr -> cptr -> cptr -> usize -> u32 -> cptr -> u32
+
+/// Creates a new signal.
+[<Unsafe>]
+let signalNewv (signalName: string) (itype: usize) (signalFlags: SignalFlags) (classClosure: (unit -> unit)) (accumulator: SignalInvocationHint -> Value -> Value -> bool) (cMarshaller: cptr) (returnType: usize) (paramTypes: list<usize>) : int =
+  let zcb2 =
+    Glue.hold (fun () ->
+      let ihint = SignalInvocationHint (Glue.copyPlain (Glue.argPointer 0) (zgtk_sizeof_GObject_SignalInvocationHint ()) (zgtk_tag_GObject_SignalInvocationHint ()))
+      let returnAccu = Value (Glue.wrapBoxed (Glue.argPointer 1) (g_value_get_type ()) false)
+      let handlerReturn = Value (Glue.wrapBoxed (Glue.argPointer 2) (g_value_get_type ()) false)
+      Glue.returnBool (accumulator ihint returnAccu handlerReturn))
+  let za3 = Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+  let zr = g_signal_newv signalName itype (u32 signalFlags.Int) (Glue.closure classClosure) (zgtk_tramp_GObject_SignalAccumulator ()) zcb2 cMarshaller returnType (u32 (Glue.count paramTypes)) za3
   let zv = (int (zr))
-  Glue.free za2
+  Glue.free za3
   zv
 
 extern g_signal_override_class_closure : u32 -> usize -> cptr -> unit

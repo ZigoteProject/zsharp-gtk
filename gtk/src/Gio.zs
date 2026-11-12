@@ -217,8 +217,12 @@ extern zgtk_tramp_Gio_DBusProxyTypeFunc : unit -> cptr
 extern zgtk_tramp_Gio_DBusProxyTypeFunc_once : unit -> cptr
 extern zgtk_tramp_Gio_DBusSignalCallback : unit -> cptr
 extern zgtk_tramp_Gio_DBusSignalCallback_once : unit -> cptr
+extern zgtk_tramp_Gio_DBusSubtreeDispatchFunc : unit -> cptr
+extern zgtk_tramp_Gio_DBusSubtreeDispatchFunc_once : unit -> cptr
 extern zgtk_tramp_Gio_DBusSubtreeEnumerateFunc : unit -> cptr
 extern zgtk_tramp_Gio_DBusSubtreeEnumerateFunc_once : unit -> cptr
+extern zgtk_tramp_Gio_DBusSubtreeIntrospectFunc : unit -> cptr
+extern zgtk_tramp_Gio_DBusSubtreeIntrospectFunc_once : unit -> cptr
 extern zgtk_tramp_Gio_DatagramBasedSourceFunc : unit -> cptr
 extern zgtk_tramp_Gio_DatagramBasedSourceFunc_once : unit -> cptr
 extern zgtk_tramp_Gio_FileMeasureProgressCallback : unit -> cptr
@@ -235,6 +239,8 @@ extern zgtk_tramp_Gio_SettingsBindGetMapping : unit -> cptr
 extern zgtk_tramp_Gio_SettingsBindGetMapping_once : unit -> cptr
 extern zgtk_tramp_Gio_SettingsBindSetMapping : unit -> cptr
 extern zgtk_tramp_Gio_SettingsBindSetMapping_once : unit -> cptr
+extern zgtk_tramp_Gio_SettingsGetMapping : unit -> cptr
+extern zgtk_tramp_Gio_SettingsGetMapping_once : unit -> cptr
 extern zgtk_tramp_Gio_SocketSourceFunc : unit -> cptr
 extern zgtk_tramp_Gio_SocketSourceFunc_once : unit -> cptr
 extern zgtk_tramp_Gio_VfsFileLookupFunc : unit -> cptr
@@ -7036,6 +7042,37 @@ module ActionGroup =
   let parentListActions (self: ActionGroup) : list<string> =
     Glue.strvList ((zgtk_parent_Gio_ActionGroup_list_actions (Glue.obj self.Id (g_action_group_get_type ())))) 2
 
+  extern zgtk_override_Gio_ActionGroup_query_action : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `query_action`: Queries all aspects of the named action within an @action_group.
+  let overrideQueryAction (gtype: usize) (handler: ActionGroup -> string -> cptr -> cptr -> cptr -> cptr -> (bool * bool)) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let actionGroup = ActionGroup (Glue.wrap (Glue.argPointer 0) false)
+        let actionName = Glue.text (Glue.argPointer 1)
+        let parameterType = Glue.argPointer 3
+        let stateType = Glue.argPointer 4
+        let stateHint = Glue.argPointer 5
+        let state = Glue.argPointer 6
+        let (zres, enabled) = handler actionGroup actionName parameterType stateType stateHint state
+        Glue.setI32 2 (if enabled then 1 else 0)
+        Glue.returnBool (zres))
+    zgtk_override_Gio_ActionGroup_query_action gtype zcb
+
+  extern zgtk_parent_Gio_ActionGroup_query_action : cptr -> cstr -> cptr -> cptr -> cptr -> cptr -> cptr -> i32
+
+  /// Queries all aspects of the named action within an @action_group.
+  let parentQueryAction (self: ActionGroup) (actionName: string) : (bool * bool * option<GLib.VariantType> * option<GLib.VariantType> * option<GLib.Variant> * option<GLib.Variant>) =
+    Glue.outBegin ()
+    let zr = zgtk_parent_Gio_ActionGroup_query_action (Glue.obj self.Id (g_action_group_get_type ())) actionName (Glue.out 0) (Glue.out 1) (Glue.out 2) (Glue.out 3) (Glue.out 4)
+    let zid1 = Glue.wrapBoxed (Glue.outPtr 1) (GLib.g_variant_type_get_gtype ()) false
+    let zid2 = Glue.wrapBoxed (Glue.outPtr 2) (GLib.g_variant_type_get_gtype ()) false
+    let zid3 = GLib.zgtk_wrap_GLib_Variant (Glue.outPtr 3) (i32 1)
+    let zid4 = GLib.zgtk_wrap_GLib_Variant (Glue.outPtr 4) (i32 1)
+    let zv = (((zr) <> i32 0), (Glue.outI32 0 <> 0), (if zid1 = 0 then None else Some (GLib.VariantType zid1)), (if zid2 = 0 then None else Some (GLib.VariantType zid2)), (if zid3 = 0 then None else Some (GLib.Variant zid3)), (if zid4 = 0 then None else Some (GLib.Variant zid4)))
+    Glue.outEnd ()
+    zv
+
 module ActionMap =
   /// The same object as its ancestor.
   let toGObjectObject (self: ActionMap) : GObject.Object = GObject.Object self.Id
@@ -7055,9 +7092,9 @@ module ActionMap =
   /// A convenience function for creating multiple [class@Gio.SimpleAction] instances and adding them to a [iface@Gio.ActionMap].
   [<Unsafe>]
   let addActionEntries (self: ActionMap) (entries: list<ActionEntry>) (userData: cptr) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: ActionEntry) -> Glue.obj zo.Id (zgtk_tag_Gio_ActionEntry ())) entries) (zgtk_sizeof_Gio_ActionEntry ())
-    g_action_map_add_action_entries (Glue.obj self.Id (g_action_map_get_type ())) za1 (i32 (Glue.count entries)) userData
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: ActionEntry) -> Glue.obj zo.Id (zgtk_tag_Gio_ActionEntry ())) entries) (zgtk_sizeof_Gio_ActionEntry ())
+    g_action_map_add_action_entries (Glue.obj self.Id (g_action_map_get_type ())) za2 (i32 (Glue.count entries)) userData
+    Glue.free za2
 
   extern g_action_map_lookup_action : cptr -> cstr -> cptr
 
@@ -7077,9 +7114,9 @@ module ActionMap =
 
   /// Remove actions from a [iface@Gio.ActionMap].
   let removeActionEntries (self: ActionMap) (entries: list<ActionEntry>) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: ActionEntry) -> Glue.obj zo.Id (zgtk_tag_Gio_ActionEntry ())) entries) (zgtk_sizeof_Gio_ActionEntry ())
-    g_action_map_remove_action_entries (Glue.obj self.Id (g_action_map_get_type ())) za1 (i32 (Glue.count entries))
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: ActionEntry) -> Glue.obj zo.Id (zgtk_tag_Gio_ActionEntry ())) entries) (zgtk_sizeof_Gio_ActionEntry ())
+    g_action_map_remove_action_entries (Glue.obj self.Id (g_action_map_get_type ())) za2 (i32 (Glue.count entries))
+    Glue.free za2
 
   extern zgtk_override_Gio_ActionMap_add_action : usize -> cptr -> unit
 
@@ -7781,6 +7818,22 @@ module AppInfo =
   let parentGetName (self: AppInfo) : string =
     Glue.text ((zgtk_parent_Gio_AppInfo_get_name (Glue.obj self.Id (g_app_info_get_type ()))))
 
+  extern zgtk_override_Gio_AppInfo_get_supported_types : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_supported_types`: Retrieves the list of content types that @app_info claims to support.
+  let overrideGetSupportedTypes (gtype: usize) (handler: AppInfo -> cptr) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let appinfo = AppInfo (Glue.wrap (Glue.argPointer 0) false)
+        Glue.returnPointer (handler appinfo))
+    zgtk_override_Gio_AppInfo_get_supported_types gtype zcb
+
+  extern zgtk_parent_Gio_AppInfo_get_supported_types : cptr -> cptr
+
+  /// Retrieves the list of content types that @app_info claims to support.
+  let parentGetSupportedTypes (self: AppInfo) : list<string> =
+    Glue.strvList ((zgtk_parent_Gio_AppInfo_get_supported_types (Glue.obj self.Id (g_app_info_get_type ())))) 0
+
   extern zgtk_override_Gio_AppInfo_launch_uris_async : usize -> cptr -> unit
 
   /// Gives a type made with `Glue.subclass` its own `launch_uris_async`: Async version of [method@Gio.AppInfo.launch_uris].
@@ -8211,9 +8264,9 @@ module Application =
 
   /// Opens the given files.
   let open_ (self: Application) (files: list<File>) (hint: string) : unit =
-    let za1 = Glue.ptrs (Glue.mapList (fun (zo: File) -> Glue.obj zo.Id (g_file_get_type ())) files)
-    g_application_open (Glue.obj self.Id (g_application_get_type ())) za1 (i32 (Glue.count files)) hint
-    Glue.free za1
+    let za2 = Glue.ptrs (Glue.mapList (fun (zo: File) -> Glue.obj zo.Id (g_file_get_type ())) files)
+    g_application_open (Glue.obj self.Id (g_application_get_type ())) za2 (i32 (Glue.count files)) hint
+    Glue.free za2
 
   extern g_application_quit : cptr -> unit
 
@@ -8250,10 +8303,10 @@ module Application =
 
   /// Runs the application.
   let run (self: Application) (argv: list<string>) : int =
-    let zv1 = Glue.strv argv
-    let zr = g_application_run (Glue.obj self.Id (g_application_get_type ())) (i32 (Glue.count argv)) zv1
+    let zv2 = Glue.strv argv
+    let zr = g_application_run (Glue.obj self.Id (g_application_get_type ())) (i32 (Glue.count argv)) zv2
     let zv = (int (zr))
-    Glue.freeStrv zv1
+    Glue.freeStrv zv2
     zv
 
   extern g_application_send_notification : cptr -> cptr -> cptr -> unit
@@ -8562,6 +8615,30 @@ module Application =
   let parentHandleLocalOptions (self: Application) (options: GLib.VariantDict) : int =
     (int ((zgtk_parent_Gio_Application_handle_local_options (Glue.obj self.Id (g_application_get_type ())) (Glue.obj options.Id (GLib.g_variant_dict_get_type ())))))
 
+  extern zgtk_override_Gio_Application_local_command_line : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `local_command_line`: This virtual function is always invoked in the local instance.
+  let overrideLocalCommandLine (gtype: usize) (handler: Application -> cptr -> (bool * int)) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let application = Application (Glue.wrap (Glue.argPointer 0) false)
+        let arguments = Glue.argPointer 1
+        let (zres, exitStatus) = handler application arguments
+        Glue.setI32 2 exitStatus
+        Glue.returnBool (zres))
+    zgtk_override_Gio_Application_local_command_line gtype zcb
+
+  extern zgtk_parent_Gio_Application_local_command_line : cptr -> cptr -> cptr -> i32
+
+  /// This virtual function is always invoked in the local instance.
+  [<Unsafe>]
+  let parentLocalCommandLine (self: Application) (arguments: cptr) : (bool * int) =
+    Glue.outBegin ()
+    let zr = zgtk_parent_Gio_Application_local_command_line (Glue.obj self.Id (g_application_get_type ())) arguments (Glue.out 0)
+    let zv = (((zr) <> i32 0), Glue.outI32 0)
+    Glue.outEnd ()
+    zv
+
   extern zgtk_override_Gio_Application_name_lost : usize -> cptr -> unit
 
   /// Gives a type made with `Glue.subclass` its own `name_lost`: invoked when another instance is taking over the name.
@@ -8595,9 +8672,9 @@ module Application =
 
   /// Opens the given files.
   let parentOpen (self: Application) (files: list<File>) (hint: string) : unit =
-    let za1 = Glue.ptrs (Glue.mapList (fun (zo: File) -> Glue.obj zo.Id (g_file_get_type ())) files)
-    zgtk_parent_Gio_Application_open (Glue.obj self.Id (g_application_get_type ())) za1 (i32 (Glue.count files)) hint
-    Glue.free za1
+    let za2 = Glue.ptrs (Glue.mapList (fun (zo: File) -> Glue.obj zo.Id (g_file_get_type ())) files)
+    zgtk_parent_Gio_Application_open (Glue.obj self.Id (g_application_get_type ())) za2 (i32 (Glue.count files)) hint
+    Glue.free za2
 
   extern zgtk_override_Gio_Application_quit_mainloop : usize -> cptr -> unit
 
@@ -8914,6 +8991,23 @@ module AsyncInitable =
   /// Helper function for constructing #GAsyncInitable object. C's own function, of variable arguments: called as C calls it, by code that
   /// answers for what it passes.
   extern g_async_initable_new_async : usize -> i32 -> cptr -> cptr -> cptr -> cstr -> ... -> unit
+
+  extern g_async_initable_new_valist_async : usize -> cstr -> cptr -> i32 -> cptr -> cptr -> cptr -> unit
+
+  /// Helper function for constructing #GAsyncInitable object.
+  [<Unsafe>]
+  let createValistAsync (objectType: usize) (firstPropertyName: string) (varArgs: cptr) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let zid2 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let res = AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        callback sourceObject res)
+    let zp3 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
+      | None -> Glue.none ()
+    g_async_initable_new_valist_async objectType firstPropertyName varArgs (i32 ioPriority) zp3 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   extern g_async_initable_newv_async : usize -> u32 -> cptr -> i32 -> cptr -> cptr -> cptr -> unit
 
@@ -9500,6 +9594,41 @@ module InputStream =
       | None -> Glue.none ()
     zgtk_parent_Gio_InputStream_close_async (Glue.obj self.Id (g_input_stream_get_type ())) (i32 ioPriority) zp3 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
+  extern zgtk_override_Gio_InputStream_read_async : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `read_async`: Request an asynchronous read of @count bytes from the stream into the buffer starting at @buffer.
+  let overrideReadAsync (gtype: usize) (handler: InputStream -> cptr -> int -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let stream = InputStream (Glue.wrap (Glue.argPointer 0) false)
+        let buffer = Glue.argPointer 1
+        let count = Glue.argInt 2
+        let ioPriority = Glue.argInt 3
+        let zid1 = Glue.wrap (Glue.argPointer 4) false
+        let cancellable = (if zid1 = 0 then None else Some (Cancellable zid1))
+        let callback = Glue.argPointer 5
+        let userData = Glue.argPointer 6
+        handler stream buffer count ioPriority cancellable callback userData)
+    zgtk_override_Gio_InputStream_read_async gtype zcb
+
+  extern zgtk_parent_Gio_InputStream_read_async : cptr -> cptr -> usize -> i32 -> cptr -> cptr -> cptr -> unit
+
+  /// Request an asynchronous read of @count bytes from the stream into the buffer starting at @buffer.
+  let parentReadAsync (self: InputStream) (count: int) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : array<u8> =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let zid2 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let res = AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        callback sourceObject res)
+    let zbuf3 = Glue.room (count) 1
+    let zp4 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
+      | None -> Glue.none ()
+    zgtk_parent_Gio_InputStream_read_async (Glue.obj self.Id (g_input_stream_get_type ())) zbuf3 (usize count) (i32 ioPriority) zp4 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+    Glue.bytesOf (zbuf3) (count) true
+
   extern zgtk_override_Gio_InputStream_skip_async : usize -> cptr -> unit
 
   /// Gives a type made with `Glue.subclass` its own `skip_async`: Request an asynchronous skip of @count bytes from the stream.
@@ -9664,10 +9793,10 @@ module BufferedInputStream =
 
   /// Peeks in the buffered input, copying @count bytes of data from @offset bytes in the buffered input into @buffer.
   let peek (self: BufferedInputStream) (buffer: array<u8>) (offset: int) : int =
-    let za1 = Glue.bytes buffer
-    let zr = g_buffered_input_stream_peek (Glue.obj self.Id (g_buffered_input_stream_get_type ())) za1 (usize offset) (usize (Glue.countBytes buffer))
+    let za2 = Glue.bytes buffer
+    let zr = g_buffered_input_stream_peek (Glue.obj self.Id (g_buffered_input_stream_get_type ())) za2 (usize offset) (usize (Glue.countBytes buffer))
     let zv = (int (zr))
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern g_buffered_input_stream_peek_buffer : cptr -> cptr -> cptr
@@ -9942,67 +10071,84 @@ module OutputStream =
       Glue.outEnd ()
       Ok zv
 
+  extern g_output_stream_vprintf : cptr -> cptr -> cptr -> cptr -> cstr -> cptr -> i32
+
+  /// This is a utility function around g_output_stream_write_all().
+  [<Unsafe>]
+  let vprintf (self: OutputStream) (cancellable: option<Cancellable>) (error: Glue.Error) (format: string) (args: cptr) : (bool * int) =
+    let zp1 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
+      | None -> Glue.none ()
+    let ze2 = Glue.errorNew error
+    Glue.outBegin ()
+    let zr = g_output_stream_vprintf (Glue.obj self.Id (g_output_stream_get_type ())) (Glue.out 0) zp1 ze2 format args
+    let zv = (((zr) <> i32 0), Glue.outI64 0)
+    Glue.outEnd ()
+    Glue.errorFree ze2
+    zv
+
   extern g_output_stream_write : cptr -> cptr -> usize -> cptr -> cptr -> i64
 
   /// Tries to write @count bytes from @buffer into the stream.
   let write (self: OutputStream) (buffer: array<u8>) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
-    let za1 = Glue.bytes buffer
-    let zp2 =
+    let za2 = Glue.bytes buffer
+    let zp3 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
     Glue.outBegin ()
-    let zr = g_output_stream_write (Glue.obj self.Id (g_output_stream_get_type ())) za1 (usize (Glue.countBytes buffer)) zp2 (Glue.err ())
+    let zr = g_output_stream_write (Glue.obj self.Id (g_output_stream_get_type ())) za2 (usize (Glue.countBytes buffer)) zp3 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Error ze
     | None ->
       let zv = (int (zr))
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Ok zv
 
   extern g_output_stream_write_all : cptr -> cptr -> usize -> cptr -> cptr -> cptr -> i32
 
   /// Tries to write @count bytes from @buffer into the stream.
   let writeAll (self: OutputStream) (buffer: array<u8>) (cancellable: option<Cancellable>) : result<(bool * int), Glue.Error> =
-    let za1 = Glue.bytes buffer
-    let zp2 =
+    let za2 = Glue.bytes buffer
+    let zp3 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
     Glue.outBegin ()
-    let zr = g_output_stream_write_all (Glue.obj self.Id (g_output_stream_get_type ())) za1 (usize (Glue.countBytes buffer)) (Glue.out 0) zp2 (Glue.err ())
+    let zr = g_output_stream_write_all (Glue.obj self.Id (g_output_stream_get_type ())) za2 (usize (Glue.countBytes buffer)) (Glue.out 0) zp3 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Error ze
     | None ->
       let zv = (((zr) <> i32 0), Glue.outI64 0)
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Ok zv
 
   extern g_output_stream_write_all_async : cptr -> cptr -> usize -> i32 -> cptr -> cptr -> cptr -> unit
 
   /// Request an asynchronous write of @count bytes from @buffer into the stream.
   let writeAllAsync (self: OutputStream) (buffer: array<u8>) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
-    let zcb1 =
+    let zcb2 =
       Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
-        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let zid3 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid3 = 0 then None else Some (GObject.Object zid3))
         let res = AsyncResult (Glue.wrap (Glue.argPointer 1) false)
         callback sourceObject res)
-    let za3 = Glue.bytes buffer
-    let zp4 =
+    let za4 = Glue.bytes buffer
+    let zp5 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
-    g_output_stream_write_all_async (Glue.obj self.Id (g_output_stream_get_type ())) za3 (usize (Glue.countBytes buffer)) (i32 ioPriority) zp4 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-    Glue.free za3
+    g_output_stream_write_all_async (Glue.obj self.Id (g_output_stream_get_type ())) za4 (usize (Glue.countBytes buffer)) (i32 ioPriority) zp5 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb2
+    Glue.free za4
 
   extern g_output_stream_write_all_finish : cptr -> cptr -> cptr -> cptr -> i32
 
@@ -10023,19 +10169,19 @@ module OutputStream =
 
   /// Request an asynchronous write of @count bytes from @buffer into the stream.
   let writeAsync (self: OutputStream) (buffer: array<u8>) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
-    let zcb1 =
+    let zcb2 =
       Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
-        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let zid3 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid3 = 0 then None else Some (GObject.Object zid3))
         let res = AsyncResult (Glue.wrap (Glue.argPointer 1) false)
         callback sourceObject res)
-    let za3 = Glue.bytes buffer
-    let zp4 =
+    let za4 = Glue.bytes buffer
+    let zp5 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
-    g_output_stream_write_async (Glue.obj self.Id (g_output_stream_get_type ())) za3 (usize (Glue.countBytes buffer)) (i32 ioPriority) zp4 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-    Glue.free za3
+    g_output_stream_write_async (Glue.obj self.Id (g_output_stream_get_type ())) za4 (usize (Glue.countBytes buffer)) (i32 ioPriority) zp5 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb2
+    Glue.free za4
 
   extern g_output_stream_write_bytes : cptr -> cptr -> cptr -> cptr -> i64
 
@@ -10106,63 +10252,63 @@ module OutputStream =
 
   /// Tries to write the bytes contained in the @n_vectors @vectors into the stream.
   let writev (self: OutputStream) (vectors: list<OutputVector>) (cancellable: option<Cancellable>) : result<(bool * int), Glue.Error> =
-    let za1 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
-    let zp2 =
+    let za2 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
+    let zp3 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
     Glue.outBegin ()
-    let zr = g_output_stream_writev (Glue.obj self.Id (g_output_stream_get_type ())) za1 (usize (Glue.count vectors)) (Glue.out 0) zp2 (Glue.err ())
+    let zr = g_output_stream_writev (Glue.obj self.Id (g_output_stream_get_type ())) za2 (usize (Glue.count vectors)) (Glue.out 0) zp3 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Error ze
     | None ->
       let zv = (((zr) <> i32 0), Glue.outI64 0)
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Ok zv
 
   extern g_output_stream_writev_all : cptr -> cptr -> usize -> cptr -> cptr -> cptr -> i32
 
   /// Tries to write the bytes contained in the @n_vectors @vectors into the stream.
   let writevAll (self: OutputStream) (vectors: list<OutputVector>) (cancellable: option<Cancellable>) : result<(bool * int), Glue.Error> =
-    let za1 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
-    let zp2 =
+    let za2 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
+    let zp3 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
     Glue.outBegin ()
-    let zr = g_output_stream_writev_all (Glue.obj self.Id (g_output_stream_get_type ())) za1 (usize (Glue.count vectors)) (Glue.out 0) zp2 (Glue.err ())
+    let zr = g_output_stream_writev_all (Glue.obj self.Id (g_output_stream_get_type ())) za2 (usize (Glue.count vectors)) (Glue.out 0) zp3 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Error ze
     | None ->
       let zv = (((zr) <> i32 0), Glue.outI64 0)
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Ok zv
 
   extern g_output_stream_writev_all_async : cptr -> cptr -> usize -> i32 -> cptr -> cptr -> cptr -> unit
 
   /// Request an asynchronous write of the bytes contained in the @n_vectors @vectors into the stream.
   let writevAllAsync (self: OutputStream) (vectors: list<OutputVector>) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
-    let zcb1 =
+    let zcb2 =
       Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
-        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let zid3 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid3 = 0 then None else Some (GObject.Object zid3))
         let res = AsyncResult (Glue.wrap (Glue.argPointer 1) false)
         callback sourceObject res)
-    let za3 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
-    let zp4 =
+    let za4 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
+    let zp5 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
-    g_output_stream_writev_all_async (Glue.obj self.Id (g_output_stream_get_type ())) za3 (usize (Glue.count vectors)) (i32 ioPriority) zp4 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-    Glue.free za3
+    g_output_stream_writev_all_async (Glue.obj self.Id (g_output_stream_get_type ())) za4 (usize (Glue.count vectors)) (i32 ioPriority) zp5 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb2
+    Glue.free za4
 
   extern g_output_stream_writev_all_finish : cptr -> cptr -> cptr -> cptr -> i32
 
@@ -10183,19 +10329,19 @@ module OutputStream =
 
   /// Request an asynchronous write of the bytes contained in @n_vectors @vectors into the stream.
   let writevAsync (self: OutputStream) (vectors: list<OutputVector>) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
-    let zcb1 =
+    let zcb2 =
       Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
-        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let zid3 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid3 = 0 then None else Some (GObject.Object zid3))
         let res = AsyncResult (Glue.wrap (Glue.argPointer 1) false)
         callback sourceObject res)
-    let za3 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
-    let zp4 =
+    let za4 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
+    let zp5 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
-    g_output_stream_writev_async (Glue.obj self.Id (g_output_stream_get_type ())) za3 (usize (Glue.count vectors)) (i32 ioPriority) zp4 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-    Glue.free za3
+    g_output_stream_writev_async (Glue.obj self.Id (g_output_stream_get_type ())) za4 (usize (Glue.count vectors)) (i32 ioPriority) zp5 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb2
+    Glue.free za4
 
   extern g_output_stream_writev_finish : cptr -> cptr -> cptr -> cptr -> i32
 
@@ -10328,19 +10474,19 @@ module OutputStream =
 
   /// Request an asynchronous write of @count bytes from @buffer into the stream.
   let parentWriteAsync (self: OutputStream) (buffer: array<u8>) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
-    let zcb1 =
+    let zcb2 =
       Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
-        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let zid3 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid3 = 0 then None else Some (GObject.Object zid3))
         let res = AsyncResult (Glue.wrap (Glue.argPointer 1) false)
         callback sourceObject res)
-    let za3 = Glue.bytes buffer
-    let zp4 =
+    let za4 = Glue.bytes buffer
+    let zp5 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
-    zgtk_parent_Gio_OutputStream_write_async (Glue.obj self.Id (g_output_stream_get_type ())) za3 (usize (Glue.countBytes buffer)) (i32 ioPriority) zp4 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-    Glue.free za3
+    zgtk_parent_Gio_OutputStream_write_async (Glue.obj self.Id (g_output_stream_get_type ())) za4 (usize (Glue.countBytes buffer)) (i32 ioPriority) zp5 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb2
+    Glue.free za4
 
   extern zgtk_override_Gio_OutputStream_writev_async : usize -> cptr -> unit
 
@@ -10349,12 +10495,12 @@ module OutputStream =
     let zcb =
       Glue.hold (fun () ->
         let stream = OutputStream (Glue.wrap (Glue.argPointer 0) false)
-        let zrs1 = Glue.mapList (fun zp -> OutputVector (Glue.copyPlain (zp) (zgtk_sizeof_Gio_OutputVector ()) (zgtk_tag_Gio_OutputVector ()))) (Glue.recordsOf (Glue.argPointer 1) ((Glue.argInt 1)) (zgtk_sizeof_Gio_OutputVector ()))
-        let vectors = zrs1
+        let zrs2 = Glue.mapList (fun zp -> OutputVector (Glue.copyPlain (zp) (zgtk_sizeof_Gio_OutputVector ()) (zgtk_tag_Gio_OutputVector ()))) (Glue.recordsOf (Glue.argPointer 1) ((Glue.argInt 1)) (zgtk_sizeof_Gio_OutputVector ()))
+        let vectors = zrs2
         let nVectors = Glue.argInt 2
         let ioPriority = Glue.argInt 3
-        let zid2 = Glue.wrap (Glue.argPointer 4) false
-        let cancellable = (if zid2 = 0 then None else Some (Cancellable zid2))
+        let zid3 = Glue.wrap (Glue.argPointer 4) false
+        let cancellable = (if zid3 = 0 then None else Some (Cancellable zid3))
         let callback = Glue.argPointer 5
         let userData = Glue.argPointer 6
         handler stream vectors nVectors ioPriority cancellable callback userData)
@@ -10364,19 +10510,19 @@ module OutputStream =
 
   /// Request an asynchronous write of the bytes contained in @n_vectors @vectors into the stream.
   let parentWritevAsync (self: OutputStream) (vectors: list<OutputVector>) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
-    let zcb1 =
+    let zcb2 =
       Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
-        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let zid3 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid3 = 0 then None else Some (GObject.Object zid3))
         let res = AsyncResult (Glue.wrap (Glue.argPointer 1) false)
         callback sourceObject res)
-    let za3 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
-    let zp4 =
+    let za4 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
+    let zp5 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
-    zgtk_parent_Gio_OutputStream_writev_async (Glue.obj self.Id (g_output_stream_get_type ())) za3 (usize (Glue.count vectors)) (i32 ioPriority) zp4 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-    Glue.free za3
+    zgtk_parent_Gio_OutputStream_writev_async (Glue.obj self.Id (g_output_stream_get_type ())) za4 (usize (Glue.count vectors)) (i32 ioPriority) zp5 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb2
+    Glue.free za4
 
 module FilterOutputStream =
   /// The same object as its ancestor.
@@ -10597,6 +10743,30 @@ module Icon =
     let zr = zgtk_parent_Gio_Icon_serialize (Glue.obj self.Id (g_icon_get_type ()))
     let zid1 = GLib.zgtk_wrap_GLib_Variant (zr) (i32 1)
     (if zid1 = 0 then None else Some (GLib.Variant zid1))
+
+  extern zgtk_override_Gio_Icon_to_tokens : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `to_tokens`: Serializes the @icon into string tokens.
+  let overrideToTokens (gtype: usize) (handler: Icon -> cptr -> (bool * int)) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let icon = Icon (Glue.wrap (Glue.argPointer 0) false)
+        let tokens = Glue.argPointer 1
+        let (zres, outVersion) = handler icon tokens
+        Glue.setI32 2 outVersion
+        Glue.returnBool (zres))
+    zgtk_override_Gio_Icon_to_tokens gtype zcb
+
+  extern zgtk_parent_Gio_Icon_to_tokens : cptr -> cptr -> cptr -> i32
+
+  /// Serializes the @icon into string tokens.
+  [<Unsafe>]
+  let parentToTokens (self: Icon) (tokens: cptr) : (bool * int) =
+    Glue.outBegin ()
+    let zr = zgtk_parent_Gio_Icon_to_tokens (Glue.obj self.Id (g_icon_get_type ())) tokens (Glue.out 0)
+    let zv = (((zr) <> i32 0), Glue.outI32 0)
+    Glue.outEnd ()
+    zv
 
 module LoadableIcon =
   /// The same object as its ancestor.
@@ -10854,21 +11024,21 @@ module Converter =
 
   /// This is the main operation used when converting data.
   let convert (self: Converter) (inbuf: array<u8>) (outbuf: array<u8>) (flags: ConverterFlags) : result<(ConverterResult * int * int), Glue.Error> =
-    let za1 = Glue.bytes inbuf
-    let za2 = Glue.bytes outbuf
+    let za3 = Glue.bytes inbuf
+    let za4 = Glue.bytes outbuf
     Glue.outBegin ()
-    let zr = g_converter_convert (Glue.obj self.Id (g_converter_get_type ())) za1 (usize (Glue.countBytes inbuf)) za2 (usize (Glue.countBytes outbuf)) (u32 flags.Int) (Glue.out 0) (Glue.out 1) (Glue.err ())
+    let zr = g_converter_convert (Glue.obj self.Id (g_converter_get_type ())) za3 (usize (Glue.countBytes inbuf)) za4 (usize (Glue.countBytes outbuf)) (u32 flags.Int) (Glue.out 0) (Glue.out 1) (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
-      Glue.free za2
+      Glue.free za3
+      Glue.free za4
       Error ze
     | None ->
       let zv = (ConverterResult (int (zr)), Glue.outI64 0, Glue.outI64 1)
       Glue.outEnd ()
-      Glue.free za1
-      Glue.free za2
+      Glue.free za3
+      Glue.free za4
       Ok zv
 
   extern g_converter_convert_bytes : cptr -> cptr -> cptr -> cptr
@@ -10939,26 +11109,46 @@ module Initable =
   /// answers for what it passes.
   extern g_initable_new : usize -> cptr -> cptr -> cstr -> ... -> cptr
 
-  extern g_initable_newv : usize -> u32 -> cptr -> cptr -> cptr -> cptr
+  extern g_initable_new_valist : usize -> cstr -> cptr -> cptr -> cptr -> cptr
 
-  /// Deprecated. Helper function for constructing #GInitable object.
-  let newv (objectType: usize) (parameters: list<GObject.Parameter>) (cancellable: option<Cancellable>) : result<GObject.Object, Glue.Error> =
-    let za1 = Glue.records (Glue.mapList (fun (zo: GObject.Parameter) -> Glue.obj zo.Id (GObject.zgtk_tag_GObject_Parameter ())) parameters) (GObject.zgtk_sizeof_GObject_Parameter ())
-    let zp2 =
+  /// Helper function for constructing #GInitable object.
+  [<Unsafe>]
+  let createValist (objectType: usize) (firstPropertyName: string) (varArgs: cptr) (cancellable: option<Cancellable>) : result<GObject.Object, Glue.Error> =
+    let zp1 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
     Glue.outBegin ()
-    let zr = g_initable_newv objectType (u32 (Glue.count parameters)) za1 zp2 (Glue.err ())
+    let zr = g_initable_new_valist objectType firstPropertyName varArgs zp1 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
       Error ze
     | None ->
       let zv = GObject.Object (Glue.wrap (zr) true)
       Glue.outEnd ()
-      Glue.free za1
+      Ok zv
+
+  extern g_initable_newv : usize -> u32 -> cptr -> cptr -> cptr -> cptr
+
+  /// Deprecated. Helper function for constructing #GInitable object.
+  let newv (objectType: usize) (parameters: list<GObject.Parameter>) (cancellable: option<Cancellable>) : result<GObject.Object, Glue.Error> =
+    let za2 = Glue.records (Glue.mapList (fun (zo: GObject.Parameter) -> Glue.obj zo.Id (GObject.zgtk_tag_GObject_Parameter ())) parameters) (GObject.zgtk_sizeof_GObject_Parameter ())
+    let zp3 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
+      | None -> Glue.none ()
+    Glue.outBegin ()
+    let zr = g_initable_newv objectType (u32 (Glue.count parameters)) za2 zp3 (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Glue.free za2
+      Error ze
+    | None ->
+      let zv = GObject.Object (Glue.wrap (zr) true)
+      Glue.outEnd ()
+      Glue.free za2
       Ok zv
 
 module CharsetConverter =
@@ -11200,44 +11390,44 @@ module PollableOutputStream =
 
   /// Attempts to write up to @count bytes from @buffer to @stream, as with g_output_stream_write().
   let writeNonblocking (self: PollableOutputStream) (buffer: array<u8>) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
-    let za1 = Glue.bytes buffer
-    let zp2 =
+    let za2 = Glue.bytes buffer
+    let zp3 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
     Glue.outBegin ()
-    let zr = g_pollable_output_stream_write_nonblocking (Glue.obj self.Id (g_pollable_output_stream_get_type ())) za1 (usize (Glue.countBytes buffer)) zp2 (Glue.err ())
+    let zr = g_pollable_output_stream_write_nonblocking (Glue.obj self.Id (g_pollable_output_stream_get_type ())) za2 (usize (Glue.countBytes buffer)) zp3 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Error ze
     | None ->
       let zv = (int (zr))
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Ok zv
 
   extern g_pollable_output_stream_writev_nonblocking : cptr -> cptr -> usize -> cptr -> cptr -> cptr -> i32
 
   /// Attempts to write the bytes contained in the @n_vectors @vectors to @stream, as with g_output_stream_writev().
   let writevNonblocking (self: PollableOutputStream) (vectors: list<OutputVector>) (cancellable: option<Cancellable>) : result<(PollableReturn * int), Glue.Error> =
-    let za1 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
-    let zp2 =
+    let za2 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
+    let zp3 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
     Glue.outBegin ()
-    let zr = g_pollable_output_stream_writev_nonblocking (Glue.obj self.Id (g_pollable_output_stream_get_type ())) za1 (usize (Glue.count vectors)) (Glue.out 0) zp2 (Glue.err ())
+    let zr = g_pollable_output_stream_writev_nonblocking (Glue.obj self.Id (g_pollable_output_stream_get_type ())) za2 (usize (Glue.count vectors)) (Glue.out 0) zp3 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Error ze
     | None ->
       let zv = (PollableReturn (int (zr)), Glue.outI64 0)
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Ok zv
 
   extern zgtk_override_Gio_PollableOutputStream_can_poll : usize -> cptr -> unit
@@ -12747,6 +12937,22 @@ module DBusInterfaceSkeleton =
   let parentGetProperties (self: DBusInterfaceSkeleton) : GLib.Variant =
     GLib.Variant (GLib.zgtk_wrap_GLib_Variant ((zgtk_parent_Gio_DBusInterfaceSkeleton_get_properties (Glue.obj self.Id (g_dbus_interface_skeleton_get_type ())))) (i32 1))
 
+  extern zgtk_override_Gio_DBusInterfaceSkeleton_get_vtable : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_vtable`: Gets the interface vtable for the D-Bus interface implemented by @interface_.
+  let overrideGetVtable (gtype: usize) (handler: DBusInterfaceSkeleton -> cptr) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let interface = DBusInterfaceSkeleton (Glue.wrap (Glue.argPointer 0) false)
+        Glue.returnPointer (handler interface))
+    zgtk_override_Gio_DBusInterfaceSkeleton_get_vtable gtype zcb
+
+  extern zgtk_parent_Gio_DBusInterfaceSkeleton_get_vtable : cptr -> cptr
+
+  /// Gets the interface vtable for the D-Bus interface implemented by @interface_.
+  let parentGetVtable (self: DBusInterfaceSkeleton) : DBusInterfaceVTable =
+    DBusInterfaceVTable (Glue.copyPlain ((zgtk_parent_Gio_DBusInterfaceSkeleton_get_vtable (Glue.obj self.Id (g_dbus_interface_skeleton_get_type ())))) (zgtk_sizeof_Gio_DBusInterfaceVTable ()) (zgtk_tag_Gio_DBusInterfaceVTable ()))
+
   extern zgtk_override_Gio_DBusInterfaceSkeleton_method_dispatch : usize -> cptr -> unit
 
   /// Gives a type made with `Glue.subclass` its own `method_dispatch`: Dispatches a method invocation.
@@ -12870,6 +13076,28 @@ module MenuModel =
     let zid2 = GLib.zgtk_wrap_GLib_Variant (zr) (i32 1)
     (if zid2 = 0 then None else Some (GLib.Variant zid2))
 
+  extern zgtk_override_Gio_MenuModel_get_item_attributes : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_item_attributes`: Gets all the attributes associated with the item in the menu model.
+  let overrideGetItemAttributes (gtype: usize) (handler: MenuModel -> int -> cptr -> unit) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let model = MenuModel (Glue.wrap (Glue.argPointer 0) false)
+        let itemIndex = Glue.argInt 1
+        let attributes = Glue.argPointer 2
+        handler model itemIndex attributes)
+    zgtk_override_Gio_MenuModel_get_item_attributes gtype zcb
+
+  extern zgtk_parent_Gio_MenuModel_get_item_attributes : cptr -> i32 -> cptr -> unit
+
+  /// Gets all the attributes associated with the item in the menu model.
+  let parentGetItemAttributes (self: MenuModel) (itemIndex: int) : GLib.HashTable =
+    Glue.outBegin ()
+    zgtk_parent_Gio_MenuModel_get_item_attributes (Glue.obj self.Id (g_menu_model_get_type ())) (i32 itemIndex) (Glue.out 0)
+    let zv = GLib.HashTable (Glue.wrapBoxed (Glue.outPtr 0) (GLib.g_hash_table_get_type ()) true)
+    Glue.outEnd ()
+    zv
+
   extern zgtk_override_Gio_MenuModel_get_item_link : usize -> cptr -> unit
 
   /// Gives a type made with `Glue.subclass` its own `get_item_link`: Queries the item at position @item_index in @model for the link specified by @link.
@@ -12891,6 +13119,28 @@ module MenuModel =
     let zr = zgtk_parent_Gio_MenuModel_get_item_link (Glue.obj self.Id (g_menu_model_get_type ())) (i32 itemIndex) link
     let zid1 = Glue.wrap (zr) true
     (if zid1 = 0 then None else Some (MenuModel zid1))
+
+  extern zgtk_override_Gio_MenuModel_get_item_links : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_item_links`: Gets all the links associated with the item in the menu model.
+  let overrideGetItemLinks (gtype: usize) (handler: MenuModel -> int -> cptr -> unit) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let model = MenuModel (Glue.wrap (Glue.argPointer 0) false)
+        let itemIndex = Glue.argInt 1
+        let links = Glue.argPointer 2
+        handler model itemIndex links)
+    zgtk_override_Gio_MenuModel_get_item_links gtype zcb
+
+  extern zgtk_parent_Gio_MenuModel_get_item_links : cptr -> i32 -> cptr -> unit
+
+  /// Gets all the links associated with the item in the menu model.
+  let parentGetItemLinks (self: MenuModel) (itemIndex: int) : GLib.HashTable =
+    Glue.outBegin ()
+    zgtk_parent_Gio_MenuModel_get_item_links (Glue.obj self.Id (g_menu_model_get_type ())) (i32 itemIndex) (Glue.out 0)
+    let zv = GLib.HashTable (Glue.wrapBoxed (Glue.outPtr 0) (GLib.g_hash_table_get_type ()) true)
+    Glue.outEnd ()
+    zv
 
   extern zgtk_override_Gio_MenuModel_get_n_items : usize -> cptr -> unit
 
@@ -12997,18 +13247,18 @@ module DBusMessage =
 
   /// Creates a new #GDBusMessage from the data stored at @blob.
   let createFromBlob (blob: array<u8>) (capabilities: DBusCapabilityFlags) : result<DBusMessage, Glue.Error> =
-    let za1 = Glue.bytes blob
+    let za2 = Glue.bytes blob
     Glue.outBegin ()
-    let zr = g_dbus_message_new_from_blob za1 (usize (Glue.countBytes blob)) (u32 capabilities.Int) (Glue.err ())
+    let zr = g_dbus_message_new_from_blob za2 (usize (Glue.countBytes blob)) (u32 capabilities.Int) (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Error ze
     | None ->
       let zv = DBusMessage (Glue.wrap (zr) true)
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Ok zv
 
   extern g_dbus_message_new_method_call : cptr -> cstr -> cptr -> cstr -> cptr
@@ -13186,6 +13436,13 @@ module DBusMessage =
   let createMethodErrorLiteral (self: DBusMessage) (errorName: string) (errorMessage: string) : DBusMessage =
     DBusMessage (Glue.wrap ((g_dbus_message_new_method_error_literal (Glue.obj self.Id (g_dbus_message_get_type ())) errorName errorMessage)) true)
 
+  extern g_dbus_message_new_method_error_valist : cptr -> cstr -> cstr -> cptr -> cptr
+
+  /// Like g_dbus_message_new_method_error() but intended for language bindings.
+  [<Unsafe>]
+  let createMethodErrorValist (self: DBusMessage) (errorName: string) (errorMessageFormat: string) (varArgs: cptr) : DBusMessage =
+    DBusMessage (Glue.wrap ((g_dbus_message_new_method_error_valist (Glue.obj self.Id (g_dbus_message_get_type ())) errorName errorMessageFormat varArgs)) true)
+
   extern g_dbus_message_new_method_reply : cptr -> cptr
 
   /// Creates a new #GDBusMessage that is a reply to @method_call_message.
@@ -13348,18 +13605,18 @@ module DBusMessage =
 
   /// Utility function to calculate how many bytes are needed to completely deserialize the D-Bus message stored at @blob.
   let bytesNeeded (blob: array<u8>) : result<int, Glue.Error> =
-    let za1 = Glue.bytes blob
+    let za2 = Glue.bytes blob
     Glue.outBegin ()
-    let zr = g_dbus_message_bytes_needed za1 (usize (Glue.countBytes blob)) (Glue.err ())
+    let zr = g_dbus_message_bytes_needed za2 (usize (Glue.countBytes blob)) (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Error ze
     | None ->
       let zv = (int (zr))
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Ok zv
 
   /// Calls `handler` when the `locked` property changes.
@@ -13481,6 +13738,13 @@ module DBusMethodInvocation =
   /// Like g_dbus_method_invocation_return_error() but without printf()-style formatting.
   let returnErrorLiteral (self: DBusMethodInvocation) (domain: int) (code: int) (message: string) : unit =
     g_dbus_method_invocation_return_error_literal (Glue.obj self.Id (g_dbus_method_invocation_get_type ())) (u32 domain) (i32 code) message
+
+  extern g_dbus_method_invocation_return_error_valist : cptr -> u32 -> i32 -> cstr -> cptr -> unit
+
+  /// Like g_dbus_method_invocation_return_error() but intended for language bindings.
+  [<Unsafe>]
+  let returnErrorValist (self: DBusMethodInvocation) (domain: int) (code: int) (format: string) (varArgs: cptr) : unit =
+    g_dbus_method_invocation_return_error_valist (Glue.obj self.Id (g_dbus_method_invocation_get_type ())) (u32 domain) (i32 code) format varArgs
 
   extern g_dbus_method_invocation_return_gerror : cptr -> cptr -> unit
 
@@ -15630,44 +15894,44 @@ module DatagramBased =
 
   /// Receive one or more data messages from @datagram_based in one go.
   let receiveMessages (self: DatagramBased) (messages: list<InputMessage>) (flags: int) (timeout: int) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
-    let za1 = Glue.records (Glue.mapList (fun (zo: InputMessage) -> Glue.obj zo.Id (zgtk_tag_Gio_InputMessage ())) messages) (zgtk_sizeof_Gio_InputMessage ())
-    let zp2 =
+    let za2 = Glue.records (Glue.mapList (fun (zo: InputMessage) -> Glue.obj zo.Id (zgtk_tag_Gio_InputMessage ())) messages) (zgtk_sizeof_Gio_InputMessage ())
+    let zp3 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
     Glue.outBegin ()
-    let zr = g_datagram_based_receive_messages (Glue.obj self.Id (g_datagram_based_get_type ())) za1 (u32 (Glue.count messages)) (i32 flags) (i64 timeout) zp2 (Glue.err ())
+    let zr = g_datagram_based_receive_messages (Glue.obj self.Id (g_datagram_based_get_type ())) za2 (u32 (Glue.count messages)) (i32 flags) (i64 timeout) zp3 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Error ze
     | None ->
       let zv = (int (zr))
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Ok zv
 
   extern g_datagram_based_send_messages : cptr -> cptr -> u32 -> i32 -> i64 -> cptr -> cptr -> i32
 
   /// Send one or more data messages from @datagram_based in one go.
   let sendMessages (self: DatagramBased) (messages: list<OutputMessage>) (flags: int) (timeout: int) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
-    let za1 = Glue.records (Glue.mapList (fun (zo: OutputMessage) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputMessage ())) messages) (zgtk_sizeof_Gio_OutputMessage ())
-    let zp2 =
+    let za2 = Glue.records (Glue.mapList (fun (zo: OutputMessage) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputMessage ())) messages) (zgtk_sizeof_Gio_OutputMessage ())
+    let zp3 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
     Glue.outBegin ()
-    let zr = g_datagram_based_send_messages (Glue.obj self.Id (g_datagram_based_get_type ())) za1 (u32 (Glue.count messages)) (i32 flags) (i64 timeout) zp2 (Glue.err ())
+    let zr = g_datagram_based_send_messages (Glue.obj self.Id (g_datagram_based_get_type ())) za2 (u32 (Glue.count messages)) (i32 flags) (i64 timeout) zp3 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Error ze
     | None ->
       let zv = (int (zr))
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Ok zv
 
   extern zgtk_override_Gio_DatagramBased_condition_check : usize -> cptr -> unit
@@ -16642,6 +16906,12 @@ module DtlsClientConnection =
   let cast (object: GObject.Object) : option<DtlsClientConnection> =
     if Glue.isA (Glue.obj object.Id (usize 0)) (g_dtls_client_connection_get_type ()) then Some (DtlsClientConnection object.Id) else None
 
+  extern g_dtls_client_connection_get_accepted_cas : cptr -> cptr
+
+  /// Gets the list of distinguished names of the Certificate Authorities that the server will accept certificates from.
+  let getAcceptedCas (self: DtlsClientConnection) : cptr =
+    ((g_dtls_client_connection_get_accepted_cas (Glue.obj self.Id (g_dtls_client_connection_get_type ()))))
+
   extern g_dtls_client_connection_get_server_identity : cptr -> cptr
 
   /// Gets @conn's expected server identity
@@ -16768,6 +17038,22 @@ module DtlsConnection =
     let zr = g_dtls_connection_get_certificate (Glue.obj self.Id (g_dtls_connection_get_type ()))
     let zid1 = Glue.wrap (zr) false
     (if zid1 = 0 then None else Some (TlsCertificate zid1))
+
+  extern g_dtls_connection_get_channel_binding_data : cptr -> i32 -> cptr -> cptr -> i32
+
+  /// Query the TLS backend for TLS channel binding data of @type for @conn.
+  [<Unsafe>]
+  let getChannelBindingData (self: DtlsConnection) (type_: TlsChannelBindingType) (data: cptr) : result<bool, Glue.Error> =
+    Glue.outBegin ()
+    let zr = g_dtls_connection_get_channel_binding_data (Glue.obj self.Id (g_dtls_connection_get_type ())) (i32 type_.Int) data (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = ((zr) <> i32 0)
+      Glue.outEnd ()
+      Ok zv
 
   extern g_dtls_connection_get_ciphersuite_name : cptr -> cptr
 
@@ -18751,46 +19037,46 @@ module File =
 
   /// Replaces the contents of @file with @contents of @length bytes.
   let replaceContents (self: File) (contents: array<u8>) (etag: option<string>) (makeBackup: bool) (flags: FileCreateFlags) (cancellable: option<Cancellable>) : result<(bool * option<string>), Glue.Error> =
-    let za1 = Glue.bytes contents
-    let zs2 = Glue.dupOption etag
-    let zp3 =
+    let za2 = Glue.bytes contents
+    let zs3 = Glue.dupOption etag
+    let zp4 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
     Glue.outBegin ()
-    let zr = g_file_replace_contents (Glue.obj self.Id (g_file_get_type ())) za1 (usize (Glue.countBytes contents)) zs2 (if makeBackup then i32 1 else i32 0) (u32 flags.Int) (Glue.out 0) zp3 (Glue.err ())
+    let zr = g_file_replace_contents (Glue.obj self.Id (g_file_get_type ())) za2 (usize (Glue.countBytes contents)) zs3 (if makeBackup then i32 1 else i32 0) (u32 flags.Int) (Glue.out 0) zp4 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
-      Glue.free zs2
+      Glue.free za2
+      Glue.free zs3
       Error ze
     | None ->
       let zv = (((zr) <> i32 0), Glue.takeTextOption (Glue.outPtr 0))
       Glue.outEnd ()
-      Glue.free za1
-      Glue.free zs2
+      Glue.free za2
+      Glue.free zs3
       Ok zv
 
   extern g_file_replace_contents_async : cptr -> cptr -> usize -> cptr -> i32 -> u32 -> cptr -> cptr -> cptr -> unit
 
   /// Starts an asynchronous replacement of @file with the given @contents of @length bytes.
   let replaceContentsAsync (self: File) (contents: array<u8>) (etag: option<string>) (makeBackup: bool) (flags: FileCreateFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
-    let zcb1 =
+    let zcb2 =
       Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
-        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let zid3 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid3 = 0 then None else Some (GObject.Object zid3))
         let res = AsyncResult (Glue.wrap (Glue.argPointer 1) false)
         callback sourceObject res)
-    let za3 = Glue.bytes contents
-    let zs4 = Glue.dupOption etag
-    let zp5 =
+    let za4 = Glue.bytes contents
+    let zs5 = Glue.dupOption etag
+    let zp6 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
-    g_file_replace_contents_async (Glue.obj self.Id (g_file_get_type ())) za3 (usize (Glue.countBytes contents)) zs4 (if makeBackup then i32 1 else i32 0) (u32 flags.Int) zp5 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-    Glue.free za3
-    Glue.free zs4
+    g_file_replace_contents_async (Glue.obj self.Id (g_file_get_type ())) za4 (usize (Glue.countBytes contents)) zs5 (if makeBackup then i32 1 else i32 0) (u32 flags.Int) zp6 (zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb2
+    Glue.free za4
+    Glue.free zs5
 
   extern g_file_replace_contents_bytes_async : cptr -> cptr -> cptr -> i32 -> u32 -> cptr -> cptr -> cptr -> unit
 
@@ -22551,11 +22837,11 @@ module SocketControlMessage =
 
   /// Tries to deserialize a socket control message of a given @level and @type.
   let deserialize (level: int) (type_: int) (data: array<u8>) : option<SocketControlMessage> =
-    let za1 = Glue.bytes data
-    let zr = g_socket_control_message_deserialize (i32 level) (i32 type_) (usize (Glue.countBytes data)) za1
-    let zid2 = Glue.wrap (zr) true
-    let zv = (if zid2 = 0 then None else Some (SocketControlMessage zid2))
-    Glue.free za1
+    let za2 = Glue.bytes data
+    let zr = g_socket_control_message_deserialize (i32 level) (i32 type_) (usize (Glue.countBytes data)) za2
+    let zid3 = Glue.wrap (zr) true
+    let zv = (if zid3 = 0 then None else Some (SocketControlMessage zid3))
+    Glue.free za2
     zv
 
   extern zgtk_override_Gio_SocketControlMessage_get_level : usize -> cptr -> unit
@@ -23494,9 +23780,9 @@ module ListStore =
 
   /// Changes @store by removing @n_removals items and adding @n_additions items to it.
   let splice (self: ListStore) (position: int) (nRemovals: int) (additions: list<GObject.Object>) : unit =
-    let za1 = Glue.ptrs (Glue.mapList (fun (zo: GObject.Object) -> Glue.obj zo.Id (GObject.g_object_get_type ())) additions)
-    g_list_store_splice (Glue.obj self.Id (g_list_store_get_type ())) (u32 position) (u32 nRemovals) za1 (u32 (Glue.count additions))
-    Glue.free za1
+    let za2 = Glue.ptrs (Glue.mapList (fun (zo: GObject.Object) -> Glue.obj zo.Id (GObject.g_object_get_type ())) additions)
+    g_list_store_splice (Glue.obj self.Id (g_list_store_get_type ())) (u32 position) (u32 nRemovals) za2 (u32 (Glue.count additions))
+    Glue.free za2
 
   /// Calls `handler` when the `item-type` property changes.
   let onNotifyItemType (self: ListStore) (handler: unit -> unit) : unit =
@@ -23543,8 +23829,8 @@ module MemoryInputStream =
   /// Creates a new #GMemoryInputStream with data in memory of a given size.
   [<Unsafe>]
   let createFromData (data: array<u8>) (destroy: cptr) : MemoryInputStream =
-    let za1 = Glue.bytes data
-    let zr = g_memory_input_stream_new_from_data za1 (i64 (Glue.countBytes data)) destroy
+    let za2 = Glue.bytes data
+    let zr = g_memory_input_stream_new_from_data za2 (i64 (Glue.countBytes data)) destroy
     MemoryInputStream (Glue.wrap (zr) true)
 
   extern g_memory_input_stream_add_bytes : cptr -> cptr -> unit
@@ -23558,8 +23844,8 @@ module MemoryInputStream =
   /// Appends @data to data that can be read from the input stream
   [<Unsafe>]
   let addData (self: MemoryInputStream) (data: array<u8>) (destroy: cptr) : unit =
-    let za1 = Glue.bytes data
-    g_memory_input_stream_add_data (Glue.obj self.Id (g_memory_input_stream_get_type ())) za1 (i64 (Glue.countBytes data)) destroy
+    let za2 = Glue.bytes data
+    g_memory_input_stream_add_data (Glue.obj self.Id (g_memory_input_stream_get_type ())) za2 (i64 (Glue.countBytes data)) destroy
 
 module MemoryMonitor =
   /// The same object as its ancestor.
@@ -23846,6 +24132,30 @@ module MenuAttributeIter =
   /// Attempts to advance the iterator to the next (possibly first) attribute.
   let next (self: MenuAttributeIter) : bool =
     (((g_menu_attribute_iter_next (Glue.obj self.Id (g_menu_attribute_iter_get_type ())))) <> i32 0)
+
+  extern zgtk_override_Gio_MenuAttributeIter_get_next : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_next`: This function combines g_menu_attribute_iter_next() with g_menu_attribute_iter_get_name() and g_menu_attribute_iter_get_value().
+  let overrideGetNext (gtype: usize) (handler: MenuAttributeIter -> cptr -> (bool * string)) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let iter = MenuAttributeIter (Glue.wrap (Glue.argPointer 0) false)
+        let value = Glue.argPointer 2
+        let (zres, outName) = handler iter value
+        Glue.setPointer 1 (Glue.intern outName)
+        Glue.returnBool (zres))
+    zgtk_override_Gio_MenuAttributeIter_get_next gtype zcb
+
+  extern zgtk_parent_Gio_MenuAttributeIter_get_next : cptr -> cptr -> cptr -> i32
+
+  /// This function combines g_menu_attribute_iter_next() with g_menu_attribute_iter_get_name() and g_menu_attribute_iter_get_value().
+  let parentGetNext (self: MenuAttributeIter) : (bool * option<string> * option<GLib.Variant>) =
+    Glue.outBegin ()
+    let zr = zgtk_parent_Gio_MenuAttributeIter_get_next (Glue.obj self.Id (g_menu_attribute_iter_get_type ())) (Glue.out 0) (Glue.out 1)
+    let zid1 = GLib.zgtk_wrap_GLib_Variant (Glue.outPtr 1) (i32 1)
+    let zv = (((zr) <> i32 0), Glue.textOption (Glue.outPtr 0), (if zid1 = 0 then None else Some (GLib.Variant zid1)))
+    Glue.outEnd ()
+    zv
 
 module MenuItem =
   /// The same object as its ancestor.
@@ -27523,9 +27833,17 @@ module Settings =
   extern g_settings_get_mapped : cptr -> cstr -> cptr -> cptr -> cptr
 
   /// Gets the value that is stored at @key in @settings, subject to application-level validation/mapping.
-  [<Unsafe>]
-  let getMapped (self: Settings) (key: string) (mapping: cptr) (userData: cptr) : cptr =
-    ((g_settings_get_mapped (Glue.obj self.Id (g_settings_get_type ())) key mapping userData))
+  let getMapped (self: Settings) (key: string) (mapping: option<GLib.Variant> -> cptr -> bool) : cptr =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let zid2 = GLib.zgtk_wrap_GLib_Variant (Glue.argPointer 0) (i32 0)
+        let value = (if zid2 = 0 then None else Some (GLib.Variant zid2))
+        let result = Glue.argPointer 1
+        Glue.returnBool (mapping value result))
+    let zr = g_settings_get_mapped (Glue.obj self.Id (g_settings_get_type ())) key (zgtk_tramp_Gio_SettingsGetMapping ()) zcb1
+    let zv = (zr)
+    Glue.drop zcb1
+    zv
 
   extern g_settings_get_range : cptr -> cstr -> cptr
 
@@ -28198,9 +28516,9 @@ module SimpleActionGroup =
   /// Deprecated. A convenience function for creating multiple #GSimpleAction instances and adding them to the action group.
   [<Unsafe>]
   let addEntries (self: SimpleActionGroup) (entries: list<ActionEntry>) (userData: cptr) : unit =
-    let za1 = Glue.records (Glue.mapList (fun (zo: ActionEntry) -> Glue.obj zo.Id (zgtk_tag_Gio_ActionEntry ())) entries) (zgtk_sizeof_Gio_ActionEntry ())
-    g_simple_action_group_add_entries (Glue.obj self.Id (g_simple_action_group_get_type ())) za1 (i32 (Glue.count entries)) userData
-    Glue.free za1
+    let za2 = Glue.records (Glue.mapList (fun (zo: ActionEntry) -> Glue.obj zo.Id (zgtk_tag_Gio_ActionEntry ())) entries) (zgtk_sizeof_Gio_ActionEntry ())
+    g_simple_action_group_add_entries (Glue.obj self.Id (g_simple_action_group_get_type ())) za2 (i32 (Glue.count entries)) userData
+    Glue.free za2
 
   extern g_simple_action_group_insert : cptr -> cptr -> unit
 
@@ -28368,6 +28686,13 @@ module SimpleAsyncResult =
   /// Deprecated. Sets an error within the asynchronous result without a #GError. C's own function, of variable arguments: called as C calls it, by code that
   /// answers for what it passes.
   extern g_simple_async_result_set_error : cptr -> cptr -> i32 -> cstr -> ... -> unit
+
+  extern g_simple_async_result_set_error_va : cptr -> u32 -> i32 -> cstr -> cptr -> unit
+
+  /// Deprecated. Sets an error within the asynchronous result without a #GError.
+  [<Unsafe>]
+  let setErrorVa (self: SimpleAsyncResult) (domain: int) (code: int) (format: string) (args: cptr) : unit =
+    g_simple_async_result_set_error_va (Glue.obj self.Id (g_simple_async_result_get_type ())) (u32 domain) (i32 code) format args
 
   extern g_simple_async_result_set_from_error : cptr -> cptr -> unit
 
@@ -29047,46 +29372,46 @@ module Socket =
 
   /// Receive data from a socket.
   let receiveMessage (self: Socket) (vectors: list<InputVector>) (flags: int) (cancellable: option<Cancellable>) : result<(int * option<SocketAddress> * list<SocketControlMessage> * int), Glue.Error> =
-    let za2 = Glue.records (Glue.mapList (fun (zo: InputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_InputVector ())) vectors) (zgtk_sizeof_Gio_InputVector ())
-    let zp3 =
+    let za3 = Glue.records (Glue.mapList (fun (zo: InputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_InputVector ())) vectors) (zgtk_sizeof_Gio_InputVector ())
+    let zp4 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
     Glue.outBegin ()
     Glue.outSetInt 3 flags
-    let zr = g_socket_receive_message (Glue.obj self.Id (g_socket_get_type ())) (Glue.out 1) za2 (i32 (Glue.count vectors)) (Glue.out 2) (Glue.out 0) (Glue.out 3) zp3 (Glue.err ())
+    let zr = g_socket_receive_message (Glue.obj self.Id (g_socket_get_type ())) (Glue.out 1) za3 (i32 (Glue.count vectors)) (Glue.out 2) (Glue.out 0) (Glue.out 3) zp4 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za2
+      Glue.free za3
       Error ze
     | None ->
-      let zid1 = Glue.wrap (Glue.outPtr 1) true
-      let zv = ((int (zr)), (if zid1 = 0 then None else Some (SocketAddress zid1)), Glue.mapList (fun zp -> SocketControlMessage (Glue.wrap (zp) true)) (Glue.ptrsOf (Glue.outPtr 2) (Glue.outI32 0) true), Glue.outI32 3)
+      let zid2 = Glue.wrap (Glue.outPtr 1) true
+      let zv = ((int (zr)), (if zid2 = 0 then None else Some (SocketAddress zid2)), Glue.mapList (fun zp -> SocketControlMessage (Glue.wrap (zp) true)) (Glue.ptrsOf (Glue.outPtr 2) (Glue.outI32 0) true), Glue.outI32 3)
       Glue.outEnd ()
-      Glue.free za2
+      Glue.free za3
       Ok zv
 
   extern g_socket_receive_messages : cptr -> cptr -> u32 -> i32 -> cptr -> cptr -> i32
 
   /// Receive multiple data messages from @socket in one go.
   let receiveMessages (self: Socket) (messages: list<InputMessage>) (flags: int) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
-    let za1 = Glue.records (Glue.mapList (fun (zo: InputMessage) -> Glue.obj zo.Id (zgtk_tag_Gio_InputMessage ())) messages) (zgtk_sizeof_Gio_InputMessage ())
-    let zp2 =
+    let za2 = Glue.records (Glue.mapList (fun (zo: InputMessage) -> Glue.obj zo.Id (zgtk_tag_Gio_InputMessage ())) messages) (zgtk_sizeof_Gio_InputMessage ())
+    let zp3 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
     Glue.outBegin ()
-    let zr = g_socket_receive_messages (Glue.obj self.Id (g_socket_get_type ())) za1 (u32 (Glue.count messages)) (i32 flags) zp2 (Glue.err ())
+    let zr = g_socket_receive_messages (Glue.obj self.Id (g_socket_get_type ())) za2 (u32 (Glue.count messages)) (i32 flags) zp3 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Error ze
     | None ->
       let zv = (int (zr))
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Ok zv
 
   extern g_socket_receive_with_blocking : cptr -> cptr -> usize -> i32 -> cptr -> cptr -> i64
@@ -29113,119 +29438,13 @@ module Socket =
 
   /// Tries to send @size bytes from @buffer on the socket.
   let send (self: Socket) (buffer: array<u8>) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
-    let za1 = Glue.bytes buffer
-    let zp2 =
-      match cancellable with
-      | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
-      | None -> Glue.none ()
-    Glue.outBegin ()
-    let zr = g_socket_send (Glue.obj self.Id (g_socket_get_type ())) za1 (usize (Glue.countBytes buffer)) zp2 (Glue.err ())
-    match Glue.takeError () with
-    | Some ze ->
-      Glue.outEnd ()
-      Glue.free za1
-      Error ze
-    | None ->
-      let zv = (int (zr))
-      Glue.outEnd ()
-      Glue.free za1
-      Ok zv
-
-  extern g_socket_send_message : cptr -> cptr -> cptr -> i32 -> cptr -> i32 -> i32 -> cptr -> cptr -> i64
-
-  /// Send data to @address on @socket.
-  let sendMessage (self: Socket) (address: option<SocketAddress>) (vectors: list<OutputVector>) (messages: list<SocketControlMessage>) (flags: int) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
-    let zp1 =
-      match address with
-      | Some zo -> Glue.obj zo.Id (g_socket_address_get_type ())
-      | None -> Glue.none ()
-    let za2 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
-    let za3 = Glue.ptrs (Glue.mapList (fun (zo: SocketControlMessage) -> Glue.obj zo.Id (g_socket_control_message_get_type ())) messages)
-    let zp4 =
-      match cancellable with
-      | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
-      | None -> Glue.none ()
-    Glue.outBegin ()
-    let zr = g_socket_send_message (Glue.obj self.Id (g_socket_get_type ())) zp1 za2 (i32 (Glue.count vectors)) za3 (i32 (Glue.count messages)) (i32 flags) zp4 (Glue.err ())
-    match Glue.takeError () with
-    | Some ze ->
-      Glue.outEnd ()
-      Glue.free za2
-      Glue.free za3
-      Error ze
-    | None ->
-      let zv = (int (zr))
-      Glue.outEnd ()
-      Glue.free za2
-      Glue.free za3
-      Ok zv
-
-  extern g_socket_send_message_with_timeout : cptr -> cptr -> cptr -> i32 -> cptr -> i32 -> i32 -> i64 -> cptr -> cptr -> cptr -> i32
-
-  /// This behaves exactly the same as g_socket_send_message(), except that the choice of timeout behavior is determined by the @timeout_us argument rather than by @socket's properties.
-  let sendMessageWithTimeout (self: Socket) (address: option<SocketAddress>) (vectors: list<OutputVector>) (messages: list<SocketControlMessage>) (flags: int) (timeoutUs: int) (cancellable: option<Cancellable>) : result<(PollableReturn * int), Glue.Error> =
-    let zp1 =
-      match address with
-      | Some zo -> Glue.obj zo.Id (g_socket_address_get_type ())
-      | None -> Glue.none ()
-    let za2 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
-    let za3 = Glue.ptrs (Glue.mapList (fun (zo: SocketControlMessage) -> Glue.obj zo.Id (g_socket_control_message_get_type ())) messages)
-    let zp4 =
-      match cancellable with
-      | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
-      | None -> Glue.none ()
-    Glue.outBegin ()
-    let zr = g_socket_send_message_with_timeout (Glue.obj self.Id (g_socket_get_type ())) zp1 za2 (i32 (Glue.count vectors)) za3 (i32 (Glue.count messages)) (i32 flags) (i64 timeoutUs) (Glue.out 0) zp4 (Glue.err ())
-    match Glue.takeError () with
-    | Some ze ->
-      Glue.outEnd ()
-      Glue.free za2
-      Glue.free za3
-      Error ze
-    | None ->
-      let zv = (PollableReturn (int (zr)), Glue.outI64 0)
-      Glue.outEnd ()
-      Glue.free za2
-      Glue.free za3
-      Ok zv
-
-  extern g_socket_send_messages : cptr -> cptr -> u32 -> i32 -> cptr -> cptr -> i32
-
-  /// Send multiple data messages from @socket in one go.
-  let sendMessages (self: Socket) (messages: list<OutputMessage>) (flags: int) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
-    let za1 = Glue.records (Glue.mapList (fun (zo: OutputMessage) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputMessage ())) messages) (zgtk_sizeof_Gio_OutputMessage ())
-    let zp2 =
-      match cancellable with
-      | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
-      | None -> Glue.none ()
-    Glue.outBegin ()
-    let zr = g_socket_send_messages (Glue.obj self.Id (g_socket_get_type ())) za1 (u32 (Glue.count messages)) (i32 flags) zp2 (Glue.err ())
-    match Glue.takeError () with
-    | Some ze ->
-      Glue.outEnd ()
-      Glue.free za1
-      Error ze
-    | None ->
-      let zv = (int (zr))
-      Glue.outEnd ()
-      Glue.free za1
-      Ok zv
-
-  extern g_socket_send_to : cptr -> cptr -> cptr -> usize -> cptr -> cptr -> i64
-
-  /// Tries to send @size bytes from @buffer to @address.
-  let sendTo (self: Socket) (address: option<SocketAddress>) (buffer: array<u8>) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
-    let zp1 =
-      match address with
-      | Some zo -> Glue.obj zo.Id (g_socket_address_get_type ())
-      | None -> Glue.none ()
     let za2 = Glue.bytes buffer
     let zp3 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
     Glue.outBegin ()
-    let zr = g_socket_send_to (Glue.obj self.Id (g_socket_get_type ())) zp1 za2 (usize (Glue.countBytes buffer)) zp3 (Glue.err ())
+    let zr = g_socket_send (Glue.obj self.Id (g_socket_get_type ())) za2 (usize (Glue.countBytes buffer)) zp3 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
@@ -29237,26 +29456,132 @@ module Socket =
       Glue.free za2
       Ok zv
 
-  extern g_socket_send_with_blocking : cptr -> cptr -> usize -> i32 -> cptr -> cptr -> i64
+  extern g_socket_send_message : cptr -> cptr -> cptr -> i32 -> cptr -> i32 -> i32 -> cptr -> cptr -> i64
 
-  /// This behaves exactly the same as g_socket_send(), except that the choice of blocking or non-blocking behavior is determined by the @blocking argument rather than by @socket's properties.
-  let sendWithBlocking (self: Socket) (buffer: array<u8>) (blocking: bool) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
-    let za1 = Glue.bytes buffer
-    let zp2 =
+  /// Send data to @address on @socket.
+  let sendMessage (self: Socket) (address: option<SocketAddress>) (vectors: list<OutputVector>) (messages: list<SocketControlMessage>) (flags: int) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
+    let zp3 =
+      match address with
+      | Some zo -> Glue.obj zo.Id (g_socket_address_get_type ())
+      | None -> Glue.none ()
+    let za4 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
+    let za5 = Glue.ptrs (Glue.mapList (fun (zo: SocketControlMessage) -> Glue.obj zo.Id (g_socket_control_message_get_type ())) messages)
+    let zp6 =
       match cancellable with
       | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
       | None -> Glue.none ()
     Glue.outBegin ()
-    let zr = g_socket_send_with_blocking (Glue.obj self.Id (g_socket_get_type ())) za1 (usize (Glue.countBytes buffer)) (if blocking then i32 1 else i32 0) zp2 (Glue.err ())
+    let zr = g_socket_send_message (Glue.obj self.Id (g_socket_get_type ())) zp3 za4 (i32 (Glue.count vectors)) za5 (i32 (Glue.count messages)) (i32 flags) zp6 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za4
+      Glue.free za5
       Error ze
     | None ->
       let zv = (int (zr))
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za4
+      Glue.free za5
+      Ok zv
+
+  extern g_socket_send_message_with_timeout : cptr -> cptr -> cptr -> i32 -> cptr -> i32 -> i32 -> i64 -> cptr -> cptr -> cptr -> i32
+
+  /// This behaves exactly the same as g_socket_send_message(), except that the choice of timeout behavior is determined by the @timeout_us argument rather than by @socket's properties.
+  let sendMessageWithTimeout (self: Socket) (address: option<SocketAddress>) (vectors: list<OutputVector>) (messages: list<SocketControlMessage>) (flags: int) (timeoutUs: int) (cancellable: option<Cancellable>) : result<(PollableReturn * int), Glue.Error> =
+    let zp3 =
+      match address with
+      | Some zo -> Glue.obj zo.Id (g_socket_address_get_type ())
+      | None -> Glue.none ()
+    let za4 = Glue.records (Glue.mapList (fun (zo: OutputVector) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputVector ())) vectors) (zgtk_sizeof_Gio_OutputVector ())
+    let za5 = Glue.ptrs (Glue.mapList (fun (zo: SocketControlMessage) -> Glue.obj zo.Id (g_socket_control_message_get_type ())) messages)
+    let zp6 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
+      | None -> Glue.none ()
+    Glue.outBegin ()
+    let zr = g_socket_send_message_with_timeout (Glue.obj self.Id (g_socket_get_type ())) zp3 za4 (i32 (Glue.count vectors)) za5 (i32 (Glue.count messages)) (i32 flags) (i64 timeoutUs) (Glue.out 0) zp6 (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Glue.free za4
+      Glue.free za5
+      Error ze
+    | None ->
+      let zv = (PollableReturn (int (zr)), Glue.outI64 0)
+      Glue.outEnd ()
+      Glue.free za4
+      Glue.free za5
+      Ok zv
+
+  extern g_socket_send_messages : cptr -> cptr -> u32 -> i32 -> cptr -> cptr -> i32
+
+  /// Send multiple data messages from @socket in one go.
+  let sendMessages (self: Socket) (messages: list<OutputMessage>) (flags: int) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
+    let za2 = Glue.records (Glue.mapList (fun (zo: OutputMessage) -> Glue.obj zo.Id (zgtk_tag_Gio_OutputMessage ())) messages) (zgtk_sizeof_Gio_OutputMessage ())
+    let zp3 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
+      | None -> Glue.none ()
+    Glue.outBegin ()
+    let zr = g_socket_send_messages (Glue.obj self.Id (g_socket_get_type ())) za2 (u32 (Glue.count messages)) (i32 flags) zp3 (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Glue.free za2
+      Error ze
+    | None ->
+      let zv = (int (zr))
+      Glue.outEnd ()
+      Glue.free za2
+      Ok zv
+
+  extern g_socket_send_to : cptr -> cptr -> cptr -> usize -> cptr -> cptr -> i64
+
+  /// Tries to send @size bytes from @buffer to @address.
+  let sendTo (self: Socket) (address: option<SocketAddress>) (buffer: array<u8>) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
+    let zp2 =
+      match address with
+      | Some zo -> Glue.obj zo.Id (g_socket_address_get_type ())
+      | None -> Glue.none ()
+    let za3 = Glue.bytes buffer
+    let zp4 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
+      | None -> Glue.none ()
+    Glue.outBegin ()
+    let zr = g_socket_send_to (Glue.obj self.Id (g_socket_get_type ())) zp2 za3 (usize (Glue.countBytes buffer)) zp4 (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Glue.free za3
+      Error ze
+    | None ->
+      let zv = (int (zr))
+      Glue.outEnd ()
+      Glue.free za3
+      Ok zv
+
+  extern g_socket_send_with_blocking : cptr -> cptr -> usize -> i32 -> cptr -> cptr -> i64
+
+  /// This behaves exactly the same as g_socket_send(), except that the choice of blocking or non-blocking behavior is determined by the @blocking argument rather than by @socket's properties.
+  let sendWithBlocking (self: Socket) (buffer: array<u8>) (blocking: bool) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
+    let za2 = Glue.bytes buffer
+    let zp3 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
+      | None -> Glue.none ()
+    Glue.outBegin ()
+    let zr = g_socket_send_with_blocking (Glue.obj self.Id (g_socket_get_type ())) za2 (usize (Glue.countBytes buffer)) (if blocking then i32 1 else i32 0) zp3 (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Glue.free za2
+      Error ze
+    | None ->
+      let zv = (int (zr))
+      Glue.outEnd ()
+      Glue.free za2
       Ok zv
 
   extern g_socket_set_blocking : cptr -> i32 -> unit
@@ -31274,10 +31599,10 @@ module ThemedIcon =
 
   /// Creates a new themed icon for @iconnames.
   let createFromNames (iconnames: list<string>) : ThemedIcon =
-    let zv1 = Glue.strv iconnames
-    let zr = g_themed_icon_new_from_names zv1 (i32 (Glue.count iconnames))
+    let zv2 = Glue.strv iconnames
+    let zr = g_themed_icon_new_from_names zv2 (i32 (Glue.count iconnames))
     let zv = ThemedIcon (Glue.wrap (zr) true)
-    Glue.freeStrv zv1
+    Glue.freeStrv zv2
     zv
 
   extern g_themed_icon_new_with_default_fallbacks : cstr -> cptr
@@ -31599,21 +31924,21 @@ module TlsCertificate =
 
   /// Creates a #GTlsCertificate from the data in @data.
   let createFromPkcs12 (data: array<u8>) (password: option<string>) : result<TlsCertificate, Glue.Error> =
-    let za1 = Glue.bytes data
-    let zs2 = Glue.dupOption password
+    let za2 = Glue.bytes data
+    let zs3 = Glue.dupOption password
     Glue.outBegin ()
-    let zr = g_tls_certificate_new_from_pkcs12 za1 (usize (Glue.countBytes data)) zs2 (Glue.err ())
+    let zr = g_tls_certificate_new_from_pkcs12 za2 (usize (Glue.countBytes data)) zs3 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
-      Glue.free zs2
+      Glue.free za2
+      Glue.free zs3
       Error ze
     | None ->
       let zv = TlsCertificate (Glue.wrap (zr) true)
       Glue.outEnd ()
-      Glue.free za1
-      Glue.free zs2
+      Glue.free za2
+      Glue.free zs3
       Ok zv
 
   extern g_tls_certificate_get_dns_names : cptr -> cptr
@@ -31815,6 +32140,12 @@ module TlsClientConnection =
   let copySessionState (self: TlsClientConnection) (source: TlsClientConnection) : unit =
     g_tls_client_connection_copy_session_state (Glue.obj self.Id (g_tls_client_connection_get_type ())) (Glue.obj source.Id (g_tls_client_connection_get_type ()))
 
+  extern g_tls_client_connection_get_accepted_cas : cptr -> cptr
+
+  /// Gets the list of distinguished names of the Certificate Authorities that the server will accept certificates from.
+  let getAcceptedCas (self: TlsClientConnection) : cptr =
+    ((g_tls_client_connection_get_accepted_cas (Glue.obj self.Id (g_tls_client_connection_get_type ()))))
+
   extern g_tls_client_connection_get_server_identity : cptr -> cptr
 
   /// Gets @conn's expected server identity
@@ -31929,6 +32260,22 @@ module TlsConnection =
     let zr = g_tls_connection_get_certificate (Glue.obj self.Id (g_tls_connection_get_type ()))
     let zid1 = Glue.wrap (zr) false
     (if zid1 = 0 then None else Some (TlsCertificate zid1))
+
+  extern g_tls_connection_get_channel_binding_data : cptr -> i32 -> cptr -> cptr -> i32
+
+  /// Query the TLS backend for TLS channel binding data of @type for @conn.
+  [<Unsafe>]
+  let getChannelBindingData (self: TlsConnection) (type_: TlsChannelBindingType) (data: cptr) : result<bool, Glue.Error> =
+    Glue.outBegin ()
+    let zr = g_tls_connection_get_channel_binding_data (Glue.obj self.Id (g_tls_connection_get_type ())) (i32 type_.Int) data (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = ((zr) <> i32 0)
+      Glue.outEnd ()
+      Ok zv
 
   extern g_tls_connection_get_ciphersuite_name : cptr -> cptr
 
@@ -32969,18 +33316,18 @@ module TlsPassword =
 
   /// Set the value for this password.
   let setValue (self: TlsPassword) (value: array<u8>) : unit =
-    let za1 = Glue.bytes value
-    g_tls_password_set_value (Glue.obj self.Id (g_tls_password_get_type ())) za1 (i64 (Glue.countBytes value))
-    Glue.free za1
+    let za2 = Glue.bytes value
+    g_tls_password_set_value (Glue.obj self.Id (g_tls_password_get_type ())) za2 (i64 (Glue.countBytes value))
+    Glue.free za2
 
   extern g_tls_password_set_value_full : cptr -> cptr -> i64 -> cptr -> unit
 
   /// Provide the value for this password.
   [<Unsafe>]
   let setValueFull (self: TlsPassword) (value: array<u8>) (destroy: cptr) : unit =
-    let za1 = Glue.bytes value
-    g_tls_password_set_value_full (Glue.obj self.Id (g_tls_password_get_type ())) za1 (i64 (Glue.countBytes value)) destroy
-    Glue.free za1
+    let za2 = Glue.bytes value
+    g_tls_password_set_value_full (Glue.obj self.Id (g_tls_password_get_type ())) za2 (i64 (Glue.countBytes value)) destroy
+    Glue.free za2
 
   extern g_tls_password_set_warning : cptr -> cstr -> unit
 
@@ -33016,6 +33363,28 @@ module TlsPassword =
   let parentGetDefaultWarning (self: TlsPassword) : string =
     Glue.text ((zgtk_parent_Gio_TlsPassword_get_default_warning (Glue.obj self.Id (g_tls_password_get_type ()))))
 
+  extern zgtk_override_Gio_TlsPassword_get_value : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_value`: Get the password value.
+  let overrideGetValue (gtype: usize) (handler: TlsPassword -> (cptr * int)) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let password = TlsPassword (Glue.wrap (Glue.argPointer 0) false)
+        let (zres, length) = handler password
+        Glue.setI64 1 length
+        Glue.returnPointer (zres))
+    zgtk_override_Gio_TlsPassword_get_value gtype zcb
+
+  extern zgtk_parent_Gio_TlsPassword_get_value : cptr -> cptr -> cptr
+
+  /// Get the password value.
+  let parentGetValue (self: TlsPassword) : array<u8> =
+    Glue.outBegin ()
+    let zr = zgtk_parent_Gio_TlsPassword_get_value (Glue.obj self.Id (g_tls_password_get_type ())) (Glue.out 0)
+    let zv = Glue.bytesOf (zr) (Glue.outI64 0) false
+    Glue.outEnd ()
+    zv
+
   extern zgtk_override_Gio_TlsPassword_set_value : usize -> cptr -> unit
 
   /// Gives a type made with `Glue.subclass` its own `set_value`: Provide the value for this password.
@@ -33034,9 +33403,9 @@ module TlsPassword =
   /// Provide the value for this password.
   [<Unsafe>]
   let parentSetValue (self: TlsPassword) (value: array<u8>) (destroy: cptr) : unit =
-    let za1 = Glue.bytes value
-    zgtk_parent_Gio_TlsPassword_set_value (Glue.obj self.Id (g_tls_password_get_type ())) za1 (i64 (Glue.countBytes value)) destroy
-    Glue.free za1
+    let za2 = Glue.bytes value
+    zgtk_parent_Gio_TlsPassword_set_value (Glue.obj self.Id (g_tls_password_get_type ())) za2 (i64 (Glue.countBytes value)) destroy
+    Glue.free za2
 
 module TlsServerConnection =
   /// The same object as its ancestor.
@@ -33284,10 +33653,10 @@ module UnixFDList =
 
   /// Creates a new #GUnixFDList containing the file descriptors given in @fds.
   let createFromArray (fds: list<int>) : UnixFDList =
-    let za1 = Glue.ints fds 4
-    let zr = g_unix_fd_list_new_from_array za1 (i32 (Glue.count fds))
+    let za2 = Glue.ints fds 4
+    let zr = g_unix_fd_list_new_from_array za2 (i32 (Glue.count fds))
     let zv = UnixFDList (Glue.wrap (zr) true)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern g_unix_fd_list_append : cptr -> i32 -> cptr -> i32
@@ -33370,20 +33739,20 @@ module UnixSocketAddress =
 
   /// Deprecated. Creates a new %G_UNIX_SOCKET_ADDRESS_ABSTRACT_PADDED #GUnixSocketAddress for @path.
   let createAbstract (path: list<int>) : UnixSocketAddress =
-    let za1 = Glue.ints path 1
-    let zr = g_unix_socket_address_new_abstract za1 (i32 (Glue.count path))
+    let za2 = Glue.ints path 1
+    let zr = g_unix_socket_address_new_abstract za2 (i32 (Glue.count path))
     let zv = UnixSocketAddress (Glue.wrap (zr) true)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern g_unix_socket_address_new_with_type : cptr -> i32 -> i32 -> cptr
 
   /// Creates a new #GUnixSocketAddress of type @type with name @path.
   let createWithType (path: list<int>) (type_: UnixSocketAddressType) : UnixSocketAddress =
-    let za1 = Glue.ints path 1
-    let zr = g_unix_socket_address_new_with_type za1 (i32 (Glue.count path)) (i32 type_.Int)
+    let za2 = Glue.ints path 1
+    let zr = g_unix_socket_address_new_with_type za2 (i32 (Glue.count path)) (i32 type_.Int)
     let zv = UnixSocketAddress (Glue.wrap (zr) true)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern g_unix_socket_address_get_address_type : cptr -> i32
@@ -33579,6 +33948,22 @@ module Vfs =
   /// Gets a #GFile for @uri.
   let parentGetFileForUri (self: Vfs) (uri: string) : File =
     File (Glue.wrap ((zgtk_parent_Gio_Vfs_get_file_for_uri (Glue.obj self.Id (g_vfs_get_type ())) uri)) true)
+
+  extern zgtk_override_Gio_Vfs_get_supported_uri_schemes : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_supported_uri_schemes`: Gets a list of URI schemes supported by @vfs.
+  let overrideGetSupportedUriSchemes (gtype: usize) (handler: Vfs -> cptr) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let vfs = Vfs (Glue.wrap (Glue.argPointer 0) false)
+        Glue.returnPointer (handler vfs))
+    zgtk_override_Gio_Vfs_get_supported_uri_schemes gtype zcb
+
+  extern zgtk_parent_Gio_Vfs_get_supported_uri_schemes : cptr -> cptr
+
+  /// Gets a list of URI schemes supported by @vfs.
+  let parentGetSupportedUriSchemes (self: Vfs) : list<string> =
+    Glue.strvList ((zgtk_parent_Gio_Vfs_get_supported_uri_schemes (Glue.obj self.Id (g_vfs_get_type ())))) 0
 
   extern zgtk_override_Gio_Vfs_is_active : usize -> cptr -> unit
 
@@ -34872,14 +35257,14 @@ extern g_content_type_guess : cptr -> cptr -> usize -> cptr -> cptr
 
 /// Guesses the content type based on example data.
 let contentTypeGuess (filename: option<string>) (data: array<u8>) : (string * bool) =
-  let zs1 = Glue.dupOption filename
-  let za2 = Glue.bytes data
+  let zs2 = Glue.dupOption filename
+  let za3 = Glue.bytes data
   Glue.outBegin ()
-  let zr = g_content_type_guess zs1 za2 (usize (Glue.countBytes data)) (Glue.out 0)
+  let zr = g_content_type_guess zs2 za3 (usize (Glue.countBytes data)) (Glue.out 0)
   let zv = (Glue.takeText (zr), (Glue.outI32 0 <> 0))
   Glue.outEnd ()
-  Glue.free zs1
-  Glue.free za2
+  Glue.free zs2
+  Glue.free za3
   zv
 
 extern g_content_type_guess_for_tree : cptr -> cptr
@@ -35213,66 +35598,66 @@ extern g_pollable_stream_read : cptr -> cptr -> usize -> i32 -> cptr -> cptr -> 
 
 /// Tries to read from @stream, as with g_input_stream_read() (if @blocking is %TRUE) or g_pollable_input_stream_read_nonblocking() (if @blocking is %FALSE).
 let pollableStreamRead (stream: InputStream) (buffer: array<u8>) (blocking: bool) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
-  let za1 = Glue.bytes buffer
-  let zp2 =
+  let za2 = Glue.bytes buffer
+  let zp3 =
     match cancellable with
     | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
     | None -> Glue.none ()
   Glue.outBegin ()
-  let zr = g_pollable_stream_read (Glue.obj stream.Id (g_input_stream_get_type ())) za1 (usize (Glue.countBytes buffer)) (if blocking then i32 1 else i32 0) zp2 (Glue.err ())
+  let zr = g_pollable_stream_read (Glue.obj stream.Id (g_input_stream_get_type ())) za2 (usize (Glue.countBytes buffer)) (if blocking then i32 1 else i32 0) zp3 (Glue.err ())
   match Glue.takeError () with
   | Some ze ->
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Error ze
   | None ->
     let zv = (int (zr))
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Ok zv
 
 extern g_pollable_stream_write : cptr -> cptr -> usize -> i32 -> cptr -> cptr -> i64
 
 /// Tries to write to @stream, as with g_output_stream_write() (if @blocking is %TRUE) or g_pollable_output_stream_write_nonblocking() (if @blocking is %FALSE).
 let pollableStreamWrite (stream: OutputStream) (buffer: array<u8>) (blocking: bool) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
-  let za1 = Glue.bytes buffer
-  let zp2 =
+  let za2 = Glue.bytes buffer
+  let zp3 =
     match cancellable with
     | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
     | None -> Glue.none ()
   Glue.outBegin ()
-  let zr = g_pollable_stream_write (Glue.obj stream.Id (g_output_stream_get_type ())) za1 (usize (Glue.countBytes buffer)) (if blocking then i32 1 else i32 0) zp2 (Glue.err ())
+  let zr = g_pollable_stream_write (Glue.obj stream.Id (g_output_stream_get_type ())) za2 (usize (Glue.countBytes buffer)) (if blocking then i32 1 else i32 0) zp3 (Glue.err ())
   match Glue.takeError () with
   | Some ze ->
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Error ze
   | None ->
     let zv = (int (zr))
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Ok zv
 
 extern g_pollable_stream_write_all : cptr -> cptr -> usize -> i32 -> cptr -> cptr -> cptr -> i32
 
 /// Tries to write @count bytes to @stream, as with g_output_stream_write_all(), but using g_pollable_stream_write() rather than g_output_stream_write().
 let pollableStreamWriteAll (stream: OutputStream) (buffer: array<u8>) (blocking: bool) (cancellable: option<Cancellable>) : result<(bool * int), Glue.Error> =
-  let za1 = Glue.bytes buffer
-  let zp2 =
+  let za2 = Glue.bytes buffer
+  let zp3 =
     match cancellable with
     | Some zo -> Glue.obj zo.Id (g_cancellable_get_type ())
     | None -> Glue.none ()
   Glue.outBegin ()
-  let zr = g_pollable_stream_write_all (Glue.obj stream.Id (g_output_stream_get_type ())) za1 (usize (Glue.countBytes buffer)) (if blocking then i32 1 else i32 0) (Glue.out 0) zp2 (Glue.err ())
+  let zr = g_pollable_stream_write_all (Glue.obj stream.Id (g_output_stream_get_type ())) za2 (usize (Glue.countBytes buffer)) (if blocking then i32 1 else i32 0) (Glue.out 0) zp3 (Glue.err ())
   match Glue.takeError () with
   | Some ze ->
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Error ze
   | None ->
     let zv = (((zr) <> i32 0), Glue.outI64 0)
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Ok zv
 
 extern g_resources_enumerate_children : cstr -> u32 -> cptr -> cptr

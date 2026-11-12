@@ -3920,8 +3920,8 @@ module Array =
   /// Creates a new `GArray` with @data as array data, @len as length and a reference count of 1.
   [<Unsafe>]
   let createTake (data: list<cptr>) (clear: bool) (elementSize: int) : Array =
-    let za1 = Glue.ptrs data
-    let zr = g_array_new_take za1 (usize (Glue.count data)) (if clear then i32 1 else i32 0) (usize elementSize)
+    let za2 = Glue.ptrs data
+    let zr = g_array_new_take za2 (usize (Glue.count data)) (if clear then i32 1 else i32 0) (usize elementSize)
     Array (Glue.wrapBoxed (zr) (g_array_get_type ()) true)
 
   extern g_array_new_take_zero_terminated : cptr -> i32 -> usize -> cptr
@@ -4571,18 +4571,18 @@ module BookmarkFile =
 
   /// Loads a bookmark file from memory into an empty #GBookmarkFile structure.
   let loadFromData (self: BookmarkFile) (data: array<u8>) : result<bool, Glue.Error> =
-    let za1 = Glue.bytes data
+    let za2 = Glue.bytes data
     Glue.outBegin ()
-    let zr = g_bookmark_file_load_from_data (Glue.obj self.Id (g_bookmark_file_get_type ())) za1 (usize (Glue.countBytes data)) (Glue.err ())
+    let zr = g_bookmark_file_load_from_data (Glue.obj self.Id (g_bookmark_file_get_type ())) za2 (usize (Glue.countBytes data)) (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Error ze
     | None ->
       let zv = ((zr) <> i32 0)
       Glue.outEnd ()
-      Glue.free za1
+      Glue.free za2
       Ok zv
 
   extern g_bookmark_file_load_from_data_dirs : cptr -> cstr -> cptr -> cptr -> i32
@@ -4736,9 +4736,9 @@ module BookmarkFile =
 
   /// Sets a list of group names for the item with URI @uri.
   let setGroups (self: BookmarkFile) (uri: string) (groups: list<string>) : unit =
-    let zv1 = Glue.strv groups
-    g_bookmark_file_set_groups (Glue.obj self.Id (g_bookmark_file_get_type ())) uri zv1 (usize (Glue.count groups))
-    Glue.freeStrv zv1
+    let zv2 = Glue.strv groups
+    g_bookmark_file_set_groups (Glue.obj self.Id (g_bookmark_file_get_type ())) uri zv2 (usize (Glue.count groups))
+    Glue.freeStrv zv2
 
   extern g_bookmark_file_set_icon : cptr -> cstr -> cptr -> cstr -> unit
 
@@ -4833,13 +4833,22 @@ module ByteArray =
 
   /// Adds the given bytes to the end of the `GByteArray`.
   let append (array: array<u8>) (data: array<u8>) : array<u8> =
-    let zb1 = Glue.byteArray array
-    let za2 = Glue.bytes data
-    let zr = g_byte_array_append zb1 za2 (u32 (Glue.countBytes data))
+    let zb2 = Glue.byteArray array
+    let za3 = Glue.bytes data
+    let zr = g_byte_array_append zb2 za3 (u32 (Glue.countBytes data))
     let zv = Glue.byteArrayOf (zr) false
-    Glue.byteArrayFree zb1
-    Glue.free za2
+    Glue.byteArrayFree zb2
+    Glue.free za3
     zv
+
+  extern g_byte_array_free : cptr -> i32 -> cptr
+
+  /// Frees the memory allocated by the `GByteArray`.
+  [<Unsafe>]
+  let free (array: array<u8>) (freeSegment: bool) : cptr =
+    let zb1 = Glue.byteArray array
+    let zr = g_byte_array_free zb1 (if freeSegment then i32 1 else i32 0)
+    zr
 
   extern g_byte_array_free_to_bytes : cptr -> cptr
 
@@ -4859,20 +4868,20 @@ module ByteArray =
 
   /// Creates a byte array containing the @data.
   let createTake (data: array<u8>) : array<u8> =
-    let za1 = Glue.bytes data
-    let zr = g_byte_array_new_take za1 (usize (Glue.countBytes data))
+    let za2 = Glue.bytes data
+    let zr = g_byte_array_new_take za2 (usize (Glue.countBytes data))
     Glue.byteArrayOf (zr) true
 
   extern g_byte_array_prepend : cptr -> cptr -> u32 -> cptr
 
   /// Adds the given data to the start of the `GByteArray`.
   let prepend (array: array<u8>) (data: array<u8>) : array<u8> =
-    let zb1 = Glue.byteArray array
-    let za2 = Glue.bytes data
-    let zr = g_byte_array_prepend zb1 za2 (u32 (Glue.countBytes data))
+    let zb2 = Glue.byteArray array
+    let za3 = Glue.bytes data
+    let zr = g_byte_array_prepend zb2 za3 (u32 (Glue.countBytes data))
     let zv = Glue.byteArrayOf (zr) false
-    Glue.byteArrayFree zb1
-    Glue.free za2
+    Glue.byteArrayFree zb2
+    Glue.free za3
     zv
 
   extern g_byte_array_ref : cptr -> cptr
@@ -4990,10 +4999,10 @@ module Bytes =
 
   /// Creates a new [struct@GLib.Bytes] from @data.
   let create (data: array<u8>) : Bytes =
-    let za1 = Glue.bytes data
-    let zr = g_bytes_new za1 (usize (Glue.countBytes data))
+    let za2 = Glue.bytes data
+    let zr = g_bytes_new za2 (usize (Glue.countBytes data))
     let zv = Bytes (Glue.wrapBoxed (zr) (g_bytes_get_type ()) true)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern g_bytes_new_from_bytes : cptr -> usize -> usize -> cptr
@@ -5006,16 +5015,16 @@ module Bytes =
 
   /// Creates a new [struct@GLib.Bytes] from static data.
   let createStatic (data: array<u8>) : Bytes =
-    let za1 = Glue.bytes data
-    let zr = g_bytes_new_static za1 (usize (Glue.countBytes data))
+    let za2 = Glue.bytes data
+    let zr = g_bytes_new_static za2 (usize (Glue.countBytes data))
     Bytes (Glue.wrapBoxed (zr) (g_bytes_get_type ()) true)
 
   extern g_bytes_new_take : cptr -> usize -> cptr
 
   /// Creates a new [struct@GLib.Bytes] from @data.
   let createTake (data: array<u8>) : Bytes =
-    let za1 = Glue.bytes data
-    let zr = g_bytes_new_take za1 (usize (Glue.countBytes data))
+    let za2 = Glue.bytes data
+    let zr = g_bytes_new_take za2 (usize (Glue.countBytes data))
     Bytes (Glue.wrapBoxed (zr) (g_bytes_get_type ()) true)
 
   extern g_bytes_new_with_free_func : cptr -> usize -> cptr -> cptr -> cptr
@@ -5023,10 +5032,10 @@ module Bytes =
   /// Creates a [struct@GLib.Bytes] from @data.
   [<Unsafe>]
   let createWithFreeFunc (data: array<u8>) (freeFunc: cptr) (userData: cptr) : Bytes =
-    let za1 = Glue.bytes data
-    let zr = g_bytes_new_with_free_func za1 (usize (Glue.countBytes data)) freeFunc userData
+    let za2 = Glue.bytes data
+    let zr = g_bytes_new_with_free_func za2 (usize (Glue.countBytes data)) freeFunc userData
     let zv = Bytes (Glue.wrapBoxed (zr) (g_bytes_get_type ()) true)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern g_bytes_compare : cptr -> cptr -> i32
@@ -5174,6 +5183,19 @@ module Checksum =
   let free (self: Checksum) : unit =
     g_checksum_free (Glue.obj self.Id (g_checksum_get_type ()))
 
+  extern g_checksum_get_digest : cptr -> cptr -> cptr -> unit
+
+  /// Gets the digest from @checksum as a raw binary vector and places it into @buffer.
+  let getDigest (self: Checksum) (buffer: array<u8>) (digestLen: int) : int =
+    let za2 = Glue.bytes buffer
+    Glue.outBegin ()
+    Glue.outSetInt 0 digestLen
+    g_checksum_get_digest (Glue.obj self.Id (g_checksum_get_type ())) za2 (Glue.out 0)
+    let zv = Glue.outI64 0
+    Glue.outEnd ()
+    Glue.free za2
+    zv
+
   extern g_checksum_get_string : cptr -> cptr
 
   /// Gets the digest as a hexadecimal string.
@@ -5190,9 +5212,9 @@ module Checksum =
 
   /// Feeds @data into an existing #GChecksum.
   let update (self: Checksum) (data: array<u8>) : unit =
-    let za1 = Glue.bytes data
-    g_checksum_update (Glue.obj self.Id (g_checksum_get_type ())) za1 (i64 (Glue.countBytes data))
-    Glue.free za1
+    let za2 = Glue.bytes data
+    g_checksum_update (Glue.obj self.Id (g_checksum_get_type ())) za2 (i64 (Glue.countBytes data))
+    Glue.free za2
 
   extern g_checksum_type_get_length : i32 -> i64
 
@@ -5289,6 +5311,27 @@ module Cond =
   /// If threads are waiting for @cond, at least one of them is unblocked.
   let signal (self: Cond) : unit =
     g_cond_signal (Glue.obj self.Id (zgtk_tag_GLib_Cond ()))
+
+  extern g_cond_timed_wait : cptr -> cptr -> cptr -> i32
+
+  /// Deprecated. Waits until this thread is woken up on @cond, but not longer than until the time specified by @abs_time.
+  [<Unsafe>]
+  let timedWait (self: Cond) (mutex: cptr) (absTime: TimeVal) : bool =
+    (((g_cond_timed_wait (Glue.obj self.Id (zgtk_tag_GLib_Cond ())) mutex (Glue.obj absTime.Id (zgtk_tag_GLib_TimeVal ())))) <> i32 0)
+
+  extern g_cond_wait : cptr -> cptr -> unit
+
+  /// Atomically releases @mutex and waits until @cond is signalled.
+  [<Unsafe>]
+  let wait (self: Cond) (mutex: cptr) : unit =
+    g_cond_wait (Glue.obj self.Id (zgtk_tag_GLib_Cond ())) mutex
+
+  extern g_cond_wait_until : cptr -> cptr -> i64 -> i32
+
+  /// Waits until either @cond is signalled or @end_time has passed.
+  [<Unsafe>]
+  let waitUntil (self: Cond) (mutex: cptr) (endTime: int) : bool =
+    (((g_cond_wait_until (Glue.obj self.Id (zgtk_tag_GLib_Cond ())) mutex (i64 endTime))) <> i32 0)
 
   extern g_cond_new : unit -> cptr
 
@@ -7390,9 +7433,9 @@ module KeyFile =
 
   /// Associates a list of boolean values with @key under @group_name.
   let setBooleanList (self: KeyFile) (groupName: string) (key: string) (list: list<bool>) : unit =
-    let za1 = Glue.ints (Glue.mapList (fun (zb: bool) -> if zb then 1 else 0) list) 4
-    g_key_file_set_boolean_list (Glue.obj self.Id (g_key_file_get_type ())) groupName key za1 (usize (Glue.count list))
-    Glue.free za1
+    let za2 = Glue.ints (Glue.mapList (fun (zb: bool) -> if zb then 1 else 0) list) 4
+    g_key_file_set_boolean_list (Glue.obj self.Id (g_key_file_get_type ())) groupName key za2 (usize (Glue.count list))
+    Glue.free za2
 
   extern g_key_file_set_comment : cptr -> cptr -> cptr -> cstr -> cptr -> i32
 
@@ -7425,9 +7468,9 @@ module KeyFile =
 
   /// Associates a list of double values with @key under @group_name.
   let setDoubleList (self: KeyFile) (groupName: string) (key: string) (list: list<float>) : unit =
-    let za1 = Glue.floats list 8
-    g_key_file_set_double_list (Glue.obj self.Id (g_key_file_get_type ())) groupName key za1 (usize (Glue.count list))
-    Glue.free za1
+    let za2 = Glue.floats list 8
+    g_key_file_set_double_list (Glue.obj self.Id (g_key_file_get_type ())) groupName key za2 (usize (Glue.count list))
+    Glue.free za2
 
   extern g_key_file_set_int64 : cptr -> cstr -> cstr -> i64 -> unit
 
@@ -7445,9 +7488,9 @@ module KeyFile =
 
   /// Associates a list of integer values with @key under @group_name.
   let setIntegerList (self: KeyFile) (groupName: string) (key: string) (list: list<int>) : unit =
-    let za1 = Glue.ints list 4
-    g_key_file_set_integer_list (Glue.obj self.Id (g_key_file_get_type ())) groupName key za1 (usize (Glue.count list))
-    Glue.free za1
+    let za2 = Glue.ints list 4
+    g_key_file_set_integer_list (Glue.obj self.Id (g_key_file_get_type ())) groupName key za2 (usize (Glue.count list))
+    Glue.free za2
 
   extern g_key_file_set_list_separator : cptr -> i8 -> unit
 
@@ -7465,9 +7508,9 @@ module KeyFile =
 
   /// Associates a list of string values for @key and @locale under @group_name.
   let setLocaleStringList (self: KeyFile) (groupName: string) (key: string) (locale: string) (list: list<string>) : unit =
-    let zv1 = Glue.strv list
-    g_key_file_set_locale_string_list (Glue.obj self.Id (g_key_file_get_type ())) groupName key locale zv1 (usize (Glue.count list))
-    Glue.freeStrv zv1
+    let zv2 = Glue.strv list
+    g_key_file_set_locale_string_list (Glue.obj self.Id (g_key_file_get_type ())) groupName key locale zv2 (usize (Glue.count list))
+    Glue.freeStrv zv2
 
   extern g_key_file_set_string : cptr -> cstr -> cstr -> cstr -> unit
 
@@ -7479,9 +7522,9 @@ module KeyFile =
 
   /// Associates a list of string values for @key under @group_name.
   let setStringList (self: KeyFile) (groupName: string) (key: string) (list: list<string>) : unit =
-    let zv1 = Glue.strv list
-    g_key_file_set_string_list (Glue.obj self.Id (g_key_file_get_type ())) groupName key zv1 (usize (Glue.count list))
-    Glue.freeStrv zv1
+    let zv2 = Glue.strv list
+    g_key_file_set_string_list (Glue.obj self.Id (g_key_file_get_type ())) groupName key zv2 (usize (Glue.count list))
+    Glue.freeStrv zv2
 
   extern g_key_file_set_uint64 : cptr -> cstr -> cstr -> u64 -> unit
 
@@ -7958,10 +8001,10 @@ module MainContext =
 
   /// Passes the results of polling back to the main loop.
   let check (self: MainContext) (maxPriority: int) (fds: list<PollFD>) : bool =
-    let za1 = Glue.records (Glue.mapList (fun (zo: PollFD) -> Glue.obj zo.Id (g_pollfd_get_type ())) fds) (zgtk_sizeof_GLib_PollFD ())
-    let zr = g_main_context_check (Glue.obj self.Id (g_main_context_get_type ())) (i32 maxPriority) za1 (i32 (Glue.count fds))
+    let za2 = Glue.records (Glue.mapList (fun (zo: PollFD) -> Glue.obj zo.Id (g_pollfd_get_type ())) fds) (zgtk_sizeof_GLib_PollFD ())
+    let zr = g_main_context_check (Glue.obj self.Id (g_main_context_get_type ())) (i32 maxPriority) za2 (i32 (Glue.count fds))
     let zv = ((zr) <> i32 0)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern g_main_context_dispatch : cptr -> unit
@@ -8104,6 +8147,13 @@ module MainContext =
   [<Unsafe>]
   let unref (self: MainContext) : unit =
     g_main_context_unref (Glue.obj self.Id (g_main_context_get_type ()))
+
+  extern g_main_context_wait : cptr -> cptr -> cptr -> i32
+
+  /// Deprecated. Tries to become the owner of the specified context, and waits on @cond if another thread is the owner.
+  [<Unsafe>]
+  let wait (self: MainContext) (cond: Cond) (mutex: cptr) : bool =
+    (((g_main_context_wait (Glue.obj self.Id (g_main_context_get_type ())) (Glue.obj cond.Id (zgtk_tag_GLib_Cond ())) mutex)) <> i32 0)
 
   extern g_main_context_wakeup : cptr -> unit
 
@@ -8758,6 +8808,13 @@ module Once =
   let impl_ (self: Once) (func: cptr) (arg: cptr) : cptr =
     ((g_once_impl (Glue.obj self.Id (zgtk_tag_GLib_Once ())) func arg))
 
+  extern g_once_init_enter : cptr -> i32
+
+  /// Function to be called when starting a critical initialization section.
+  [<Unsafe>]
+  let initEnter (location: cptr) : bool =
+    (((g_once_init_enter location)) <> i32 0)
+
   extern g_once_init_enter_impl : usize -> i32
 
   /// `g_once_init_enter_impl`.
@@ -8770,6 +8827,13 @@ module Once =
   [<Unsafe>]
   let initEnterPointer (location: cptr) : bool =
     (((g_once_init_enter_pointer location)) <> i32 0)
+
+  extern g_once_init_leave : cptr -> usize -> unit
+
+  /// Counterpart to g_once_init_enter().
+  [<Unsafe>]
+  let initLeave (location: cptr) (result: int) : unit =
+    g_once_init_leave location (usize result)
 
   extern g_once_init_leave_pointer : cptr -> cptr -> unit
 
@@ -8870,6 +8934,39 @@ module OptionContext =
   [<Unsafe>]
   let getSummary (self: OptionContext) : string =
     Glue.text ((g_option_context_get_summary self.Ptr))
+
+  extern g_option_context_parse : cptr -> cptr -> cptr -> cptr -> i32
+
+  /// Parses the command line arguments, recognizing options which have been added to @context.
+  [<Unsafe>]
+  let parse (self: OptionContext) (argc: int) (argv: cptr) : result<(bool * int), Glue.Error> =
+    Glue.outBegin ()
+    Glue.outSetInt 0 argc
+    let zr = g_option_context_parse self.Ptr (Glue.out 0) argv (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = (((zr) <> i32 0), Glue.outI32 0)
+      Glue.outEnd ()
+      Ok zv
+
+  extern g_option_context_parse_strv : cptr -> cptr -> cptr -> i32
+
+  /// Parses the command line arguments.
+  [<Unsafe>]
+  let parseStrv (self: OptionContext) (arguments: cptr) : result<bool, Glue.Error> =
+    Glue.outBegin ()
+    let zr = g_option_context_parse_strv self.Ptr arguments (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = ((zr) <> i32 0)
+      Glue.outEnd ()
+      Ok zv
 
   extern g_option_context_set_description : cptr -> cptr -> unit
 
@@ -9347,6 +9444,15 @@ module PtrArray =
     Glue.drop zcb1
     Glue.ptrArrayFree zpa2
 
+  extern g_ptr_array_free : cptr -> i32 -> cptr
+
+  /// Frees the memory allocated for the `GPtrArray`.
+  [<Unsafe>]
+  let free (array: list<cptr>) (freeSegment: bool) : cptr =
+    let zpa1 = Glue.ptrArray array
+    let zr = g_ptr_array_free zpa1 (if freeSegment then i32 1 else i32 0)
+    zr
+
   extern g_ptr_array_insert : cptr -> i32 -> cptr -> unit
 
   /// Inserts an element into the pointer array at the given index.
@@ -9378,14 +9484,14 @@ module PtrArray =
   /// Creates a new `GPtrArray`, copying @len pointers from @data, and setting the array’s reference count to 1.
   [<Unsafe>]
   let createFromArray (data: list<cptr>) (copyFunc: cptr -> cptr) : list<cptr> =
-    let zcb1 =
+    let zcb2 =
       Glue.hold (fun () ->
         let src = Glue.argPointer 0
         Glue.returnPointer (copyFunc src))
-    let za2 = Glue.ptrs data
-    let zr = g_ptr_array_new_from_array za2 (usize (Glue.count data)) (zgtk_tramp_GLib_CopyFunc ()) zcb1 (Glue.dropFn ())
+    let za3 = Glue.ptrs data
+    let zr = g_ptr_array_new_from_array za3 (usize (Glue.count data)) (zgtk_tramp_GLib_CopyFunc ()) zcb2 (Glue.dropFn ())
     let zv = (Glue.ptrArrayOf (zr) true)
-    Glue.free za2
+    Glue.free za3
     zv
 
   extern g_ptr_array_new_from_null_terminated_array : cptr -> cptr -> cptr -> cptr -> cptr
@@ -9422,8 +9528,8 @@ module PtrArray =
   /// Creates a new `GPtrArray` with @data as pointers, @len as length and a reference count of 1.
   [<Unsafe>]
   let createTake (data: list<cptr>) (elementFreeFunc: cptr) : list<cptr> =
-    let za1 = Glue.ptrs data
-    let zr = g_ptr_array_new_take za1 (usize (Glue.count data)) elementFreeFunc
+    let za2 = Glue.ptrs data
+    let zr = g_ptr_array_new_take za2 (usize (Glue.count data)) elementFreeFunc
     (Glue.ptrArrayOf (zr) true)
 
   extern g_ptr_array_new_take_null_terminated : cptr -> cptr -> cptr
@@ -10206,38 +10312,38 @@ module Regex =
 
   /// Using the standard algorithm for regular expression matching only the longest match in the @string is retrieved, it is not possible to obtain all the available matches.
   let matchAllFull (self: Regex) (string: list<string>) (startPosition: int) (matchOptions: RegexMatchFlags) : result<(bool * option<MatchInfo>), Glue.Error> =
-    let zv1 = Glue.strv string
+    let zv2 = Glue.strv string
     Glue.outBegin ()
-    let zr = g_regex_match_all_full (Glue.obj self.Id (g_regex_get_type ())) zv1 (i64 (Glue.count string)) (i32 startPosition) (u32 matchOptions.Int) (Glue.out 0) (Glue.err ())
+    let zr = g_regex_match_all_full (Glue.obj self.Id (g_regex_get_type ())) zv2 (i64 (Glue.count string)) (i32 startPosition) (u32 matchOptions.Int) (Glue.out 0) (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.freeStrv zv1
+      Glue.freeStrv zv2
       Error ze
     | None ->
-      let zid2 = Glue.wrapBoxed (Glue.outPtr 0) (g_match_info_get_type ()) true
-      let zv = (((zr) <> i32 0), (if zid2 = 0 then None else Some (MatchInfo zid2)))
+      let zid3 = Glue.wrapBoxed (Glue.outPtr 0) (g_match_info_get_type ()) true
+      let zv = (((zr) <> i32 0), (if zid3 = 0 then None else Some (MatchInfo zid3)))
       Glue.outEnd ()
-      Glue.freeStrv zv1
+      Glue.freeStrv zv2
       Ok zv
 
   extern g_regex_match_full : cptr -> cptr -> i64 -> i32 -> u32 -> cptr -> cptr -> i32
 
   /// Scans for a match in @string for the pattern in @regex.
   let matchFull (self: Regex) (string: list<string>) (startPosition: int) (matchOptions: RegexMatchFlags) : result<(bool * option<MatchInfo>), Glue.Error> =
-    let zv1 = Glue.strv string
+    let zv2 = Glue.strv string
     Glue.outBegin ()
-    let zr = g_regex_match_full (Glue.obj self.Id (g_regex_get_type ())) zv1 (i64 (Glue.count string)) (i32 startPosition) (u32 matchOptions.Int) (Glue.out 0) (Glue.err ())
+    let zr = g_regex_match_full (Glue.obj self.Id (g_regex_get_type ())) zv2 (i64 (Glue.count string)) (i32 startPosition) (u32 matchOptions.Int) (Glue.out 0) (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.freeStrv zv1
+      Glue.freeStrv zv2
       Error ze
     | None ->
-      let zid2 = Glue.wrapBoxed (Glue.outPtr 0) (g_match_info_get_type ()) true
-      let zv = (((zr) <> i32 0), (if zid2 = 0 then None else Some (MatchInfo zid2)))
+      let zid3 = Glue.wrapBoxed (Glue.outPtr 0) (g_match_info_get_type ()) true
+      let zv = (((zr) <> i32 0), (if zid3 = 0 then None else Some (MatchInfo zid3)))
       Glue.outEnd ()
-      Glue.freeStrv zv1
+      Glue.freeStrv zv2
       Ok zv
 
   extern g_regex_ref : cptr -> cptr
@@ -10251,61 +10357,61 @@ module Regex =
 
   /// Replaces all occurrences of the pattern in @regex with the replacement text.
   let replace (self: Regex) (string: list<string>) (startPosition: int) (replacement: string) (matchOptions: RegexMatchFlags) : result<string, Glue.Error> =
-    let zv1 = Glue.strv string
+    let zv2 = Glue.strv string
     Glue.outBegin ()
-    let zr = g_regex_replace (Glue.obj self.Id (g_regex_get_type ())) zv1 (i64 (Glue.count string)) (i32 startPosition) replacement (u32 matchOptions.Int) (Glue.err ())
+    let zr = g_regex_replace (Glue.obj self.Id (g_regex_get_type ())) zv2 (i64 (Glue.count string)) (i32 startPosition) replacement (u32 matchOptions.Int) (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.freeStrv zv1
+      Glue.freeStrv zv2
       Error ze
     | None ->
       let zv = Glue.takeText (zr)
       Glue.outEnd ()
-      Glue.freeStrv zv1
+      Glue.freeStrv zv2
       Ok zv
 
   extern g_regex_replace_eval : cptr -> cptr -> i64 -> i32 -> u32 -> cptr -> cptr -> cptr -> cptr
 
   /// Replaces occurrences of the pattern in regex with the output of @eval for that occurrence.
   let replaceEval (self: Regex) (string: list<string>) (startPosition: int) (matchOptions: RegexMatchFlags) (eval: MatchInfo -> String -> bool) : result<string, Glue.Error> =
-    let zcb1 =
+    let zcb2 =
       Glue.hold (fun () ->
         let matchInfo = MatchInfo (Glue.wrapBoxed (Glue.argPointer 0) (g_match_info_get_type ()) false)
         let result = String (Glue.wrapBoxed (Glue.argPointer 1) (g_gstring_get_type ()) false)
         Glue.returnBool (eval matchInfo result))
-    let zv2 = Glue.strv string
+    let zv3 = Glue.strv string
     Glue.outBegin ()
-    let zr = g_regex_replace_eval (Glue.obj self.Id (g_regex_get_type ())) zv2 (i64 (Glue.count string)) (i32 startPosition) (u32 matchOptions.Int) (zgtk_tramp_GLib_RegexEvalCallback ()) zcb1 (Glue.err ())
+    let zr = g_regex_replace_eval (Glue.obj self.Id (g_regex_get_type ())) zv3 (i64 (Glue.count string)) (i32 startPosition) (u32 matchOptions.Int) (zgtk_tramp_GLib_RegexEvalCallback ()) zcb2 (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.drop zcb1
-      Glue.freeStrv zv2
+      Glue.drop zcb2
+      Glue.freeStrv zv3
       Error ze
     | None ->
       let zv = Glue.takeText (zr)
       Glue.outEnd ()
-      Glue.drop zcb1
-      Glue.freeStrv zv2
+      Glue.drop zcb2
+      Glue.freeStrv zv3
       Ok zv
 
   extern g_regex_replace_literal : cptr -> cptr -> i64 -> i32 -> cstr -> u32 -> cptr -> cptr
 
   /// Replaces all occurrences of the pattern in @regex with the replacement text.
   let replaceLiteral (self: Regex) (string: list<string>) (startPosition: int) (replacement: string) (matchOptions: RegexMatchFlags) : result<string, Glue.Error> =
-    let zv1 = Glue.strv string
+    let zv2 = Glue.strv string
     Glue.outBegin ()
-    let zr = g_regex_replace_literal (Glue.obj self.Id (g_regex_get_type ())) zv1 (i64 (Glue.count string)) (i32 startPosition) replacement (u32 matchOptions.Int) (Glue.err ())
+    let zr = g_regex_replace_literal (Glue.obj self.Id (g_regex_get_type ())) zv2 (i64 (Glue.count string)) (i32 startPosition) replacement (u32 matchOptions.Int) (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.freeStrv zv1
+      Glue.freeStrv zv2
       Error ze
     | None ->
       let zv = Glue.takeText (zr)
       Glue.outEnd ()
-      Glue.freeStrv zv1
+      Glue.freeStrv zv2
       Ok zv
 
   extern g_regex_split : cptr -> cstr -> u32 -> cptr
@@ -10318,18 +10424,18 @@ module Regex =
 
   /// Breaks the string on the pattern, and returns an array of the tokens.
   let splitFull (self: Regex) (string: list<string>) (startPosition: int) (matchOptions: RegexMatchFlags) (maxTokens: int) : result<list<string>, Glue.Error> =
-    let zv1 = Glue.strv string
+    let zv2 = Glue.strv string
     Glue.outBegin ()
-    let zr = g_regex_split_full (Glue.obj self.Id (g_regex_get_type ())) zv1 (i64 (Glue.count string)) (i32 startPosition) (u32 matchOptions.Int) (i32 maxTokens) (Glue.err ())
+    let zr = g_regex_split_full (Glue.obj self.Id (g_regex_get_type ())) zv2 (i64 (Glue.count string)) (i32 startPosition) (u32 matchOptions.Int) (i32 maxTokens) (Glue.err ())
     match Glue.takeError () with
     | Some ze ->
       Glue.outEnd ()
-      Glue.freeStrv zv1
+      Glue.freeStrv zv2
       Error ze
     | None ->
       let zv = Glue.strvList (zr) 2
       Glue.outEnd ()
-      Glue.freeStrv zv1
+      Glue.freeStrv zv2
       Ok zv
 
   extern g_regex_unref : cptr -> unit
@@ -10814,6 +10920,12 @@ module Scanner =
   /// Gets the current token type.
   let curToken (self: Scanner) : TokenType =
     TokenType (int ((g_scanner_cur_token (Glue.obj self.Id (zgtk_tag_GLib_Scanner ())))))
+
+  extern g_scanner_cur_value : cptr -> cptr
+
+  /// Gets the current token value.
+  let curValue (self: Scanner) : cptr =
+    ((g_scanner_cur_value (Glue.obj self.Id (zgtk_tag_GLib_Scanner ()))))
 
   extern g_scanner_destroy : cptr -> unit
 
@@ -11607,6 +11719,12 @@ module StaticMutex =
   let free (self: StaticMutex) : unit =
     g_static_mutex_free (Glue.obj self.Id (zgtk_tag_GLib_StaticMutex ()))
 
+  extern g_static_mutex_get_mutex_impl : cptr -> cptr
+
+  /// `g_static_mutex_get_mutex_impl`.
+  let getMutexImpl (self: StaticMutex) : cptr =
+    ((g_static_mutex_get_mutex_impl (Glue.obj self.Id (zgtk_tag_GLib_StaticMutex ()))))
+
   extern g_static_mutex_init : cptr -> unit
 
   /// Deprecated. Initializes @mutex.
@@ -11811,6 +11929,13 @@ module String =
   let appendUriEscaped (self: String) (unescaped: string) (reservedCharsAllowed: string) (allowUtf8: bool) : String =
     String (Glue.wrapBoxed ((g_string_append_uri_escaped (Glue.obj self.Id (g_gstring_get_type ())) unescaped reservedCharsAllowed (if allowUtf8 then i32 1 else i32 0))) (g_gstring_get_type ()) false)
 
+  extern g_string_append_vprintf : cptr -> cstr -> cptr -> unit
+
+  /// Appends a formatted string onto the end of a #GString.
+  [<Unsafe>]
+  let appendVprintf (self: String) (format: string) (args: cptr) : unit =
+    g_string_append_vprintf (Glue.obj self.Id (g_gstring_get_type ())) format args
+
   extern g_string_ascii_down : cptr -> cptr
 
   /// Converts all uppercase ASCII letters to lowercase ASCII letters.
@@ -11965,6 +12090,13 @@ module String =
   /// Deprecated. Converts a #GString to uppercase.
   let up (self: String) : String =
     String (Glue.wrapBoxed ((g_string_up (Glue.obj self.Id (g_gstring_get_type ())))) (g_gstring_get_type ()) false)
+
+  extern g_string_vprintf : cptr -> cstr -> cptr -> unit
+
+  /// Writes a formatted string into a #GString.
+  [<Unsafe>]
+  let vprintf (self: String) (format: string) (args: cptr) : unit =
+    g_string_vprintf (Glue.obj self.Id (g_gstring_get_type ())) format args
 
   extern zgtk_get_GLib_String_len : cptr -> int
 
@@ -12314,6 +12446,27 @@ module Thread =
   [<Unsafe>]
   let unref (self: Thread) : unit =
     g_thread_unref (Glue.obj self.Id (g_thread_get_type ()))
+
+  extern g_thread_create : cptr -> cptr -> i32 -> cptr -> cptr
+
+  /// Deprecated. This function creates a new thread.
+  [<Unsafe>]
+  let gThreadCreate (func: unit -> cptr) (joinable: bool) : result<Thread, Glue.Error> =
+    let zcb1 =
+      Glue.hold (fun () ->
+        Glue.returnPointer (func ()))
+    Glue.outBegin ()
+    let zr = g_thread_create (zgtk_tramp_GLib_ThreadFunc ()) zcb1 (if joinable then i32 1 else i32 0) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Glue.drop zcb1
+      Error ze
+    | None ->
+      let zv = Thread (Glue.wrapBoxed (zr) (g_thread_get_type ()) true)
+      Glue.outEnd ()
+      Glue.drop zcb1
+      Ok zv
 
   extern g_thread_create_full : cptr -> cptr -> u64 -> i32 -> i32 -> i32 -> cptr -> cptr
 
@@ -13213,12 +13366,12 @@ module Uri =
 
   /// Escapes arbitrary data for use in a URI.
   let escapeBytes (unescaped: array<u8>) (reservedCharsAllowed: option<string>) : string =
-    let za1 = Glue.bytes unescaped
-    let zs2 = Glue.dupOption reservedCharsAllowed
-    let zr = g_uri_escape_bytes za1 (usize (Glue.countBytes unescaped)) zs2
+    let za2 = Glue.bytes unescaped
+    let zs3 = Glue.dupOption reservedCharsAllowed
+    let zr = g_uri_escape_bytes za2 (usize (Glue.countBytes unescaped)) zs3
     let zv = Glue.takeText (zr)
-    Glue.free za1
-    Glue.free zs2
+    Glue.free za2
+    Glue.free zs3
     zv
 
   extern g_uri_escape_string : cstr -> cptr -> i32 -> cptr
@@ -13382,6 +13535,21 @@ module Uri =
       Glue.outEnd ()
       Ok zv
 
+  extern g_uri_split_with_user : cstr -> u32 -> cptr -> cptr -> cptr -> cptr -> cptr -> cptr -> cptr -> cptr -> cptr -> cptr -> i32
+
+  /// Parses @uri_ref (which can be an [absolute or relative URI](#relative-and-absolute-uris)) according to @flags, and returns the pieces.
+  let splitWithUser (uriRef: string) (flags: UriFlags) : result<(bool * option<string> * option<string> * option<string> * option<string> * option<string> * int * option<string> * option<string> * option<string>), Glue.Error> =
+    Glue.outBegin ()
+    let zr = g_uri_split_with_user uriRef (u32 flags.Int) (Glue.out 0) (Glue.out 1) (Glue.out 2) (Glue.out 3) (Glue.out 4) (Glue.out 5) (Glue.out 6) (Glue.out 7) (Glue.out 8) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = (((zr) <> i32 0), Glue.takeTextOption (Glue.outPtr 0), Glue.takeTextOption (Glue.outPtr 1), Glue.takeTextOption (Glue.outPtr 2), Glue.takeTextOption (Glue.outPtr 3), Glue.takeTextOption (Glue.outPtr 4), Glue.outI32 5, Glue.takeTextOption (Glue.outPtr 6), Glue.takeTextOption (Glue.outPtr 7), Glue.takeTextOption (Glue.outPtr 8))
+      Glue.outEnd ()
+      Ok zv
+
   extern g_uri_unescape_bytes : cstr -> i64 -> cptr -> cptr -> cptr
 
   /// Unescapes a segment of an escaped string as binary data.
@@ -13458,14 +13626,14 @@ module Variant =
 
   /// Creates a new #GVariant array from @children.
   let createArray (childType: option<VariantType>) (children: list<Variant>) : Variant =
-    let zp1 =
+    let zp2 =
       match childType with
       | Some zo -> Glue.obj zo.Id (g_variant_type_get_gtype ())
       | None -> Glue.none ()
-    let za2 = Glue.ptrs (Glue.mapList (fun (zo: Variant) -> Glue.obj zo.Id (zgtk_type_GLib_Variant ())) children)
-    let zr = g_variant_new_array zp1 za2 (usize (Glue.count children))
+    let za3 = Glue.ptrs (Glue.mapList (fun (zo: Variant) -> Glue.obj zo.Id (zgtk_type_GLib_Variant ())) children)
+    let zr = g_variant_new_array zp2 za3 (usize (Glue.count children))
     let zv = Variant (zgtk_wrap_GLib_Variant (zr) (i32 0))
-    Glue.free za2
+    Glue.free za3
     zv
 
   extern g_variant_new_boolean : i32 -> cptr
@@ -13494,10 +13662,10 @@ module Variant =
 
   /// Constructs an array of bytestring #GVariant from the given array of strings.
   let createBytestringArray (strv: list<string>) : Variant =
-    let zv1 = Glue.strv strv
-    let zr = g_variant_new_bytestring_array zv1 (i64 (Glue.count strv))
+    let zv2 = Glue.strv strv
+    let zr = g_variant_new_bytestring_array zv2 (i64 (Glue.count strv))
     let zv = Variant (zgtk_wrap_GLib_Variant (zr) (i32 0))
-    Glue.freeStrv zv1
+    Glue.freeStrv zv2
     zv
 
   extern g_variant_new_dict_entry : cptr -> cptr -> cptr
@@ -13530,10 +13698,10 @@ module Variant =
   /// Creates a new #GVariant instance from serialized data.
   [<Unsafe>]
   let createFromData (type_: VariantType) (data: array<u8>) (trusted: bool) (notify: cptr) (userData: cptr) : Variant =
-    let za1 = Glue.bytes data
-    let zr = g_variant_new_from_data (Glue.obj type_.Id (g_variant_type_get_gtype ())) za1 (usize (Glue.countBytes data)) (if trusted then i32 1 else i32 0) notify userData
+    let za2 = Glue.bytes data
+    let zr = g_variant_new_from_data (Glue.obj type_.Id (g_variant_type_get_gtype ())) za2 (usize (Glue.countBytes data)) (if trusted then i32 1 else i32 0) notify userData
     let zv = Variant (zgtk_wrap_GLib_Variant (zr) (i32 0))
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern g_variant_new_handle : i32 -> cptr
@@ -13585,15 +13753,22 @@ module Variant =
 
   /// Constructs an array of object paths #GVariant from the given array of strings.
   let createObjv (strv: list<string>) : Variant =
-    let zv1 = Glue.strv strv
-    let zr = g_variant_new_objv zv1 (i64 (Glue.count strv))
+    let zv2 = Glue.strv strv
+    let zr = g_variant_new_objv zv2 (i64 (Glue.count strv))
     let zv = Variant (zgtk_wrap_GLib_Variant (zr) (i32 0))
-    Glue.freeStrv zv1
+    Glue.freeStrv zv2
     zv
 
   /// Parses @format and returns the result. C's own function, of variable arguments: called as C calls it, by code that
   /// answers for what it passes.
   extern g_variant_new_parsed : cstr -> ... -> cptr
+
+  extern g_variant_new_parsed_va : cstr -> cptr -> cptr
+
+  /// Parses @format and returns the result.
+  [<Unsafe>]
+  let createParsedVa (format: string) (app: cptr) : Variant =
+    Variant (zgtk_wrap_GLib_Variant ((g_variant_new_parsed_va format app)) (i32 1))
 
   /// Creates a string-type GVariant using printf formatting. C's own function, of variable arguments: called as C calls it, by code that
   /// answers for what it passes.
@@ -13615,10 +13790,10 @@ module Variant =
 
   /// Constructs an array of strings #GVariant from the given array of strings.
   let createStrv (strv: list<string>) : Variant =
-    let zv1 = Glue.strv strv
-    let zr = g_variant_new_strv zv1 (i64 (Glue.count strv))
+    let zv2 = Glue.strv strv
+    let zr = g_variant_new_strv zv2 (i64 (Glue.count strv))
     let zv = Variant (zgtk_wrap_GLib_Variant (zr) (i32 0))
-    Glue.freeStrv zv1
+    Glue.freeStrv zv2
     zv
 
   extern g_variant_new_take_string : cstr -> cptr
@@ -13631,10 +13806,10 @@ module Variant =
 
   /// Creates a new tuple #GVariant out of the items in @children.
   let createTuple (children: list<Variant>) : Variant =
-    let za1 = Glue.ptrs (Glue.mapList (fun (zo: Variant) -> Glue.obj zo.Id (zgtk_type_GLib_Variant ())) children)
-    let zr = g_variant_new_tuple za1 (usize (Glue.count children))
+    let za2 = Glue.ptrs (Glue.mapList (fun (zo: Variant) -> Glue.obj zo.Id (zgtk_type_GLib_Variant ())) children)
+    let zr = g_variant_new_tuple za2 (usize (Glue.count children))
     let zv = Variant (zgtk_wrap_GLib_Variant (zr) (i32 0))
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern g_variant_new_uint16 : u16 -> cptr
@@ -13654,6 +13829,17 @@ module Variant =
   /// Creates a new uint64 #GVariant instance.
   let createUint64 (value: int) : Variant =
     Variant (zgtk_wrap_GLib_Variant ((g_variant_new_uint64 (u64 value))) (i32 0))
+
+  extern g_variant_new_va : cstr -> cptr -> cptr -> cptr
+
+  /// This function is intended to be used by libraries based on #GVariant that want to provide g_variant_new()-like functionality to their users.
+  [<Unsafe>]
+  let createVa (formatString: string) (endptr: option<string>) (app: cptr) : Variant =
+    let zs1 = Glue.dupOption endptr
+    let zr = g_variant_new_va formatString zs1 app
+    let zv = Variant (zgtk_wrap_GLib_Variant (zr) (i32 1))
+    Glue.free zs1
+    zv
 
   extern g_variant_new_variant : cptr -> cptr
 
@@ -13914,6 +14100,15 @@ module Variant =
   /// Returns the 64-bit unsigned integer value of @value.
   let getUint64 (self: Variant) : int =
     (int ((g_variant_get_uint64 (Glue.obj self.Id (zgtk_type_GLib_Variant ())))))
+
+  extern g_variant_get_va : cptr -> cstr -> cptr -> cptr -> unit
+
+  /// This function is intended to be used by libraries based on #GVariant that want to provide g_variant_get()-like functionality to their users.
+  [<Unsafe>]
+  let getVa (self: Variant) (formatString: string) (endptr: option<string>) (app: cptr) : unit =
+    let zs1 = Glue.dupOption endptr
+    g_variant_get_va (Glue.obj self.Id (zgtk_type_GLib_Variant ())) formatString zs1 app
+    Glue.free zs1
 
   extern g_variant_get_variant : cptr -> cptr
 
@@ -14315,6 +14510,13 @@ module VariantType =
   /// Constructs the type corresponding to a ‘maybe’ instance containing type @type or `Nothing`.
   let createMaybe (element: VariantType) : VariantType =
     VariantType (Glue.wrapBoxed ((g_variant_type_new_maybe (Glue.obj element.Id (g_variant_type_get_gtype ())))) (g_variant_type_get_gtype ()) true)
+
+  extern g_variant_type_new_tuple : cptr -> i32 -> cptr
+
+  /// Constructs a new tuple type, from @items.
+  [<Unsafe>]
+  let createTuple (items: cptr) (length: int) : VariantType =
+    VariantType (Glue.wrapBoxed ((g_variant_type_new_tuple items (i32 length))) (g_variant_type_get_gtype ()) true)
 
   extern g_variant_type_copy : cptr -> cptr
 
@@ -15037,6 +15239,13 @@ extern g_assertion_message_cmpint : cstr -> cstr -> i32 -> cstr -> cstr -> u64 -
 let assertionMessageCmpint (domain: string) (file: string) (line: int) (func: string) (expr: string) (arg1: int) (cmp: string) (arg2: int) (numtype: int) : unit =
   g_assertion_message_cmpint domain file (i32 line) func expr (u64 arg1) cmp (u64 arg2) (i8 numtype)
 
+extern g_assertion_message_cmpnum : cstr -> cstr -> i32 -> cstr -> cstr -> cptr -> cstr -> cptr -> i8 -> unit
+
+/// `g_assertion_message_cmpnum`.
+[<Unsafe>]
+let assertionMessageCmpnum (domain: string) (file: string) (line: int) (func: string) (expr: string) (arg1: cptr) (cmp: string) (arg2: cptr) (numtype: int) : unit =
+  g_assertion_message_cmpnum domain file (i32 line) func expr arg1 cmp arg2 (i8 numtype)
+
 extern g_assertion_message_cmpstr : cstr -> cstr -> i32 -> cstr -> cstr -> cstr -> cstr -> cstr -> unit
 
 /// `g_assertion_message_cmpstr`.
@@ -15294,6 +15503,16 @@ extern g_atomic_ref_count_inc : i32 -> unit
 let atomicRefCountInc (arc: int) : unit =
   g_atomic_ref_count_inc (i32 arc)
 
+extern g_atomic_ref_count_init : cptr -> unit
+
+/// Initializes a reference count variable to 1.
+let gAtomicRefCountInit () : int =
+  Glue.outBegin ()
+  g_atomic_ref_count_init (Glue.out 0)
+  let zv = Glue.outI32 0
+  Glue.outEnd ()
+  zv
+
 extern g_base64_decode : cstr -> cptr -> cptr
 
 /// Decode a sequence of Base-64 encoded text into binary data.
@@ -15304,14 +15523,69 @@ let base64Decode (text: string) : array<u8> =
   Glue.outEnd ()
   zv
 
+extern g_base64_decode_inplace : cptr -> cptr -> u8
+
+/// Decode a sequence of Base-64 encoded text into binary data by overwriting the input data.
+[<Unsafe>]
+let base64DecodeInplace (text: cptr) (outLen: int) : (int * int) =
+  Glue.outBegin ()
+  Glue.outSetInt 0 outLen
+  let zr = g_base64_decode_inplace text (Glue.out 0)
+  let zv = ((int (zr)), Glue.outI64 0)
+  Glue.outEnd ()
+  zv
+
+extern g_base64_decode_step : cptr -> usize -> cptr -> cptr -> cptr -> usize
+
+/// Incrementally decode a sequence of binary data from its Base-64 stringified representation.
+[<Unsafe>]
+let base64DecodeStep (in_: array<u8>) (out: cptr) (state: int) (save: int) : (int * int * int) =
+  let za2 = Glue.bytes in_
+  Glue.outBegin ()
+  Glue.outSetInt 0 state
+  Glue.outSetInt 1 save
+  let zr = g_base64_decode_step za2 (usize (Glue.countBytes in_)) out (Glue.out 0) (Glue.out 1)
+  let zv = ((int (zr)), Glue.outI32 0, Glue.outU32 1)
+  Glue.outEnd ()
+  Glue.free za2
+  zv
+
 extern g_base64_encode : cptr -> usize -> cptr
 
 /// Encode a sequence of binary data into its Base-64 stringified representation.
 let base64Encode (data: array<u8>) : string =
-  let za1 = Glue.bytes data
-  let zr = g_base64_encode za1 (usize (Glue.countBytes data))
+  let za2 = Glue.bytes data
+  let zr = g_base64_encode za2 (usize (Glue.countBytes data))
   let zv = Glue.takeText (zr)
-  Glue.free za1
+  Glue.free za2
+  zv
+
+extern g_base64_encode_close : i32 -> cptr -> cptr -> cptr -> usize
+
+/// Flush the status from a sequence of calls to g_base64_encode_step().
+[<Unsafe>]
+let base64EncodeClose (breakLines: bool) (out: cptr) (state: int) (save: int) : (int * int * int) =
+  Glue.outBegin ()
+  Glue.outSetInt 0 state
+  Glue.outSetInt 1 save
+  let zr = g_base64_encode_close (if breakLines then i32 1 else i32 0) out (Glue.out 0) (Glue.out 1)
+  let zv = ((int (zr)), Glue.outI32 0, Glue.outI32 1)
+  Glue.outEnd ()
+  zv
+
+extern g_base64_encode_step : cptr -> usize -> i32 -> cptr -> cptr -> cptr -> usize
+
+/// Incrementally encode a sequence of binary data into its Base-64 stringified representation.
+[<Unsafe>]
+let base64EncodeStep (in_: array<u8>) (breakLines: bool) (out: cptr) (state: int) (save: int) : (int * int * int) =
+  let za2 = Glue.bytes in_
+  Glue.outBegin ()
+  Glue.outSetInt 0 state
+  Glue.outSetInt 1 save
+  let zr = g_base64_encode_step za2 (usize (Glue.countBytes in_)) (if breakLines then i32 1 else i32 0) out (Glue.out 0) (Glue.out 1)
+  let zv = ((int (zr)), Glue.outI32 0, Glue.outI32 1)
+  Glue.outEnd ()
+  Glue.free za2
   zv
 
 extern g_basename : cstr -> cptr
@@ -15386,6 +15660,13 @@ let blowChunks () : unit =
 /// Creates a filename from a series of elements using the correct separator for the current platform. C's own function, of variable arguments: called as C calls it, by code that
 /// answers for what it passes.
 extern g_build_filename : cstr -> ... -> cptr
+
+extern g_build_filename_valist : cstr -> cptr -> cptr
+
+/// Creates a filename from a list of elements using the correct separator for the current platform.
+[<Unsafe>]
+let buildFilenameValist (firstElement: string) (args: cptr) : string =
+  Glue.takeText ((g_build_filename_valist firstElement args))
 
 extern g_build_filenamev : cptr -> cptr
 
@@ -15488,6 +15769,13 @@ let clearList (listPtr: list<cptr>) (destroy: cptr) : unit =
   g_clear_list zl1 destroy
   Glue.freeGlist zl1 false
 
+extern g_clear_pointer : cptr -> cptr -> unit
+
+/// Clears a reference to a variable.
+[<Unsafe>]
+let clearPointer (pp: cptr) (destroy: cptr) : unit =
+  g_clear_pointer pp destroy
+
 extern g_clear_slist : cptr -> cptr -> unit
 
 /// Clears a pointer to a #GSList, freeing it and, optionally, freeing its elements using @destroy.
@@ -15522,10 +15810,10 @@ extern g_compute_checksum_for_data : i32 -> cptr -> usize -> cptr
 
 /// Computes the checksum for a binary @data of @length.
 let computeChecksumForData (checksumType: ChecksumType) (data: array<u8>) : option<string> =
-  let za1 = Glue.bytes data
-  let zr = g_compute_checksum_for_data (i32 checksumType.Int) za1 (usize (Glue.countBytes data))
+  let za2 = Glue.bytes data
+  let zr = g_compute_checksum_for_data (i32 checksumType.Int) za2 (usize (Glue.countBytes data))
   let zv = Glue.takeTextOption (zr)
-  Glue.free za1
+  Glue.free za2
   zv
 
 extern g_compute_checksum_for_string : i32 -> cstr -> i64 -> cptr
@@ -15544,40 +15832,40 @@ extern g_compute_hmac_for_data : i32 -> cptr -> usize -> cptr -> usize -> cptr
 
 /// Computes the HMAC for a binary @data of @length.
 let computeHmacForData (digestType: ChecksumType) (key: array<u8>) (data: array<u8>) : string =
-  let za1 = Glue.bytes key
-  let za2 = Glue.bytes data
-  let zr = g_compute_hmac_for_data (i32 digestType.Int) za1 (usize (Glue.countBytes key)) za2 (usize (Glue.countBytes data))
+  let za3 = Glue.bytes key
+  let za4 = Glue.bytes data
+  let zr = g_compute_hmac_for_data (i32 digestType.Int) za3 (usize (Glue.countBytes key)) za4 (usize (Glue.countBytes data))
   let zv = Glue.takeText (zr)
-  Glue.free za1
-  Glue.free za2
+  Glue.free za3
+  Glue.free za4
   zv
 
 extern g_compute_hmac_for_string : i32 -> cptr -> usize -> cstr -> i64 -> cptr
 
 /// Computes the HMAC for a string.
 let computeHmacForString (digestType: ChecksumType) (key: array<u8>) (str: string) (length: int) : string =
-  let za1 = Glue.bytes key
-  let zr = g_compute_hmac_for_string (i32 digestType.Int) za1 (usize (Glue.countBytes key)) str (i64 length)
+  let za2 = Glue.bytes key
+  let zr = g_compute_hmac_for_string (i32 digestType.Int) za2 (usize (Glue.countBytes key)) str (i64 length)
   let zv = Glue.takeText (zr)
-  Glue.free za1
+  Glue.free za2
   zv
 
 extern g_convert : cptr -> i64 -> cstr -> cstr -> cptr -> cptr -> cptr -> cptr
 
 /// Converts a string from one character set to another.
 let convert (str: array<u8>) (toCodeset: string) (fromCodeset: string) : result<(array<u8> * int), Glue.Error> =
-  let za1 = Glue.bytes str
+  let za2 = Glue.bytes str
   Glue.outBegin ()
-  let zr = g_convert za1 (i64 (Glue.countBytes str)) toCodeset fromCodeset (Glue.out 1) (Glue.out 0) (Glue.err ())
+  let zr = g_convert za2 (i64 (Glue.countBytes str)) toCodeset fromCodeset (Glue.out 1) (Glue.out 0) (Glue.err ())
   match Glue.takeError () with
   | Some ze ->
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Error ze
   | None ->
     let zv = (Glue.bytesOf (zr) (Glue.outI64 0) true, Glue.outI64 1)
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Ok zv
 
 extern g_convert_error_quark : unit -> u32
@@ -15590,18 +15878,18 @@ extern g_convert_with_fallback : cptr -> i64 -> cstr -> cstr -> cstr -> cptr -> 
 
 /// Converts a string from one character set to another, possibly including fallback sequences for characters not representable in the output.
 let convertWithFallback (str: array<u8>) (toCodeset: string) (fromCodeset: string) (fallback: string) : result<(array<u8> * int), Glue.Error> =
-  let za1 = Glue.bytes str
+  let za2 = Glue.bytes str
   Glue.outBegin ()
-  let zr = g_convert_with_fallback za1 (i64 (Glue.countBytes str)) toCodeset fromCodeset fallback (Glue.out 1) (Glue.out 0) (Glue.err ())
+  let zr = g_convert_with_fallback za2 (i64 (Glue.countBytes str)) toCodeset fromCodeset fallback (Glue.out 1) (Glue.out 0) (Glue.err ())
   match Glue.takeError () with
   | Some ze ->
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Error ze
   | None ->
     let zv = (Glue.bytesOf (zr) (Glue.outI64 0) true, Glue.outI64 1)
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Ok zv
 
 extern g_convert_with_iconv : cptr -> i64 -> cptr -> cptr -> cptr -> cptr -> cptr
@@ -15609,18 +15897,18 @@ extern g_convert_with_iconv : cptr -> i64 -> cptr -> cptr -> cptr -> cptr -> cpt
 /// Converts a string from one character set to another.
 [<Unsafe>]
 let convertWithIconv (str: array<u8>) (converter: IConv) : result<(array<u8> * int), Glue.Error> =
-  let za1 = Glue.bytes str
+  let za2 = Glue.bytes str
   Glue.outBegin ()
-  let zr = g_convert_with_iconv za1 (i64 (Glue.countBytes str)) converter.Ptr (Glue.out 1) (Glue.out 0) (Glue.err ())
+  let zr = g_convert_with_iconv za2 (i64 (Glue.countBytes str)) converter.Ptr (Glue.out 1) (Glue.out 0) (Glue.err ())
   match Glue.takeError () with
   | Some ze ->
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Error ze
   | None ->
     let zv = (Glue.bytesOf (zr) (Glue.outI64 0) true, Glue.outI64 1)
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Ok zv
 
 extern g_creat : cstr -> i32 -> i32
@@ -15689,9 +15977,9 @@ extern g_datalist_id_remove_multiple : cptr -> cptr -> usize -> unit
 /// Removes multiple keys from a datalist.
 [<Unsafe>]
 let datalistIdRemoveMultiple (datalist: Data) (keys: list<int>) : unit =
-  let za1 = Glue.ints keys 4
-  g_datalist_id_remove_multiple datalist.Ptr za1 (usize (Glue.count keys))
-  Glue.free za1
+  let za2 = Glue.ints keys 4
+  g_datalist_id_remove_multiple datalist.Ptr za2 (usize (Glue.count keys))
+  Glue.free za2
 
 extern g_datalist_id_remove_no_notify : cptr -> u32 -> cptr
 
@@ -15699,6 +15987,13 @@ extern g_datalist_id_remove_no_notify : cptr -> u32 -> cptr
 [<Unsafe>]
 let datalistIdRemoveNoNotify (datalist: Data) (keyId: int) : cptr =
   ((g_datalist_id_remove_no_notify datalist.Ptr (u32 keyId)))
+
+extern g_datalist_id_replace_data : cptr -> u32 -> cptr -> cptr -> cptr -> cptr -> i32
+
+/// Compares the member that is associated with @key_id in @datalist to @oldval, and if they are the same, replace @oldval with @newval.
+[<Unsafe>]
+let datalistIdReplaceData (datalist: Data) (keyId: int) (oldval: cptr) (newval: cptr) (destroy: cptr) (oldDestroy: cptr) : bool =
+  (((g_datalist_id_replace_data datalist.Ptr (u32 keyId) oldval newval destroy oldDestroy)) <> i32 0)
 
 extern g_datalist_id_set_data_full : cptr -> u32 -> cptr -> cptr -> unit
 
@@ -15937,36 +16232,36 @@ extern g_file_set_contents : cstr -> cptr -> i64 -> cptr -> i32
 
 /// Writes all of @contents to a file named @filename.
 let fileSetContents (filename: string) (contents: array<u8>) : result<bool, Glue.Error> =
-  let za1 = Glue.bytes contents
+  let za2 = Glue.bytes contents
   Glue.outBegin ()
-  let zr = g_file_set_contents filename za1 (i64 (Glue.countBytes contents)) (Glue.err ())
+  let zr = g_file_set_contents filename za2 (i64 (Glue.countBytes contents)) (Glue.err ())
   match Glue.takeError () with
   | Some ze ->
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Error ze
   | None ->
     let zv = ((zr) <> i32 0)
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Ok zv
 
 extern g_file_set_contents_full : cstr -> cptr -> i64 -> u32 -> i32 -> cptr -> i32
 
 /// Writes all of @contents to a file named @filename, with good error checking.
 let fileSetContentsFull (filename: string) (contents: array<u8>) (flags: FileSetContentsFlags) (mode: int) : result<bool, Glue.Error> =
-  let za1 = Glue.bytes contents
+  let za2 = Glue.bytes contents
   Glue.outBegin ()
-  let zr = g_file_set_contents_full filename za1 (i64 (Glue.countBytes contents)) (u32 flags.Int) (i32 mode) (Glue.err ())
+  let zr = g_file_set_contents_full filename za2 (i64 (Glue.countBytes contents)) (u32 flags.Int) (i32 mode) (Glue.err ())
   match Glue.takeError () with
   | Some ze ->
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Error ze
   | None ->
     let zv = ((zr) <> i32 0)
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Ok zv
 
 extern g_file_test : cstr -> u32 -> i32
@@ -16478,18 +16773,18 @@ extern g_locale_to_utf8 : cptr -> i64 -> cptr -> cptr -> cptr -> cptr
 
 /// Converts a string which is in the encoding used for strings by the C runtime (usually the same as that used by the operating system) in the [current locale](running.html#locale) into a UTF-8 string.
 let localeToUtf8 (opsysstring: array<u8>) : result<(string * int * int), Glue.Error> =
-  let za1 = Glue.bytes opsysstring
+  let za2 = Glue.bytes opsysstring
   Glue.outBegin ()
-  let zr = g_locale_to_utf8 za1 (i64 (Glue.countBytes opsysstring)) (Glue.out 0) (Glue.out 1) (Glue.err ())
+  let zr = g_locale_to_utf8 za2 (i64 (Glue.countBytes opsysstring)) (Glue.out 0) (Glue.out 1) (Glue.err ())
   match Glue.takeError () with
   | Some ze ->
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Error ze
   | None ->
     let zv = (Glue.takeText (zr), Glue.outI64 0, Glue.outI64 1)
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Ok zv
 
 /// Logs an error or debugging message. C's own function, of variable arguments: called as C calls it, by code that
@@ -16589,9 +16884,9 @@ extern g_log_structured_array : u32 -> cptr -> usize -> unit
 
 /// Log a message with structured data.
 let logStructuredArray (logLevel: LogLevelFlags) (fields: list<LogField>) : unit =
-  let za1 = Glue.records (Glue.mapList (fun (zo: LogField) -> Glue.obj zo.Id (zgtk_tag_GLib_LogField ())) fields) (zgtk_sizeof_GLib_LogField ())
-  g_log_structured_array (u32 logLevel.Int) za1 (usize (Glue.count fields))
-  Glue.free za1
+  let za2 = Glue.records (Glue.mapList (fun (zo: LogField) -> Glue.obj zo.Id (zgtk_tag_GLib_LogField ())) fields) (zgtk_sizeof_GLib_LogField ())
+  g_log_structured_array (u32 logLevel.Int) za2 (usize (Glue.count fields))
+  Glue.free za2
 
 /// `g_log_structured_standard`. C's own function, of variable arguments: called as C calls it, by code that
 /// answers for what it passes.
@@ -16610,10 +16905,10 @@ extern g_log_writer_default : u32 -> cptr -> usize -> cptr -> i32
 /// Format a structured log message and output it to the default log destination for the platform.
 [<Unsafe>]
 let logWriterDefault (logLevel: LogLevelFlags) (fields: list<LogField>) (userData: cptr) : LogWriterOutput =
-  let za1 = Glue.records (Glue.mapList (fun (zo: LogField) -> Glue.obj zo.Id (zgtk_tag_GLib_LogField ())) fields) (zgtk_sizeof_GLib_LogField ())
-  let zr = g_log_writer_default (u32 logLevel.Int) za1 (usize (Glue.count fields)) userData
+  let za2 = Glue.records (Glue.mapList (fun (zo: LogField) -> Glue.obj zo.Id (zgtk_tag_GLib_LogField ())) fields) (zgtk_sizeof_GLib_LogField ())
+  let zr = g_log_writer_default (u32 logLevel.Int) za2 (usize (Glue.count fields)) userData
   let zv = LogWriterOutput (int (zr))
-  Glue.free za1
+  Glue.free za2
   zv
 
 extern g_log_writer_default_set_debug_domains : cptr -> unit
@@ -16644,10 +16939,10 @@ extern g_log_writer_format_fields : u32 -> cptr -> usize -> i32 -> cptr
 
 /// Format a structured log message as a string suitable for outputting to the terminal (or elsewhere).
 let logWriterFormatFields (logLevel: LogLevelFlags) (fields: list<LogField>) (useColor: bool) : string =
-  let za1 = Glue.records (Glue.mapList (fun (zo: LogField) -> Glue.obj zo.Id (zgtk_tag_GLib_LogField ())) fields) (zgtk_sizeof_GLib_LogField ())
-  let zr = g_log_writer_format_fields (u32 logLevel.Int) za1 (usize (Glue.count fields)) (if useColor then i32 1 else i32 0)
+  let za2 = Glue.records (Glue.mapList (fun (zo: LogField) -> Glue.obj zo.Id (zgtk_tag_GLib_LogField ())) fields) (zgtk_sizeof_GLib_LogField ())
+  let zr = g_log_writer_format_fields (u32 logLevel.Int) za2 (usize (Glue.count fields)) (if useColor then i32 1 else i32 0)
   let zv = Glue.takeText (zr)
-  Glue.free za1
+  Glue.free za2
   zv
 
 extern g_log_writer_is_journald : i32 -> i32
@@ -16661,10 +16956,10 @@ extern g_log_writer_journald : u32 -> cptr -> usize -> cptr -> i32
 /// Format a structured log message and send it to the systemd journal as a set of key–value pairs.
 [<Unsafe>]
 let logWriterJournald (logLevel: LogLevelFlags) (fields: list<LogField>) (userData: cptr) : LogWriterOutput =
-  let za1 = Glue.records (Glue.mapList (fun (zo: LogField) -> Glue.obj zo.Id (zgtk_tag_GLib_LogField ())) fields) (zgtk_sizeof_GLib_LogField ())
-  let zr = g_log_writer_journald (u32 logLevel.Int) za1 (usize (Glue.count fields)) userData
+  let za2 = Glue.records (Glue.mapList (fun (zo: LogField) -> Glue.obj zo.Id (zgtk_tag_GLib_LogField ())) fields) (zgtk_sizeof_GLib_LogField ())
+  let zr = g_log_writer_journald (u32 logLevel.Int) za2 (usize (Glue.count fields)) userData
   let zv = LogWriterOutput (int (zr))
-  Glue.free za1
+  Glue.free za2
   zv
 
 extern g_log_writer_standard_streams : u32 -> cptr -> usize -> cptr -> i32
@@ -16672,10 +16967,10 @@ extern g_log_writer_standard_streams : u32 -> cptr -> usize -> cptr -> i32
 /// Format a structured log message and print it to either `stdout` or `stderr`, depending on its log level.
 [<Unsafe>]
 let logWriterStandardStreams (logLevel: LogLevelFlags) (fields: list<LogField>) (userData: cptr) : LogWriterOutput =
-  let za1 = Glue.records (Glue.mapList (fun (zo: LogField) -> Glue.obj zo.Id (zgtk_tag_GLib_LogField ())) fields) (zgtk_sizeof_GLib_LogField ())
-  let zr = g_log_writer_standard_streams (u32 logLevel.Int) za1 (usize (Glue.count fields)) userData
+  let za2 = Glue.records (Glue.mapList (fun (zo: LogField) -> Glue.obj zo.Id (zgtk_tag_GLib_LogField ())) fields) (zgtk_sizeof_GLib_LogField ())
+  let zr = g_log_writer_standard_streams (u32 logLevel.Int) za2 (usize (Glue.count fields)) userData
   let zv = LogWriterOutput (int (zr))
-  Glue.free za1
+  Glue.free za2
   zv
 
 extern g_log_writer_supports_color : i32 -> i32
@@ -16689,11 +16984,20 @@ extern g_log_writer_syslog : u32 -> cptr -> usize -> cptr -> i32
 /// Format a structured log message and send it to the syslog daemon.
 [<Unsafe>]
 let logWriterSyslog (logLevel: LogLevelFlags) (fields: list<LogField>) (userData: cptr) : LogWriterOutput =
-  let za1 = Glue.records (Glue.mapList (fun (zo: LogField) -> Glue.obj zo.Id (zgtk_tag_GLib_LogField ())) fields) (zgtk_sizeof_GLib_LogField ())
-  let zr = g_log_writer_syslog (u32 logLevel.Int) za1 (usize (Glue.count fields)) userData
+  let za2 = Glue.records (Glue.mapList (fun (zo: LogField) -> Glue.obj zo.Id (zgtk_tag_GLib_LogField ())) fields) (zgtk_sizeof_GLib_LogField ())
+  let zr = g_log_writer_syslog (u32 logLevel.Int) za2 (usize (Glue.count fields)) userData
   let zv = LogWriterOutput (int (zr))
-  Glue.free za1
+  Glue.free za2
   zv
+
+extern g_logv : cptr -> u32 -> cstr -> cptr -> unit
+
+/// Logs an error or debugging message.
+[<Unsafe>]
+let logv (logDomain: option<string>) (logLevel: LogLevelFlags) (format: string) (args: cptr) : unit =
+  let zs1 = Glue.dupOption logDomain
+  g_logv zs1 (u32 logLevel.Int) format args
+  Glue.free zs1
 
 extern g_lstat : cstr -> cptr -> i32
 
@@ -16759,6 +17063,13 @@ let markupEscapeText (text: string) (length: int) : string =
 /// Formats arguments according to @format, escaping all string and character arguments in the fashion of g_markup_escape_text(). C's own function, of variable arguments: called as C calls it, by code that
 /// answers for what it passes.
 extern g_markup_printf_escaped : cstr -> ... -> cptr
+
+extern g_markup_vprintf_escaped : cstr -> cptr -> cptr
+
+/// Formats the data in @args according to @format, escaping all string and character arguments in the fashion of g_markup_escape_text().
+[<Unsafe>]
+let markupVprintfEscaped (format: string) (args: cptr) : string =
+  Glue.takeText ((g_markup_vprintf_escaped format args))
 
 extern g_mem_is_system_malloc : unit -> i32
 
@@ -16871,12 +17182,12 @@ extern g_parse_debug_string : cptr -> cptr -> u32 -> u32
 
 /// Parses a string containing debugging options into a %guint containing bit flags.
 let parseDebugString (string: option<string>) (keys: list<DebugKey>) : int =
-  let zs1 = Glue.dupOption string
-  let za2 = Glue.records (Glue.mapList (fun (zo: DebugKey) -> Glue.obj zo.Id (zgtk_tag_GLib_DebugKey ())) keys) (zgtk_sizeof_GLib_DebugKey ())
-  let zr = g_parse_debug_string zs1 za2 (u32 (Glue.count keys))
+  let zs2 = Glue.dupOption string
+  let za3 = Glue.records (Glue.mapList (fun (zo: DebugKey) -> Glue.obj zo.Id (zgtk_tag_GLib_DebugKey ())) keys) (zgtk_sizeof_GLib_DebugKey ())
+  let zr = g_parse_debug_string zs2 za3 (u32 (Glue.count keys))
   let zv = (int (zr))
-  Glue.free zs1
-  Glue.free za2
+  Glue.free zs2
+  Glue.free za3
   zv
 
 extern g_path_get_basename : cstr -> cptr
@@ -16981,6 +17292,13 @@ let poll (fds: PollFD) (nfds: int) (timeout: int) : int =
 /// answers for what it passes.
 extern g_prefix_error : cptr -> cstr -> ... -> unit
 
+extern g_prefix_error_literal : cptr -> cstr -> unit
+
+/// Prefixes @prefix to an existing error message.
+[<Unsafe>]
+let prefixErrorLiteral (err: cptr) (prefix: string) : unit =
+  g_prefix_error_literal err prefix
+
 /// Outputs a formatted message via the print handler. C's own function, of variable arguments: called as C calls it, by code that
 /// answers for what it passes.
 extern g_print : cstr -> ... -> unit
@@ -16992,6 +17310,13 @@ extern g_printerr : cstr -> ... -> unit
 /// An implementation of the standard `printf()` function which supports positional parameters, as specified in the Single Unix Specification. C's own function, of variable arguments: called as C calls it, by code that
 /// answers for what it passes.
 extern g_printf : cstr -> ... -> i32
+
+extern g_printf_string_upper_bound : cstr -> cptr -> usize
+
+/// Calculates the maximum space needed to store the output of the `sprintf()` function.
+[<Unsafe>]
+let printfStringUpperBound (format: string) (args: cptr) : int =
+  (int ((g_printf_string_upper_bound format args)))
 
 extern g_propagate_error : cptr -> cptr -> unit
 
@@ -17172,6 +17497,16 @@ let refCountInc (rc: int) : int =
   Glue.outBegin ()
   Glue.outSetInt 0 rc
   g_ref_count_inc (Glue.out 0)
+  let zv = Glue.outI32 0
+  Glue.outEnd ()
+  zv
+
+extern g_ref_count_init : cptr -> unit
+
+/// Initializes a reference count variable to 1.
+let gRefCountInit () : int =
+  Glue.outBegin ()
+  g_ref_count_init (Glue.out 0)
   let zv = Glue.outI32 0
   Glue.outEnd ()
   zv
@@ -17400,15 +17735,15 @@ extern g_sort_array : cptr -> usize -> usize -> cptr -> cptr -> unit
 /// This is just like the standard C [`qsort()`](man:qsort(3)) function, but the comparison routine accepts a user data argument (like [`qsort_r()`](man:qsort_r(3))).
 [<Unsafe>]
 let sortArray (array: list<cptr>) (elementSize: int) (compareFunc: cptr -> cptr -> int) : unit =
-  let zcb1 =
+  let zcb2 =
     Glue.hold (fun () ->
       let a = Glue.argPointer 0
       let b = Glue.argPointer 1
       Glue.returnInt (compareFunc a b))
-  let za2 = Glue.ptrs array
-  g_sort_array za2 (usize (Glue.count array)) (usize elementSize) (zgtk_tramp_GLib_CompareDataFunc ()) zcb1
-  Glue.drop zcb1
-  Glue.free za2
+  let za3 = Glue.ptrs array
+  g_sort_array za3 (usize (Glue.count array)) (usize elementSize) (zgtk_tramp_GLib_CompareDataFunc ()) zcb2
+  Glue.drop zcb2
+  Glue.free za3
 
 extern g_spaced_primes_closest : u32 -> u32
 
@@ -17501,33 +17836,33 @@ extern g_spawn_async_with_pipes_and_fds : cptr -> cptr -> cptr -> u32 -> cptr ->
 
 /// Executes a child program asynchronously (your program will not block waiting for the child to exit).
 let spawnAsyncWithPipesAndFds (workingDirectory: option<string>) (argv: list<string>) (envp: list<string>) (flags: SpawnFlags) (childSetup: unit -> unit) (stdinFd: int) (stdoutFd: int) (stderrFd: int) (sourceFds: list<int>) (targetFds: list<int>) : result<(bool * int * int * int * int), Glue.Error> =
-  let zcb1 =
+  let zcb2 =
     Glue.hold (fun () ->
       childSetup ())
-  let zs2 = Glue.dupOption workingDirectory
-  let zv3 = Glue.strv argv
-  let zv4 = Glue.strv envp
-  let za5 = Glue.ints sourceFds 4
-  let za6 = Glue.ints targetFds 4
+  let zs3 = Glue.dupOption workingDirectory
+  let zv4 = Glue.strv argv
+  let zv5 = Glue.strv envp
+  let za6 = Glue.ints sourceFds 4
+  let za7 = Glue.ints targetFds 4
   Glue.outBegin ()
-  let zr = g_spawn_async_with_pipes_and_fds zs2 zv3 zv4 (u32 flags.Int) (zgtk_tramp_GLib_SpawnChildSetupFunc_once ()) zcb1 (i32 stdinFd) (i32 stdoutFd) (i32 stderrFd) za5 za6 (usize (Glue.count targetFds)) (Glue.out 0) (Glue.out 1) (Glue.out 2) (Glue.out 3) (Glue.err ())
+  let zr = g_spawn_async_with_pipes_and_fds zs3 zv4 zv5 (u32 flags.Int) (zgtk_tramp_GLib_SpawnChildSetupFunc_once ()) zcb2 (i32 stdinFd) (i32 stdoutFd) (i32 stderrFd) za6 za7 (usize (Glue.count targetFds)) (Glue.out 0) (Glue.out 1) (Glue.out 2) (Glue.out 3) (Glue.err ())
   match Glue.takeError () with
   | Some ze ->
     Glue.outEnd ()
-    Glue.free zs2
-    Glue.freeStrv zv3
+    Glue.free zs3
     Glue.freeStrv zv4
-    Glue.free za5
+    Glue.freeStrv zv5
     Glue.free za6
+    Glue.free za7
     Error ze
   | None ->
     let zv = (((zr) <> i32 0), Glue.outI32 0, Glue.outI32 1, Glue.outI32 2, Glue.outI32 3)
     Glue.outEnd ()
-    Glue.free zs2
-    Glue.freeStrv zv3
+    Glue.free zs3
     Glue.freeStrv zv4
-    Glue.free za5
+    Glue.freeStrv zv5
     Glue.free za6
+    Glue.free za7
     Ok zv
 
 extern g_spawn_check_exit_status : i32 -> cptr -> i32
@@ -17789,6 +18124,13 @@ let strdup (str: option<string>) : string =
 /// Similar to the standard C `sprintf()` function but safer, since it calculates the maximum space required and allocates memory to hold the result. C's own function, of variable arguments: called as C calls it, by code that
 /// answers for what it passes.
 extern g_strdup_printf : cstr -> ... -> cptr
+
+extern g_strdup_vprintf : cstr -> cptr -> cptr
+
+/// Similar to the standard C `vsprintf()` function but safer, since it calculates the maximum space required and allocates memory to hold the result.
+[<Unsafe>]
+let strdupVprintf (format: string) (args: cptr) : option<string> =
+  Glue.takeTextOption ((g_strdup_vprintf format args))
 
 extern g_strdupv : cptr -> cptr
 
@@ -18386,36 +18728,36 @@ extern g_ucs4_to_utf16 : cptr -> i64 -> cptr -> cptr -> cptr -> u16
 
 /// Convert a string from UCS-4 to UTF-16.
 let ucs4ToUtf16 (str: list<int>) : result<(int * int * int), Glue.Error> =
-  let za1 = Glue.ints str 4
+  let za2 = Glue.ints str 4
   Glue.outBegin ()
-  let zr = g_ucs4_to_utf16 za1 (i64 (Glue.count str)) (Glue.out 0) (Glue.out 1) (Glue.err ())
+  let zr = g_ucs4_to_utf16 za2 (i64 (Glue.count str)) (Glue.out 0) (Glue.out 1) (Glue.err ())
   match Glue.takeError () with
   | Some ze ->
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Error ze
   | None ->
     let zv = ((int (zr)), Glue.outI64 0, Glue.outI64 1)
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Ok zv
 
 extern g_ucs4_to_utf8 : cptr -> i64 -> cptr -> cptr -> cptr -> cptr
 
 /// Convert a string from a 32-bit fixed width representation as UCS-4.
 let ucs4ToUtf8 (str: list<int>) : result<(string * int * int), Glue.Error> =
-  let za1 = Glue.ints str 4
+  let za2 = Glue.ints str 4
   Glue.outBegin ()
-  let zr = g_ucs4_to_utf8 za1 (i64 (Glue.count str)) (Glue.out 0) (Glue.out 1) (Glue.err ())
+  let zr = g_ucs4_to_utf8 za2 (i64 (Glue.count str)) (Glue.out 0) (Glue.out 1) (Glue.err ())
   match Glue.takeError () with
   | Some ze ->
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Error ze
   | None ->
     let zv = (Glue.takeText (zr), Glue.outI64 0, Glue.outI64 1)
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Ok zv
 
 extern g_unichar_break_type : u32 -> i32
@@ -18455,6 +18797,13 @@ extern g_unichar_digit_value : u32 -> i32
 /// Determines the numeric value of a character as a decimal digit.
 let unicharDigitValue (c: int) : int =
   (int ((g_unichar_digit_value (u32 c))))
+
+extern g_unichar_fully_decompose : u32 -> i32 -> cptr -> usize -> usize
+
+/// Computes the canonical or compatibility decomposition of a Unicode character.
+[<Unsafe>]
+let unicharFullyDecompose (ch: int) (compat: bool) (result: cptr) (resultLen: int) : int =
+  (int ((g_unichar_fully_decompose (u32 ch) (if compat then i32 1 else i32 0) result (usize resultLen))))
 
 extern g_unichar_get_mirror_char : u32 -> cptr -> i32
 
@@ -18574,6 +18923,13 @@ extern g_unichar_iszerowidth : u32 -> i32
 let unicharIszerowidth (c: int) : bool =
   (((g_unichar_iszerowidth (u32 c))) <> i32 0)
 
+extern g_unichar_to_utf8 : u32 -> cptr -> i32
+
+/// Converts a single character to UTF-8.
+[<Unsafe>]
+let unicharToUtf8 (c: int) (outbuf: cptr) : int =
+  (int ((g_unichar_to_utf8 (u32 c) outbuf)))
+
 extern g_unichar_tolower : u32 -> u32
 
 /// Converts a character to lower case.
@@ -18620,9 +18976,9 @@ extern g_unicode_canonical_ordering : cptr -> usize -> unit
 
 /// Computes the canonical ordering of a string in-place.
 let unicodeCanonicalOrdering (string: list<int>) : unit =
-  let za1 = Glue.ints string 4
-  g_unicode_canonical_ordering za1 (usize (Glue.count string))
-  Glue.free za1
+  let za2 = Glue.ints string 4
+  g_unicode_canonical_ordering za2 (usize (Glue.count string))
+  Glue.free za2
 
 extern g_unlink : cstr -> i32
 
@@ -18646,36 +19002,36 @@ extern g_utf16_to_ucs4 : cptr -> i64 -> cptr -> cptr -> cptr -> u32
 
 /// Convert a string from UTF-16 to UCS-4.
 let utf16ToUcs4 (str: list<int>) : result<(int * int * int), Glue.Error> =
-  let za1 = Glue.ints str 2
+  let za2 = Glue.ints str 2
   Glue.outBegin ()
-  let zr = g_utf16_to_ucs4 za1 (i64 (Glue.count str)) (Glue.out 0) (Glue.out 1) (Glue.err ())
+  let zr = g_utf16_to_ucs4 za2 (i64 (Glue.count str)) (Glue.out 0) (Glue.out 1) (Glue.err ())
   match Glue.takeError () with
   | Some ze ->
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Error ze
   | None ->
     let zv = ((int (zr)), Glue.outI64 0, Glue.outI64 1)
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Ok zv
 
 extern g_utf16_to_utf8 : cptr -> i64 -> cptr -> cptr -> cptr -> cptr
 
 /// Convert a string from UTF-16 to UTF-8.
 let utf16ToUtf8 (str: list<int>) : result<(string * int * int), Glue.Error> =
-  let za1 = Glue.ints str 2
+  let za2 = Glue.ints str 2
   Glue.outBegin ()
-  let zr = g_utf16_to_utf8 za1 (i64 (Glue.count str)) (Glue.out 0) (Glue.out 1) (Glue.err ())
+  let zr = g_utf16_to_utf8 za2 (i64 (Glue.count str)) (Glue.out 0) (Glue.out 1) (Glue.err ())
   match Glue.takeError () with
   | Some ze ->
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Error ze
   | None ->
     let zv = (Glue.takeText (zr), Glue.outI64 0, Glue.outI64 1)
     Glue.outEnd ()
-    Glue.free za1
+    Glue.free za2
     Ok zv
 
 extern g_utf8_casefold : cstr -> i64 -> cptr
@@ -18858,24 +19214,24 @@ extern g_utf8_validate : cptr -> i64 -> cptr -> i32
 
 /// Validates UTF-8 encoded text.
 let utf8Validate (str: array<u8>) : (bool * array<u8>) =
-  let za1 = Glue.bytes str
+  let za2 = Glue.bytes str
   Glue.outBegin ()
-  let zr = g_utf8_validate za1 (i64 (Glue.countBytes str)) (Glue.out 0)
+  let zr = g_utf8_validate za2 (i64 (Glue.countBytes str)) (Glue.out 0)
   let zv = (((zr) <> i32 0), Glue.bytesToZero (Glue.outPtr 0) false)
   Glue.outEnd ()
-  Glue.free za1
+  Glue.free za2
   zv
 
 extern g_utf8_validate_len : cptr -> usize -> cptr -> i32
 
 /// Validates UTF-8 encoded text.
 let utf8ValidateLen (str: array<u8>) : (bool * array<u8>) =
-  let za1 = Glue.bytes str
+  let za2 = Glue.bytes str
   Glue.outBegin ()
-  let zr = g_utf8_validate_len za1 (usize (Glue.countBytes str)) (Glue.out 0)
+  let zr = g_utf8_validate_len za2 (usize (Glue.countBytes str)) (Glue.out 0)
   let zv = (((zr) <> i32 0), Glue.bytesToZero (Glue.outPtr 0) false)
   Glue.outEnd ()
-  Glue.free za1
+  Glue.free za2
   zv
 
 extern g_utime : cstr -> cptr -> i32
@@ -18902,6 +19258,45 @@ extern g_variant_get_gtype : unit -> usize
 /// `g_variant_get_gtype`.
 let variantGetGtype () : usize =
   ((g_variant_get_gtype ()))
+
+extern g_vasprintf : cptr -> cstr -> cptr -> i32
+
+/// An implementation of the GNU `vasprintf()` function which supports positional parameters, as specified in the Single Unix Specification.
+[<Unsafe>]
+let vasprintf (format: string) (args: cptr) : (int * string) =
+  Glue.outBegin ()
+  let zr = g_vasprintf (Glue.out 0) format args
+  let zv = ((int (zr)), Glue.takeText (Glue.outPtr 0))
+  Glue.outEnd ()
+  zv
+
+extern g_vfprintf : cptr -> cstr -> cptr -> i32
+
+/// An implementation of the standard `fprintf()` function which supports positional parameters, as specified in the Single Unix Specification.
+[<Unsafe>]
+let vfprintf (file: cptr) (format: string) (args: cptr) : int =
+  (int ((g_vfprintf file format args)))
+
+extern g_vprintf : cstr -> cptr -> i32
+
+/// An implementation of the standard `vprintf()` function which supports positional parameters, as specified in the Single Unix Specification.
+[<Unsafe>]
+let vprintf (format: string) (args: cptr) : int =
+  (int ((g_vprintf format args)))
+
+extern g_vsnprintf : cstr -> u64 -> cstr -> cptr -> i32
+
+/// A safer form of the standard `vsprintf()` function.
+[<Unsafe>]
+let vsnprintf (string: string) (n: int) (format: string) (args: cptr) : int =
+  (int ((g_vsnprintf string (u64 n) format args)))
+
+extern g_vsprintf : cstr -> cstr -> cptr -> i32
+
+/// An implementation of the standard `vsprintf()` function which supports positional parameters, as specified in the Single Unix Specification.
+[<Unsafe>]
+let vsprintf (string: string) (format: string) (args: cptr) : int =
+  (int ((g_vsprintf string format args)))
 
 extern g_warn_message : cptr -> cstr -> i32 -> cstr -> cptr -> unit
 

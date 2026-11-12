@@ -858,6 +858,26 @@ void zgtk_parent_Gtk_Buildable_custom_tag_end(GtkBuildable* a0, GtkBuilder* a1, 
     GtkBuildableIface *k = zgtk_vfunc_parent(a0, "Gtk_Buildable.custom_tag_end", gtk_buildable_get_type());
     if (k && k->custom_tag_end) k->custom_tag_end(a0, a1, a2, a3, a4);
 }
+static gboolean vf_Gtk_Buildable_custom_tag_start(GtkBuildable* a0, GtkBuilder* a1, GObject* a2, const char* a3, GtkBuildableParser* a4, gpointer* a5) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 6;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].p = (void *)a2;
+    c.args[3].p = (void *)a3;
+    c.args[4].p = (void *)a4;
+    c.args[5].p = (void *)a5;
+    void *f = zgtk_vfunc_find(a0, "Gtk_Buildable.custom_tag_start");
+    if (f) zgtk_dispatch(f, &c);
+    return (gboolean)c.ret.i;
+}
+void zgtk_override_Gtk_Buildable_custom_tag_start(gsize type, void *closure) {
+    GtkBuildableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_buildable_get_type());
+    if (k) { zgtk_vfunc_set(type, "Gtk_Buildable.custom_tag_start", closure); k->custom_tag_start = (gpointer)vf_Gtk_Buildable_custom_tag_start; }
+}
+gboolean zgtk_parent_Gtk_Buildable_custom_tag_start(GtkBuildable* a0, GtkBuilder* a1, GObject* a2, const char* a3, GtkBuildableParser* a4, gpointer* a5) {
+    GtkBuildableIface *k = zgtk_vfunc_parent(a0, "Gtk_Buildable.custom_tag_start", gtk_buildable_get_type());
+    return k && k->custom_tag_start ? k->custom_tag_start(a0, a1, a2, a3, a4, a5) : (gboolean)0;
+}
 static const char* vf_Gtk_Buildable_get_id(GtkBuildable* a0) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 1;
     c.args[0].p = (void *)a0;
@@ -1487,6 +1507,26 @@ gboolean zgtk_parent_Gtk_AccessibleRange_set_current_value(GtkAccessibleRange* a
     GtkAccessibleRangeInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleRange.set_current_value", gtk_accessible_range_get_type());
     return k && k->set_current_value ? k->set_current_value(a0, a1) : (gboolean)0;
 }
+static gboolean vf_Gtk_AccessibleText_get_attributes(GtkAccessibleText* a0, unsigned int a1, gsize* a2, GtkAccessibleTextRange** a3, char*** a4, char*** a5) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 6;
+    c.args[0].p = (void *)a0;
+    c.args[1].i = (gint64)a1;
+    c.args[2].p = (void *)a2;
+    c.args[3].p = (void *)a3;
+    c.args[4].p = (void *)a4;
+    c.args[5].p = (void *)a5;
+    void *f = zgtk_vfunc_find(a0, "Gtk_AccessibleText.get_attributes");
+    if (f) zgtk_dispatch(f, &c);
+    return (gboolean)c.ret.i;
+}
+void zgtk_override_Gtk_AccessibleText_get_attributes(gsize type, void *closure) {
+    GtkAccessibleTextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_text_get_type());
+    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleText.get_attributes", closure); k->get_attributes = (gpointer)vf_Gtk_AccessibleText_get_attributes; }
+}
+gboolean zgtk_parent_Gtk_AccessibleText_get_attributes(GtkAccessibleText* a0, unsigned int a1, gsize* a2, GtkAccessibleTextRange** a3, char*** a4, char*** a5) {
+    GtkAccessibleTextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleText.get_attributes", gtk_accessible_text_get_type());
+    return k && k->get_attributes ? k->get_attributes(a0, a1, a2, a3, a4, a5) : (gboolean)0;
+}
 static unsigned int vf_Gtk_AccessibleText_get_caret_position(GtkAccessibleText* a0) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 1;
     c.args[0].p = (void *)a0;
@@ -1538,6 +1578,22 @@ GBytes* zgtk_parent_Gtk_AccessibleText_get_contents_at(GtkAccessibleText* a0, un
     GtkAccessibleTextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleText.get_contents_at", gtk_accessible_text_get_type());
     return k && k->get_contents_at ? k->get_contents_at(a0, a1, a2, a3, a4) : (GBytes*)0;
 }
+static void vf_Gtk_AccessibleText_get_default_attributes(GtkAccessibleText* a0, char*** a1, char*** a2) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 3;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].p = (void *)a2;
+    void *f = zgtk_vfunc_find(a0, "Gtk_AccessibleText.get_default_attributes");
+    if (f) zgtk_dispatch(f, &c);
+}
+void zgtk_override_Gtk_AccessibleText_get_default_attributes(gsize type, void *closure) {
+    GtkAccessibleTextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_text_get_type());
+    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleText.get_default_attributes", closure); k->get_default_attributes = (gpointer)vf_Gtk_AccessibleText_get_default_attributes; }
+}
+void zgtk_parent_Gtk_AccessibleText_get_default_attributes(GtkAccessibleText* a0, char*** a1, char*** a2) {
+    GtkAccessibleTextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleText.get_default_attributes", gtk_accessible_text_get_type());
+    if (k && k->get_default_attributes) k->get_default_attributes(a0, a1, a2);
+}
 static gboolean vf_Gtk_AccessibleText_get_extents(GtkAccessibleText* a0, unsigned int a1, unsigned int a2, graphene_rect_t* a3) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 4;
     c.args[0].p = (void *)a0;
@@ -1572,6 +1628,23 @@ void zgtk_override_Gtk_AccessibleText_get_offset(gsize type, void *closure) {
 gboolean zgtk_parent_Gtk_AccessibleText_get_offset(GtkAccessibleText* a0, const graphene_point_t* a1, unsigned int* a2) {
     GtkAccessibleTextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleText.get_offset", gtk_accessible_text_get_type());
     return k && k->get_offset ? k->get_offset(a0, a1, a2) : (gboolean)0;
+}
+static gboolean vf_Gtk_AccessibleText_get_selection(GtkAccessibleText* a0, gsize* a1, GtkAccessibleTextRange** a2) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 3;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].p = (void *)a2;
+    void *f = zgtk_vfunc_find(a0, "Gtk_AccessibleText.get_selection");
+    if (f) zgtk_dispatch(f, &c);
+    return (gboolean)c.ret.i;
+}
+void zgtk_override_Gtk_AccessibleText_get_selection(gsize type, void *closure) {
+    GtkAccessibleTextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_text_get_type());
+    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleText.get_selection", closure); k->get_selection = (gpointer)vf_Gtk_AccessibleText_get_selection; }
+}
+gboolean zgtk_parent_Gtk_AccessibleText_get_selection(GtkAccessibleText* a0, gsize* a1, GtkAccessibleTextRange** a2) {
+    GtkAccessibleTextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleText.get_selection", gtk_accessible_text_get_type());
+    return k && k->get_selection ? k->get_selection(a0, a1, a2) : (gboolean)0;
 }
 static gboolean vf_Gtk_AccessibleText_set_caret_position(GtkAccessibleText* a0, unsigned int a1) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 2;
@@ -3595,6 +3668,23 @@ void zgtk_override_Gtk_IMContext_focus_out(gsize type, void *closure) {
 void zgtk_parent_Gtk_IMContext_focus_out(GtkIMContext* a0) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.focus_out", 0);
     if (k && k->focus_out) k->focus_out(a0);
+}
+static void vf_Gtk_IMContext_get_preedit_string(GtkIMContext* a0, char** a1, PangoAttrList** a2, int* a3) {
+    ZCall c; memset(&c, 0, sizeof c); c.n = 4;
+    c.args[0].p = (void *)a0;
+    c.args[1].p = (void *)a1;
+    c.args[2].p = (void *)a2;
+    c.args[3].p = (void *)a3;
+    void *f = zgtk_vfunc_find(a0, "Gtk_IMContext.get_preedit_string");
+    if (f) zgtk_dispatch(f, &c);
+}
+void zgtk_override_Gtk_IMContext_get_preedit_string(gsize type, void *closure) {
+    GtkIMContextClass *k = g_type_class_ref(type);
+    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.get_preedit_string", closure); k->get_preedit_string = (gpointer)vf_Gtk_IMContext_get_preedit_string; }
+}
+void zgtk_parent_Gtk_IMContext_get_preedit_string(GtkIMContext* a0, char** a1, PangoAttrList** a2, int* a3) {
+    GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.get_preedit_string", 0);
+    if (k && k->get_preedit_string) k->get_preedit_string(a0, a1, a2, a3);
 }
 static gboolean vf_Gtk_IMContext_get_surrounding(GtkIMContext* a0, char** a1, int* a2) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 3;

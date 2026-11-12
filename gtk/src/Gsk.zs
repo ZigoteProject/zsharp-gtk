@@ -1524,10 +1524,10 @@ module ComponentTransfer =
 
   /// Creates a new component transfer that applies a step function.
   let createDiscrete (values: list<float>) : ComponentTransfer =
-    let za1 = Glue.floats values 4
-    let zr = gsk_component_transfer_new_discrete (u32 (Glue.count values)) za1
+    let za2 = Glue.floats values 4
+    let zr = gsk_component_transfer_new_discrete (u32 (Glue.count values)) za2
     let zv = ComponentTransfer (Glue.wrapBoxed (zr) (gsk_component_transfer_get_type ()) true)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern gsk_component_transfer_new_gamma : f32 -> f32 -> f32 -> cptr
@@ -1558,10 +1558,10 @@ module ComponentTransfer =
 
   /// Creates a new component transfer that applies a piecewise linear function.
   let createTable (values: list<float>) : ComponentTransfer =
-    let za1 = Glue.floats values 4
-    let zr = gsk_component_transfer_new_table (u32 (Glue.count values)) za1
+    let za2 = Glue.floats values 4
+    let zr = gsk_component_transfer_new_table (u32 (Glue.count values)) za2
     let zv = ComponentTransfer (Glue.wrapBoxed (zr) (gsk_component_transfer_get_type ()) true)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern gsk_component_transfer_copy : cptr -> cptr
@@ -1638,10 +1638,10 @@ module ConicGradientNode =
 
   /// Creates a `GskRenderNode` that draws a conic gradient.
   let create (bounds: Graphene.Rect) (center: Graphene.Point) (rotation: float) (colorStops: list<ColorStop>) : ConicGradientNode =
-    let za1 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
-    let zr = gsk_conic_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 rotation) za1 (usize (Glue.count colorStops))
+    let za2 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
+    let zr = gsk_conic_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 rotation) za2 (usize (Glue.count colorStops))
     let zv = ConicGradientNode (zr)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern gsk_conic_gradient_node_get_angle : cptr -> f32
@@ -1689,10 +1689,10 @@ module ContainerNode =
 
   /// Creates a new `GskRenderNode` instance for holding the given @children.
   let create (children: list<RenderNode>) : ContainerNode =
-    let za1 = Glue.ptrs (Glue.mapList (fun (zo: RenderNode) -> Glue.obj zo.Id (zgtk_type_Gsk_RenderNode ())) children)
-    let zr = gsk_container_node_new za1 (u32 (Glue.count children))
+    let za2 = Glue.ptrs (Glue.mapList (fun (zo: RenderNode) -> Glue.obj zo.Id (zgtk_type_Gsk_RenderNode ())) children)
+    let zr = gsk_container_node_new za2 (u32 (Glue.count children))
     let zv = ContainerNode (zr)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern gsk_container_node_get_child : cptr -> u32 -> cptr
@@ -1862,6 +1862,13 @@ module GLShader =
   /// answers for what it passes.
   extern gsk_gl_shader_format_args : cptr -> ... -> cptr
 
+  extern gsk_gl_shader_format_args_va : cptr -> cptr -> cptr
+
+  /// Deprecated. Formats the uniform data as needed for feeding the named uniforms values into the shader.
+  [<Unsafe>]
+  let formatArgsVa (self: GLShader) (uniforms: cptr) : GLib.Bytes =
+    GLib.Bytes (Glue.wrapBoxed ((gsk_gl_shader_format_args_va (Glue.obj self.Id (gsk_gl_shader_get_type ())) uniforms)) (GLib.g_bytes_get_type ()) true)
+
   extern gsk_gl_shader_get_arg_bool : cptr -> cptr -> i32 -> i32
 
   /// Deprecated. Gets the value of the uniform @idx in the @args block.
@@ -1965,10 +1972,10 @@ module GLShaderNode =
 
   /// Deprecated. Creates a `GskRenderNode` that will render the given @shader into the area given by @bounds.
   let create (shader: GLShader) (bounds: Graphene.Rect) (args: GLib.Bytes) (children: list<RenderNode>) : GLShaderNode =
-    let za1 = Glue.ptrs (Glue.mapList (fun (zo: RenderNode) -> Glue.obj zo.Id (zgtk_type_Gsk_RenderNode ())) children)
-    let zr = gsk_gl_shader_node_new (Glue.obj shader.Id (gsk_gl_shader_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj args.Id (GLib.g_bytes_get_type ())) za1 (u32 (Glue.count children))
+    let za2 = Glue.ptrs (Glue.mapList (fun (zo: RenderNode) -> Glue.obj zo.Id (zgtk_type_Gsk_RenderNode ())) children)
+    let zr = gsk_gl_shader_node_new (Glue.obj shader.Id (gsk_gl_shader_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj args.Id (GLib.g_bytes_get_type ())) za2 (u32 (Glue.count children))
     let zv = GLShaderNode (zr)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern gsk_gl_shader_node_get_args : cptr -> cptr
@@ -2074,10 +2081,10 @@ module LinearGradientNode =
 
   /// Creates a `GskRenderNode` that will create a linear gradient from the given points and color stops, and render that into the area given by @bounds.
   let create (bounds: Graphene.Rect) (start: Graphene.Point) (end: Graphene.Point) (colorStops: list<ColorStop>) : LinearGradientNode =
-    let za1 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
-    let zr = gsk_linear_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj start.Id (Graphene.graphene_point_get_type ())) (Glue.obj end.Id (Graphene.graphene_point_get_type ())) za1 (usize (Glue.count colorStops))
+    let za2 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
+    let zr = gsk_linear_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj start.Id (Graphene.graphene_point_get_type ())) (Glue.obj end.Id (Graphene.graphene_point_get_type ())) za2 (usize (Glue.count colorStops))
     let zv = LinearGradientNode (zr)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern gsk_linear_gradient_node_get_color_stops : cptr -> cptr -> cptr
@@ -2310,8 +2317,8 @@ module Path =
     let zcb1 =
       Glue.hold (fun () ->
         let op = PathOperation (int (Glue.argInt 0))
-        let zrs2 = Glue.mapList (fun zp -> Graphene.Point (Glue.wrapBoxed (zp) (Graphene.graphene_point_get_type ()) false)) (Glue.recordsOf (Glue.argPointer 1) ((Glue.argInt 2)) (Graphene.zgtk_sizeof_Graphene_Point ()))
-        let pts = zrs2
+        let zrs3 = Glue.mapList (fun zp -> Graphene.Point (Glue.wrapBoxed (zp) (Graphene.graphene_point_get_type ()) false)) (Glue.recordsOf (Glue.argPointer 1) ((Glue.argInt 2)) (Graphene.zgtk_sizeof_Graphene_Point ()))
+        let pts = zrs3
         let nPts = Glue.argInt 2
         let weight = Glue.argFloat 3
         Glue.returnBool (func op pts nPts weight))
@@ -2775,10 +2782,10 @@ module RadialGradientNode =
 
   /// Creates a `GskRenderNode` that draws a radial gradient.
   let create (bounds: Graphene.Rect) (center: Graphene.Point) (hradius: float) (vradius: float) (start: float) (end: float) (colorStops: list<ColorStop>) : RadialGradientNode =
-    let za1 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
-    let zr = gsk_radial_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 hradius) (f32 vradius) (f32 start) (f32 end) za1 (usize (Glue.count colorStops))
+    let za2 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
+    let zr = gsk_radial_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 hradius) (f32 vradius) (f32 start) (f32 end) za2 (usize (Glue.count colorStops))
     let zv = RadialGradientNode (zr)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern gsk_radial_gradient_node_get_center : cptr -> cptr
@@ -3033,10 +3040,10 @@ module RepeatingLinearGradientNode =
 
   /// Creates a `GskRenderNode` that will create a repeating linear gradient from the given points and color stops, and render that into the area given by @bounds.
   let create (bounds: Graphene.Rect) (start: Graphene.Point) (end: Graphene.Point) (colorStops: list<ColorStop>) : RepeatingLinearGradientNode =
-    let za1 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
-    let zr = gsk_repeating_linear_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj start.Id (Graphene.graphene_point_get_type ())) (Glue.obj end.Id (Graphene.graphene_point_get_type ())) za1 (usize (Glue.count colorStops))
+    let za2 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
+    let zr = gsk_repeating_linear_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj start.Id (Graphene.graphene_point_get_type ())) (Glue.obj end.Id (Graphene.graphene_point_get_type ())) za2 (usize (Glue.count colorStops))
     let zv = RepeatingLinearGradientNode (zr)
-    Glue.free za1
+    Glue.free za2
     zv
 
 module RepeatingRadialGradientNode =
@@ -3044,10 +3051,10 @@ module RepeatingRadialGradientNode =
 
   /// Creates a `GskRenderNode` that draws a repeating radial gradient.
   let create (bounds: Graphene.Rect) (center: Graphene.Point) (hradius: float) (vradius: float) (start: float) (end: float) (colorStops: list<ColorStop>) : RepeatingRadialGradientNode =
-    let za1 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
-    let zr = gsk_repeating_radial_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 hradius) (f32 vradius) (f32 start) (f32 end) za1 (usize (Glue.count colorStops))
+    let za2 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
+    let zr = gsk_repeating_radial_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 hradius) (f32 vradius) (f32 start) (f32 end) za2 (usize (Glue.count colorStops))
     let zv = RepeatingRadialGradientNode (zr)
-    Glue.free za1
+    Glue.free za2
     zv
 
 module RoundedClipNode =
@@ -3274,10 +3281,10 @@ module ShadowNode =
 
   /// Creates a `GskRenderNode` that will draw a @child with the given @shadows below it.
   let create (child: RenderNode) (shadows: list<Shadow>) : ShadowNode =
-    let za1 = Glue.records (Glue.mapList (fun (zo: Shadow) -> Glue.obj zo.Id (zgtk_tag_Gsk_Shadow ())) shadows) (zgtk_sizeof_Gsk_Shadow ())
-    let zr = gsk_shadow_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) za1 (usize (Glue.count shadows))
+    let za2 = Glue.records (Glue.mapList (fun (zo: Shadow) -> Glue.obj zo.Id (zgtk_tag_Gsk_Shadow ())) shadows) (zgtk_sizeof_Gsk_Shadow ())
+    let zr = gsk_shadow_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) za2 (usize (Glue.count shadows))
     let zv = ShadowNode (zr)
-    Glue.free za1
+    Glue.free za2
     zv
 
   extern gsk_shadow_node_get_child : cptr -> cptr
@@ -3365,9 +3372,9 @@ module Stroke =
 
   /// Sets the dash pattern to use.
   let setDash (self: Stroke) (dash: list<float>) : unit =
-    let za1 = Glue.floats dash 4
-    gsk_stroke_set_dash (Glue.obj self.Id (gsk_stroke_get_type ())) za1 (usize (Glue.count dash))
-    Glue.free za1
+    let za2 = Glue.floats dash 4
+    gsk_stroke_set_dash (Glue.obj self.Id (gsk_stroke_get_type ())) za2 (usize (Glue.count dash))
+    Glue.free za2
 
   extern gsk_stroke_set_dash_offset : cptr -> f32 -> unit
 

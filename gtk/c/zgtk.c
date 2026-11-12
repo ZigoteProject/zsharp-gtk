@@ -534,7 +534,7 @@ void *zgtk_vfunc_parent(void *instance, const char *key, gsize iface) {
 // ---- out parameters and errors: a frame a call
 
 typedef struct {
-    ZArg slots[8];
+    ZArg slots[16];
     GError *err;
 } Out;
 
@@ -554,16 +554,16 @@ void zgtk_out_end(void) {
 
 static Out *out(void) { return &outs[out_top < 0 ? 0 : out_top]; }
 
-void *zgtk_out(int i) { return &out()->slots[i & 7]; }
-void zgtk_out_set_int(int i, int64_t v) { out()->slots[i & 7].i = v; }
-void zgtk_out_set_f32(int i, double v) { *(float *)&out()->slots[i & 7] = (float)v; }
-void zgtk_out_set_f64(int i, double v) { out()->slots[i & 7].d = v; }
-int64_t zgtk_out_i32(int i) { return *(gint32 *)&out()->slots[i & 7]; }
-int64_t zgtk_out_u32(int i) { return *(guint32 *)&out()->slots[i & 7]; }
-int64_t zgtk_out_i64(int i) { return out()->slots[i & 7].i; }
-double zgtk_out_f32(int i) { return *(float *)&out()->slots[i & 7]; }
-double zgtk_out_f64(int i) { return out()->slots[i & 7].d; }
-void *zgtk_out_ptr(int i) { return out()->slots[i & 7].p; }
+void *zgtk_out(int i) { return &out()->slots[i & 15]; }
+void zgtk_out_set_int(int i, int64_t v) { out()->slots[i & 15].i = v; }
+void zgtk_out_set_f32(int i, double v) { *(float *)&out()->slots[i & 15] = (float)v; }
+void zgtk_out_set_f64(int i, double v) { out()->slots[i & 15].d = v; }
+int64_t zgtk_out_i32(int i) { return *(gint32 *)&out()->slots[i & 15]; }
+int64_t zgtk_out_u32(int i) { return *(guint32 *)&out()->slots[i & 15]; }
+int64_t zgtk_out_i64(int i) { return out()->slots[i & 15].i; }
+double zgtk_out_f32(int i) { return *(float *)&out()->slots[i & 15]; }
+double zgtk_out_f64(int i) { return out()->slots[i & 15].d; }
+void *zgtk_out_ptr(int i) { return out()->slots[i & 15].p; }
 void *zgtk_err(void) { return &out()->err; }
 int zgtk_err_set(void) { return out()->err != NULL; }
 int zgtk_err_code(void) { return out()->err ? out()->err->code : 0; }
