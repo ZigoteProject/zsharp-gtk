@@ -15,152 +15,6 @@
 // Gsk 4.0. A class, an interface or a boxed record is a handle of its own type; see Glue
 // for how long a handle is good and what happens to one that isn't.
 
-extern zgtk_type_Gsk_BlendNode : unit -> usize
-extern zgtk_wrap_Gsk_BlendNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_BlendNode : cptr -> cptr
-extern zgtk_type_Gsk_BlurNode : unit -> usize
-extern zgtk_wrap_Gsk_BlurNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_BlurNode : cptr -> cptr
-extern zgtk_type_Gsk_BorderNode : unit -> usize
-extern zgtk_wrap_Gsk_BorderNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_BorderNode : cptr -> cptr
-extern gsk_renderer_get_type : unit -> usize
-extern gsk_broadway_renderer_get_type : unit -> usize
-extern zgtk_type_Gsk_CairoNode : unit -> usize
-extern zgtk_wrap_Gsk_CairoNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_CairoNode : cptr -> cptr
-extern gsk_cairo_renderer_get_type : unit -> usize
-extern zgtk_type_Gsk_ClipNode : unit -> usize
-extern zgtk_wrap_Gsk_ClipNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_ClipNode : cptr -> cptr
-extern zgtk_type_Gsk_ColorMatrixNode : unit -> usize
-extern zgtk_wrap_Gsk_ColorMatrixNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_ColorMatrixNode : cptr -> cptr
-extern zgtk_type_Gsk_ColorNode : unit -> usize
-extern zgtk_wrap_Gsk_ColorNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_ColorNode : cptr -> cptr
-extern zgtk_tag_Gsk_ColorStop : unit -> usize
-extern zgtk_sizeof_Gsk_ColorStop : unit -> usize
-extern gsk_component_transfer_get_type : unit -> usize
-extern zgtk_type_Gsk_ComponentTransferNode : unit -> usize
-extern zgtk_wrap_Gsk_ComponentTransferNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_ComponentTransferNode : cptr -> cptr
-extern zgtk_type_Gsk_CompositeNode : unit -> usize
-extern zgtk_wrap_Gsk_CompositeNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_CompositeNode : cptr -> cptr
-extern zgtk_type_Gsk_ConicGradientNode : unit -> usize
-extern zgtk_wrap_Gsk_ConicGradientNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_ConicGradientNode : cptr -> cptr
-extern zgtk_type_Gsk_ContainerNode : unit -> usize
-extern zgtk_wrap_Gsk_ContainerNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_ContainerNode : cptr -> cptr
-extern zgtk_type_Gsk_CopyNode : unit -> usize
-extern zgtk_wrap_Gsk_CopyNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_CopyNode : cptr -> cptr
-extern zgtk_type_Gsk_CrossFadeNode : unit -> usize
-extern zgtk_wrap_Gsk_CrossFadeNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_CrossFadeNode : cptr -> cptr
-extern zgtk_type_Gsk_DebugNode : unit -> usize
-extern zgtk_wrap_Gsk_DebugNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_DebugNode : cptr -> cptr
-extern zgtk_type_Gsk_FillNode : unit -> usize
-extern zgtk_wrap_Gsk_FillNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_FillNode : cptr -> cptr
-extern gsk_gl_renderer_get_type : unit -> usize
-extern gsk_gl_shader_get_type : unit -> usize
-extern zgtk_type_Gsk_GLShaderNode : unit -> usize
-extern zgtk_wrap_Gsk_GLShaderNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_GLShaderNode : cptr -> cptr
-extern zgtk_type_Gsk_InsetShadowNode : unit -> usize
-extern zgtk_wrap_Gsk_InsetShadowNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_InsetShadowNode : cptr -> cptr
-extern zgtk_type_Gsk_IsolationNode : unit -> usize
-extern zgtk_wrap_Gsk_IsolationNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_IsolationNode : cptr -> cptr
-extern zgtk_type_Gsk_LinearGradientNode : unit -> usize
-extern zgtk_wrap_Gsk_LinearGradientNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_LinearGradientNode : cptr -> cptr
-extern zgtk_type_Gsk_MaskNode : unit -> usize
-extern zgtk_wrap_Gsk_MaskNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_MaskNode : cptr -> cptr
-extern gsk_ngl_renderer_get_type : unit -> usize
-extern zgtk_type_Gsk_OpacityNode : unit -> usize
-extern zgtk_wrap_Gsk_OpacityNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_OpacityNode : cptr -> cptr
-extern zgtk_type_Gsk_OutsetShadowNode : unit -> usize
-extern zgtk_wrap_Gsk_OutsetShadowNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_OutsetShadowNode : cptr -> cptr
-extern zgtk_tag_Gsk_ParseLocation : unit -> usize
-extern zgtk_sizeof_Gsk_ParseLocation : unit -> usize
-extern zgtk_type_Gsk_PasteNode : unit -> usize
-extern zgtk_wrap_Gsk_PasteNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_PasteNode : cptr -> cptr
-extern gsk_path_get_type : unit -> usize
-extern gsk_path_builder_get_type : unit -> usize
-extern gsk_path_measure_get_type : unit -> usize
-extern gsk_path_point_get_type : unit -> usize
-extern zgtk_sizeof_Gsk_PathPoint : unit -> usize
-extern zgtk_type_Gsk_RadialGradientNode : unit -> usize
-extern zgtk_wrap_Gsk_RadialGradientNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_RadialGradientNode : cptr -> cptr
-extern zgtk_type_Gsk_RenderNode : unit -> usize
-extern zgtk_wrap_Gsk_RenderNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_RenderNode : cptr -> cptr
-extern gsk_render_replay_get_type : unit -> usize
-extern zgtk_type_Gsk_RepeatNode : unit -> usize
-extern zgtk_wrap_Gsk_RepeatNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_RepeatNode : cptr -> cptr
-extern zgtk_type_Gsk_RepeatingLinearGradientNode : unit -> usize
-extern zgtk_wrap_Gsk_RepeatingLinearGradientNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_RepeatingLinearGradientNode : cptr -> cptr
-extern zgtk_type_Gsk_RepeatingRadialGradientNode : unit -> usize
-extern zgtk_wrap_Gsk_RepeatingRadialGradientNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_RepeatingRadialGradientNode : cptr -> cptr
-extern zgtk_type_Gsk_RoundedClipNode : unit -> usize
-extern zgtk_wrap_Gsk_RoundedClipNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_RoundedClipNode : cptr -> cptr
-extern zgtk_tag_Gsk_RoundedRect : unit -> usize
-extern zgtk_sizeof_Gsk_RoundedRect : unit -> usize
-extern gsk_shader_args_builder_get_type : unit -> usize
-extern zgtk_tag_Gsk_Shadow : unit -> usize
-extern zgtk_sizeof_Gsk_Shadow : unit -> usize
-extern zgtk_type_Gsk_ShadowNode : unit -> usize
-extern zgtk_wrap_Gsk_ShadowNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_ShadowNode : cptr -> cptr
-extern gsk_stroke_get_type : unit -> usize
-extern zgtk_type_Gsk_StrokeNode : unit -> usize
-extern zgtk_wrap_Gsk_StrokeNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_StrokeNode : cptr -> cptr
-extern zgtk_type_Gsk_SubsurfaceNode : unit -> usize
-extern zgtk_wrap_Gsk_SubsurfaceNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_SubsurfaceNode : cptr -> cptr
-extern zgtk_type_Gsk_TextNode : unit -> usize
-extern zgtk_wrap_Gsk_TextNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_TextNode : cptr -> cptr
-extern zgtk_type_Gsk_TextureNode : unit -> usize
-extern zgtk_wrap_Gsk_TextureNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_TextureNode : cptr -> cptr
-extern zgtk_type_Gsk_TextureScaleNode : unit -> usize
-extern zgtk_wrap_Gsk_TextureScaleNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_TextureScaleNode : cptr -> cptr
-extern gsk_transform_get_type : unit -> usize
-extern zgtk_type_Gsk_TransformNode : unit -> usize
-extern zgtk_wrap_Gsk_TransformNode : cptr -> i32 -> int
-extern zgtk_give_Gsk_TransformNode : cptr -> cptr
-extern gsk_vulkan_renderer_get_type : unit -> usize
-extern zgtk_tramp_Gsk_ParseErrorFunc : unit -> cptr
-extern zgtk_tramp_Gsk_ParseErrorFunc_once : unit -> cptr
-extern zgtk_tramp_Gsk_PathForeachFunc : unit -> cptr
-extern zgtk_tramp_Gsk_PathForeachFunc_once : unit -> cptr
-extern zgtk_tramp_Gsk_PathIntersectionFunc : unit -> cptr
-extern zgtk_tramp_Gsk_PathIntersectionFunc_once : unit -> cptr
-extern zgtk_tramp_Gsk_RenderReplayFontFilter : unit -> cptr
-extern zgtk_tramp_Gsk_RenderReplayFontFilter_once : unit -> cptr
-extern zgtk_tramp_Gsk_RenderReplayNodeFilter : unit -> cptr
-extern zgtk_tramp_Gsk_RenderReplayNodeFilter_once : unit -> cptr
-extern zgtk_tramp_Gsk_RenderReplayTextureFilter : unit -> cptr
-extern zgtk_tramp_Gsk_RenderReplayTextureFilter_once : unit -> cptr
-
 /// The blend modes available for render nodes.
 type BlendMode =
   | BlendMode of int
@@ -1301,178 +1155,152 @@ module TransformCategory =
   let identity = TransformCategory 6
 
 module BlendNode =
-  extern gsk_blend_node_new : cptr -> cptr -> i32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_BlendNode ()
 
   /// Creates a `GskRenderNode` that will use @blend_mode to blend the @top node onto the @bottom node.
   let create (bottom: RenderNode) (top: RenderNode) (blendMode: BlendMode) : BlendNode =
-    BlendNode (zgtk_wrap_Gsk_BlendNode ((gsk_blend_node_new (Glue.obj bottom.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj top.Id (zgtk_type_Gsk_RenderNode ())) (i32 blendMode.Int))) (i32 1))
-
-  extern gsk_blend_node_get_blend_mode : cptr -> i32
+    BlendNode (Internal.GskC.zgtk_wrap_Gsk_BlendNode ((Internal.GskC.gsk_blend_node_new (Internal.Raw.obj bottom.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (Internal.Raw.obj top.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (i32 blendMode.Int))) (i32 1))
 
   /// Retrieves the blend mode used by @node.
   let getBlendMode (self: BlendNode) : BlendMode =
-    BlendMode (int ((gsk_blend_node_get_blend_mode (Glue.obj self.Id (zgtk_type_Gsk_BlendNode ())))))
-
-  extern gsk_blend_node_get_bottom_child : cptr -> cptr
+    BlendMode (int ((Internal.GskC.gsk_blend_node_get_blend_mode (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_BlendNode ())))))
 
   /// Retrieves the bottom `GskRenderNode` child of the @node.
   let getBottomChild (self: BlendNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_blend_node_get_bottom_child (Glue.obj self.Id (zgtk_type_Gsk_BlendNode ())))) (i32 0))
-
-  extern gsk_blend_node_get_top_child : cptr -> cptr
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_blend_node_get_bottom_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_BlendNode ())))) (i32 0))
 
   /// Retrieves the top `GskRenderNode` child of the @node.
   let getTopChild (self: BlendNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_blend_node_get_top_child (Glue.obj self.Id (zgtk_type_Gsk_BlendNode ())))) (i32 0))
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_blend_node_get_top_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_BlendNode ())))) (i32 0))
 
 module BlurNode =
-  extern gsk_blur_node_new : cptr -> f32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_BlurNode ()
 
   /// Creates a render node that blurs the child.
   let create (child: RenderNode) (radius: float) : BlurNode =
-    BlurNode (zgtk_wrap_Gsk_BlurNode ((gsk_blur_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (f32 radius))) (i32 1))
-
-  extern gsk_blur_node_get_child : cptr -> cptr
+    BlurNode (Internal.GskC.zgtk_wrap_Gsk_BlurNode ((Internal.GskC.gsk_blur_node_new (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (f32 radius))) (i32 1))
 
   /// Retrieves the child `GskRenderNode` of the blur @node.
   let getChild (self: BlurNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_blur_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_BlurNode ())))) (i32 0))
-
-  extern gsk_blur_node_get_radius : cptr -> f32
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_blur_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_BlurNode ())))) (i32 0))
 
   /// Retrieves the blur radius of the @node.
   let getRadius (self: BlurNode) : float =
-    (float ((gsk_blur_node_get_radius (Glue.obj self.Id (zgtk_type_Gsk_BlurNode ())))))
+    (float ((Internal.GskC.gsk_blur_node_get_radius (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_BlurNode ())))))
 
 module BorderNode =
-  extern gsk_border_node_new : cptr -> cptr -> cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_BorderNode ()
 
   /// Creates a `GskRenderNode` that will stroke a border rectangle inside the given @outline.
   let create (outline: RoundedRect) (borderWidth: list<float>) (borderColor: list<Gdk.RGBA>) : BorderNode =
-    let za1 = Glue.floats borderWidth 4
-    let za2 = Glue.records (Glue.mapList (fun (zo: Gdk.RGBA) -> Glue.obj zo.Id (Gdk.gdk_rgba_get_type ())) borderColor) (Gdk.zgtk_sizeof_Gdk_RGBA ())
-    let zr = gsk_border_node_new (Glue.obj outline.Id (zgtk_tag_Gsk_RoundedRect ())) za1 za2
-    let zv = BorderNode (zgtk_wrap_Gsk_BorderNode (zr) (i32 1))
-    Glue.free za1
-    Glue.free za2
+    let za1 = Internal.Raw.floats borderWidth 4
+    let za2 = Internal.Raw.records (Internal.Raw.mapList (fun (zo: Gdk.RGBA) -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_rgba_get_type ())) borderColor) (Internal.GdkC.zgtk_sizeof_Gdk_RGBA ())
+    let zr = Internal.GskC.gsk_border_node_new (Internal.Raw.obj outline.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())) za1 za2
+    let zv = BorderNode (Internal.GskC.zgtk_wrap_Gsk_BorderNode (zr) (i32 1))
+    Internal.Raw.free za1
+    Internal.Raw.free za2
     zv
-
-  extern gsk_border_node_get_colors : cptr -> cptr
 
   /// Retrieves the colors of the border.
   let getColors (self: BorderNode) : list<Gdk.RGBA> =
-    let zr = gsk_border_node_get_colors (Glue.obj self.Id (zgtk_type_Gsk_BorderNode ()))
-    let zrs1 = Glue.mapList (fun zp -> Gdk.RGBA (Glue.wrapBoxed (zp) (Gdk.gdk_rgba_get_type ()) false)) (Glue.recordsOf (zr) (4) (Gdk.zgtk_sizeof_Gdk_RGBA ()))
+    let zr = Internal.GskC.gsk_border_node_get_colors (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_BorderNode ()))
+    let zrs1 = Internal.Raw.mapList (fun zp -> Gdk.RGBA (Internal.Raw.wrapBoxed (zp) (Internal.GdkC.gdk_rgba_get_type ()) false)) (Internal.Raw.recordsOf (zr) (4) (Internal.GdkC.zgtk_sizeof_Gdk_RGBA ()))
     zrs1
-
-  extern gsk_border_node_get_outline : cptr -> cptr
 
   /// Retrieves the outline of the border.
   let getOutline (self: BorderNode) : RoundedRect =
-    RoundedRect (Glue.copyPlain ((gsk_border_node_get_outline (Glue.obj self.Id (zgtk_type_Gsk_BorderNode ())))) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
-
-  extern gsk_border_node_get_widths : cptr -> cptr
+    RoundedRect (Internal.Raw.copyPlain ((Internal.GskC.gsk_border_node_get_outline (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_BorderNode ())))) (Internal.GskC.zgtk_sizeof_Gsk_RoundedRect ()) (Internal.GskC.zgtk_tag_Gsk_RoundedRect ()))
 
   /// Retrieves the stroke widths of the border.
   let getWidths (self: BorderNode) : list<float> =
-    Glue.floatsOf ((gsk_border_node_get_widths (Glue.obj self.Id (zgtk_type_Gsk_BorderNode ())))) (4) 4 false
+    Internal.Raw.floatsOf ((Internal.GskC.gsk_border_node_get_widths (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_BorderNode ())))) (4) 4 false
 
 module Renderer =
   /// The same object as its ancestor.
   let toGObjectObject (self: Renderer) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_renderer_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<Renderer> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gsk_renderer_get_type ()) then Some (Renderer object.Id) else None
-
-  extern gsk_renderer_new_for_surface : cptr -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GskC.gsk_renderer_get_type ()) then Some (Renderer object.Id) else None
 
   /// Creates an appropriate `GskRenderer` instance for the given surface.
   let createForSurface (surface: Gdk.Surface) : Renderer =
-    Renderer (Glue.wrap ((gsk_renderer_new_for_surface (Glue.obj surface.Id (Gdk.gdk_surface_get_type ())))) true)
-
-  extern gsk_renderer_get_surface : cptr -> cptr
+    Renderer (Internal.Raw.wrap ((Internal.GskC.gsk_renderer_new_for_surface (Internal.Raw.obj surface.Id (Internal.GdkC.gdk_surface_get_type ())))) true)
 
   /// Retrieves the surface that the renderer is associated with.
   let getSurface (self: Renderer) : option<Gdk.Surface> =
-    let zr = gsk_renderer_get_surface (Glue.obj self.Id (gsk_renderer_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GskC.gsk_renderer_get_surface (Internal.Raw.obj self.Id (Internal.GskC.gsk_renderer_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Gdk.Surface zid1))
-
-  extern gsk_renderer_is_realized : cptr -> i32
 
   /// Checks whether the renderer is realized or not.
   let isRealized (self: Renderer) : bool =
-    (((gsk_renderer_is_realized (Glue.obj self.Id (gsk_renderer_get_type ())))) <> i32 0)
-
-  extern gsk_renderer_realize : cptr -> cptr -> cptr -> i32
+    (((Internal.GskC.gsk_renderer_is_realized (Internal.Raw.obj self.Id (Internal.GskC.gsk_renderer_get_type ())))) <> i32 0)
 
   /// Creates the resources needed by the renderer.
   let realize (self: Renderer) (surface: option<Gdk.Surface>) : result<bool, Glue.Error> =
     let zp1 =
       match surface with
-      | Some zo -> Glue.obj zo.Id (Gdk.gdk_surface_get_type ())
-      | None -> Glue.none ()
-    Glue.outBegin ()
-    let zr = gsk_renderer_realize (Glue.obj self.Id (gsk_renderer_get_type ())) zp1 (Glue.err ())
-    match Glue.takeError () with
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_surface_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GskC.gsk_renderer_realize (Internal.Raw.obj self.Id (Internal.GskC.gsk_renderer_get_type ())) zp1 (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
       let zv = ((zr) <> i32 0)
-      Glue.outEnd ()
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gsk_renderer_realize_for_display : cptr -> cptr -> cptr -> i32
 
   /// Creates the resources needed by the renderer.
   let realizeForDisplay (self: Renderer) (display: Gdk.Display) : result<bool, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gsk_renderer_realize_for_display (Glue.obj self.Id (gsk_renderer_get_type ())) (Glue.obj display.Id (Gdk.gdk_display_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GskC.gsk_renderer_realize_for_display (Internal.Raw.obj self.Id (Internal.GskC.gsk_renderer_get_type ())) (Internal.Raw.obj display.Id (Internal.GdkC.gdk_display_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
       let zv = ((zr) <> i32 0)
-      Glue.outEnd ()
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gsk_renderer_render : cptr -> cptr -> cptr -> unit
 
   /// Renders the scene graph, described by a tree of `GskRenderNode` instances to the renderer's surface, ensuring that the given region gets redrawn.
   let render (self: Renderer) (root: RenderNode) (region: option<Cairo.Region>) : unit =
     let zp1 =
       match region with
-      | Some zo -> Glue.obj zo.Id (Cairo.cairo_gobject_region_get_type ())
-      | None -> Glue.none ()
-    gsk_renderer_render (Glue.obj self.Id (gsk_renderer_get_type ())) (Glue.obj root.Id (zgtk_type_Gsk_RenderNode ())) zp1
-
-  extern gsk_renderer_render_texture : cptr -> cptr -> cptr -> cptr
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.CairoC.cairo_gobject_region_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GskC.gsk_renderer_render (Internal.Raw.obj self.Id (Internal.GskC.gsk_renderer_get_type ())) (Internal.Raw.obj root.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) zp1
 
   /// Renders a scene graph, described by a tree of `GskRenderNode` instances, to a texture.
   let renderTexture (self: Renderer) (root: RenderNode) (viewport: option<Graphene.Rect>) : Gdk.Texture =
     let zp1 =
       match viewport with
-      | Some zo -> Glue.obj zo.Id (Graphene.graphene_rect_get_type ())
-      | None -> Glue.none ()
-    let zr = gsk_renderer_render_texture (Glue.obj self.Id (gsk_renderer_get_type ())) (Glue.obj root.Id (zgtk_type_Gsk_RenderNode ())) zp1
-    Gdk.Texture (Glue.wrap (zr) true)
-
-  extern gsk_renderer_unrealize : cptr -> unit
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GrapheneC.graphene_rect_get_type ())
+      | None -> Internal.Raw.none ()
+    let zr = Internal.GskC.gsk_renderer_render_texture (Internal.Raw.obj self.Id (Internal.GskC.gsk_renderer_get_type ())) (Internal.Raw.obj root.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) zp1
+    Gdk.Texture (Internal.Raw.wrap (zr) true)
 
   /// Releases all the resources created by [method@Gsk.Renderer.realize].
   let unrealize (self: Renderer) : unit =
-    gsk_renderer_unrealize (Glue.obj self.Id (gsk_renderer_get_type ()))
+    Internal.GskC.gsk_renderer_unrealize (Internal.Raw.obj self.Id (Internal.GskC.gsk_renderer_get_type ()))
 
   /// Calls `handler` when the `realized` property changes.
   let onNotifyRealized (self: Renderer) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gsk_renderer_get_type ())) "notify::realized" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GskC.gsk_renderer_get_type ())) "notify::realized" handler
 
   /// Calls `handler` when the `surface` property changes.
   let onNotifySurface (self: Renderer) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gsk_renderer_get_type ())) "notify::surface" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GskC.gsk_renderer_get_type ())) "notify::surface" handler
 
 module BroadwayRenderer =
   /// The same object as its ancestor.
@@ -1481,34 +1309,32 @@ module BroadwayRenderer =
   /// The same object as its ancestor.
   let toGObjectObject (self: BroadwayRenderer) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_broadway_renderer_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<BroadwayRenderer> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gsk_broadway_renderer_get_type ()) then Some (BroadwayRenderer object.Id) else None
-
-  extern gsk_broadway_renderer_new : unit -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GskC.gsk_broadway_renderer_get_type ()) then Some (BroadwayRenderer object.Id) else None
 
   /// Deprecated. Creates a new Broadway renderer.
   let create () : BroadwayRenderer =
-    BroadwayRenderer (Glue.wrap ((gsk_broadway_renderer_new ())) true)
+    BroadwayRenderer (Internal.Raw.wrap ((Internal.GskC.gsk_broadway_renderer_new ())) true)
 
 module CairoNode =
-  extern gsk_cairo_node_new : cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_CairoNode ()
 
   /// Creates a `GskRenderNode` that will render a cairo surface into the area given by @bounds.
   let create (bounds: Graphene.Rect) : CairoNode =
-    CairoNode (zgtk_wrap_Gsk_CairoNode ((gsk_cairo_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())))) (i32 1))
-
-  extern gsk_cairo_node_get_draw_context : cptr -> cptr
+    CairoNode (Internal.GskC.zgtk_wrap_Gsk_CairoNode ((Internal.GskC.gsk_cairo_node_new (Internal.Raw.obj bounds.Id (Internal.GrapheneC.graphene_rect_get_type ())))) (i32 1))
 
   /// Creates a Cairo context for drawing using the surface associated to the render node.
   let getDrawContext (self: CairoNode) : Cairo.Context =
-    Cairo.Context (Glue.wrapBoxed ((gsk_cairo_node_get_draw_context (Glue.obj self.Id (zgtk_type_Gsk_CairoNode ())))) (Cairo.cairo_gobject_context_get_type ()) true)
-
-  extern gsk_cairo_node_get_surface : cptr -> cptr
+    Cairo.Context (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_cairo_node_get_draw_context (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_CairoNode ())))) (Internal.CairoC.cairo_gobject_context_get_type ()) true)
 
   /// Retrieves the Cairo surface used by the render node.
   let getSurface (self: CairoNode) : Cairo.Surface =
-    Cairo.Surface (Glue.wrapBoxed ((gsk_cairo_node_get_surface (Glue.obj self.Id (zgtk_type_Gsk_CairoNode ())))) (Cairo.cairo_gobject_surface_get_type ()) false)
+    Cairo.Surface (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_cairo_node_get_surface (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_CairoNode ())))) (Internal.CairoC.cairo_gobject_surface_get_type ()) false)
 
 module CairoRenderer =
   /// The same object as its ancestor.
@@ -1517,356 +1343,294 @@ module CairoRenderer =
   /// The same object as its ancestor.
   let toGObjectObject (self: CairoRenderer) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_cairo_renderer_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<CairoRenderer> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gsk_cairo_renderer_get_type ()) then Some (CairoRenderer object.Id) else None
-
-  extern gsk_cairo_renderer_new : unit -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GskC.gsk_cairo_renderer_get_type ()) then Some (CairoRenderer object.Id) else None
 
   /// Creates a new Cairo renderer.
   let create () : CairoRenderer =
-    CairoRenderer (Glue.wrap ((gsk_cairo_renderer_new ())) true)
+    CairoRenderer (Internal.Raw.wrap ((Internal.GskC.gsk_cairo_renderer_new ())) true)
 
 module ClipNode =
-  extern gsk_clip_node_new : cptr -> cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_ClipNode ()
 
   /// Creates a `GskRenderNode` that will clip the @child to the area given by @clip.
   let create (child: RenderNode) (clip: Graphene.Rect) : ClipNode =
-    ClipNode (zgtk_wrap_Gsk_ClipNode ((gsk_clip_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj clip.Id (Graphene.graphene_rect_get_type ())))) (i32 1))
-
-  extern gsk_clip_node_get_child : cptr -> cptr
+    ClipNode (Internal.GskC.zgtk_wrap_Gsk_ClipNode ((Internal.GskC.gsk_clip_node_new (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (Internal.Raw.obj clip.Id (Internal.GrapheneC.graphene_rect_get_type ())))) (i32 1))
 
   /// Gets the child node that is getting clipped by the given @node.
   let getChild (self: ClipNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_clip_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_ClipNode ())))) (i32 0))
-
-  extern gsk_clip_node_get_clip : cptr -> cptr
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_clip_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ClipNode ())))) (i32 0))
 
   /// Retrieves the clip rectangle for @node.
   let getClip (self: ClipNode) : Graphene.Rect =
-    Graphene.Rect (Glue.wrapBoxed ((gsk_clip_node_get_clip (Glue.obj self.Id (zgtk_type_Gsk_ClipNode ())))) (Graphene.graphene_rect_get_type ()) false)
+    Graphene.Rect (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_clip_node_get_clip (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ClipNode ())))) (Internal.GrapheneC.graphene_rect_get_type ()) false)
 
 module ColorMatrixNode =
-  extern gsk_color_matrix_node_new : cptr -> cptr -> cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_ColorMatrixNode ()
 
   /// Creates a `GskRenderNode` that will drawn the @child with @color_matrix.
   let create (child: RenderNode) (colorMatrix: Graphene.Matrix) (colorOffset: Graphene.Vec4) : ColorMatrixNode =
-    ColorMatrixNode (zgtk_wrap_Gsk_ColorMatrixNode ((gsk_color_matrix_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj colorMatrix.Id (Graphene.graphene_matrix_get_type ())) (Glue.obj colorOffset.Id (Graphene.graphene_vec4_get_type ())))) (i32 1))
-
-  extern gsk_color_matrix_node_get_child : cptr -> cptr
+    ColorMatrixNode (Internal.GskC.zgtk_wrap_Gsk_ColorMatrixNode ((Internal.GskC.gsk_color_matrix_node_new (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (Internal.Raw.obj colorMatrix.Id (Internal.GrapheneC.graphene_matrix_get_type ())) (Internal.Raw.obj colorOffset.Id (Internal.GrapheneC.graphene_vec4_get_type ())))) (i32 1))
 
   /// Gets the child node that is getting its colors modified by the given @node.
   let getChild (self: ColorMatrixNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_color_matrix_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_ColorMatrixNode ())))) (i32 0))
-
-  extern gsk_color_matrix_node_get_color_matrix : cptr -> cptr
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_color_matrix_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ColorMatrixNode ())))) (i32 0))
 
   /// Retrieves the color matrix used by the @node.
   let getColorMatrix (self: ColorMatrixNode) : Graphene.Matrix =
-    Graphene.Matrix (Glue.wrapBoxed ((gsk_color_matrix_node_get_color_matrix (Glue.obj self.Id (zgtk_type_Gsk_ColorMatrixNode ())))) (Graphene.graphene_matrix_get_type ()) false)
-
-  extern gsk_color_matrix_node_get_color_offset : cptr -> cptr
+    Graphene.Matrix (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_color_matrix_node_get_color_matrix (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ColorMatrixNode ())))) (Internal.GrapheneC.graphene_matrix_get_type ()) false)
 
   /// Retrieves the color offset used by the @node.
   let getColorOffset (self: ColorMatrixNode) : Graphene.Vec4 =
-    Graphene.Vec4 (Glue.wrapBoxed ((gsk_color_matrix_node_get_color_offset (Glue.obj self.Id (zgtk_type_Gsk_ColorMatrixNode ())))) (Graphene.graphene_vec4_get_type ()) false)
+    Graphene.Vec4 (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_color_matrix_node_get_color_offset (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ColorMatrixNode ())))) (Internal.GrapheneC.graphene_vec4_get_type ()) false)
 
 module ColorNode =
-  extern gsk_color_node_new : cptr -> cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_ColorNode ()
 
   /// Creates a `GskRenderNode` that will render the color specified by @rgba into the area given by @bounds.
   let create (rgba: Gdk.RGBA) (bounds: Graphene.Rect) : ColorNode =
-    ColorNode (zgtk_wrap_Gsk_ColorNode ((gsk_color_node_new (Glue.obj rgba.Id (Gdk.gdk_rgba_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())))) (i32 1))
-
-  extern gsk_color_node_get_color : cptr -> cptr
+    ColorNode (Internal.GskC.zgtk_wrap_Gsk_ColorNode ((Internal.GskC.gsk_color_node_new (Internal.Raw.obj rgba.Id (Internal.GdkC.gdk_rgba_get_type ())) (Internal.Raw.obj bounds.Id (Internal.GrapheneC.graphene_rect_get_type ())))) (i32 1))
 
   /// Retrieves the color of the given @node.
   let getColor (self: ColorNode) : Gdk.RGBA =
-    Gdk.RGBA (Glue.wrapBoxed ((gsk_color_node_get_color (Glue.obj self.Id (zgtk_type_Gsk_ColorNode ())))) (Gdk.gdk_rgba_get_type ()) false)
+    Gdk.RGBA (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_color_node_get_color (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ColorNode ())))) (Internal.GdkC.gdk_rgba_get_type ()) false)
 
 module ColorStop =
-  /// A new one, every field zero.
-  let create () : ColorStop = ColorStop (Glue.allocPlain (zgtk_sizeof_Gsk_ColorStop ()) (zgtk_tag_Gsk_ColorStop ()))
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_tag_Gsk_ColorStop ()
 
-  extern zgtk_get_Gsk_ColorStop_offset : cptr -> f64
+  /// A new one, every field zero.
+  let create () : ColorStop = ColorStop (Internal.Raw.allocPlain (Internal.GskC.zgtk_sizeof_Gsk_ColorStop ()) (Internal.GskC.zgtk_tag_Gsk_ColorStop ()))
 
   /// The `offset` field.
-  let getOffset (self: ColorStop) : float = zgtk_get_Gsk_ColorStop_offset (Glue.obj self.Id (zgtk_tag_Gsk_ColorStop ()))
-
-  extern zgtk_set_Gsk_ColorStop_offset : cptr -> f64 -> unit
+  let getOffset (self: ColorStop) : float = Internal.GskC.zgtk_get_Gsk_ColorStop_offset (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_ColorStop ()))
 
   /// Sets the `offset` field.
-  let setOffset (self: ColorStop) (value: float) : unit = zgtk_set_Gsk_ColorStop_offset (Glue.obj self.Id (zgtk_tag_Gsk_ColorStop ())) value
-
-  extern zgtk_at_Gsk_ColorStop_color : cptr -> cptr
+  let setOffset (self: ColorStop) (value: float) : unit = Internal.GskC.zgtk_set_Gsk_ColorStop_offset (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_ColorStop ())) value
 
   /// A copy of the `color` field.
-  let getColor (self: ColorStop) : Gdk.RGBA = Gdk.RGBA (Glue.wrapBoxed (zgtk_at_Gsk_ColorStop_color (Glue.obj self.Id (zgtk_tag_Gsk_ColorStop ()))) (Gdk.gdk_rgba_get_type ()) false)
-
-  extern zgtk_put_Gsk_ColorStop_color : cptr -> cptr -> unit
+  let getColor (self: ColorStop) : Gdk.RGBA = Gdk.RGBA (Internal.Raw.wrapBoxed (Internal.GskC.zgtk_at_Gsk_ColorStop_color (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_ColorStop ()))) (Internal.GdkC.gdk_rgba_get_type ()) false)
 
   /// Sets the `color` field, to a copy of a record.
-  let setColor (self: ColorStop) (value: Gdk.RGBA) : unit = zgtk_put_Gsk_ColorStop_color (Glue.obj self.Id (zgtk_tag_Gsk_ColorStop ())) (Glue.obj value.Id (Gdk.gdk_rgba_get_type ()))
+  let setColor (self: ColorStop) (value: Gdk.RGBA) : unit = Internal.GskC.zgtk_put_Gsk_ColorStop_color (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_ColorStop ())) (Internal.Raw.obj value.Id (Internal.GdkC.gdk_rgba_get_type ()))
 
 module ComponentTransfer =
-  extern gsk_component_transfer_new_discrete : u32 -> cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_component_transfer_get_type ()
 
   /// Creates a new component transfer that applies a step function.
   let createDiscrete (values: list<float>) : ComponentTransfer =
-    let za2 = Glue.floats values 4
-    let zr = gsk_component_transfer_new_discrete (u32 (Glue.count values)) za2
-    let zv = ComponentTransfer (Glue.wrapBoxed (zr) (gsk_component_transfer_get_type ()) true)
-    Glue.free za2
+    let za2 = Internal.Raw.floats values 4
+    let zr = Internal.GskC.gsk_component_transfer_new_discrete (u32 (Internal.Raw.count values)) za2
+    let zv = ComponentTransfer (Internal.Raw.wrapBoxed (zr) (Internal.GskC.gsk_component_transfer_get_type ()) true)
+    Internal.Raw.free za2
     zv
-
-  extern gsk_component_transfer_new_gamma : f32 -> f32 -> f32 -> cptr
 
   /// Creates a new component transfer that applies a gamma transform.
   let createGamma (amp: float) (exp: float) (ofs: float) : ComponentTransfer =
-    ComponentTransfer (Glue.wrapBoxed ((gsk_component_transfer_new_gamma (f32 amp) (f32 exp) (f32 ofs))) (gsk_component_transfer_get_type ()) true)
-
-  extern gsk_component_transfer_new_identity : unit -> cptr
+    ComponentTransfer (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_component_transfer_new_gamma (f32 amp) (f32 exp) (f32 ofs))) (Internal.GskC.gsk_component_transfer_get_type ()) true)
 
   /// Creates a new component transfer that doesn't change the component value.
   let createIdentity () : ComponentTransfer =
-    ComponentTransfer (Glue.wrapBoxed ((gsk_component_transfer_new_identity ())) (gsk_component_transfer_get_type ()) true)
-
-  extern gsk_component_transfer_new_levels : f32 -> cptr
+    ComponentTransfer (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_component_transfer_new_identity ())) (Internal.GskC.gsk_component_transfer_get_type ()) true)
 
   /// Creates a new component transfer that limits the values of the component to `n` levels.
   let createLevels (n: float) : ComponentTransfer =
-    ComponentTransfer (Glue.wrapBoxed ((gsk_component_transfer_new_levels (f32 n))) (gsk_component_transfer_get_type ()) true)
-
-  extern gsk_component_transfer_new_linear : f32 -> f32 -> cptr
+    ComponentTransfer (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_component_transfer_new_levels (f32 n))) (Internal.GskC.gsk_component_transfer_get_type ()) true)
 
   /// Creates a new component transfer that applies a linear transform.
   let createLinear (m: float) (b: float) : ComponentTransfer =
-    ComponentTransfer (Glue.wrapBoxed ((gsk_component_transfer_new_linear (f32 m) (f32 b))) (gsk_component_transfer_get_type ()) true)
-
-  extern gsk_component_transfer_new_table : u32 -> cptr -> cptr
+    ComponentTransfer (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_component_transfer_new_linear (f32 m) (f32 b))) (Internal.GskC.gsk_component_transfer_get_type ()) true)
 
   /// Creates a new component transfer that applies a piecewise linear function.
   let createTable (values: list<float>) : ComponentTransfer =
-    let za2 = Glue.floats values 4
-    let zr = gsk_component_transfer_new_table (u32 (Glue.count values)) za2
-    let zv = ComponentTransfer (Glue.wrapBoxed (zr) (gsk_component_transfer_get_type ()) true)
-    Glue.free za2
+    let za2 = Internal.Raw.floats values 4
+    let zr = Internal.GskC.gsk_component_transfer_new_table (u32 (Internal.Raw.count values)) za2
+    let zv = ComponentTransfer (Internal.Raw.wrapBoxed (zr) (Internal.GskC.gsk_component_transfer_get_type ()) true)
+    Internal.Raw.free za2
     zv
-
-  extern gsk_component_transfer_copy : cptr -> cptr
 
   /// Creates a copy of @other.
   let copy (self: ComponentTransfer) : ComponentTransfer =
-    ComponentTransfer (Glue.wrapBoxed ((gsk_component_transfer_copy (Glue.obj self.Id (gsk_component_transfer_get_type ())))) (gsk_component_transfer_get_type ()) true)
-
-  extern gsk_component_transfer_free : cptr -> unit
+    ComponentTransfer (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_component_transfer_copy (Internal.Raw.obj self.Id (Internal.GskC.gsk_component_transfer_get_type ())))) (Internal.GskC.gsk_component_transfer_get_type ()) true)
 
   /// Frees a component transfer.
   [<Unsafe>]
   let free (self: ComponentTransfer) : unit =
-    gsk_component_transfer_free (Glue.obj self.Id (gsk_component_transfer_get_type ()))
-
-  extern gsk_component_transfer_equal : cptr -> cptr -> i32
+    Internal.GskC.gsk_component_transfer_free (Internal.Raw.obj self.Id (Internal.GskC.gsk_component_transfer_get_type ()))
 
   /// Compares two component transfers for equality.
   [<Unsafe>]
   let equal (self_: cptr) (other: cptr) : bool =
-    (((gsk_component_transfer_equal self_ other)) <> i32 0)
+    (((Internal.GskC.gsk_component_transfer_equal self_ other)) <> i32 0)
 
 module ComponentTransferNode =
-  extern gsk_component_transfer_node_new : cptr -> cptr -> cptr -> cptr -> cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_ComponentTransferNode ()
 
   /// Creates a render node that will apply component transfers to a child node.
   let create (child: RenderNode) (r: ComponentTransfer) (g: ComponentTransfer) (b: ComponentTransfer) (a: ComponentTransfer) : ComponentTransferNode =
-    ComponentTransferNode (zgtk_wrap_Gsk_ComponentTransferNode ((gsk_component_transfer_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj r.Id (gsk_component_transfer_get_type ())) (Glue.obj g.Id (gsk_component_transfer_get_type ())) (Glue.obj b.Id (gsk_component_transfer_get_type ())) (Glue.obj a.Id (gsk_component_transfer_get_type ())))) (i32 1))
-
-  extern gsk_component_transfer_node_get_child : cptr -> cptr
+    ComponentTransferNode (Internal.GskC.zgtk_wrap_Gsk_ComponentTransferNode ((Internal.GskC.gsk_component_transfer_node_new (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (Internal.Raw.obj r.Id (Internal.GskC.gsk_component_transfer_get_type ())) (Internal.Raw.obj g.Id (Internal.GskC.gsk_component_transfer_get_type ())) (Internal.Raw.obj b.Id (Internal.GskC.gsk_component_transfer_get_type ())) (Internal.Raw.obj a.Id (Internal.GskC.gsk_component_transfer_get_type ())))) (i32 1))
 
   /// Gets the child node that is getting drawn by the given @node.
   let getChild (self: ComponentTransferNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_component_transfer_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_ComponentTransferNode ())))) (i32 0))
-
-  extern gsk_component_transfer_node_get_transfer : cptr -> i32 -> cptr
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_component_transfer_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ComponentTransferNode ())))) (i32 0))
 
   /// Gets the component transfer for one of the components.
   let getTransfer (self: ComponentTransferNode) (component: Gdk.ColorChannel) : ComponentTransfer =
-    ComponentTransfer (Glue.wrapBoxed ((gsk_component_transfer_node_get_transfer (Glue.obj self.Id (zgtk_type_Gsk_ComponentTransferNode ())) (i32 component.Int))) (gsk_component_transfer_get_type ()) false)
+    ComponentTransfer (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_component_transfer_node_get_transfer (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ComponentTransferNode ())) (i32 component.Int))) (Internal.GskC.gsk_component_transfer_get_type ()) false)
 
 module CompositeNode =
-  extern gsk_composite_node_new : cptr -> cptr -> i32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_CompositeNode ()
 
   /// Creates a `GskRenderNode` that will composite the child onto the background with the given operator wherever the mask is set.
   let create (child: RenderNode) (mask: RenderNode) (op: PorterDuff) : CompositeNode =
-    CompositeNode (zgtk_wrap_Gsk_CompositeNode ((gsk_composite_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj mask.Id (zgtk_type_Gsk_RenderNode ())) (i32 op.Int))) (i32 1))
-
-  extern gsk_composite_node_get_child : cptr -> cptr
+    CompositeNode (Internal.GskC.zgtk_wrap_Gsk_CompositeNode ((Internal.GskC.gsk_composite_node_new (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (Internal.Raw.obj mask.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (i32 op.Int))) (i32 1))
 
   /// Gets the child node that is getting composited by the given @node.
   let getChild (self: CompositeNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_composite_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_CompositeNode ())))) (i32 0))
-
-  extern gsk_composite_node_get_mask : cptr -> cptr
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_composite_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_CompositeNode ())))) (i32 0))
 
   /// Gets the mask node that describes the region where the compositing applies.
   let getMask (self: CompositeNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_composite_node_get_mask (Glue.obj self.Id (zgtk_type_Gsk_CompositeNode ())))) (i32 0))
-
-  extern gsk_composite_node_get_operator : cptr -> i32
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_composite_node_get_mask (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_CompositeNode ())))) (i32 0))
 
   /// Gets the compositing operator used by this node.
   let getOperator (self: CompositeNode) : PorterDuff =
-    PorterDuff (int ((gsk_composite_node_get_operator (Glue.obj self.Id (zgtk_type_Gsk_CompositeNode ())))))
+    PorterDuff (int ((Internal.GskC.gsk_composite_node_get_operator (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_CompositeNode ())))))
 
 module ConicGradientNode =
-  extern gsk_conic_gradient_node_new : cptr -> cptr -> f32 -> cptr -> usize -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_ConicGradientNode ()
 
   /// Creates a `GskRenderNode` that draws a conic gradient.
   let create (bounds: Graphene.Rect) (center: Graphene.Point) (rotation: float) (colorStops: list<ColorStop>) : ConicGradientNode =
-    let za2 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
-    let zr = gsk_conic_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 rotation) za2 (usize (Glue.count colorStops))
-    let zv = ConicGradientNode (zgtk_wrap_Gsk_ConicGradientNode (zr) (i32 1))
-    Glue.free za2
+    let za2 = Internal.Raw.records (Internal.Raw.mapList (fun (zo: ColorStop) -> Internal.Raw.obj zo.Id (Internal.GskC.zgtk_tag_Gsk_ColorStop ())) colorStops) (Internal.GskC.zgtk_sizeof_Gsk_ColorStop ())
+    let zr = Internal.GskC.gsk_conic_gradient_node_new (Internal.Raw.obj bounds.Id (Internal.GrapheneC.graphene_rect_get_type ())) (Internal.Raw.obj center.Id (Internal.GrapheneC.graphene_point_get_type ())) (f32 rotation) za2 (usize (Internal.Raw.count colorStops))
+    let zv = ConicGradientNode (Internal.GskC.zgtk_wrap_Gsk_ConicGradientNode (zr) (i32 1))
+    Internal.Raw.free za2
     zv
-
-  extern gsk_conic_gradient_node_get_angle : cptr -> f32
 
   /// Retrieves the angle for the gradient in radians, normalized in [0, 2 * PI].
   let getAngle (self: ConicGradientNode) : float =
-    (float ((gsk_conic_gradient_node_get_angle (Glue.obj self.Id (zgtk_type_Gsk_ConicGradientNode ())))))
-
-  extern gsk_conic_gradient_node_get_center : cptr -> cptr
+    (float ((Internal.GskC.gsk_conic_gradient_node_get_angle (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ConicGradientNode ())))))
 
   /// Retrieves the center pointer for the gradient.
   let getCenter (self: ConicGradientNode) : Graphene.Point =
-    Graphene.Point (Glue.wrapBoxed ((gsk_conic_gradient_node_get_center (Glue.obj self.Id (zgtk_type_Gsk_ConicGradientNode ())))) (Graphene.graphene_point_get_type ()) false)
-
-  extern gsk_conic_gradient_node_get_color_stops : cptr -> cptr -> cptr
+    Graphene.Point (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_conic_gradient_node_get_center (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ConicGradientNode ())))) (Internal.GrapheneC.graphene_point_get_type ()) false)
 
   /// Retrieves the color stops in the gradient.
   let getColorStops (self: ConicGradientNode) : list<ColorStop> =
-    Glue.outBegin ()
-    let zr = gsk_conic_gradient_node_get_color_stops (Glue.obj self.Id (zgtk_type_Gsk_ConicGradientNode ())) (Glue.out 0)
-    let zrs1 = Glue.mapList (fun zp -> ColorStop (Glue.copyPlain (zp) (zgtk_sizeof_Gsk_ColorStop ()) (zgtk_tag_Gsk_ColorStop ()))) (Glue.recordsOf (zr) (Glue.outI64 0) (zgtk_sizeof_Gsk_ColorStop ()))
+    Internal.Raw.outBegin ()
+    let zr = Internal.GskC.gsk_conic_gradient_node_get_color_stops (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ConicGradientNode ())) (Internal.Raw.out 0)
+    let zrs1 = Internal.Raw.mapList (fun zp -> ColorStop (Internal.Raw.copyPlain (zp) (Internal.GskC.zgtk_sizeof_Gsk_ColorStop ()) (Internal.GskC.zgtk_tag_Gsk_ColorStop ()))) (Internal.Raw.recordsOf (zr) (Internal.Raw.outI64 0) (Internal.GskC.zgtk_sizeof_Gsk_ColorStop ()))
     let zv = zrs1
-    Glue.outEnd ()
+    Internal.Raw.outEnd ()
     zv
-
-  extern gsk_conic_gradient_node_get_n_color_stops : cptr -> usize
 
   /// Retrieves the number of color stops in the gradient.
   let getNColorStops (self: ConicGradientNode) : int =
-    (int ((gsk_conic_gradient_node_get_n_color_stops (Glue.obj self.Id (zgtk_type_Gsk_ConicGradientNode ())))))
-
-  extern gsk_conic_gradient_node_get_rotation : cptr -> f32
+    (int ((Internal.GskC.gsk_conic_gradient_node_get_n_color_stops (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ConicGradientNode ())))))
 
   /// Retrieves the rotation for the gradient in degrees.
   let getRotation (self: ConicGradientNode) : float =
-    (float ((gsk_conic_gradient_node_get_rotation (Glue.obj self.Id (zgtk_type_Gsk_ConicGradientNode ())))))
+    (float ((Internal.GskC.gsk_conic_gradient_node_get_rotation (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ConicGradientNode ())))))
 
 module ContainerNode =
-  extern gsk_container_node_new : cptr -> u32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_ContainerNode ()
 
   /// Creates a new `GskRenderNode` instance for holding the given @children.
   let create (children: list<RenderNode>) : ContainerNode =
-    let za2 = Glue.ptrs (Glue.mapList (fun (zo: RenderNode) -> Glue.obj zo.Id (zgtk_type_Gsk_RenderNode ())) children)
-    let zr = gsk_container_node_new za2 (u32 (Glue.count children))
-    let zv = ContainerNode (zgtk_wrap_Gsk_ContainerNode (zr) (i32 1))
-    Glue.free za2
+    let za2 = Internal.Raw.ptrs (Internal.Raw.mapList (fun (zo: RenderNode) -> Internal.Raw.obj zo.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) children)
+    let zr = Internal.GskC.gsk_container_node_new za2 (u32 (Internal.Raw.count children))
+    let zv = ContainerNode (Internal.GskC.zgtk_wrap_Gsk_ContainerNode (zr) (i32 1))
+    Internal.Raw.free za2
     zv
-
-  extern gsk_container_node_get_child : cptr -> u32 -> cptr
 
   /// Gets one of the children of @container.
   let getChild (self: ContainerNode) (idx: int) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_container_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_ContainerNode ())) (u32 idx))) (i32 0))
-
-  extern gsk_container_node_get_n_children : cptr -> u32
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_container_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ContainerNode ())) (u32 idx))) (i32 0))
 
   /// Retrieves the number of direct children of @node.
   let getNChildren (self: ContainerNode) : int =
-    (int ((gsk_container_node_get_n_children (Glue.obj self.Id (zgtk_type_Gsk_ContainerNode ())))))
+    (int ((Internal.GskC.gsk_container_node_get_n_children (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ContainerNode ())))))
 
 module CopyNode =
-  extern gsk_copy_node_new : cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_CopyNode ()
 
   /// Creates a `GskRenderNode` that copies the current rendering canvas for playback by paste nodes that are part of the child.
   let create (child: RenderNode) : CopyNode =
-    CopyNode (zgtk_wrap_Gsk_CopyNode ((gsk_copy_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())))) (i32 1))
-
-  extern gsk_copy_node_get_child : cptr -> cptr
+    CopyNode (Internal.GskC.zgtk_wrap_Gsk_CopyNode ((Internal.GskC.gsk_copy_node_new (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())))) (i32 1))
 
   /// Gets the child node that is getting drawn by the given @node.
   let getChild (self: CopyNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_copy_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_CopyNode ())))) (i32 0))
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_copy_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_CopyNode ())))) (i32 0))
 
 module CrossFadeNode =
-  extern gsk_cross_fade_node_new : cptr -> cptr -> f32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_CrossFadeNode ()
 
   /// Creates a `GskRenderNode` that will do a cross-fade between @start and @end.
   let create (start: RenderNode) (end: RenderNode) (progress: float) : CrossFadeNode =
-    CrossFadeNode (zgtk_wrap_Gsk_CrossFadeNode ((gsk_cross_fade_node_new (Glue.obj start.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj end.Id (zgtk_type_Gsk_RenderNode ())) (f32 progress))) (i32 1))
-
-  extern gsk_cross_fade_node_get_end_child : cptr -> cptr
+    CrossFadeNode (Internal.GskC.zgtk_wrap_Gsk_CrossFadeNode ((Internal.GskC.gsk_cross_fade_node_new (Internal.Raw.obj start.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (Internal.Raw.obj end.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (f32 progress))) (i32 1))
 
   /// Retrieves the child `GskRenderNode` at the end of the cross-fade.
   let getEndChild (self: CrossFadeNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_cross_fade_node_get_end_child (Glue.obj self.Id (zgtk_type_Gsk_CrossFadeNode ())))) (i32 0))
-
-  extern gsk_cross_fade_node_get_progress : cptr -> f32
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_cross_fade_node_get_end_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_CrossFadeNode ())))) (i32 0))
 
   /// Retrieves the progress value of the cross fade.
   let getProgress (self: CrossFadeNode) : float =
-    (float ((gsk_cross_fade_node_get_progress (Glue.obj self.Id (zgtk_type_Gsk_CrossFadeNode ())))))
-
-  extern gsk_cross_fade_node_get_start_child : cptr -> cptr
+    (float ((Internal.GskC.gsk_cross_fade_node_get_progress (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_CrossFadeNode ())))))
 
   /// Retrieves the child `GskRenderNode` at the beginning of the cross-fade.
   let getStartChild (self: CrossFadeNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_cross_fade_node_get_start_child (Glue.obj self.Id (zgtk_type_Gsk_CrossFadeNode ())))) (i32 0))
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_cross_fade_node_get_start_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_CrossFadeNode ())))) (i32 0))
 
 module DebugNode =
-  extern gsk_debug_node_new : cptr -> cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_DebugNode ()
 
   /// Creates a `GskRenderNode` that will add debug information about the given @child.
   let create (child: RenderNode) (message: string) : DebugNode =
-    DebugNode (zgtk_wrap_Gsk_DebugNode ((gsk_debug_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.dup message))) (i32 1))
-
-  extern gsk_debug_node_get_child : cptr -> cptr
+    DebugNode (Internal.GskC.zgtk_wrap_Gsk_DebugNode ((Internal.GskC.gsk_debug_node_new (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (Internal.Raw.dup message))) (i32 1))
 
   /// Gets the child node that is getting drawn by the given @node.
   let getChild (self: DebugNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_debug_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_DebugNode ())))) (i32 0))
-
-  extern gsk_debug_node_get_message : cptr -> cptr
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_debug_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_DebugNode ())))) (i32 0))
 
   /// Gets the debug message that was set on this node
   let getMessage (self: DebugNode) : string =
-    Glue.text ((gsk_debug_node_get_message (Glue.obj self.Id (zgtk_type_Gsk_DebugNode ()))))
+    Internal.Raw.text ((Internal.GskC.gsk_debug_node_get_message (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_DebugNode ()))))
 
 module FillNode =
-  extern gsk_fill_node_new : cptr -> cptr -> i32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_FillNode ()
 
   /// Creates a `GskRenderNode` that will fill the @child in the area given by @path and @fill_rule.
   let create (child: RenderNode) (path: Path) (fillRule: FillRule) : FillNode =
-    FillNode (zgtk_wrap_Gsk_FillNode ((gsk_fill_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj path.Id (gsk_path_get_type ())) (i32 fillRule.Int))) (i32 0))
-
-  extern gsk_fill_node_get_child : cptr -> cptr
+    FillNode (Internal.GskC.zgtk_wrap_Gsk_FillNode ((Internal.GskC.gsk_fill_node_new (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (Internal.Raw.obj path.Id (Internal.GskC.gsk_path_get_type ())) (i32 fillRule.Int))) (i32 0))
 
   /// Gets the child node that is getting drawn by the given @node.
   let getChild (self: FillNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_fill_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_FillNode ())))) (i32 0))
-
-  extern gsk_fill_node_get_fill_rule : cptr -> i32
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_fill_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_FillNode ())))) (i32 0))
 
   /// Retrieves the fill rule used to determine how the path is filled.
   let getFillRule (self: FillNode) : FillRule =
-    FillRule (int ((gsk_fill_node_get_fill_rule (Glue.obj self.Id (zgtk_type_Gsk_FillNode ())))))
-
-  extern gsk_fill_node_get_path : cptr -> cptr
+    FillRule (int ((Internal.GskC.gsk_fill_node_get_fill_rule (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_FillNode ())))))
 
   /// Retrieves the path used to describe the area filled with the contents of the @node.
   let getPath (self: FillNode) : Path =
-    Path (Glue.wrapBoxed ((gsk_fill_node_get_path (Glue.obj self.Id (zgtk_type_Gsk_FillNode ())))) (gsk_path_get_type ()) false)
+    Path (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_fill_node_get_path (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_FillNode ())))) (Internal.GskC.gsk_path_get_type ()) false)
 
 module GLRenderer =
   /// The same object as its ancestor.
@@ -1875,327 +1639,254 @@ module GLRenderer =
   /// The same object as its ancestor.
   let toGObjectObject (self: GLRenderer) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_gl_renderer_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<GLRenderer> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gsk_gl_renderer_get_type ()) then Some (GLRenderer object.Id) else None
-
-  extern gsk_gl_renderer_new : unit -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GskC.gsk_gl_renderer_get_type ()) then Some (GLRenderer object.Id) else None
 
   /// Creates an instance of the GL renderer.
   let create () : GLRenderer =
-    GLRenderer (Glue.wrap ((gsk_gl_renderer_new ())) true)
+    GLRenderer (Internal.Raw.wrap ((Internal.GskC.gsk_gl_renderer_new ())) true)
 
 module GLShader =
   /// The same object as its ancestor.
   let toGObjectObject (self: GLShader) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_gl_shader_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<GLShader> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gsk_gl_shader_get_type ()) then Some (GLShader object.Id) else None
-
-  extern gsk_gl_shader_new_from_bytes : cptr -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GskC.gsk_gl_shader_get_type ()) then Some (GLShader object.Id) else None
 
   /// Deprecated. Creates a `GskGLShader` that will render pixels using the specified code.
   let createFromBytes (sourcecode: GLib.Bytes) : GLShader =
-    GLShader (Glue.wrap ((gsk_gl_shader_new_from_bytes (Glue.obj sourcecode.Id (GLib.g_bytes_get_type ())))) true)
-
-  extern gsk_gl_shader_new_from_resource : cstr -> cptr
+    GLShader (Internal.Raw.wrap ((Internal.GskC.gsk_gl_shader_new_from_bytes (Internal.Raw.obj sourcecode.Id (Internal.GLibC.g_bytes_get_type ())))) true)
 
   /// Deprecated. Creates a `GskGLShader` that will render pixels using the specified code.
   let createFromResource (resourcePath: string) : GLShader =
-    GLShader (Glue.wrap ((gsk_gl_shader_new_from_resource resourcePath)) true)
-
-  extern gsk_gl_shader_compile : cptr -> cptr -> cptr -> i32
+    GLShader (Internal.Raw.wrap ((Internal.GskC.gsk_gl_shader_new_from_resource resourcePath)) true)
 
   /// Deprecated. Tries to compile the @shader for the given @renderer.
   let compile (self: GLShader) (renderer: Renderer) : result<bool, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gsk_gl_shader_compile (Glue.obj self.Id (gsk_gl_shader_get_type ())) (Glue.obj renderer.Id (gsk_renderer_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GskC.gsk_gl_shader_compile (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())) (Internal.Raw.obj renderer.Id (Internal.GskC.gsk_renderer_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
       let zv = ((zr) <> i32 0)
-      Glue.outEnd ()
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gsk_gl_shader_find_uniform_by_name : cptr -> cstr -> i32
 
   /// Deprecated. Looks for a uniform by the name @name, and returns the index of the uniform, or -1 if it was not found.
   let findUniformByName (self: GLShader) (name: string) : int =
-    (int ((gsk_gl_shader_find_uniform_by_name (Glue.obj self.Id (gsk_gl_shader_get_type ())) name)))
-
-  /// Deprecated. Formats the uniform data as needed for feeding the named uniforms values into the shader. C's own function, of variable arguments: called as C calls it, by code that
-  /// answers for what it passes.
-  extern gsk_gl_shader_format_args : cptr -> ... -> cptr
-
-  extern gsk_gl_shader_format_args_va : cptr -> cptr -> cptr
+    (int ((Internal.GskC.gsk_gl_shader_find_uniform_by_name (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())) name)))
 
   /// Deprecated. Formats the uniform data as needed for feeding the named uniforms values into the shader.
   [<Unsafe>]
   let formatArgsVa (self: GLShader) (uniforms: cptr) : GLib.Bytes =
-    GLib.Bytes (Glue.wrapBoxed ((gsk_gl_shader_format_args_va (Glue.obj self.Id (gsk_gl_shader_get_type ())) uniforms)) (GLib.g_bytes_get_type ()) true)
-
-  extern gsk_gl_shader_get_arg_bool : cptr -> cptr -> i32 -> i32
+    GLib.Bytes (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_gl_shader_format_args_va (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())) uniforms)) (Internal.GLibC.g_bytes_get_type ()) true)
 
   /// Deprecated. Gets the value of the uniform @idx in the @args block.
   let getArgBool (self: GLShader) (args: GLib.Bytes) (idx: int) : bool =
-    (((gsk_gl_shader_get_arg_bool (Glue.obj self.Id (gsk_gl_shader_get_type ())) (Glue.obj args.Id (GLib.g_bytes_get_type ())) (i32 idx))) <> i32 0)
-
-  extern gsk_gl_shader_get_arg_float : cptr -> cptr -> i32 -> f32
+    (((Internal.GskC.gsk_gl_shader_get_arg_bool (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())) (Internal.Raw.obj args.Id (Internal.GLibC.g_bytes_get_type ())) (i32 idx))) <> i32 0)
 
   /// Deprecated. Gets the value of the uniform @idx in the @args block.
   let getArgFloat (self: GLShader) (args: GLib.Bytes) (idx: int) : float =
-    (float ((gsk_gl_shader_get_arg_float (Glue.obj self.Id (gsk_gl_shader_get_type ())) (Glue.obj args.Id (GLib.g_bytes_get_type ())) (i32 idx))))
-
-  extern gsk_gl_shader_get_arg_int : cptr -> cptr -> i32 -> i32
+    (float ((Internal.GskC.gsk_gl_shader_get_arg_float (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())) (Internal.Raw.obj args.Id (Internal.GLibC.g_bytes_get_type ())) (i32 idx))))
 
   /// Deprecated. Gets the value of the uniform @idx in the @args block.
   let getArgInt (self: GLShader) (args: GLib.Bytes) (idx: int) : int =
-    (int ((gsk_gl_shader_get_arg_int (Glue.obj self.Id (gsk_gl_shader_get_type ())) (Glue.obj args.Id (GLib.g_bytes_get_type ())) (i32 idx))))
-
-  extern gsk_gl_shader_get_arg_uint : cptr -> cptr -> i32 -> u32
+    (int ((Internal.GskC.gsk_gl_shader_get_arg_int (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())) (Internal.Raw.obj args.Id (Internal.GLibC.g_bytes_get_type ())) (i32 idx))))
 
   /// Deprecated. Gets the value of the uniform @idx in the @args block.
   let getArgUint (self: GLShader) (args: GLib.Bytes) (idx: int) : int =
-    (int ((gsk_gl_shader_get_arg_uint (Glue.obj self.Id (gsk_gl_shader_get_type ())) (Glue.obj args.Id (GLib.g_bytes_get_type ())) (i32 idx))))
-
-  extern gsk_gl_shader_get_arg_vec2 : cptr -> cptr -> i32 -> cptr -> unit
+    (int ((Internal.GskC.gsk_gl_shader_get_arg_uint (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())) (Internal.Raw.obj args.Id (Internal.GLibC.g_bytes_get_type ())) (i32 idx))))
 
   /// Deprecated. Gets the value of the uniform @idx in the @args block.
   let getArgVec2 (self: GLShader) (args: GLib.Bytes) (idx: int) (outValue: Graphene.Vec2) : unit =
-    gsk_gl_shader_get_arg_vec2 (Glue.obj self.Id (gsk_gl_shader_get_type ())) (Glue.obj args.Id (GLib.g_bytes_get_type ())) (i32 idx) (Glue.obj outValue.Id (Graphene.graphene_vec2_get_type ()))
-
-  extern gsk_gl_shader_get_arg_vec3 : cptr -> cptr -> i32 -> cptr -> unit
+    Internal.GskC.gsk_gl_shader_get_arg_vec2 (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())) (Internal.Raw.obj args.Id (Internal.GLibC.g_bytes_get_type ())) (i32 idx) (Internal.Raw.obj outValue.Id (Internal.GrapheneC.graphene_vec2_get_type ()))
 
   /// Deprecated. Gets the value of the uniform @idx in the @args block.
   let getArgVec3 (self: GLShader) (args: GLib.Bytes) (idx: int) (outValue: Graphene.Vec3) : unit =
-    gsk_gl_shader_get_arg_vec3 (Glue.obj self.Id (gsk_gl_shader_get_type ())) (Glue.obj args.Id (GLib.g_bytes_get_type ())) (i32 idx) (Glue.obj outValue.Id (Graphene.graphene_vec3_get_type ()))
-
-  extern gsk_gl_shader_get_arg_vec4 : cptr -> cptr -> i32 -> cptr -> unit
+    Internal.GskC.gsk_gl_shader_get_arg_vec3 (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())) (Internal.Raw.obj args.Id (Internal.GLibC.g_bytes_get_type ())) (i32 idx) (Internal.Raw.obj outValue.Id (Internal.GrapheneC.graphene_vec3_get_type ()))
 
   /// Deprecated. Gets the value of the uniform @idx in the @args block.
   let getArgVec4 (self: GLShader) (args: GLib.Bytes) (idx: int) (outValue: Graphene.Vec4) : unit =
-    gsk_gl_shader_get_arg_vec4 (Glue.obj self.Id (gsk_gl_shader_get_type ())) (Glue.obj args.Id (GLib.g_bytes_get_type ())) (i32 idx) (Glue.obj outValue.Id (Graphene.graphene_vec4_get_type ()))
-
-  extern gsk_gl_shader_get_args_size : cptr -> usize
+    Internal.GskC.gsk_gl_shader_get_arg_vec4 (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())) (Internal.Raw.obj args.Id (Internal.GLibC.g_bytes_get_type ())) (i32 idx) (Internal.Raw.obj outValue.Id (Internal.GrapheneC.graphene_vec4_get_type ()))
 
   /// Deprecated. Get the size of the data block used to specify arguments for this shader.
   let getArgsSize (self: GLShader) : int =
-    (int ((gsk_gl_shader_get_args_size (Glue.obj self.Id (gsk_gl_shader_get_type ())))))
-
-  extern gsk_gl_shader_get_n_textures : cptr -> i32
+    (int ((Internal.GskC.gsk_gl_shader_get_args_size (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())))))
 
   /// Deprecated. Returns the number of textures that the shader requires.
   let getNTextures (self: GLShader) : int =
-    (int ((gsk_gl_shader_get_n_textures (Glue.obj self.Id (gsk_gl_shader_get_type ())))))
-
-  extern gsk_gl_shader_get_n_uniforms : cptr -> i32
+    (int ((Internal.GskC.gsk_gl_shader_get_n_textures (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())))))
 
   /// Deprecated. Get the number of declared uniforms for this shader.
   let getNUniforms (self: GLShader) : int =
-    (int ((gsk_gl_shader_get_n_uniforms (Glue.obj self.Id (gsk_gl_shader_get_type ())))))
-
-  extern gsk_gl_shader_get_resource : cptr -> cptr
+    (int ((Internal.GskC.gsk_gl_shader_get_n_uniforms (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())))))
 
   /// Deprecated. Gets the resource path for the GLSL sourcecode being used to render this shader.
   let getResource (self: GLShader) : option<string> =
-    Glue.textOption ((gsk_gl_shader_get_resource (Glue.obj self.Id (gsk_gl_shader_get_type ()))))
-
-  extern gsk_gl_shader_get_source : cptr -> cptr
+    Internal.Raw.textOption ((Internal.GskC.gsk_gl_shader_get_resource (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ()))))
 
   /// Deprecated. Gets the GLSL sourcecode being used to render this shader.
   let getSource (self: GLShader) : GLib.Bytes =
-    GLib.Bytes (Glue.wrapBoxed ((gsk_gl_shader_get_source (Glue.obj self.Id (gsk_gl_shader_get_type ())))) (GLib.g_bytes_get_type ()) false)
-
-  extern gsk_gl_shader_get_uniform_name : cptr -> i32 -> cptr
+    GLib.Bytes (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_gl_shader_get_source (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())))) (Internal.GLibC.g_bytes_get_type ()) false)
 
   /// Deprecated. Get the name of the declared uniform for this shader at index @idx.
   let getUniformName (self: GLShader) (idx: int) : string =
-    Glue.text ((gsk_gl_shader_get_uniform_name (Glue.obj self.Id (gsk_gl_shader_get_type ())) (i32 idx)))
-
-  extern gsk_gl_shader_get_uniform_offset : cptr -> i32 -> i32
+    Internal.Raw.text ((Internal.GskC.gsk_gl_shader_get_uniform_name (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())) (i32 idx)))
 
   /// Deprecated. Get the offset into the data block where data for this uniforms is stored.
   let getUniformOffset (self: GLShader) (idx: int) : int =
-    (int ((gsk_gl_shader_get_uniform_offset (Glue.obj self.Id (gsk_gl_shader_get_type ())) (i32 idx))))
-
-  extern gsk_gl_shader_get_uniform_type : cptr -> i32 -> i32
+    (int ((Internal.GskC.gsk_gl_shader_get_uniform_offset (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())) (i32 idx))))
 
   /// Deprecated. Get the type of the declared uniform for this shader at index @idx.
   let getUniformType (self: GLShader) (idx: int) : GLUniformType =
-    GLUniformType (int ((gsk_gl_shader_get_uniform_type (Glue.obj self.Id (gsk_gl_shader_get_type ())) (i32 idx))))
+    GLUniformType (int ((Internal.GskC.gsk_gl_shader_get_uniform_type (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())) (i32 idx))))
 
   /// Calls `handler` when the `resource` property changes.
   let onNotifyResource (self: GLShader) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gsk_gl_shader_get_type ())) "notify::resource" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())) "notify::resource" handler
 
   /// Calls `handler` when the `source` property changes.
   let onNotifySource (self: GLShader) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gsk_gl_shader_get_type ())) "notify::source" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GskC.gsk_gl_shader_get_type ())) "notify::source" handler
 
 module GLShaderNode =
-  extern gsk_gl_shader_node_new : cptr -> cptr -> cptr -> cptr -> u32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_GLShaderNode ()
 
   /// Deprecated. Creates a `GskRenderNode` that will render the given @shader into the area given by @bounds.
   let create (shader: GLShader) (bounds: Graphene.Rect) (args: GLib.Bytes) (children: list<RenderNode>) : GLShaderNode =
-    let za2 = Glue.ptrs (Glue.mapList (fun (zo: RenderNode) -> Glue.obj zo.Id (zgtk_type_Gsk_RenderNode ())) children)
-    let zr = gsk_gl_shader_node_new (Glue.obj shader.Id (gsk_gl_shader_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj args.Id (GLib.g_bytes_get_type ())) za2 (u32 (Glue.count children))
-    let zv = GLShaderNode (zgtk_wrap_Gsk_GLShaderNode (zr) (i32 1))
-    Glue.free za2
+    let za2 = Internal.Raw.ptrs (Internal.Raw.mapList (fun (zo: RenderNode) -> Internal.Raw.obj zo.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) children)
+    let zr = Internal.GskC.gsk_gl_shader_node_new (Internal.Raw.obj shader.Id (Internal.GskC.gsk_gl_shader_get_type ())) (Internal.Raw.obj bounds.Id (Internal.GrapheneC.graphene_rect_get_type ())) (Internal.Raw.obj args.Id (Internal.GLibC.g_bytes_get_type ())) za2 (u32 (Internal.Raw.count children))
+    let zv = GLShaderNode (Internal.GskC.zgtk_wrap_Gsk_GLShaderNode (zr) (i32 1))
+    Internal.Raw.free za2
     zv
-
-  extern gsk_gl_shader_node_get_args : cptr -> cptr
 
   /// Deprecated. Gets args for the node.
   let getArgs (self: GLShaderNode) : GLib.Bytes =
-    GLib.Bytes (Glue.wrapBoxed ((gsk_gl_shader_node_get_args (Glue.obj self.Id (zgtk_type_Gsk_GLShaderNode ())))) (GLib.g_bytes_get_type ()) false)
-
-  extern gsk_gl_shader_node_get_child : cptr -> u32 -> cptr
+    GLib.Bytes (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_gl_shader_node_get_args (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_GLShaderNode ())))) (Internal.GLibC.g_bytes_get_type ()) false)
 
   /// Deprecated. Gets one of the children.
   let getChild (self: GLShaderNode) (idx: int) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_gl_shader_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_GLShaderNode ())) (u32 idx))) (i32 0))
-
-  extern gsk_gl_shader_node_get_n_children : cptr -> u32
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_gl_shader_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_GLShaderNode ())) (u32 idx))) (i32 0))
 
   /// Deprecated. Returns the number of children
   let getNChildren (self: GLShaderNode) : int =
-    (int ((gsk_gl_shader_node_get_n_children (Glue.obj self.Id (zgtk_type_Gsk_GLShaderNode ())))))
-
-  extern gsk_gl_shader_node_get_shader : cptr -> cptr
+    (int ((Internal.GskC.gsk_gl_shader_node_get_n_children (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_GLShaderNode ())))))
 
   /// Gets shader code for the node.
   let getShader (self: GLShaderNode) : GLShader =
-    GLShader (Glue.wrap ((gsk_gl_shader_node_get_shader (Glue.obj self.Id (zgtk_type_Gsk_GLShaderNode ())))) false)
+    GLShader (Internal.Raw.wrap ((Internal.GskC.gsk_gl_shader_node_get_shader (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_GLShaderNode ())))) false)
 
 module InsetShadowNode =
-  extern gsk_inset_shadow_node_new : cptr -> cptr -> f32 -> f32 -> f32 -> f32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_InsetShadowNode ()
 
   /// Creates a `GskRenderNode` that will render an inset shadow into the box given by @outline.
   let create (outline: RoundedRect) (color: Gdk.RGBA) (dx: float) (dy: float) (spread: float) (blurRadius: float) : InsetShadowNode =
-    InsetShadowNode (zgtk_wrap_Gsk_InsetShadowNode ((gsk_inset_shadow_node_new (Glue.obj outline.Id (zgtk_tag_Gsk_RoundedRect ())) (Glue.obj color.Id (Gdk.gdk_rgba_get_type ())) (f32 dx) (f32 dy) (f32 spread) (f32 blurRadius))) (i32 1))
-
-  extern gsk_inset_shadow_node_get_blur_radius : cptr -> f32
+    InsetShadowNode (Internal.GskC.zgtk_wrap_Gsk_InsetShadowNode ((Internal.GskC.gsk_inset_shadow_node_new (Internal.Raw.obj outline.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())) (Internal.Raw.obj color.Id (Internal.GdkC.gdk_rgba_get_type ())) (f32 dx) (f32 dy) (f32 spread) (f32 blurRadius))) (i32 1))
 
   /// Retrieves the blur radius to apply to the shadow.
   let getBlurRadius (self: InsetShadowNode) : float =
-    (float ((gsk_inset_shadow_node_get_blur_radius (Glue.obj self.Id (zgtk_type_Gsk_InsetShadowNode ())))))
-
-  extern gsk_inset_shadow_node_get_color : cptr -> cptr
+    (float ((Internal.GskC.gsk_inset_shadow_node_get_blur_radius (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_InsetShadowNode ())))))
 
   /// Retrieves the color of the inset shadow.
   let getColor (self: InsetShadowNode) : Gdk.RGBA =
-    Gdk.RGBA (Glue.wrapBoxed ((gsk_inset_shadow_node_get_color (Glue.obj self.Id (zgtk_type_Gsk_InsetShadowNode ())))) (Gdk.gdk_rgba_get_type ()) false)
-
-  extern gsk_inset_shadow_node_get_dx : cptr -> f32
+    Gdk.RGBA (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_inset_shadow_node_get_color (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_InsetShadowNode ())))) (Internal.GdkC.gdk_rgba_get_type ()) false)
 
   /// Retrieves the horizontal offset of the inset shadow.
   let getDx (self: InsetShadowNode) : float =
-    (float ((gsk_inset_shadow_node_get_dx (Glue.obj self.Id (zgtk_type_Gsk_InsetShadowNode ())))))
-
-  extern gsk_inset_shadow_node_get_dy : cptr -> f32
+    (float ((Internal.GskC.gsk_inset_shadow_node_get_dx (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_InsetShadowNode ())))))
 
   /// Retrieves the vertical offset of the inset shadow.
   let getDy (self: InsetShadowNode) : float =
-    (float ((gsk_inset_shadow_node_get_dy (Glue.obj self.Id (zgtk_type_Gsk_InsetShadowNode ())))))
-
-  extern gsk_inset_shadow_node_get_outline : cptr -> cptr
+    (float ((Internal.GskC.gsk_inset_shadow_node_get_dy (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_InsetShadowNode ())))))
 
   /// Retrieves the outline rectangle of the inset shadow.
   let getOutline (self: InsetShadowNode) : RoundedRect =
-    RoundedRect (Glue.copyPlain ((gsk_inset_shadow_node_get_outline (Glue.obj self.Id (zgtk_type_Gsk_InsetShadowNode ())))) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
-
-  extern gsk_inset_shadow_node_get_spread : cptr -> f32
+    RoundedRect (Internal.Raw.copyPlain ((Internal.GskC.gsk_inset_shadow_node_get_outline (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_InsetShadowNode ())))) (Internal.GskC.zgtk_sizeof_Gsk_RoundedRect ()) (Internal.GskC.zgtk_tag_Gsk_RoundedRect ()))
 
   /// Retrieves how much the shadow spreads inwards.
   let getSpread (self: InsetShadowNode) : float =
-    (float ((gsk_inset_shadow_node_get_spread (Glue.obj self.Id (zgtk_type_Gsk_InsetShadowNode ())))))
+    (float ((Internal.GskC.gsk_inset_shadow_node_get_spread (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_InsetShadowNode ())))))
 
 module IsolationNode =
-  extern gsk_isolation_node_new : cptr -> u32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_IsolationNode ()
 
   /// Creates a `GskRenderNode` that isolates the drawing operations of the child from surrounding ones.
   let create (child: RenderNode) (isolations: Isolation) : IsolationNode =
-    IsolationNode (zgtk_wrap_Gsk_IsolationNode ((gsk_isolation_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (u32 isolations.Int))) (i32 1))
-
-  extern gsk_isolation_node_get_child : cptr -> cptr
+    IsolationNode (Internal.GskC.zgtk_wrap_Gsk_IsolationNode ((Internal.GskC.gsk_isolation_node_new (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (u32 isolations.Int))) (i32 1))
 
   /// Gets the child node that is getting drawn by the given @node.
   let getChild (self: IsolationNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_isolation_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_IsolationNode ())))) (i32 0))
-
-  extern gsk_isolation_node_get_isolations : cptr -> u32
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_isolation_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_IsolationNode ())))) (i32 0))
 
   /// Gets the isolation features that are enforced by this node.
   let getIsolations (self: IsolationNode) : Isolation =
-    Isolation (int ((gsk_isolation_node_get_isolations (Glue.obj self.Id (zgtk_type_Gsk_IsolationNode ())))))
+    Isolation (int ((Internal.GskC.gsk_isolation_node_get_isolations (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_IsolationNode ())))))
 
 module LinearGradientNode =
-  extern gsk_linear_gradient_node_new : cptr -> cptr -> cptr -> cptr -> usize -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_LinearGradientNode ()
 
   /// Creates a `GskRenderNode` that will create a linear gradient from the given points and color stops, and render that into the area given by @bounds.
   let create (bounds: Graphene.Rect) (start: Graphene.Point) (end: Graphene.Point) (colorStops: list<ColorStop>) : LinearGradientNode =
-    let za2 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
-    let zr = gsk_linear_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj start.Id (Graphene.graphene_point_get_type ())) (Glue.obj end.Id (Graphene.graphene_point_get_type ())) za2 (usize (Glue.count colorStops))
-    let zv = LinearGradientNode (zgtk_wrap_Gsk_LinearGradientNode (zr) (i32 1))
-    Glue.free za2
+    let za2 = Internal.Raw.records (Internal.Raw.mapList (fun (zo: ColorStop) -> Internal.Raw.obj zo.Id (Internal.GskC.zgtk_tag_Gsk_ColorStop ())) colorStops) (Internal.GskC.zgtk_sizeof_Gsk_ColorStop ())
+    let zr = Internal.GskC.gsk_linear_gradient_node_new (Internal.Raw.obj bounds.Id (Internal.GrapheneC.graphene_rect_get_type ())) (Internal.Raw.obj start.Id (Internal.GrapheneC.graphene_point_get_type ())) (Internal.Raw.obj end.Id (Internal.GrapheneC.graphene_point_get_type ())) za2 (usize (Internal.Raw.count colorStops))
+    let zv = LinearGradientNode (Internal.GskC.zgtk_wrap_Gsk_LinearGradientNode (zr) (i32 1))
+    Internal.Raw.free za2
     zv
-
-  extern gsk_linear_gradient_node_get_color_stops : cptr -> cptr -> cptr
 
   /// Retrieves the color stops in the gradient.
   let getColorStops (self: LinearGradientNode) : list<ColorStop> =
-    Glue.outBegin ()
-    let zr = gsk_linear_gradient_node_get_color_stops (Glue.obj self.Id (zgtk_type_Gsk_LinearGradientNode ())) (Glue.out 0)
-    let zrs1 = Glue.mapList (fun zp -> ColorStop (Glue.copyPlain (zp) (zgtk_sizeof_Gsk_ColorStop ()) (zgtk_tag_Gsk_ColorStop ()))) (Glue.recordsOf (zr) (Glue.outI64 0) (zgtk_sizeof_Gsk_ColorStop ()))
+    Internal.Raw.outBegin ()
+    let zr = Internal.GskC.gsk_linear_gradient_node_get_color_stops (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_LinearGradientNode ())) (Internal.Raw.out 0)
+    let zrs1 = Internal.Raw.mapList (fun zp -> ColorStop (Internal.Raw.copyPlain (zp) (Internal.GskC.zgtk_sizeof_Gsk_ColorStop ()) (Internal.GskC.zgtk_tag_Gsk_ColorStop ()))) (Internal.Raw.recordsOf (zr) (Internal.Raw.outI64 0) (Internal.GskC.zgtk_sizeof_Gsk_ColorStop ()))
     let zv = zrs1
-    Glue.outEnd ()
+    Internal.Raw.outEnd ()
     zv
-
-  extern gsk_linear_gradient_node_get_end : cptr -> cptr
 
   /// Retrieves the final point of the linear gradient.
   let getEnd (self: LinearGradientNode) : Graphene.Point =
-    Graphene.Point (Glue.wrapBoxed ((gsk_linear_gradient_node_get_end (Glue.obj self.Id (zgtk_type_Gsk_LinearGradientNode ())))) (Graphene.graphene_point_get_type ()) false)
-
-  extern gsk_linear_gradient_node_get_n_color_stops : cptr -> usize
+    Graphene.Point (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_linear_gradient_node_get_end (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_LinearGradientNode ())))) (Internal.GrapheneC.graphene_point_get_type ()) false)
 
   /// Retrieves the number of color stops in the gradient.
   let getNColorStops (self: LinearGradientNode) : int =
-    (int ((gsk_linear_gradient_node_get_n_color_stops (Glue.obj self.Id (zgtk_type_Gsk_LinearGradientNode ())))))
-
-  extern gsk_linear_gradient_node_get_start : cptr -> cptr
+    (int ((Internal.GskC.gsk_linear_gradient_node_get_n_color_stops (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_LinearGradientNode ())))))
 
   /// Retrieves the initial point of the linear gradient.
   let getStart (self: LinearGradientNode) : Graphene.Point =
-    Graphene.Point (Glue.wrapBoxed ((gsk_linear_gradient_node_get_start (Glue.obj self.Id (zgtk_type_Gsk_LinearGradientNode ())))) (Graphene.graphene_point_get_type ()) false)
+    Graphene.Point (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_linear_gradient_node_get_start (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_LinearGradientNode ())))) (Internal.GrapheneC.graphene_point_get_type ()) false)
 
 module MaskNode =
-  extern gsk_mask_node_new : cptr -> cptr -> i32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_MaskNode ()
 
   /// Creates a `GskRenderNode` that will mask a given node by another.
   let create (source: RenderNode) (mask: RenderNode) (maskMode: MaskMode) : MaskNode =
-    MaskNode (zgtk_wrap_Gsk_MaskNode ((gsk_mask_node_new (Glue.obj source.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj mask.Id (zgtk_type_Gsk_RenderNode ())) (i32 maskMode.Int))) (i32 1))
-
-  extern gsk_mask_node_get_mask : cptr -> cptr
+    MaskNode (Internal.GskC.zgtk_wrap_Gsk_MaskNode ((Internal.GskC.gsk_mask_node_new (Internal.Raw.obj source.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (Internal.Raw.obj mask.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (i32 maskMode.Int))) (i32 1))
 
   /// Retrieves the mask `GskRenderNode` child of the @node.
   let getMask (self: MaskNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_mask_node_get_mask (Glue.obj self.Id (zgtk_type_Gsk_MaskNode ())))) (i32 0))
-
-  extern gsk_mask_node_get_mask_mode : cptr -> i32
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_mask_node_get_mask (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_MaskNode ())))) (i32 0))
 
   /// Retrieves the mask mode used by @node.
   let getMaskMode (self: MaskNode) : MaskMode =
-    MaskMode (int ((gsk_mask_node_get_mask_mode (Glue.obj self.Id (zgtk_type_Gsk_MaskNode ())))))
-
-  extern gsk_mask_node_get_source : cptr -> cptr
+    MaskMode (int ((Internal.GskC.gsk_mask_node_get_mask_mode (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_MaskNode ())))))
 
   /// Retrieves the source `GskRenderNode` child of the @node.
   let getSource (self: MaskNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_mask_node_get_source (Glue.obj self.Id (zgtk_type_Gsk_MaskNode ())))) (i32 0))
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_mask_node_get_source (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_MaskNode ())))) (i32 0))
 
 module NglRenderer =
   /// The same object as its ancestor.
@@ -2204,1617 +1895,1245 @@ module NglRenderer =
   /// The same object as its ancestor.
   let toGObjectObject (self: NglRenderer) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_ngl_renderer_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<NglRenderer> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gsk_ngl_renderer_get_type ()) then Some (NglRenderer object.Id) else None
-
-  extern gsk_ngl_renderer_new : unit -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GskC.gsk_ngl_renderer_get_type ()) then Some (NglRenderer object.Id) else None
 
   /// Deprecated. Same as gsk_gl_renderer_new().
   let create () : NglRenderer =
-    NglRenderer (Glue.wrap ((gsk_ngl_renderer_new ())) true)
+    NglRenderer (Internal.Raw.wrap ((Internal.GskC.gsk_ngl_renderer_new ())) true)
 
 module OpacityNode =
-  extern gsk_opacity_node_new : cptr -> f32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_OpacityNode ()
 
   /// Creates a `GskRenderNode` that will drawn the @child with reduced @opacity.
   let create (child: RenderNode) (opacity: float) : OpacityNode =
-    OpacityNode (zgtk_wrap_Gsk_OpacityNode ((gsk_opacity_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (f32 opacity))) (i32 1))
-
-  extern gsk_opacity_node_get_child : cptr -> cptr
+    OpacityNode (Internal.GskC.zgtk_wrap_Gsk_OpacityNode ((Internal.GskC.gsk_opacity_node_new (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (f32 opacity))) (i32 1))
 
   /// Gets the child node that is getting opacityed by the given @node.
   let getChild (self: OpacityNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_opacity_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_OpacityNode ())))) (i32 0))
-
-  extern gsk_opacity_node_get_opacity : cptr -> f32
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_opacity_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_OpacityNode ())))) (i32 0))
 
   /// Gets the transparency factor for an opacity node.
   let getOpacity (self: OpacityNode) : float =
-    (float ((gsk_opacity_node_get_opacity (Glue.obj self.Id (zgtk_type_Gsk_OpacityNode ())))))
+    (float ((Internal.GskC.gsk_opacity_node_get_opacity (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_OpacityNode ())))))
 
 module OutsetShadowNode =
-  extern gsk_outset_shadow_node_new : cptr -> cptr -> f32 -> f32 -> f32 -> f32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_OutsetShadowNode ()
 
   /// Creates a `GskRenderNode` that will render an outset shadow around the box given by @outline.
   let create (outline: RoundedRect) (color: Gdk.RGBA) (dx: float) (dy: float) (spread: float) (blurRadius: float) : OutsetShadowNode =
-    OutsetShadowNode (zgtk_wrap_Gsk_OutsetShadowNode ((gsk_outset_shadow_node_new (Glue.obj outline.Id (zgtk_tag_Gsk_RoundedRect ())) (Glue.obj color.Id (Gdk.gdk_rgba_get_type ())) (f32 dx) (f32 dy) (f32 spread) (f32 blurRadius))) (i32 1))
-
-  extern gsk_outset_shadow_node_get_blur_radius : cptr -> f32
+    OutsetShadowNode (Internal.GskC.zgtk_wrap_Gsk_OutsetShadowNode ((Internal.GskC.gsk_outset_shadow_node_new (Internal.Raw.obj outline.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())) (Internal.Raw.obj color.Id (Internal.GdkC.gdk_rgba_get_type ())) (f32 dx) (f32 dy) (f32 spread) (f32 blurRadius))) (i32 1))
 
   /// Retrieves the blur radius of the shadow.
   let getBlurRadius (self: OutsetShadowNode) : float =
-    (float ((gsk_outset_shadow_node_get_blur_radius (Glue.obj self.Id (zgtk_type_Gsk_OutsetShadowNode ())))))
-
-  extern gsk_outset_shadow_node_get_color : cptr -> cptr
+    (float ((Internal.GskC.gsk_outset_shadow_node_get_blur_radius (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_OutsetShadowNode ())))))
 
   /// Retrieves the color of the outset shadow.
   let getColor (self: OutsetShadowNode) : Gdk.RGBA =
-    Gdk.RGBA (Glue.wrapBoxed ((gsk_outset_shadow_node_get_color (Glue.obj self.Id (zgtk_type_Gsk_OutsetShadowNode ())))) (Gdk.gdk_rgba_get_type ()) false)
-
-  extern gsk_outset_shadow_node_get_dx : cptr -> f32
+    Gdk.RGBA (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_outset_shadow_node_get_color (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_OutsetShadowNode ())))) (Internal.GdkC.gdk_rgba_get_type ()) false)
 
   /// Retrieves the horizontal offset of the outset shadow.
   let getDx (self: OutsetShadowNode) : float =
-    (float ((gsk_outset_shadow_node_get_dx (Glue.obj self.Id (zgtk_type_Gsk_OutsetShadowNode ())))))
-
-  extern gsk_outset_shadow_node_get_dy : cptr -> f32
+    (float ((Internal.GskC.gsk_outset_shadow_node_get_dx (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_OutsetShadowNode ())))))
 
   /// Retrieves the vertical offset of the outset shadow.
   let getDy (self: OutsetShadowNode) : float =
-    (float ((gsk_outset_shadow_node_get_dy (Glue.obj self.Id (zgtk_type_Gsk_OutsetShadowNode ())))))
-
-  extern gsk_outset_shadow_node_get_outline : cptr -> cptr
+    (float ((Internal.GskC.gsk_outset_shadow_node_get_dy (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_OutsetShadowNode ())))))
 
   /// Retrieves the outline rectangle of the outset shadow.
   let getOutline (self: OutsetShadowNode) : RoundedRect =
-    RoundedRect (Glue.copyPlain ((gsk_outset_shadow_node_get_outline (Glue.obj self.Id (zgtk_type_Gsk_OutsetShadowNode ())))) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
-
-  extern gsk_outset_shadow_node_get_spread : cptr -> f32
+    RoundedRect (Internal.Raw.copyPlain ((Internal.GskC.gsk_outset_shadow_node_get_outline (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_OutsetShadowNode ())))) (Internal.GskC.zgtk_sizeof_Gsk_RoundedRect ()) (Internal.GskC.zgtk_tag_Gsk_RoundedRect ()))
 
   /// Retrieves how much the shadow spreads outwards.
   let getSpread (self: OutsetShadowNode) : float =
-    (float ((gsk_outset_shadow_node_get_spread (Glue.obj self.Id (zgtk_type_Gsk_OutsetShadowNode ())))))
+    (float ((Internal.GskC.gsk_outset_shadow_node_get_spread (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_OutsetShadowNode ())))))
 
 module ParseLocation =
-  /// A new one, every field zero.
-  let create () : ParseLocation = ParseLocation (Glue.allocPlain (zgtk_sizeof_Gsk_ParseLocation ()) (zgtk_tag_Gsk_ParseLocation ()))
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_tag_Gsk_ParseLocation ()
 
-  extern zgtk_get_Gsk_ParseLocation_bytes : cptr -> int
+  /// A new one, every field zero.
+  let create () : ParseLocation = ParseLocation (Internal.Raw.allocPlain (Internal.GskC.zgtk_sizeof_Gsk_ParseLocation ()) (Internal.GskC.zgtk_tag_Gsk_ParseLocation ()))
 
   /// The `bytes` field.
-  let getBytes (self: ParseLocation) : int = zgtk_get_Gsk_ParseLocation_bytes (Glue.obj self.Id (zgtk_tag_Gsk_ParseLocation ()))
-
-  extern zgtk_set_Gsk_ParseLocation_bytes : cptr -> int -> unit
+  let getBytes (self: ParseLocation) : int = Internal.GskC.zgtk_get_Gsk_ParseLocation_bytes (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_ParseLocation ()))
 
   /// Sets the `bytes` field.
-  let setBytes (self: ParseLocation) (value: int) : unit = zgtk_set_Gsk_ParseLocation_bytes (Glue.obj self.Id (zgtk_tag_Gsk_ParseLocation ())) value
-
-  extern zgtk_get_Gsk_ParseLocation_chars : cptr -> int
+  let setBytes (self: ParseLocation) (value: int) : unit = Internal.GskC.zgtk_set_Gsk_ParseLocation_bytes (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_ParseLocation ())) value
 
   /// The `chars` field.
-  let getChars (self: ParseLocation) : int = zgtk_get_Gsk_ParseLocation_chars (Glue.obj self.Id (zgtk_tag_Gsk_ParseLocation ()))
-
-  extern zgtk_set_Gsk_ParseLocation_chars : cptr -> int -> unit
+  let getChars (self: ParseLocation) : int = Internal.GskC.zgtk_get_Gsk_ParseLocation_chars (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_ParseLocation ()))
 
   /// Sets the `chars` field.
-  let setChars (self: ParseLocation) (value: int) : unit = zgtk_set_Gsk_ParseLocation_chars (Glue.obj self.Id (zgtk_tag_Gsk_ParseLocation ())) value
-
-  extern zgtk_get_Gsk_ParseLocation_lines : cptr -> int
+  let setChars (self: ParseLocation) (value: int) : unit = Internal.GskC.zgtk_set_Gsk_ParseLocation_chars (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_ParseLocation ())) value
 
   /// The `lines` field.
-  let getLines (self: ParseLocation) : int = zgtk_get_Gsk_ParseLocation_lines (Glue.obj self.Id (zgtk_tag_Gsk_ParseLocation ()))
-
-  extern zgtk_set_Gsk_ParseLocation_lines : cptr -> int -> unit
+  let getLines (self: ParseLocation) : int = Internal.GskC.zgtk_get_Gsk_ParseLocation_lines (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_ParseLocation ()))
 
   /// Sets the `lines` field.
-  let setLines (self: ParseLocation) (value: int) : unit = zgtk_set_Gsk_ParseLocation_lines (Glue.obj self.Id (zgtk_tag_Gsk_ParseLocation ())) value
-
-  extern zgtk_get_Gsk_ParseLocation_line_bytes : cptr -> int
+  let setLines (self: ParseLocation) (value: int) : unit = Internal.GskC.zgtk_set_Gsk_ParseLocation_lines (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_ParseLocation ())) value
 
   /// The `line_bytes` field.
-  let getLineBytes (self: ParseLocation) : int = zgtk_get_Gsk_ParseLocation_line_bytes (Glue.obj self.Id (zgtk_tag_Gsk_ParseLocation ()))
-
-  extern zgtk_set_Gsk_ParseLocation_line_bytes : cptr -> int -> unit
+  let getLineBytes (self: ParseLocation) : int = Internal.GskC.zgtk_get_Gsk_ParseLocation_line_bytes (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_ParseLocation ()))
 
   /// Sets the `line_bytes` field.
-  let setLineBytes (self: ParseLocation) (value: int) : unit = zgtk_set_Gsk_ParseLocation_line_bytes (Glue.obj self.Id (zgtk_tag_Gsk_ParseLocation ())) value
-
-  extern zgtk_get_Gsk_ParseLocation_line_chars : cptr -> int
+  let setLineBytes (self: ParseLocation) (value: int) : unit = Internal.GskC.zgtk_set_Gsk_ParseLocation_line_bytes (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_ParseLocation ())) value
 
   /// The `line_chars` field.
-  let getLineChars (self: ParseLocation) : int = zgtk_get_Gsk_ParseLocation_line_chars (Glue.obj self.Id (zgtk_tag_Gsk_ParseLocation ()))
-
-  extern zgtk_set_Gsk_ParseLocation_line_chars : cptr -> int -> unit
+  let getLineChars (self: ParseLocation) : int = Internal.GskC.zgtk_get_Gsk_ParseLocation_line_chars (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_ParseLocation ()))
 
   /// Sets the `line_chars` field.
-  let setLineChars (self: ParseLocation) (value: int) : unit = zgtk_set_Gsk_ParseLocation_line_chars (Glue.obj self.Id (zgtk_tag_Gsk_ParseLocation ())) value
+  let setLineChars (self: ParseLocation) (value: int) : unit = Internal.GskC.zgtk_set_Gsk_ParseLocation_line_chars (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_ParseLocation ())) value
 
 module PasteNode =
-  extern gsk_paste_node_new : cptr -> usize -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_PasteNode ()
 
   /// Creates a `GskRenderNode` that will paste copied contents.
   let create (bounds: Graphene.Rect) (depth: int) : PasteNode =
-    PasteNode (zgtk_wrap_Gsk_PasteNode ((gsk_paste_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (usize depth))) (i32 1))
-
-  extern gsk_paste_node_get_depth : cptr -> usize
+    PasteNode (Internal.GskC.zgtk_wrap_Gsk_PasteNode ((Internal.GskC.gsk_paste_node_new (Internal.Raw.obj bounds.Id (Internal.GrapheneC.graphene_rect_get_type ())) (usize depth))) (i32 1))
 
   /// Retrieves the index of the copy that should be pasted.
   let getDepth (self: PasteNode) : int =
-    (int ((gsk_paste_node_get_depth (Glue.obj self.Id (zgtk_type_Gsk_PasteNode ())))))
+    (int ((Internal.GskC.gsk_paste_node_get_depth (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_PasteNode ())))))
 
 module Path =
-  extern gsk_path_equal : cptr -> cptr -> i32
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_path_get_type ()
 
   /// Returns whether two paths have identical structure.
   let equal (self: Path) (path2: Path) : bool =
-    (((gsk_path_equal (Glue.obj self.Id (gsk_path_get_type ())) (Glue.obj path2.Id (gsk_path_get_type ())))) <> i32 0)
-
-  extern gsk_path_foreach : cptr -> u32 -> cptr -> cptr -> i32
+    (((Internal.GskC.gsk_path_equal (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())) (Internal.Raw.obj path2.Id (Internal.GskC.gsk_path_get_type ())))) <> i32 0)
 
   /// Calls @func for every operation of the path.
   let foreach (self: Path) (flags: PathForeachFlags) (func: PathOperation -> list<Graphene.Point> -> int -> float -> bool) : bool =
     let zcb1 =
-      Glue.hold (fun () ->
-        let op = PathOperation (int (Glue.argInt 0))
-        let zrs3 = Glue.mapList (fun zp -> Graphene.Point (Glue.wrapBoxed (zp) (Graphene.graphene_point_get_type ()) false)) (Glue.recordsOf (Glue.argPointer 1) ((Glue.argInt 2)) (Graphene.zgtk_sizeof_Graphene_Point ()))
+      Internal.Raw.hold (fun () ->
+        let op = PathOperation (int (Internal.Raw.argInt 0))
+        let zrs3 = Internal.Raw.mapList (fun zp -> Graphene.Point (Internal.Raw.wrapBoxed (zp) (Internal.GrapheneC.graphene_point_get_type ()) false)) (Internal.Raw.recordsOf (Internal.Raw.argPointer 1) ((Internal.Raw.argInt 2)) (Internal.GrapheneC.zgtk_sizeof_Graphene_Point ()))
         let pts = zrs3
-        let nPts = Glue.argInt 2
-        let weight = Glue.argFloat 3
-        Glue.returnBool (func op pts nPts weight))
-    let zr = gsk_path_foreach (Glue.obj self.Id (gsk_path_get_type ())) (u32 flags.Int) (zgtk_tramp_Gsk_PathForeachFunc ()) zcb1
+        let nPts = Internal.Raw.argInt 2
+        let weight = Internal.Raw.argFloat 3
+        Internal.Raw.returnBool (func op pts nPts weight))
+    let zr = Internal.GskC.gsk_path_foreach (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())) (u32 flags.Int) (Internal.GskC.zgtk_tramp_Gsk_PathForeachFunc ()) zcb1
     let zv = ((zr) <> i32 0)
-    Glue.drop zcb1
+    Internal.Raw.drop zcb1
     zv
-
-  extern gsk_path_foreach_intersection : cptr -> cptr -> cptr -> cptr -> i32
 
   /// Finds intersections between two paths.
   let foreachIntersection (self: Path) (path2: option<Path>) (func: Path -> PathPoint -> Path -> PathPoint -> PathIntersection -> bool) : bool =
     let zcb1 =
-      Glue.hold (fun () ->
-        let path1 = Path (Glue.wrapBoxed (Glue.argPointer 0) (gsk_path_get_type ()) false)
-        let point1 = PathPoint (Glue.wrapBoxed (Glue.argPointer 1) (gsk_path_point_get_type ()) false)
-        let path2 = Path (Glue.wrapBoxed (Glue.argPointer 2) (gsk_path_get_type ()) false)
-        let point2 = PathPoint (Glue.wrapBoxed (Glue.argPointer 3) (gsk_path_point_get_type ()) false)
-        let kind = PathIntersection (int (Glue.argInt 4))
-        Glue.returnBool (func path1 point1 path2 point2 kind))
+      Internal.Raw.hold (fun () ->
+        let path1 = Path (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 0) (Internal.GskC.gsk_path_get_type ()) false)
+        let point1 = PathPoint (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GskC.gsk_path_point_get_type ()) false)
+        let path2 = Path (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GskC.gsk_path_get_type ()) false)
+        let point2 = PathPoint (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.GskC.gsk_path_point_get_type ()) false)
+        let kind = PathIntersection (int (Internal.Raw.argInt 4))
+        Internal.Raw.returnBool (func path1 point1 path2 point2 kind))
     let zp2 =
       match path2 with
-      | Some zo -> Glue.obj zo.Id (gsk_path_get_type ())
-      | None -> Glue.none ()
-    let zr = gsk_path_foreach_intersection (Glue.obj self.Id (gsk_path_get_type ())) zp2 (zgtk_tramp_Gsk_PathIntersectionFunc ()) zcb1
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GskC.gsk_path_get_type ())
+      | None -> Internal.Raw.none ()
+    let zr = Internal.GskC.gsk_path_foreach_intersection (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())) zp2 (Internal.GskC.zgtk_tramp_Gsk_PathIntersectionFunc ()) zcb1
     let zv = ((zr) <> i32 0)
-    Glue.drop zcb1
+    Internal.Raw.drop zcb1
     zv
-
-  extern gsk_path_get_bounds : cptr -> cptr -> i32
 
   /// Computes the bounds of the given path.
   let getBounds (self: Path) : (bool * Graphene.Rect) =
-    let zo1 = Glue.alloc (Graphene.zgtk_sizeof_Graphene_Rect ()) (Graphene.graphene_rect_get_type ())
-    let zr = gsk_path_get_bounds (Glue.obj self.Id (gsk_path_get_type ())) (Glue.obj zo1 (Graphene.graphene_rect_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GrapheneC.zgtk_sizeof_Graphene_Rect ()) (Internal.GrapheneC.graphene_rect_get_type ())
+    let zr = Internal.GskC.gsk_path_get_bounds (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())) (Internal.Raw.obj zo1 (Internal.GrapheneC.graphene_rect_get_type ()))
     (((zr) <> i32 0), Graphene.Rect zo1)
-
-  extern gsk_path_get_closest_point : cptr -> cptr -> f32 -> cptr -> cptr -> i32
 
   /// Computes the closest point on the path to the given point.
   let getClosestPoint (self: Path) (point: Graphene.Point) (threshold: float) : (bool * PathPoint * float) =
-    let zo1 = Glue.alloc (zgtk_sizeof_Gsk_PathPoint ()) (gsk_path_point_get_type ())
-    Glue.outBegin ()
-    let zr = gsk_path_get_closest_point (Glue.obj self.Id (gsk_path_get_type ())) (Glue.obj point.Id (Graphene.graphene_point_get_type ())) (f32 threshold) (Glue.obj zo1 (gsk_path_point_get_type ())) (Glue.out 0)
-    let zv = (((zr) <> i32 0), PathPoint zo1, Glue.outF32 0)
-    Glue.outEnd ()
+    let zo1 = Internal.Raw.alloc (Internal.GskC.zgtk_sizeof_Gsk_PathPoint ()) (Internal.GskC.gsk_path_point_get_type ())
+    Internal.Raw.outBegin ()
+    let zr = Internal.GskC.gsk_path_get_closest_point (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())) (Internal.Raw.obj point.Id (Internal.GrapheneC.graphene_point_get_type ())) (f32 threshold) (Internal.Raw.obj zo1 (Internal.GskC.gsk_path_point_get_type ())) (Internal.Raw.out 0)
+    let zv = (((zr) <> i32 0), PathPoint zo1, Internal.Raw.outF32 0)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gsk_path_get_end_point : cptr -> cptr -> i32
 
   /// Gets the end point of the path.
   let getEndPoint (self: Path) : (bool * PathPoint) =
-    let zo1 = Glue.alloc (zgtk_sizeof_Gsk_PathPoint ()) (gsk_path_point_get_type ())
-    let zr = gsk_path_get_end_point (Glue.obj self.Id (gsk_path_get_type ())) (Glue.obj zo1 (gsk_path_point_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GskC.zgtk_sizeof_Gsk_PathPoint ()) (Internal.GskC.gsk_path_point_get_type ())
+    let zr = Internal.GskC.gsk_path_get_end_point (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())) (Internal.Raw.obj zo1 (Internal.GskC.gsk_path_point_get_type ()))
     (((zr) <> i32 0), PathPoint zo1)
-
-  extern gsk_path_get_next : cptr -> cptr -> i32
 
   /// Moves @point to the next vertex.
   let getNext (self: Path) (point: PathPoint) : bool =
-    (((gsk_path_get_next (Glue.obj self.Id (gsk_path_get_type ())) (Glue.obj point.Id (gsk_path_point_get_type ())))) <> i32 0)
-
-  extern gsk_path_get_previous : cptr -> cptr -> i32
+    (((Internal.GskC.gsk_path_get_next (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())) (Internal.Raw.obj point.Id (Internal.GskC.gsk_path_point_get_type ())))) <> i32 0)
 
   /// Moves @point to the previous vertex.
   let getPrevious (self: Path) (point: PathPoint) : bool =
-    (((gsk_path_get_previous (Glue.obj self.Id (gsk_path_get_type ())) (Glue.obj point.Id (gsk_path_point_get_type ())))) <> i32 0)
-
-  extern gsk_path_get_start_point : cptr -> cptr -> i32
+    (((Internal.GskC.gsk_path_get_previous (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())) (Internal.Raw.obj point.Id (Internal.GskC.gsk_path_point_get_type ())))) <> i32 0)
 
   /// Gets the start point of the path.
   let getStartPoint (self: Path) : (bool * PathPoint) =
-    let zo1 = Glue.alloc (zgtk_sizeof_Gsk_PathPoint ()) (gsk_path_point_get_type ())
-    let zr = gsk_path_get_start_point (Glue.obj self.Id (gsk_path_get_type ())) (Glue.obj zo1 (gsk_path_point_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GskC.zgtk_sizeof_Gsk_PathPoint ()) (Internal.GskC.gsk_path_point_get_type ())
+    let zr = Internal.GskC.gsk_path_get_start_point (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())) (Internal.Raw.obj zo1 (Internal.GskC.gsk_path_point_get_type ()))
     (((zr) <> i32 0), PathPoint zo1)
-
-  extern gsk_path_get_stroke_bounds : cptr -> cptr -> cptr -> i32
 
   /// Computes the bounds for stroking the given path with the given parameters.
   let getStrokeBounds (self: Path) (stroke: Stroke) : (bool * Graphene.Rect) =
-    let zo1 = Glue.alloc (Graphene.zgtk_sizeof_Graphene_Rect ()) (Graphene.graphene_rect_get_type ())
-    let zr = gsk_path_get_stroke_bounds (Glue.obj self.Id (gsk_path_get_type ())) (Glue.obj stroke.Id (gsk_stroke_get_type ())) (Glue.obj zo1 (Graphene.graphene_rect_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GrapheneC.zgtk_sizeof_Graphene_Rect ()) (Internal.GrapheneC.graphene_rect_get_type ())
+    let zr = Internal.GskC.gsk_path_get_stroke_bounds (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())) (Internal.Raw.obj stroke.Id (Internal.GskC.gsk_stroke_get_type ())) (Internal.Raw.obj zo1 (Internal.GrapheneC.graphene_rect_get_type ()))
     (((zr) <> i32 0), Graphene.Rect zo1)
-
-  extern gsk_path_get_tight_bounds : cptr -> cptr -> i32
 
   /// Computes the tight bounds of the given path.
   let getTightBounds (self: Path) : (bool * Graphene.Rect) =
-    let zo1 = Glue.alloc (Graphene.zgtk_sizeof_Graphene_Rect ()) (Graphene.graphene_rect_get_type ())
-    let zr = gsk_path_get_tight_bounds (Glue.obj self.Id (gsk_path_get_type ())) (Glue.obj zo1 (Graphene.graphene_rect_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GrapheneC.zgtk_sizeof_Graphene_Rect ()) (Internal.GrapheneC.graphene_rect_get_type ())
+    let zr = Internal.GskC.gsk_path_get_tight_bounds (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())) (Internal.Raw.obj zo1 (Internal.GrapheneC.graphene_rect_get_type ()))
     (((zr) <> i32 0), Graphene.Rect zo1)
-
-  extern gsk_path_in_fill : cptr -> cptr -> i32 -> i32
 
   /// Returns whether a point is inside the fill area of a path.
   let inFill (self: Path) (point: Graphene.Point) (fillRule: FillRule) : bool =
-    (((gsk_path_in_fill (Glue.obj self.Id (gsk_path_get_type ())) (Glue.obj point.Id (Graphene.graphene_point_get_type ())) (i32 fillRule.Int))) <> i32 0)
-
-  extern gsk_path_is_closed : cptr -> i32
+    (((Internal.GskC.gsk_path_in_fill (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())) (Internal.Raw.obj point.Id (Internal.GrapheneC.graphene_point_get_type ())) (i32 fillRule.Int))) <> i32 0)
 
   /// Returns if the path represents a single closed contour.
   let isClosed (self: Path) : bool =
-    (((gsk_path_is_closed (Glue.obj self.Id (gsk_path_get_type ())))) <> i32 0)
-
-  extern gsk_path_is_empty : cptr -> i32
+    (((Internal.GskC.gsk_path_is_closed (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())))) <> i32 0)
 
   /// Checks if the path is empty, i.e.
   let isEmpty (self: Path) : bool =
-    (((gsk_path_is_empty (Glue.obj self.Id (gsk_path_get_type ())))) <> i32 0)
-
-  extern gsk_path_print : cptr -> cptr -> unit
+    (((Internal.GskC.gsk_path_is_empty (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())))) <> i32 0)
 
   /// Converts the path into a human-readable representation.
   let print (self: Path) (string: GLib.String) : unit =
-    gsk_path_print (Glue.obj self.Id (gsk_path_get_type ())) (Glue.obj string.Id (GLib.g_gstring_get_type ()))
-
-  extern gsk_path_ref : cptr -> cptr
+    Internal.GskC.gsk_path_print (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())) (Internal.Raw.obj string.Id (Internal.GLibC.g_gstring_get_type ()))
 
   /// Increases the reference count of a path by one.
   [<Unsafe>]
   let ref_ (self: Path) : Path =
-    Path (Glue.wrapBoxed ((gsk_path_ref (Glue.obj self.Id (gsk_path_get_type ())))) (gsk_path_get_type ()) true)
-
-  extern gsk_path_to_cairo : cptr -> cptr -> unit
+    Path (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_path_ref (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())))) (Internal.GskC.gsk_path_get_type ()) true)
 
   /// Appends the path to a cairo context for drawing with Cairo.
   let toCairo (self: Path) (cr: Cairo.Context) : unit =
-    gsk_path_to_cairo (Glue.obj self.Id (gsk_path_get_type ())) (Glue.obj cr.Id (Cairo.cairo_gobject_context_get_type ()))
-
-  extern gsk_path_to_string : cptr -> cptr
+    Internal.GskC.gsk_path_to_cairo (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ())) (Internal.Raw.obj cr.Id (Internal.CairoC.cairo_gobject_context_get_type ()))
 
   /// Converts the path into a human-readable string.
   let toString (self: Path) : string =
-    Glue.takeText ((gsk_path_to_string (Glue.obj self.Id (gsk_path_get_type ()))))
-
-  extern gsk_path_unref : cptr -> unit
+    Internal.Raw.takeText ((Internal.GskC.gsk_path_to_string (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ()))))
 
   /// Decreases the reference count of a path by one.
   [<Unsafe>]
   let unref (self: Path) : unit =
-    gsk_path_unref (Glue.obj self.Id (gsk_path_get_type ()))
-
-  extern gsk_path_parse : cstr -> cptr
+    Internal.GskC.gsk_path_unref (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_get_type ()))
 
   /// Constructs a path from a serialized form.
   let parse (string: string) : option<Path> =
-    let zr = gsk_path_parse string
-    let zid1 = Glue.wrapBoxed (zr) (gsk_path_get_type ()) true
+    let zr = Internal.GskC.gsk_path_parse string
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GskC.gsk_path_get_type ()) true
     (if zid1 = 0 then None else Some (Path zid1))
 
 module PathBuilder =
-  extern gsk_path_builder_new : unit -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_path_builder_get_type ()
 
   /// Create a new `GskPathBuilder` object.
   let create () : PathBuilder =
-    PathBuilder (Glue.wrapBoxed ((gsk_path_builder_new ())) (gsk_path_builder_get_type ()) true)
-
-  extern gsk_path_builder_add_cairo_path : cptr -> cptr -> unit
+    PathBuilder (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_path_builder_new ())) (Internal.GskC.gsk_path_builder_get_type ()) true)
 
   /// Adds a Cairo path to the builder.
   [<Unsafe>]
   let addCairoPath (self: PathBuilder) (path: Cairo.Path) : unit =
-    gsk_path_builder_add_cairo_path (Glue.obj self.Id (gsk_path_builder_get_type ())) path.Ptr
-
-  extern gsk_path_builder_add_circle : cptr -> cptr -> f32 -> unit
+    Internal.GskC.gsk_path_builder_add_cairo_path (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) path.Ptr
 
   /// Adds a circle as a new contour.
   let addCircle (self: PathBuilder) (center: Graphene.Point) (radius: float) : unit =
-    gsk_path_builder_add_circle (Glue.obj self.Id (gsk_path_builder_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 radius)
-
-  extern gsk_path_builder_add_layout : cptr -> cptr -> unit
+    Internal.GskC.gsk_path_builder_add_circle (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (Internal.Raw.obj center.Id (Internal.GrapheneC.graphene_point_get_type ())) (f32 radius)
 
   /// Adds the outlines for the glyphs in @layout to the builder.
   let addLayout (self: PathBuilder) (layout: Pango.Layout) : unit =
-    gsk_path_builder_add_layout (Glue.obj self.Id (gsk_path_builder_get_type ())) (Glue.obj layout.Id (Pango.pango_layout_get_type ()))
-
-  extern gsk_path_builder_add_path : cptr -> cptr -> unit
+    Internal.GskC.gsk_path_builder_add_layout (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (Internal.Raw.obj layout.Id (Internal.PangoC.pango_layout_get_type ()))
 
   /// Appends all of @path to the builder.
   let addPath (self: PathBuilder) (path: Path) : unit =
-    gsk_path_builder_add_path (Glue.obj self.Id (gsk_path_builder_get_type ())) (Glue.obj path.Id (gsk_path_get_type ()))
-
-  extern gsk_path_builder_add_rect : cptr -> cptr -> unit
+    Internal.GskC.gsk_path_builder_add_path (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (Internal.Raw.obj path.Id (Internal.GskC.gsk_path_get_type ()))
 
   /// Adds a rectangle as a new contour.
   let addRect (self: PathBuilder) (rect: Graphene.Rect) : unit =
-    gsk_path_builder_add_rect (Glue.obj self.Id (gsk_path_builder_get_type ())) (Glue.obj rect.Id (Graphene.graphene_rect_get_type ()))
-
-  extern gsk_path_builder_add_reverse_path : cptr -> cptr -> unit
+    Internal.GskC.gsk_path_builder_add_rect (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (Internal.Raw.obj rect.Id (Internal.GrapheneC.graphene_rect_get_type ()))
 
   /// Appends all of @path to the builder, in reverse order.
   let addReversePath (self: PathBuilder) (path: Path) : unit =
-    gsk_path_builder_add_reverse_path (Glue.obj self.Id (gsk_path_builder_get_type ())) (Glue.obj path.Id (gsk_path_get_type ()))
-
-  extern gsk_path_builder_add_rounded_rect : cptr -> cptr -> unit
+    Internal.GskC.gsk_path_builder_add_reverse_path (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (Internal.Raw.obj path.Id (Internal.GskC.gsk_path_get_type ()))
 
   /// Adds a rounded rectangle as a new contour.
   let addRoundedRect (self: PathBuilder) (rect: RoundedRect) : unit =
-    gsk_path_builder_add_rounded_rect (Glue.obj self.Id (gsk_path_builder_get_type ())) (Glue.obj rect.Id (zgtk_tag_Gsk_RoundedRect ()))
-
-  extern gsk_path_builder_add_segment : cptr -> cptr -> cptr -> cptr -> unit
+    Internal.GskC.gsk_path_builder_add_rounded_rect (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (Internal.Raw.obj rect.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ()))
 
   /// Adds a segment of a path to the builder.
   let addSegment (self: PathBuilder) (path: Path) (start: PathPoint) (end: PathPoint) : unit =
-    gsk_path_builder_add_segment (Glue.obj self.Id (gsk_path_builder_get_type ())) (Glue.obj path.Id (gsk_path_get_type ())) (Glue.obj start.Id (gsk_path_point_get_type ())) (Glue.obj end.Id (gsk_path_point_get_type ()))
-
-  extern gsk_path_builder_arc_to : cptr -> f32 -> f32 -> f32 -> f32 -> unit
+    Internal.GskC.gsk_path_builder_add_segment (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (Internal.Raw.obj path.Id (Internal.GskC.gsk_path_get_type ())) (Internal.Raw.obj start.Id (Internal.GskC.gsk_path_point_get_type ())) (Internal.Raw.obj end.Id (Internal.GskC.gsk_path_point_get_type ()))
 
   /// Adds an elliptical arc from the current point to @x2, @y2 with @x1, @y1 determining the tangent directions.
   let arcTo (self: PathBuilder) (x1: float) (y1: float) (x2: float) (y2: float) : unit =
-    gsk_path_builder_arc_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2)
-
-  extern gsk_path_builder_close : cptr -> unit
+    Internal.GskC.gsk_path_builder_arc_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2)
 
   /// Ends the current contour with a line back to the start point.
   let close (self: PathBuilder) : unit =
-    gsk_path_builder_close (Glue.obj self.Id (gsk_path_builder_get_type ()))
-
-  extern gsk_path_builder_conic_to : cptr -> f32 -> f32 -> f32 -> f32 -> f32 -> unit
+    Internal.GskC.gsk_path_builder_close (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ()))
 
   /// Adds a [conic curve](https://en.wikipedia.org/wiki/Non-uniform_rational_B-spline) from the current point to @x2, @y2 with the given @weight and @x1, @y1 as the control point.
   let conicTo (self: PathBuilder) (x1: float) (y1: float) (x2: float) (y2: float) (weight: float) : unit =
-    gsk_path_builder_conic_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2) (f32 weight)
-
-  extern gsk_path_builder_cubic_to : cptr -> f32 -> f32 -> f32 -> f32 -> f32 -> f32 -> unit
+    Internal.GskC.gsk_path_builder_conic_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2) (f32 weight)
 
   /// Adds a [cubic Bézier curve](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) from the current point to @x3, @y3 with @x1, @y1 and @x2, @y2 as the control points.
   let cubicTo (self: PathBuilder) (x1: float) (y1: float) (x2: float) (y2: float) (x3: float) (y3: float) : unit =
-    gsk_path_builder_cubic_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2) (f32 x3) (f32 y3)
-
-  extern gsk_path_builder_free_to_path : cptr -> cptr
+    Internal.GskC.gsk_path_builder_cubic_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2) (f32 x3) (f32 y3)
 
   /// Creates a new path from the current state of the builder, and unrefs the builder.
   let freeToPath (self: PathBuilder) : Path =
-    Path (Glue.wrapBoxed ((gsk_path_builder_free_to_path (Glue.obj self.Id (gsk_path_builder_get_type ())))) (gsk_path_get_type ()) true)
-
-  extern gsk_path_builder_get_current_point : cptr -> cptr
+    Path (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_path_builder_free_to_path (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())))) (Internal.GskC.gsk_path_get_type ()) true)
 
   /// Gets the current point.
   let getCurrentPoint (self: PathBuilder) : Graphene.Point =
-    Graphene.Point (Glue.wrapBoxed ((gsk_path_builder_get_current_point (Glue.obj self.Id (gsk_path_builder_get_type ())))) (Graphene.graphene_point_get_type ()) false)
-
-  extern gsk_path_builder_html_arc_to : cptr -> f32 -> f32 -> f32 -> f32 -> f32 -> unit
+    Graphene.Point (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_path_builder_get_current_point (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())))) (Internal.GrapheneC.graphene_point_get_type ()) false)
 
   /// Implements arc-to according to the HTML Canvas spec.
   let htmlArcTo (self: PathBuilder) (x1: float) (y1: float) (x2: float) (y2: float) (radius: float) : unit =
-    gsk_path_builder_html_arc_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2) (f32 radius)
-
-  extern gsk_path_builder_line_to : cptr -> f32 -> f32 -> unit
+    Internal.GskC.gsk_path_builder_html_arc_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2) (f32 radius)
 
   /// Draws a line from the current point to @x, @y and makes it the new current point.
   let lineTo (self: PathBuilder) (x: float) (y: float) : unit =
-    gsk_path_builder_line_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 x) (f32 y)
-
-  extern gsk_path_builder_move_to : cptr -> f32 -> f32 -> unit
+    Internal.GskC.gsk_path_builder_line_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 x) (f32 y)
 
   /// Starts a new contour by placing the pen at @x, @y.
   let moveTo (self: PathBuilder) (x: float) (y: float) : unit =
-    gsk_path_builder_move_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 x) (f32 y)
-
-  extern gsk_path_builder_quad_to : cptr -> f32 -> f32 -> f32 -> f32 -> unit
+    Internal.GskC.gsk_path_builder_move_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 x) (f32 y)
 
   /// Adds a [quadratic Bézier curve](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) from the current point to @x2, @y2 with @x1, @y1 as the control point.
   let quadTo (self: PathBuilder) (x1: float) (y1: float) (x2: float) (y2: float) : unit =
-    gsk_path_builder_quad_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2)
-
-  extern gsk_path_builder_ref : cptr -> cptr
+    Internal.GskC.gsk_path_builder_quad_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2)
 
   /// Acquires a reference on the given builder.
   [<Unsafe>]
   let ref_ (self: PathBuilder) : PathBuilder =
-    PathBuilder (Glue.wrapBoxed ((gsk_path_builder_ref (Glue.obj self.Id (gsk_path_builder_get_type ())))) (gsk_path_builder_get_type ()) false)
-
-  extern gsk_path_builder_rel_arc_to : cptr -> f32 -> f32 -> f32 -> f32 -> unit
+    PathBuilder (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_path_builder_ref (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())))) (Internal.GskC.gsk_path_builder_get_type ()) false)
 
   /// Adds an elliptical arc from the current point to @x2, @y2 with @x1, @y1 determining the tangent directions.
   let relArcTo (self: PathBuilder) (x1: float) (y1: float) (x2: float) (y2: float) : unit =
-    gsk_path_builder_rel_arc_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2)
-
-  extern gsk_path_builder_rel_conic_to : cptr -> f32 -> f32 -> f32 -> f32 -> f32 -> unit
+    Internal.GskC.gsk_path_builder_rel_arc_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2)
 
   /// Adds a [conic curve](https://en.wikipedia.org/wiki/Non-uniform_rational_B-spline) from the current point to @x2, @y2 with the given @weight and @x1, @y1 as the control point.
   let relConicTo (self: PathBuilder) (x1: float) (y1: float) (x2: float) (y2: float) (weight: float) : unit =
-    gsk_path_builder_rel_conic_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2) (f32 weight)
-
-  extern gsk_path_builder_rel_cubic_to : cptr -> f32 -> f32 -> f32 -> f32 -> f32 -> f32 -> unit
+    Internal.GskC.gsk_path_builder_rel_conic_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2) (f32 weight)
 
   /// Adds a [cubic Bézier curve](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) from the current point to @x3, @y3 with @x1, @y1 and @x2, @y2 as the control points.
   let relCubicTo (self: PathBuilder) (x1: float) (y1: float) (x2: float) (y2: float) (x3: float) (y3: float) : unit =
-    gsk_path_builder_rel_cubic_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2) (f32 x3) (f32 y3)
-
-  extern gsk_path_builder_rel_html_arc_to : cptr -> f32 -> f32 -> f32 -> f32 -> f32 -> unit
+    Internal.GskC.gsk_path_builder_rel_cubic_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2) (f32 x3) (f32 y3)
 
   /// Implements arc-to according to the HTML Canvas spec.
   let relHtmlArcTo (self: PathBuilder) (x1: float) (y1: float) (x2: float) (y2: float) (radius: float) : unit =
-    gsk_path_builder_rel_html_arc_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2) (f32 radius)
-
-  extern gsk_path_builder_rel_line_to : cptr -> f32 -> f32 -> unit
+    Internal.GskC.gsk_path_builder_rel_html_arc_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2) (f32 radius)
 
   /// Draws a line from the current point to a point offset from it by @x, @y and makes it the new current point.
   let relLineTo (self: PathBuilder) (x: float) (y: float) : unit =
-    gsk_path_builder_rel_line_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 x) (f32 y)
-
-  extern gsk_path_builder_rel_move_to : cptr -> f32 -> f32 -> unit
+    Internal.GskC.gsk_path_builder_rel_line_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 x) (f32 y)
 
   /// Starts a new contour by placing the pen at @x, @y relative to the current point.
   let relMoveTo (self: PathBuilder) (x: float) (y: float) : unit =
-    gsk_path_builder_rel_move_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 x) (f32 y)
-
-  extern gsk_path_builder_rel_quad_to : cptr -> f32 -> f32 -> f32 -> f32 -> unit
+    Internal.GskC.gsk_path_builder_rel_move_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 x) (f32 y)
 
   /// Adds a [quadratic Bézier curve](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) from the current point to @x2, @y2 with @x1, @y1 the control point.
   let relQuadTo (self: PathBuilder) (x1: float) (y1: float) (x2: float) (y2: float) : unit =
-    gsk_path_builder_rel_quad_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2)
-
-  extern gsk_path_builder_rel_svg_arc_to : cptr -> f32 -> f32 -> f32 -> i32 -> i32 -> f32 -> f32 -> unit
+    Internal.GskC.gsk_path_builder_rel_quad_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 x1) (f32 y1) (f32 x2) (f32 y2)
 
   /// Implements arc-to according to the SVG spec.
   let relSvgArcTo (self: PathBuilder) (rx: float) (ry: float) (xAxisRotation: float) (largeArc: bool) (positiveSweep: bool) (x: float) (y: float) : unit =
-    gsk_path_builder_rel_svg_arc_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 rx) (f32 ry) (f32 xAxisRotation) (if largeArc then i32 1 else i32 0) (if positiveSweep then i32 1 else i32 0) (f32 x) (f32 y)
-
-  extern gsk_path_builder_svg_arc_to : cptr -> f32 -> f32 -> f32 -> i32 -> i32 -> f32 -> f32 -> unit
+    Internal.GskC.gsk_path_builder_rel_svg_arc_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 rx) (f32 ry) (f32 xAxisRotation) (if largeArc then i32 1 else i32 0) (if positiveSweep then i32 1 else i32 0) (f32 x) (f32 y)
 
   /// Implements arc-to according to the SVG spec.
   let svgArcTo (self: PathBuilder) (rx: float) (ry: float) (xAxisRotation: float) (largeArc: bool) (positiveSweep: bool) (x: float) (y: float) : unit =
-    gsk_path_builder_svg_arc_to (Glue.obj self.Id (gsk_path_builder_get_type ())) (f32 rx) (f32 ry) (f32 xAxisRotation) (if largeArc then i32 1 else i32 0) (if positiveSweep then i32 1 else i32 0) (f32 x) (f32 y)
-
-  extern gsk_path_builder_to_path : cptr -> cptr
+    Internal.GskC.gsk_path_builder_svg_arc_to (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())) (f32 rx) (f32 ry) (f32 xAxisRotation) (if largeArc then i32 1 else i32 0) (if positiveSweep then i32 1 else i32 0) (f32 x) (f32 y)
 
   /// Creates a new path from the given builder.
   let toPath (self: PathBuilder) : Path =
-    Path (Glue.wrapBoxed ((gsk_path_builder_to_path (Glue.obj self.Id (gsk_path_builder_get_type ())))) (gsk_path_get_type ()) true)
-
-  extern gsk_path_builder_unref : cptr -> unit
+    Path (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_path_builder_to_path (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ())))) (Internal.GskC.gsk_path_get_type ()) true)
 
   /// Releases a reference on the given builder.
   [<Unsafe>]
   let unref (self: PathBuilder) : unit =
-    gsk_path_builder_unref (Glue.obj self.Id (gsk_path_builder_get_type ()))
+    Internal.GskC.gsk_path_builder_unref (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_builder_get_type ()))
 
 module PathMeasure =
-  extern gsk_path_measure_new : cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_path_measure_get_type ()
 
   /// Creates a measure object for the given @path with the default tolerance.
   let create (path: Path) : PathMeasure =
-    PathMeasure (Glue.wrapBoxed ((gsk_path_measure_new (Glue.obj path.Id (gsk_path_get_type ())))) (gsk_path_measure_get_type ()) true)
-
-  extern gsk_path_measure_new_with_tolerance : cptr -> f32 -> cptr
+    PathMeasure (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_path_measure_new (Internal.Raw.obj path.Id (Internal.GskC.gsk_path_get_type ())))) (Internal.GskC.gsk_path_measure_get_type ()) true)
 
   /// Creates a measure object for the given @path and @tolerance.
   let createWithTolerance (path: Path) (tolerance: float) : PathMeasure =
-    PathMeasure (Glue.wrapBoxed ((gsk_path_measure_new_with_tolerance (Glue.obj path.Id (gsk_path_get_type ())) (f32 tolerance))) (gsk_path_measure_get_type ()) true)
-
-  extern gsk_path_measure_get_length : cptr -> f32
+    PathMeasure (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_path_measure_new_with_tolerance (Internal.Raw.obj path.Id (Internal.GskC.gsk_path_get_type ())) (f32 tolerance))) (Internal.GskC.gsk_path_measure_get_type ()) true)
 
   /// Gets the length of the path being measured.
   let getLength (self: PathMeasure) : float =
-    (float ((gsk_path_measure_get_length (Glue.obj self.Id (gsk_path_measure_get_type ())))))
-
-  extern gsk_path_measure_get_path : cptr -> cptr
+    (float ((Internal.GskC.gsk_path_measure_get_length (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_measure_get_type ())))))
 
   /// Returns the path that the measure was created for.
   let getPath (self: PathMeasure) : Path =
-    Path (Glue.wrapBoxed ((gsk_path_measure_get_path (Glue.obj self.Id (gsk_path_measure_get_type ())))) (gsk_path_get_type ()) false)
-
-  extern gsk_path_measure_get_point : cptr -> f32 -> cptr -> i32
+    Path (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_path_measure_get_path (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_measure_get_type ())))) (Internal.GskC.gsk_path_get_type ()) false)
 
   /// Gets the point at the given distance into the path.
   let getPoint (self: PathMeasure) (distance: float) : (bool * PathPoint) =
-    let zo1 = Glue.alloc (zgtk_sizeof_Gsk_PathPoint ()) (gsk_path_point_get_type ())
-    let zr = gsk_path_measure_get_point (Glue.obj self.Id (gsk_path_measure_get_type ())) (f32 distance) (Glue.obj zo1 (gsk_path_point_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GskC.zgtk_sizeof_Gsk_PathPoint ()) (Internal.GskC.gsk_path_point_get_type ())
+    let zr = Internal.GskC.gsk_path_measure_get_point (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_measure_get_type ())) (f32 distance) (Internal.Raw.obj zo1 (Internal.GskC.gsk_path_point_get_type ()))
     (((zr) <> i32 0), PathPoint zo1)
-
-  extern gsk_path_measure_get_tolerance : cptr -> f32
 
   /// Returns the tolerance that the measure was created with.
   let getTolerance (self: PathMeasure) : float =
-    (float ((gsk_path_measure_get_tolerance (Glue.obj self.Id (gsk_path_measure_get_type ())))))
-
-  extern gsk_path_measure_ref : cptr -> cptr
+    (float ((Internal.GskC.gsk_path_measure_get_tolerance (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_measure_get_type ())))))
 
   /// Increases the reference count of a `GskPathMeasure` by one.
   [<Unsafe>]
   let ref_ (self: PathMeasure) : PathMeasure =
-    PathMeasure (Glue.wrapBoxed ((gsk_path_measure_ref (Glue.obj self.Id (gsk_path_measure_get_type ())))) (gsk_path_measure_get_type ()) true)
-
-  extern gsk_path_measure_unref : cptr -> unit
+    PathMeasure (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_path_measure_ref (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_measure_get_type ())))) (Internal.GskC.gsk_path_measure_get_type ()) true)
 
   /// Decreases the reference count of a `GskPathMeasure` by one.
   [<Unsafe>]
   let unref (self: PathMeasure) : unit =
-    gsk_path_measure_unref (Glue.obj self.Id (gsk_path_measure_get_type ()))
+    Internal.GskC.gsk_path_measure_unref (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_measure_get_type ()))
 
 module PathPoint =
-  extern gsk_path_point_compare : cptr -> cptr -> i32
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_path_point_get_type ()
 
   /// Returns whether @point1 is before or after @point2.
   let compare (self: PathPoint) (point2: PathPoint) : int =
-    (int ((gsk_path_point_compare (Glue.obj self.Id (gsk_path_point_get_type ())) (Glue.obj point2.Id (gsk_path_point_get_type ())))))
-
-  extern gsk_path_point_copy : cptr -> cptr
+    (int ((Internal.GskC.gsk_path_point_compare (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_point_get_type ())) (Internal.Raw.obj point2.Id (Internal.GskC.gsk_path_point_get_type ())))))
 
   /// Copies a path point.
   let copy (self: PathPoint) : PathPoint =
-    PathPoint (Glue.wrapBoxed ((gsk_path_point_copy (Glue.obj self.Id (gsk_path_point_get_type ())))) (gsk_path_point_get_type ()) true)
-
-  extern gsk_path_point_equal : cptr -> cptr -> i32
+    PathPoint (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_path_point_copy (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_point_get_type ())))) (Internal.GskC.gsk_path_point_get_type ()) true)
 
   /// Returns whether the two path points refer to the same location on all paths.
   let equal (self: PathPoint) (point2: PathPoint) : bool =
-    (((gsk_path_point_equal (Glue.obj self.Id (gsk_path_point_get_type ())) (Glue.obj point2.Id (gsk_path_point_get_type ())))) <> i32 0)
-
-  extern gsk_path_point_free : cptr -> unit
+    (((Internal.GskC.gsk_path_point_equal (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_point_get_type ())) (Internal.Raw.obj point2.Id (Internal.GskC.gsk_path_point_get_type ())))) <> i32 0)
 
   /// Frees a path point copied by [method@Gsk.PathPoint.copy].
   [<Unsafe>]
   let free (self: PathPoint) : unit =
-    gsk_path_point_free (Glue.obj self.Id (gsk_path_point_get_type ()))
-
-  extern gsk_path_point_get_curvature : cptr -> cptr -> i32 -> cptr -> f32
+    Internal.GskC.gsk_path_point_free (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_point_get_type ()))
 
   /// Calculates the curvature of the path at the point.
   let getCurvature (self: PathPoint) (path: Path) (direction: PathDirection) : (float * Graphene.Point) =
-    let zo1 = Glue.alloc (Graphene.zgtk_sizeof_Graphene_Point ()) (Graphene.graphene_point_get_type ())
-    let zr = gsk_path_point_get_curvature (Glue.obj self.Id (gsk_path_point_get_type ())) (Glue.obj path.Id (gsk_path_get_type ())) (i32 direction.Int) (Glue.obj zo1 (Graphene.graphene_point_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GrapheneC.zgtk_sizeof_Graphene_Point ()) (Internal.GrapheneC.graphene_point_get_type ())
+    let zr = Internal.GskC.gsk_path_point_get_curvature (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_point_get_type ())) (Internal.Raw.obj path.Id (Internal.GskC.gsk_path_get_type ())) (i32 direction.Int) (Internal.Raw.obj zo1 (Internal.GrapheneC.graphene_point_get_type ()))
     ((float (zr)), Graphene.Point zo1)
-
-  extern gsk_path_point_get_distance : cptr -> cptr -> f32
 
   /// Returns the distance from the beginning of the path to the point.
   let getDistance (self: PathPoint) (measure: PathMeasure) : float =
-    (float ((gsk_path_point_get_distance (Glue.obj self.Id (gsk_path_point_get_type ())) (Glue.obj measure.Id (gsk_path_measure_get_type ())))))
-
-  extern gsk_path_point_get_position : cptr -> cptr -> cptr -> unit
+    (float ((Internal.GskC.gsk_path_point_get_distance (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_point_get_type ())) (Internal.Raw.obj measure.Id (Internal.GskC.gsk_path_measure_get_type ())))))
 
   /// Gets the position of the point.
   let getPosition (self: PathPoint) (path: Path) : Graphene.Point =
-    let zo1 = Glue.alloc (Graphene.zgtk_sizeof_Graphene_Point ()) (Graphene.graphene_point_get_type ())
-    gsk_path_point_get_position (Glue.obj self.Id (gsk_path_point_get_type ())) (Glue.obj path.Id (gsk_path_get_type ())) (Glue.obj zo1 (Graphene.graphene_point_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GrapheneC.zgtk_sizeof_Graphene_Point ()) (Internal.GrapheneC.graphene_point_get_type ())
+    Internal.GskC.gsk_path_point_get_position (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_point_get_type ())) (Internal.Raw.obj path.Id (Internal.GskC.gsk_path_get_type ())) (Internal.Raw.obj zo1 (Internal.GrapheneC.graphene_point_get_type ()))
     Graphene.Point zo1
-
-  extern gsk_path_point_get_rotation : cptr -> cptr -> i32 -> f32
 
   /// Gets the direction of the tangent at a given point.
   let getRotation (self: PathPoint) (path: Path) (direction: PathDirection) : float =
-    (float ((gsk_path_point_get_rotation (Glue.obj self.Id (gsk_path_point_get_type ())) (Glue.obj path.Id (gsk_path_get_type ())) (i32 direction.Int))))
-
-  extern gsk_path_point_get_tangent : cptr -> cptr -> i32 -> cptr -> unit
+    (float ((Internal.GskC.gsk_path_point_get_rotation (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_point_get_type ())) (Internal.Raw.obj path.Id (Internal.GskC.gsk_path_get_type ())) (i32 direction.Int))))
 
   /// Gets the tangent of the path at the point.
   let getTangent (self: PathPoint) (path: Path) (direction: PathDirection) : Graphene.Vec2 =
-    let zo1 = Glue.alloc (Graphene.zgtk_sizeof_Graphene_Vec2 ()) (Graphene.graphene_vec2_get_type ())
-    gsk_path_point_get_tangent (Glue.obj self.Id (gsk_path_point_get_type ())) (Glue.obj path.Id (gsk_path_get_type ())) (i32 direction.Int) (Glue.obj zo1 (Graphene.graphene_vec2_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GrapheneC.zgtk_sizeof_Graphene_Vec2 ()) (Internal.GrapheneC.graphene_vec2_get_type ())
+    Internal.GskC.gsk_path_point_get_tangent (Internal.Raw.obj self.Id (Internal.GskC.gsk_path_point_get_type ())) (Internal.Raw.obj path.Id (Internal.GskC.gsk_path_get_type ())) (i32 direction.Int) (Internal.Raw.obj zo1 (Internal.GrapheneC.graphene_vec2_get_type ()))
     Graphene.Vec2 zo1
 
   /// A new one, every field zero.
-  let create () : PathPoint = PathPoint (Glue.alloc (zgtk_sizeof_Gsk_PathPoint ()) (gsk_path_point_get_type ()))
+  let create () : PathPoint = PathPoint (Internal.Raw.alloc (Internal.GskC.zgtk_sizeof_Gsk_PathPoint ()) (Internal.GskC.gsk_path_point_get_type ()))
 
 module RadialGradientNode =
-  extern gsk_radial_gradient_node_new : cptr -> cptr -> f32 -> f32 -> f32 -> f32 -> cptr -> usize -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_RadialGradientNode ()
 
   /// Creates a `GskRenderNode` that draws a radial gradient.
   let create (bounds: Graphene.Rect) (center: Graphene.Point) (hradius: float) (vradius: float) (start: float) (end: float) (colorStops: list<ColorStop>) : RadialGradientNode =
-    let za2 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
-    let zr = gsk_radial_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 hradius) (f32 vradius) (f32 start) (f32 end) za2 (usize (Glue.count colorStops))
-    let zv = RadialGradientNode (zgtk_wrap_Gsk_RadialGradientNode (zr) (i32 1))
-    Glue.free za2
+    let za2 = Internal.Raw.records (Internal.Raw.mapList (fun (zo: ColorStop) -> Internal.Raw.obj zo.Id (Internal.GskC.zgtk_tag_Gsk_ColorStop ())) colorStops) (Internal.GskC.zgtk_sizeof_Gsk_ColorStop ())
+    let zr = Internal.GskC.gsk_radial_gradient_node_new (Internal.Raw.obj bounds.Id (Internal.GrapheneC.graphene_rect_get_type ())) (Internal.Raw.obj center.Id (Internal.GrapheneC.graphene_point_get_type ())) (f32 hradius) (f32 vradius) (f32 start) (f32 end) za2 (usize (Internal.Raw.count colorStops))
+    let zv = RadialGradientNode (Internal.GskC.zgtk_wrap_Gsk_RadialGradientNode (zr) (i32 1))
+    Internal.Raw.free za2
     zv
-
-  extern gsk_radial_gradient_node_get_center : cptr -> cptr
 
   /// Retrieves the center pointer for the gradient.
   let getCenter (self: RadialGradientNode) : Graphene.Point =
-    Graphene.Point (Glue.wrapBoxed ((gsk_radial_gradient_node_get_center (Glue.obj self.Id (zgtk_type_Gsk_RadialGradientNode ())))) (Graphene.graphene_point_get_type ()) false)
-
-  extern gsk_radial_gradient_node_get_color_stops : cptr -> cptr -> cptr
+    Graphene.Point (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_radial_gradient_node_get_center (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RadialGradientNode ())))) (Internal.GrapheneC.graphene_point_get_type ()) false)
 
   /// Retrieves the color stops in the gradient.
   let getColorStops (self: RadialGradientNode) : list<ColorStop> =
-    Glue.outBegin ()
-    let zr = gsk_radial_gradient_node_get_color_stops (Glue.obj self.Id (zgtk_type_Gsk_RadialGradientNode ())) (Glue.out 0)
-    let zrs1 = Glue.mapList (fun zp -> ColorStop (Glue.copyPlain (zp) (zgtk_sizeof_Gsk_ColorStop ()) (zgtk_tag_Gsk_ColorStop ()))) (Glue.recordsOf (zr) (Glue.outI64 0) (zgtk_sizeof_Gsk_ColorStop ()))
+    Internal.Raw.outBegin ()
+    let zr = Internal.GskC.gsk_radial_gradient_node_get_color_stops (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RadialGradientNode ())) (Internal.Raw.out 0)
+    let zrs1 = Internal.Raw.mapList (fun zp -> ColorStop (Internal.Raw.copyPlain (zp) (Internal.GskC.zgtk_sizeof_Gsk_ColorStop ()) (Internal.GskC.zgtk_tag_Gsk_ColorStop ()))) (Internal.Raw.recordsOf (zr) (Internal.Raw.outI64 0) (Internal.GskC.zgtk_sizeof_Gsk_ColorStop ()))
     let zv = zrs1
-    Glue.outEnd ()
+    Internal.Raw.outEnd ()
     zv
-
-  extern gsk_radial_gradient_node_get_end : cptr -> f32
 
   /// Retrieves the end value for the gradient.
   let getEnd (self: RadialGradientNode) : float =
-    (float ((gsk_radial_gradient_node_get_end (Glue.obj self.Id (zgtk_type_Gsk_RadialGradientNode ())))))
-
-  extern gsk_radial_gradient_node_get_hradius : cptr -> f32
+    (float ((Internal.GskC.gsk_radial_gradient_node_get_end (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RadialGradientNode ())))))
 
   /// Retrieves the horizontal radius for the gradient.
   let getHradius (self: RadialGradientNode) : float =
-    (float ((gsk_radial_gradient_node_get_hradius (Glue.obj self.Id (zgtk_type_Gsk_RadialGradientNode ())))))
-
-  extern gsk_radial_gradient_node_get_n_color_stops : cptr -> usize
+    (float ((Internal.GskC.gsk_radial_gradient_node_get_hradius (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RadialGradientNode ())))))
 
   /// Retrieves the number of color stops in the gradient.
   let getNColorStops (self: RadialGradientNode) : int =
-    (int ((gsk_radial_gradient_node_get_n_color_stops (Glue.obj self.Id (zgtk_type_Gsk_RadialGradientNode ())))))
-
-  extern gsk_radial_gradient_node_get_start : cptr -> f32
+    (int ((Internal.GskC.gsk_radial_gradient_node_get_n_color_stops (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RadialGradientNode ())))))
 
   /// Retrieves the start value for the gradient.
   let getStart (self: RadialGradientNode) : float =
-    (float ((gsk_radial_gradient_node_get_start (Glue.obj self.Id (zgtk_type_Gsk_RadialGradientNode ())))))
-
-  extern gsk_radial_gradient_node_get_vradius : cptr -> f32
+    (float ((Internal.GskC.gsk_radial_gradient_node_get_start (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RadialGradientNode ())))))
 
   /// Retrieves the vertical radius for the gradient.
   let getVradius (self: RadialGradientNode) : float =
-    (float ((gsk_radial_gradient_node_get_vradius (Glue.obj self.Id (zgtk_type_Gsk_RadialGradientNode ())))))
+    (float ((Internal.GskC.gsk_radial_gradient_node_get_vradius (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RadialGradientNode ())))))
 
 module RenderNode =
-  extern gsk_render_node_draw : cptr -> cptr -> unit
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_RenderNode ()
 
   /// Draws the contents of a render node on a cairo context.
   let draw (self: RenderNode) (cr: Cairo.Context) : unit =
-    gsk_render_node_draw (Glue.obj self.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj cr.Id (Cairo.cairo_gobject_context_get_type ()))
-
-  extern gsk_render_node_get_bounds : cptr -> cptr -> unit
+    Internal.GskC.gsk_render_node_draw (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (Internal.Raw.obj cr.Id (Internal.CairoC.cairo_gobject_context_get_type ()))
 
   /// Retrieves the boundaries of the @node.
   let getBounds (self: RenderNode) : Graphene.Rect =
-    let zo1 = Glue.alloc (Graphene.zgtk_sizeof_Graphene_Rect ()) (Graphene.graphene_rect_get_type ())
-    gsk_render_node_get_bounds (Glue.obj self.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj zo1 (Graphene.graphene_rect_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GrapheneC.zgtk_sizeof_Graphene_Rect ()) (Internal.GrapheneC.graphene_rect_get_type ())
+    Internal.GskC.gsk_render_node_get_bounds (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (Internal.Raw.obj zo1 (Internal.GrapheneC.graphene_rect_get_type ()))
     Graphene.Rect zo1
-
-  extern gsk_render_node_get_children : cptr -> cptr -> cptr
 
   /// Gets a list of all children nodes of the rendernode.
   let getChildren (self: RenderNode) : list<RenderNode> =
-    Glue.outBegin ()
-    let zr = gsk_render_node_get_children (Glue.obj self.Id (zgtk_type_Gsk_RenderNode ())) (Glue.out 0)
-    let zv = Glue.mapList (fun zp -> RenderNode (zgtk_wrap_Gsk_RenderNode (zp) (i32 0))) (Glue.ptrsOf (zr) (Glue.outI64 0) false)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GskC.gsk_render_node_get_children (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (Internal.Raw.out 0)
+    let zv = Internal.Raw.mapList (fun zp -> RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode (zp) (i32 0))) (Internal.Raw.ptrsOf (zr) (Internal.Raw.outI64 0) false)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gsk_render_node_get_node_type : cptr -> i32
 
   /// Returns the type of the render node.
   let getNodeType (self: RenderNode) : RenderNodeType =
-    RenderNodeType (int ((gsk_render_node_get_node_type (Glue.obj self.Id (zgtk_type_Gsk_RenderNode ())))))
-
-  extern gsk_render_node_get_opaque_rect : cptr -> cptr -> i32
+    RenderNodeType (int ((Internal.GskC.gsk_render_node_get_node_type (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())))))
 
   /// Gets an opaque rectangle inside the node that GTK can determine to be fully opaque.
   let getOpaqueRect (self: RenderNode) : (bool * Graphene.Rect) =
-    let zo1 = Glue.alloc (Graphene.zgtk_sizeof_Graphene_Rect ()) (Graphene.graphene_rect_get_type ())
-    let zr = gsk_render_node_get_opaque_rect (Glue.obj self.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj zo1 (Graphene.graphene_rect_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GrapheneC.zgtk_sizeof_Graphene_Rect ()) (Internal.GrapheneC.graphene_rect_get_type ())
+    let zr = Internal.GskC.gsk_render_node_get_opaque_rect (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (Internal.Raw.obj zo1 (Internal.GrapheneC.graphene_rect_get_type ()))
     (((zr) <> i32 0), Graphene.Rect zo1)
-
-  extern gsk_render_node_ref : cptr -> cptr
 
   /// Acquires a reference on the given `GskRenderNode`.
   [<Unsafe>]
   let ref_ (self: RenderNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_render_node_ref (Glue.obj self.Id (zgtk_type_Gsk_RenderNode ())))) (i32 1))
-
-  extern gsk_render_node_serialize : cptr -> cptr
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_render_node_ref (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())))) (i32 1))
 
   /// Serializes the @node for later deserialization via gsk_render_node_deserialize().
   let serialize (self: RenderNode) : GLib.Bytes =
-    GLib.Bytes (Glue.wrapBoxed ((gsk_render_node_serialize (Glue.obj self.Id (zgtk_type_Gsk_RenderNode ())))) (GLib.g_bytes_get_type ()) true)
-
-  extern gsk_render_node_unref : cptr -> unit
+    GLib.Bytes (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_render_node_serialize (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())))) (Internal.GLibC.g_bytes_get_type ()) true)
 
   /// Releases a reference on the given `GskRenderNode`.
   [<Unsafe>]
   let unref (self: RenderNode) : unit =
-    gsk_render_node_unref (Glue.obj self.Id (zgtk_type_Gsk_RenderNode ()))
-
-  extern gsk_render_node_write_to_file : cptr -> cstr -> cptr -> i32
+    Internal.GskC.gsk_render_node_unref (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ()))
 
   /// This function is equivalent to calling [method@Gsk.RenderNode.serialize] followed by [func@GLib.file_set_contents].
   let writeToFile (self: RenderNode) (filename: string) : result<bool, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gsk_render_node_write_to_file (Glue.obj self.Id (zgtk_type_Gsk_RenderNode ())) filename (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GskC.gsk_render_node_write_to_file (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) filename (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
       let zv = ((zr) <> i32 0)
-      Glue.outEnd ()
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gsk_render_node_deserialize : cptr -> cptr -> cptr -> cptr
 
   /// Loads data previously created via [method@Gsk.RenderNode.serialize].
   let deserialize (bytes: GLib.Bytes) (errorFunc: ParseLocation -> ParseLocation -> option<Glue.Error> -> unit) : option<RenderNode> =
     let zcb1 =
-      Glue.hold (fun () ->
-        let start = ParseLocation (Glue.copyPlain (Glue.argPointer 0) (zgtk_sizeof_Gsk_ParseLocation ()) (zgtk_tag_Gsk_ParseLocation ()))
-        let end = ParseLocation (Glue.copyPlain (Glue.argPointer 1) (zgtk_sizeof_Gsk_ParseLocation ()) (zgtk_tag_Gsk_ParseLocation ()))
-        let error = Glue.errorOf (Glue.argPointer 2) false
+      Internal.Raw.hold (fun () ->
+        let start = ParseLocation (Internal.Raw.copyPlain (Internal.Raw.argPointer 0) (Internal.GskC.zgtk_sizeof_Gsk_ParseLocation ()) (Internal.GskC.zgtk_tag_Gsk_ParseLocation ()))
+        let end = ParseLocation (Internal.Raw.copyPlain (Internal.Raw.argPointer 1) (Internal.GskC.zgtk_sizeof_Gsk_ParseLocation ()) (Internal.GskC.zgtk_tag_Gsk_ParseLocation ()))
+        let error = Glue.errorOption (Internal.Raw.errorOf (Internal.Raw.argPointer 2) false)
         errorFunc start end error)
-    let zr = gsk_render_node_deserialize (Glue.obj bytes.Id (GLib.g_bytes_get_type ())) (zgtk_tramp_Gsk_ParseErrorFunc ()) zcb1
-    let zid2 = zgtk_wrap_Gsk_RenderNode (zr) (i32 1)
+    let zr = Internal.GskC.gsk_render_node_deserialize (Internal.Raw.obj bytes.Id (Internal.GLibC.g_bytes_get_type ())) (Internal.GskC.zgtk_tramp_Gsk_ParseErrorFunc ()) zcb1
+    let zid2 = Internal.GskC.zgtk_wrap_Gsk_RenderNode (zr) (i32 1)
     let zv = (if zid2 = 0 then None else Some (RenderNode zid2))
-    Glue.drop zcb1
+    Internal.Raw.drop zcb1
     zv
 
 module RenderReplay =
-  extern gsk_render_replay_new : unit -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_render_replay_get_type ()
 
   /// Creates a new replay object to replay nodes.
   let create () : RenderReplay =
-    RenderReplay (Glue.wrapBoxed ((gsk_render_replay_new ())) (gsk_render_replay_get_type ()) true)
-
-  extern gsk_render_replay_default : cptr -> cptr -> cptr
+    RenderReplay (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_render_replay_new ())) (Internal.GskC.gsk_render_replay_get_type ()) true)
 
   /// Replays the node using the default method.
   let default (self: RenderReplay) (node: RenderNode) : option<RenderNode> =
-    let zr = gsk_render_replay_default (Glue.obj self.Id (gsk_render_replay_get_type ())) (Glue.obj node.Id (zgtk_type_Gsk_RenderNode ()))
-    let zid1 = zgtk_wrap_Gsk_RenderNode (zr) (i32 1)
+    let zr = Internal.GskC.gsk_render_replay_default (Internal.Raw.obj self.Id (Internal.GskC.gsk_render_replay_get_type ())) (Internal.Raw.obj node.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ()))
+    let zid1 = Internal.GskC.zgtk_wrap_Gsk_RenderNode (zr) (i32 1)
     (if zid1 = 0 then None else Some (RenderNode zid1))
-
-  extern gsk_render_replay_filter_font : cptr -> cptr -> cptr
 
   /// Filters a font using the current filter function.
   let filterFont (self: RenderReplay) (font: Pango.Font) : Pango.Font =
-    Pango.Font (Glue.wrap ((gsk_render_replay_filter_font (Glue.obj self.Id (gsk_render_replay_get_type ())) (Glue.obj font.Id (Pango.pango_font_get_type ())))) true)
-
-  extern gsk_render_replay_filter_node : cptr -> cptr -> cptr
+    Pango.Font (Internal.Raw.wrap ((Internal.GskC.gsk_render_replay_filter_font (Internal.Raw.obj self.Id (Internal.GskC.gsk_render_replay_get_type ())) (Internal.Raw.obj font.Id (Internal.PangoC.pango_font_get_type ())))) true)
 
   /// Replays a node using the replay's filter function.
   let filterNode (self: RenderReplay) (node: RenderNode) : option<RenderNode> =
-    let zr = gsk_render_replay_filter_node (Glue.obj self.Id (gsk_render_replay_get_type ())) (Glue.obj node.Id (zgtk_type_Gsk_RenderNode ()))
-    let zid1 = zgtk_wrap_Gsk_RenderNode (zr) (i32 1)
+    let zr = Internal.GskC.gsk_render_replay_filter_node (Internal.Raw.obj self.Id (Internal.GskC.gsk_render_replay_get_type ())) (Internal.Raw.obj node.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ()))
+    let zid1 = Internal.GskC.zgtk_wrap_Gsk_RenderNode (zr) (i32 1)
     (if zid1 = 0 then None else Some (RenderNode zid1))
-
-  extern gsk_render_replay_filter_texture : cptr -> cptr -> cptr
 
   /// Filters a texture using the current filter function.
   let filterTexture (self: RenderReplay) (texture: Gdk.Texture) : Gdk.Texture =
-    Gdk.Texture (Glue.wrap ((gsk_render_replay_filter_texture (Glue.obj self.Id (gsk_render_replay_get_type ())) (Glue.obj texture.Id (Gdk.gdk_texture_get_type ())))) true)
-
-  extern gsk_render_replay_free : cptr -> unit
+    Gdk.Texture (Internal.Raw.wrap ((Internal.GskC.gsk_render_replay_filter_texture (Internal.Raw.obj self.Id (Internal.GskC.gsk_render_replay_get_type ())) (Internal.Raw.obj texture.Id (Internal.GdkC.gdk_texture_get_type ())))) true)
 
   /// Frees a `GskRenderReplay`.
   [<Unsafe>]
   let free (self: RenderReplay) : unit =
-    gsk_render_replay_free (Glue.obj self.Id (gsk_render_replay_get_type ()))
-
-  extern gsk_render_replay_set_font_filter : cptr -> cptr -> cptr -> cptr -> unit
+    Internal.GskC.gsk_render_replay_free (Internal.Raw.obj self.Id (Internal.GskC.gsk_render_replay_get_type ()))
 
   /// Sets a filter function to be called by [method@Gsk.RenderReplay.default] for nodes that contain fonts.
   let setFontFilter (self: RenderReplay) (filter: RenderReplay -> Pango.Font -> Pango.Font) : unit =
     let zcb1 =
-      Glue.hold (fun () ->
-        let replay = RenderReplay (Glue.wrapBoxed (Glue.argPointer 0) (gsk_render_replay_get_type ()) false)
-        let font = Pango.Font (Glue.wrap (Glue.argPointer 1) false)
-        Glue.returnPointer (Glue.give (Glue.obj (filter replay font).Id (Pango.pango_font_get_type ()))))
-    gsk_render_replay_set_font_filter (Glue.obj self.Id (gsk_render_replay_get_type ())) (zgtk_tramp_Gsk_RenderReplayFontFilter ()) zcb1 (Glue.dropFn ())
-
-  extern gsk_render_replay_set_node_filter : cptr -> cptr -> cptr -> cptr -> unit
+      Internal.Raw.hold (fun () ->
+        let replay = RenderReplay (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 0) (Internal.GskC.gsk_render_replay_get_type ()) false)
+        let font = Pango.Font (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
+        Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (filter replay font).Id (Internal.PangoC.pango_font_get_type ()))))
+    Internal.GskC.gsk_render_replay_set_font_filter (Internal.Raw.obj self.Id (Internal.GskC.gsk_render_replay_get_type ())) (Internal.GskC.zgtk_tramp_Gsk_RenderReplayFontFilter ()) zcb1 (Internal.Raw.dropFn ())
 
   /// Sets the function to use as a node filter.
   let setNodeFilter (self: RenderReplay) (filter: RenderReplay -> RenderNode -> option<RenderNode>) : unit =
     let zcb1 =
-      Glue.hold (fun () ->
-        let replay = RenderReplay (Glue.wrapBoxed (Glue.argPointer 0) (gsk_render_replay_get_type ()) false)
-        let node = RenderNode (zgtk_wrap_Gsk_RenderNode (Glue.argPointer 1) (i32 0))
+      Internal.Raw.hold (fun () ->
+        let replay = RenderReplay (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 0) (Internal.GskC.gsk_render_replay_get_type ()) false)
+        let node = RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode (Internal.Raw.argPointer 1) (i32 0))
         match filter replay node with
-        | Some zo -> Glue.returnPointer (zgtk_give_Gsk_RenderNode (Glue.obj zo.Id (zgtk_type_Gsk_RenderNode ())))
-        | None -> Glue.returnPointer (Glue.none ()))
-    gsk_render_replay_set_node_filter (Glue.obj self.Id (gsk_render_replay_get_type ())) (zgtk_tramp_Gsk_RenderReplayNodeFilter ()) zcb1 (Glue.dropFn ())
-
-  extern gsk_render_replay_set_texture_filter : cptr -> cptr -> cptr -> cptr -> unit
+        | Some zo -> Internal.Raw.returnPointer (Internal.GskC.zgtk_give_Gsk_RenderNode (Internal.Raw.obj zo.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())))
+        | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
+    Internal.GskC.gsk_render_replay_set_node_filter (Internal.Raw.obj self.Id (Internal.GskC.gsk_render_replay_get_type ())) (Internal.GskC.zgtk_tramp_Gsk_RenderReplayNodeFilter ()) zcb1 (Internal.Raw.dropFn ())
 
   /// Sets a filter function to be called by [method@Gsk.RenderReplay.default] for nodes that contain textures.
   let setTextureFilter (self: RenderReplay) (filter: RenderReplay -> Gdk.Texture -> Gdk.Texture) : unit =
     let zcb1 =
-      Glue.hold (fun () ->
-        let replay = RenderReplay (Glue.wrapBoxed (Glue.argPointer 0) (gsk_render_replay_get_type ()) false)
-        let texture = Gdk.Texture (Glue.wrap (Glue.argPointer 1) false)
-        Glue.returnPointer (Glue.give (Glue.obj (filter replay texture).Id (Gdk.gdk_texture_get_type ()))))
-    gsk_render_replay_set_texture_filter (Glue.obj self.Id (gsk_render_replay_get_type ())) (zgtk_tramp_Gsk_RenderReplayTextureFilter ()) zcb1 (Glue.dropFn ())
+      Internal.Raw.hold (fun () ->
+        let replay = RenderReplay (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 0) (Internal.GskC.gsk_render_replay_get_type ()) false)
+        let texture = Gdk.Texture (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
+        Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (filter replay texture).Id (Internal.GdkC.gdk_texture_get_type ()))))
+    Internal.GskC.gsk_render_replay_set_texture_filter (Internal.Raw.obj self.Id (Internal.GskC.gsk_render_replay_get_type ())) (Internal.GskC.zgtk_tramp_Gsk_RenderReplayTextureFilter ()) zcb1 (Internal.Raw.dropFn ())
 
 module RepeatNode =
-  extern gsk_repeat_node_new : cptr -> cptr -> cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_RepeatNode ()
 
   /// Creates a `GskRenderNode` that will repeat the drawing of @child across the given @bounds.
   let create (bounds: Graphene.Rect) (child: RenderNode) (childBounds: option<Graphene.Rect>) : RepeatNode =
     let zp1 =
       match childBounds with
-      | Some zo -> Glue.obj zo.Id (Graphene.graphene_rect_get_type ())
-      | None -> Glue.none ()
-    let zr = gsk_repeat_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) zp1
-    RepeatNode (zgtk_wrap_Gsk_RepeatNode (zr) (i32 1))
-
-  extern gsk_repeat_node_get_child : cptr -> cptr
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GrapheneC.graphene_rect_get_type ())
+      | None -> Internal.Raw.none ()
+    let zr = Internal.GskC.gsk_repeat_node_new (Internal.Raw.obj bounds.Id (Internal.GrapheneC.graphene_rect_get_type ())) (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) zp1
+    RepeatNode (Internal.GskC.zgtk_wrap_Gsk_RepeatNode (zr) (i32 1))
 
   /// Retrieves the child of @node.
   let getChild (self: RepeatNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_repeat_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_RepeatNode ())))) (i32 0))
-
-  extern gsk_repeat_node_get_child_bounds : cptr -> cptr
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_repeat_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RepeatNode ())))) (i32 0))
 
   /// Retrieves the bounding rectangle of the child of @node.
   let getChildBounds (self: RepeatNode) : Graphene.Rect =
-    Graphene.Rect (Glue.wrapBoxed ((gsk_repeat_node_get_child_bounds (Glue.obj self.Id (zgtk_type_Gsk_RepeatNode ())))) (Graphene.graphene_rect_get_type ()) false)
+    Graphene.Rect (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_repeat_node_get_child_bounds (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RepeatNode ())))) (Internal.GrapheneC.graphene_rect_get_type ()) false)
 
 module RepeatingLinearGradientNode =
-  extern gsk_repeating_linear_gradient_node_new : cptr -> cptr -> cptr -> cptr -> usize -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_RepeatingLinearGradientNode ()
 
   /// Creates a `GskRenderNode` that will create a repeating linear gradient from the given points and color stops, and render that into the area given by @bounds.
   let create (bounds: Graphene.Rect) (start: Graphene.Point) (end: Graphene.Point) (colorStops: list<ColorStop>) : RepeatingLinearGradientNode =
-    let za2 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
-    let zr = gsk_repeating_linear_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj start.Id (Graphene.graphene_point_get_type ())) (Glue.obj end.Id (Graphene.graphene_point_get_type ())) za2 (usize (Glue.count colorStops))
-    let zv = RepeatingLinearGradientNode (zgtk_wrap_Gsk_RepeatingLinearGradientNode (zr) (i32 1))
-    Glue.free za2
+    let za2 = Internal.Raw.records (Internal.Raw.mapList (fun (zo: ColorStop) -> Internal.Raw.obj zo.Id (Internal.GskC.zgtk_tag_Gsk_ColorStop ())) colorStops) (Internal.GskC.zgtk_sizeof_Gsk_ColorStop ())
+    let zr = Internal.GskC.gsk_repeating_linear_gradient_node_new (Internal.Raw.obj bounds.Id (Internal.GrapheneC.graphene_rect_get_type ())) (Internal.Raw.obj start.Id (Internal.GrapheneC.graphene_point_get_type ())) (Internal.Raw.obj end.Id (Internal.GrapheneC.graphene_point_get_type ())) za2 (usize (Internal.Raw.count colorStops))
+    let zv = RepeatingLinearGradientNode (Internal.GskC.zgtk_wrap_Gsk_RepeatingLinearGradientNode (zr) (i32 1))
+    Internal.Raw.free za2
     zv
 
 module RepeatingRadialGradientNode =
-  extern gsk_repeating_radial_gradient_node_new : cptr -> cptr -> f32 -> f32 -> f32 -> f32 -> cptr -> usize -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_RepeatingRadialGradientNode ()
 
   /// Creates a `GskRenderNode` that draws a repeating radial gradient.
   let create (bounds: Graphene.Rect) (center: Graphene.Point) (hradius: float) (vradius: float) (start: float) (end: float) (colorStops: list<ColorStop>) : RepeatingRadialGradientNode =
-    let za2 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
-    let zr = gsk_repeating_radial_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 hradius) (f32 vradius) (f32 start) (f32 end) za2 (usize (Glue.count colorStops))
-    let zv = RepeatingRadialGradientNode (zgtk_wrap_Gsk_RepeatingRadialGradientNode (zr) (i32 1))
-    Glue.free za2
+    let za2 = Internal.Raw.records (Internal.Raw.mapList (fun (zo: ColorStop) -> Internal.Raw.obj zo.Id (Internal.GskC.zgtk_tag_Gsk_ColorStop ())) colorStops) (Internal.GskC.zgtk_sizeof_Gsk_ColorStop ())
+    let zr = Internal.GskC.gsk_repeating_radial_gradient_node_new (Internal.Raw.obj bounds.Id (Internal.GrapheneC.graphene_rect_get_type ())) (Internal.Raw.obj center.Id (Internal.GrapheneC.graphene_point_get_type ())) (f32 hradius) (f32 vradius) (f32 start) (f32 end) za2 (usize (Internal.Raw.count colorStops))
+    let zv = RepeatingRadialGradientNode (Internal.GskC.zgtk_wrap_Gsk_RepeatingRadialGradientNode (zr) (i32 1))
+    Internal.Raw.free za2
     zv
 
 module RoundedClipNode =
-  extern gsk_rounded_clip_node_new : cptr -> cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_RoundedClipNode ()
 
   /// Creates a `GskRenderNode` that will clip the @child to the area given by @clip.
   let create (child: RenderNode) (clip: RoundedRect) : RoundedClipNode =
-    RoundedClipNode (zgtk_wrap_Gsk_RoundedClipNode ((gsk_rounded_clip_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj clip.Id (zgtk_tag_Gsk_RoundedRect ())))) (i32 1))
-
-  extern gsk_rounded_clip_node_get_child : cptr -> cptr
+    RoundedClipNode (Internal.GskC.zgtk_wrap_Gsk_RoundedClipNode ((Internal.GskC.gsk_rounded_clip_node_new (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (Internal.Raw.obj clip.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())))) (i32 1))
 
   /// Gets the child node that is getting clipped by the given @node.
   let getChild (self: RoundedClipNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_rounded_clip_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_RoundedClipNode ())))) (i32 0))
-
-  extern gsk_rounded_clip_node_get_clip : cptr -> cptr
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_rounded_clip_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RoundedClipNode ())))) (i32 0))
 
   /// Retrieves the rounded rectangle used to clip the contents of the @node.
   let getClip (self: RoundedClipNode) : RoundedRect =
-    RoundedRect (Glue.copyPlain ((gsk_rounded_clip_node_get_clip (Glue.obj self.Id (zgtk_type_Gsk_RoundedClipNode ())))) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
+    RoundedRect (Internal.Raw.copyPlain ((Internal.GskC.gsk_rounded_clip_node_get_clip (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_RoundedClipNode ())))) (Internal.GskC.zgtk_sizeof_Gsk_RoundedRect ()) (Internal.GskC.zgtk_tag_Gsk_RoundedRect ()))
 
 module RoundedRect =
-  extern gsk_rounded_rect_contains_point : cptr -> cptr -> i32
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_tag_Gsk_RoundedRect ()
 
   /// Checks if the given point is inside the rounded rectangle.
   let containsPoint (self: RoundedRect) (point: Graphene.Point) : bool =
-    (((gsk_rounded_rect_contains_point (Glue.obj self.Id (zgtk_tag_Gsk_RoundedRect ())) (Glue.obj point.Id (Graphene.graphene_point_get_type ())))) <> i32 0)
-
-  extern gsk_rounded_rect_contains_rect : cptr -> cptr -> i32
+    (((Internal.GskC.gsk_rounded_rect_contains_point (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())) (Internal.Raw.obj point.Id (Internal.GrapheneC.graphene_point_get_type ())))) <> i32 0)
 
   /// Checks if the given rectangle is contained inside the rounded rectangle.
   let containsRect (self: RoundedRect) (rect: Graphene.Rect) : bool =
-    (((gsk_rounded_rect_contains_rect (Glue.obj self.Id (zgtk_tag_Gsk_RoundedRect ())) (Glue.obj rect.Id (Graphene.graphene_rect_get_type ())))) <> i32 0)
-
-  extern gsk_rounded_rect_init : cptr -> cptr -> cptr -> cptr -> cptr -> cptr -> cptr
+    (((Internal.GskC.gsk_rounded_rect_contains_rect (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())) (Internal.Raw.obj rect.Id (Internal.GrapheneC.graphene_rect_get_type ())))) <> i32 0)
 
   /// Initializes a rounded rectangle with the given values.
   let init (self: RoundedRect) (bounds: Graphene.Rect) (topLeft: Graphene.Size) (topRight: Graphene.Size) (bottomRight: Graphene.Size) (bottomLeft: Graphene.Size) : RoundedRect =
-    RoundedRect (Glue.copyPlain ((gsk_rounded_rect_init (Glue.obj self.Id (zgtk_tag_Gsk_RoundedRect ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj topLeft.Id (Graphene.graphene_size_get_type ())) (Glue.obj topRight.Id (Graphene.graphene_size_get_type ())) (Glue.obj bottomRight.Id (Graphene.graphene_size_get_type ())) (Glue.obj bottomLeft.Id (Graphene.graphene_size_get_type ())))) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
-
-  extern gsk_rounded_rect_init_copy : cptr -> cptr -> cptr
+    RoundedRect (Internal.Raw.copyPlain ((Internal.GskC.gsk_rounded_rect_init (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())) (Internal.Raw.obj bounds.Id (Internal.GrapheneC.graphene_rect_get_type ())) (Internal.Raw.obj topLeft.Id (Internal.GrapheneC.graphene_size_get_type ())) (Internal.Raw.obj topRight.Id (Internal.GrapheneC.graphene_size_get_type ())) (Internal.Raw.obj bottomRight.Id (Internal.GrapheneC.graphene_size_get_type ())) (Internal.Raw.obj bottomLeft.Id (Internal.GrapheneC.graphene_size_get_type ())))) (Internal.GskC.zgtk_sizeof_Gsk_RoundedRect ()) (Internal.GskC.zgtk_tag_Gsk_RoundedRect ()))
 
   /// Initializes a rounded rectangle with a copy.
   let initCopy (self: RoundedRect) (src: RoundedRect) : RoundedRect =
-    RoundedRect (Glue.copyPlain ((gsk_rounded_rect_init_copy (Glue.obj self.Id (zgtk_tag_Gsk_RoundedRect ())) (Glue.obj src.Id (zgtk_tag_Gsk_RoundedRect ())))) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
-
-  extern gsk_rounded_rect_init_from_rect : cptr -> cptr -> f32 -> cptr
+    RoundedRect (Internal.Raw.copyPlain ((Internal.GskC.gsk_rounded_rect_init_copy (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())) (Internal.Raw.obj src.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())))) (Internal.GskC.zgtk_sizeof_Gsk_RoundedRect ()) (Internal.GskC.zgtk_tag_Gsk_RoundedRect ()))
 
   /// Initializes a rounded rectangle to the given bounds and sets the radius of all four corners equally.
   let initFromRect (self: RoundedRect) (bounds: Graphene.Rect) (radius: float) : RoundedRect =
-    RoundedRect (Glue.copyPlain ((gsk_rounded_rect_init_from_rect (Glue.obj self.Id (zgtk_tag_Gsk_RoundedRect ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (f32 radius))) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
-
-  extern gsk_rounded_rect_intersects_rect : cptr -> cptr -> i32
+    RoundedRect (Internal.Raw.copyPlain ((Internal.GskC.gsk_rounded_rect_init_from_rect (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())) (Internal.Raw.obj bounds.Id (Internal.GrapheneC.graphene_rect_get_type ())) (f32 radius))) (Internal.GskC.zgtk_sizeof_Gsk_RoundedRect ()) (Internal.GskC.zgtk_tag_Gsk_RoundedRect ()))
 
   /// Checks if part a rectangle is contained inside the rounded rectangle.
   let intersectsRect (self: RoundedRect) (rect: Graphene.Rect) : bool =
-    (((gsk_rounded_rect_intersects_rect (Glue.obj self.Id (zgtk_tag_Gsk_RoundedRect ())) (Glue.obj rect.Id (Graphene.graphene_rect_get_type ())))) <> i32 0)
-
-  extern gsk_rounded_rect_is_rectilinear : cptr -> i32
+    (((Internal.GskC.gsk_rounded_rect_intersects_rect (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())) (Internal.Raw.obj rect.Id (Internal.GrapheneC.graphene_rect_get_type ())))) <> i32 0)
 
   /// Checks if all corners of a rounded rectangle are right angles and the rectangle covers all of its bounds.
   let isRectilinear (self: RoundedRect) : bool =
-    (((gsk_rounded_rect_is_rectilinear (Glue.obj self.Id (zgtk_tag_Gsk_RoundedRect ())))) <> i32 0)
-
-  extern gsk_rounded_rect_normalize : cptr -> cptr
+    (((Internal.GskC.gsk_rounded_rect_is_rectilinear (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())))) <> i32 0)
 
   /// Normalizes a rounded rectangle.
   let normalize (self: RoundedRect) : RoundedRect =
-    RoundedRect (Glue.copyPlain ((gsk_rounded_rect_normalize (Glue.obj self.Id (zgtk_tag_Gsk_RoundedRect ())))) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
-
-  extern gsk_rounded_rect_offset : cptr -> f32 -> f32 -> cptr
+    RoundedRect (Internal.Raw.copyPlain ((Internal.GskC.gsk_rounded_rect_normalize (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())))) (Internal.GskC.zgtk_sizeof_Gsk_RoundedRect ()) (Internal.GskC.zgtk_tag_Gsk_RoundedRect ()))
 
   /// Offsets the rounded rectangle's origin by @dx and @dy.
   let offset (self: RoundedRect) (dx: float) (dy: float) : RoundedRect =
-    RoundedRect (Glue.copyPlain ((gsk_rounded_rect_offset (Glue.obj self.Id (zgtk_tag_Gsk_RoundedRect ())) (f32 dx) (f32 dy))) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
-
-  extern gsk_rounded_rect_shrink : cptr -> f32 -> f32 -> f32 -> f32 -> cptr
+    RoundedRect (Internal.Raw.copyPlain ((Internal.GskC.gsk_rounded_rect_offset (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())) (f32 dx) (f32 dy))) (Internal.GskC.zgtk_sizeof_Gsk_RoundedRect ()) (Internal.GskC.zgtk_tag_Gsk_RoundedRect ()))
 
   /// Shrinks (or grows) a rounded rectangle by moving the 4 sides according to the offsets given.
   let shrink (self: RoundedRect) (top: float) (right: float) (bottom: float) (left: float) : RoundedRect =
-    RoundedRect (Glue.copyPlain ((gsk_rounded_rect_shrink (Glue.obj self.Id (zgtk_tag_Gsk_RoundedRect ())) (f32 top) (f32 right) (f32 bottom) (f32 left))) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
+    RoundedRect (Internal.Raw.copyPlain ((Internal.GskC.gsk_rounded_rect_shrink (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())) (f32 top) (f32 right) (f32 bottom) (f32 left))) (Internal.GskC.zgtk_sizeof_Gsk_RoundedRect ()) (Internal.GskC.zgtk_tag_Gsk_RoundedRect ()))
 
   /// A new one, every field zero.
-  let create () : RoundedRect = RoundedRect (Glue.allocPlain (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
-
-  extern zgtk_at_Gsk_RoundedRect_bounds : cptr -> cptr
+  let create () : RoundedRect = RoundedRect (Internal.Raw.allocPlain (Internal.GskC.zgtk_sizeof_Gsk_RoundedRect ()) (Internal.GskC.zgtk_tag_Gsk_RoundedRect ()))
 
   /// A copy of the `bounds` field.
-  let getBounds (self: RoundedRect) : Graphene.Rect = Graphene.Rect (Glue.wrapBoxed (zgtk_at_Gsk_RoundedRect_bounds (Glue.obj self.Id (zgtk_tag_Gsk_RoundedRect ()))) (Graphene.graphene_rect_get_type ()) false)
-
-  extern zgtk_put_Gsk_RoundedRect_bounds : cptr -> cptr -> unit
+  let getBounds (self: RoundedRect) : Graphene.Rect = Graphene.Rect (Internal.Raw.wrapBoxed (Internal.GskC.zgtk_at_Gsk_RoundedRect_bounds (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ()))) (Internal.GrapheneC.graphene_rect_get_type ()) false)
 
   /// Sets the `bounds` field, to a copy of a record.
-  let setBounds (self: RoundedRect) (value: Graphene.Rect) : unit = zgtk_put_Gsk_RoundedRect_bounds (Glue.obj self.Id (zgtk_tag_Gsk_RoundedRect ())) (Glue.obj value.Id (Graphene.graphene_rect_get_type ()))
+  let setBounds (self: RoundedRect) (value: Graphene.Rect) : unit = Internal.GskC.zgtk_put_Gsk_RoundedRect_bounds (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_RoundedRect ())) (Internal.Raw.obj value.Id (Internal.GrapheneC.graphene_rect_get_type ()))
 
 module ShaderArgsBuilder =
-  extern gsk_shader_args_builder_new : cptr -> cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_shader_args_builder_get_type ()
 
   /// Deprecated. Allocates a builder that can be used to construct a new uniform data chunk.
   let create (shader: GLShader) (initialValues: option<GLib.Bytes>) : ShaderArgsBuilder =
     let zp1 =
       match initialValues with
-      | Some zo -> Glue.obj zo.Id (GLib.g_bytes_get_type ())
-      | None -> Glue.none ()
-    let zr = gsk_shader_args_builder_new (Glue.obj shader.Id (gsk_gl_shader_get_type ())) zp1
-    ShaderArgsBuilder (Glue.wrapBoxed (zr) (gsk_shader_args_builder_get_type ()) true)
-
-  extern gsk_shader_args_builder_free_to_args : cptr -> cptr
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GLibC.g_bytes_get_type ())
+      | None -> Internal.Raw.none ()
+    let zr = Internal.GskC.gsk_shader_args_builder_new (Internal.Raw.obj shader.Id (Internal.GskC.gsk_gl_shader_get_type ())) zp1
+    ShaderArgsBuilder (Internal.Raw.wrapBoxed (zr) (Internal.GskC.gsk_shader_args_builder_get_type ()) true)
 
   /// Deprecated. Creates a new `GBytes` args from the current state of the given @builder, and frees the @builder instance.
   let freeToArgs (self: ShaderArgsBuilder) : GLib.Bytes =
-    GLib.Bytes (Glue.wrapBoxed ((gsk_shader_args_builder_free_to_args (Glue.obj self.Id (gsk_shader_args_builder_get_type ())))) (GLib.g_bytes_get_type ()) true)
-
-  extern gsk_shader_args_builder_ref : cptr -> cptr
+    GLib.Bytes (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_shader_args_builder_free_to_args (Internal.Raw.obj self.Id (Internal.GskC.gsk_shader_args_builder_get_type ())))) (Internal.GLibC.g_bytes_get_type ()) true)
 
   /// Deprecated. Increases the reference count of a `GskShaderArgsBuilder` by one.
   [<Unsafe>]
   let ref_ (self: ShaderArgsBuilder) : ShaderArgsBuilder =
-    ShaderArgsBuilder (Glue.wrapBoxed ((gsk_shader_args_builder_ref (Glue.obj self.Id (gsk_shader_args_builder_get_type ())))) (gsk_shader_args_builder_get_type ()) true)
-
-  extern gsk_shader_args_builder_set_bool : cptr -> i32 -> i32 -> unit
+    ShaderArgsBuilder (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_shader_args_builder_ref (Internal.Raw.obj self.Id (Internal.GskC.gsk_shader_args_builder_get_type ())))) (Internal.GskC.gsk_shader_args_builder_get_type ()) true)
 
   /// Deprecated. Sets the value of the uniform @idx.
   let setBool (self: ShaderArgsBuilder) (idx: int) (value: bool) : unit =
-    gsk_shader_args_builder_set_bool (Glue.obj self.Id (gsk_shader_args_builder_get_type ())) (i32 idx) (if value then i32 1 else i32 0)
-
-  extern gsk_shader_args_builder_set_float : cptr -> i32 -> f32 -> unit
+    Internal.GskC.gsk_shader_args_builder_set_bool (Internal.Raw.obj self.Id (Internal.GskC.gsk_shader_args_builder_get_type ())) (i32 idx) (if value then i32 1 else i32 0)
 
   /// Sets the value of the uniform @idx.
   let setFloat (self: ShaderArgsBuilder) (idx: int) (value: float) : unit =
-    gsk_shader_args_builder_set_float (Glue.obj self.Id (gsk_shader_args_builder_get_type ())) (i32 idx) (f32 value)
-
-  extern gsk_shader_args_builder_set_int : cptr -> i32 -> i32 -> unit
+    Internal.GskC.gsk_shader_args_builder_set_float (Internal.Raw.obj self.Id (Internal.GskC.gsk_shader_args_builder_get_type ())) (i32 idx) (f32 value)
 
   /// Deprecated. Sets the value of the uniform @idx.
   let setInt (self: ShaderArgsBuilder) (idx: int) (value: int) : unit =
-    gsk_shader_args_builder_set_int (Glue.obj self.Id (gsk_shader_args_builder_get_type ())) (i32 idx) (i32 value)
-
-  extern gsk_shader_args_builder_set_uint : cptr -> i32 -> u32 -> unit
+    Internal.GskC.gsk_shader_args_builder_set_int (Internal.Raw.obj self.Id (Internal.GskC.gsk_shader_args_builder_get_type ())) (i32 idx) (i32 value)
 
   /// Deprecated. Sets the value of the uniform @idx.
   let setUint (self: ShaderArgsBuilder) (idx: int) (value: int) : unit =
-    gsk_shader_args_builder_set_uint (Glue.obj self.Id (gsk_shader_args_builder_get_type ())) (i32 idx) (u32 value)
-
-  extern gsk_shader_args_builder_set_vec2 : cptr -> i32 -> cptr -> unit
+    Internal.GskC.gsk_shader_args_builder_set_uint (Internal.Raw.obj self.Id (Internal.GskC.gsk_shader_args_builder_get_type ())) (i32 idx) (u32 value)
 
   /// Deprecated. Sets the value of the uniform @idx.
   let setVec2 (self: ShaderArgsBuilder) (idx: int) (value: Graphene.Vec2) : unit =
-    gsk_shader_args_builder_set_vec2 (Glue.obj self.Id (gsk_shader_args_builder_get_type ())) (i32 idx) (Glue.obj value.Id (Graphene.graphene_vec2_get_type ()))
-
-  extern gsk_shader_args_builder_set_vec3 : cptr -> i32 -> cptr -> unit
+    Internal.GskC.gsk_shader_args_builder_set_vec2 (Internal.Raw.obj self.Id (Internal.GskC.gsk_shader_args_builder_get_type ())) (i32 idx) (Internal.Raw.obj value.Id (Internal.GrapheneC.graphene_vec2_get_type ()))
 
   /// Deprecated. Sets the value of the uniform @idx.
   let setVec3 (self: ShaderArgsBuilder) (idx: int) (value: Graphene.Vec3) : unit =
-    gsk_shader_args_builder_set_vec3 (Glue.obj self.Id (gsk_shader_args_builder_get_type ())) (i32 idx) (Glue.obj value.Id (Graphene.graphene_vec3_get_type ()))
-
-  extern gsk_shader_args_builder_set_vec4 : cptr -> i32 -> cptr -> unit
+    Internal.GskC.gsk_shader_args_builder_set_vec3 (Internal.Raw.obj self.Id (Internal.GskC.gsk_shader_args_builder_get_type ())) (i32 idx) (Internal.Raw.obj value.Id (Internal.GrapheneC.graphene_vec3_get_type ()))
 
   /// Deprecated. Sets the value of the uniform @idx.
   let setVec4 (self: ShaderArgsBuilder) (idx: int) (value: Graphene.Vec4) : unit =
-    gsk_shader_args_builder_set_vec4 (Glue.obj self.Id (gsk_shader_args_builder_get_type ())) (i32 idx) (Glue.obj value.Id (Graphene.graphene_vec4_get_type ()))
-
-  extern gsk_shader_args_builder_to_args : cptr -> cptr
+    Internal.GskC.gsk_shader_args_builder_set_vec4 (Internal.Raw.obj self.Id (Internal.GskC.gsk_shader_args_builder_get_type ())) (i32 idx) (Internal.Raw.obj value.Id (Internal.GrapheneC.graphene_vec4_get_type ()))
 
   /// Deprecated. Creates a new `GBytes` args from the current state of the given @builder.
   let toArgs (self: ShaderArgsBuilder) : GLib.Bytes =
-    GLib.Bytes (Glue.wrapBoxed ((gsk_shader_args_builder_to_args (Glue.obj self.Id (gsk_shader_args_builder_get_type ())))) (GLib.g_bytes_get_type ()) true)
-
-  extern gsk_shader_args_builder_unref : cptr -> unit
+    GLib.Bytes (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_shader_args_builder_to_args (Internal.Raw.obj self.Id (Internal.GskC.gsk_shader_args_builder_get_type ())))) (Internal.GLibC.g_bytes_get_type ()) true)
 
   /// Deprecated. Decreases the reference count of a `GskShaderArgBuilder` by one.
   [<Unsafe>]
   let unref (self: ShaderArgsBuilder) : unit =
-    gsk_shader_args_builder_unref (Glue.obj self.Id (gsk_shader_args_builder_get_type ()))
+    Internal.GskC.gsk_shader_args_builder_unref (Internal.Raw.obj self.Id (Internal.GskC.gsk_shader_args_builder_get_type ()))
 
 module Shadow =
-  /// A new one, every field zero.
-  let create () : Shadow = Shadow (Glue.allocPlain (zgtk_sizeof_Gsk_Shadow ()) (zgtk_tag_Gsk_Shadow ()))
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_tag_Gsk_Shadow ()
 
-  extern zgtk_at_Gsk_Shadow_color : cptr -> cptr
+  /// A new one, every field zero.
+  let create () : Shadow = Shadow (Internal.Raw.allocPlain (Internal.GskC.zgtk_sizeof_Gsk_Shadow ()) (Internal.GskC.zgtk_tag_Gsk_Shadow ()))
 
   /// A copy of the `color` field.
-  let getColor (self: Shadow) : Gdk.RGBA = Gdk.RGBA (Glue.wrapBoxed (zgtk_at_Gsk_Shadow_color (Glue.obj self.Id (zgtk_tag_Gsk_Shadow ()))) (Gdk.gdk_rgba_get_type ()) false)
-
-  extern zgtk_put_Gsk_Shadow_color : cptr -> cptr -> unit
+  let getColor (self: Shadow) : Gdk.RGBA = Gdk.RGBA (Internal.Raw.wrapBoxed (Internal.GskC.zgtk_at_Gsk_Shadow_color (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_Shadow ()))) (Internal.GdkC.gdk_rgba_get_type ()) false)
 
   /// Sets the `color` field, to a copy of a record.
-  let setColor (self: Shadow) (value: Gdk.RGBA) : unit = zgtk_put_Gsk_Shadow_color (Glue.obj self.Id (zgtk_tag_Gsk_Shadow ())) (Glue.obj value.Id (Gdk.gdk_rgba_get_type ()))
-
-  extern zgtk_get_Gsk_Shadow_dx : cptr -> f64
+  let setColor (self: Shadow) (value: Gdk.RGBA) : unit = Internal.GskC.zgtk_put_Gsk_Shadow_color (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_Shadow ())) (Internal.Raw.obj value.Id (Internal.GdkC.gdk_rgba_get_type ()))
 
   /// The `dx` field.
-  let getDx (self: Shadow) : float = zgtk_get_Gsk_Shadow_dx (Glue.obj self.Id (zgtk_tag_Gsk_Shadow ()))
-
-  extern zgtk_set_Gsk_Shadow_dx : cptr -> f64 -> unit
+  let getDx (self: Shadow) : float = Internal.GskC.zgtk_get_Gsk_Shadow_dx (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_Shadow ()))
 
   /// Sets the `dx` field.
-  let setDx (self: Shadow) (value: float) : unit = zgtk_set_Gsk_Shadow_dx (Glue.obj self.Id (zgtk_tag_Gsk_Shadow ())) value
-
-  extern zgtk_get_Gsk_Shadow_dy : cptr -> f64
+  let setDx (self: Shadow) (value: float) : unit = Internal.GskC.zgtk_set_Gsk_Shadow_dx (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_Shadow ())) value
 
   /// The `dy` field.
-  let getDy (self: Shadow) : float = zgtk_get_Gsk_Shadow_dy (Glue.obj self.Id (zgtk_tag_Gsk_Shadow ()))
-
-  extern zgtk_set_Gsk_Shadow_dy : cptr -> f64 -> unit
+  let getDy (self: Shadow) : float = Internal.GskC.zgtk_get_Gsk_Shadow_dy (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_Shadow ()))
 
   /// Sets the `dy` field.
-  let setDy (self: Shadow) (value: float) : unit = zgtk_set_Gsk_Shadow_dy (Glue.obj self.Id (zgtk_tag_Gsk_Shadow ())) value
-
-  extern zgtk_get_Gsk_Shadow_radius : cptr -> f64
+  let setDy (self: Shadow) (value: float) : unit = Internal.GskC.zgtk_set_Gsk_Shadow_dy (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_Shadow ())) value
 
   /// The `radius` field.
-  let getRadius (self: Shadow) : float = zgtk_get_Gsk_Shadow_radius (Glue.obj self.Id (zgtk_tag_Gsk_Shadow ()))
-
-  extern zgtk_set_Gsk_Shadow_radius : cptr -> f64 -> unit
+  let getRadius (self: Shadow) : float = Internal.GskC.zgtk_get_Gsk_Shadow_radius (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_Shadow ()))
 
   /// Sets the `radius` field.
-  let setRadius (self: Shadow) (value: float) : unit = zgtk_set_Gsk_Shadow_radius (Glue.obj self.Id (zgtk_tag_Gsk_Shadow ())) value
+  let setRadius (self: Shadow) (value: float) : unit = Internal.GskC.zgtk_set_Gsk_Shadow_radius (Internal.Raw.obj self.Id (Internal.GskC.zgtk_tag_Gsk_Shadow ())) value
 
 module ShadowNode =
-  extern gsk_shadow_node_new : cptr -> cptr -> usize -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_ShadowNode ()
 
   /// Creates a `GskRenderNode` that will draw a @child with the given @shadows below it.
   let create (child: RenderNode) (shadows: list<Shadow>) : ShadowNode =
-    let za2 = Glue.records (Glue.mapList (fun (zo: Shadow) -> Glue.obj zo.Id (zgtk_tag_Gsk_Shadow ())) shadows) (zgtk_sizeof_Gsk_Shadow ())
-    let zr = gsk_shadow_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) za2 (usize (Glue.count shadows))
-    let zv = ShadowNode (zgtk_wrap_Gsk_ShadowNode (zr) (i32 1))
-    Glue.free za2
+    let za2 = Internal.Raw.records (Internal.Raw.mapList (fun (zo: Shadow) -> Internal.Raw.obj zo.Id (Internal.GskC.zgtk_tag_Gsk_Shadow ())) shadows) (Internal.GskC.zgtk_sizeof_Gsk_Shadow ())
+    let zr = Internal.GskC.gsk_shadow_node_new (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) za2 (usize (Internal.Raw.count shadows))
+    let zv = ShadowNode (Internal.GskC.zgtk_wrap_Gsk_ShadowNode (zr) (i32 1))
+    Internal.Raw.free za2
     zv
-
-  extern gsk_shadow_node_get_child : cptr -> cptr
 
   /// Retrieves the child `GskRenderNode` of the shadow @node.
   let getChild (self: ShadowNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_shadow_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_ShadowNode ())))) (i32 0))
-
-  extern gsk_shadow_node_get_n_shadows : cptr -> usize
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_shadow_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ShadowNode ())))) (i32 0))
 
   /// Retrieves the number of shadows in the @node.
   let getNShadows (self: ShadowNode) : int =
-    (int ((gsk_shadow_node_get_n_shadows (Glue.obj self.Id (zgtk_type_Gsk_ShadowNode ())))))
-
-  extern gsk_shadow_node_get_shadow : cptr -> usize -> cptr
+    (int ((Internal.GskC.gsk_shadow_node_get_n_shadows (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ShadowNode ())))))
 
   /// Retrieves the shadow data at the given index @i.
   let getShadow (self: ShadowNode) (i: int) : Shadow =
-    Shadow (Glue.copyPlain ((gsk_shadow_node_get_shadow (Glue.obj self.Id (zgtk_type_Gsk_ShadowNode ())) (usize i))) (zgtk_sizeof_Gsk_Shadow ()) (zgtk_tag_Gsk_Shadow ()))
+    Shadow (Internal.Raw.copyPlain ((Internal.GskC.gsk_shadow_node_get_shadow (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_ShadowNode ())) (usize i))) (Internal.GskC.zgtk_sizeof_Gsk_Shadow ()) (Internal.GskC.zgtk_tag_Gsk_Shadow ()))
 
 module Stroke =
-  extern gsk_stroke_new : f32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_stroke_get_type ()
 
   /// Creates a new `GskStroke` with the given @line_width.
   let create (lineWidth: float) : Stroke =
-    Stroke (Glue.wrapBoxed ((gsk_stroke_new (f32 lineWidth))) (gsk_stroke_get_type ()) true)
-
-  extern gsk_stroke_copy : cptr -> cptr
+    Stroke (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_stroke_new (f32 lineWidth))) (Internal.GskC.gsk_stroke_get_type ()) true)
 
   /// Creates a copy of a `GskStroke`.
   let copy (self: Stroke) : Stroke =
-    Stroke (Glue.wrapBoxed ((gsk_stroke_copy (Glue.obj self.Id (gsk_stroke_get_type ())))) (gsk_stroke_get_type ()) true)
-
-  extern gsk_stroke_free : cptr -> unit
+    Stroke (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_stroke_copy (Internal.Raw.obj self.Id (Internal.GskC.gsk_stroke_get_type ())))) (Internal.GskC.gsk_stroke_get_type ()) true)
 
   /// Frees a `GskStroke`.
   [<Unsafe>]
   let free (self: Stroke) : unit =
-    gsk_stroke_free (Glue.obj self.Id (gsk_stroke_get_type ()))
-
-  extern gsk_stroke_get_dash : cptr -> cptr -> cptr
+    Internal.GskC.gsk_stroke_free (Internal.Raw.obj self.Id (Internal.GskC.gsk_stroke_get_type ()))
 
   /// Gets the dash array in use.
   let getDash (self: Stroke) : list<float> =
-    Glue.outBegin ()
-    let zr = gsk_stroke_get_dash (Glue.obj self.Id (gsk_stroke_get_type ())) (Glue.out 0)
-    let zv = Glue.floatsOf (zr) (Glue.outI64 0) 4 false
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GskC.gsk_stroke_get_dash (Internal.Raw.obj self.Id (Internal.GskC.gsk_stroke_get_type ())) (Internal.Raw.out 0)
+    let zv = Internal.Raw.floatsOf (zr) (Internal.Raw.outI64 0) 4 false
+    Internal.Raw.outEnd ()
     zv
-
-  extern gsk_stroke_get_dash_offset : cptr -> f32
 
   /// Gets the dash offset.
   let getDashOffset (self: Stroke) : float =
-    (float ((gsk_stroke_get_dash_offset (Glue.obj self.Id (gsk_stroke_get_type ())))))
-
-  extern gsk_stroke_get_line_cap : cptr -> i32
+    (float ((Internal.GskC.gsk_stroke_get_dash_offset (Internal.Raw.obj self.Id (Internal.GskC.gsk_stroke_get_type ())))))
 
   /// Gets the line cap used.
   let getLineCap (self: Stroke) : LineCap =
-    LineCap (int ((gsk_stroke_get_line_cap (Glue.obj self.Id (gsk_stroke_get_type ())))))
-
-  extern gsk_stroke_get_line_join : cptr -> i32
+    LineCap (int ((Internal.GskC.gsk_stroke_get_line_cap (Internal.Raw.obj self.Id (Internal.GskC.gsk_stroke_get_type ())))))
 
   /// Gets the line join used.
   let getLineJoin (self: Stroke) : LineJoin =
-    LineJoin (int ((gsk_stroke_get_line_join (Glue.obj self.Id (gsk_stroke_get_type ())))))
-
-  extern gsk_stroke_get_line_width : cptr -> f32
+    LineJoin (int ((Internal.GskC.gsk_stroke_get_line_join (Internal.Raw.obj self.Id (Internal.GskC.gsk_stroke_get_type ())))))
 
   /// Gets the line width used.
   let getLineWidth (self: Stroke) : float =
-    (float ((gsk_stroke_get_line_width (Glue.obj self.Id (gsk_stroke_get_type ())))))
-
-  extern gsk_stroke_get_miter_limit : cptr -> f32
+    (float ((Internal.GskC.gsk_stroke_get_line_width (Internal.Raw.obj self.Id (Internal.GskC.gsk_stroke_get_type ())))))
 
   /// Gets the miter limit.
   let getMiterLimit (self: Stroke) : float =
-    (float ((gsk_stroke_get_miter_limit (Glue.obj self.Id (gsk_stroke_get_type ())))))
-
-  extern gsk_stroke_set_dash : cptr -> cptr -> usize -> unit
+    (float ((Internal.GskC.gsk_stroke_get_miter_limit (Internal.Raw.obj self.Id (Internal.GskC.gsk_stroke_get_type ())))))
 
   /// Sets the dash pattern to use.
   let setDash (self: Stroke) (dash: list<float>) : unit =
-    let za2 = Glue.floats dash 4
-    gsk_stroke_set_dash (Glue.obj self.Id (gsk_stroke_get_type ())) za2 (usize (Glue.count dash))
-    Glue.free za2
-
-  extern gsk_stroke_set_dash_offset : cptr -> f32 -> unit
+    let za2 = Internal.Raw.floats dash 4
+    Internal.GskC.gsk_stroke_set_dash (Internal.Raw.obj self.Id (Internal.GskC.gsk_stroke_get_type ())) za2 (usize (Internal.Raw.count dash))
+    Internal.Raw.free za2
 
   /// Sets the offset into the dash pattern where dashing should begin.
   let setDashOffset (self: Stroke) (offset: float) : unit =
-    gsk_stroke_set_dash_offset (Glue.obj self.Id (gsk_stroke_get_type ())) (f32 offset)
-
-  extern gsk_stroke_set_line_cap : cptr -> i32 -> unit
+    Internal.GskC.gsk_stroke_set_dash_offset (Internal.Raw.obj self.Id (Internal.GskC.gsk_stroke_get_type ())) (f32 offset)
 
   /// Sets the line cap to be used when stroking.
   let setLineCap (self: Stroke) (lineCap: LineCap) : unit =
-    gsk_stroke_set_line_cap (Glue.obj self.Id (gsk_stroke_get_type ())) (i32 lineCap.Int)
-
-  extern gsk_stroke_set_line_join : cptr -> i32 -> unit
+    Internal.GskC.gsk_stroke_set_line_cap (Internal.Raw.obj self.Id (Internal.GskC.gsk_stroke_get_type ())) (i32 lineCap.Int)
 
   /// Sets the line join to be used when stroking.
   let setLineJoin (self: Stroke) (lineJoin: LineJoin) : unit =
-    gsk_stroke_set_line_join (Glue.obj self.Id (gsk_stroke_get_type ())) (i32 lineJoin.Int)
-
-  extern gsk_stroke_set_line_width : cptr -> f32 -> unit
+    Internal.GskC.gsk_stroke_set_line_join (Internal.Raw.obj self.Id (Internal.GskC.gsk_stroke_get_type ())) (i32 lineJoin.Int)
 
   /// Sets the line width to be used when stroking.
   let setLineWidth (self: Stroke) (lineWidth: float) : unit =
-    gsk_stroke_set_line_width (Glue.obj self.Id (gsk_stroke_get_type ())) (f32 lineWidth)
-
-  extern gsk_stroke_set_miter_limit : cptr -> f32 -> unit
+    Internal.GskC.gsk_stroke_set_line_width (Internal.Raw.obj self.Id (Internal.GskC.gsk_stroke_get_type ())) (f32 lineWidth)
 
   /// Sets the miter limit to be used when stroking.
   let setMiterLimit (self: Stroke) (limit: float) : unit =
-    gsk_stroke_set_miter_limit (Glue.obj self.Id (gsk_stroke_get_type ())) (f32 limit)
-
-  extern gsk_stroke_to_cairo : cptr -> cptr -> unit
+    Internal.GskC.gsk_stroke_set_miter_limit (Internal.Raw.obj self.Id (Internal.GskC.gsk_stroke_get_type ())) (f32 limit)
 
   /// A helper function that sets the stroke parameters of a cairo context from a `GskStroke`.
   let toCairo (self: Stroke) (cr: Cairo.Context) : unit =
-    gsk_stroke_to_cairo (Glue.obj self.Id (gsk_stroke_get_type ())) (Glue.obj cr.Id (Cairo.cairo_gobject_context_get_type ()))
-
-  extern gsk_stroke_equal : cptr -> cptr -> i32
+    Internal.GskC.gsk_stroke_to_cairo (Internal.Raw.obj self.Id (Internal.GskC.gsk_stroke_get_type ())) (Internal.Raw.obj cr.Id (Internal.CairoC.cairo_gobject_context_get_type ()))
 
   /// Checks if two strokes are identical.
   [<Unsafe>]
   let equal (stroke1: cptr) (stroke2: cptr) : bool =
-    (((gsk_stroke_equal stroke1 stroke2)) <> i32 0)
+    (((Internal.GskC.gsk_stroke_equal stroke1 stroke2)) <> i32 0)
 
 module StrokeNode =
-  extern gsk_stroke_node_new : cptr -> cptr -> cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_StrokeNode ()
 
   /// Creates a #GskRenderNode that will fill the outline generated by stroking the given @path using the attributes defined in @stroke.
   let create (child: RenderNode) (path: Path) (stroke: Stroke) : StrokeNode =
-    StrokeNode (zgtk_wrap_Gsk_StrokeNode ((gsk_stroke_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj path.Id (gsk_path_get_type ())) (Glue.obj stroke.Id (gsk_stroke_get_type ())))) (i32 0))
-
-  extern gsk_stroke_node_get_child : cptr -> cptr
+    StrokeNode (Internal.GskC.zgtk_wrap_Gsk_StrokeNode ((Internal.GskC.gsk_stroke_node_new (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) (Internal.Raw.obj path.Id (Internal.GskC.gsk_path_get_type ())) (Internal.Raw.obj stroke.Id (Internal.GskC.gsk_stroke_get_type ())))) (i32 0))
 
   /// Gets the child node that is getting drawn by the given @node.
   let getChild (self: StrokeNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_stroke_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_StrokeNode ())))) (i32 0))
-
-  extern gsk_stroke_node_get_path : cptr -> cptr
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_stroke_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_StrokeNode ())))) (i32 0))
 
   /// Retrieves the path that will be stroked with the contents of the @node.
   let getPath (self: StrokeNode) : Path =
-    Path (Glue.wrapBoxed ((gsk_stroke_node_get_path (Glue.obj self.Id (zgtk_type_Gsk_StrokeNode ())))) (gsk_path_get_type ()) false)
-
-  extern gsk_stroke_node_get_stroke : cptr -> cptr
+    Path (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_stroke_node_get_path (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_StrokeNode ())))) (Internal.GskC.gsk_path_get_type ()) false)
 
   /// Retrieves the stroke attributes used in this @node.
   let getStroke (self: StrokeNode) : Stroke =
-    Stroke (Glue.wrapBoxed ((gsk_stroke_node_get_stroke (Glue.obj self.Id (zgtk_type_Gsk_StrokeNode ())))) (gsk_stroke_get_type ()) false)
+    Stroke (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_stroke_node_get_stroke (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_StrokeNode ())))) (Internal.GskC.gsk_stroke_get_type ()) false)
 
 module SubsurfaceNode =
-  extern gsk_subsurface_node_new : cptr -> cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_SubsurfaceNode ()
 
   /// Creates a `GskRenderNode` that will possibly divert the child node to a subsurface.
   [<Unsafe>]
   let create (child: RenderNode) (subsurface: cptr) : SubsurfaceNode =
-    SubsurfaceNode (zgtk_wrap_Gsk_SubsurfaceNode ((gsk_subsurface_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) subsurface)) (i32 1))
-
-  extern gsk_subsurface_node_get_child : cptr -> cptr
+    SubsurfaceNode (Internal.GskC.zgtk_wrap_Gsk_SubsurfaceNode ((Internal.GskC.gsk_subsurface_node_new (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) subsurface)) (i32 1))
 
   /// Gets the child node that is getting drawn by the given @node.
   let getChild (self: SubsurfaceNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_subsurface_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_SubsurfaceNode ())))) (i32 0))
-
-  extern gsk_subsurface_node_get_subsurface : cptr -> cptr
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_subsurface_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_SubsurfaceNode ())))) (i32 0))
 
   /// Gets the subsurface that was set on this node
   let getSubsurface (node: DebugNode) : cptr =
-    ((gsk_subsurface_node_get_subsurface (Glue.obj node.Id (zgtk_type_Gsk_DebugNode ()))))
+    ((Internal.GskC.gsk_subsurface_node_get_subsurface (Internal.Raw.obj node.Id (Internal.GskC.zgtk_type_Gsk_DebugNode ()))))
 
 module TextNode =
-  extern gsk_text_node_new : cptr -> cptr -> cptr -> cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_TextNode ()
 
   /// Creates a render node that renders the given glyphs.
   let create (font: Pango.Font) (glyphs: Pango.GlyphString) (color: Gdk.RGBA) (offset: Graphene.Point) : TextNode =
-    TextNode (zgtk_wrap_Gsk_TextNode ((gsk_text_node_new (Glue.obj font.Id (Pango.pango_font_get_type ())) (Glue.obj glyphs.Id (Pango.pango_glyph_string_get_type ())) (Glue.obj color.Id (Gdk.gdk_rgba_get_type ())) (Glue.obj offset.Id (Graphene.graphene_point_get_type ())))) (i32 1))
-
-  extern gsk_text_node_get_color : cptr -> cptr
+    TextNode (Internal.GskC.zgtk_wrap_Gsk_TextNode ((Internal.GskC.gsk_text_node_new (Internal.Raw.obj font.Id (Internal.PangoC.pango_font_get_type ())) (Internal.Raw.obj glyphs.Id (Internal.PangoC.pango_glyph_string_get_type ())) (Internal.Raw.obj color.Id (Internal.GdkC.gdk_rgba_get_type ())) (Internal.Raw.obj offset.Id (Internal.GrapheneC.graphene_point_get_type ())))) (i32 1))
 
   /// Retrieves the color used by the text @node.
   let getColor (self: TextNode) : Gdk.RGBA =
-    Gdk.RGBA (Glue.wrapBoxed ((gsk_text_node_get_color (Glue.obj self.Id (zgtk_type_Gsk_TextNode ())))) (Gdk.gdk_rgba_get_type ()) false)
-
-  extern gsk_text_node_get_font : cptr -> cptr
+    Gdk.RGBA (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_text_node_get_color (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_TextNode ())))) (Internal.GdkC.gdk_rgba_get_type ()) false)
 
   /// Returns the font used by the text @node.
   let getFont (self: TextNode) : Pango.Font =
-    Pango.Font (Glue.wrap ((gsk_text_node_get_font (Glue.obj self.Id (zgtk_type_Gsk_TextNode ())))) false)
-
-  extern gsk_text_node_get_glyphs : cptr -> cptr -> cptr
+    Pango.Font (Internal.Raw.wrap ((Internal.GskC.gsk_text_node_get_font (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_TextNode ())))) false)
 
   /// Retrieves the glyph information in the @node.
   let getGlyphs (self: TextNode) : list<Pango.GlyphInfo> =
-    Glue.outBegin ()
-    let zr = gsk_text_node_get_glyphs (Glue.obj self.Id (zgtk_type_Gsk_TextNode ())) (Glue.out 0)
-    let zrs1 = Glue.mapList (fun zp -> Pango.GlyphInfo (Glue.copyPlain (zp) (Pango.zgtk_sizeof_Pango_GlyphInfo ()) (Pango.zgtk_tag_Pango_GlyphInfo ()))) (Glue.recordsOf (zr) (Glue.outU32 0) (Pango.zgtk_sizeof_Pango_GlyphInfo ()))
+    Internal.Raw.outBegin ()
+    let zr = Internal.GskC.gsk_text_node_get_glyphs (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_TextNode ())) (Internal.Raw.out 0)
+    let zrs1 = Internal.Raw.mapList (fun zp -> Pango.GlyphInfo (Internal.Raw.copyPlain (zp) (Internal.PangoC.zgtk_sizeof_Pango_GlyphInfo ()) (Internal.PangoC.zgtk_tag_Pango_GlyphInfo ()))) (Internal.Raw.recordsOf (zr) (Internal.Raw.outU32 0) (Internal.PangoC.zgtk_sizeof_Pango_GlyphInfo ()))
     let zv = zrs1
-    Glue.outEnd ()
+    Internal.Raw.outEnd ()
     zv
-
-  extern gsk_text_node_get_num_glyphs : cptr -> u32
 
   /// Retrieves the number of glyphs in the text node.
   let getNumGlyphs (self: TextNode) : int =
-    (int ((gsk_text_node_get_num_glyphs (Glue.obj self.Id (zgtk_type_Gsk_TextNode ())))))
-
-  extern gsk_text_node_get_offset : cptr -> cptr
+    (int ((Internal.GskC.gsk_text_node_get_num_glyphs (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_TextNode ())))))
 
   /// Retrieves the offset applied to the text.
   let getOffset (self: TextNode) : Graphene.Point =
-    Graphene.Point (Glue.wrapBoxed ((gsk_text_node_get_offset (Glue.obj self.Id (zgtk_type_Gsk_TextNode ())))) (Graphene.graphene_point_get_type ()) false)
-
-  extern gsk_text_node_has_color_glyphs : cptr -> i32
+    Graphene.Point (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_text_node_get_offset (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_TextNode ())))) (Internal.GrapheneC.graphene_point_get_type ()) false)
 
   /// Checks whether the text @node has color glyphs.
   let hasColorGlyphs (self: TextNode) : bool =
-    (((gsk_text_node_has_color_glyphs (Glue.obj self.Id (zgtk_type_Gsk_TextNode ())))) <> i32 0)
+    (((Internal.GskC.gsk_text_node_has_color_glyphs (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_TextNode ())))) <> i32 0)
 
 module TextureNode =
-  extern gsk_texture_node_new : cptr -> cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_TextureNode ()
 
   /// Creates a `GskRenderNode` that will render the given @texture into the area given by @bounds.
   let create (texture: Gdk.Texture) (bounds: Graphene.Rect) : TextureNode =
-    TextureNode (zgtk_wrap_Gsk_TextureNode ((gsk_texture_node_new (Glue.obj texture.Id (Gdk.gdk_texture_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())))) (i32 1))
-
-  extern gsk_texture_node_get_texture : cptr -> cptr
+    TextureNode (Internal.GskC.zgtk_wrap_Gsk_TextureNode ((Internal.GskC.gsk_texture_node_new (Internal.Raw.obj texture.Id (Internal.GdkC.gdk_texture_get_type ())) (Internal.Raw.obj bounds.Id (Internal.GrapheneC.graphene_rect_get_type ())))) (i32 1))
 
   /// Retrieves the `GdkTexture` used when creating this `GskRenderNode`.
   let getTexture (self: TextureNode) : Gdk.Texture =
-    Gdk.Texture (Glue.wrap ((gsk_texture_node_get_texture (Glue.obj self.Id (zgtk_type_Gsk_TextureNode ())))) false)
+    Gdk.Texture (Internal.Raw.wrap ((Internal.GskC.gsk_texture_node_get_texture (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_TextureNode ())))) false)
 
 module TextureScaleNode =
-  extern gsk_texture_scale_node_new : cptr -> cptr -> i32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_TextureScaleNode ()
 
   /// Creates a node that scales the texture to the size given by the bounds using the filter and then places it at the bounds' position.
   let create (texture: Gdk.Texture) (bounds: Graphene.Rect) (filter: ScalingFilter) : TextureScaleNode =
-    TextureScaleNode (zgtk_wrap_Gsk_TextureScaleNode ((gsk_texture_scale_node_new (Glue.obj texture.Id (Gdk.gdk_texture_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (i32 filter.Int))) (i32 1))
-
-  extern gsk_texture_scale_node_get_filter : cptr -> i32
+    TextureScaleNode (Internal.GskC.zgtk_wrap_Gsk_TextureScaleNode ((Internal.GskC.gsk_texture_scale_node_new (Internal.Raw.obj texture.Id (Internal.GdkC.gdk_texture_get_type ())) (Internal.Raw.obj bounds.Id (Internal.GrapheneC.graphene_rect_get_type ())) (i32 filter.Int))) (i32 1))
 
   /// Retrieves the `GskScalingFilter` used when creating this `GskRenderNode`.
   let getFilter (self: TextureScaleNode) : ScalingFilter =
-    ScalingFilter (int ((gsk_texture_scale_node_get_filter (Glue.obj self.Id (zgtk_type_Gsk_TextureScaleNode ())))))
-
-  extern gsk_texture_scale_node_get_texture : cptr -> cptr
+    ScalingFilter (int ((Internal.GskC.gsk_texture_scale_node_get_filter (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_TextureScaleNode ())))))
 
   /// Retrieves the `GdkTexture` used when creating this `GskRenderNode`.
   let getTexture (self: TextureScaleNode) : Gdk.Texture =
-    Gdk.Texture (Glue.wrap ((gsk_texture_scale_node_get_texture (Glue.obj self.Id (zgtk_type_Gsk_TextureScaleNode ())))) false)
+    Gdk.Texture (Internal.Raw.wrap ((Internal.GskC.gsk_texture_scale_node_get_texture (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_TextureScaleNode ())))) false)
 
 module Transform =
-  extern gsk_transform_new : unit -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_transform_get_type ()
 
   /// Creates a new identity transform.
   let create () : Transform =
-    Transform (Glue.wrapBoxed ((gsk_transform_new ())) (gsk_transform_get_type ()) true)
-
-  extern gsk_transform_equal : cptr -> cptr -> i32
+    Transform (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_transform_new ())) (Internal.GskC.gsk_transform_get_type ()) true)
 
   /// Checks two transforms for equality.
   let equal (self: Transform) (second: option<Transform>) : bool =
     let zp1 =
       match second with
-      | Some zo -> Glue.obj zo.Id (gsk_transform_get_type ())
-      | None -> Glue.none ()
-    let zr = gsk_transform_equal (Glue.obj self.Id (gsk_transform_get_type ())) zp1
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GskC.gsk_transform_get_type ())
+      | None -> Internal.Raw.none ()
+    let zr = Internal.GskC.gsk_transform_equal (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) zp1
     ((zr) <> i32 0)
-
-  extern gsk_transform_get_category : cptr -> i32
 
   /// Returns the category this transform belongs to.
   let getCategory (self: Transform) : TransformCategory =
-    TransformCategory (int ((gsk_transform_get_category (Glue.obj self.Id (gsk_transform_get_type ())))))
-
-  extern gsk_transform_invert : cptr -> cptr
+    TransformCategory (int ((Internal.GskC.gsk_transform_get_category (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())))))
 
   /// Inverts the given transform.
   let invert (self: Transform) : option<Transform> =
-    let zr = gsk_transform_invert (Glue.obj self.Id (gsk_transform_get_type ()))
-    let zid1 = Glue.wrapBoxed (zr) (gsk_transform_get_type ()) true
+    let zr = Internal.GskC.gsk_transform_invert (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ()))
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GskC.gsk_transform_get_type ()) true
     (if zid1 = 0 then None else Some (Transform zid1))
-
-  extern gsk_transform_matrix : cptr -> cptr -> cptr
 
   /// Multiplies @next with the given @matrix.
   let matrix (self: Transform) (matrix: Graphene.Matrix) : Transform =
-    Transform (Glue.wrapBoxed ((gsk_transform_matrix (Glue.obj self.Id (gsk_transform_get_type ())) (Glue.obj matrix.Id (Graphene.graphene_matrix_get_type ())))) (gsk_transform_get_type ()) true)
-
-  extern gsk_transform_matrix_2d : cptr -> f32 -> f32 -> f32 -> f32 -> f32 -> f32 -> cptr
+    Transform (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_transform_matrix (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (Internal.Raw.obj matrix.Id (Internal.GrapheneC.graphene_matrix_get_type ())))) (Internal.GskC.gsk_transform_get_type ()) true)
 
   /// Multiplies @next with the matrix [ xx yx x0; xy yy y0; 0 0 1 ].
   let matrix2d (self: Transform) (xx: float) (yx: float) (xy: float) (yy: float) (dx: float) (dy: float) : option<Transform> =
-    let zr = gsk_transform_matrix_2d (Glue.obj self.Id (gsk_transform_get_type ())) (f32 xx) (f32 yx) (f32 xy) (f32 yy) (f32 dx) (f32 dy)
-    let zid1 = Glue.wrapBoxed (zr) (gsk_transform_get_type ()) true
+    let zr = Internal.GskC.gsk_transform_matrix_2d (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (f32 xx) (f32 yx) (f32 xy) (f32 yy) (f32 dx) (f32 dy)
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GskC.gsk_transform_get_type ()) true
     (if zid1 = 0 then None else Some (Transform zid1))
-
-  extern gsk_transform_perspective : cptr -> f32 -> cptr
 
   /// Applies a perspective projection transform.
   let perspective (self: Transform) (depth: float) : Transform =
-    Transform (Glue.wrapBoxed ((gsk_transform_perspective (Glue.obj self.Id (gsk_transform_get_type ())) (f32 depth))) (gsk_transform_get_type ()) true)
-
-  extern gsk_transform_print : cptr -> cptr -> unit
+    Transform (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_transform_perspective (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (f32 depth))) (Internal.GskC.gsk_transform_get_type ()) true)
 
   /// Converts the transform into a human-readable representation.
   let print (self: Transform) (string: GLib.String) : unit =
-    gsk_transform_print (Glue.obj self.Id (gsk_transform_get_type ())) (Glue.obj string.Id (GLib.g_gstring_get_type ()))
-
-  extern gsk_transform_ref : cptr -> cptr
+    Internal.GskC.gsk_transform_print (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (Internal.Raw.obj string.Id (Internal.GLibC.g_gstring_get_type ()))
 
   /// Acquires a reference on the given transform.
   [<Unsafe>]
   let ref_ (self: Transform) : option<Transform> =
-    let zr = gsk_transform_ref (Glue.obj self.Id (gsk_transform_get_type ()))
-    let zid1 = Glue.wrapBoxed (zr) (gsk_transform_get_type ()) false
+    let zr = Internal.GskC.gsk_transform_ref (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ()))
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GskC.gsk_transform_get_type ()) false
     (if zid1 = 0 then None else Some (Transform zid1))
-
-  extern gsk_transform_rotate : cptr -> f32 -> cptr
 
   /// Rotates @next by an angle around the Z axis.
   let rotate (self: Transform) (angle: float) : option<Transform> =
-    let zr = gsk_transform_rotate (Glue.obj self.Id (gsk_transform_get_type ())) (f32 angle)
-    let zid1 = Glue.wrapBoxed (zr) (gsk_transform_get_type ()) true
+    let zr = Internal.GskC.gsk_transform_rotate (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (f32 angle)
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GskC.gsk_transform_get_type ()) true
     (if zid1 = 0 then None else Some (Transform zid1))
-
-  extern gsk_transform_rotate_3d : cptr -> f32 -> cptr -> cptr
 
   /// Rotates @next @angle degrees around @axis.
   let rotate3d (self: Transform) (angle: float) (axis: Graphene.Vec3) : option<Transform> =
-    let zr = gsk_transform_rotate_3d (Glue.obj self.Id (gsk_transform_get_type ())) (f32 angle) (Glue.obj axis.Id (Graphene.graphene_vec3_get_type ()))
-    let zid1 = Glue.wrapBoxed (zr) (gsk_transform_get_type ()) true
+    let zr = Internal.GskC.gsk_transform_rotate_3d (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (f32 angle) (Internal.Raw.obj axis.Id (Internal.GrapheneC.graphene_vec3_get_type ()))
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GskC.gsk_transform_get_type ()) true
     (if zid1 = 0 then None else Some (Transform zid1))
-
-  extern gsk_transform_scale : cptr -> f32 -> f32 -> cptr
 
   /// Scales @next in 2-dimensional space by the given factors.
   let scale (self: Transform) (factorX: float) (factorY: float) : option<Transform> =
-    let zr = gsk_transform_scale (Glue.obj self.Id (gsk_transform_get_type ())) (f32 factorX) (f32 factorY)
-    let zid1 = Glue.wrapBoxed (zr) (gsk_transform_get_type ()) true
+    let zr = Internal.GskC.gsk_transform_scale (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (f32 factorX) (f32 factorY)
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GskC.gsk_transform_get_type ()) true
     (if zid1 = 0 then None else Some (Transform zid1))
-
-  extern gsk_transform_scale_3d : cptr -> f32 -> f32 -> f32 -> cptr
 
   /// Scales @next by the given factors.
   let scale3d (self: Transform) (factorX: float) (factorY: float) (factorZ: float) : option<Transform> =
-    let zr = gsk_transform_scale_3d (Glue.obj self.Id (gsk_transform_get_type ())) (f32 factorX) (f32 factorY) (f32 factorZ)
-    let zid1 = Glue.wrapBoxed (zr) (gsk_transform_get_type ()) true
+    let zr = Internal.GskC.gsk_transform_scale_3d (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (f32 factorX) (f32 factorY) (f32 factorZ)
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GskC.gsk_transform_get_type ()) true
     (if zid1 = 0 then None else Some (Transform zid1))
-
-  extern gsk_transform_skew : cptr -> f32 -> f32 -> cptr
 
   /// Applies a skew transform.
   let skew (self: Transform) (skewX: float) (skewY: float) : option<Transform> =
-    let zr = gsk_transform_skew (Glue.obj self.Id (gsk_transform_get_type ())) (f32 skewX) (f32 skewY)
-    let zid1 = Glue.wrapBoxed (zr) (gsk_transform_get_type ()) true
+    let zr = Internal.GskC.gsk_transform_skew (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (f32 skewX) (f32 skewY)
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GskC.gsk_transform_get_type ()) true
     (if zid1 = 0 then None else Some (Transform zid1))
-
-  extern gsk_transform_to_2d : cptr -> cptr -> cptr -> cptr -> cptr -> cptr -> cptr -> unit
 
   /// Converts a transform to a 2D transformation matrix.
   let to2d (self: Transform) : (float * float * float * float * float * float) =
-    Glue.outBegin ()
-    gsk_transform_to_2d (Glue.obj self.Id (gsk_transform_get_type ())) (Glue.out 0) (Glue.out 1) (Glue.out 2) (Glue.out 3) (Glue.out 4) (Glue.out 5)
-    let zv = (Glue.outF32 0, Glue.outF32 1, Glue.outF32 2, Glue.outF32 3, Glue.outF32 4, Glue.outF32 5)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GskC.gsk_transform_to_2d (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.out 2) (Internal.Raw.out 3) (Internal.Raw.out 4) (Internal.Raw.out 5)
+    let zv = (Internal.Raw.outF32 0, Internal.Raw.outF32 1, Internal.Raw.outF32 2, Internal.Raw.outF32 3, Internal.Raw.outF32 4, Internal.Raw.outF32 5)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gsk_transform_to_2d_components : cptr -> cptr -> cptr -> cptr -> cptr -> cptr -> cptr -> cptr -> unit
 
   /// Converts a transform to 2D transformation factors.
   let to2dComponents (self: Transform) : (float * float * float * float * float * float * float) =
-    Glue.outBegin ()
-    gsk_transform_to_2d_components (Glue.obj self.Id (gsk_transform_get_type ())) (Glue.out 0) (Glue.out 1) (Glue.out 2) (Glue.out 3) (Glue.out 4) (Glue.out 5) (Glue.out 6)
-    let zv = (Glue.outF32 0, Glue.outF32 1, Glue.outF32 2, Glue.outF32 3, Glue.outF32 4, Glue.outF32 5, Glue.outF32 6)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GskC.gsk_transform_to_2d_components (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.out 2) (Internal.Raw.out 3) (Internal.Raw.out 4) (Internal.Raw.out 5) (Internal.Raw.out 6)
+    let zv = (Internal.Raw.outF32 0, Internal.Raw.outF32 1, Internal.Raw.outF32 2, Internal.Raw.outF32 3, Internal.Raw.outF32 4, Internal.Raw.outF32 5, Internal.Raw.outF32 6)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gsk_transform_to_affine : cptr -> cptr -> cptr -> cptr -> cptr -> unit
 
   /// Converts a transform to 2D affine transformation factors.
   let toAffine (self: Transform) : (float * float * float * float) =
-    Glue.outBegin ()
-    gsk_transform_to_affine (Glue.obj self.Id (gsk_transform_get_type ())) (Glue.out 0) (Glue.out 1) (Glue.out 2) (Glue.out 3)
-    let zv = (Glue.outF32 0, Glue.outF32 1, Glue.outF32 2, Glue.outF32 3)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GskC.gsk_transform_to_affine (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.out 2) (Internal.Raw.out 3)
+    let zv = (Internal.Raw.outF32 0, Internal.Raw.outF32 1, Internal.Raw.outF32 2, Internal.Raw.outF32 3)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gsk_transform_to_matrix : cptr -> cptr -> unit
 
   /// Computes the 4x4 matrix for the transform.
   let toMatrix (self: Transform) : Graphene.Matrix =
-    let zo1 = Glue.alloc (Graphene.zgtk_sizeof_Graphene_Matrix ()) (Graphene.graphene_matrix_get_type ())
-    gsk_transform_to_matrix (Glue.obj self.Id (gsk_transform_get_type ())) (Glue.obj zo1 (Graphene.graphene_matrix_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GrapheneC.zgtk_sizeof_Graphene_Matrix ()) (Internal.GrapheneC.graphene_matrix_get_type ())
+    Internal.GskC.gsk_transform_to_matrix (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (Internal.Raw.obj zo1 (Internal.GrapheneC.graphene_matrix_get_type ()))
     Graphene.Matrix zo1
-
-  extern gsk_transform_to_string : cptr -> cptr
 
   /// Converts the transform into a human-readable string.
   let toString (self: Transform) : string =
-    Glue.takeText ((gsk_transform_to_string (Glue.obj self.Id (gsk_transform_get_type ()))))
-
-  extern gsk_transform_to_translate : cptr -> cptr -> cptr -> unit
+    Internal.Raw.takeText ((Internal.GskC.gsk_transform_to_string (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ()))))
 
   /// Converts a transform to a translation operation.
   let toTranslate (self: Transform) : (float * float) =
-    Glue.outBegin ()
-    gsk_transform_to_translate (Glue.obj self.Id (gsk_transform_get_type ())) (Glue.out 0) (Glue.out 1)
-    let zv = (Glue.outF32 0, Glue.outF32 1)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GskC.gsk_transform_to_translate (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zv = (Internal.Raw.outF32 0, Internal.Raw.outF32 1)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gsk_transform_transform : cptr -> cptr -> cptr
 
   /// Applies all the operations from @other to @next.
   let transform (self: Transform) (other: option<Transform>) : option<Transform> =
     let zp1 =
       match other with
-      | Some zo -> Glue.obj zo.Id (gsk_transform_get_type ())
-      | None -> Glue.none ()
-    let zr = gsk_transform_transform (Glue.obj self.Id (gsk_transform_get_type ())) zp1
-    let zid2 = Glue.wrapBoxed (zr) (gsk_transform_get_type ()) true
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GskC.gsk_transform_get_type ())
+      | None -> Internal.Raw.none ()
+    let zr = Internal.GskC.gsk_transform_transform (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) zp1
+    let zid2 = Internal.Raw.wrapBoxed (zr) (Internal.GskC.gsk_transform_get_type ()) true
     (if zid2 = 0 then None else Some (Transform zid2))
-
-  extern gsk_transform_transform_bounds : cptr -> cptr -> cptr -> unit
 
   /// Transforms a rectangle using the given transform.
   let transformBounds (self: Transform) (rect: Graphene.Rect) : Graphene.Rect =
-    let zo1 = Glue.alloc (Graphene.zgtk_sizeof_Graphene_Rect ()) (Graphene.graphene_rect_get_type ())
-    gsk_transform_transform_bounds (Glue.obj self.Id (gsk_transform_get_type ())) (Glue.obj rect.Id (Graphene.graphene_rect_get_type ())) (Glue.obj zo1 (Graphene.graphene_rect_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GrapheneC.zgtk_sizeof_Graphene_Rect ()) (Internal.GrapheneC.graphene_rect_get_type ())
+    Internal.GskC.gsk_transform_transform_bounds (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (Internal.Raw.obj rect.Id (Internal.GrapheneC.graphene_rect_get_type ())) (Internal.Raw.obj zo1 (Internal.GrapheneC.graphene_rect_get_type ()))
     Graphene.Rect zo1
-
-  extern gsk_transform_transform_point : cptr -> cptr -> cptr -> unit
 
   /// Transforms a point using the given transform.
   let transformPoint (self: Transform) (point: Graphene.Point) : Graphene.Point =
-    let zo1 = Glue.alloc (Graphene.zgtk_sizeof_Graphene_Point ()) (Graphene.graphene_point_get_type ())
-    gsk_transform_transform_point (Glue.obj self.Id (gsk_transform_get_type ())) (Glue.obj point.Id (Graphene.graphene_point_get_type ())) (Glue.obj zo1 (Graphene.graphene_point_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GrapheneC.zgtk_sizeof_Graphene_Point ()) (Internal.GrapheneC.graphene_point_get_type ())
+    Internal.GskC.gsk_transform_transform_point (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (Internal.Raw.obj point.Id (Internal.GrapheneC.graphene_point_get_type ())) (Internal.Raw.obj zo1 (Internal.GrapheneC.graphene_point_get_type ()))
     Graphene.Point zo1
-
-  extern gsk_transform_translate : cptr -> cptr -> cptr
 
   /// Translates @next in 2-dimensional space by @point.
   let translate (self: Transform) (point: Graphene.Point) : option<Transform> =
-    let zr = gsk_transform_translate (Glue.obj self.Id (gsk_transform_get_type ())) (Glue.obj point.Id (Graphene.graphene_point_get_type ()))
-    let zid1 = Glue.wrapBoxed (zr) (gsk_transform_get_type ()) true
+    let zr = Internal.GskC.gsk_transform_translate (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (Internal.Raw.obj point.Id (Internal.GrapheneC.graphene_point_get_type ()))
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GskC.gsk_transform_get_type ()) true
     (if zid1 = 0 then None else Some (Transform zid1))
-
-  extern gsk_transform_translate_3d : cptr -> cptr -> cptr
 
   /// Translates @next by @point.
   let translate3d (self: Transform) (point: Graphene.Point3D) : option<Transform> =
-    let zr = gsk_transform_translate_3d (Glue.obj self.Id (gsk_transform_get_type ())) (Glue.obj point.Id (Graphene.graphene_point3d_get_type ()))
-    let zid1 = Glue.wrapBoxed (zr) (gsk_transform_get_type ()) true
+    let zr = Internal.GskC.gsk_transform_translate_3d (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ())) (Internal.Raw.obj point.Id (Internal.GrapheneC.graphene_point3d_get_type ()))
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GskC.gsk_transform_get_type ()) true
     (if zid1 = 0 then None else Some (Transform zid1))
-
-  extern gsk_transform_unref : cptr -> unit
 
   /// Releases a reference on the given transform.
   [<Unsafe>]
   let unref (self: Transform) : unit =
-    gsk_transform_unref (Glue.obj self.Id (gsk_transform_get_type ()))
-
-  extern gsk_transform_parse : cstr -> cptr -> i32
+    Internal.GskC.gsk_transform_unref (Internal.Raw.obj self.Id (Internal.GskC.gsk_transform_get_type ()))
 
   /// Parses a given into a transform.
   let parse (string: string) : (bool * Transform) =
-    Glue.outBegin ()
-    let zr = gsk_transform_parse string (Glue.out 0)
-    let zv = (((zr) <> i32 0), Transform (Glue.wrapBoxed (Glue.outPtr 0) (gsk_transform_get_type ()) true))
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GskC.gsk_transform_parse string (Internal.Raw.out 0)
+    let zv = (((zr) <> i32 0), Transform (Internal.Raw.wrapBoxed (Internal.Raw.outPtr 0) (Internal.GskC.gsk_transform_get_type ()) true))
+    Internal.Raw.outEnd ()
     zv
 
 module TransformNode =
-  extern gsk_transform_node_new : cptr -> cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.zgtk_type_Gsk_TransformNode ()
 
   /// Creates a `GskRenderNode` that will transform the given @child with the given @transform.
   let create (child: RenderNode) (transform: option<Transform>) : TransformNode =
     let zp1 =
       match transform with
-      | Some zo -> Glue.obj zo.Id (gsk_transform_get_type ())
-      | None -> Glue.none ()
-    let zr = gsk_transform_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) zp1
-    TransformNode (zgtk_wrap_Gsk_TransformNode (zr) (i32 1))
-
-  extern gsk_transform_node_get_child : cptr -> cptr
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GskC.gsk_transform_get_type ())
+      | None -> Internal.Raw.none ()
+    let zr = Internal.GskC.gsk_transform_node_new (Internal.Raw.obj child.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ())) zp1
+    TransformNode (Internal.GskC.zgtk_wrap_Gsk_TransformNode (zr) (i32 1))
 
   /// Gets the child node that is getting transformed by the given @node.
   let getChild (self: TransformNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_transform_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_TransformNode ())))) (i32 0))
-
-  extern gsk_transform_node_get_transform : cptr -> cptr
+    RenderNode (Internal.GskC.zgtk_wrap_Gsk_RenderNode ((Internal.GskC.gsk_transform_node_get_child (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_TransformNode ())))) (i32 0))
 
   /// Retrieves the `GskTransform` used by the @node.
   let getTransform (self: TransformNode) : Transform =
-    Transform (Glue.wrapBoxed ((gsk_transform_node_get_transform (Glue.obj self.Id (zgtk_type_Gsk_TransformNode ())))) (gsk_transform_get_type ()) false)
+    Transform (Internal.Raw.wrapBoxed ((Internal.GskC.gsk_transform_node_get_transform (Internal.Raw.obj self.Id (Internal.GskC.zgtk_type_Gsk_TransformNode ())))) (Internal.GskC.gsk_transform_get_type ()) false)
 
 module VulkanRenderer =
   /// The same object as its ancestor.
@@ -3823,44 +3142,37 @@ module VulkanRenderer =
   /// The same object as its ancestor.
   let toGObjectObject (self: VulkanRenderer) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GskC.gsk_vulkan_renderer_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<VulkanRenderer> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gsk_vulkan_renderer_get_type ()) then Some (VulkanRenderer object.Id) else None
-
-  extern gsk_vulkan_renderer_new : unit -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GskC.gsk_vulkan_renderer_get_type ()) then Some (VulkanRenderer object.Id) else None
 
   /// Creates a new Vulkan renderer.
   let create () : VulkanRenderer =
-    VulkanRenderer (Glue.wrap ((gsk_vulkan_renderer_new ())) true)
-
-extern gsk_value_dup_render_node : cptr -> cptr
+    VulkanRenderer (Internal.Raw.wrap ((Internal.GskC.gsk_vulkan_renderer_new ())) true)
 
 /// Retrieves the render node stored inside a `GValue`, and acquires a reference to it.
 let valueDupRenderNode (value: GObject.Value) : option<RenderNode> =
-  let zr = gsk_value_dup_render_node (Glue.obj value.Id (GObject.g_value_get_type ()))
-  let zid1 = zgtk_wrap_Gsk_RenderNode (zr) (i32 1)
+  let zr = Internal.GskC.gsk_value_dup_render_node (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ()))
+  let zid1 = Internal.GskC.zgtk_wrap_Gsk_RenderNode (zr) (i32 1)
   (if zid1 = 0 then None else Some (RenderNode zid1))
-
-extern gsk_value_get_render_node : cptr -> cptr
 
 /// Retrieves the render node stored inside a `GValue`.
 let valueGetRenderNode (value: GObject.Value) : option<RenderNode> =
-  let zr = gsk_value_get_render_node (Glue.obj value.Id (GObject.g_value_get_type ()))
-  let zid1 = zgtk_wrap_Gsk_RenderNode (zr) (i32 0)
+  let zr = Internal.GskC.gsk_value_get_render_node (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ()))
+  let zid1 = Internal.GskC.zgtk_wrap_Gsk_RenderNode (zr) (i32 0)
   (if zid1 = 0 then None else Some (RenderNode zid1))
-
-extern gsk_value_set_render_node : cptr -> cptr -> unit
 
 /// Stores the given render node inside a `GValue`.
 let valueSetRenderNode (value: GObject.Value) (node: RenderNode) : unit =
-  gsk_value_set_render_node (Glue.obj value.Id (GObject.g_value_get_type ())) (Glue.obj node.Id (zgtk_type_Gsk_RenderNode ()))
-
-extern gsk_value_take_render_node : cptr -> cptr -> unit
+  Internal.GskC.gsk_value_set_render_node (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())) (Internal.Raw.obj node.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ()))
 
 /// Stores the given render node inside a `GValue`.
 let valueTakeRenderNode (value: GObject.Value) (node: option<RenderNode>) : unit =
   let zp1 =
     match node with
-    | Some zo -> zgtk_give_Gsk_RenderNode (Glue.obj zo.Id (zgtk_type_Gsk_RenderNode ()))
-    | None -> Glue.none ()
-  gsk_value_take_render_node (Glue.obj value.Id (GObject.g_value_get_type ())) zp1
+    | Some zo -> Internal.GskC.zgtk_give_Gsk_RenderNode (Internal.Raw.obj zo.Id (Internal.GskC.zgtk_type_Gsk_RenderNode ()))
+    | None -> Internal.Raw.none ()
+  Internal.GskC.gsk_value_take_render_node (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())) zp1

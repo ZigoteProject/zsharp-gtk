@@ -5,25 +5,6 @@
 // cairo 1.0. A class, an interface or a boxed record is a handle of its own type; see Glue
 // for how long a handle is good and what happens to one that isn't.
 
-extern cairo_gobject_context_get_type : unit -> usize
-extern cairo_gobject_device_get_type : unit -> usize
-extern cairo_gobject_surface_get_type : unit -> usize
-extern zgtk_tag_cairo_Matrix : unit -> usize
-extern zgtk_sizeof_cairo_Matrix : unit -> usize
-extern cairo_gobject_pattern_get_type : unit -> usize
-extern cairo_gobject_region_get_type : unit -> usize
-extern cairo_gobject_font_options_get_type : unit -> usize
-extern cairo_gobject_font_face_get_type : unit -> usize
-extern cairo_gobject_scaled_font_get_type : unit -> usize
-extern cairo_gobject_rectangle_get_type : unit -> usize
-extern zgtk_sizeof_cairo_Rectangle : unit -> usize
-extern cairo_gobject_rectangle_int_get_type : unit -> usize
-extern zgtk_sizeof_cairo_RectangleInt : unit -> usize
-extern cairo_gobject_glyph_get_type : unit -> usize
-extern zgtk_sizeof_cairo_Glyph : unit -> usize
-extern cairo_gobject_text_cluster_get_type : unit -> usize
-extern zgtk_sizeof_cairo_TextCluster : unit -> usize
-
 /// `cairo_status_t`.
 type Status =
   | Status of int
@@ -892,389 +873,328 @@ module RegionOverlap =
   /// `CAIRO_REGION_OVERLAP_PART`.
   let part = RegionOverlap 2
 
+module Device =
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.CairoC.cairo_gobject_device_get_type ()
+
 module Matrix =
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.CairoC.zgtk_tag_cairo_Matrix ()
+
   /// A new one, every field zero.
-  let create () : Matrix = Matrix (Glue.allocPlain (zgtk_sizeof_cairo_Matrix ()) (zgtk_tag_cairo_Matrix ()))
+  let create () : Matrix = Matrix (Internal.Raw.allocPlain (Internal.CairoC.zgtk_sizeof_cairo_Matrix ()) (Internal.CairoC.zgtk_tag_cairo_Matrix ()))
+
+module Region =
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.CairoC.cairo_gobject_region_get_type ()
+
+module FontOptions =
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.CairoC.cairo_gobject_font_options_get_type ()
+
+module FontFace =
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.CairoC.cairo_gobject_font_face_get_type ()
+
+module ScaledFont =
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.CairoC.cairo_gobject_scaled_font_get_type ()
 
 module Rectangle =
-  /// A new one, every field zero.
-  let create () : Rectangle = Rectangle (Glue.alloc (zgtk_sizeof_cairo_Rectangle ()) (cairo_gobject_rectangle_get_type ()))
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.CairoC.cairo_gobject_rectangle_get_type ()
 
-  extern zgtk_get_cairo_Rectangle_x : cptr -> f64
+  /// A new one, every field zero.
+  let create () : Rectangle = Rectangle (Internal.Raw.alloc (Internal.CairoC.zgtk_sizeof_cairo_Rectangle ()) (Internal.CairoC.cairo_gobject_rectangle_get_type ()))
 
   /// The `x` field.
-  let getX (self: Rectangle) : float = zgtk_get_cairo_Rectangle_x (Glue.obj self.Id (cairo_gobject_rectangle_get_type ()))
-
-  extern zgtk_set_cairo_Rectangle_x : cptr -> f64 -> unit
+  let getX (self: Rectangle) : float = Internal.CairoC.zgtk_get_cairo_Rectangle_x (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_get_type ()))
 
   /// Sets the `x` field.
-  let setX (self: Rectangle) (value: float) : unit = zgtk_set_cairo_Rectangle_x (Glue.obj self.Id (cairo_gobject_rectangle_get_type ())) value
-
-  extern zgtk_get_cairo_Rectangle_y : cptr -> f64
+  let setX (self: Rectangle) (value: float) : unit = Internal.CairoC.zgtk_set_cairo_Rectangle_x (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_get_type ())) value
 
   /// The `y` field.
-  let getY (self: Rectangle) : float = zgtk_get_cairo_Rectangle_y (Glue.obj self.Id (cairo_gobject_rectangle_get_type ()))
-
-  extern zgtk_set_cairo_Rectangle_y : cptr -> f64 -> unit
+  let getY (self: Rectangle) : float = Internal.CairoC.zgtk_get_cairo_Rectangle_y (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_get_type ()))
 
   /// Sets the `y` field.
-  let setY (self: Rectangle) (value: float) : unit = zgtk_set_cairo_Rectangle_y (Glue.obj self.Id (cairo_gobject_rectangle_get_type ())) value
-
-  extern zgtk_get_cairo_Rectangle_width : cptr -> f64
+  let setY (self: Rectangle) (value: float) : unit = Internal.CairoC.zgtk_set_cairo_Rectangle_y (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_get_type ())) value
 
   /// The `width` field.
-  let getWidth (self: Rectangle) : float = zgtk_get_cairo_Rectangle_width (Glue.obj self.Id (cairo_gobject_rectangle_get_type ()))
-
-  extern zgtk_set_cairo_Rectangle_width : cptr -> f64 -> unit
+  let getWidth (self: Rectangle) : float = Internal.CairoC.zgtk_get_cairo_Rectangle_width (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_get_type ()))
 
   /// Sets the `width` field.
-  let setWidth (self: Rectangle) (value: float) : unit = zgtk_set_cairo_Rectangle_width (Glue.obj self.Id (cairo_gobject_rectangle_get_type ())) value
-
-  extern zgtk_get_cairo_Rectangle_height : cptr -> f64
+  let setWidth (self: Rectangle) (value: float) : unit = Internal.CairoC.zgtk_set_cairo_Rectangle_width (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_get_type ())) value
 
   /// The `height` field.
-  let getHeight (self: Rectangle) : float = zgtk_get_cairo_Rectangle_height (Glue.obj self.Id (cairo_gobject_rectangle_get_type ()))
-
-  extern zgtk_set_cairo_Rectangle_height : cptr -> f64 -> unit
+  let getHeight (self: Rectangle) : float = Internal.CairoC.zgtk_get_cairo_Rectangle_height (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_get_type ()))
 
   /// Sets the `height` field.
-  let setHeight (self: Rectangle) (value: float) : unit = zgtk_set_cairo_Rectangle_height (Glue.obj self.Id (cairo_gobject_rectangle_get_type ())) value
+  let setHeight (self: Rectangle) (value: float) : unit = Internal.CairoC.zgtk_set_cairo_Rectangle_height (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_get_type ())) value
 
 module RectangleInt =
-  /// A new one, every field zero.
-  let create () : RectangleInt = RectangleInt (Glue.alloc (zgtk_sizeof_cairo_RectangleInt ()) (cairo_gobject_rectangle_int_get_type ()))
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.CairoC.cairo_gobject_rectangle_int_get_type ()
 
-  extern zgtk_get_cairo_RectangleInt_x : cptr -> int
+  /// A new one, every field zero.
+  let create () : RectangleInt = RectangleInt (Internal.Raw.alloc (Internal.CairoC.zgtk_sizeof_cairo_RectangleInt ()) (Internal.CairoC.cairo_gobject_rectangle_int_get_type ()))
 
   /// The `x` field.
-  let getX (self: RectangleInt) : int = zgtk_get_cairo_RectangleInt_x (Glue.obj self.Id (cairo_gobject_rectangle_int_get_type ()))
-
-  extern zgtk_set_cairo_RectangleInt_x : cptr -> int -> unit
+  let getX (self: RectangleInt) : int = Internal.CairoC.zgtk_get_cairo_RectangleInt_x (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_int_get_type ()))
 
   /// Sets the `x` field.
-  let setX (self: RectangleInt) (value: int) : unit = zgtk_set_cairo_RectangleInt_x (Glue.obj self.Id (cairo_gobject_rectangle_int_get_type ())) value
-
-  extern zgtk_get_cairo_RectangleInt_y : cptr -> int
+  let setX (self: RectangleInt) (value: int) : unit = Internal.CairoC.zgtk_set_cairo_RectangleInt_x (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_int_get_type ())) value
 
   /// The `y` field.
-  let getY (self: RectangleInt) : int = zgtk_get_cairo_RectangleInt_y (Glue.obj self.Id (cairo_gobject_rectangle_int_get_type ()))
-
-  extern zgtk_set_cairo_RectangleInt_y : cptr -> int -> unit
+  let getY (self: RectangleInt) : int = Internal.CairoC.zgtk_get_cairo_RectangleInt_y (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_int_get_type ()))
 
   /// Sets the `y` field.
-  let setY (self: RectangleInt) (value: int) : unit = zgtk_set_cairo_RectangleInt_y (Glue.obj self.Id (cairo_gobject_rectangle_int_get_type ())) value
-
-  extern zgtk_get_cairo_RectangleInt_width : cptr -> int
+  let setY (self: RectangleInt) (value: int) : unit = Internal.CairoC.zgtk_set_cairo_RectangleInt_y (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_int_get_type ())) value
 
   /// The `width` field.
-  let getWidth (self: RectangleInt) : int = zgtk_get_cairo_RectangleInt_width (Glue.obj self.Id (cairo_gobject_rectangle_int_get_type ()))
-
-  extern zgtk_set_cairo_RectangleInt_width : cptr -> int -> unit
+  let getWidth (self: RectangleInt) : int = Internal.CairoC.zgtk_get_cairo_RectangleInt_width (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_int_get_type ()))
 
   /// Sets the `width` field.
-  let setWidth (self: RectangleInt) (value: int) : unit = zgtk_set_cairo_RectangleInt_width (Glue.obj self.Id (cairo_gobject_rectangle_int_get_type ())) value
-
-  extern zgtk_get_cairo_RectangleInt_height : cptr -> int
+  let setWidth (self: RectangleInt) (value: int) : unit = Internal.CairoC.zgtk_set_cairo_RectangleInt_width (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_int_get_type ())) value
 
   /// The `height` field.
-  let getHeight (self: RectangleInt) : int = zgtk_get_cairo_RectangleInt_height (Glue.obj self.Id (cairo_gobject_rectangle_int_get_type ()))
-
-  extern zgtk_set_cairo_RectangleInt_height : cptr -> int -> unit
+  let getHeight (self: RectangleInt) : int = Internal.CairoC.zgtk_get_cairo_RectangleInt_height (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_int_get_type ()))
 
   /// Sets the `height` field.
-  let setHeight (self: RectangleInt) (value: int) : unit = zgtk_set_cairo_RectangleInt_height (Glue.obj self.Id (cairo_gobject_rectangle_int_get_type ())) value
+  let setHeight (self: RectangleInt) (value: int) : unit = Internal.CairoC.zgtk_set_cairo_RectangleInt_height (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_rectangle_int_get_type ())) value
 
 module Glyph =
-  /// A new one, every field zero.
-  let create () : Glyph = Glyph (Glue.alloc (zgtk_sizeof_cairo_Glyph ()) (cairo_gobject_glyph_get_type ()))
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.CairoC.cairo_gobject_glyph_get_type ()
 
-  extern zgtk_get_cairo_Glyph_index : cptr -> int
+  /// A new one, every field zero.
+  let create () : Glyph = Glyph (Internal.Raw.alloc (Internal.CairoC.zgtk_sizeof_cairo_Glyph ()) (Internal.CairoC.cairo_gobject_glyph_get_type ()))
 
   /// The `index` field.
-  let getIndex (self: Glyph) : int = zgtk_get_cairo_Glyph_index (Glue.obj self.Id (cairo_gobject_glyph_get_type ()))
-
-  extern zgtk_set_cairo_Glyph_index : cptr -> int -> unit
+  let getIndex (self: Glyph) : int = Internal.CairoC.zgtk_get_cairo_Glyph_index (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_glyph_get_type ()))
 
   /// Sets the `index` field.
-  let setIndex (self: Glyph) (value: int) : unit = zgtk_set_cairo_Glyph_index (Glue.obj self.Id (cairo_gobject_glyph_get_type ())) value
-
-  extern zgtk_get_cairo_Glyph_x : cptr -> f64
+  let setIndex (self: Glyph) (value: int) : unit = Internal.CairoC.zgtk_set_cairo_Glyph_index (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_glyph_get_type ())) value
 
   /// The `x` field.
-  let getX (self: Glyph) : float = zgtk_get_cairo_Glyph_x (Glue.obj self.Id (cairo_gobject_glyph_get_type ()))
-
-  extern zgtk_set_cairo_Glyph_x : cptr -> f64 -> unit
+  let getX (self: Glyph) : float = Internal.CairoC.zgtk_get_cairo_Glyph_x (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_glyph_get_type ()))
 
   /// Sets the `x` field.
-  let setX (self: Glyph) (value: float) : unit = zgtk_set_cairo_Glyph_x (Glue.obj self.Id (cairo_gobject_glyph_get_type ())) value
-
-  extern zgtk_get_cairo_Glyph_y : cptr -> f64
+  let setX (self: Glyph) (value: float) : unit = Internal.CairoC.zgtk_set_cairo_Glyph_x (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_glyph_get_type ())) value
 
   /// The `y` field.
-  let getY (self: Glyph) : float = zgtk_get_cairo_Glyph_y (Glue.obj self.Id (cairo_gobject_glyph_get_type ()))
-
-  extern zgtk_set_cairo_Glyph_y : cptr -> f64 -> unit
+  let getY (self: Glyph) : float = Internal.CairoC.zgtk_get_cairo_Glyph_y (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_glyph_get_type ()))
 
   /// Sets the `y` field.
-  let setY (self: Glyph) (value: float) : unit = zgtk_set_cairo_Glyph_y (Glue.obj self.Id (cairo_gobject_glyph_get_type ())) value
+  let setY (self: Glyph) (value: float) : unit = Internal.CairoC.zgtk_set_cairo_Glyph_y (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_glyph_get_type ())) value
 
 module TextCluster =
-  /// A new one, every field zero.
-  let create () : TextCluster = TextCluster (Glue.alloc (zgtk_sizeof_cairo_TextCluster ()) (cairo_gobject_text_cluster_get_type ()))
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.CairoC.cairo_gobject_text_cluster_get_type ()
 
-  extern zgtk_get_cairo_TextCluster_num_bytes : cptr -> int
+  /// A new one, every field zero.
+  let create () : TextCluster = TextCluster (Internal.Raw.alloc (Internal.CairoC.zgtk_sizeof_cairo_TextCluster ()) (Internal.CairoC.cairo_gobject_text_cluster_get_type ()))
 
   /// The `num_bytes` field.
-  let getNumBytes (self: TextCluster) : int = zgtk_get_cairo_TextCluster_num_bytes (Glue.obj self.Id (cairo_gobject_text_cluster_get_type ()))
-
-  extern zgtk_set_cairo_TextCluster_num_bytes : cptr -> int -> unit
+  let getNumBytes (self: TextCluster) : int = Internal.CairoC.zgtk_get_cairo_TextCluster_num_bytes (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_text_cluster_get_type ()))
 
   /// Sets the `num_bytes` field.
-  let setNumBytes (self: TextCluster) (value: int) : unit = zgtk_set_cairo_TextCluster_num_bytes (Glue.obj self.Id (cairo_gobject_text_cluster_get_type ())) value
-
-  extern zgtk_get_cairo_TextCluster_num_glyphs : cptr -> int
+  let setNumBytes (self: TextCluster) (value: int) : unit = Internal.CairoC.zgtk_set_cairo_TextCluster_num_bytes (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_text_cluster_get_type ())) value
 
   /// The `num_glyphs` field.
-  let getNumGlyphs (self: TextCluster) : int = zgtk_get_cairo_TextCluster_num_glyphs (Glue.obj self.Id (cairo_gobject_text_cluster_get_type ()))
-
-  extern zgtk_set_cairo_TextCluster_num_glyphs : cptr -> int -> unit
+  let getNumGlyphs (self: TextCluster) : int = Internal.CairoC.zgtk_get_cairo_TextCluster_num_glyphs (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_text_cluster_get_type ()))
 
   /// Sets the `num_glyphs` field.
-  let setNumGlyphs (self: TextCluster) (value: int) : unit = zgtk_set_cairo_TextCluster_num_glyphs (Glue.obj self.Id (cairo_gobject_text_cluster_get_type ())) value
+  let setNumGlyphs (self: TextCluster) (value: int) : unit = Internal.CairoC.zgtk_set_cairo_TextCluster_num_glyphs (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_text_cluster_get_type ())) value
 
 // cairo's functions, which its .gir leaves out: written by hand (tools/extra/cairo.zs) for the
 // types above. A context is what a drawing area's draw function is given.
 
 module Surface =
-  extern cairo_image_surface_create : i32 -> i32 -> i32 -> cptr
-  extern cairo_image_surface_get_width : cptr -> i32
-  extern cairo_image_surface_get_height : cptr -> i32
-  extern cairo_surface_write_to_png : cptr -> cstr -> i32
-  extern cairo_surface_flush : cptr -> unit
+  /// The type itself, for `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.CairoC.cairo_gobject_surface_get_type ()
 
-  let private ptr (self: Surface) : cptr = Glue.obj self.Id (cairo_gobject_surface_get_type ())
+  let private ptr (self: Surface) : cptr = Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_surface_get_type ())
 
   /// A surface in memory, `width` by `height` pixels.
   let createImage (format: Format) (width: int) (height: int) : Surface =
-    let p = cairo_image_surface_create (i32 format.Int) (i32 width) (i32 height)
-    Surface (Glue.wrapBoxed p (cairo_gobject_surface_get_type ()) true)
+    let p = Internal.CairoC.cairo_image_surface_create (i32 format.Int) (i32 width) (i32 height)
+    Surface (Internal.Raw.wrapBoxed p (Internal.CairoC.cairo_gobject_surface_get_type ()) true)
 
   /// An image surface's width, in pixels.
-  let getWidth (self: Surface) : int = int (cairo_image_surface_get_width (ptr self))
+  let getWidth (self: Surface) : int = int (Internal.CairoC.cairo_image_surface_get_width (ptr self))
 
   /// An image surface's height, in pixels.
-  let getHeight (self: Surface) : int = int (cairo_image_surface_get_height (ptr self))
+  let getHeight (self: Surface) : int = int (Internal.CairoC.cairo_image_surface_get_height (ptr self))
 
   /// Writes the surface as a PNG file; whether it was written.
-  let writeToPng (self: Surface) (path: string) : bool = cairo_surface_write_to_png (ptr self) path = i32 0
+  let writeToPng (self: Surface) (path: string) : bool = Internal.CairoC.cairo_surface_write_to_png (ptr self) path = i32 0
 
   /// Finishes drawing that is still waiting.
-  let flush (self: Surface) : unit = cairo_surface_flush (ptr self)
+  let flush (self: Surface) : unit = Internal.CairoC.cairo_surface_flush (ptr self)
 
 module Pattern =
-  extern cairo_pattern_create_rgba : f64 -> f64 -> f64 -> f64 -> cptr
-  extern cairo_pattern_create_linear : f64 -> f64 -> f64 -> f64 -> cptr
-  extern cairo_pattern_create_radial : f64 -> f64 -> f64 -> f64 -> f64 -> f64 -> cptr
-  extern cairo_pattern_add_color_stop_rgba : cptr -> f64 -> f64 -> f64 -> f64 -> f64 -> unit
+  /// The type itself, for `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.CairoC.cairo_gobject_pattern_get_type ()
 
-  let private made (p: cptr) : Pattern = Pattern (Glue.wrapBoxed p (cairo_gobject_pattern_get_type ()) true)
+  let private made (p: cptr) : Pattern = Pattern (Internal.Raw.wrapBoxed p (Internal.CairoC.cairo_gobject_pattern_get_type ()) true)
 
   /// One colour, each part from 0 to 1.
   let createRgba (red: float) (green: float) (blue: float) (alpha: float) : Pattern =
-    made (cairo_pattern_create_rgba red green blue alpha)
+    made (Internal.CairoC.cairo_pattern_create_rgba red green blue alpha)
 
   /// A gradient along the line from (x0, y0) to (x1, y1).
   let createLinear (x0: float) (y0: float) (x1: float) (y1: float) : Pattern =
-    made (cairo_pattern_create_linear x0 y0 x1 y1)
+    made (Internal.CairoC.cairo_pattern_create_linear x0 y0 x1 y1)
 
   /// A gradient between two circles, each a centre and a radius.
   let createRadial (x0: float) (y0: float) (r0: float) (x1: float) (y1: float) (r1: float) : Pattern =
-    made (cairo_pattern_create_radial x0 y0 r0 x1 y1 r1)
+    made (Internal.CairoC.cairo_pattern_create_radial x0 y0 r0 x1 y1 r1)
 
   /// A colour at `offset` (0 to 1) along a gradient.
   let addColorStop (self: Pattern) (offset: float) (red: float) (green: float) (blue: float) (alpha: float) : unit =
-    cairo_pattern_add_color_stop_rgba (Glue.obj self.Id (cairo_gobject_pattern_get_type ())) offset red green blue alpha
+    Internal.CairoC.cairo_pattern_add_color_stop_rgba (Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_pattern_get_type ())) offset red green blue alpha
 
 module Context =
-  extern cairo_create : cptr -> cptr
-  extern cairo_save : cptr -> unit
-  extern cairo_restore : cptr -> unit
-  extern cairo_set_source_rgb : cptr -> f64 -> f64 -> f64 -> unit
-  extern cairo_set_source_rgba : cptr -> f64 -> f64 -> f64 -> f64 -> unit
-  extern cairo_set_source : cptr -> cptr -> unit
-  extern cairo_set_source_surface : cptr -> cptr -> f64 -> f64 -> unit
-  extern cairo_set_line_width : cptr -> f64 -> unit
-  extern cairo_set_line_cap : cptr -> i32 -> unit
-  extern cairo_set_line_join : cptr -> i32 -> unit
-  extern cairo_set_operator : cptr -> i32 -> unit
-  extern cairo_set_antialias : cptr -> i32 -> unit
-  extern cairo_set_fill_rule : cptr -> i32 -> unit
-  extern cairo_set_dash : cptr -> cptr -> i32 -> f64 -> unit
-  extern cairo_new_path : cptr -> unit
-  extern cairo_new_sub_path : cptr -> unit
-  extern cairo_close_path : cptr -> unit
-  extern cairo_move_to : cptr -> f64 -> f64 -> unit
-  extern cairo_line_to : cptr -> f64 -> f64 -> unit
-  extern cairo_rel_move_to : cptr -> f64 -> f64 -> unit
-  extern cairo_rel_line_to : cptr -> f64 -> f64 -> unit
-  extern cairo_curve_to : cptr -> f64 -> f64 -> f64 -> f64 -> f64 -> f64 -> unit
-  extern cairo_arc : cptr -> f64 -> f64 -> f64 -> f64 -> f64 -> unit
-  extern cairo_arc_negative : cptr -> f64 -> f64 -> f64 -> f64 -> f64 -> unit
-  extern cairo_rectangle : cptr -> f64 -> f64 -> f64 -> f64 -> unit
-  extern cairo_fill : cptr -> unit
-  extern cairo_fill_preserve : cptr -> unit
-  extern cairo_stroke : cptr -> unit
-  extern cairo_stroke_preserve : cptr -> unit
-  extern cairo_paint : cptr -> unit
-  extern cairo_paint_with_alpha : cptr -> f64 -> unit
-  extern cairo_clip : cptr -> unit
-  extern cairo_reset_clip : cptr -> unit
-  extern cairo_translate : cptr -> f64 -> f64 -> unit
-  extern cairo_scale : cptr -> f64 -> f64 -> unit
-  extern cairo_rotate : cptr -> f64 -> unit
-  extern cairo_identity_matrix : cptr -> unit
-  extern cairo_select_font_face : cptr -> cstr -> i32 -> i32 -> unit
-  extern cairo_set_font_size : cptr -> f64 -> unit
-  extern cairo_show_text : cptr -> cstr -> unit
-  extern cairo_status : cptr -> i32
+  /// The type itself, for `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.CairoC.cairo_gobject_context_get_type ()
 
-  let private ptr (self: Context) : cptr = Glue.obj self.Id (cairo_gobject_context_get_type ())
+  let private ptr (self: Context) : cptr = Internal.Raw.obj self.Id (Internal.CairoC.cairo_gobject_context_get_type ())
 
   /// A context that draws on a surface.
   let create (target: Surface) : Context =
-    let p = cairo_create (Glue.obj target.Id (cairo_gobject_surface_get_type ()))
-    Context (Glue.wrapBoxed p (cairo_gobject_context_get_type ()) true)
+    let p = Internal.CairoC.cairo_create (Internal.Raw.obj target.Id (Internal.CairoC.cairo_gobject_surface_get_type ()))
+    Context (Internal.Raw.wrapBoxed p (Internal.CairoC.cairo_gobject_context_get_type ()) true)
 
   /// Remembers the context's state, for `restore`.
-  let save (self: Context) : unit = cairo_save (ptr self)
+  let save (self: Context) : unit = Internal.CairoC.cairo_save (ptr self)
 
   /// Brings back the state the last `save` remembered.
-  let restore (self: Context) : unit = cairo_restore (ptr self)
+  let restore (self: Context) : unit = Internal.CairoC.cairo_restore (ptr self)
 
   /// The colour drawn with, each part from 0 to 1.
   let setSourceRgb (self: Context) (red: float) (green: float) (blue: float) : unit =
-    cairo_set_source_rgb (ptr self) red green blue
+    Internal.CairoC.cairo_set_source_rgb (ptr self) red green blue
 
   /// The colour drawn with, with its opacity.
   let setSourceRgba (self: Context) (red: float) (green: float) (blue: float) (alpha: float) : unit =
-    cairo_set_source_rgba (ptr self) red green blue alpha
+    Internal.CairoC.cairo_set_source_rgba (ptr self) red green blue alpha
 
   /// The pattern drawn with.
   let setSource (self: Context) (source: Pattern) : unit =
-    cairo_set_source (ptr self) (Glue.obj source.Id (cairo_gobject_pattern_get_type ()))
+    Internal.CairoC.cairo_set_source (ptr self) (Internal.Raw.obj source.Id (Internal.CairoC.cairo_gobject_pattern_get_type ()))
 
   /// A surface as what's drawn with, its corner at (x, y).
   let setSourceSurface (self: Context) (surface: Surface) (x: float) (y: float) : unit =
-    cairo_set_source_surface (ptr self) (Glue.obj surface.Id (cairo_gobject_surface_get_type ())) x y
+    Internal.CairoC.cairo_set_source_surface (ptr self) (Internal.Raw.obj surface.Id (Internal.CairoC.cairo_gobject_surface_get_type ())) x y
 
   /// How wide a stroke is.
-  let setLineWidth (self: Context) (width: float) : unit = cairo_set_line_width (ptr self) width
+  let setLineWidth (self: Context) (width: float) : unit = Internal.CairoC.cairo_set_line_width (ptr self) width
 
   /// How a stroke's ends are drawn.
-  let setLineCap (self: Context) (cap: LineCap) : unit = cairo_set_line_cap (ptr self) (i32 cap.Int)
+  let setLineCap (self: Context) (cap: LineCap) : unit = Internal.CairoC.cairo_set_line_cap (ptr self) (i32 cap.Int)
 
   /// How a stroke's corners are drawn.
-  let setLineJoin (self: Context) (join: LineJoin) : unit = cairo_set_line_join (ptr self) (i32 join.Int)
+  let setLineJoin (self: Context) (join: LineJoin) : unit = Internal.CairoC.cairo_set_line_join (ptr self) (i32 join.Int)
 
   /// How what's drawn combines with what's there.
-  let setOperator (self: Context) (op: Operator) : unit = cairo_set_operator (ptr self) (i32 op.Int)
+  let setOperator (self: Context) (op: Operator) : unit = Internal.CairoC.cairo_set_operator (ptr self) (i32 op.Int)
 
   /// How edges are smoothed.
-  let setAntialias (self: Context) (antialias: Antialias) : unit = cairo_set_antialias (ptr self) (i32 antialias.Int)
+  let setAntialias (self: Context) (antialias: Antialias) : unit = Internal.CairoC.cairo_set_antialias (ptr self) (i32 antialias.Int)
 
   /// Which parts of a path that crosses itself are inside it.
-  let setFillRule (self: Context) (rule: FillRule) : unit = cairo_set_fill_rule (ptr self) (i32 rule.Int)
+  let setFillRule (self: Context) (rule: FillRule) : unit = Internal.CairoC.cairo_set_fill_rule (ptr self) (i32 rule.Int)
 
   /// The lengths of a stroke's dashes and gaps in turn, starting `offset` along; none for a
   /// solid line.
   let setDash (self: Context) (dashes: list<float>) (offset: float) : unit =
-    let a = Glue.floats dashes 8
-    cairo_set_dash (ptr self) a (i32 (Glue.count dashes)) offset
-    Glue.free a
+    let a = Internal.Raw.floats dashes 8
+    Internal.CairoC.cairo_set_dash (ptr self) a (i32 (Internal.Raw.count dashes)) offset
+    Internal.Raw.free a
 
   /// Starts a path with nothing in it.
-  let newPath (self: Context) : unit = cairo_new_path (ptr self)
+  let newPath (self: Context) : unit = Internal.CairoC.cairo_new_path (ptr self)
 
   /// Starts a new part of the path, joined to nothing.
-  let newSubPath (self: Context) : unit = cairo_new_sub_path (ptr self)
+  let newSubPath (self: Context) : unit = Internal.CairoC.cairo_new_sub_path (ptr self)
 
   /// Joins the path's end to its start.
-  let closePath (self: Context) : unit = cairo_close_path (ptr self)
+  let closePath (self: Context) : unit = Internal.CairoC.cairo_close_path (ptr self)
 
   /// Moves to a point without drawing.
-  let moveTo (self: Context) (x: float) (y: float) : unit = cairo_move_to (ptr self) x y
+  let moveTo (self: Context) (x: float) (y: float) : unit = Internal.CairoC.cairo_move_to (ptr self) x y
 
   /// A line from where the path is to a point.
-  let lineTo (self: Context) (x: float) (y: float) : unit = cairo_line_to (ptr self) x y
+  let lineTo (self: Context) (x: float) (y: float) : unit = Internal.CairoC.cairo_line_to (ptr self) x y
 
   /// Moves by an offset without drawing.
-  let relMoveTo (self: Context) (dx: float) (dy: float) : unit = cairo_rel_move_to (ptr self) dx dy
+  let relMoveTo (self: Context) (dx: float) (dy: float) : unit = Internal.CairoC.cairo_rel_move_to (ptr self) dx dy
 
   /// A line by an offset from where the path is.
-  let relLineTo (self: Context) (dx: float) (dy: float) : unit = cairo_rel_line_to (ptr self) dx dy
+  let relLineTo (self: Context) (dx: float) (dy: float) : unit = Internal.CairoC.cairo_rel_line_to (ptr self) dx dy
 
   /// A curve to (x3, y3), pulled towards (x1, y1) and then (x2, y2).
   let curveTo (self: Context) (x1: float) (y1: float) (x2: float) (y2: float) (x3: float) (y3: float) : unit =
-    cairo_curve_to (ptr self) x1 y1 x2 y2 x3 y3
+    Internal.CairoC.cairo_curve_to (ptr self) x1 y1 x2 y2 x3 y3
 
   /// An arc of a circle, clockwise from one angle to another, in radians.
   let arc (self: Context) (x: float) (y: float) (radius: float) (from: float) (to_: float) : unit =
-    cairo_arc (ptr self) x y radius from to_
+    Internal.CairoC.cairo_arc (ptr self) x y radius from to_
 
   /// An arc of a circle, anticlockwise.
   let arcNegative (self: Context) (x: float) (y: float) (radius: float) (from: float) (to_: float) : unit =
-    cairo_arc_negative (ptr self) x y radius from to_
+    Internal.CairoC.cairo_arc_negative (ptr self) x y radius from to_
 
   /// A rectangle, as a closed part of the path.
   let rectangle (self: Context) (x: float) (y: float) (width: float) (height: float) : unit =
-    cairo_rectangle (ptr self) x y width height
+    Internal.CairoC.cairo_rectangle (ptr self) x y width height
 
   /// Fills the path, and forgets it.
-  let fill (self: Context) : unit = cairo_fill (ptr self)
+  let fill (self: Context) : unit = Internal.CairoC.cairo_fill (ptr self)
 
   /// Fills the path, and keeps it.
-  let fillPreserve (self: Context) : unit = cairo_fill_preserve (ptr self)
+  let fillPreserve (self: Context) : unit = Internal.CairoC.cairo_fill_preserve (ptr self)
 
   /// Draws along the path, and forgets it.
-  let stroke (self: Context) : unit = cairo_stroke (ptr self)
+  let stroke (self: Context) : unit = Internal.CairoC.cairo_stroke (ptr self)
 
   /// Draws along the path, and keeps it.
-  let strokePreserve (self: Context) : unit = cairo_stroke_preserve (ptr self)
+  let strokePreserve (self: Context) : unit = Internal.CairoC.cairo_stroke_preserve (ptr self)
 
   /// Fills everything that isn't clipped away.
-  let paint (self: Context) : unit = cairo_paint (ptr self)
+  let paint (self: Context) : unit = Internal.CairoC.cairo_paint (ptr self)
 
   /// `paint`, with an opacity.
-  let paintWithAlpha (self: Context) (alpha: float) : unit = cairo_paint_with_alpha (ptr self) alpha
+  let paintWithAlpha (self: Context) (alpha: float) : unit = Internal.CairoC.cairo_paint_with_alpha (ptr self) alpha
 
   /// Keeps later drawing inside the path, and forgets the path.
-  let clip (self: Context) : unit = cairo_clip (ptr self)
+  let clip (self: Context) : unit = Internal.CairoC.cairo_clip (ptr self)
 
   /// Lets drawing go everywhere again.
-  let resetClip (self: Context) : unit = cairo_reset_clip (ptr self)
+  let resetClip (self: Context) : unit = Internal.CairoC.cairo_reset_clip (ptr self)
 
   /// Moves the origin.
-  let translate (self: Context) (x: float) (y: float) : unit = cairo_translate (ptr self) x y
+  let translate (self: Context) (x: float) (y: float) : unit = Internal.CairoC.cairo_translate (ptr self) x y
 
   /// Scales what's drawn after it.
-  let scale (self: Context) (x: float) (y: float) : unit = cairo_scale (ptr self) x y
+  let scale (self: Context) (x: float) (y: float) : unit = Internal.CairoC.cairo_scale (ptr self) x y
 
   /// Turns what's drawn after it, in radians.
-  let rotate (self: Context) (angle: float) : unit = cairo_rotate (ptr self) angle
+  let rotate (self: Context) (angle: float) : unit = Internal.CairoC.cairo_rotate (ptr self) angle
 
   /// Takes back every translate, scale and rotate.
-  let identityMatrix (self: Context) : unit = cairo_identity_matrix (ptr self)
+  let identityMatrix (self: Context) : unit = Internal.CairoC.cairo_identity_matrix (ptr self)
 
   /// The font `showText` draws with. For text laid out properly, use Pango's layouts
   /// (PangoCairo).
   let selectFontFace (self: Context) (family: string) (slant: FontSlant) (weight: FontWeight) : unit =
-    cairo_select_font_face (ptr self) family (i32 slant.Int) (i32 weight.Int)
+    Internal.CairoC.cairo_select_font_face (ptr self) family (i32 slant.Int) (i32 weight.Int)
 
   /// The size of `showText`'s font.
-  let setFontSize (self: Context) (size: float) : unit = cairo_set_font_size (ptr self) size
+  let setFontSize (self: Context) (size: float) : unit = Internal.CairoC.cairo_set_font_size (ptr self) size
 
   /// Draws text from where the path is.
-  let showText (self: Context) (text: string) : unit = cairo_show_text (ptr self) text
+  let showText (self: Context) (text: string) : unit = Internal.CairoC.cairo_show_text (ptr self) text
 
   /// Whether every call so far worked.
-  let isOk (self: Context) : bool = cairo_status (ptr self) = i32 0
+  let isOk (self: Context) : bool = Internal.CairoC.cairo_status (ptr self) = i32 0

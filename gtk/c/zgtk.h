@@ -30,3 +30,6 @@ int64_t zgtk_wrap_counted(void *p, GType type, void *(*ref)(void *), void (*unre
 void zgtk_vfunc_set(gsize type, const char *key, void *closure);
 void *zgtk_vfunc_find(void *instance, const char *key);
 void *zgtk_vfunc_parent(void *instance, const char *key, gsize iface);
+
+// What a handler gives C only to borrow, held until the main loop next turns.
+void *zgtk_lend_counted(void *p, void *(*ref)(void *), void (*unref)(void *));

@@ -13,6 +13,7 @@ gsize zgtk_tag_GObject_ObjectConstructParam(void) { static char tag; return (gsi
 gsize zgtk_type_GObject_ParamSpec(void) { return G_TYPE_PARAM; }
 gint64 zgtk_wrap_GObject_ParamSpec(void *p, int full) { return zgtk_wrap_counted(p, G_TYPE_PARAM, (void *(*)(void *))g_param_spec_ref, (void (*)(void *))g_param_spec_unref, full); }
 void *zgtk_give_GObject_ParamSpec(void *p) { return p ? g_param_spec_ref(p) : NULL; }
+void *zgtk_lend_GObject_ParamSpec(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))g_param_spec_ref, (void (*)(void *))g_param_spec_unref); }
 gsize zgtk_tag_GObject_ParamSpecTypeInfo(void) { static char tag; return (gsize)&tag; }
 gsize zgtk_tag_GObject_Parameter(void) { static char tag; return (gsize)&tag; }
 gsize zgtk_tag_GObject_SignalInvocationHint(void) { static char tag; return (gsize)&tag; }

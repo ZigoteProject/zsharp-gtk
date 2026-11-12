@@ -5,47 +5,61 @@
 gsize zgtk_type_Gdk_ButtonEvent(void) { return gdk_button_event_get_type(); }
 gint64 zgtk_wrap_Gdk_ButtonEvent(void *p, int full) { return zgtk_wrap_counted(p, gdk_button_event_get_type(), (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref, full); }
 void *zgtk_give_Gdk_ButtonEvent(void *p) { return p ? gdk_event_ref(p) : NULL; }
+void *zgtk_lend_Gdk_ButtonEvent(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref); }
 gsize zgtk_type_Gdk_CrossingEvent(void) { return gdk_crossing_event_get_type(); }
 gint64 zgtk_wrap_Gdk_CrossingEvent(void *p, int full) { return zgtk_wrap_counted(p, gdk_crossing_event_get_type(), (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref, full); }
 void *zgtk_give_Gdk_CrossingEvent(void *p) { return p ? gdk_event_ref(p) : NULL; }
+void *zgtk_lend_Gdk_CrossingEvent(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref); }
 gsize zgtk_type_Gdk_DNDEvent(void) { return gdk_dnd_event_get_type(); }
 gint64 zgtk_wrap_Gdk_DNDEvent(void *p, int full) { return zgtk_wrap_counted(p, gdk_dnd_event_get_type(), (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref, full); }
 void *zgtk_give_Gdk_DNDEvent(void *p) { return p ? gdk_event_ref(p) : NULL; }
+void *zgtk_lend_Gdk_DNDEvent(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref); }
 gsize zgtk_type_Gdk_DeleteEvent(void) { return gdk_delete_event_get_type(); }
 gint64 zgtk_wrap_Gdk_DeleteEvent(void *p, int full) { return zgtk_wrap_counted(p, gdk_delete_event_get_type(), (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref, full); }
 void *zgtk_give_Gdk_DeleteEvent(void *p) { return p ? gdk_event_ref(p) : NULL; }
+void *zgtk_lend_Gdk_DeleteEvent(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref); }
 gsize zgtk_type_Gdk_Event(void) { return gdk_event_get_type(); }
 gint64 zgtk_wrap_Gdk_Event(void *p, int full) { return zgtk_wrap_counted(p, gdk_event_get_type(), (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref, full); }
 void *zgtk_give_Gdk_Event(void *p) { return p ? gdk_event_ref(p) : NULL; }
+void *zgtk_lend_Gdk_Event(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref); }
 gsize zgtk_type_Gdk_FocusEvent(void) { return gdk_focus_event_get_type(); }
 gint64 zgtk_wrap_Gdk_FocusEvent(void *p, int full) { return zgtk_wrap_counted(p, gdk_focus_event_get_type(), (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref, full); }
 void *zgtk_give_Gdk_FocusEvent(void *p) { return p ? gdk_event_ref(p) : NULL; }
+void *zgtk_lend_Gdk_FocusEvent(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref); }
 gsize zgtk_type_Gdk_GrabBrokenEvent(void) { return gdk_grab_broken_event_get_type(); }
 gint64 zgtk_wrap_Gdk_GrabBrokenEvent(void *p, int full) { return zgtk_wrap_counted(p, gdk_grab_broken_event_get_type(), (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref, full); }
 void *zgtk_give_Gdk_GrabBrokenEvent(void *p) { return p ? gdk_event_ref(p) : NULL; }
+void *zgtk_lend_Gdk_GrabBrokenEvent(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref); }
 gsize zgtk_type_Gdk_KeyEvent(void) { return gdk_key_event_get_type(); }
 gint64 zgtk_wrap_Gdk_KeyEvent(void *p, int full) { return zgtk_wrap_counted(p, gdk_key_event_get_type(), (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref, full); }
 void *zgtk_give_Gdk_KeyEvent(void *p) { return p ? gdk_event_ref(p) : NULL; }
+void *zgtk_lend_Gdk_KeyEvent(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref); }
 gsize zgtk_tag_Gdk_KeymapKey(void) { static char tag; return (gsize)&tag; }
 gsize zgtk_type_Gdk_MotionEvent(void) { return gdk_motion_event_get_type(); }
 gint64 zgtk_wrap_Gdk_MotionEvent(void *p, int full) { return zgtk_wrap_counted(p, gdk_motion_event_get_type(), (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref, full); }
 void *zgtk_give_Gdk_MotionEvent(void *p) { return p ? gdk_event_ref(p) : NULL; }
+void *zgtk_lend_Gdk_MotionEvent(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref); }
 gsize zgtk_type_Gdk_PadEvent(void) { return gdk_pad_event_get_type(); }
 gint64 zgtk_wrap_Gdk_PadEvent(void *p, int full) { return zgtk_wrap_counted(p, gdk_pad_event_get_type(), (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref, full); }
 void *zgtk_give_Gdk_PadEvent(void *p) { return p ? gdk_event_ref(p) : NULL; }
+void *zgtk_lend_Gdk_PadEvent(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref); }
 gsize zgtk_type_Gdk_ProximityEvent(void) { return gdk_proximity_event_get_type(); }
 gint64 zgtk_wrap_Gdk_ProximityEvent(void *p, int full) { return zgtk_wrap_counted(p, gdk_proximity_event_get_type(), (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref, full); }
 void *zgtk_give_Gdk_ProximityEvent(void *p) { return p ? gdk_event_ref(p) : NULL; }
+void *zgtk_lend_Gdk_ProximityEvent(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref); }
 gsize zgtk_type_Gdk_ScrollEvent(void) { return gdk_scroll_event_get_type(); }
 gint64 zgtk_wrap_Gdk_ScrollEvent(void *p, int full) { return zgtk_wrap_counted(p, gdk_scroll_event_get_type(), (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref, full); }
 void *zgtk_give_Gdk_ScrollEvent(void *p) { return p ? gdk_event_ref(p) : NULL; }
+void *zgtk_lend_Gdk_ScrollEvent(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref); }
 gsize zgtk_tag_Gdk_TimeCoord(void) { static char tag; return (gsize)&tag; }
 gsize zgtk_type_Gdk_TouchEvent(void) { return gdk_touch_event_get_type(); }
 gint64 zgtk_wrap_Gdk_TouchEvent(void *p, int full) { return zgtk_wrap_counted(p, gdk_touch_event_get_type(), (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref, full); }
 void *zgtk_give_Gdk_TouchEvent(void *p) { return p ? gdk_event_ref(p) : NULL; }
+void *zgtk_lend_Gdk_TouchEvent(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref); }
 gsize zgtk_type_Gdk_TouchpadEvent(void) { return gdk_touchpad_event_get_type(); }
 gint64 zgtk_wrap_Gdk_TouchpadEvent(void *p, int full) { return zgtk_wrap_counted(p, gdk_touchpad_event_get_type(), (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref, full); }
 void *zgtk_give_Gdk_TouchpadEvent(void *p) { return p ? gdk_event_ref(p) : NULL; }
+void *zgtk_lend_Gdk_TouchpadEvent(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gdk_event_ref, (void (*)(void *))gdk_event_unref); }
 static GdkTexture* tramp_Gdk_CursorGetTextureCallback(GdkCursor* a0, int a1, double a2, int* a3, int* a4, int* a5, int* a6, gpointer a7) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 8;
     c.args[0].p = (void *)a0;

@@ -13,105 +13,6 @@
 // Gdk 4.0. A class, an interface or a boxed record is a handle of its own type; see Glue
 // for how long a handle is good and what happens to one that isn't.
 
-extern gdk_app_launch_context_get_type : unit -> usize
-extern zgtk_type_Gdk_ButtonEvent : unit -> usize
-extern zgtk_wrap_Gdk_ButtonEvent : cptr -> i32 -> int
-extern zgtk_give_Gdk_ButtonEvent : cptr -> cptr
-extern gdk_draw_context_get_type : unit -> usize
-extern gdk_cairo_context_get_type : unit -> usize
-extern gdk_cicp_params_get_type : unit -> usize
-extern gdk_clipboard_get_type : unit -> usize
-extern gdk_color_state_get_type : unit -> usize
-extern gdk_content_deserializer_get_type : unit -> usize
-extern gdk_content_formats_get_type : unit -> usize
-extern gdk_content_formats_builder_get_type : unit -> usize
-extern gdk_content_provider_get_type : unit -> usize
-extern gdk_content_serializer_get_type : unit -> usize
-extern zgtk_type_Gdk_CrossingEvent : unit -> usize
-extern zgtk_wrap_Gdk_CrossingEvent : cptr -> i32 -> int
-extern zgtk_give_Gdk_CrossingEvent : cptr -> cptr
-extern gdk_cursor_get_type : unit -> usize
-extern zgtk_type_Gdk_DNDEvent : unit -> usize
-extern zgtk_wrap_Gdk_DNDEvent : cptr -> i32 -> int
-extern zgtk_give_Gdk_DNDEvent : cptr -> cptr
-extern zgtk_type_Gdk_DeleteEvent : unit -> usize
-extern zgtk_wrap_Gdk_DeleteEvent : cptr -> i32 -> int
-extern zgtk_give_Gdk_DeleteEvent : cptr -> cptr
-extern gdk_device_get_type : unit -> usize
-extern gdk_device_pad_get_type : unit -> usize
-extern gdk_device_tool_get_type : unit -> usize
-extern gdk_display_get_type : unit -> usize
-extern gdk_display_manager_get_type : unit -> usize
-extern gdk_dmabuf_formats_get_type : unit -> usize
-extern gdk_paintable_get_type : unit -> usize
-extern gdk_texture_get_type : unit -> usize
-extern gdk_dmabuf_texture_get_type : unit -> usize
-extern gdk_dmabuf_texture_builder_get_type : unit -> usize
-extern gdk_drag_get_type : unit -> usize
-extern gdk_drag_surface_get_type : unit -> usize
-extern gdk_drag_surface_size_get_type : unit -> usize
-extern gdk_drop_get_type : unit -> usize
-extern zgtk_type_Gdk_Event : unit -> usize
-extern zgtk_wrap_Gdk_Event : cptr -> i32 -> int
-extern zgtk_give_Gdk_Event : cptr -> cptr
-extern gdk_event_sequence_get_type : unit -> usize
-extern gdk_file_list_get_type : unit -> usize
-extern zgtk_type_Gdk_FocusEvent : unit -> usize
-extern zgtk_wrap_Gdk_FocusEvent : cptr -> i32 -> int
-extern zgtk_give_Gdk_FocusEvent : cptr -> cptr
-extern gdk_frame_clock_get_type : unit -> usize
-extern gdk_frame_timings_get_type : unit -> usize
-extern gdk_gl_context_get_type : unit -> usize
-extern gdk_gl_texture_get_type : unit -> usize
-extern gdk_gl_texture_builder_get_type : unit -> usize
-extern zgtk_type_Gdk_GrabBrokenEvent : unit -> usize
-extern zgtk_wrap_Gdk_GrabBrokenEvent : cptr -> i32 -> int
-extern zgtk_give_Gdk_GrabBrokenEvent : cptr -> cptr
-extern zgtk_type_Gdk_KeyEvent : unit -> usize
-extern zgtk_wrap_Gdk_KeyEvent : cptr -> i32 -> int
-extern zgtk_give_Gdk_KeyEvent : cptr -> cptr
-extern zgtk_tag_Gdk_KeymapKey : unit -> usize
-extern zgtk_sizeof_Gdk_KeymapKey : unit -> usize
-extern gdk_memory_texture_get_type : unit -> usize
-extern gdk_memory_texture_builder_get_type : unit -> usize
-extern gdk_monitor_get_type : unit -> usize
-extern zgtk_type_Gdk_MotionEvent : unit -> usize
-extern zgtk_wrap_Gdk_MotionEvent : cptr -> i32 -> int
-extern zgtk_give_Gdk_MotionEvent : cptr -> cptr
-extern zgtk_type_Gdk_PadEvent : unit -> usize
-extern zgtk_wrap_Gdk_PadEvent : cptr -> i32 -> int
-extern zgtk_give_Gdk_PadEvent : cptr -> cptr
-extern gdk_popup_get_type : unit -> usize
-extern gdk_popup_layout_get_type : unit -> usize
-extern zgtk_type_Gdk_ProximityEvent : unit -> usize
-extern zgtk_wrap_Gdk_ProximityEvent : cptr -> i32 -> int
-extern zgtk_give_Gdk_ProximityEvent : cptr -> cptr
-extern gdk_rgba_get_type : unit -> usize
-extern zgtk_sizeof_Gdk_RGBA : unit -> usize
-extern gdk_rectangle_get_type : unit -> usize
-extern zgtk_sizeof_Gdk_Rectangle : unit -> usize
-extern zgtk_type_Gdk_ScrollEvent : unit -> usize
-extern zgtk_wrap_Gdk_ScrollEvent : cptr -> i32 -> int
-extern zgtk_give_Gdk_ScrollEvent : cptr -> cptr
-extern gdk_seat_get_type : unit -> usize
-extern gdk_snapshot_get_type : unit -> usize
-extern gdk_surface_get_type : unit -> usize
-extern gdk_texture_downloader_get_type : unit -> usize
-extern zgtk_tag_Gdk_TimeCoord : unit -> usize
-extern zgtk_sizeof_Gdk_TimeCoord : unit -> usize
-extern gdk_toplevel_get_type : unit -> usize
-extern gdk_toplevel_layout_get_type : unit -> usize
-extern gdk_toplevel_size_get_type : unit -> usize
-extern zgtk_type_Gdk_TouchEvent : unit -> usize
-extern zgtk_wrap_Gdk_TouchEvent : cptr -> i32 -> int
-extern zgtk_give_Gdk_TouchEvent : cptr -> cptr
-extern zgtk_type_Gdk_TouchpadEvent : unit -> usize
-extern zgtk_wrap_Gdk_TouchpadEvent : cptr -> i32 -> int
-extern zgtk_give_Gdk_TouchpadEvent : cptr -> cptr
-extern gdk_vulkan_context_get_type : unit -> usize
-extern zgtk_tramp_Gdk_CursorGetTextureCallback : unit -> cptr
-extern zgtk_tramp_Gdk_CursorGetTextureCallback_once : unit -> cptr
-
 /// Positioning hints for aligning a surface relative to a rectangle.
 type AnchorHints =
   | AnchorHints of int
@@ -2266,114 +2167,99 @@ module AppLaunchContext =
   /// The same object as its ancestor.
   let toGObjectObject (self: AppLaunchContext) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_app_launch_context_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<AppLaunchContext> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_app_launch_context_get_type ()) then Some (AppLaunchContext object.Id) else None
-
-  extern gdk_app_launch_context_get_display : cptr -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_app_launch_context_get_type ()) then Some (AppLaunchContext object.Id) else None
 
   /// Gets the `GdkDisplay` that @context is for.
   let getDisplay (self: AppLaunchContext) : Display =
-    Display (Glue.wrap ((gdk_app_launch_context_get_display (Glue.obj self.Id (gdk_app_launch_context_get_type ())))) false)
-
-  extern gdk_app_launch_context_set_desktop : cptr -> i32 -> unit
+    Display (Internal.Raw.wrap ((Internal.GdkC.gdk_app_launch_context_get_display (Internal.Raw.obj self.Id (Internal.GdkC.gdk_app_launch_context_get_type ())))) false)
 
   /// Sets the workspace on which applications will be launched.
   let setDesktop (self: AppLaunchContext) (desktop: int) : unit =
-    gdk_app_launch_context_set_desktop (Glue.obj self.Id (gdk_app_launch_context_get_type ())) (i32 desktop)
-
-  extern gdk_app_launch_context_set_icon : cptr -> cptr -> unit
+    Internal.GdkC.gdk_app_launch_context_set_desktop (Internal.Raw.obj self.Id (Internal.GdkC.gdk_app_launch_context_get_type ())) (i32 desktop)
 
   /// Sets the icon for applications that are launched with this context.
   let setIcon (self: AppLaunchContext) (icon: option<Gio.Icon>) : unit =
     let zp1 =
       match icon with
-      | Some zo -> Glue.obj zo.Id (Gio.g_icon_get_type ())
-      | None -> Glue.none ()
-    gdk_app_launch_context_set_icon (Glue.obj self.Id (gdk_app_launch_context_get_type ())) zp1
-
-  extern gdk_app_launch_context_set_icon_name : cptr -> cptr -> unit
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_icon_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_app_launch_context_set_icon (Internal.Raw.obj self.Id (Internal.GdkC.gdk_app_launch_context_get_type ())) zp1
 
   /// Sets the icon for applications that are launched with this context.
   let setIconName (self: AppLaunchContext) (iconName: option<string>) : unit =
-    let zs1 = Glue.dupOption iconName
-    gdk_app_launch_context_set_icon_name (Glue.obj self.Id (gdk_app_launch_context_get_type ())) zs1
-    Glue.free zs1
-
-  extern gdk_app_launch_context_set_timestamp : cptr -> u32 -> unit
+    let zs1 = Internal.Raw.dupOption iconName
+    Internal.GdkC.gdk_app_launch_context_set_icon_name (Internal.Raw.obj self.Id (Internal.GdkC.gdk_app_launch_context_get_type ())) zs1
+    Internal.Raw.free zs1
 
   /// Sets the timestamp of @context.
   let setTimestamp (self: AppLaunchContext) (timestamp: int) : unit =
-    gdk_app_launch_context_set_timestamp (Glue.obj self.Id (gdk_app_launch_context_get_type ())) (u32 timestamp)
+    Internal.GdkC.gdk_app_launch_context_set_timestamp (Internal.Raw.obj self.Id (Internal.GdkC.gdk_app_launch_context_get_type ())) (u32 timestamp)
 
   /// Calls `handler` when the `display` property changes.
   let onNotifyDisplay (self: AppLaunchContext) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_app_launch_context_get_type ())) "notify::display" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_app_launch_context_get_type ())) "notify::display" handler
 
 module ButtonEvent =
-  extern gdk_button_event_get_button : cptr -> u32
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_type_Gdk_ButtonEvent ()
 
   /// Extract the button number from a button event.
   let getButton (self: ButtonEvent) : int =
-    (int ((gdk_button_event_get_button (Glue.obj self.Id (zgtk_type_Gdk_ButtonEvent ())))))
+    (int ((Internal.GdkC.gdk_button_event_get_button (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_ButtonEvent ())))))
 
 module DrawContext =
   /// The same object as its ancestor.
   let toGObjectObject (self: DrawContext) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_draw_context_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<DrawContext> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_draw_context_get_type ()) then Some (DrawContext object.Id) else None
-
-  extern gdk_draw_context_begin_frame : cptr -> cptr -> unit
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_draw_context_get_type ()) then Some (DrawContext object.Id) else None
 
   /// Deprecated. Indicates that you are beginning the process of redrawing @region on the @context's surface.
   let beginFrame (self: DrawContext) (region: Cairo.Region) : unit =
-    gdk_draw_context_begin_frame (Glue.obj self.Id (gdk_draw_context_get_type ())) (Glue.obj region.Id (Cairo.cairo_gobject_region_get_type ()))
-
-  extern gdk_draw_context_end_frame : cptr -> unit
+    Internal.GdkC.gdk_draw_context_begin_frame (Internal.Raw.obj self.Id (Internal.GdkC.gdk_draw_context_get_type ())) (Internal.Raw.obj region.Id (Internal.CairoC.cairo_gobject_region_get_type ()))
 
   /// Deprecated. Ends a drawing operation started with gdk_draw_context_begin_frame().
   let endFrame (self: DrawContext) : unit =
-    gdk_draw_context_end_frame (Glue.obj self.Id (gdk_draw_context_get_type ()))
-
-  extern gdk_draw_context_get_display : cptr -> cptr
+    Internal.GdkC.gdk_draw_context_end_frame (Internal.Raw.obj self.Id (Internal.GdkC.gdk_draw_context_get_type ()))
 
   /// Retrieves the `GdkDisplay` the @context is created for
   let getDisplay (self: DrawContext) : option<Display> =
-    let zr = gdk_draw_context_get_display (Glue.obj self.Id (gdk_draw_context_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_draw_context_get_display (Internal.Raw.obj self.Id (Internal.GdkC.gdk_draw_context_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Display zid1))
-
-  extern gdk_draw_context_get_frame_region : cptr -> cptr
 
   /// Deprecated. Retrieves the region that is currently being repainted.
   let getFrameRegion (self: DrawContext) : option<Cairo.Region> =
-    let zr = gdk_draw_context_get_frame_region (Glue.obj self.Id (gdk_draw_context_get_type ()))
-    let zid1 = Glue.wrapBoxed (zr) (Cairo.cairo_gobject_region_get_type ()) false
+    let zr = Internal.GdkC.gdk_draw_context_get_frame_region (Internal.Raw.obj self.Id (Internal.GdkC.gdk_draw_context_get_type ()))
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.CairoC.cairo_gobject_region_get_type ()) false
     (if zid1 = 0 then None else Some (Cairo.Region zid1))
-
-  extern gdk_draw_context_get_surface : cptr -> cptr
 
   /// Retrieves the surface that @context is bound to.
   let getSurface (self: DrawContext) : option<Surface> =
-    let zr = gdk_draw_context_get_surface (Glue.obj self.Id (gdk_draw_context_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_draw_context_get_surface (Internal.Raw.obj self.Id (Internal.GdkC.gdk_draw_context_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Surface zid1))
-
-  extern gdk_draw_context_is_in_frame : cptr -> i32
 
   /// Deprecated. Returns %TRUE if @context is in the process of drawing to its surface.
   let isInFrame (self: DrawContext) : bool =
-    (((gdk_draw_context_is_in_frame (Glue.obj self.Id (gdk_draw_context_get_type ())))) <> i32 0)
+    (((Internal.GdkC.gdk_draw_context_is_in_frame (Internal.Raw.obj self.Id (Internal.GdkC.gdk_draw_context_get_type ())))) <> i32 0)
 
   /// Calls `handler` when the `display` property changes.
   let onNotifyDisplay (self: DrawContext) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_draw_context_get_type ())) "notify::display" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_draw_context_get_type ())) "notify::display" handler
 
   /// Calls `handler` when the `surface` property changes.
   let onNotifySurface (self: DrawContext) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_draw_context_get_type ())) "notify::surface" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_draw_context_get_type ())) "notify::surface" handler
 
 module CairoContext =
   /// The same object as its ancestor.
@@ -2382,430 +2268,360 @@ module CairoContext =
   /// The same object as its ancestor.
   let toGObjectObject (self: CairoContext) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_cairo_context_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<CairoContext> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_cairo_context_get_type ()) then Some (CairoContext object.Id) else None
-
-  extern gdk_cairo_context_cairo_create : cptr -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_cairo_context_get_type ()) then Some (CairoContext object.Id) else None
 
   /// Deprecated. Retrieves a Cairo context to be used to draw on the `GdkSurface` of @context.
   let cairoCreate (self: CairoContext) : option<Cairo.Context> =
-    let zr = gdk_cairo_context_cairo_create (Glue.obj self.Id (gdk_cairo_context_get_type ()))
-    let zid1 = Glue.wrapBoxed (zr) (Cairo.cairo_gobject_context_get_type ()) true
+    let zr = Internal.GdkC.gdk_cairo_context_cairo_create (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cairo_context_get_type ()))
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.CairoC.cairo_gobject_context_get_type ()) true
     (if zid1 = 0 then None else Some (Cairo.Context zid1))
 
 module CicpParams =
   /// The same object as its ancestor.
   let toGObjectObject (self: CicpParams) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_cicp_params_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<CicpParams> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_cicp_params_get_type ()) then Some (CicpParams object.Id) else None
-
-  extern gdk_cicp_params_new : unit -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_cicp_params_get_type ()) then Some (CicpParams object.Id) else None
 
   /// Creates a new `GdkCicpParams` object.
   let create () : CicpParams =
-    CicpParams (Glue.wrap ((gdk_cicp_params_new ())) true)
-
-  extern gdk_cicp_params_build_color_state : cptr -> cptr -> cptr
+    CicpParams (Internal.Raw.wrap ((Internal.GdkC.gdk_cicp_params_new ())) true)
 
   /// Creates a new `GdkColorState` object for the cicp parameters in @self.
   let buildColorState (self: CicpParams) : result<ColorState, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_cicp_params_build_color_state (Glue.obj self.Id (gdk_cicp_params_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_cicp_params_build_color_state (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cicp_params_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
-      let zv = ColorState (Glue.wrapBoxed (zr) (gdk_color_state_get_type ()) true)
-      Glue.outEnd ()
+      let zv = ColorState (Internal.Raw.wrapBoxed (zr) (Internal.GdkC.gdk_color_state_get_type ()) true)
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_cicp_params_get_color_primaries : cptr -> u32
 
   /// Returns the value of the color-primaries property of @self.
   let getColorPrimaries (self: CicpParams) : int =
-    (int ((gdk_cicp_params_get_color_primaries (Glue.obj self.Id (gdk_cicp_params_get_type ())))))
-
-  extern gdk_cicp_params_get_matrix_coefficients : cptr -> u32
+    (int ((Internal.GdkC.gdk_cicp_params_get_color_primaries (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cicp_params_get_type ())))))
 
   /// Gets the matrix-coefficients property of @self.
   let getMatrixCoefficients (self: CicpParams) : int =
-    (int ((gdk_cicp_params_get_matrix_coefficients (Glue.obj self.Id (gdk_cicp_params_get_type ())))))
-
-  extern gdk_cicp_params_get_range : cptr -> i32
+    (int ((Internal.GdkC.gdk_cicp_params_get_matrix_coefficients (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cicp_params_get_type ())))))
 
   /// Gets the range property of @self.
   let getRange (self: CicpParams) : CicpRange =
-    CicpRange (int ((gdk_cicp_params_get_range (Glue.obj self.Id (gdk_cicp_params_get_type ())))))
-
-  extern gdk_cicp_params_get_transfer_function : cptr -> u32
+    CicpRange (int ((Internal.GdkC.gdk_cicp_params_get_range (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cicp_params_get_type ())))))
 
   /// Gets the transfer-function property of @self.
   let getTransferFunction (self: CicpParams) : int =
-    (int ((gdk_cicp_params_get_transfer_function (Glue.obj self.Id (gdk_cicp_params_get_type ())))))
-
-  extern gdk_cicp_params_set_color_primaries : cptr -> u32 -> unit
+    (int ((Internal.GdkC.gdk_cicp_params_get_transfer_function (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cicp_params_get_type ())))))
 
   /// Sets the color-primaries property of @self.
   let setColorPrimaries (self: CicpParams) (colorPrimaries: int) : unit =
-    gdk_cicp_params_set_color_primaries (Glue.obj self.Id (gdk_cicp_params_get_type ())) (u32 colorPrimaries)
-
-  extern gdk_cicp_params_set_matrix_coefficients : cptr -> u32 -> unit
+    Internal.GdkC.gdk_cicp_params_set_color_primaries (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cicp_params_get_type ())) (u32 colorPrimaries)
 
   /// @self a `GdkCicpParams` Sets the matrix-coefficients property of @self.
   let setMatrixCoefficients (self: CicpParams) (matrixCoefficients: int) : unit =
-    gdk_cicp_params_set_matrix_coefficients (Glue.obj self.Id (gdk_cicp_params_get_type ())) (u32 matrixCoefficients)
-
-  extern gdk_cicp_params_set_range : cptr -> i32 -> unit
+    Internal.GdkC.gdk_cicp_params_set_matrix_coefficients (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cicp_params_get_type ())) (u32 matrixCoefficients)
 
   /// Sets the range property of @self
   let setRange (self: CicpParams) (range: CicpRange) : unit =
-    gdk_cicp_params_set_range (Glue.obj self.Id (gdk_cicp_params_get_type ())) (i32 range.Int)
-
-  extern gdk_cicp_params_set_transfer_function : cptr -> u32 -> unit
+    Internal.GdkC.gdk_cicp_params_set_range (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cicp_params_get_type ())) (i32 range.Int)
 
   /// Sets the transfer-function property of @self.
   let setTransferFunction (self: CicpParams) (transferFunction: int) : unit =
-    gdk_cicp_params_set_transfer_function (Glue.obj self.Id (gdk_cicp_params_get_type ())) (u32 transferFunction)
+    Internal.GdkC.gdk_cicp_params_set_transfer_function (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cicp_params_get_type ())) (u32 transferFunction)
 
   /// Calls `handler` when the `color-primaries` property changes.
   let onNotifyColorPrimaries (self: CicpParams) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_cicp_params_get_type ())) "notify::color-primaries" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cicp_params_get_type ())) "notify::color-primaries" handler
 
   /// Calls `handler` when the `matrix-coefficients` property changes.
   let onNotifyMatrixCoefficients (self: CicpParams) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_cicp_params_get_type ())) "notify::matrix-coefficients" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cicp_params_get_type ())) "notify::matrix-coefficients" handler
 
   /// Calls `handler` when the `range` property changes.
   let onNotifyRange (self: CicpParams) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_cicp_params_get_type ())) "notify::range" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cicp_params_get_type ())) "notify::range" handler
 
   /// Calls `handler` when the `transfer-function` property changes.
   let onNotifyTransferFunction (self: CicpParams) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_cicp_params_get_type ())) "notify::transfer-function" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cicp_params_get_type ())) "notify::transfer-function" handler
 
 module Clipboard =
   /// The same object as its ancestor.
   let toGObjectObject (self: Clipboard) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_clipboard_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<Clipboard> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_clipboard_get_type ()) then Some (Clipboard object.Id) else None
-
-  extern gdk_clipboard_get_content : cptr -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_clipboard_get_type ()) then Some (Clipboard object.Id) else None
 
   /// Returns the `GdkContentProvider` currently set on @clipboard.
   let getContent (self: Clipboard) : option<ContentProvider> =
-    let zr = gdk_clipboard_get_content (Glue.obj self.Id (gdk_clipboard_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_clipboard_get_content (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (ContentProvider zid1))
-
-  extern gdk_clipboard_get_display : cptr -> cptr
 
   /// Gets the `GdkDisplay` that the clipboard was created for.
   let getDisplay (self: Clipboard) : Display =
-    Display (Glue.wrap ((gdk_clipboard_get_display (Glue.obj self.Id (gdk_clipboard_get_type ())))) false)
-
-  extern gdk_clipboard_get_formats : cptr -> cptr
+    Display (Internal.Raw.wrap ((Internal.GdkC.gdk_clipboard_get_display (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())))) false)
 
   /// Gets the formats that the clipboard can provide its current contents in.
   let getFormats (self: Clipboard) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((gdk_clipboard_get_formats (Glue.obj self.Id (gdk_clipboard_get_type ())))) (gdk_content_formats_get_type ()) false)
-
-  extern gdk_clipboard_is_local : cptr -> i32
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_clipboard_get_formats (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) false)
 
   /// Returns if the clipboard is local.
   let isLocal (self: Clipboard) : bool =
-    (((gdk_clipboard_is_local (Glue.obj self.Id (gdk_clipboard_get_type ())))) <> i32 0)
-
-  extern gdk_clipboard_read_async : cptr -> cptr -> i32 -> cptr -> cptr -> cptr -> unit
+    (((Internal.GdkC.gdk_clipboard_is_local (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())))) <> i32 0)
 
   /// Asynchronously requests an input stream to read the @clipboard's contents from.
   let readAsync (self: Clipboard) (mimeTypes: list<string>) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
-      Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
+      Internal.Raw.hold (fun () ->
+        let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 0) false
         let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
-        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        let res = Gio.AsyncResult (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         callback sourceObject res)
-    let zv3 = Glue.strv mimeTypes
+    let zv3 = Internal.Raw.strv mimeTypes
     let zp4 =
       match cancellable with
-      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
-      | None -> Glue.none ()
-    gdk_clipboard_read_async (Glue.obj self.Id (gdk_clipboard_get_type ())) zv3 (i32 ioPriority) zp4 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-    Glue.freeStrv zv3
-
-  extern gdk_clipboard_read_finish : cptr -> cptr -> cptr -> cptr -> cptr
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_clipboard_read_async (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) zv3 (i32 ioPriority) zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+    Internal.Raw.freeStrv zv3
 
   /// Finishes an asynchronous clipboard read.
   let readFinish (self: Clipboard) (result: Gio.AsyncResult) : result<(option<Gio.InputStream> * option<string>), Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_clipboard_read_finish (Glue.obj self.Id (gdk_clipboard_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.out 0) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_clipboard_read_finish (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) (Internal.Raw.obj result.Id (Internal.GioC.g_async_result_get_type ())) (Internal.Raw.out 0) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
-      let zid1 = Glue.wrap (zr) true
-      let zv = ((if zid1 = 0 then None else Some (Gio.InputStream zid1)), Glue.textOption (Glue.outPtr 0))
-      Glue.outEnd ()
+      let zid1 = Internal.Raw.wrap (zr) true
+      let zv = ((if zid1 = 0 then None else Some (Gio.InputStream zid1)), Internal.Raw.textOption (Internal.Raw.outPtr 0))
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_clipboard_read_text_async : cptr -> cptr -> cptr -> cptr -> unit
 
   /// Asynchronously request the @clipboard contents converted to a string.
   let readTextAsync (self: Clipboard) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
-      Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
+      Internal.Raw.hold (fun () ->
+        let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 0) false
         let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
-        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        let res = Gio.AsyncResult (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         callback sourceObject res)
     let zp3 =
       match cancellable with
-      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
-      | None -> Glue.none ()
-    gdk_clipboard_read_text_async (Glue.obj self.Id (gdk_clipboard_get_type ())) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-
-  extern gdk_clipboard_read_text_finish : cptr -> cptr -> cptr -> cptr
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_clipboard_read_text_async (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Finishes an asynchronous clipboard read.
   let readTextFinish (self: Clipboard) (result: Gio.AsyncResult) : result<option<string>, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_clipboard_read_text_finish (Glue.obj self.Id (gdk_clipboard_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_clipboard_read_text_finish (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) (Internal.Raw.obj result.Id (Internal.GioC.g_async_result_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
-      let zv = Glue.takeTextOption (zr)
-      Glue.outEnd ()
+      let zv = Internal.Raw.takeTextOption (zr)
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_clipboard_read_texture_async : cptr -> cptr -> cptr -> cptr -> unit
 
   /// Asynchronously request the @clipboard contents converted to a `GdkPixbuf`.
   let readTextureAsync (self: Clipboard) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
-      Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
+      Internal.Raw.hold (fun () ->
+        let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 0) false
         let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
-        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        let res = Gio.AsyncResult (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         callback sourceObject res)
     let zp3 =
       match cancellable with
-      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
-      | None -> Glue.none ()
-    gdk_clipboard_read_texture_async (Glue.obj self.Id (gdk_clipboard_get_type ())) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-
-  extern gdk_clipboard_read_texture_finish : cptr -> cptr -> cptr -> cptr
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_clipboard_read_texture_async (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Finishes an asynchronous clipboard read.
   let readTextureFinish (self: Clipboard) (result: Gio.AsyncResult) : result<option<Texture>, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_clipboard_read_texture_finish (Glue.obj self.Id (gdk_clipboard_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_clipboard_read_texture_finish (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) (Internal.Raw.obj result.Id (Internal.GioC.g_async_result_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
-      let zid1 = Glue.wrap (zr) true
+      let zid1 = Internal.Raw.wrap (zr) true
       let zv = (if zid1 = 0 then None else Some (Texture zid1))
-      Glue.outEnd ()
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_clipboard_read_value_async : cptr -> usize -> i32 -> cptr -> cptr -> cptr -> unit
 
   /// Asynchronously request the @clipboard contents converted to the given @type.
   let readValueAsync (self: Clipboard) (type_: usize) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
-      Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
+      Internal.Raw.hold (fun () ->
+        let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 0) false
         let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
-        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        let res = Gio.AsyncResult (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         callback sourceObject res)
     let zp3 =
       match cancellable with
-      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
-      | None -> Glue.none ()
-    gdk_clipboard_read_value_async (Glue.obj self.Id (gdk_clipboard_get_type ())) type_ (i32 ioPriority) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-
-  extern gdk_clipboard_read_value_finish : cptr -> cptr -> cptr -> cptr
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_clipboard_read_value_async (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) type_ (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Finishes an asynchronous clipboard read.
   let readValueFinish (self: Clipboard) (result: Gio.AsyncResult) : result<GObject.Value, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_clipboard_read_value_finish (Glue.obj self.Id (gdk_clipboard_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_clipboard_read_value_finish (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) (Internal.Raw.obj result.Id (Internal.GioC.g_async_result_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
-      let zv = GObject.Value (Glue.wrapBoxed (zr) (GObject.g_value_get_type ()) false)
-      Glue.outEnd ()
+      let zv = GObject.Value (Internal.Raw.wrapBoxed (zr) (Internal.GObjectC.g_value_get_type ()) false)
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_clipboard_set_content : cptr -> cptr -> i32
 
   /// Sets a new content provider on @clipboard.
   let setContent (self: Clipboard) (provider: option<ContentProvider>) : bool =
     let zp1 =
       match provider with
-      | Some zo -> Glue.obj zo.Id (gdk_content_provider_get_type ())
-      | None -> Glue.none ()
-    let zr = gdk_clipboard_set_content (Glue.obj self.Id (gdk_clipboard_get_type ())) zp1
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_content_provider_get_type ())
+      | None -> Internal.Raw.none ()
+    let zr = Internal.GdkC.gdk_clipboard_set_content (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) zp1
     ((zr) <> i32 0)
-
-  extern gdk_clipboard_set_text : cptr -> cstr -> unit
 
   /// Puts the given @text into the clipboard.
   let setText (self: Clipboard) (text: string) : unit =
-    gdk_clipboard_set_text (Glue.obj self.Id (gdk_clipboard_get_type ())) text
-
-  extern gdk_clipboard_set_texture : cptr -> cptr -> unit
+    Internal.GdkC.gdk_clipboard_set_text (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) text
 
   /// Puts the given @texture into the clipboard.
   let setTexture (self: Clipboard) (texture: Texture) : unit =
-    gdk_clipboard_set_texture (Glue.obj self.Id (gdk_clipboard_get_type ())) (Glue.obj texture.Id (gdk_texture_get_type ()))
-
-  extern gdk_clipboard_set_valist : cptr -> usize -> cptr -> unit
+    Internal.GdkC.gdk_clipboard_set_texture (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) (Internal.Raw.obj texture.Id (Internal.GdkC.gdk_texture_get_type ()))
 
   /// Sets the clipboard to contain the value collected from the given @args.
   [<Unsafe>]
   let setValist (self: Clipboard) (type_: usize) (args: cptr) : unit =
-    gdk_clipboard_set_valist (Glue.obj self.Id (gdk_clipboard_get_type ())) type_ args
-
-  extern gdk_clipboard_set_value : cptr -> cptr -> unit
+    Internal.GdkC.gdk_clipboard_set_valist (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) type_ args
 
   /// Sets the @clipboard to contain the given @value.
   let set (self: Clipboard) (value: GObject.Value) : unit =
-    gdk_clipboard_set_value (Glue.obj self.Id (gdk_clipboard_get_type ())) (Glue.obj value.Id (GObject.g_value_get_type ()))
-
-  extern gdk_clipboard_store_async : cptr -> i32 -> cptr -> cptr -> cptr -> unit
+    Internal.GdkC.gdk_clipboard_set_value (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ()))
 
   /// Asynchronously instructs the @clipboard to store its contents remotely.
   let storeAsync (self: Clipboard) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
-      Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
+      Internal.Raw.hold (fun () ->
+        let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 0) false
         let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
-        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        let res = Gio.AsyncResult (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         callback sourceObject res)
     let zp3 =
       match cancellable with
-      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
-      | None -> Glue.none ()
-    gdk_clipboard_store_async (Glue.obj self.Id (gdk_clipboard_get_type ())) (i32 ioPriority) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-
-  extern gdk_clipboard_store_finish : cptr -> cptr -> cptr -> i32
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_clipboard_store_async (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Finishes an asynchronous clipboard store.
   let storeFinish (self: Clipboard) (result: Gio.AsyncResult) : result<bool, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_clipboard_store_finish (Glue.obj self.Id (gdk_clipboard_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_clipboard_store_finish (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) (Internal.Raw.obj result.Id (Internal.GioC.g_async_result_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
       let zv = ((zr) <> i32 0)
-      Glue.outEnd ()
+      Internal.Raw.outEnd ()
       Ok zv
 
   /// Emitted when the clipboard changes ownership.
   let onChanged (self: Clipboard) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_clipboard_get_type ())) "changed" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) "changed" handler
 
   /// Calls `handler` when the `content` property changes.
   let onNotifyContent (self: Clipboard) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_clipboard_get_type ())) "notify::content" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) "notify::content" handler
 
   /// Calls `handler` when the `display` property changes.
   let onNotifyDisplay (self: Clipboard) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_clipboard_get_type ())) "notify::display" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) "notify::display" handler
 
   /// Calls `handler` when the `formats` property changes.
   let onNotifyFormats (self: Clipboard) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_clipboard_get_type ())) "notify::formats" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) "notify::formats" handler
 
   /// Calls `handler` when the `local` property changes.
   let onNotifyLocal (self: Clipboard) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_clipboard_get_type ())) "notify::local" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) "notify::local" handler
 
 module ColorState =
-  extern gdk_color_state_create_cicp_params : cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_color_state_get_type ()
 
   /// Create a [class@Gdk.CicpParams] representing the colorstate.
   let createCicpParams (self: ColorState) : option<CicpParams> =
-    let zr = gdk_color_state_create_cicp_params (Glue.obj self.Id (gdk_color_state_get_type ()))
-    let zid1 = Glue.wrap (zr) true
+    let zr = Internal.GdkC.gdk_color_state_create_cicp_params (Internal.Raw.obj self.Id (Internal.GdkC.gdk_color_state_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) true
     (if zid1 = 0 then None else Some (CicpParams zid1))
-
-  extern gdk_color_state_equal : cptr -> cptr -> i32
 
   /// Compares two `GdkColorStates` for equality.
   let equal (self: ColorState) (other: ColorState) : bool =
-    (((gdk_color_state_equal (Glue.obj self.Id (gdk_color_state_get_type ())) (Glue.obj other.Id (gdk_color_state_get_type ())))) <> i32 0)
-
-  extern gdk_color_state_equivalent : cptr -> cptr -> i32
+    (((Internal.GdkC.gdk_color_state_equal (Internal.Raw.obj self.Id (Internal.GdkC.gdk_color_state_get_type ())) (Internal.Raw.obj other.Id (Internal.GdkC.gdk_color_state_get_type ())))) <> i32 0)
 
   /// Compares two `GdkColorStates` for equivalence.
   let equivalent (self: ColorState) (other: ColorState) : bool =
-    (((gdk_color_state_equivalent (Glue.obj self.Id (gdk_color_state_get_type ())) (Glue.obj other.Id (gdk_color_state_get_type ())))) <> i32 0)
-
-  extern gdk_color_state_ref : cptr -> cptr
+    (((Internal.GdkC.gdk_color_state_equivalent (Internal.Raw.obj self.Id (Internal.GdkC.gdk_color_state_get_type ())) (Internal.Raw.obj other.Id (Internal.GdkC.gdk_color_state_get_type ())))) <> i32 0)
 
   /// Increase the reference count of @self.
   [<Unsafe>]
   let ref_ (self: ColorState) : ColorState =
-    ColorState (Glue.wrapBoxed ((gdk_color_state_ref (Glue.obj self.Id (gdk_color_state_get_type ())))) (gdk_color_state_get_type ()) true)
-
-  extern gdk_color_state_unref : cptr -> unit
+    ColorState (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_color_state_ref (Internal.Raw.obj self.Id (Internal.GdkC.gdk_color_state_get_type ())))) (Internal.GdkC.gdk_color_state_get_type ()) true)
 
   /// Decrease the reference count of @self.
   [<Unsafe>]
   let unref (self: ColorState) : unit =
-    gdk_color_state_unref (Glue.obj self.Id (gdk_color_state_get_type ()))
-
-  extern gdk_color_state_get_oklab : unit -> cptr
+    Internal.GdkC.gdk_color_state_unref (Internal.Raw.obj self.Id (Internal.GdkC.gdk_color_state_get_type ()))
 
   /// Returns the color state object representing the oklab color space.
   let getOklab () : ColorState =
-    ColorState (Glue.wrapBoxed ((gdk_color_state_get_oklab ())) (gdk_color_state_get_type ()) true)
-
-  extern gdk_color_state_get_oklch : unit -> cptr
+    ColorState (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_color_state_get_oklab ())) (Internal.GdkC.gdk_color_state_get_type ()) true)
 
   /// Returns the color state object representing the oklch color space.
   let getOklch () : ColorState =
-    ColorState (Glue.wrapBoxed ((gdk_color_state_get_oklch ())) (gdk_color_state_get_type ()) true)
-
-  extern gdk_color_state_get_rec2100_linear : unit -> cptr
+    ColorState (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_color_state_get_oklch ())) (Internal.GdkC.gdk_color_state_get_type ()) true)
 
   /// Returns the color state object representing the linear rec2100 color space.
   let getRec2100Linear () : ColorState =
-    ColorState (Glue.wrapBoxed ((gdk_color_state_get_rec2100_linear ())) (gdk_color_state_get_type ()) true)
-
-  extern gdk_color_state_get_rec2100_pq : unit -> cptr
+    ColorState (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_color_state_get_rec2100_linear ())) (Internal.GdkC.gdk_color_state_get_type ()) true)
 
   /// Returns the color state object representing the rec2100-pq color space.
   let getRec2100Pq () : ColorState =
-    ColorState (Glue.wrapBoxed ((gdk_color_state_get_rec2100_pq ())) (gdk_color_state_get_type ()) true)
-
-  extern gdk_color_state_get_srgb : unit -> cptr
+    ColorState (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_color_state_get_rec2100_pq ())) (Internal.GdkC.gdk_color_state_get_type ()) true)
 
   /// Returns the color state object representing the sRGB color space.
   let getSrgb () : ColorState =
-    ColorState (Glue.wrapBoxed ((gdk_color_state_get_srgb ())) (gdk_color_state_get_type ()) true)
-
-  extern gdk_color_state_get_srgb_linear : unit -> cptr
+    ColorState (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_color_state_get_srgb ())) (Internal.GdkC.gdk_color_state_get_type ()) true)
 
   /// Returns the color state object representing the linearized sRGB color space.
   let getSrgbLinear () : ColorState =
-    ColorState (Glue.wrapBoxed ((gdk_color_state_get_srgb_linear ())) (gdk_color_state_get_type ()) true)
+    ColorState (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_color_state_get_srgb_linear ())) (Internal.GdkC.gdk_color_state_get_type ()) true)
 
 module ContentDeserializer =
   /// The same object as its interface.
@@ -2814,491 +2630,379 @@ module ContentDeserializer =
   /// The same object as its ancestor.
   let toGObjectObject (self: ContentDeserializer) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_content_deserializer_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<ContentDeserializer> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_content_deserializer_get_type ()) then Some (ContentDeserializer object.Id) else None
-
-  extern gdk_content_deserializer_get_cancellable : cptr -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_content_deserializer_get_type ()) then Some (ContentDeserializer object.Id) else None
 
   /// Gets the cancellable for the current operation.
   let getCancellable (self: ContentDeserializer) : option<Gio.Cancellable> =
-    let zr = gdk_content_deserializer_get_cancellable (Glue.obj self.Id (gdk_content_deserializer_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_content_deserializer_get_cancellable (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_deserializer_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Gio.Cancellable zid1))
-
-  extern gdk_content_deserializer_get_gtype : cptr -> usize
 
   /// Gets the `GType` to create an instance of.
   let getGtype (self: ContentDeserializer) : usize =
-    ((gdk_content_deserializer_get_gtype (Glue.obj self.Id (gdk_content_deserializer_get_type ()))))
-
-  extern gdk_content_deserializer_get_input_stream : cptr -> cptr
+    ((Internal.GdkC.gdk_content_deserializer_get_gtype (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_deserializer_get_type ()))))
 
   /// Gets the input stream for the current operation.
   let getInputStream (self: ContentDeserializer) : Gio.InputStream =
-    Gio.InputStream (Glue.wrap ((gdk_content_deserializer_get_input_stream (Glue.obj self.Id (gdk_content_deserializer_get_type ())))) false)
-
-  extern gdk_content_deserializer_get_mime_type : cptr -> cptr
+    Gio.InputStream (Internal.Raw.wrap ((Internal.GdkC.gdk_content_deserializer_get_input_stream (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_deserializer_get_type ())))) false)
 
   /// Gets the mime type to deserialize from.
   let getMimeType (self: ContentDeserializer) : string =
-    Glue.text ((gdk_content_deserializer_get_mime_type (Glue.obj self.Id (gdk_content_deserializer_get_type ()))))
-
-  extern gdk_content_deserializer_get_priority : cptr -> i32
+    Internal.Raw.text ((Internal.GdkC.gdk_content_deserializer_get_mime_type (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_deserializer_get_type ()))))
 
   /// Gets the I/O priority for the current operation.
   let getPriority (self: ContentDeserializer) : int =
-    (int ((gdk_content_deserializer_get_priority (Glue.obj self.Id (gdk_content_deserializer_get_type ())))))
-
-  extern gdk_content_deserializer_get_task_data : cptr -> cptr
+    (int ((Internal.GdkC.gdk_content_deserializer_get_priority (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_deserializer_get_type ())))))
 
   /// Gets the data that was associated with the current operation.
   let getTaskData (self: ContentDeserializer) : cptr =
-    ((gdk_content_deserializer_get_task_data (Glue.obj self.Id (gdk_content_deserializer_get_type ()))))
-
-  extern gdk_content_deserializer_get_user_data : cptr -> cptr
+    ((Internal.GdkC.gdk_content_deserializer_get_task_data (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_deserializer_get_type ()))))
 
   /// Gets the user data that was passed when the deserializer was registered.
   let getUserData (self: ContentDeserializer) : cptr =
-    ((gdk_content_deserializer_get_user_data (Glue.obj self.Id (gdk_content_deserializer_get_type ()))))
-
-  extern gdk_content_deserializer_get_value : cptr -> cptr
+    ((Internal.GdkC.gdk_content_deserializer_get_user_data (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_deserializer_get_type ()))))
 
   /// Gets the `GValue` to store the deserialized object in.
   let getValue (self: ContentDeserializer) : GObject.Value =
-    GObject.Value (Glue.wrapBoxed ((gdk_content_deserializer_get_value (Glue.obj self.Id (gdk_content_deserializer_get_type ())))) (GObject.g_value_get_type ()) false)
-
-  extern gdk_content_deserializer_return_error : cptr -> cptr -> unit
+    GObject.Value (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_deserializer_get_value (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_deserializer_get_type ())))) (Internal.GObjectC.g_value_get_type ()) false)
 
   /// Indicate that the deserialization has ended with an error.
   let returnError (self: ContentDeserializer) (error: Glue.Error) : unit =
-    let ze1 = Glue.errorNew error
-    gdk_content_deserializer_return_error (Glue.obj self.Id (gdk_content_deserializer_get_type ())) ze1
-
-  extern gdk_content_deserializer_return_success : cptr -> unit
+    let ze1 = Internal.Raw.errorNew error.domain error.code error.message
+    Internal.GdkC.gdk_content_deserializer_return_error (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_deserializer_get_type ())) ze1
 
   /// Indicate that the deserialization has been successfully completed.
   let returnSuccess (self: ContentDeserializer) : unit =
-    gdk_content_deserializer_return_success (Glue.obj self.Id (gdk_content_deserializer_get_type ()))
-
-  extern gdk_content_deserializer_set_task_data : cptr -> cptr -> cptr -> unit
+    Internal.GdkC.gdk_content_deserializer_return_success (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_deserializer_get_type ()))
 
   /// Associate data with the current deserialization operation.
   [<Unsafe>]
   let setTaskData (self: ContentDeserializer) (data: cptr) (notify: cptr) : unit =
-    gdk_content_deserializer_set_task_data (Glue.obj self.Id (gdk_content_deserializer_get_type ())) data notify
+    Internal.GdkC.gdk_content_deserializer_set_task_data (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_deserializer_get_type ())) data notify
 
 module ContentFormats =
-  extern gdk_content_formats_new : cptr -> u32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_content_formats_get_type ()
 
   /// Creates a new `GdkContentFormats` from an array of mime types.
   let create (mimeTypes: list<string>) : ContentFormats =
-    let zv2 = Glue.strv mimeTypes
-    let zr = gdk_content_formats_new zv2 (u32 (Glue.count mimeTypes))
-    let zv = ContentFormats (Glue.wrapBoxed (zr) (gdk_content_formats_get_type ()) true)
-    Glue.freeStrv zv2
+    let zv2 = Internal.Raw.strv mimeTypes
+    let zr = Internal.GdkC.gdk_content_formats_new zv2 (u32 (Internal.Raw.count mimeTypes))
+    let zv = ContentFormats (Internal.Raw.wrapBoxed (zr) (Internal.GdkC.gdk_content_formats_get_type ()) true)
+    Internal.Raw.freeStrv zv2
     zv
-
-  extern gdk_content_formats_new_for_gtype : usize -> cptr
 
   /// Creates a new `GdkContentFormats` for a given `GType`.
   let createForGtype (type_: usize) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_new_for_gtype type_)) (gdk_content_formats_get_type ()) true)
-
-  extern gdk_content_formats_contain_gtype : cptr -> usize -> i32
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_formats_new_for_gtype type_)) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Checks if a given `GType` is part of the given @formats.
   let containGtype (self: ContentFormats) (type_: usize) : bool =
-    (((gdk_content_formats_contain_gtype (Glue.obj self.Id (gdk_content_formats_get_type ())) type_)) <> i32 0)
-
-  extern gdk_content_formats_contain_mime_type : cptr -> cstr -> i32
+    (((Internal.GdkC.gdk_content_formats_contain_gtype (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())) type_)) <> i32 0)
 
   /// Checks if a given mime type is part of the given @formats.
   let containMimeType (self: ContentFormats) (mimeType: string) : bool =
-    (((gdk_content_formats_contain_mime_type (Glue.obj self.Id (gdk_content_formats_get_type ())) mimeType)) <> i32 0)
-
-  extern gdk_content_formats_get_gtypes : cptr -> cptr -> cptr
+    (((Internal.GdkC.gdk_content_formats_contain_mime_type (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())) mimeType)) <> i32 0)
 
   /// Gets the `GType`s included in @formats.
   let getGtypes (self: ContentFormats) : list<usize> =
-    Glue.outBegin ()
-    let zr = gdk_content_formats_get_gtypes (Glue.obj self.Id (gdk_content_formats_get_type ())) (Glue.out 0)
-    let zv = Glue.mapList (fun zi -> usize zi) (Glue.intsOf (zr) (Glue.outI64 0) 8 false false)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_content_formats_get_gtypes (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())) (Internal.Raw.out 0)
+    let zv = Internal.Raw.mapList (fun zi -> usize zi) (Internal.Raw.intsOf (zr) (Internal.Raw.outI64 0) 8 false false)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_content_formats_get_mime_types : cptr -> cptr -> cptr
 
   /// Gets the mime types included in @formats.
   let getMimeTypes (self: ContentFormats) : list<string> =
-    Glue.outBegin ()
-    let zr = gdk_content_formats_get_mime_types (Glue.obj self.Id (gdk_content_formats_get_type ())) (Glue.out 0)
-    let zv = Glue.strvList (zr) 0
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_content_formats_get_mime_types (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())) (Internal.Raw.out 0)
+    let zv = Internal.Raw.strvList (zr) 0
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_content_formats_is_empty : cptr -> i32
 
   /// Returns whether the content formats contain any formats.
   let isEmpty (self: ContentFormats) : bool =
-    (((gdk_content_formats_is_empty (Glue.obj self.Id (gdk_content_formats_get_type ())))) <> i32 0)
-
-  extern gdk_content_formats_match : cptr -> cptr -> i32
+    (((Internal.GdkC.gdk_content_formats_is_empty (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())))) <> i32 0)
 
   /// Checks if @first and @second have any matching formats.
   let match_ (self: ContentFormats) (second: ContentFormats) : bool =
-    (((gdk_content_formats_match (Glue.obj self.Id (gdk_content_formats_get_type ())) (Glue.obj second.Id (gdk_content_formats_get_type ())))) <> i32 0)
-
-  extern gdk_content_formats_match_gtype : cptr -> cptr -> usize
+    (((Internal.GdkC.gdk_content_formats_match (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())) (Internal.Raw.obj second.Id (Internal.GdkC.gdk_content_formats_get_type ())))) <> i32 0)
 
   /// Finds the first `GType` from @first that is also contained in @second.
   let matchGtype (self: ContentFormats) (second: ContentFormats) : usize =
-    ((gdk_content_formats_match_gtype (Glue.obj self.Id (gdk_content_formats_get_type ())) (Glue.obj second.Id (gdk_content_formats_get_type ()))))
-
-  extern gdk_content_formats_match_mime_type : cptr -> cptr -> cptr
+    ((Internal.GdkC.gdk_content_formats_match_gtype (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())) (Internal.Raw.obj second.Id (Internal.GdkC.gdk_content_formats_get_type ()))))
 
   /// Finds the first mime type from @first that is also contained in @second.
   let matchMimeType (self: ContentFormats) (second: ContentFormats) : option<string> =
-    Glue.textOption ((gdk_content_formats_match_mime_type (Glue.obj self.Id (gdk_content_formats_get_type ())) (Glue.obj second.Id (gdk_content_formats_get_type ()))))
-
-  extern gdk_content_formats_print : cptr -> cptr -> unit
+    Internal.Raw.textOption ((Internal.GdkC.gdk_content_formats_match_mime_type (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())) (Internal.Raw.obj second.Id (Internal.GdkC.gdk_content_formats_get_type ()))))
 
   /// Prints the given @formats into a string for human consumption.
   let print (self: ContentFormats) (string: GLib.String) : unit =
-    gdk_content_formats_print (Glue.obj self.Id (gdk_content_formats_get_type ())) (Glue.obj string.Id (GLib.g_gstring_get_type ()))
-
-  extern gdk_content_formats_ref : cptr -> cptr
+    Internal.GdkC.gdk_content_formats_print (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())) (Internal.Raw.obj string.Id (Internal.GLibC.g_gstring_get_type ()))
 
   /// Increases the reference count of a `GdkContentFormats` by one.
   [<Unsafe>]
   let ref_ (self: ContentFormats) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_ref (Glue.obj self.Id (gdk_content_formats_get_type ())))) (gdk_content_formats_get_type ()) true)
-
-  extern gdk_content_formats_to_string : cptr -> cptr
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_formats_ref (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Prints the given @formats into a human-readable string.
   let toString (self: ContentFormats) : string =
-    Glue.takeText ((gdk_content_formats_to_string (Glue.obj self.Id (gdk_content_formats_get_type ()))))
-
-  extern gdk_content_formats_union : cptr -> cptr -> cptr
+    Internal.Raw.takeText ((Internal.GdkC.gdk_content_formats_to_string (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ()))))
 
   /// Append all missing types from @second to @first, in the order they had in @second.
   let union (self: ContentFormats) (second: ContentFormats) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_union (Glue.obj self.Id (gdk_content_formats_get_type ())) (Glue.obj second.Id (gdk_content_formats_get_type ())))) (gdk_content_formats_get_type ()) true)
-
-  extern gdk_content_formats_union_deserialize_gtypes : cptr -> cptr
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_formats_union (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())) (Internal.Raw.obj second.Id (Internal.GdkC.gdk_content_formats_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Add GTypes for mime types in @formats for which deserializers are registered.
   let unionDeserializeGtypes (self: ContentFormats) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_union_deserialize_gtypes (Glue.obj self.Id (gdk_content_formats_get_type ())))) (gdk_content_formats_get_type ()) true)
-
-  extern gdk_content_formats_union_deserialize_mime_types : cptr -> cptr
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_formats_union_deserialize_gtypes (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Add mime types for GTypes in @formats for which deserializers are registered.
   let unionDeserializeMimeTypes (self: ContentFormats) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_union_deserialize_mime_types (Glue.obj self.Id (gdk_content_formats_get_type ())))) (gdk_content_formats_get_type ()) true)
-
-  extern gdk_content_formats_union_serialize_gtypes : cptr -> cptr
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_formats_union_deserialize_mime_types (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Add GTypes for the mime types in @formats for which serializers are registered.
   let unionSerializeGtypes (self: ContentFormats) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_union_serialize_gtypes (Glue.obj self.Id (gdk_content_formats_get_type ())))) (gdk_content_formats_get_type ()) true)
-
-  extern gdk_content_formats_union_serialize_mime_types : cptr -> cptr
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_formats_union_serialize_gtypes (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Add mime types for GTypes in @formats for which serializers are registered.
   let unionSerializeMimeTypes (self: ContentFormats) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_union_serialize_mime_types (Glue.obj self.Id (gdk_content_formats_get_type ())))) (gdk_content_formats_get_type ()) true)
-
-  extern gdk_content_formats_unref : cptr -> unit
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_formats_union_serialize_mime_types (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Decreases the reference count of a `GdkContentFormats` by one.
   [<Unsafe>]
   let unref (self: ContentFormats) : unit =
-    gdk_content_formats_unref (Glue.obj self.Id (gdk_content_formats_get_type ()))
-
-  extern gdk_content_formats_parse : cstr -> cptr
+    Internal.GdkC.gdk_content_formats_unref (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ()))
 
   /// Parses the given @string into `GdkContentFormats` and returns the formats.
   let parse (string: string) : option<ContentFormats> =
-    let zr = gdk_content_formats_parse string
-    let zid1 = Glue.wrapBoxed (zr) (gdk_content_formats_get_type ()) true
+    let zr = Internal.GdkC.gdk_content_formats_parse string
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GdkC.gdk_content_formats_get_type ()) true
     (if zid1 = 0 then None else Some (ContentFormats zid1))
 
 module ContentFormatsBuilder =
-  extern gdk_content_formats_builder_new : unit -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_content_formats_builder_get_type ()
 
   /// Create a new `GdkContentFormatsBuilder` object.
   let create () : ContentFormatsBuilder =
-    ContentFormatsBuilder (Glue.wrapBoxed ((gdk_content_formats_builder_new ())) (gdk_content_formats_builder_get_type ()) true)
-
-  extern gdk_content_formats_builder_add_formats : cptr -> cptr -> unit
+    ContentFormatsBuilder (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_formats_builder_new ())) (Internal.GdkC.gdk_content_formats_builder_get_type ()) true)
 
   /// Appends all formats from @formats to @builder, skipping those that already exist.
   let addFormats (self: ContentFormatsBuilder) (formats: ContentFormats) : unit =
-    gdk_content_formats_builder_add_formats (Glue.obj self.Id (gdk_content_formats_builder_get_type ())) (Glue.obj formats.Id (gdk_content_formats_get_type ()))
-
-  extern gdk_content_formats_builder_add_gtype : cptr -> usize -> unit
+    Internal.GdkC.gdk_content_formats_builder_add_formats (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_builder_get_type ())) (Internal.Raw.obj formats.Id (Internal.GdkC.gdk_content_formats_get_type ()))
 
   /// Appends @type to @builder if it has not already been added.
   let addGtype (self: ContentFormatsBuilder) (type_: usize) : unit =
-    gdk_content_formats_builder_add_gtype (Glue.obj self.Id (gdk_content_formats_builder_get_type ())) type_
-
-  extern gdk_content_formats_builder_add_mime_type : cptr -> cstr -> unit
+    Internal.GdkC.gdk_content_formats_builder_add_gtype (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_builder_get_type ())) type_
 
   /// Appends @mime_type to @builder if it has not already been added.
   let addMimeType (self: ContentFormatsBuilder) (mimeType: string) : unit =
-    gdk_content_formats_builder_add_mime_type (Glue.obj self.Id (gdk_content_formats_builder_get_type ())) mimeType
-
-  extern gdk_content_formats_builder_free_to_formats : cptr -> cptr
+    Internal.GdkC.gdk_content_formats_builder_add_mime_type (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_builder_get_type ())) mimeType
 
   /// Creates a new `GdkContentFormats` from the current state of the given @builder, and frees the @builder instance.
   let freeToFormats (self: ContentFormatsBuilder) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_builder_free_to_formats (Glue.obj self.Id (gdk_content_formats_builder_get_type ())))) (gdk_content_formats_get_type ()) true)
-
-  extern gdk_content_formats_builder_ref : cptr -> cptr
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_formats_builder_free_to_formats (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_builder_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Acquires a reference on the given @builder.
   [<Unsafe>]
   let ref_ (self: ContentFormatsBuilder) : ContentFormatsBuilder =
-    ContentFormatsBuilder (Glue.wrapBoxed ((gdk_content_formats_builder_ref (Glue.obj self.Id (gdk_content_formats_builder_get_type ())))) (gdk_content_formats_builder_get_type ()) false)
-
-  extern gdk_content_formats_builder_to_formats : cptr -> cptr
+    ContentFormatsBuilder (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_formats_builder_ref (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_builder_get_type ())))) (Internal.GdkC.gdk_content_formats_builder_get_type ()) false)
 
   /// Creates a new `GdkContentFormats` from the given @builder.
   let toFormats (self: ContentFormatsBuilder) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_builder_to_formats (Glue.obj self.Id (gdk_content_formats_builder_get_type ())))) (gdk_content_formats_get_type ()) true)
-
-  extern gdk_content_formats_builder_unref : cptr -> unit
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_formats_builder_to_formats (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_builder_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Releases a reference on the given @builder.
   [<Unsafe>]
   let unref (self: ContentFormatsBuilder) : unit =
-    gdk_content_formats_builder_unref (Glue.obj self.Id (gdk_content_formats_builder_get_type ()))
+    Internal.GdkC.gdk_content_formats_builder_unref (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_builder_get_type ()))
 
 module ContentProvider =
   /// The same object as its ancestor.
   let toGObjectObject (self: ContentProvider) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_content_provider_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<ContentProvider> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_content_provider_get_type ()) then Some (ContentProvider object.Id) else None
-
-  extern gdk_content_provider_new_for_bytes : cstr -> cptr -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_content_provider_get_type ()) then Some (ContentProvider object.Id) else None
 
   /// Create a content provider that provides the given @bytes as data for the given @mime_type.
   let createForBytes (mimeType: string) (bytes: GLib.Bytes) : ContentProvider =
-    ContentProvider (Glue.wrap ((gdk_content_provider_new_for_bytes mimeType (Glue.obj bytes.Id (GLib.g_bytes_get_type ())))) true)
-
-  extern gdk_content_provider_new_for_value : cptr -> cptr
+    ContentProvider (Internal.Raw.wrap ((Internal.GdkC.gdk_content_provider_new_for_bytes mimeType (Internal.Raw.obj bytes.Id (Internal.GLibC.g_bytes_get_type ())))) true)
 
   /// Create a content provider that provides the given @value.
   let createForValue (value: GObject.Value) : ContentProvider =
-    ContentProvider (Glue.wrap ((gdk_content_provider_new_for_value (Glue.obj value.Id (GObject.g_value_get_type ())))) true)
-
-  /// Create a content provider that provides the value of the given @type. C's own function, of variable arguments: called as C calls it, by code that
-  /// answers for what it passes.
-  extern gdk_content_provider_new_typed : usize -> ... -> cptr
-
-  extern gdk_content_provider_new_union : cptr -> usize -> cptr
+    ContentProvider (Internal.Raw.wrap ((Internal.GdkC.gdk_content_provider_new_for_value (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())))) true)
 
   /// Creates a content provider that represents all the given @providers.
   let createUnion (providers: list<ContentProvider>) : ContentProvider =
-    let za2 = Glue.ptrs (Glue.mapList (fun (zo: ContentProvider) -> Glue.give (Glue.obj zo.Id (gdk_content_provider_get_type ()))) providers)
-    let zr = gdk_content_provider_new_union za2 (usize (Glue.count providers))
-    ContentProvider (Glue.wrap (zr) true)
-
-  extern gdk_content_provider_content_changed : cptr -> unit
+    let za2 = Internal.Raw.ptrs (Internal.Raw.mapList (fun (zo: ContentProvider) -> Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GdkC.gdk_content_provider_get_type ()))) providers)
+    let zr = Internal.GdkC.gdk_content_provider_new_union za2 (usize (Internal.Raw.count providers))
+    ContentProvider (Internal.Raw.wrap (zr) true)
 
   /// Emits the ::content-changed signal.
   let contentChanged (self: ContentProvider) : unit =
-    gdk_content_provider_content_changed (Glue.obj self.Id (gdk_content_provider_get_type ()))
-
-  extern gdk_content_provider_get_value : cptr -> cptr -> cptr -> i32
+    Internal.GdkC.gdk_content_provider_content_changed (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ()))
 
   /// Gets the contents of @provider stored in @value.
   let getValue (self: ContentProvider) : result<(bool * GObject.Value), Glue.Error> =
-    let zo1 = Glue.alloc (GObject.zgtk_sizeof_GObject_Value ()) (GObject.g_value_get_type ())
-    Glue.outBegin ()
-    let zr = gdk_content_provider_get_value (Glue.obj self.Id (gdk_content_provider_get_type ())) (Glue.obj zo1 (GObject.g_value_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    let zo1 = Internal.Raw.alloc (Internal.GObjectC.zgtk_sizeof_GObject_Value ()) (Internal.GObjectC.g_value_get_type ())
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_content_provider_get_value (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())) (Internal.Raw.obj zo1 (Internal.GObjectC.g_value_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
       let zv = (((zr) <> i32 0), GObject.Value zo1)
-      Glue.outEnd ()
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_content_provider_ref_formats : cptr -> cptr
 
   /// Gets the formats that the provider can provide its current contents in.
   let refFormats (self: ContentProvider) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((gdk_content_provider_ref_formats (Glue.obj self.Id (gdk_content_provider_get_type ())))) (gdk_content_formats_get_type ()) true)
-
-  extern gdk_content_provider_ref_storable_formats : cptr -> cptr
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_provider_ref_formats (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Gets the formats that the provider suggests other applications to store the data in.
   let refStorableFormats (self: ContentProvider) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((gdk_content_provider_ref_storable_formats (Glue.obj self.Id (gdk_content_provider_get_type ())))) (gdk_content_formats_get_type ()) true)
-
-  extern gdk_content_provider_write_mime_type_async : cptr -> cstr -> cptr -> i32 -> cptr -> cptr -> cptr -> unit
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_provider_ref_storable_formats (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Asynchronously writes the contents of @provider to @stream in the given @mime_type.
   let writeMimeTypeAsync (self: ContentProvider) (mimeType: string) (stream: Gio.OutputStream) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
-      Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
+      Internal.Raw.hold (fun () ->
+        let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 0) false
         let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
-        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        let res = Gio.AsyncResult (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         callback sourceObject res)
     let zp3 =
       match cancellable with
-      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
-      | None -> Glue.none ()
-    gdk_content_provider_write_mime_type_async (Glue.obj self.Id (gdk_content_provider_get_type ())) mimeType (Glue.obj stream.Id (Gio.g_output_stream_get_type ())) (i32 ioPriority) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-
-  extern gdk_content_provider_write_mime_type_finish : cptr -> cptr -> cptr -> i32
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_content_provider_write_mime_type_async (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())) mimeType (Internal.Raw.obj stream.Id (Internal.GioC.g_output_stream_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Finishes an asynchronous write operation.
   let writeMimeTypeFinish (self: ContentProvider) (result: Gio.AsyncResult) : result<bool, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_content_provider_write_mime_type_finish (Glue.obj self.Id (gdk_content_provider_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_content_provider_write_mime_type_finish (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())) (Internal.Raw.obj result.Id (Internal.GioC.g_async_result_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
       let zv = ((zr) <> i32 0)
-      Glue.outEnd ()
+      Internal.Raw.outEnd ()
       Ok zv
 
   /// Emitted whenever the content provided by this provider has changed.
   let onContentChanged (self: ContentProvider) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_content_provider_get_type ())) "content-changed" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())) "content-changed" handler
 
   /// Calls `handler` when the `formats` property changes.
   let onNotifyFormats (self: ContentProvider) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_content_provider_get_type ())) "notify::formats" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())) "notify::formats" handler
 
   /// Calls `handler` when the `storable-formats` property changes.
   let onNotifyStorableFormats (self: ContentProvider) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_content_provider_get_type ())) "notify::storable-formats" handler
-
-  extern zgtk_override_Gdk_ContentProvider_attach_clipboard : usize -> cptr -> unit
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())) "notify::storable-formats" handler
 
   /// Gives a type made with `Glue.subclass` its own `attach_clipboard`: a virtual method.
   let overrideAttachClipboard (gtype: usize) (handler: ContentProvider -> Clipboard -> unit) : unit =
     let zcb =
-      Glue.hold (fun () ->
-        let provider = ContentProvider (Glue.wrap (Glue.argPointer 0) false)
-        let clipboard = Clipboard (Glue.wrap (Glue.argPointer 1) false)
+      Internal.Raw.hold (fun () ->
+        let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
+        let clipboard = Clipboard (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler provider clipboard)
-    zgtk_override_Gdk_ContentProvider_attach_clipboard gtype zcb
-
-  extern zgtk_parent_Gdk_ContentProvider_attach_clipboard : cptr -> cptr -> unit
+    Internal.GdkC.zgtk_override_Gdk_ContentProvider_attach_clipboard gtype zcb
 
   /// `zgtk_parent_Gdk_ContentProvider_attach_clipboard`.
   let parentAttachClipboard (self: ContentProvider) (clipboard: Clipboard) : unit =
-    zgtk_parent_Gdk_ContentProvider_attach_clipboard (Glue.obj self.Id (gdk_content_provider_get_type ())) (Glue.obj clipboard.Id (gdk_clipboard_get_type ()))
-
-  extern zgtk_override_Gdk_ContentProvider_content_changed : usize -> cptr -> unit
+    Internal.GdkC.zgtk_parent_Gdk_ContentProvider_attach_clipboard (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())) (Internal.Raw.obj clipboard.Id (Internal.GdkC.gdk_clipboard_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `content_changed`: Emits the ::content-changed signal.
   let overrideContentChanged (gtype: usize) (handler: ContentProvider -> unit) : unit =
     let zcb =
-      Glue.hold (fun () ->
-        let provider = ContentProvider (Glue.wrap (Glue.argPointer 0) false)
+      Internal.Raw.hold (fun () ->
+        let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler provider)
-    zgtk_override_Gdk_ContentProvider_content_changed gtype zcb
-
-  extern zgtk_parent_Gdk_ContentProvider_content_changed : cptr -> unit
+    Internal.GdkC.zgtk_override_Gdk_ContentProvider_content_changed gtype zcb
 
   /// Emits the ::content-changed signal.
   let parentContentChanged (self: ContentProvider) : unit =
-    zgtk_parent_Gdk_ContentProvider_content_changed (Glue.obj self.Id (gdk_content_provider_get_type ()))
-
-  extern zgtk_override_Gdk_ContentProvider_detach_clipboard : usize -> cptr -> unit
+    Internal.GdkC.zgtk_parent_Gdk_ContentProvider_content_changed (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `detach_clipboard`: a virtual method.
   let overrideDetachClipboard (gtype: usize) (handler: ContentProvider -> Clipboard -> unit) : unit =
     let zcb =
-      Glue.hold (fun () ->
-        let provider = ContentProvider (Glue.wrap (Glue.argPointer 0) false)
-        let clipboard = Clipboard (Glue.wrap (Glue.argPointer 1) false)
+      Internal.Raw.hold (fun () ->
+        let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
+        let clipboard = Clipboard (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler provider clipboard)
-    zgtk_override_Gdk_ContentProvider_detach_clipboard gtype zcb
-
-  extern zgtk_parent_Gdk_ContentProvider_detach_clipboard : cptr -> cptr -> unit
+    Internal.GdkC.zgtk_override_Gdk_ContentProvider_detach_clipboard gtype zcb
 
   /// `zgtk_parent_Gdk_ContentProvider_detach_clipboard`.
   let parentDetachClipboard (self: ContentProvider) (clipboard: Clipboard) : unit =
-    zgtk_parent_Gdk_ContentProvider_detach_clipboard (Glue.obj self.Id (gdk_content_provider_get_type ())) (Glue.obj clipboard.Id (gdk_clipboard_get_type ()))
-
-  extern zgtk_override_Gdk_ContentProvider_ref_formats : usize -> cptr -> unit
+    Internal.GdkC.zgtk_parent_Gdk_ContentProvider_detach_clipboard (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())) (Internal.Raw.obj clipboard.Id (Internal.GdkC.gdk_clipboard_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `ref_formats`: Gets the formats that the provider can provide its current contents in.
   let overrideRefFormats (gtype: usize) (handler: ContentProvider -> ContentFormats) : unit =
     let zcb =
-      Glue.hold (fun () ->
-        let provider = ContentProvider (Glue.wrap (Glue.argPointer 0) false)
-        Glue.returnPointer (Glue.giveBoxed (Glue.obj (handler provider).Id (gdk_content_formats_get_type ())) (gdk_content_formats_get_type ())))
-    zgtk_override_Gdk_ContentProvider_ref_formats gtype zcb
-
-  extern zgtk_parent_Gdk_ContentProvider_ref_formats : cptr -> cptr
+      Internal.Raw.hold (fun () ->
+        let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
+        Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler provider).Id (Internal.GdkC.gdk_content_formats_get_type ())) (Internal.GdkC.gdk_content_formats_get_type ())))
+    Internal.GdkC.zgtk_override_Gdk_ContentProvider_ref_formats gtype zcb
 
   /// Gets the formats that the provider can provide its current contents in.
   let parentRefFormats (self: ContentProvider) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((zgtk_parent_Gdk_ContentProvider_ref_formats (Glue.obj self.Id (gdk_content_provider_get_type ())))) (gdk_content_formats_get_type ()) true)
-
-  extern zgtk_override_Gdk_ContentProvider_ref_storable_formats : usize -> cptr -> unit
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.zgtk_parent_Gdk_ContentProvider_ref_formats (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Gives a type made with `Glue.subclass` its own `ref_storable_formats`: Gets the formats that the provider suggests other applications to store the data in.
   let overrideRefStorableFormats (gtype: usize) (handler: ContentProvider -> ContentFormats) : unit =
     let zcb =
-      Glue.hold (fun () ->
-        let provider = ContentProvider (Glue.wrap (Glue.argPointer 0) false)
-        Glue.returnPointer (Glue.giveBoxed (Glue.obj (handler provider).Id (gdk_content_formats_get_type ())) (gdk_content_formats_get_type ())))
-    zgtk_override_Gdk_ContentProvider_ref_storable_formats gtype zcb
-
-  extern zgtk_parent_Gdk_ContentProvider_ref_storable_formats : cptr -> cptr
+      Internal.Raw.hold (fun () ->
+        let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
+        Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler provider).Id (Internal.GdkC.gdk_content_formats_get_type ())) (Internal.GdkC.gdk_content_formats_get_type ())))
+    Internal.GdkC.zgtk_override_Gdk_ContentProvider_ref_storable_formats gtype zcb
 
   /// Gets the formats that the provider suggests other applications to store the data in.
   let parentRefStorableFormats (self: ContentProvider) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((zgtk_parent_Gdk_ContentProvider_ref_storable_formats (Glue.obj self.Id (gdk_content_provider_get_type ())))) (gdk_content_formats_get_type ()) true)
-
-  extern zgtk_override_Gdk_ContentProvider_write_mime_type_async : usize -> cptr -> unit
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.zgtk_parent_Gdk_ContentProvider_ref_storable_formats (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Gives a type made with `Glue.subclass` its own `write_mime_type_async`: Asynchronously writes the contents of @provider to @stream in the given @mime_type.
   let overrideWriteMimeTypeAsync (gtype: usize) (handler: ContentProvider -> string -> Gio.OutputStream -> int -> option<Gio.Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
-      Glue.hold (fun () ->
-        let provider = ContentProvider (Glue.wrap (Glue.argPointer 0) false)
-        let mimeType = Glue.text (Glue.argPointer 1)
-        let stream = Gio.OutputStream (Glue.wrap (Glue.argPointer 2) false)
-        let ioPriority = Glue.argInt 3
-        let zid1 = Glue.wrap (Glue.argPointer 4) false
+      Internal.Raw.hold (fun () ->
+        let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
+        let mimeType = Internal.Raw.text (Internal.Raw.argPointer 1)
+        let stream = Gio.OutputStream (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
+        let ioPriority = Internal.Raw.argInt 3
+        let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 4) false
         let cancellable = (if zid1 = 0 then None else Some (Gio.Cancellable zid1))
-        let callback = Glue.argPointer 5
-        let userData = Glue.argPointer 6
+        let callback = Internal.Raw.argPointer 5
+        let userData = Internal.Raw.argPointer 6
         handler provider mimeType stream ioPriority cancellable callback userData)
-    zgtk_override_Gdk_ContentProvider_write_mime_type_async gtype zcb
-
-  extern zgtk_parent_Gdk_ContentProvider_write_mime_type_async : cptr -> cstr -> cptr -> i32 -> cptr -> cptr -> cptr -> unit
+    Internal.GdkC.zgtk_override_Gdk_ContentProvider_write_mime_type_async gtype zcb
 
   /// Asynchronously writes the contents of @provider to @stream in the given @mime_type.
   let parentWriteMimeTypeAsync (self: ContentProvider) (mimeType: string) (stream: Gio.OutputStream) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
-      Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
+      Internal.Raw.hold (fun () ->
+        let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 0) false
         let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
-        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        let res = Gio.AsyncResult (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         callback sourceObject res)
     let zp3 =
       match cancellable with
-      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
-      | None -> Glue.none ()
-    zgtk_parent_Gdk_ContentProvider_write_mime_type_async (Glue.obj self.Id (gdk_content_provider_get_type ())) mimeType (Glue.obj stream.Id (Gio.g_output_stream_get_type ())) (i32 ioPriority) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.zgtk_parent_Gdk_ContentProvider_write_mime_type_async (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())) mimeType (Internal.Raw.obj stream.Id (Internal.GioC.g_output_stream_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
 module ContentSerializer =
   /// The same object as its interface.
@@ -3307,1075 +3011,886 @@ module ContentSerializer =
   /// The same object as its ancestor.
   let toGObjectObject (self: ContentSerializer) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_content_serializer_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<ContentSerializer> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_content_serializer_get_type ()) then Some (ContentSerializer object.Id) else None
-
-  extern gdk_content_serializer_get_cancellable : cptr -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_content_serializer_get_type ()) then Some (ContentSerializer object.Id) else None
 
   /// Gets the cancellable for the current operation.
   let getCancellable (self: ContentSerializer) : option<Gio.Cancellable> =
-    let zr = gdk_content_serializer_get_cancellable (Glue.obj self.Id (gdk_content_serializer_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_content_serializer_get_cancellable (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_serializer_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Gio.Cancellable zid1))
-
-  extern gdk_content_serializer_get_gtype : cptr -> usize
 
   /// Gets the `GType` to of the object to serialize.
   let getGtype (self: ContentSerializer) : usize =
-    ((gdk_content_serializer_get_gtype (Glue.obj self.Id (gdk_content_serializer_get_type ()))))
-
-  extern gdk_content_serializer_get_mime_type : cptr -> cptr
+    ((Internal.GdkC.gdk_content_serializer_get_gtype (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_serializer_get_type ()))))
 
   /// Gets the mime type to serialize to.
   let getMimeType (self: ContentSerializer) : string =
-    Glue.text ((gdk_content_serializer_get_mime_type (Glue.obj self.Id (gdk_content_serializer_get_type ()))))
-
-  extern gdk_content_serializer_get_output_stream : cptr -> cptr
+    Internal.Raw.text ((Internal.GdkC.gdk_content_serializer_get_mime_type (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_serializer_get_type ()))))
 
   /// Gets the output stream for the current operation.
   let getOutputStream (self: ContentSerializer) : Gio.OutputStream =
-    Gio.OutputStream (Glue.wrap ((gdk_content_serializer_get_output_stream (Glue.obj self.Id (gdk_content_serializer_get_type ())))) false)
-
-  extern gdk_content_serializer_get_priority : cptr -> i32
+    Gio.OutputStream (Internal.Raw.wrap ((Internal.GdkC.gdk_content_serializer_get_output_stream (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_serializer_get_type ())))) false)
 
   /// Gets the I/O priority for the current operation.
   let getPriority (self: ContentSerializer) : int =
-    (int ((gdk_content_serializer_get_priority (Glue.obj self.Id (gdk_content_serializer_get_type ())))))
-
-  extern gdk_content_serializer_get_task_data : cptr -> cptr
+    (int ((Internal.GdkC.gdk_content_serializer_get_priority (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_serializer_get_type ())))))
 
   /// Gets the data that was associated with the current operation.
   let getTaskData (self: ContentSerializer) : cptr =
-    ((gdk_content_serializer_get_task_data (Glue.obj self.Id (gdk_content_serializer_get_type ()))))
-
-  extern gdk_content_serializer_get_user_data : cptr -> cptr
+    ((Internal.GdkC.gdk_content_serializer_get_task_data (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_serializer_get_type ()))))
 
   /// Gets the user data that was passed when the serializer was registered.
   let getUserData (self: ContentSerializer) : cptr =
-    ((gdk_content_serializer_get_user_data (Glue.obj self.Id (gdk_content_serializer_get_type ()))))
-
-  extern gdk_content_serializer_get_value : cptr -> cptr
+    ((Internal.GdkC.gdk_content_serializer_get_user_data (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_serializer_get_type ()))))
 
   /// Gets the `GValue` to read the object to serialize from.
   let getValue (self: ContentSerializer) : GObject.Value =
-    GObject.Value (Glue.wrapBoxed ((gdk_content_serializer_get_value (Glue.obj self.Id (gdk_content_serializer_get_type ())))) (GObject.g_value_get_type ()) false)
-
-  extern gdk_content_serializer_return_error : cptr -> cptr -> unit
+    GObject.Value (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_serializer_get_value (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_serializer_get_type ())))) (Internal.GObjectC.g_value_get_type ()) false)
 
   /// Indicate that the serialization has ended with an error.
   let returnError (self: ContentSerializer) (error: Glue.Error) : unit =
-    let ze1 = Glue.errorNew error
-    gdk_content_serializer_return_error (Glue.obj self.Id (gdk_content_serializer_get_type ())) ze1
-
-  extern gdk_content_serializer_return_success : cptr -> unit
+    let ze1 = Internal.Raw.errorNew error.domain error.code error.message
+    Internal.GdkC.gdk_content_serializer_return_error (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_serializer_get_type ())) ze1
 
   /// Indicate that the serialization has been successfully completed.
   let returnSuccess (self: ContentSerializer) : unit =
-    gdk_content_serializer_return_success (Glue.obj self.Id (gdk_content_serializer_get_type ()))
-
-  extern gdk_content_serializer_set_task_data : cptr -> cptr -> cptr -> unit
+    Internal.GdkC.gdk_content_serializer_return_success (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_serializer_get_type ()))
 
   /// Associate data with the current serialization operation.
   [<Unsafe>]
   let setTaskData (self: ContentSerializer) (data: cptr) (notify: cptr) : unit =
-    gdk_content_serializer_set_task_data (Glue.obj self.Id (gdk_content_serializer_get_type ())) data notify
+    Internal.GdkC.gdk_content_serializer_set_task_data (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_serializer_get_type ())) data notify
 
 module CrossingEvent =
-  extern gdk_crossing_event_get_detail : cptr -> i32
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_type_Gdk_CrossingEvent ()
 
   /// Extracts the notify detail from a crossing event.
   let getDetail (self: CrossingEvent) : NotifyType =
-    NotifyType (int ((gdk_crossing_event_get_detail (Glue.obj self.Id (zgtk_type_Gdk_CrossingEvent ())))))
-
-  extern gdk_crossing_event_get_focus : cptr -> i32
+    NotifyType (int ((Internal.GdkC.gdk_crossing_event_get_detail (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_CrossingEvent ())))))
 
   /// Checks if the @event surface is the focus surface.
   let getFocus (self: CrossingEvent) : bool =
-    (((gdk_crossing_event_get_focus (Glue.obj self.Id (zgtk_type_Gdk_CrossingEvent ())))) <> i32 0)
-
-  extern gdk_crossing_event_get_mode : cptr -> i32
+    (((Internal.GdkC.gdk_crossing_event_get_focus (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_CrossingEvent ())))) <> i32 0)
 
   /// Extracts the crossing mode from a crossing event.
   let getMode (self: CrossingEvent) : CrossingMode =
-    CrossingMode (int ((gdk_crossing_event_get_mode (Glue.obj self.Id (zgtk_type_Gdk_CrossingEvent ())))))
+    CrossingMode (int ((Internal.GdkC.gdk_crossing_event_get_mode (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_CrossingEvent ())))))
 
 module Cursor =
   /// The same object as its ancestor.
   let toGObjectObject (self: Cursor) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_cursor_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<Cursor> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_cursor_get_type ()) then Some (Cursor object.Id) else None
-
-  extern gdk_cursor_new_from_callback : cptr -> cptr -> cptr -> cptr -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_cursor_get_type ()) then Some (Cursor object.Id) else None
 
   /// Creates a new callback-based cursor object.
   let createFromCallback (callback: Cursor -> int -> float -> (option<Texture> * int * int * int * int)) (fallback: option<Cursor>) : Cursor =
     let zcb1 =
-      Glue.hold (fun () ->
-        let cursor = Cursor (Glue.wrap (Glue.argPointer 0) false)
-        let cursorSize = Glue.argInt 1
-        let scale = Glue.argFloat 2
+      Internal.Raw.hold (fun () ->
+        let cursor = Cursor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
+        let cursorSize = Internal.Raw.argInt 1
+        let scale = Internal.Raw.argFloat 2
         let (zres, width, height, hotspotX, hotspotY) = callback cursor cursorSize scale
-        Glue.setI32 3 width
-        Glue.setI32 4 height
-        Glue.setI32 5 hotspotX
-        Glue.setI32 6 hotspotY
+        Internal.Raw.setI32 3 width
+        Internal.Raw.setI32 4 height
+        Internal.Raw.setI32 5 hotspotX
+        Internal.Raw.setI32 6 hotspotY
         match zres with
-        | Some zo -> Glue.returnPointer (Glue.give (Glue.obj zo.Id (gdk_texture_get_type ())))
-        | None -> Glue.returnPointer (Glue.none ()))
+        | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GdkC.gdk_texture_get_type ())))
+        | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
     let zp2 =
       match fallback with
-      | Some zo -> Glue.obj zo.Id (gdk_cursor_get_type ())
-      | None -> Glue.none ()
-    let zr = gdk_cursor_new_from_callback (zgtk_tramp_Gdk_CursorGetTextureCallback ()) zcb1 (Glue.dropFn ()) zp2
-    Cursor (Glue.wrap (zr) true)
-
-  extern gdk_cursor_new_from_name : cstr -> cptr -> cptr
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_cursor_get_type ())
+      | None -> Internal.Raw.none ()
+    let zr = Internal.GdkC.gdk_cursor_new_from_callback (Internal.GdkC.zgtk_tramp_Gdk_CursorGetTextureCallback ()) zcb1 (Internal.Raw.dropFn ()) zp2
+    Cursor (Internal.Raw.wrap (zr) true)
 
   /// Creates a new cursor by looking up @name in the current cursor theme.
   let createFromName (name: string) (fallback: option<Cursor>) : Cursor =
     let zp1 =
       match fallback with
-      | Some zo -> Glue.obj zo.Id (gdk_cursor_get_type ())
-      | None -> Glue.none ()
-    let zr = gdk_cursor_new_from_name name zp1
-    Cursor (Glue.wrap (zr) true)
-
-  extern gdk_cursor_new_from_texture : cptr -> i32 -> i32 -> cptr -> cptr
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_cursor_get_type ())
+      | None -> Internal.Raw.none ()
+    let zr = Internal.GdkC.gdk_cursor_new_from_name name zp1
+    Cursor (Internal.Raw.wrap (zr) true)
 
   /// Creates a new cursor from a `GdkTexture`.
   let createFromTexture (texture: Texture) (hotspotX: int) (hotspotY: int) (fallback: option<Cursor>) : Cursor =
     let zp1 =
       match fallback with
-      | Some zo -> Glue.obj zo.Id (gdk_cursor_get_type ())
-      | None -> Glue.none ()
-    let zr = gdk_cursor_new_from_texture (Glue.obj texture.Id (gdk_texture_get_type ())) (i32 hotspotX) (i32 hotspotY) zp1
-    Cursor (Glue.wrap (zr) true)
-
-  extern gdk_cursor_get_fallback : cptr -> cptr
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_cursor_get_type ())
+      | None -> Internal.Raw.none ()
+    let zr = Internal.GdkC.gdk_cursor_new_from_texture (Internal.Raw.obj texture.Id (Internal.GdkC.gdk_texture_get_type ())) (i32 hotspotX) (i32 hotspotY) zp1
+    Cursor (Internal.Raw.wrap (zr) true)
 
   /// Returns the fallback for this @cursor.
   let getFallback (self: Cursor) : option<Cursor> =
-    let zr = gdk_cursor_get_fallback (Glue.obj self.Id (gdk_cursor_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_cursor_get_fallback (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cursor_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Cursor zid1))
-
-  extern gdk_cursor_get_hotspot_x : cptr -> i32
 
   /// Returns the horizontal offset of the hotspot.
   let getHotspotX (self: Cursor) : int =
-    (int ((gdk_cursor_get_hotspot_x (Glue.obj self.Id (gdk_cursor_get_type ())))))
-
-  extern gdk_cursor_get_hotspot_y : cptr -> i32
+    (int ((Internal.GdkC.gdk_cursor_get_hotspot_x (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cursor_get_type ())))))
 
   /// Returns the vertical offset of the hotspot.
   let getHotspotY (self: Cursor) : int =
-    (int ((gdk_cursor_get_hotspot_y (Glue.obj self.Id (gdk_cursor_get_type ())))))
-
-  extern gdk_cursor_get_name : cptr -> cptr
+    (int ((Internal.GdkC.gdk_cursor_get_hotspot_y (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cursor_get_type ())))))
 
   /// Returns the name of the cursor.
   let getName (self: Cursor) : option<string> =
-    Glue.textOption ((gdk_cursor_get_name (Glue.obj self.Id (gdk_cursor_get_type ()))))
-
-  extern gdk_cursor_get_texture : cptr -> cptr
+    Internal.Raw.textOption ((Internal.GdkC.gdk_cursor_get_name (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cursor_get_type ()))))
 
   /// Returns the texture for the cursor.
   let getTexture (self: Cursor) : option<Texture> =
-    let zr = gdk_cursor_get_texture (Glue.obj self.Id (gdk_cursor_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_cursor_get_texture (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cursor_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Texture zid1))
 
   /// Calls `handler` when the `fallback` property changes.
   let onNotifyFallback (self: Cursor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_cursor_get_type ())) "notify::fallback" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cursor_get_type ())) "notify::fallback" handler
 
   /// Calls `handler` when the `hotspot-x` property changes.
   let onNotifyHotspotX (self: Cursor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_cursor_get_type ())) "notify::hotspot-x" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cursor_get_type ())) "notify::hotspot-x" handler
 
   /// Calls `handler` when the `hotspot-y` property changes.
   let onNotifyHotspotY (self: Cursor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_cursor_get_type ())) "notify::hotspot-y" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cursor_get_type ())) "notify::hotspot-y" handler
 
   /// Calls `handler` when the `name` property changes.
   let onNotifyName (self: Cursor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_cursor_get_type ())) "notify::name" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cursor_get_type ())) "notify::name" handler
 
   /// Calls `handler` when the `texture` property changes.
   let onNotifyTexture (self: Cursor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_cursor_get_type ())) "notify::texture" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_cursor_get_type ())) "notify::texture" handler
 
 module DNDEvent =
-  extern gdk_dnd_event_get_drop : cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_type_Gdk_DNDEvent ()
 
   /// Gets the `GdkDrop` object from a DND event.
   let getDrop (self: DNDEvent) : option<Drop> =
-    let zr = gdk_dnd_event_get_drop (Glue.obj self.Id (zgtk_type_Gdk_DNDEvent ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_dnd_event_get_drop (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_DNDEvent ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Drop zid1))
+
+module DeleteEvent =
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_type_Gdk_DeleteEvent ()
 
 module Device =
   /// The same object as its ancestor.
   let toGObjectObject (self: Device) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_device_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<Device> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_device_get_type ()) then Some (Device object.Id) else None
-
-  extern gdk_device_get_active_layout_index : cptr -> i32
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_device_get_type ()) then Some (Device object.Id) else None
 
   /// Retrieves the index of the active layout of the keyboard.
   let getActiveLayoutIndex (self: Device) : int =
-    (int ((gdk_device_get_active_layout_index (Glue.obj self.Id (gdk_device_get_type ())))))
-
-  extern gdk_device_get_caps_lock_state : cptr -> i32
+    (int ((Internal.GdkC.gdk_device_get_active_layout_index (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())))))
 
   /// Retrieves whether the Caps Lock modifier of the keyboard is locked.
   let getCapsLockState (self: Device) : bool =
-    (((gdk_device_get_caps_lock_state (Glue.obj self.Id (gdk_device_get_type ())))) <> i32 0)
-
-  extern gdk_device_get_device_tool : cptr -> cptr
+    (((Internal.GdkC.gdk_device_get_caps_lock_state (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())))) <> i32 0)
 
   /// Retrieves the current tool for @device.
   let getDeviceTool (self: Device) : option<DeviceTool> =
-    let zr = gdk_device_get_device_tool (Glue.obj self.Id (gdk_device_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_device_get_device_tool (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (DeviceTool zid1))
-
-  extern gdk_device_get_direction : cptr -> i32
 
   /// Returns the direction of effective layout of the keyboard.
   let getDirection (self: Device) : Pango.Direction =
-    Pango.Direction (int ((gdk_device_get_direction (Glue.obj self.Id (gdk_device_get_type ())))))
-
-  extern gdk_device_get_display : cptr -> cptr
+    Pango.Direction (int ((Internal.GdkC.gdk_device_get_direction (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())))))
 
   /// Returns the `GdkDisplay` to which @device pertains.
   let getDisplay (self: Device) : Display =
-    Display (Glue.wrap ((gdk_device_get_display (Glue.obj self.Id (gdk_device_get_type ())))) false)
-
-  extern gdk_device_get_has_cursor : cptr -> i32
+    Display (Internal.Raw.wrap ((Internal.GdkC.gdk_device_get_display (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())))) false)
 
   /// Determines whether the pointer follows device motion.
   let getHasCursor (self: Device) : bool =
-    (((gdk_device_get_has_cursor (Glue.obj self.Id (gdk_device_get_type ())))) <> i32 0)
-
-  extern gdk_device_get_layout_names : cptr -> cptr
+    (((Internal.GdkC.gdk_device_get_has_cursor (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())))) <> i32 0)
 
   /// Retrieves the names of the layouts of the keyboard.
   let getLayoutNames (self: Device) : list<string> =
-    Glue.strvList ((gdk_device_get_layout_names (Glue.obj self.Id (gdk_device_get_type ())))) 2
-
-  extern gdk_device_get_modifier_state : cptr -> u32
+    Internal.Raw.strvList ((Internal.GdkC.gdk_device_get_layout_names (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())))) 2
 
   /// Retrieves the current modifier state of the keyboard.
   let getModifierState (self: Device) : ModifierType =
-    ModifierType (int ((gdk_device_get_modifier_state (Glue.obj self.Id (gdk_device_get_type ())))))
-
-  extern gdk_device_get_name : cptr -> cptr
+    ModifierType (int ((Internal.GdkC.gdk_device_get_modifier_state (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())))))
 
   /// The name of the device, suitable for showing in a user interface.
   let getName (self: Device) : string =
-    Glue.text ((gdk_device_get_name (Glue.obj self.Id (gdk_device_get_type ()))))
-
-  extern gdk_device_get_num_lock_state : cptr -> i32
+    Internal.Raw.text ((Internal.GdkC.gdk_device_get_name (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ()))))
 
   /// Retrieves whether the Num Lock modifier of the keyboard is locked.
   let getNumLockState (self: Device) : bool =
-    (((gdk_device_get_num_lock_state (Glue.obj self.Id (gdk_device_get_type ())))) <> i32 0)
-
-  extern gdk_device_get_num_touches : cptr -> u32
+    (((Internal.GdkC.gdk_device_get_num_lock_state (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())))) <> i32 0)
 
   /// Retrieves the number of touch points associated to @device.
   let getNumTouches (self: Device) : int =
-    (int ((gdk_device_get_num_touches (Glue.obj self.Id (gdk_device_get_type ())))))
-
-  extern gdk_device_get_product_id : cptr -> cptr
+    (int ((Internal.GdkC.gdk_device_get_num_touches (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())))))
 
   /// Returns the product ID of this device.
   let getProductId (self: Device) : option<string> =
-    Glue.textOption ((gdk_device_get_product_id (Glue.obj self.Id (gdk_device_get_type ()))))
-
-  extern gdk_device_get_scroll_lock_state : cptr -> i32
+    Internal.Raw.textOption ((Internal.GdkC.gdk_device_get_product_id (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ()))))
 
   /// Retrieves whether the Scroll Lock modifier of the keyboard is locked.
   let getScrollLockState (self: Device) : bool =
-    (((gdk_device_get_scroll_lock_state (Glue.obj self.Id (gdk_device_get_type ())))) <> i32 0)
-
-  extern gdk_device_get_seat : cptr -> cptr
+    (((Internal.GdkC.gdk_device_get_scroll_lock_state (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())))) <> i32 0)
 
   /// Returns the `GdkSeat` the device belongs to.
   let getSeat (self: Device) : Seat =
-    Seat (Glue.wrap ((gdk_device_get_seat (Glue.obj self.Id (gdk_device_get_type ())))) false)
-
-  extern gdk_device_get_source : cptr -> i32
+    Seat (Internal.Raw.wrap ((Internal.GdkC.gdk_device_get_seat (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())))) false)
 
   /// Determines the type of the device.
   let getSource (self: Device) : InputSource =
-    InputSource (int ((gdk_device_get_source (Glue.obj self.Id (gdk_device_get_type ())))))
-
-  extern gdk_device_get_surface_at_position : cptr -> cptr -> cptr -> cptr
+    InputSource (int ((Internal.GdkC.gdk_device_get_source (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())))))
 
   /// Obtains the surface underneath @device, returning the location of the device in @win_x and @win_y.
   let getSurfaceAtPosition (self: Device) : (option<Surface> * float * float) =
-    Glue.outBegin ()
-    let zr = gdk_device_get_surface_at_position (Glue.obj self.Id (gdk_device_get_type ())) (Glue.out 0) (Glue.out 1)
-    let zid1 = Glue.wrap (zr) false
-    let zv = ((if zid1 = 0 then None else Some (Surface zid1)), Glue.outF64 0, Glue.outF64 1)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_device_get_surface_at_position (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zid1 = Internal.Raw.wrap (zr) false
+    let zv = ((if zid1 = 0 then None else Some (Surface zid1)), Internal.Raw.outF64 0, Internal.Raw.outF64 1)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_device_get_timestamp : cptr -> u32
 
   /// Returns the timestamp of the last activity for this device.
   let getTimestamp (self: Device) : int =
-    (int ((gdk_device_get_timestamp (Glue.obj self.Id (gdk_device_get_type ())))))
-
-  extern gdk_device_get_vendor_id : cptr -> cptr
+    (int ((Internal.GdkC.gdk_device_get_timestamp (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())))))
 
   /// Returns the vendor ID of this device.
   let getVendorId (self: Device) : option<string> =
-    Glue.textOption ((gdk_device_get_vendor_id (Glue.obj self.Id (gdk_device_get_type ()))))
-
-  extern gdk_device_has_bidi_layouts : cptr -> i32
+    Internal.Raw.textOption ((Internal.GdkC.gdk_device_get_vendor_id (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ()))))
 
   /// Determines if layouts for both right-to-left and left-to-right languages are in use on the keyboard.
   let hasBidiLayouts (self: Device) : bool =
-    (((gdk_device_has_bidi_layouts (Glue.obj self.Id (gdk_device_get_type ())))) <> i32 0)
+    (((Internal.GdkC.gdk_device_has_bidi_layouts (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())))) <> i32 0)
 
   /// Emitted either when the number of either axes or keys changes.
   let onChanged (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "changed" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "changed" handler
 
   /// Emitted on pen/eraser devices whenever tools enter or leave proximity.
   let onToolChanged (self: Device) (handler: DeviceTool -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "tool-changed" (fun () ->
-      let tool = DeviceTool (Glue.wrap (Glue.argPointer 1) false)
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "tool-changed" (fun () ->
+      let tool = DeviceTool (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
       handler tool)
 
   /// Calls `handler` when the `active-layout-index` property changes.
   let onNotifyActiveLayoutIndex (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::active-layout-index" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::active-layout-index" handler
 
   /// Calls `handler` when the `caps-lock-state` property changes.
   let onNotifyCapsLockState (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::caps-lock-state" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::caps-lock-state" handler
 
   /// Calls `handler` when the `direction` property changes.
   let onNotifyDirection (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::direction" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::direction" handler
 
   /// Calls `handler` when the `display` property changes.
   let onNotifyDisplay (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::display" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::display" handler
 
   /// Calls `handler` when the `has-bidi-layouts` property changes.
   let onNotifyHasBidiLayouts (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::has-bidi-layouts" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::has-bidi-layouts" handler
 
   /// Calls `handler` when the `has-cursor` property changes.
   let onNotifyHasCursor (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::has-cursor" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::has-cursor" handler
 
   /// Calls `handler` when the `layout-names` property changes.
   let onNotifyLayoutNames (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::layout-names" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::layout-names" handler
 
   /// Calls `handler` when the `modifier-state` property changes.
   let onNotifyModifierState (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::modifier-state" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::modifier-state" handler
 
   /// Calls `handler` when the `n-axes` property changes.
   let onNotifyNAxes (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::n-axes" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::n-axes" handler
 
   /// The `n-axes` property.
-  let getNAxes (self: Device) : int = Glue.getInt (Glue.obj self.Id (gdk_device_get_type ())) "n-axes"
+  let getNAxes (self: Device) : int = Internal.Raw.getInt (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "n-axes"
 
   /// Calls `handler` when the `name` property changes.
   let onNotifyName (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::name" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::name" handler
 
   /// Calls `handler` when the `num-lock-state` property changes.
   let onNotifyNumLockState (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::num-lock-state" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::num-lock-state" handler
 
   /// Calls `handler` when the `num-touches` property changes.
   let onNotifyNumTouches (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::num-touches" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::num-touches" handler
 
   /// Calls `handler` when the `product-id` property changes.
   let onNotifyProductId (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::product-id" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::product-id" handler
 
   /// Calls `handler` when the `scroll-lock-state` property changes.
   let onNotifyScrollLockState (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::scroll-lock-state" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::scroll-lock-state" handler
 
   /// Calls `handler` when the `seat` property changes.
   let onNotifySeat (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::seat" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::seat" handler
 
   /// Sets the `seat` property.
-  let setSeat (self: Device) (value: Seat) : unit = Glue.setObject (Glue.obj self.Id (gdk_device_get_type ())) "seat" (Glue.obj value.Id (gdk_seat_get_type ()))
+  let setSeat (self: Device) (value: Seat) : unit = Internal.Raw.setObject (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "seat" (Internal.Raw.obj value.Id (Internal.GdkC.gdk_seat_get_type ()))
 
   /// Calls `handler` when the `source` property changes.
   let onNotifySource (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::source" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::source" handler
 
   /// Calls `handler` when the `tool` property changes.
   let onNotifyTool (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::tool" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::tool" handler
 
   /// Calls `handler` when the `vendor-id` property changes.
   let onNotifyVendorId (self: Device) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::vendor-id" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_get_type ())) "notify::vendor-id" handler
 
 module DevicePad =
   /// The same object as its ancestor.
   let toGObjectObject (self: DevicePad) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_device_pad_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<DevicePad> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_device_pad_get_type ()) then Some (DevicePad object.Id) else None
-
-  extern gdk_device_pad_get_feature_group : cptr -> i32 -> i32 -> i32
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_device_pad_get_type ()) then Some (DevicePad object.Id) else None
 
   /// Returns the group the given @feature and @idx belong to.
   let getFeatureGroup (self: DevicePad) (feature: DevicePadFeature) (featureIdx: int) : int =
-    (int ((gdk_device_pad_get_feature_group (Glue.obj self.Id (gdk_device_pad_get_type ())) (i32 feature.Int) (i32 featureIdx))))
-
-  extern gdk_device_pad_get_group_n_modes : cptr -> i32 -> i32
+    (int ((Internal.GdkC.gdk_device_pad_get_feature_group (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_pad_get_type ())) (i32 feature.Int) (i32 featureIdx))))
 
   /// Returns the number of modes that @group may have.
   let getGroupNModes (self: DevicePad) (groupIdx: int) : int =
-    (int ((gdk_device_pad_get_group_n_modes (Glue.obj self.Id (gdk_device_pad_get_type ())) (i32 groupIdx))))
-
-  extern gdk_device_pad_get_n_features : cptr -> i32 -> i32
+    (int ((Internal.GdkC.gdk_device_pad_get_group_n_modes (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_pad_get_type ())) (i32 groupIdx))))
 
   /// Returns the number of features a tablet pad has.
   let getNFeatures (self: DevicePad) (feature: DevicePadFeature) : int =
-    (int ((gdk_device_pad_get_n_features (Glue.obj self.Id (gdk_device_pad_get_type ())) (i32 feature.Int))))
-
-  extern gdk_device_pad_get_n_groups : cptr -> i32
+    (int ((Internal.GdkC.gdk_device_pad_get_n_features (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_pad_get_type ())) (i32 feature.Int))))
 
   /// Returns the number of groups this pad device has.
   let getNGroups (self: DevicePad) : int =
-    (int ((gdk_device_pad_get_n_groups (Glue.obj self.Id (gdk_device_pad_get_type ())))))
+    (int ((Internal.GdkC.gdk_device_pad_get_n_groups (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_pad_get_type ())))))
 
 module DeviceTool =
   /// The same object as its ancestor.
   let toGObjectObject (self: DeviceTool) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_device_tool_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<DeviceTool> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_device_tool_get_type ()) then Some (DeviceTool object.Id) else None
-
-  extern gdk_device_tool_get_axes : cptr -> u32
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_device_tool_get_type ()) then Some (DeviceTool object.Id) else None
 
   /// Gets the axes of the tool.
   let getAxes (self: DeviceTool) : AxisFlags =
-    AxisFlags (int ((gdk_device_tool_get_axes (Glue.obj self.Id (gdk_device_tool_get_type ())))))
-
-  extern gdk_device_tool_get_hardware_id : cptr -> u64
+    AxisFlags (int ((Internal.GdkC.gdk_device_tool_get_axes (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_tool_get_type ())))))
 
   /// Gets the hardware ID of this tool, or 0 if it's not known.
   let getHardwareId (self: DeviceTool) : int =
-    (int ((gdk_device_tool_get_hardware_id (Glue.obj self.Id (gdk_device_tool_get_type ())))))
-
-  extern gdk_device_tool_get_serial : cptr -> u64
+    (int ((Internal.GdkC.gdk_device_tool_get_hardware_id (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_tool_get_type ())))))
 
   /// Gets the serial number of this tool.
   let getSerial (self: DeviceTool) : int =
-    (int ((gdk_device_tool_get_serial (Glue.obj self.Id (gdk_device_tool_get_type ())))))
-
-  extern gdk_device_tool_get_tool_type : cptr -> i32
+    (int ((Internal.GdkC.gdk_device_tool_get_serial (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_tool_get_type ())))))
 
   /// Gets the `GdkDeviceToolType` of the tool.
   let getToolType (self: DeviceTool) : DeviceToolType =
-    DeviceToolType (int ((gdk_device_tool_get_tool_type (Glue.obj self.Id (gdk_device_tool_get_type ())))))
+    DeviceToolType (int ((Internal.GdkC.gdk_device_tool_get_tool_type (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_tool_get_type ())))))
 
   /// Calls `handler` when the `axes` property changes.
   let onNotifyAxes (self: DeviceTool) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_tool_get_type ())) "notify::axes" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_tool_get_type ())) "notify::axes" handler
 
   /// Calls `handler` when the `hardware-id` property changes.
   let onNotifyHardwareId (self: DeviceTool) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_tool_get_type ())) "notify::hardware-id" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_tool_get_type ())) "notify::hardware-id" handler
 
   /// Calls `handler` when the `serial` property changes.
   let onNotifySerial (self: DeviceTool) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_tool_get_type ())) "notify::serial" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_tool_get_type ())) "notify::serial" handler
 
   /// Calls `handler` when the `tool-type` property changes.
   let onNotifyToolType (self: DeviceTool) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_device_tool_get_type ())) "notify::tool-type" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_device_tool_get_type ())) "notify::tool-type" handler
 
 module Display =
   /// The same object as its ancestor.
   let toGObjectObject (self: Display) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_display_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<Display> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_display_get_type ()) then Some (Display object.Id) else None
-
-  extern gdk_display_beep : cptr -> unit
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_display_get_type ()) then Some (Display object.Id) else None
 
   /// Emits a short beep on @display
   let beep (self: Display) : unit =
-    gdk_display_beep (Glue.obj self.Id (gdk_display_get_type ()))
-
-  extern gdk_display_close : cptr -> unit
+    Internal.GdkC.gdk_display_beep (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ()))
 
   /// Closes the connection to the windowing system for the given display.
   let close (self: Display) : unit =
-    gdk_display_close (Glue.obj self.Id (gdk_display_get_type ()))
-
-  extern gdk_display_create_gl_context : cptr -> cptr -> cptr
+    Internal.GdkC.gdk_display_close (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ()))
 
   /// Creates a new `GdkGLContext` for the `GdkDisplay`.
   let createGlContext (self: Display) : result<GLContext, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_display_create_gl_context (Glue.obj self.Id (gdk_display_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_display_create_gl_context (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
-      let zv = GLContext (Glue.wrap (zr) true)
-      Glue.outEnd ()
+      let zv = GLContext (Internal.Raw.wrap (zr) true)
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_display_device_is_grabbed : cptr -> cptr -> i32
 
   /// Returns %TRUE if there is an ongoing grab on @device for @display.
   let deviceIsGrabbed (self: Display) (device: Device) : bool =
-    (((gdk_display_device_is_grabbed (Glue.obj self.Id (gdk_display_get_type ())) (Glue.obj device.Id (gdk_device_get_type ())))) <> i32 0)
-
-  extern gdk_display_flush : cptr -> unit
+    (((Internal.GdkC.gdk_display_device_is_grabbed (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) (Internal.Raw.obj device.Id (Internal.GdkC.gdk_device_get_type ())))) <> i32 0)
 
   /// Flushes any requests queued for the windowing system.
   let flush (self: Display) : unit =
-    gdk_display_flush (Glue.obj self.Id (gdk_display_get_type ()))
-
-  extern gdk_display_get_app_launch_context : cptr -> cptr
+    Internal.GdkC.gdk_display_flush (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ()))
 
   /// Returns a `GdkAppLaunchContext` suitable for launching applications on the given display.
   let getAppLaunchContext (self: Display) : AppLaunchContext =
-    AppLaunchContext (Glue.wrap ((gdk_display_get_app_launch_context (Glue.obj self.Id (gdk_display_get_type ())))) true)
-
-  extern gdk_display_get_clipboard : cptr -> cptr
+    AppLaunchContext (Internal.Raw.wrap ((Internal.GdkC.gdk_display_get_app_launch_context (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())))) true)
 
   /// Gets the clipboard used for copy/paste operations.
   let getClipboard (self: Display) : Clipboard =
-    Clipboard (Glue.wrap ((gdk_display_get_clipboard (Glue.obj self.Id (gdk_display_get_type ())))) false)
-
-  extern gdk_display_get_default_seat : cptr -> cptr
+    Clipboard (Internal.Raw.wrap ((Internal.GdkC.gdk_display_get_clipboard (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())))) false)
 
   /// Returns the default `GdkSeat` for this display.
   let getDefaultSeat (self: Display) : option<Seat> =
-    let zr = gdk_display_get_default_seat (Glue.obj self.Id (gdk_display_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_display_get_default_seat (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Seat zid1))
-
-  extern gdk_display_get_dmabuf_formats : cptr -> cptr
 
   /// Returns the dma-buf formats that are supported on this display.
   let getDmabufFormats (self: Display) : DmabufFormats =
-    DmabufFormats (Glue.wrapBoxed ((gdk_display_get_dmabuf_formats (Glue.obj self.Id (gdk_display_get_type ())))) (gdk_dmabuf_formats_get_type ()) false)
-
-  extern gdk_display_get_monitor_at_surface : cptr -> cptr -> cptr
+    DmabufFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_display_get_dmabuf_formats (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())))) (Internal.GdkC.gdk_dmabuf_formats_get_type ()) false)
 
   /// Gets the monitor in which the largest area of @surface resides.
   let getMonitorAtSurface (self: Display) (surface: Surface) : option<Monitor> =
-    let zr = gdk_display_get_monitor_at_surface (Glue.obj self.Id (gdk_display_get_type ())) (Glue.obj surface.Id (gdk_surface_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_display_get_monitor_at_surface (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) (Internal.Raw.obj surface.Id (Internal.GdkC.gdk_surface_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Monitor zid1))
-
-  extern gdk_display_get_monitors : cptr -> cptr
 
   /// Gets the list of monitors associated with this display.
   let getMonitors (self: Display) : Gio.ListModel =
-    Gio.ListModel (Glue.wrap ((gdk_display_get_monitors (Glue.obj self.Id (gdk_display_get_type ())))) false)
-
-  extern gdk_display_get_name : cptr -> cptr
+    Gio.ListModel (Internal.Raw.wrap ((Internal.GdkC.gdk_display_get_monitors (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())))) false)
 
   /// Gets the name of the display.
   let getName (self: Display) : string =
-    Glue.text ((gdk_display_get_name (Glue.obj self.Id (gdk_display_get_type ()))))
-
-  extern gdk_display_get_primary_clipboard : cptr -> cptr
+    Internal.Raw.text ((Internal.GdkC.gdk_display_get_name (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ()))))
 
   /// Gets the clipboard used for the primary selection.
   let getPrimaryClipboard (self: Display) : Clipboard =
-    Clipboard (Glue.wrap ((gdk_display_get_primary_clipboard (Glue.obj self.Id (gdk_display_get_type ())))) false)
-
-  extern gdk_display_get_setting : cptr -> cstr -> cptr -> i32
+    Clipboard (Internal.Raw.wrap ((Internal.GdkC.gdk_display_get_primary_clipboard (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())))) false)
 
   /// Retrieves a desktop-wide setting such as double-click time for the @display.
   let getSetting (self: Display) (name: string) (value: GObject.Value) : bool =
-    (((gdk_display_get_setting (Glue.obj self.Id (gdk_display_get_type ())) name (Glue.obj value.Id (GObject.g_value_get_type ())))) <> i32 0)
-
-  extern gdk_display_get_startup_notification_id : cptr -> cptr
+    (((Internal.GdkC.gdk_display_get_setting (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) name (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())))) <> i32 0)
 
   /// Deprecated. Gets the startup notification ID for a Wayland display, or %NULL if no ID has been defined.
   let getStartupNotificationId (self: Display) : option<string> =
-    Glue.textOption ((gdk_display_get_startup_notification_id (Glue.obj self.Id (gdk_display_get_type ()))))
-
-  extern gdk_display_is_closed : cptr -> i32
+    Internal.Raw.textOption ((Internal.GdkC.gdk_display_get_startup_notification_id (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ()))))
 
   /// Finds out if the display has been closed.
   let isClosed (self: Display) : bool =
-    (((gdk_display_is_closed (Glue.obj self.Id (gdk_display_get_type ())))) <> i32 0)
-
-  extern gdk_display_is_composited : cptr -> i32
+    (((Internal.GdkC.gdk_display_is_closed (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())))) <> i32 0)
 
   /// Returns whether surfaces can reasonably be expected to have their alpha channel drawn correctly on the screen.
   let isComposited (self: Display) : bool =
-    (((gdk_display_is_composited (Glue.obj self.Id (gdk_display_get_type ())))) <> i32 0)
-
-  extern gdk_display_is_rgba : cptr -> i32
+    (((Internal.GdkC.gdk_display_is_composited (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())))) <> i32 0)
 
   /// Returns whether surfaces on this @display are created with an alpha channel.
   let isRgba (self: Display) : bool =
-    (((gdk_display_is_rgba (Glue.obj self.Id (gdk_display_get_type ())))) <> i32 0)
-
-  extern gdk_display_list_seats : cptr -> cptr
+    (((Internal.GdkC.gdk_display_is_rgba (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())))) <> i32 0)
 
   /// Returns the list of seats known to @display.
   let listSeats (self: Display) : list<Seat> =
-    Glue.mapList (fun zp -> Seat (Glue.wrap (zp) false)) (Glue.pointers ((gdk_display_list_seats (Glue.obj self.Id (gdk_display_get_type ())))) false true)
-
-  extern gdk_display_map_keycode : cptr -> u32 -> cptr -> cptr -> cptr -> i32
+    Internal.Raw.mapList (fun zp -> Seat (Internal.Raw.wrap (zp) false)) (Internal.Raw.pointers ((Internal.GdkC.gdk_display_list_seats (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())))) false true)
 
   /// Returns the keyvals bound to @keycode.
   let mapKeycode (self: Display) (keycode: int) : (bool * list<KeymapKey> * list<int>) =
-    Glue.outBegin ()
-    let zr = gdk_display_map_keycode (Glue.obj self.Id (gdk_display_get_type ())) (u32 keycode) (Glue.out 1) (Glue.out 2) (Glue.out 0)
-    let zrs1 = Glue.mapList (fun zp -> KeymapKey (Glue.copyPlain (zp) (zgtk_sizeof_Gdk_KeymapKey ()) (zgtk_tag_Gdk_KeymapKey ()))) (Glue.ptrsOf (Glue.outPtr 1) (Glue.outI32 0) false)
-    Glue.free (Glue.outPtr 1)
-    let zv = (((zr) <> i32 0), zrs1, Glue.intsOf (Glue.outPtr 2) (Glue.outI32 0) 4 false true)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_display_map_keycode (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) (u32 keycode) (Internal.Raw.out 1) (Internal.Raw.out 2) (Internal.Raw.out 0)
+    let zrs1 = Internal.Raw.mapList (fun zp -> KeymapKey (Internal.Raw.copyPlain (zp) (Internal.GdkC.zgtk_sizeof_Gdk_KeymapKey ()) (Internal.GdkC.zgtk_tag_Gdk_KeymapKey ()))) (Internal.Raw.ptrsOf (Internal.Raw.outPtr 1) (Internal.Raw.outI32 0) false)
+    Internal.Raw.free (Internal.Raw.outPtr 1)
+    let zv = (((zr) <> i32 0), zrs1, Internal.Raw.intsOf (Internal.Raw.outPtr 2) (Internal.Raw.outI32 0) 4 false true)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_display_map_keyval : cptr -> u32 -> cptr -> cptr -> i32
 
   /// Obtains a list of keycode/group/level combinations that will generate @keyval.
   let mapKeyval (self: Display) (keyval: int) : (bool * list<KeymapKey>) =
-    Glue.outBegin ()
-    let zr = gdk_display_map_keyval (Glue.obj self.Id (gdk_display_get_type ())) (u32 keyval) (Glue.out 1) (Glue.out 0)
-    let zrs1 = Glue.mapList (fun zp -> KeymapKey (Glue.copyPlain (zp) (zgtk_sizeof_Gdk_KeymapKey ()) (zgtk_tag_Gdk_KeymapKey ()))) (Glue.ptrsOf (Glue.outPtr 1) (Glue.outI32 0) false)
-    Glue.free (Glue.outPtr 1)
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_display_map_keyval (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) (u32 keyval) (Internal.Raw.out 1) (Internal.Raw.out 0)
+    let zrs1 = Internal.Raw.mapList (fun zp -> KeymapKey (Internal.Raw.copyPlain (zp) (Internal.GdkC.zgtk_sizeof_Gdk_KeymapKey ()) (Internal.GdkC.zgtk_tag_Gdk_KeymapKey ()))) (Internal.Raw.ptrsOf (Internal.Raw.outPtr 1) (Internal.Raw.outI32 0) false)
+    Internal.Raw.free (Internal.Raw.outPtr 1)
     let zv = (((zr) <> i32 0), zrs1)
-    Glue.outEnd ()
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_display_notify_startup_complete : cptr -> cstr -> unit
 
   /// Deprecated. Indicates to the GUI environment that the application has finished loading, using a given identifier.
   let notifyStartupComplete (self: Display) (startupId: string) : unit =
-    gdk_display_notify_startup_complete (Glue.obj self.Id (gdk_display_get_type ())) startupId
-
-  extern gdk_display_prepare_gl : cptr -> cptr -> i32
+    Internal.GdkC.gdk_display_notify_startup_complete (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) startupId
 
   /// Checks that OpenGL is available for @self and ensures that it is properly initialized.
   let prepareGl (self: Display) : result<bool, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_display_prepare_gl (Glue.obj self.Id (gdk_display_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_display_prepare_gl (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
       let zv = ((zr) <> i32 0)
-      Glue.outEnd ()
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_display_put_event : cptr -> cptr -> unit
 
   /// Deprecated. Adds the given event to the event queue for @display.
   let putEvent (self: Display) (event: Event) : unit =
-    gdk_display_put_event (Glue.obj self.Id (gdk_display_get_type ())) (Glue.obj event.Id (zgtk_type_Gdk_Event ()))
-
-  extern gdk_display_supports_input_shapes : cptr -> i32
+    Internal.GdkC.gdk_display_put_event (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) (Internal.Raw.obj event.Id (Internal.GdkC.zgtk_type_Gdk_Event ()))
 
   /// Returns %TRUE if the display supports input shapes.
   let supportsInputShapes (self: Display) : bool =
-    (((gdk_display_supports_input_shapes (Glue.obj self.Id (gdk_display_get_type ())))) <> i32 0)
-
-  extern gdk_display_supports_shadow_width : cptr -> i32
+    (((Internal.GdkC.gdk_display_supports_input_shapes (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())))) <> i32 0)
 
   /// Returns whether it's possible for a surface to draw outside of the window area.
   let supportsShadowWidth (self: Display) : bool =
-    (((gdk_display_supports_shadow_width (Glue.obj self.Id (gdk_display_get_type ())))) <> i32 0)
-
-  extern gdk_display_sync : cptr -> unit
+    (((Internal.GdkC.gdk_display_supports_shadow_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())))) <> i32 0)
 
   /// Flushes any requests queued for the windowing system and waits until all requests have been handled.
   let sync (self: Display) : unit =
-    gdk_display_sync (Glue.obj self.Id (gdk_display_get_type ()))
-
-  extern gdk_display_translate_key : cptr -> u32 -> u32 -> i32 -> cptr -> cptr -> cptr -> cptr -> i32
+    Internal.GdkC.gdk_display_sync (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ()))
 
   /// Translates the contents of a `GdkEventKey` into a keyval, effective group, and level.
   let translateKey (self: Display) (keycode: int) (state: ModifierType) (group: int) : (bool * int * int * int * ModifierType) =
-    Glue.outBegin ()
-    let zr = gdk_display_translate_key (Glue.obj self.Id (gdk_display_get_type ())) (u32 keycode) (u32 state.Int) (i32 group) (Glue.out 0) (Glue.out 1) (Glue.out 2) (Glue.out 3)
-    let zv = (((zr) <> i32 0), Glue.outU32 0, Glue.outI32 1, Glue.outI32 2, ModifierType (Glue.outU32 3))
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_display_translate_key (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) (u32 keycode) (u32 state.Int) (i32 group) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.out 2) (Internal.Raw.out 3)
+    let zv = (((zr) <> i32 0), Internal.Raw.outU32 0, Internal.Raw.outI32 1, Internal.Raw.outI32 2, ModifierType (Internal.Raw.outU32 3))
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_display_get_default : unit -> cptr
 
   /// Gets the default `GdkDisplay`.
   let getDefault () : option<Display> =
-    let zr = gdk_display_get_default ()
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_display_get_default ()
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Display zid1))
-
-  extern gdk_display_open : cptr -> cptr
 
   /// Opens a display.
   let open_ (displayName: option<string>) : option<Display> =
-    let zs1 = Glue.dupOption displayName
-    let zr = gdk_display_open zs1
-    let zid2 = Glue.wrap (zr) false
+    let zs1 = Internal.Raw.dupOption displayName
+    let zr = Internal.GdkC.gdk_display_open zs1
+    let zid2 = Internal.Raw.wrap (zr) false
     let zv = (if zid2 = 0 then None else Some (Display zid2))
-    Glue.free zs1
+    Internal.Raw.free zs1
     zv
 
   /// Emitted when the connection to the windowing system for @display is closed.
   let onClosed (self: Display) (handler: bool -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "closed" (fun () ->
-      let isError = (Glue.argInt 1 <> 0)
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) "closed" (fun () ->
+      let isError = (Internal.Raw.argInt 1 <> 0)
       handler isError)
 
   /// Emitted when the connection to the windowing system for @display is opened.
   let onOpened (self: Display) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "opened" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) "opened" handler
 
   /// Emitted whenever a new seat is made known to the windowing system.
   let onSeatAdded (self: Display) (handler: Seat -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "seat-added" (fun () ->
-      let seat = Seat (Glue.wrap (Glue.argPointer 1) false)
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) "seat-added" (fun () ->
+      let seat = Seat (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
       handler seat)
 
   /// Emitted whenever a seat is removed by the windowing system.
   let onSeatRemoved (self: Display) (handler: Seat -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "seat-removed" (fun () ->
-      let seat = Seat (Glue.wrap (Glue.argPointer 1) false)
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) "seat-removed" (fun () ->
+      let seat = Seat (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
       handler seat)
 
   /// Emitted whenever a setting changes its value.
   let onSettingChanged (self: Display) (handler: string -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "setting-changed" (fun () ->
-      let setting = Glue.text (Glue.argPointer 1)
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) "setting-changed" (fun () ->
+      let setting = Internal.Raw.text (Internal.Raw.argPointer 1)
       handler setting)
 
   /// Calls `handler` when the `composited` property changes.
   let onNotifyComposited (self: Display) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "notify::composited" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) "notify::composited" handler
 
   /// Calls `handler` when the `dmabuf-formats` property changes.
   let onNotifyDmabufFormats (self: Display) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "notify::dmabuf-formats" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) "notify::dmabuf-formats" handler
 
   /// Calls `handler` when the `input-shapes` property changes.
   let onNotifyInputShapes (self: Display) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "notify::input-shapes" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) "notify::input-shapes" handler
 
   /// Calls `handler` when the `rgba` property changes.
   let onNotifyRgba (self: Display) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "notify::rgba" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) "notify::rgba" handler
 
   /// Calls `handler` when the `shadow-width` property changes.
   let onNotifyShadowWidth (self: Display) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "notify::shadow-width" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_get_type ())) "notify::shadow-width" handler
 
 module DisplayManager =
   /// The same object as its ancestor.
   let toGObjectObject (self: DisplayManager) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_display_manager_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<DisplayManager> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_display_manager_get_type ()) then Some (DisplayManager object.Id) else None
-
-  extern gdk_display_manager_get_default_display : cptr -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_display_manager_get_type ()) then Some (DisplayManager object.Id) else None
 
   /// Gets the default `GdkDisplay`.
   let getDefaultDisplay (self: DisplayManager) : option<Display> =
-    let zr = gdk_display_manager_get_default_display (Glue.obj self.Id (gdk_display_manager_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_display_manager_get_default_display (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_manager_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Display zid1))
-
-  extern gdk_display_manager_list_displays : cptr -> cptr
 
   /// List all currently open displays.
   let listDisplays (self: DisplayManager) : list<Display> =
-    Glue.mapList (fun zp -> Display (Glue.wrap (zp) false)) (Glue.pointers ((gdk_display_manager_list_displays (Glue.obj self.Id (gdk_display_manager_get_type ())))) true true)
-
-  extern gdk_display_manager_open_display : cptr -> cptr -> cptr
+    Internal.Raw.mapList (fun zp -> Display (Internal.Raw.wrap (zp) false)) (Internal.Raw.pointers ((Internal.GdkC.gdk_display_manager_list_displays (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_manager_get_type ())))) true true)
 
   /// Opens a display.
   let openDisplay (self: DisplayManager) (name: option<string>) : option<Display> =
-    let zs1 = Glue.dupOption name
-    let zr = gdk_display_manager_open_display (Glue.obj self.Id (gdk_display_manager_get_type ())) zs1
-    let zid2 = Glue.wrap (zr) false
+    let zs1 = Internal.Raw.dupOption name
+    let zr = Internal.GdkC.gdk_display_manager_open_display (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_manager_get_type ())) zs1
+    let zid2 = Internal.Raw.wrap (zr) false
     let zv = (if zid2 = 0 then None else Some (Display zid2))
-    Glue.free zs1
+    Internal.Raw.free zs1
     zv
-
-  extern gdk_display_manager_set_default_display : cptr -> cptr -> unit
 
   /// Sets @display as the default display.
   let setDefaultDisplay (self: DisplayManager) (display: Display) : unit =
-    gdk_display_manager_set_default_display (Glue.obj self.Id (gdk_display_manager_get_type ())) (Glue.obj display.Id (gdk_display_get_type ()))
-
-  extern gdk_display_manager_get : unit -> cptr
+    Internal.GdkC.gdk_display_manager_set_default_display (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_manager_get_type ())) (Internal.Raw.obj display.Id (Internal.GdkC.gdk_display_get_type ()))
 
   /// Gets the singleton `GdkDisplayManager` object.
   let get () : DisplayManager =
-    DisplayManager (Glue.wrap ((gdk_display_manager_get ())) false)
+    DisplayManager (Internal.Raw.wrap ((Internal.GdkC.gdk_display_manager_get ())) false)
 
   /// Emitted when a display is opened.
   let onDisplayOpened (self: DisplayManager) (handler: Display -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_display_manager_get_type ())) "display-opened" (fun () ->
-      let display = Display (Glue.wrap (Glue.argPointer 1) false)
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_manager_get_type ())) "display-opened" (fun () ->
+      let display = Display (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
       handler display)
 
   /// Calls `handler` when the `default-display` property changes.
   let onNotifyDefaultDisplay (self: DisplayManager) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_display_manager_get_type ())) "notify::default-display" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_display_manager_get_type ())) "notify::default-display" handler
 
 module DmabufFormats =
-  extern gdk_dmabuf_formats_contains : cptr -> u32 -> u64 -> i32
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_dmabuf_formats_get_type ()
 
   /// Returns whether a given format is contained in @formats.
   let contains (self: DmabufFormats) (fourcc: int) (modifier: int) : bool =
-    (((gdk_dmabuf_formats_contains (Glue.obj self.Id (gdk_dmabuf_formats_get_type ())) (u32 fourcc) (u64 modifier))) <> i32 0)
-
-  extern gdk_dmabuf_formats_equal : cptr -> cptr -> i32
+    (((Internal.GdkC.gdk_dmabuf_formats_contains (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_formats_get_type ())) (u32 fourcc) (u64 modifier))) <> i32 0)
 
   /// Returns whether @formats1 and @formats2 contain the same dmabuf formats, in the same order.
   let equal (self: DmabufFormats) (formats2: option<DmabufFormats>) : bool =
     let zp1 =
       match formats2 with
-      | Some zo -> Glue.obj zo.Id (gdk_dmabuf_formats_get_type ())
-      | None -> Glue.none ()
-    let zr = gdk_dmabuf_formats_equal (Glue.obj self.Id (gdk_dmabuf_formats_get_type ())) zp1
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_dmabuf_formats_get_type ())
+      | None -> Internal.Raw.none ()
+    let zr = Internal.GdkC.gdk_dmabuf_formats_equal (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_formats_get_type ())) zp1
     ((zr) <> i32 0)
-
-  extern gdk_dmabuf_formats_get_format : cptr -> usize -> cptr -> cptr -> unit
 
   /// Gets the fourcc code and modifier for a format that is contained in @formats.
   let getFormat (self: DmabufFormats) (idx: int) : (int * int) =
-    Glue.outBegin ()
-    gdk_dmabuf_formats_get_format (Glue.obj self.Id (gdk_dmabuf_formats_get_type ())) (usize idx) (Glue.out 0) (Glue.out 1)
-    let zv = (Glue.outU32 0, Glue.outI64 1)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GdkC.gdk_dmabuf_formats_get_format (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_formats_get_type ())) (usize idx) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zv = (Internal.Raw.outU32 0, Internal.Raw.outI64 1)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_dmabuf_formats_get_n_formats : cptr -> usize
 
   /// Returns the number of formats that the @formats object contains.
   let getNFormats (self: DmabufFormats) : int =
-    (int ((gdk_dmabuf_formats_get_n_formats (Glue.obj self.Id (gdk_dmabuf_formats_get_type ())))))
-
-  extern gdk_dmabuf_formats_ref : cptr -> cptr
+    (int ((Internal.GdkC.gdk_dmabuf_formats_get_n_formats (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_formats_get_type ())))))
 
   /// Increases the reference count of @formats.
   [<Unsafe>]
   let ref_ (self: DmabufFormats) : DmabufFormats =
-    DmabufFormats (Glue.wrapBoxed ((gdk_dmabuf_formats_ref (Glue.obj self.Id (gdk_dmabuf_formats_get_type ())))) (gdk_dmabuf_formats_get_type ()) true)
-
-  extern gdk_dmabuf_formats_unref : cptr -> unit
+    DmabufFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_dmabuf_formats_ref (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_formats_get_type ())))) (Internal.GdkC.gdk_dmabuf_formats_get_type ()) true)
 
   /// Decreases the reference count of @formats.
   [<Unsafe>]
   let unref (self: DmabufFormats) : unit =
-    gdk_dmabuf_formats_unref (Glue.obj self.Id (gdk_dmabuf_formats_get_type ()))
+    Internal.GdkC.gdk_dmabuf_formats_unref (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_formats_get_type ()))
 
 module Paintable =
   /// The same object as its ancestor.
   let toGObjectObject (self: Paintable) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_paintable_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<Paintable> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_paintable_get_type ()) then Some (Paintable object.Id) else None
-
-  extern gdk_paintable_compute_concrete_size : cptr -> f64 -> f64 -> f64 -> f64 -> cptr -> cptr -> unit
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_paintable_get_type ()) then Some (Paintable object.Id) else None
 
   /// Compute a concrete size for the `GdkPaintable`.
   let computeConcreteSize (self: Paintable) (specifiedWidth: float) (specifiedHeight: float) (defaultWidth: float) (defaultHeight: float) : (float * float) =
-    Glue.outBegin ()
-    gdk_paintable_compute_concrete_size (Glue.obj self.Id (gdk_paintable_get_type ())) specifiedWidth specifiedHeight defaultWidth defaultHeight (Glue.out 0) (Glue.out 1)
-    let zv = (Glue.outF64 0, Glue.outF64 1)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GdkC.gdk_paintable_compute_concrete_size (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())) specifiedWidth specifiedHeight defaultWidth defaultHeight (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zv = (Internal.Raw.outF64 0, Internal.Raw.outF64 1)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_paintable_get_current_image : cptr -> cptr
 
   /// Gets an immutable paintable for the current contents displayed by @paintable.
   let getCurrentImage (self: Paintable) : Paintable =
-    Paintable (Glue.wrap ((gdk_paintable_get_current_image (Glue.obj self.Id (gdk_paintable_get_type ())))) true)
-
-  extern gdk_paintable_get_flags : cptr -> u32
+    Paintable (Internal.Raw.wrap ((Internal.GdkC.gdk_paintable_get_current_image (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())))) true)
 
   /// Get flags for the paintable.
   let getFlags (self: Paintable) : PaintableFlags =
-    PaintableFlags (int ((gdk_paintable_get_flags (Glue.obj self.Id (gdk_paintable_get_type ())))))
-
-  extern gdk_paintable_get_intrinsic_aspect_ratio : cptr -> f64
+    PaintableFlags (int ((Internal.GdkC.gdk_paintable_get_flags (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())))))
 
   /// Gets the preferred aspect ratio the @paintable would like to be displayed at.
   let getIntrinsicAspectRatio (self: Paintable) : float =
-    ((gdk_paintable_get_intrinsic_aspect_ratio (Glue.obj self.Id (gdk_paintable_get_type ()))))
-
-  extern gdk_paintable_get_intrinsic_height : cptr -> i32
+    ((Internal.GdkC.gdk_paintable_get_intrinsic_aspect_ratio (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ()))))
 
   /// Gets the preferred height the @paintable would like to be displayed at.
   let getIntrinsicHeight (self: Paintable) : int =
-    (int ((gdk_paintable_get_intrinsic_height (Glue.obj self.Id (gdk_paintable_get_type ())))))
-
-  extern gdk_paintable_get_intrinsic_width : cptr -> i32
+    (int ((Internal.GdkC.gdk_paintable_get_intrinsic_height (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())))))
 
   /// Gets the preferred width the @paintable would like to be displayed at.
   let getIntrinsicWidth (self: Paintable) : int =
-    (int ((gdk_paintable_get_intrinsic_width (Glue.obj self.Id (gdk_paintable_get_type ())))))
-
-  extern gdk_paintable_invalidate_contents : cptr -> unit
+    (int ((Internal.GdkC.gdk_paintable_get_intrinsic_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())))))
 
   /// Called by implementations of `GdkPaintable` to invalidate their contents.
   let invalidateContents (self: Paintable) : unit =
-    gdk_paintable_invalidate_contents (Glue.obj self.Id (gdk_paintable_get_type ()))
-
-  extern gdk_paintable_invalidate_size : cptr -> unit
+    Internal.GdkC.gdk_paintable_invalidate_contents (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ()))
 
   /// Called by implementations of `GdkPaintable` to invalidate their size.
   let invalidateSize (self: Paintable) : unit =
-    gdk_paintable_invalidate_size (Glue.obj self.Id (gdk_paintable_get_type ()))
-
-  extern gdk_paintable_snapshot : cptr -> cptr -> f64 -> f64 -> unit
+    Internal.GdkC.gdk_paintable_invalidate_size (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ()))
 
   /// Snapshots the given paintable with the given @width and @height.
   let snapshot (self: Paintable) (snapshot: Snapshot) (width: float) (height: float) : unit =
-    gdk_paintable_snapshot (Glue.obj self.Id (gdk_paintable_get_type ())) (Glue.obj snapshot.Id (gdk_snapshot_get_type ())) width height
-
-  extern gdk_paintable_new_empty : i32 -> i32 -> cptr
+    Internal.GdkC.gdk_paintable_snapshot (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())) (Internal.Raw.obj snapshot.Id (Internal.GdkC.gdk_snapshot_get_type ())) width height
 
   /// Returns a paintable that has the given intrinsic size and draws nothing.
   let createEmpty (intrinsicWidth: int) (intrinsicHeight: int) : Paintable =
-    Paintable (Glue.wrap ((gdk_paintable_new_empty (i32 intrinsicWidth) (i32 intrinsicHeight))) true)
+    Paintable (Internal.Raw.wrap ((Internal.GdkC.gdk_paintable_new_empty (i32 intrinsicWidth) (i32 intrinsicHeight))) true)
 
   /// Emitted when the contents of the @paintable change.
   let onInvalidateContents (self: Paintable) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_paintable_get_type ())) "invalidate-contents" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())) "invalidate-contents" handler
 
   /// Emitted when the intrinsic size of the @paintable changes.
   let onInvalidateSize (self: Paintable) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_paintable_get_type ())) "invalidate-size" handler
-
-  extern zgtk_override_Gdk_Paintable_get_current_image : usize -> cptr -> unit
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())) "invalidate-size" handler
 
   /// Gives a type made with `Glue.subclass` its own `get_current_image`: Gets an immutable paintable for the current contents displayed by @paintable.
   let overrideGetCurrentImage (gtype: usize) (handler: Paintable -> Paintable) : unit =
     let zcb =
-      Glue.hold (fun () ->
-        let paintable = Paintable (Glue.wrap (Glue.argPointer 0) false)
-        Glue.returnPointer (Glue.give (Glue.obj (handler paintable).Id (gdk_paintable_get_type ()))))
-    zgtk_override_Gdk_Paintable_get_current_image gtype zcb
-
-  extern zgtk_parent_Gdk_Paintable_get_current_image : cptr -> cptr
+      Internal.Raw.hold (fun () ->
+        let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
+        Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler paintable).Id (Internal.GdkC.gdk_paintable_get_type ()))))
+    Internal.GdkC.zgtk_override_Gdk_Paintable_get_current_image gtype zcb
 
   /// Gets an immutable paintable for the current contents displayed by @paintable.
   let parentGetCurrentImage (self: Paintable) : Paintable =
-    Paintable (Glue.wrap ((zgtk_parent_Gdk_Paintable_get_current_image (Glue.obj self.Id (gdk_paintable_get_type ())))) true)
-
-  extern zgtk_override_Gdk_Paintable_get_flags : usize -> cptr -> unit
+    Paintable (Internal.Raw.wrap ((Internal.GdkC.zgtk_parent_Gdk_Paintable_get_current_image (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_flags`: Get flags for the paintable.
   let overrideGetFlags (gtype: usize) (handler: Paintable -> PaintableFlags) : unit =
     let zcb =
-      Glue.hold (fun () ->
-        let paintable = Paintable (Glue.wrap (Glue.argPointer 0) false)
-        Glue.returnInt (handler paintable).Int)
-    zgtk_override_Gdk_Paintable_get_flags gtype zcb
-
-  extern zgtk_parent_Gdk_Paintable_get_flags : cptr -> u32
+      Internal.Raw.hold (fun () ->
+        let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
+        Internal.Raw.returnInt (handler paintable).Int)
+    Internal.GdkC.zgtk_override_Gdk_Paintable_get_flags gtype zcb
 
   /// Get flags for the paintable.
   let parentGetFlags (self: Paintable) : PaintableFlags =
-    PaintableFlags (int ((zgtk_parent_Gdk_Paintable_get_flags (Glue.obj self.Id (gdk_paintable_get_type ())))))
-
-  extern zgtk_override_Gdk_Paintable_get_intrinsic_aspect_ratio : usize -> cptr -> unit
+    PaintableFlags (int ((Internal.GdkC.zgtk_parent_Gdk_Paintable_get_flags (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `get_intrinsic_aspect_ratio`: Gets the preferred aspect ratio the @paintable would like to be displayed at.
   let overrideGetIntrinsicAspectRatio (gtype: usize) (handler: Paintable -> float) : unit =
     let zcb =
-      Glue.hold (fun () ->
-        let paintable = Paintable (Glue.wrap (Glue.argPointer 0) false)
-        Glue.returnFloat (handler paintable))
-    zgtk_override_Gdk_Paintable_get_intrinsic_aspect_ratio gtype zcb
-
-  extern zgtk_parent_Gdk_Paintable_get_intrinsic_aspect_ratio : cptr -> f64
+      Internal.Raw.hold (fun () ->
+        let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
+        Internal.Raw.returnFloat (handler paintable))
+    Internal.GdkC.zgtk_override_Gdk_Paintable_get_intrinsic_aspect_ratio gtype zcb
 
   /// Gets the preferred aspect ratio the @paintable would like to be displayed at.
   let parentGetIntrinsicAspectRatio (self: Paintable) : float =
-    ((zgtk_parent_Gdk_Paintable_get_intrinsic_aspect_ratio (Glue.obj self.Id (gdk_paintable_get_type ()))))
-
-  extern zgtk_override_Gdk_Paintable_get_intrinsic_height : usize -> cptr -> unit
+    ((Internal.GdkC.zgtk_parent_Gdk_Paintable_get_intrinsic_aspect_ratio (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_intrinsic_height`: Gets the preferred height the @paintable would like to be displayed at.
   let overrideGetIntrinsicHeight (gtype: usize) (handler: Paintable -> int) : unit =
     let zcb =
-      Glue.hold (fun () ->
-        let paintable = Paintable (Glue.wrap (Glue.argPointer 0) false)
-        Glue.returnInt (handler paintable))
-    zgtk_override_Gdk_Paintable_get_intrinsic_height gtype zcb
-
-  extern zgtk_parent_Gdk_Paintable_get_intrinsic_height : cptr -> i32
+      Internal.Raw.hold (fun () ->
+        let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
+        Internal.Raw.returnInt (handler paintable))
+    Internal.GdkC.zgtk_override_Gdk_Paintable_get_intrinsic_height gtype zcb
 
   /// Gets the preferred height the @paintable would like to be displayed at.
   let parentGetIntrinsicHeight (self: Paintable) : int =
-    (int ((zgtk_parent_Gdk_Paintable_get_intrinsic_height (Glue.obj self.Id (gdk_paintable_get_type ())))))
-
-  extern zgtk_override_Gdk_Paintable_get_intrinsic_width : usize -> cptr -> unit
+    (int ((Internal.GdkC.zgtk_parent_Gdk_Paintable_get_intrinsic_height (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `get_intrinsic_width`: Gets the preferred width the @paintable would like to be displayed at.
   let overrideGetIntrinsicWidth (gtype: usize) (handler: Paintable -> int) : unit =
     let zcb =
-      Glue.hold (fun () ->
-        let paintable = Paintable (Glue.wrap (Glue.argPointer 0) false)
-        Glue.returnInt (handler paintable))
-    zgtk_override_Gdk_Paintable_get_intrinsic_width gtype zcb
-
-  extern zgtk_parent_Gdk_Paintable_get_intrinsic_width : cptr -> i32
+      Internal.Raw.hold (fun () ->
+        let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
+        Internal.Raw.returnInt (handler paintable))
+    Internal.GdkC.zgtk_override_Gdk_Paintable_get_intrinsic_width gtype zcb
 
   /// Gets the preferred width the @paintable would like to be displayed at.
   let parentGetIntrinsicWidth (self: Paintable) : int =
-    (int ((zgtk_parent_Gdk_Paintable_get_intrinsic_width (Glue.obj self.Id (gdk_paintable_get_type ())))))
-
-  extern zgtk_override_Gdk_Paintable_snapshot : usize -> cptr -> unit
+    (int ((Internal.GdkC.zgtk_parent_Gdk_Paintable_get_intrinsic_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `snapshot`: Snapshots the given paintable with the given @width and @height.
   let overrideSnapshot (gtype: usize) (handler: Paintable -> Snapshot -> float -> float -> unit) : unit =
     let zcb =
-      Glue.hold (fun () ->
-        let paintable = Paintable (Glue.wrap (Glue.argPointer 0) false)
-        let snapshot = Snapshot (Glue.wrap (Glue.argPointer 1) false)
-        let width = Glue.argFloat 2
-        let height = Glue.argFloat 3
+      Internal.Raw.hold (fun () ->
+        let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
+        let snapshot = Snapshot (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
+        let width = Internal.Raw.argFloat 2
+        let height = Internal.Raw.argFloat 3
         handler paintable snapshot width height)
-    zgtk_override_Gdk_Paintable_snapshot gtype zcb
-
-  extern zgtk_parent_Gdk_Paintable_snapshot : cptr -> cptr -> f64 -> f64 -> unit
+    Internal.GdkC.zgtk_override_Gdk_Paintable_snapshot gtype zcb
 
   /// Snapshots the given paintable with the given @width and @height.
   let parentSnapshot (self: Paintable) (snapshot: Snapshot) (width: float) (height: float) : unit =
-    zgtk_parent_Gdk_Paintable_snapshot (Glue.obj self.Id (gdk_paintable_get_type ())) (Glue.obj snapshot.Id (gdk_snapshot_get_type ())) width height
+    Internal.GdkC.zgtk_parent_Gdk_Paintable_snapshot (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())) (Internal.Raw.obj snapshot.Id (Internal.GdkC.gdk_snapshot_get_type ())) width height
 
 module Texture =
   /// The same object as its interface.
@@ -4390,134 +3905,109 @@ module Texture =
   /// The same object as its ancestor.
   let toGObjectObject (self: Texture) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_texture_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<Texture> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_texture_get_type ()) then Some (Texture object.Id) else None
-
-  extern gdk_texture_new_for_pixbuf : cptr -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_texture_get_type ()) then Some (Texture object.Id) else None
 
   /// Deprecated. Creates a new texture object representing the `GdkPixbuf`.
   let createForPixbuf (pixbuf: GdkPixbuf.Pixbuf) : Texture =
-    Texture (Glue.wrap ((gdk_texture_new_for_pixbuf (Glue.obj pixbuf.Id (GdkPixbuf.gdk_pixbuf_get_type ())))) true)
-
-  extern gdk_texture_new_from_bytes : cptr -> cptr -> cptr
+    Texture (Internal.Raw.wrap ((Internal.GdkC.gdk_texture_new_for_pixbuf (Internal.Raw.obj pixbuf.Id (Internal.GdkPixbufC.gdk_pixbuf_get_type ())))) true)
 
   /// Creates a new texture by loading an image from memory,
   let createFromBytes (bytes: GLib.Bytes) : result<Texture, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_texture_new_from_bytes (Glue.obj bytes.Id (GLib.g_bytes_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_texture_new_from_bytes (Internal.Raw.obj bytes.Id (Internal.GLibC.g_bytes_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
-      let zv = Texture (Glue.wrap (zr) true)
-      Glue.outEnd ()
+      let zv = Texture (Internal.Raw.wrap (zr) true)
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_texture_new_from_file : cptr -> cptr -> cptr
 
   /// Creates a new texture by loading an image from a file.
   let createFromFile (file: Gio.File) : result<Texture, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_texture_new_from_file (Glue.obj file.Id (Gio.g_file_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_texture_new_from_file (Internal.Raw.obj file.Id (Internal.GioC.g_file_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
-      let zv = Texture (Glue.wrap (zr) true)
-      Glue.outEnd ()
+      let zv = Texture (Internal.Raw.wrap (zr) true)
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_texture_new_from_filename : cstr -> cptr -> cptr
 
   /// Creates a new texture by loading an image from a file.
   let createFromFilename (path: string) : result<Texture, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_texture_new_from_filename path (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_texture_new_from_filename path (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
-      let zv = Texture (Glue.wrap (zr) true)
-      Glue.outEnd ()
+      let zv = Texture (Internal.Raw.wrap (zr) true)
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_texture_new_from_resource : cstr -> cptr
 
   /// Creates a new texture by loading an image from a resource.
   let createFromResource (resourcePath: string) : Texture =
-    Texture (Glue.wrap ((gdk_texture_new_from_resource resourcePath)) true)
-
-  extern gdk_texture_download : cptr -> cptr -> usize -> unit
+    Texture (Internal.Raw.wrap ((Internal.GdkC.gdk_texture_new_from_resource resourcePath)) true)
 
   /// Downloads the @texture into local memory.
   let download (self: Texture) (data: array<u8>) (stride: int) : unit =
-    let za1 = Glue.bytes data
-    gdk_texture_download (Glue.obj self.Id (gdk_texture_get_type ())) za1 (usize stride)
-    Glue.free za1
-
-  extern gdk_texture_get_color_state : cptr -> cptr
+    let za1 = Internal.Raw.bytes data
+    Internal.GdkC.gdk_texture_download (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_get_type ())) za1 (usize stride)
+    Internal.Raw.free za1
 
   /// Returns the color state associated with the texture.
   let getColorState (self: Texture) : ColorState =
-    ColorState (Glue.wrapBoxed ((gdk_texture_get_color_state (Glue.obj self.Id (gdk_texture_get_type ())))) (gdk_color_state_get_type ()) false)
-
-  extern gdk_texture_get_format : cptr -> i32
+    ColorState (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_texture_get_color_state (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_get_type ())))) (Internal.GdkC.gdk_color_state_get_type ()) false)
 
   /// Gets the memory format most closely associated with the data of the texture.
   let getFormat (self: Texture) : MemoryFormat =
-    MemoryFormat (int ((gdk_texture_get_format (Glue.obj self.Id (gdk_texture_get_type ())))))
-
-  extern gdk_texture_get_height : cptr -> i32
+    MemoryFormat (int ((Internal.GdkC.gdk_texture_get_format (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_get_type ())))))
 
   /// Returns the height of the @texture, in pixels.
   let getHeight (self: Texture) : int =
-    (int ((gdk_texture_get_height (Glue.obj self.Id (gdk_texture_get_type ())))))
-
-  extern gdk_texture_get_width : cptr -> i32
+    (int ((Internal.GdkC.gdk_texture_get_height (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_get_type ())))))
 
   /// Returns the width of @texture, in pixels.
   let getWidth (self: Texture) : int =
-    (int ((gdk_texture_get_width (Glue.obj self.Id (gdk_texture_get_type ())))))
-
-  extern gdk_texture_save_to_png : cptr -> cstr -> i32
+    (int ((Internal.GdkC.gdk_texture_get_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_get_type ())))))
 
   /// Store the given @texture to the @filename as a PNG file.
   let saveToPng (self: Texture) (filename: string) : bool =
-    (((gdk_texture_save_to_png (Glue.obj self.Id (gdk_texture_get_type ())) filename)) <> i32 0)
-
-  extern gdk_texture_save_to_png_bytes : cptr -> cptr
+    (((Internal.GdkC.gdk_texture_save_to_png (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_get_type ())) filename)) <> i32 0)
 
   /// Store the given @texture in memory as a PNG file.
   let saveToPngBytes (self: Texture) : GLib.Bytes =
-    GLib.Bytes (Glue.wrapBoxed ((gdk_texture_save_to_png_bytes (Glue.obj self.Id (gdk_texture_get_type ())))) (GLib.g_bytes_get_type ()) true)
-
-  extern gdk_texture_save_to_tiff : cptr -> cstr -> i32
+    GLib.Bytes (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_texture_save_to_png_bytes (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_get_type ())))) (Internal.GLibC.g_bytes_get_type ()) true)
 
   /// Store the given @texture to the @filename as a TIFF file.
   let saveToTiff (self: Texture) (filename: string) : bool =
-    (((gdk_texture_save_to_tiff (Glue.obj self.Id (gdk_texture_get_type ())) filename)) <> i32 0)
-
-  extern gdk_texture_save_to_tiff_bytes : cptr -> cptr
+    (((Internal.GdkC.gdk_texture_save_to_tiff (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_get_type ())) filename)) <> i32 0)
 
   /// Store the given @texture in memory as a TIFF file.
   let saveToTiffBytes (self: Texture) : GLib.Bytes =
-    GLib.Bytes (Glue.wrapBoxed ((gdk_texture_save_to_tiff_bytes (Glue.obj self.Id (gdk_texture_get_type ())))) (GLib.g_bytes_get_type ()) true)
+    GLib.Bytes (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_texture_save_to_tiff_bytes (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_get_type ())))) (Internal.GLibC.g_bytes_get_type ()) true)
 
   /// Calls `handler` when the `color-state` property changes.
   let onNotifyColorState (self: Texture) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_texture_get_type ())) "notify::color-state" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_get_type ())) "notify::color-state" handler
 
   /// Calls `handler` when the `height` property changes.
   let onNotifyHeight (self: Texture) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_texture_get_type ())) "notify::height" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_get_type ())) "notify::height" handler
 
   /// Calls `handler` when the `width` property changes.
   let onNotifyWidth (self: Texture) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_texture_get_type ())) "notify::width" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_get_type ())) "notify::width" handler
 
 module DmabufTexture =
   /// The same object as its interface.
@@ -4535,876 +4025,729 @@ module DmabufTexture =
   /// The same object as its ancestor.
   let toGObjectObject (self: DmabufTexture) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_dmabuf_texture_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<DmabufTexture> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_dmabuf_texture_get_type ()) then Some (DmabufTexture object.Id) else None
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_dmabuf_texture_get_type ()) then Some (DmabufTexture object.Id) else None
 
 module DmabufTextureBuilder =
   /// The same object as its ancestor.
   let toGObjectObject (self: DmabufTextureBuilder) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_dmabuf_texture_builder_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<DmabufTextureBuilder> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_dmabuf_texture_builder_get_type ()) then Some (DmabufTextureBuilder object.Id) else None
-
-  extern gdk_dmabuf_texture_builder_new : unit -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ()) then Some (DmabufTextureBuilder object.Id) else None
 
   /// Creates a new texture builder.
   let create () : DmabufTextureBuilder =
-    DmabufTextureBuilder (Glue.wrap ((gdk_dmabuf_texture_builder_new ())) true)
-
-  extern gdk_dmabuf_texture_builder_build : cptr -> cptr -> cptr -> cptr -> cptr
+    DmabufTextureBuilder (Internal.Raw.wrap ((Internal.GdkC.gdk_dmabuf_texture_builder_new ())) true)
 
   /// Builds a new `GdkTexture` with the values set up in the builder.
   [<Unsafe>]
   let build (self: DmabufTextureBuilder) (destroy: cptr) (data: cptr) : result<option<Texture>, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_dmabuf_texture_builder_build (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) destroy data (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_dmabuf_texture_builder_build (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) destroy data (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
-      let zid1 = Glue.wrap (zr) true
+      let zid1 = Internal.Raw.wrap (zr) true
       let zv = (if zid1 = 0 then None else Some (Texture zid1))
-      Glue.outEnd ()
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_dmabuf_texture_builder_get_color_state : cptr -> cptr
 
   /// Gets the color state previously set via gdk_dmabuf_texture_builder_set_color_state().
   let getColorState (self: DmabufTextureBuilder) : option<ColorState> =
-    let zr = gdk_dmabuf_texture_builder_get_color_state (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ()))
-    let zid1 = Glue.wrapBoxed (zr) (gdk_color_state_get_type ()) false
+    let zr = Internal.GdkC.gdk_dmabuf_texture_builder_get_color_state (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ()))
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GdkC.gdk_color_state_get_type ()) false
     (if zid1 = 0 then None else Some (ColorState zid1))
-
-  extern gdk_dmabuf_texture_builder_get_display : cptr -> cptr
 
   /// Returns the display that this texture builder is associated with.
   let getDisplay (self: DmabufTextureBuilder) : Display =
-    Display (Glue.wrap ((gdk_dmabuf_texture_builder_get_display (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())))) false)
-
-  extern gdk_dmabuf_texture_builder_get_fd : cptr -> u32 -> i32
+    Display (Internal.Raw.wrap ((Internal.GdkC.gdk_dmabuf_texture_builder_get_display (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())))) false)
 
   /// Gets the file descriptor for a plane or -1 if none.
   let getFd (self: DmabufTextureBuilder) (plane: int) : int =
-    (int ((gdk_dmabuf_texture_builder_get_fd (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 plane))))
-
-  extern gdk_dmabuf_texture_builder_get_fourcc : cptr -> u32
+    (int ((Internal.GdkC.gdk_dmabuf_texture_builder_get_fd (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) (u32 plane))))
 
   /// Gets the format previously set via gdk_dmabuf_texture_builder_set_fourcc() or 0 if the format wasn't set.
   let getFourcc (self: DmabufTextureBuilder) : int =
-    (int ((gdk_dmabuf_texture_builder_get_fourcc (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())))))
-
-  extern gdk_dmabuf_texture_builder_get_height : cptr -> u32
+    (int ((Internal.GdkC.gdk_dmabuf_texture_builder_get_fourcc (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())))))
 
   /// Gets the height previously set via gdk_dmabuf_texture_builder_set_height() or 0 if the height wasn't set.
   let getHeight (self: DmabufTextureBuilder) : int =
-    (int ((gdk_dmabuf_texture_builder_get_height (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())))))
-
-  extern gdk_dmabuf_texture_builder_get_modifier : cptr -> u64
+    (int ((Internal.GdkC.gdk_dmabuf_texture_builder_get_height (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())))))
 
   /// Gets the modifier value.
   let getModifier (self: DmabufTextureBuilder) : int =
-    (int ((gdk_dmabuf_texture_builder_get_modifier (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())))))
-
-  extern gdk_dmabuf_texture_builder_get_n_planes : cptr -> u32
+    (int ((Internal.GdkC.gdk_dmabuf_texture_builder_get_modifier (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())))))
 
   /// Gets the number of planes.
   let getNPlanes (self: DmabufTextureBuilder) : int =
-    (int ((gdk_dmabuf_texture_builder_get_n_planes (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())))))
-
-  extern gdk_dmabuf_texture_builder_get_offset : cptr -> u32 -> u32
+    (int ((Internal.GdkC.gdk_dmabuf_texture_builder_get_n_planes (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())))))
 
   /// Gets the offset value for a plane.
   let getOffset (self: DmabufTextureBuilder) (plane: int) : int =
-    (int ((gdk_dmabuf_texture_builder_get_offset (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 plane))))
-
-  extern gdk_dmabuf_texture_builder_get_premultiplied : cptr -> i32
+    (int ((Internal.GdkC.gdk_dmabuf_texture_builder_get_offset (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) (u32 plane))))
 
   /// Whether the data is premultiplied.
   let getPremultiplied (self: DmabufTextureBuilder) : bool =
-    (((gdk_dmabuf_texture_builder_get_premultiplied (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())))) <> i32 0)
-
-  extern gdk_dmabuf_texture_builder_get_stride : cptr -> u32 -> u32
+    (((Internal.GdkC.gdk_dmabuf_texture_builder_get_premultiplied (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())))) <> i32 0)
 
   /// Gets the stride value for a plane.
   let getStride (self: DmabufTextureBuilder) (plane: int) : int =
-    (int ((gdk_dmabuf_texture_builder_get_stride (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 plane))))
-
-  extern gdk_dmabuf_texture_builder_get_update_region : cptr -> cptr
+    (int ((Internal.GdkC.gdk_dmabuf_texture_builder_get_stride (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) (u32 plane))))
 
   /// Gets the region previously set via gdk_dmabuf_texture_builder_set_update_region() or %NULL if none was set.
   let getUpdateRegion (self: DmabufTextureBuilder) : option<Cairo.Region> =
-    let zr = gdk_dmabuf_texture_builder_get_update_region (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ()))
-    let zid1 = Glue.wrapBoxed (zr) (Cairo.cairo_gobject_region_get_type ()) false
+    let zr = Internal.GdkC.gdk_dmabuf_texture_builder_get_update_region (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ()))
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.CairoC.cairo_gobject_region_get_type ()) false
     (if zid1 = 0 then None else Some (Cairo.Region zid1))
-
-  extern gdk_dmabuf_texture_builder_get_update_texture : cptr -> cptr
 
   /// Gets the texture previously set via gdk_dmabuf_texture_builder_set_update_texture() or %NULL if none was set.
   let getUpdateTexture (self: DmabufTextureBuilder) : option<Texture> =
-    let zr = gdk_dmabuf_texture_builder_get_update_texture (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_dmabuf_texture_builder_get_update_texture (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Texture zid1))
-
-  extern gdk_dmabuf_texture_builder_get_width : cptr -> u32
 
   /// Gets the width previously set via gdk_dmabuf_texture_builder_set_width() or 0 if the width wasn't set.
   let getWidth (self: DmabufTextureBuilder) : int =
-    (int ((gdk_dmabuf_texture_builder_get_width (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())))))
-
-  extern gdk_dmabuf_texture_builder_set_color_state : cptr -> cptr -> unit
+    (int ((Internal.GdkC.gdk_dmabuf_texture_builder_get_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())))))
 
   /// Sets the color state for the texture.
   let setColorState (self: DmabufTextureBuilder) (colorState: option<ColorState>) : unit =
     let zp1 =
       match colorState with
-      | Some zo -> Glue.obj zo.Id (gdk_color_state_get_type ())
-      | None -> Glue.none ()
-    gdk_dmabuf_texture_builder_set_color_state (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) zp1
-
-  extern gdk_dmabuf_texture_builder_set_display : cptr -> cptr -> unit
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_color_state_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_dmabuf_texture_builder_set_color_state (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) zp1
 
   /// Sets the display that this texture builder is associated with.
   let setDisplay (self: DmabufTextureBuilder) (display: Display) : unit =
-    gdk_dmabuf_texture_builder_set_display (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (Glue.obj display.Id (gdk_display_get_type ()))
-
-  extern gdk_dmabuf_texture_builder_set_fd : cptr -> u32 -> i32 -> unit
+    Internal.GdkC.gdk_dmabuf_texture_builder_set_display (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) (Internal.Raw.obj display.Id (Internal.GdkC.gdk_display_get_type ()))
 
   /// Sets the file descriptor for a plane or to -1 to unset it.
   let setFd (self: DmabufTextureBuilder) (plane: int) (fd: int) : unit =
-    gdk_dmabuf_texture_builder_set_fd (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 plane) (i32 fd)
-
-  extern gdk_dmabuf_texture_builder_set_fourcc : cptr -> u32 -> unit
+    Internal.GdkC.gdk_dmabuf_texture_builder_set_fd (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) (u32 plane) (i32 fd)
 
   /// Sets the format of the texture.
   let setFourcc (self: DmabufTextureBuilder) (fourcc: int) : unit =
-    gdk_dmabuf_texture_builder_set_fourcc (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 fourcc)
-
-  extern gdk_dmabuf_texture_builder_set_height : cptr -> u32 -> unit
+    Internal.GdkC.gdk_dmabuf_texture_builder_set_fourcc (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) (u32 fourcc)
 
   /// Sets the height of the texture.
   let setHeight (self: DmabufTextureBuilder) (height: int) : unit =
-    gdk_dmabuf_texture_builder_set_height (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 height)
-
-  extern gdk_dmabuf_texture_builder_set_modifier : cptr -> u64 -> unit
+    Internal.GdkC.gdk_dmabuf_texture_builder_set_height (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) (u32 height)
 
   /// Sets the modifier.
   let setModifier (self: DmabufTextureBuilder) (modifier: int) : unit =
-    gdk_dmabuf_texture_builder_set_modifier (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u64 modifier)
-
-  extern gdk_dmabuf_texture_builder_set_n_planes : cptr -> u32 -> unit
+    Internal.GdkC.gdk_dmabuf_texture_builder_set_modifier (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) (u64 modifier)
 
   /// Sets the number of planes of the texture.
   let setNPlanes (self: DmabufTextureBuilder) (nPlanes: int) : unit =
-    gdk_dmabuf_texture_builder_set_n_planes (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 nPlanes)
-
-  extern gdk_dmabuf_texture_builder_set_offset : cptr -> u32 -> u32 -> unit
+    Internal.GdkC.gdk_dmabuf_texture_builder_set_n_planes (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) (u32 nPlanes)
 
   /// Sets the offset for a plane.
   let setOffset (self: DmabufTextureBuilder) (plane: int) (offset: int) : unit =
-    gdk_dmabuf_texture_builder_set_offset (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 plane) (u32 offset)
-
-  extern gdk_dmabuf_texture_builder_set_premultiplied : cptr -> i32 -> unit
+    Internal.GdkC.gdk_dmabuf_texture_builder_set_offset (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) (u32 plane) (u32 offset)
 
   /// Sets whether the data is premultiplied.
   let setPremultiplied (self: DmabufTextureBuilder) (premultiplied: bool) : unit =
-    gdk_dmabuf_texture_builder_set_premultiplied (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (if premultiplied then i32 1 else i32 0)
-
-  extern gdk_dmabuf_texture_builder_set_stride : cptr -> u32 -> u32 -> unit
+    Internal.GdkC.gdk_dmabuf_texture_builder_set_premultiplied (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) (if premultiplied then i32 1 else i32 0)
 
   /// Sets the stride for a plane.
   let setStride (self: DmabufTextureBuilder) (plane: int) (stride: int) : unit =
-    gdk_dmabuf_texture_builder_set_stride (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 plane) (u32 stride)
-
-  extern gdk_dmabuf_texture_builder_set_update_region : cptr -> cptr -> unit
+    Internal.GdkC.gdk_dmabuf_texture_builder_set_stride (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) (u32 plane) (u32 stride)
 
   /// Sets the region to be updated by this texture.
   let setUpdateRegion (self: DmabufTextureBuilder) (region: option<Cairo.Region>) : unit =
     let zp1 =
       match region with
-      | Some zo -> Glue.obj zo.Id (Cairo.cairo_gobject_region_get_type ())
-      | None -> Glue.none ()
-    gdk_dmabuf_texture_builder_set_update_region (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) zp1
-
-  extern gdk_dmabuf_texture_builder_set_update_texture : cptr -> cptr -> unit
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.CairoC.cairo_gobject_region_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_dmabuf_texture_builder_set_update_region (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) zp1
 
   /// Sets the texture to be updated by this texture.
   let setUpdateTexture (self: DmabufTextureBuilder) (texture: option<Texture>) : unit =
     let zp1 =
       match texture with
-      | Some zo -> Glue.obj zo.Id (gdk_texture_get_type ())
-      | None -> Glue.none ()
-    gdk_dmabuf_texture_builder_set_update_texture (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) zp1
-
-  extern gdk_dmabuf_texture_builder_set_width : cptr -> u32 -> unit
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_texture_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_dmabuf_texture_builder_set_update_texture (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) zp1
 
   /// Sets the width of the texture.
   let setWidth (self: DmabufTextureBuilder) (width: int) : unit =
-    gdk_dmabuf_texture_builder_set_width (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 width)
+    Internal.GdkC.gdk_dmabuf_texture_builder_set_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) (u32 width)
 
   /// Calls `handler` when the `color-state` property changes.
   let onNotifyColorState (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::color-state" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) "notify::color-state" handler
 
   /// Calls `handler` when the `display` property changes.
   let onNotifyDisplay (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::display" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) "notify::display" handler
 
   /// Calls `handler` when the `fourcc` property changes.
   let onNotifyFourcc (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::fourcc" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) "notify::fourcc" handler
 
   /// Calls `handler` when the `height` property changes.
   let onNotifyHeight (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::height" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) "notify::height" handler
 
   /// Calls `handler` when the `modifier` property changes.
   let onNotifyModifier (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::modifier" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) "notify::modifier" handler
 
   /// Calls `handler` when the `n-planes` property changes.
   let onNotifyNPlanes (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::n-planes" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) "notify::n-planes" handler
 
   /// Calls `handler` when the `premultiplied` property changes.
   let onNotifyPremultiplied (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::premultiplied" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) "notify::premultiplied" handler
 
   /// Calls `handler` when the `update-region` property changes.
   let onNotifyUpdateRegion (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::update-region" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) "notify::update-region" handler
 
   /// Calls `handler` when the `update-texture` property changes.
   let onNotifyUpdateTexture (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::update-texture" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) "notify::update-texture" handler
 
   /// Calls `handler` when the `width` property changes.
   let onNotifyWidth (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::width" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_dmabuf_texture_builder_get_type ())) "notify::width" handler
 
 module Drag =
   /// The same object as its ancestor.
   let toGObjectObject (self: Drag) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_drag_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<Drag> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_drag_get_type ()) then Some (Drag object.Id) else None
-
-  extern gdk_drag_drop_done : cptr -> i32 -> unit
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_drag_get_type ()) then Some (Drag object.Id) else None
 
   /// Informs GDK that the drop ended.
   let dropDone (self: Drag) (success: bool) : unit =
-    gdk_drag_drop_done (Glue.obj self.Id (gdk_drag_get_type ())) (if success then i32 1 else i32 0)
-
-  extern gdk_drag_get_actions : cptr -> u32
+    Internal.GdkC.gdk_drag_drop_done (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())) (if success then i32 1 else i32 0)
 
   /// Determines the bitmask of possible actions proposed by the source.
   let getActions (self: Drag) : DragAction =
-    DragAction (int ((gdk_drag_get_actions (Glue.obj self.Id (gdk_drag_get_type ())))))
-
-  extern gdk_drag_get_content : cptr -> cptr
+    DragAction (int ((Internal.GdkC.gdk_drag_get_actions (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())))))
 
   /// Returns the `GdkContentProvider` associated to the `GdkDrag` object.
   let getContent (self: Drag) : ContentProvider =
-    ContentProvider (Glue.wrap ((gdk_drag_get_content (Glue.obj self.Id (gdk_drag_get_type ())))) false)
-
-  extern gdk_drag_get_device : cptr -> cptr
+    ContentProvider (Internal.Raw.wrap ((Internal.GdkC.gdk_drag_get_content (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())))) false)
 
   /// Returns the `GdkDevice` associated to the `GdkDrag` object.
   let getDevice (self: Drag) : Device =
-    Device (Glue.wrap ((gdk_drag_get_device (Glue.obj self.Id (gdk_drag_get_type ())))) false)
-
-  extern gdk_drag_get_display : cptr -> cptr
+    Device (Internal.Raw.wrap ((Internal.GdkC.gdk_drag_get_device (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())))) false)
 
   /// Gets the `GdkDisplay` that the drag object was created for.
   let getDisplay (self: Drag) : Display =
-    Display (Glue.wrap ((gdk_drag_get_display (Glue.obj self.Id (gdk_drag_get_type ())))) false)
-
-  extern gdk_drag_get_drag_surface : cptr -> cptr
+    Display (Internal.Raw.wrap ((Internal.GdkC.gdk_drag_get_display (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())))) false)
 
   /// Returns the surface on which the drag icon should be rendered during the drag operation.
   let getDragSurface (self: Drag) : option<Surface> =
-    let zr = gdk_drag_get_drag_surface (Glue.obj self.Id (gdk_drag_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_drag_get_drag_surface (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Surface zid1))
-
-  extern gdk_drag_get_formats : cptr -> cptr
 
   /// Retrieves the formats supported by this `GdkDrag` object.
   let getFormats (self: Drag) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((gdk_drag_get_formats (Glue.obj self.Id (gdk_drag_get_type ())))) (gdk_content_formats_get_type ()) false)
-
-  extern gdk_drag_get_selected_action : cptr -> u32
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_drag_get_formats (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) false)
 
   /// Determines the action chosen by the drag destination.
   let getSelectedAction (self: Drag) : DragAction =
-    DragAction (int ((gdk_drag_get_selected_action (Glue.obj self.Id (gdk_drag_get_type ())))))
-
-  extern gdk_drag_get_surface : cptr -> cptr
+    DragAction (int ((Internal.GdkC.gdk_drag_get_selected_action (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())))))
 
   /// Returns the `GdkSurface` where the drag originates.
   let getSurface (self: Drag) : Surface =
-    Surface (Glue.wrap ((gdk_drag_get_surface (Glue.obj self.Id (gdk_drag_get_type ())))) false)
-
-  extern gdk_drag_set_hotspot : cptr -> i32 -> i32 -> unit
+    Surface (Internal.Raw.wrap ((Internal.GdkC.gdk_drag_get_surface (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())))) false)
 
   /// Sets the position of the drag surface that will be kept under the cursor hotspot.
   let setHotspot (self: Drag) (hotX: int) (hotY: int) : unit =
-    gdk_drag_set_hotspot (Glue.obj self.Id (gdk_drag_get_type ())) (i32 hotX) (i32 hotY)
-
-  extern gdk_drag_begin : cptr -> cptr -> cptr -> u32 -> f64 -> f64 -> cptr
+    Internal.GdkC.gdk_drag_set_hotspot (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())) (i32 hotX) (i32 hotY)
 
   /// Starts a drag and creates a new drag context for it.
   let begin (surface: Surface) (device: Device) (content: ContentProvider) (actions: DragAction) (dx: float) (dy: float) : option<Drag> =
-    let zr = gdk_drag_begin (Glue.obj surface.Id (gdk_surface_get_type ())) (Glue.obj device.Id (gdk_device_get_type ())) (Glue.obj content.Id (gdk_content_provider_get_type ())) (u32 actions.Int) dx dy
-    let zid1 = Glue.wrap (zr) true
+    let zr = Internal.GdkC.gdk_drag_begin (Internal.Raw.obj surface.Id (Internal.GdkC.gdk_surface_get_type ())) (Internal.Raw.obj device.Id (Internal.GdkC.gdk_device_get_type ())) (Internal.Raw.obj content.Id (Internal.GdkC.gdk_content_provider_get_type ())) (u32 actions.Int) dx dy
+    let zid1 = Internal.Raw.wrap (zr) true
     (if zid1 = 0 then None else Some (Drag zid1))
 
   /// Emitted when the drag operation is cancelled.
   let onCancel (self: Drag) (handler: DragCancelReason -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "cancel" (fun () ->
-      let reason = DragCancelReason (int (Glue.argInt 1))
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())) "cancel" (fun () ->
+      let reason = DragCancelReason (int (Internal.Raw.argInt 1))
       handler reason)
 
   /// Emitted when the destination side has finished reading all data.
   let onDndFinished (self: Drag) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "dnd-finished" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())) "dnd-finished" handler
 
   /// Emitted when the drop operation is performed on an accepting client.
   let onDropPerformed (self: Drag) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "drop-performed" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())) "drop-performed" handler
 
   /// Calls `handler` when the `actions` property changes.
   let onNotifyActions (self: Drag) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "notify::actions" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())) "notify::actions" handler
 
   /// Sets the `actions` property.
-  let setActions (self: Drag) (value: DragAction) : unit = Glue.setInt (Glue.obj self.Id (gdk_drag_get_type ())) "actions" value.Int
+  let setActions (self: Drag) (value: DragAction) : unit = Internal.Raw.setInt (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())) "actions" value.Int
 
   /// Calls `handler` when the `content` property changes.
   let onNotifyContent (self: Drag) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "notify::content" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())) "notify::content" handler
 
   /// Calls `handler` when the `device` property changes.
   let onNotifyDevice (self: Drag) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "notify::device" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())) "notify::device" handler
 
   /// Calls `handler` when the `display` property changes.
   let onNotifyDisplay (self: Drag) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "notify::display" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())) "notify::display" handler
 
   /// Calls `handler` when the `formats` property changes.
   let onNotifyFormats (self: Drag) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "notify::formats" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())) "notify::formats" handler
 
   /// Calls `handler` when the `selected-action` property changes.
   let onNotifySelectedAction (self: Drag) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "notify::selected-action" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())) "notify::selected-action" handler
 
   /// Sets the `selected-action` property.
-  let setSelectedAction (self: Drag) (value: DragAction) : unit = Glue.setInt (Glue.obj self.Id (gdk_drag_get_type ())) "selected-action" value.Int
+  let setSelectedAction (self: Drag) (value: DragAction) : unit = Internal.Raw.setInt (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())) "selected-action" value.Int
 
   /// Calls `handler` when the `surface` property changes.
   let onNotifySurface (self: Drag) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "notify::surface" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_get_type ())) "notify::surface" handler
 
 module DragSurface =
   /// The same object as its ancestor.
   let toGObjectObject (self: DragSurface) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_drag_surface_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<DragSurface> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_drag_surface_get_type ()) then Some (DragSurface object.Id) else None
-
-  extern gdk_drag_surface_present : cptr -> i32 -> i32 -> i32
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_drag_surface_get_type ()) then Some (DragSurface object.Id) else None
 
   /// Present @drag_surface.
   let present (self: DragSurface) (width: int) (height: int) : bool =
-    (((gdk_drag_surface_present (Glue.obj self.Id (gdk_drag_surface_get_type ())) (i32 width) (i32 height))) <> i32 0)
+    (((Internal.GdkC.gdk_drag_surface_present (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_surface_get_type ())) (i32 width) (i32 height))) <> i32 0)
 
   /// Emitted when the size for the surface needs to be computed, when it is present.
   let onComputeSize (self: DragSurface) (handler: DragSurfaceSize -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drag_surface_get_type ())) "compute-size" (fun () ->
-      let size = DragSurfaceSize (Glue.wrapBoxed (Glue.argPointer 1) (gdk_drag_surface_size_get_type ()) false)
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_surface_get_type ())) "compute-size" (fun () ->
+      let size = DragSurfaceSize (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GdkC.gdk_drag_surface_size_get_type ()) false)
       handler size)
 
 module DragSurfaceSize =
-  extern gdk_drag_surface_size_set_size : cptr -> i32 -> i32 -> unit
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_drag_surface_size_get_type ()
 
   /// Sets the size the drag surface prefers to be resized to.
   let setSize (self: DragSurfaceSize) (width: int) (height: int) : unit =
-    gdk_drag_surface_size_set_size (Glue.obj self.Id (gdk_drag_surface_size_get_type ())) (i32 width) (i32 height)
+    Internal.GdkC.gdk_drag_surface_size_set_size (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drag_surface_size_get_type ())) (i32 width) (i32 height)
 
 module Drop =
   /// The same object as its ancestor.
   let toGObjectObject (self: Drop) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_drop_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<Drop> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_drop_get_type ()) then Some (Drop object.Id) else None
-
-  extern gdk_drop_finish : cptr -> u32 -> unit
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_drop_get_type ()) then Some (Drop object.Id) else None
 
   /// Ends the drag operation after a drop.
   let finish (self: Drop) (action: DragAction) : unit =
-    gdk_drop_finish (Glue.obj self.Id (gdk_drop_get_type ())) (u32 action.Int)
-
-  extern gdk_drop_get_actions : cptr -> u32
+    Internal.GdkC.gdk_drop_finish (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())) (u32 action.Int)
 
   /// Returns the possible actions for this `GdkDrop`.
   let getActions (self: Drop) : DragAction =
-    DragAction (int ((gdk_drop_get_actions (Glue.obj self.Id (gdk_drop_get_type ())))))
-
-  extern gdk_drop_get_device : cptr -> cptr
+    DragAction (int ((Internal.GdkC.gdk_drop_get_actions (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())))))
 
   /// Returns the `GdkDevice` performing the drop.
   let getDevice (self: Drop) : Device =
-    Device (Glue.wrap ((gdk_drop_get_device (Glue.obj self.Id (gdk_drop_get_type ())))) false)
-
-  extern gdk_drop_get_display : cptr -> cptr
+    Device (Internal.Raw.wrap ((Internal.GdkC.gdk_drop_get_device (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())))) false)
 
   /// Gets the `GdkDisplay` that @self was created for.
   let getDisplay (self: Drop) : Display =
-    Display (Glue.wrap ((gdk_drop_get_display (Glue.obj self.Id (gdk_drop_get_type ())))) false)
-
-  extern gdk_drop_get_drag : cptr -> cptr
+    Display (Internal.Raw.wrap ((Internal.GdkC.gdk_drop_get_display (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())))) false)
 
   /// If this is an in-app drag-and-drop operation, returns the `GdkDrag` that corresponds to this drop.
   let getDrag (self: Drop) : option<Drag> =
-    let zr = gdk_drop_get_drag (Glue.obj self.Id (gdk_drop_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_drop_get_drag (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Drag zid1))
-
-  extern gdk_drop_get_formats : cptr -> cptr
 
   /// Returns the `GdkContentFormats` that the drop offers the data to be read in.
   let getFormats (self: Drop) : ContentFormats =
-    ContentFormats (Glue.wrapBoxed ((gdk_drop_get_formats (Glue.obj self.Id (gdk_drop_get_type ())))) (gdk_content_formats_get_type ()) false)
-
-  extern gdk_drop_get_surface : cptr -> cptr
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_drop_get_formats (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) false)
 
   /// Returns the `GdkSurface` performing the drop.
   let getSurface (self: Drop) : Surface =
-    Surface (Glue.wrap ((gdk_drop_get_surface (Glue.obj self.Id (gdk_drop_get_type ())))) false)
-
-  extern gdk_drop_read_async : cptr -> cptr -> i32 -> cptr -> cptr -> cptr -> unit
+    Surface (Internal.Raw.wrap ((Internal.GdkC.gdk_drop_get_surface (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())))) false)
 
   /// Asynchronously read the dropped data from a `GdkDrop` in a format that complies with one of the mime types.
   let readAsync (self: Drop) (mimeTypes: list<string>) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
-      Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
+      Internal.Raw.hold (fun () ->
+        let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 0) false
         let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
-        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        let res = Gio.AsyncResult (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         callback sourceObject res)
-    let zv3 = Glue.strv mimeTypes
+    let zv3 = Internal.Raw.strv mimeTypes
     let zp4 =
       match cancellable with
-      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
-      | None -> Glue.none ()
-    gdk_drop_read_async (Glue.obj self.Id (gdk_drop_get_type ())) zv3 (i32 ioPriority) zp4 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-    Glue.freeStrv zv3
-
-  extern gdk_drop_read_finish : cptr -> cptr -> cptr -> cptr -> cptr
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_drop_read_async (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())) zv3 (i32 ioPriority) zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+    Internal.Raw.freeStrv zv3
 
   /// Finishes an async drop read operation.
   let readFinish (self: Drop) (result: Gio.AsyncResult) : result<(option<Gio.InputStream> * string), Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_drop_read_finish (Glue.obj self.Id (gdk_drop_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.out 0) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_drop_read_finish (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())) (Internal.Raw.obj result.Id (Internal.GioC.g_async_result_get_type ())) (Internal.Raw.out 0) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
-      let zid1 = Glue.wrap (zr) true
-      let zv = ((if zid1 = 0 then None else Some (Gio.InputStream zid1)), Glue.text (Glue.outPtr 0))
-      Glue.outEnd ()
+      let zid1 = Internal.Raw.wrap (zr) true
+      let zv = ((if zid1 = 0 then None else Some (Gio.InputStream zid1)), Internal.Raw.text (Internal.Raw.outPtr 0))
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_drop_read_value_async : cptr -> usize -> i32 -> cptr -> cptr -> cptr -> unit
 
   /// Asynchronously request the drag operation's contents converted to the given @type.
   let readValueAsync (self: Drop) (type_: usize) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
-      Glue.hold (fun () ->
-        let zid2 = Glue.wrap (Glue.argPointer 0) false
+      Internal.Raw.hold (fun () ->
+        let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 0) false
         let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
-        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        let res = Gio.AsyncResult (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         callback sourceObject res)
     let zp3 =
       match cancellable with
-      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
-      | None -> Glue.none ()
-    gdk_drop_read_value_async (Glue.obj self.Id (gdk_drop_get_type ())) type_ (i32 ioPriority) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-
-  extern gdk_drop_read_value_finish : cptr -> cptr -> cptr -> cptr
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_drop_read_value_async (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())) type_ (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Finishes an async drop read.
   let readValueFinish (self: Drop) (result: Gio.AsyncResult) : result<GObject.Value, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_drop_read_value_finish (Glue.obj self.Id (gdk_drop_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_drop_read_value_finish (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())) (Internal.Raw.obj result.Id (Internal.GioC.g_async_result_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
-      let zv = GObject.Value (Glue.wrapBoxed (zr) (GObject.g_value_get_type ()) false)
-      Glue.outEnd ()
+      let zv = GObject.Value (Internal.Raw.wrapBoxed (zr) (Internal.GObjectC.g_value_get_type ()) false)
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_drop_status : cptr -> u32 -> u32 -> unit
 
   /// Selects all actions that are potentially supported by the destination.
   let status (self: Drop) (actions: DragAction) (preferred: DragAction) : unit =
-    gdk_drop_status (Glue.obj self.Id (gdk_drop_get_type ())) (u32 actions.Int) (u32 preferred.Int)
+    Internal.GdkC.gdk_drop_status (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())) (u32 actions.Int) (u32 preferred.Int)
 
   /// Calls `handler` when the `actions` property changes.
   let onNotifyActions (self: Drop) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drop_get_type ())) "notify::actions" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())) "notify::actions" handler
 
   /// Calls `handler` when the `device` property changes.
   let onNotifyDevice (self: Drop) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drop_get_type ())) "notify::device" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())) "notify::device" handler
 
   /// Calls `handler` when the `display` property changes.
   let onNotifyDisplay (self: Drop) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drop_get_type ())) "notify::display" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())) "notify::display" handler
 
   /// Calls `handler` when the `drag` property changes.
   let onNotifyDrag (self: Drop) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drop_get_type ())) "notify::drag" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())) "notify::drag" handler
 
   /// Calls `handler` when the `formats` property changes.
   let onNotifyFormats (self: Drop) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drop_get_type ())) "notify::formats" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())) "notify::formats" handler
 
   /// Calls `handler` when the `surface` property changes.
   let onNotifySurface (self: Drop) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_drop_get_type ())) "notify::surface" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())) "notify::surface" handler
 
 module Event =
-  extern gdk_event_get_axes : cptr -> cptr -> cptr -> i32
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_type_Gdk_Event ()
 
   /// Extracts all axis values from an event.
   let getAxes (self: Event) : (bool * list<float>) =
-    Glue.outBegin ()
-    let zr = gdk_event_get_axes (Glue.obj self.Id (zgtk_type_Gdk_Event ())) (Glue.out 1) (Glue.out 0)
-    let zv = (((zr) <> i32 0), Glue.floatsOf (Glue.outPtr 1) (Glue.outU32 0) 8 false)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_event_get_axes (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ())) (Internal.Raw.out 1) (Internal.Raw.out 0)
+    let zv = (((zr) <> i32 0), Internal.Raw.floatsOf (Internal.Raw.outPtr 1) (Internal.Raw.outU32 0) 8 false)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_event_get_axis : cptr -> i32 -> cptr -> i32
 
   /// Extract the axis value for a particular axis use from an event structure.
   let getAxis (self: Event) (axisUse: AxisUse) : (bool * float) =
-    Glue.outBegin ()
-    let zr = gdk_event_get_axis (Glue.obj self.Id (zgtk_type_Gdk_Event ())) (i32 axisUse.Int) (Glue.out 0)
-    let zv = (((zr) <> i32 0), Glue.outF64 0)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_event_get_axis (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ())) (i32 axisUse.Int) (Internal.Raw.out 0)
+    let zv = (((zr) <> i32 0), Internal.Raw.outF64 0)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_event_get_device : cptr -> cptr
 
   /// Returns the device of an event.
   let getDevice (self: Event) : option<Device> =
-    let zr = gdk_event_get_device (Glue.obj self.Id (zgtk_type_Gdk_Event ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_event_get_device (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Device zid1))
-
-  extern gdk_event_get_device_tool : cptr -> cptr
 
   /// Returns a `GdkDeviceTool` representing the tool that caused the event.
   let getDeviceTool (self: Event) : option<DeviceTool> =
-    let zr = gdk_event_get_device_tool (Glue.obj self.Id (zgtk_type_Gdk_Event ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_event_get_device_tool (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (DeviceTool zid1))
-
-  extern gdk_event_get_display : cptr -> cptr
 
   /// Retrieves the display associated to the @event.
   let getDisplay (self: Event) : option<Display> =
-    let zr = gdk_event_get_display (Glue.obj self.Id (zgtk_type_Gdk_Event ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_event_get_display (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Display zid1))
-
-  extern gdk_event_get_event_sequence : cptr -> cptr
 
   /// Returns the event sequence to which the event belongs.
   let getEventSequence (self: Event) : EventSequence =
-    EventSequence (Glue.wrapBoxed ((gdk_event_get_event_sequence (Glue.obj self.Id (zgtk_type_Gdk_Event ())))) (gdk_event_sequence_get_type ()) false)
-
-  extern gdk_event_get_event_type : cptr -> i32
+    EventSequence (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_event_get_event_sequence (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ())))) (Internal.GdkC.gdk_event_sequence_get_type ()) false)
 
   /// Retrieves the type of the event.
   let getEventType (self: Event) : EventType =
-    EventType (int ((gdk_event_get_event_type (Glue.obj self.Id (zgtk_type_Gdk_Event ())))))
-
-  extern gdk_event_get_history : cptr -> cptr -> cptr
+    EventType (int ((Internal.GdkC.gdk_event_get_event_type (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ())))))
 
   /// Retrieves the history of the device that @event is for, as a list of time and coordinates.
   let getHistory (self: Event) : list<TimeCoord> =
-    Glue.outBegin ()
-    let zr = gdk_event_get_history (Glue.obj self.Id (zgtk_type_Gdk_Event ())) (Glue.out 0)
-    let zrs1 = Glue.mapList (fun zp -> TimeCoord (Glue.copyPlain (zp) (zgtk_sizeof_Gdk_TimeCoord ()) (zgtk_tag_Gdk_TimeCoord ()))) (Glue.recordsOf (zr) (Glue.outU32 0) (zgtk_sizeof_Gdk_TimeCoord ()))
-    Glue.free (zr)
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_event_get_history (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ())) (Internal.Raw.out 0)
+    let zrs1 = Internal.Raw.mapList (fun zp -> TimeCoord (Internal.Raw.copyPlain (zp) (Internal.GdkC.zgtk_sizeof_Gdk_TimeCoord ()) (Internal.GdkC.zgtk_tag_Gdk_TimeCoord ()))) (Internal.Raw.recordsOf (zr) (Internal.Raw.outU32 0) (Internal.GdkC.zgtk_sizeof_Gdk_TimeCoord ()))
+    Internal.Raw.free (zr)
     let zv = zrs1
-    Glue.outEnd ()
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_event_get_modifier_state : cptr -> u32
 
   /// Returns the modifier state field of an event.
   let getModifierState (self: Event) : ModifierType =
-    ModifierType (int ((gdk_event_get_modifier_state (Glue.obj self.Id (zgtk_type_Gdk_Event ())))))
-
-  extern gdk_event_get_pointer_emulated : cptr -> i32
+    ModifierType (int ((Internal.GdkC.gdk_event_get_modifier_state (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ())))))
 
   /// Returns whether this event is an 'emulated' pointer event.
   let getPointerEmulated (self: Event) : bool =
-    (((gdk_event_get_pointer_emulated (Glue.obj self.Id (zgtk_type_Gdk_Event ())))) <> i32 0)
-
-  extern gdk_event_get_position : cptr -> cptr -> cptr -> i32
+    (((Internal.GdkC.gdk_event_get_pointer_emulated (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ())))) <> i32 0)
 
   /// Extract the event surface relative x/y coordinates from an event.
   let getPosition (self: Event) : (bool * float * float) =
-    Glue.outBegin ()
-    let zr = gdk_event_get_position (Glue.obj self.Id (zgtk_type_Gdk_Event ())) (Glue.out 0) (Glue.out 1)
-    let zv = (((zr) <> i32 0), Glue.outF64 0, Glue.outF64 1)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_event_get_position (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ())) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zv = (((zr) <> i32 0), Internal.Raw.outF64 0, Internal.Raw.outF64 1)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_event_get_seat : cptr -> cptr
 
   /// Returns the seat that originated the event.
   let getSeat (self: Event) : option<Seat> =
-    let zr = gdk_event_get_seat (Glue.obj self.Id (zgtk_type_Gdk_Event ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_event_get_seat (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Seat zid1))
-
-  extern gdk_event_get_surface : cptr -> cptr
 
   /// Extracts the surface associated with an event.
   let getSurface (self: Event) : option<Surface> =
-    let zr = gdk_event_get_surface (Glue.obj self.Id (zgtk_type_Gdk_Event ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_event_get_surface (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Surface zid1))
-
-  extern gdk_event_get_time : cptr -> u32
 
   /// Returns the timestamp of @event.
   let getTime (self: Event) : int =
-    (int ((gdk_event_get_time (Glue.obj self.Id (zgtk_type_Gdk_Event ())))))
-
-  extern gdk_event_ref : cptr -> cptr
+    (int ((Internal.GdkC.gdk_event_get_time (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ())))))
 
   /// Increase the ref count of @event.
   [<Unsafe>]
   let ref_ (self: Event) : Event =
-    Event (zgtk_wrap_Gdk_Event ((gdk_event_ref (Glue.obj self.Id (zgtk_type_Gdk_Event ())))) (i32 1))
-
-  extern gdk_event_triggers_context_menu : cptr -> i32
+    Event (Internal.GdkC.zgtk_wrap_Gdk_Event ((Internal.GdkC.gdk_event_ref (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ())))) (i32 1))
 
   /// Returns whether a `GdkEvent` should trigger a context menu, according to platform conventions.
   let triggersContextMenu (self: Event) : bool =
-    (((gdk_event_triggers_context_menu (Glue.obj self.Id (zgtk_type_Gdk_Event ())))) <> i32 0)
-
-  extern gdk_event_unref : cptr -> unit
+    (((Internal.GdkC.gdk_event_triggers_context_menu (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ())))) <> i32 0)
 
   /// Decrease the ref count of @event.
   [<Unsafe>]
   let unref (self: Event) : unit =
-    gdk_event_unref (Glue.obj self.Id (zgtk_type_Gdk_Event ()))
+    Internal.GdkC.gdk_event_unref (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_Event ()))
+
+module EventSequence =
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_event_sequence_get_type ()
 
 module FileList =
-  extern gdk_file_list_new_from_array : cptr -> usize -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_file_list_get_type ()
 
   /// Creates a new `GdkFileList` for the given array of files.
   let createFromArray (files: list<Gio.File>) : FileList =
-    let za2 = Glue.ptrs (Glue.mapList (fun (zo: Gio.File) -> Glue.obj zo.Id (Gio.g_file_get_type ())) files)
-    let zr = gdk_file_list_new_from_array za2 (usize (Glue.count files))
-    let zv = FileList (Glue.wrapBoxed (zr) (gdk_file_list_get_type ()) true)
-    Glue.free za2
+    let za2 = Internal.Raw.ptrs (Internal.Raw.mapList (fun (zo: Gio.File) -> Internal.Raw.obj zo.Id (Internal.GioC.g_file_get_type ())) files)
+    let zr = Internal.GdkC.gdk_file_list_new_from_array za2 (usize (Internal.Raw.count files))
+    let zv = FileList (Internal.Raw.wrapBoxed (zr) (Internal.GdkC.gdk_file_list_get_type ()) true)
+    Internal.Raw.free za2
     zv
-
-  extern gdk_file_list_new_from_list : cptr -> cptr
 
   /// Creates a new files list container from a singly linked list of `GFile` instances.
   let createFromList (files: list<Gio.File>) : FileList =
-    let zl1 = Glue.glist (Glue.mapList (fun (zo: Gio.File) -> Glue.obj zo.Id (Gio.g_file_get_type ())) files) true
-    let zr = gdk_file_list_new_from_list zl1
-    let zv = FileList (Glue.wrapBoxed (zr) (gdk_file_list_get_type ()) true)
-    Glue.freeGlist zl1 true
+    let zl1 = Internal.Raw.glist (Internal.Raw.mapList (fun (zo: Gio.File) -> Internal.Raw.obj zo.Id (Internal.GioC.g_file_get_type ())) files) true
+    let zr = Internal.GdkC.gdk_file_list_new_from_list zl1
+    let zv = FileList (Internal.Raw.wrapBoxed (zr) (Internal.GdkC.gdk_file_list_get_type ()) true)
+    Internal.Raw.freeGlist zl1 true
     zv
-
-  extern gdk_file_list_get_files : cptr -> cptr
 
   /// Retrieves the list of files inside a `GdkFileList`.
   let getFiles (self: FileList) : list<Gio.File> =
-    Glue.mapList (fun zp -> Gio.File (Glue.wrap (zp) false)) (Glue.pointers ((gdk_file_list_get_files (Glue.obj self.Id (gdk_file_list_get_type ())))) true true)
+    Internal.Raw.mapList (fun zp -> Gio.File (Internal.Raw.wrap (zp) false)) (Internal.Raw.pointers ((Internal.GdkC.gdk_file_list_get_files (Internal.Raw.obj self.Id (Internal.GdkC.gdk_file_list_get_type ())))) true true)
 
 module FocusEvent =
-  extern gdk_focus_event_get_in : cptr -> i32
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_type_Gdk_FocusEvent ()
 
   /// Extracts whether this event is about focus entering or leaving the surface.
   let getIn (self: FocusEvent) : bool =
-    (((gdk_focus_event_get_in (Glue.obj self.Id (zgtk_type_Gdk_FocusEvent ())))) <> i32 0)
+    (((Internal.GdkC.gdk_focus_event_get_in (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_FocusEvent ())))) <> i32 0)
 
 module FrameClock =
   /// The same object as its ancestor.
   let toGObjectObject (self: FrameClock) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_frame_clock_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<FrameClock> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_frame_clock_get_type ()) then Some (FrameClock object.Id) else None
-
-  extern gdk_frame_clock_begin_updating : cptr -> unit
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_frame_clock_get_type ()) then Some (FrameClock object.Id) else None
 
   /// Starts updates for an animation.
   let beginUpdating (self: FrameClock) : unit =
-    gdk_frame_clock_begin_updating (Glue.obj self.Id (gdk_frame_clock_get_type ()))
-
-  extern gdk_frame_clock_end_updating : cptr -> unit
+    Internal.GdkC.gdk_frame_clock_begin_updating (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ()))
 
   /// Stops updates for an animation.
   let endUpdating (self: FrameClock) : unit =
-    gdk_frame_clock_end_updating (Glue.obj self.Id (gdk_frame_clock_get_type ()))
-
-  extern gdk_frame_clock_get_current_timings : cptr -> cptr
+    Internal.GdkC.gdk_frame_clock_end_updating (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ()))
 
   /// Gets the frame timings for the current frame.
   let getCurrentTimings (self: FrameClock) : option<FrameTimings> =
-    let zr = gdk_frame_clock_get_current_timings (Glue.obj self.Id (gdk_frame_clock_get_type ()))
-    let zid1 = Glue.wrapBoxed (zr) (gdk_frame_timings_get_type ()) false
+    let zr = Internal.GdkC.gdk_frame_clock_get_current_timings (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ()))
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GdkC.gdk_frame_timings_get_type ()) false
     (if zid1 = 0 then None else Some (FrameTimings zid1))
-
-  extern gdk_frame_clock_get_fps : cptr -> f64
 
   /// Calculates the current frames-per-second, based on the frame timings of @frame_clock.
   let getFps (self: FrameClock) : float =
-    ((gdk_frame_clock_get_fps (Glue.obj self.Id (gdk_frame_clock_get_type ()))))
-
-  extern gdk_frame_clock_get_frame_counter : cptr -> i64
+    ((Internal.GdkC.gdk_frame_clock_get_fps (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ()))))
 
   /// `gdk_frame_clock_get_frame_counter`.
   let getFrameCounter (self: FrameClock) : int =
-    (int ((gdk_frame_clock_get_frame_counter (Glue.obj self.Id (gdk_frame_clock_get_type ())))))
-
-  extern gdk_frame_clock_get_frame_time : cptr -> i64
+    (int ((Internal.GdkC.gdk_frame_clock_get_frame_counter (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ())))))
 
   /// Gets the time that should currently be used for animations.
   let getFrameTime (self: FrameClock) : int =
-    (int ((gdk_frame_clock_get_frame_time (Glue.obj self.Id (gdk_frame_clock_get_type ())))))
-
-  extern gdk_frame_clock_get_history_start : cptr -> i64
+    (int ((Internal.GdkC.gdk_frame_clock_get_frame_time (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ())))))
 
   /// Returns the frame counter for the oldest frame available in history.
   let getHistoryStart (self: FrameClock) : int =
-    (int ((gdk_frame_clock_get_history_start (Glue.obj self.Id (gdk_frame_clock_get_type ())))))
-
-  extern gdk_frame_clock_get_refresh_info : cptr -> i64 -> cptr -> cptr -> unit
+    (int ((Internal.GdkC.gdk_frame_clock_get_history_start (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ())))))
 
   /// Predicts a presentation time, based on history.
   let getRefreshInfo (self: FrameClock) (baseTime: int) : (int * int) =
-    Glue.outBegin ()
-    gdk_frame_clock_get_refresh_info (Glue.obj self.Id (gdk_frame_clock_get_type ())) (i64 baseTime) (Glue.out 0) (Glue.out 1)
-    let zv = (Glue.outI64 0, Glue.outI64 1)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GdkC.gdk_frame_clock_get_refresh_info (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ())) (i64 baseTime) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zv = (Internal.Raw.outI64 0, Internal.Raw.outI64 1)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_frame_clock_get_timings : cptr -> i64 -> cptr
 
   /// Retrieves a `GdkFrameTimings` object holding timing information for the current frame or a recent frame.
   let getTimings (self: FrameClock) (frameCounter: int) : option<FrameTimings> =
-    let zr = gdk_frame_clock_get_timings (Glue.obj self.Id (gdk_frame_clock_get_type ())) (i64 frameCounter)
-    let zid1 = Glue.wrapBoxed (zr) (gdk_frame_timings_get_type ()) false
+    let zr = Internal.GdkC.gdk_frame_clock_get_timings (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ())) (i64 frameCounter)
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GdkC.gdk_frame_timings_get_type ()) false
     (if zid1 = 0 then None else Some (FrameTimings zid1))
-
-  extern gdk_frame_clock_request_phase : cptr -> u32 -> unit
 
   /// Asks the frame clock to run a particular phase.
   let requestPhase (self: FrameClock) (phase: FrameClockPhase) : unit =
-    gdk_frame_clock_request_phase (Glue.obj self.Id (gdk_frame_clock_get_type ())) (u32 phase.Int)
+    Internal.GdkC.gdk_frame_clock_request_phase (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ())) (u32 phase.Int)
 
   /// This signal ends processing of the frame.
   let onAfterPaint (self: FrameClock) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_frame_clock_get_type ())) "after-paint" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ())) "after-paint" handler
 
   /// Begins processing of the frame.
   let onBeforePaint (self: FrameClock) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_frame_clock_get_type ())) "before-paint" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ())) "before-paint" handler
 
   /// Used to flush pending motion events that are being batched up and compressed together.
   let onFlushEvents (self: FrameClock) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_frame_clock_get_type ())) "flush-events" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ())) "flush-events" handler
 
   /// Emitted as the second step of toolkit and application processing of the frame.
   let onLayout (self: FrameClock) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_frame_clock_get_type ())) "layout" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ())) "layout" handler
 
   /// Emitted as the third step of toolkit and application processing of the frame.
   let onPaint (self: FrameClock) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_frame_clock_get_type ())) "paint" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ())) "paint" handler
 
   /// Emitted after processing of the frame is finished.
   let onResumeEvents (self: FrameClock) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_frame_clock_get_type ())) "resume-events" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ())) "resume-events" handler
 
   /// Emitted as the first step of toolkit and application processing of the frame.
   let onUpdate (self: FrameClock) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_frame_clock_get_type ())) "update" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_clock_get_type ())) "update" handler
 
 module FrameTimings =
-  extern gdk_frame_timings_get_complete : cptr -> i32
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_frame_timings_get_type ()
 
   /// Returns whether @timings are complete.
   let getComplete (self: FrameTimings) : bool =
-    (((gdk_frame_timings_get_complete (Glue.obj self.Id (gdk_frame_timings_get_type ())))) <> i32 0)
-
-  extern gdk_frame_timings_get_frame_counter : cptr -> i64
+    (((Internal.GdkC.gdk_frame_timings_get_complete (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_timings_get_type ())))) <> i32 0)
 
   /// Gets the frame counter value of the `GdkFrameClock` when this frame was drawn.
   let getFrameCounter (self: FrameTimings) : int =
-    (int ((gdk_frame_timings_get_frame_counter (Glue.obj self.Id (gdk_frame_timings_get_type ())))))
-
-  extern gdk_frame_timings_get_frame_time : cptr -> i64
+    (int ((Internal.GdkC.gdk_frame_timings_get_frame_counter (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_timings_get_type ())))))
 
   /// Returns the frame time for the frame.
   let getFrameTime (self: FrameTimings) : int =
-    (int ((gdk_frame_timings_get_frame_time (Glue.obj self.Id (gdk_frame_timings_get_type ())))))
-
-  extern gdk_frame_timings_get_predicted_presentation_time : cptr -> i64
+    (int ((Internal.GdkC.gdk_frame_timings_get_frame_time (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_timings_get_type ())))))
 
   /// Gets the predicted time at which this frame will be displayed.
   let getPredictedPresentationTime (self: FrameTimings) : int =
-    (int ((gdk_frame_timings_get_predicted_presentation_time (Glue.obj self.Id (gdk_frame_timings_get_type ())))))
-
-  extern gdk_frame_timings_get_presentation_time : cptr -> i64
+    (int ((Internal.GdkC.gdk_frame_timings_get_predicted_presentation_time (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_timings_get_type ())))))
 
   /// Reurns the presentation time.
   let getPresentationTime (self: FrameTimings) : int =
-    (int ((gdk_frame_timings_get_presentation_time (Glue.obj self.Id (gdk_frame_timings_get_type ())))))
-
-  extern gdk_frame_timings_get_refresh_interval : cptr -> i64
+    (int ((Internal.GdkC.gdk_frame_timings_get_presentation_time (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_timings_get_type ())))))
 
   /// Gets the natural interval between presentation times for the display that this frame was displayed on.
   let getRefreshInterval (self: FrameTimings) : int =
-    (int ((gdk_frame_timings_get_refresh_interval (Glue.obj self.Id (gdk_frame_timings_get_type ())))))
-
-  extern gdk_frame_timings_ref : cptr -> cptr
+    (int ((Internal.GdkC.gdk_frame_timings_get_refresh_interval (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_timings_get_type ())))))
 
   /// Increases the reference count of @timings.
   [<Unsafe>]
   let ref_ (self: FrameTimings) : FrameTimings =
-    FrameTimings (Glue.wrapBoxed ((gdk_frame_timings_ref (Glue.obj self.Id (gdk_frame_timings_get_type ())))) (gdk_frame_timings_get_type ()) true)
-
-  extern gdk_frame_timings_unref : cptr -> unit
+    FrameTimings (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_frame_timings_ref (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_timings_get_type ())))) (Internal.GdkC.gdk_frame_timings_get_type ()) true)
 
   /// Decreases the reference count of @timings.
   [<Unsafe>]
   let unref (self: FrameTimings) : unit =
-    gdk_frame_timings_unref (Glue.obj self.Id (gdk_frame_timings_get_type ()))
+    Internal.GdkC.gdk_frame_timings_unref (Internal.Raw.obj self.Id (Internal.GdkC.gdk_frame_timings_get_type ()))
 
 module GLContext =
   /// The same object as its ancestor.
@@ -5413,172 +4756,133 @@ module GLContext =
   /// The same object as its ancestor.
   let toGObjectObject (self: GLContext) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_gl_context_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<GLContext> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_gl_context_get_type ()) then Some (GLContext object.Id) else None
-
-  extern gdk_gl_context_get_allowed_apis : cptr -> u32
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_gl_context_get_type ()) then Some (GLContext object.Id) else None
 
   /// Gets the allowed APIs set via gdk_gl_context_set_allowed_apis().
   let getAllowedApis (self: GLContext) : GLAPI =
-    GLAPI (int ((gdk_gl_context_get_allowed_apis (Glue.obj self.Id (gdk_gl_context_get_type ())))))
-
-  extern gdk_gl_context_get_api : cptr -> u32
+    GLAPI (int ((Internal.GdkC.gdk_gl_context_get_allowed_apis (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())))))
 
   /// Gets the API currently in use.
   let getApi (self: GLContext) : GLAPI =
-    GLAPI (int ((gdk_gl_context_get_api (Glue.obj self.Id (gdk_gl_context_get_type ())))))
-
-  extern gdk_gl_context_get_debug_enabled : cptr -> i32
+    GLAPI (int ((Internal.GdkC.gdk_gl_context_get_api (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())))))
 
   /// Retrieves whether the context is doing extra validations and runtime checking.
   let getDebugEnabled (self: GLContext) : bool =
-    (((gdk_gl_context_get_debug_enabled (Glue.obj self.Id (gdk_gl_context_get_type ())))) <> i32 0)
-
-  extern gdk_gl_context_get_display : cptr -> cptr
+    (((Internal.GdkC.gdk_gl_context_get_debug_enabled (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())))) <> i32 0)
 
   /// Retrieves the display the @context is created for
   let getDisplay (self: GLContext) : option<Display> =
-    let zr = gdk_gl_context_get_display (Glue.obj self.Id (gdk_gl_context_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_gl_context_get_display (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Display zid1))
-
-  extern gdk_gl_context_get_forward_compatible : cptr -> i32
 
   /// Retrieves whether the context is forward-compatible.
   let getForwardCompatible (self: GLContext) : bool =
-    (((gdk_gl_context_get_forward_compatible (Glue.obj self.Id (gdk_gl_context_get_type ())))) <> i32 0)
-
-  extern gdk_gl_context_get_required_version : cptr -> cptr -> cptr -> unit
+    (((Internal.GdkC.gdk_gl_context_get_forward_compatible (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())))) <> i32 0)
 
   /// Retrieves required OpenGL version set as a requirement for the @context realization.
   let getRequiredVersion (self: GLContext) : (int * int) =
-    Glue.outBegin ()
-    gdk_gl_context_get_required_version (Glue.obj self.Id (gdk_gl_context_get_type ())) (Glue.out 0) (Glue.out 1)
-    let zv = (Glue.outI32 0, Glue.outI32 1)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GdkC.gdk_gl_context_get_required_version (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zv = (Internal.Raw.outI32 0, Internal.Raw.outI32 1)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_gl_context_get_shared_context : cptr -> cptr
 
   /// Deprecated. Used to retrieves the `GdkGLContext` that this @context share data with.
   let getSharedContext (self: GLContext) : option<GLContext> =
-    let zr = gdk_gl_context_get_shared_context (Glue.obj self.Id (gdk_gl_context_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_gl_context_get_shared_context (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (GLContext zid1))
-
-  extern gdk_gl_context_get_surface : cptr -> cptr
 
   /// Retrieves the surface used by the @context.
   let getSurface (self: GLContext) : option<Surface> =
-    let zr = gdk_gl_context_get_surface (Glue.obj self.Id (gdk_gl_context_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_gl_context_get_surface (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Surface zid1))
-
-  extern gdk_gl_context_get_use_es : cptr -> i32
 
   /// Checks whether the @context is using an OpenGL or OpenGL ES profile.
   let getUseEs (self: GLContext) : bool =
-    (((gdk_gl_context_get_use_es (Glue.obj self.Id (gdk_gl_context_get_type ())))) <> i32 0)
-
-  extern gdk_gl_context_get_version : cptr -> cptr -> cptr -> unit
+    (((Internal.GdkC.gdk_gl_context_get_use_es (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())))) <> i32 0)
 
   /// Retrieves the OpenGL version of the @context.
   let getVersion (self: GLContext) : (int * int) =
-    Glue.outBegin ()
-    gdk_gl_context_get_version (Glue.obj self.Id (gdk_gl_context_get_type ())) (Glue.out 0) (Glue.out 1)
-    let zv = (Glue.outI32 0, Glue.outI32 1)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GdkC.gdk_gl_context_get_version (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zv = (Internal.Raw.outI32 0, Internal.Raw.outI32 1)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_gl_context_is_legacy : cptr -> i32
 
   /// Whether the `GdkGLContext` is in legacy mode or not.
   let isLegacy (self: GLContext) : bool =
-    (((gdk_gl_context_is_legacy (Glue.obj self.Id (gdk_gl_context_get_type ())))) <> i32 0)
-
-  extern gdk_gl_context_is_shared : cptr -> cptr -> i32
+    (((Internal.GdkC.gdk_gl_context_is_legacy (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())))) <> i32 0)
 
   /// Checks if the two GL contexts can share resources.
   let isShared (self: GLContext) (other: GLContext) : bool =
-    (((gdk_gl_context_is_shared (Glue.obj self.Id (gdk_gl_context_get_type ())) (Glue.obj other.Id (gdk_gl_context_get_type ())))) <> i32 0)
-
-  extern gdk_gl_context_make_current : cptr -> unit
+    (((Internal.GdkC.gdk_gl_context_is_shared (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())) (Internal.Raw.obj other.Id (Internal.GdkC.gdk_gl_context_get_type ())))) <> i32 0)
 
   /// Makes the @context the current one.
   let makeCurrent (self: GLContext) : unit =
-    gdk_gl_context_make_current (Glue.obj self.Id (gdk_gl_context_get_type ()))
-
-  extern gdk_gl_context_realize : cptr -> cptr -> i32
+    Internal.GdkC.gdk_gl_context_make_current (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ()))
 
   /// Realizes the given `GdkGLContext`.
   let realize (self: GLContext) : result<bool, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_gl_context_realize (Glue.obj self.Id (gdk_gl_context_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_gl_context_realize (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
       let zv = ((zr) <> i32 0)
-      Glue.outEnd ()
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_gl_context_set_allowed_apis : cptr -> u32 -> unit
 
   /// Sets the allowed APIs.
   let setAllowedApis (self: GLContext) (apis: GLAPI) : unit =
-    gdk_gl_context_set_allowed_apis (Glue.obj self.Id (gdk_gl_context_get_type ())) (u32 apis.Int)
-
-  extern gdk_gl_context_set_debug_enabled : cptr -> i32 -> unit
+    Internal.GdkC.gdk_gl_context_set_allowed_apis (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())) (u32 apis.Int)
 
   /// Sets whether the `GdkGLContext` should perform extra validations and runtime checking.
   let setDebugEnabled (self: GLContext) (enabled: bool) : unit =
-    gdk_gl_context_set_debug_enabled (Glue.obj self.Id (gdk_gl_context_get_type ())) (if enabled then i32 1 else i32 0)
-
-  extern gdk_gl_context_set_forward_compatible : cptr -> i32 -> unit
+    Internal.GdkC.gdk_gl_context_set_debug_enabled (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())) (if enabled then i32 1 else i32 0)
 
   /// Sets whether the `GdkGLContext` should be forward-compatible.
   let setForwardCompatible (self: GLContext) (compatible: bool) : unit =
-    gdk_gl_context_set_forward_compatible (Glue.obj self.Id (gdk_gl_context_get_type ())) (if compatible then i32 1 else i32 0)
-
-  extern gdk_gl_context_set_required_version : cptr -> i32 -> i32 -> unit
+    Internal.GdkC.gdk_gl_context_set_forward_compatible (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())) (if compatible then i32 1 else i32 0)
 
   /// Sets the major and minor version of OpenGL to request.
   let setRequiredVersion (self: GLContext) (major: int) (minor: int) : unit =
-    gdk_gl_context_set_required_version (Glue.obj self.Id (gdk_gl_context_get_type ())) (i32 major) (i32 minor)
-
-  extern gdk_gl_context_set_use_es : cptr -> i32 -> unit
+    Internal.GdkC.gdk_gl_context_set_required_version (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())) (i32 major) (i32 minor)
 
   /// Requests that GDK create an OpenGL ES context instead of an OpenGL one.
   let setUseEs (self: GLContext) (useEs: int) : unit =
-    gdk_gl_context_set_use_es (Glue.obj self.Id (gdk_gl_context_get_type ())) (i32 useEs)
-
-  extern gdk_gl_context_clear_current : unit -> unit
+    Internal.GdkC.gdk_gl_context_set_use_es (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())) (i32 useEs)
 
   /// Clears the current `GdkGLContext`.
   let clearCurrent () : unit =
-    gdk_gl_context_clear_current ()
-
-  extern gdk_gl_context_get_current : unit -> cptr
+    Internal.GdkC.gdk_gl_context_clear_current ()
 
   /// Retrieves the current `GdkGLContext`.
   let getCurrent () : option<GLContext> =
-    let zr = gdk_gl_context_get_current ()
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_gl_context_get_current ()
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (GLContext zid1))
 
   /// Calls `handler` when the `allowed-apis` property changes.
   let onNotifyAllowedApis (self: GLContext) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_gl_context_get_type ())) "notify::allowed-apis" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())) "notify::allowed-apis" handler
 
   /// Calls `handler` when the `api` property changes.
   let onNotifyApi (self: GLContext) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_gl_context_get_type ())) "notify::api" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())) "notify::api" handler
 
   /// Calls `handler` when the `shared-context` property changes.
   let onNotifySharedContext (self: GLContext) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_gl_context_get_type ())) "notify::shared-context" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_context_get_type ())) "notify::shared-context" handler
 
 module GLTexture =
   /// The same object as its interface.
@@ -5596,322 +4900,257 @@ module GLTexture =
   /// The same object as its ancestor.
   let toGObjectObject (self: GLTexture) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_gl_texture_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<GLTexture> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_gl_texture_get_type ()) then Some (GLTexture object.Id) else None
-
-  extern gdk_gl_texture_new : cptr -> u32 -> i32 -> i32 -> cptr -> cptr -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_gl_texture_get_type ()) then Some (GLTexture object.Id) else None
 
   /// Deprecated. Creates a new texture for an existing GL texture.
   [<Unsafe>]
   let create (context: GLContext) (id: int) (width: int) (height: int) (destroy: cptr) (data: cptr) : GLTexture =
-    GLTexture (Glue.wrap ((gdk_gl_texture_new (Glue.obj context.Id (gdk_gl_context_get_type ())) (u32 id) (i32 width) (i32 height) destroy data)) true)
-
-  extern gdk_gl_texture_release : cptr -> unit
+    GLTexture (Internal.Raw.wrap ((Internal.GdkC.gdk_gl_texture_new (Internal.Raw.obj context.Id (Internal.GdkC.gdk_gl_context_get_type ())) (u32 id) (i32 width) (i32 height) destroy data)) true)
 
   /// Releases the GL resources held by a `GdkGLTexture`.
   let release (self: GLTexture) : unit =
-    gdk_gl_texture_release (Glue.obj self.Id (gdk_gl_texture_get_type ()))
+    Internal.GdkC.gdk_gl_texture_release (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_get_type ()))
 
 module GLTextureBuilder =
   /// The same object as its ancestor.
   let toGObjectObject (self: GLTextureBuilder) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_gl_texture_builder_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<GLTextureBuilder> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_gl_texture_builder_get_type ()) then Some (GLTextureBuilder object.Id) else None
-
-  extern gdk_gl_texture_builder_new : unit -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_gl_texture_builder_get_type ()) then Some (GLTextureBuilder object.Id) else None
 
   /// Creates a new texture builder.
   let create () : GLTextureBuilder =
-    GLTextureBuilder (Glue.wrap ((gdk_gl_texture_builder_new ())) true)
-
-  extern gdk_gl_texture_builder_build : cptr -> cptr -> cptr -> cptr
+    GLTextureBuilder (Internal.Raw.wrap ((Internal.GdkC.gdk_gl_texture_builder_new ())) true)
 
   /// Builds a new `GdkTexture` with the values set up in the builder.
   [<Unsafe>]
   let build (self: GLTextureBuilder) (destroy: cptr) (data: cptr) : Texture =
-    Texture (Glue.wrap ((gdk_gl_texture_builder_build (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) destroy data)) true)
-
-  extern gdk_gl_texture_builder_get_color_state : cptr -> cptr
+    Texture (Internal.Raw.wrap ((Internal.GdkC.gdk_gl_texture_builder_build (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) destroy data)) true)
 
   /// Gets the color state previously set via gdk_gl_texture_builder_set_color_state().
   let getColorState (self: GLTextureBuilder) : ColorState =
-    ColorState (Glue.wrapBoxed ((gdk_gl_texture_builder_get_color_state (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())))) (gdk_color_state_get_type ()) false)
-
-  extern gdk_gl_texture_builder_get_context : cptr -> cptr
+    ColorState (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_gl_texture_builder_get_color_state (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())))) (Internal.GdkC.gdk_color_state_get_type ()) false)
 
   /// Gets the context previously set via gdk_gl_texture_builder_set_context() or %NULL if none was set.
   let getContext (self: GLTextureBuilder) : option<GLContext> =
-    let zr = gdk_gl_texture_builder_get_context (Glue.obj self.Id (gdk_gl_texture_builder_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_gl_texture_builder_get_context (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (GLContext zid1))
-
-  extern gdk_gl_texture_builder_get_format : cptr -> i32
 
   /// Gets the format previously set via gdk_gl_texture_builder_set_format().
   let getFormat (self: GLTextureBuilder) : MemoryFormat =
-    MemoryFormat (int ((gdk_gl_texture_builder_get_format (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())))))
-
-  extern gdk_gl_texture_builder_get_has_mipmap : cptr -> i32
+    MemoryFormat (int ((Internal.GdkC.gdk_gl_texture_builder_get_format (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())))))
 
   /// Gets whether the texture has a mipmap.
   let getHasMipmap (self: GLTextureBuilder) : bool =
-    (((gdk_gl_texture_builder_get_has_mipmap (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())))) <> i32 0)
-
-  extern gdk_gl_texture_builder_get_height : cptr -> i32
+    (((Internal.GdkC.gdk_gl_texture_builder_get_has_mipmap (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())))) <> i32 0)
 
   /// Gets the height previously set via gdk_gl_texture_builder_set_height() or 0 if the height wasn't set.
   let getHeight (self: GLTextureBuilder) : int =
-    (int ((gdk_gl_texture_builder_get_height (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())))))
-
-  extern gdk_gl_texture_builder_get_id : cptr -> u32
+    (int ((Internal.GdkC.gdk_gl_texture_builder_get_height (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())))))
 
   /// Gets the texture id previously set via gdk_gl_texture_builder_set_id() or 0 if the id wasn't set.
   let getId (self: GLTextureBuilder) : int =
-    (int ((gdk_gl_texture_builder_get_id (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())))))
-
-  extern gdk_gl_texture_builder_get_sync : cptr -> cptr
+    (int ((Internal.GdkC.gdk_gl_texture_builder_get_id (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())))))
 
   /// Gets the `GLsync` previously set via gdk_gl_texture_builder_set_sync().
   let getSync (self: GLTextureBuilder) : cptr =
-    ((gdk_gl_texture_builder_get_sync (Glue.obj self.Id (gdk_gl_texture_builder_get_type ()))))
-
-  extern gdk_gl_texture_builder_get_update_region : cptr -> cptr
+    ((Internal.GdkC.gdk_gl_texture_builder_get_sync (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ()))))
 
   /// Gets the region previously set via gdk_gl_texture_builder_set_update_region() or %NULL if none was set.
   let getUpdateRegion (self: GLTextureBuilder) : option<Cairo.Region> =
-    let zr = gdk_gl_texture_builder_get_update_region (Glue.obj self.Id (gdk_gl_texture_builder_get_type ()))
-    let zid1 = Glue.wrapBoxed (zr) (Cairo.cairo_gobject_region_get_type ()) false
+    let zr = Internal.GdkC.gdk_gl_texture_builder_get_update_region (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ()))
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.CairoC.cairo_gobject_region_get_type ()) false
     (if zid1 = 0 then None else Some (Cairo.Region zid1))
-
-  extern gdk_gl_texture_builder_get_update_texture : cptr -> cptr
 
   /// Gets the texture previously set via gdk_gl_texture_builder_set_update_texture() or %NULL if none was set.
   let getUpdateTexture (self: GLTextureBuilder) : option<Texture> =
-    let zr = gdk_gl_texture_builder_get_update_texture (Glue.obj self.Id (gdk_gl_texture_builder_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_gl_texture_builder_get_update_texture (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Texture zid1))
-
-  extern gdk_gl_texture_builder_get_width : cptr -> i32
 
   /// Gets the width previously set via gdk_gl_texture_builder_set_width() or 0 if the width wasn't set.
   let getWidth (self: GLTextureBuilder) : int =
-    (int ((gdk_gl_texture_builder_get_width (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())))))
-
-  extern gdk_gl_texture_builder_set_color_state : cptr -> cptr -> unit
+    (int ((Internal.GdkC.gdk_gl_texture_builder_get_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())))))
 
   /// Sets the color state for the texture.
   let setColorState (self: GLTextureBuilder) (colorState: ColorState) : unit =
-    gdk_gl_texture_builder_set_color_state (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) (Glue.obj colorState.Id (gdk_color_state_get_type ()))
-
-  extern gdk_gl_texture_builder_set_context : cptr -> cptr -> unit
+    Internal.GdkC.gdk_gl_texture_builder_set_color_state (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) (Internal.Raw.obj colorState.Id (Internal.GdkC.gdk_color_state_get_type ()))
 
   /// Sets the context to be used for the texture.
   let setContext (self: GLTextureBuilder) (context: option<GLContext>) : unit =
     let zp1 =
       match context with
-      | Some zo -> Glue.obj zo.Id (gdk_gl_context_get_type ())
-      | None -> Glue.none ()
-    gdk_gl_texture_builder_set_context (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) zp1
-
-  extern gdk_gl_texture_builder_set_format : cptr -> i32 -> unit
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_gl_context_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_gl_texture_builder_set_context (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) zp1
 
   /// Sets the format of the texture.
   let setFormat (self: GLTextureBuilder) (format: MemoryFormat) : unit =
-    gdk_gl_texture_builder_set_format (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) (i32 format.Int)
-
-  extern gdk_gl_texture_builder_set_has_mipmap : cptr -> i32 -> unit
+    Internal.GdkC.gdk_gl_texture_builder_set_format (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) (i32 format.Int)
 
   /// Sets whether the texture has a mipmap.
   let setHasMipmap (self: GLTextureBuilder) (hasMipmap: bool) : unit =
-    gdk_gl_texture_builder_set_has_mipmap (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) (if hasMipmap then i32 1 else i32 0)
-
-  extern gdk_gl_texture_builder_set_height : cptr -> i32 -> unit
+    Internal.GdkC.gdk_gl_texture_builder_set_has_mipmap (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) (if hasMipmap then i32 1 else i32 0)
 
   /// Sets the height of the texture.
   let setHeight (self: GLTextureBuilder) (height: int) : unit =
-    gdk_gl_texture_builder_set_height (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) (i32 height)
-
-  extern gdk_gl_texture_builder_set_id : cptr -> u32 -> unit
+    Internal.GdkC.gdk_gl_texture_builder_set_height (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) (i32 height)
 
   /// Sets the texture id of the texture.
   let setId (self: GLTextureBuilder) (id: int) : unit =
-    gdk_gl_texture_builder_set_id (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) (u32 id)
-
-  extern gdk_gl_texture_builder_set_sync : cptr -> cptr -> unit
+    Internal.GdkC.gdk_gl_texture_builder_set_id (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) (u32 id)
 
   /// Sets the GLSync object to use for the texture.
   [<Unsafe>]
   let setSync (self: GLTextureBuilder) (sync: cptr) : unit =
-    gdk_gl_texture_builder_set_sync (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) sync
-
-  extern gdk_gl_texture_builder_set_update_region : cptr -> cptr -> unit
+    Internal.GdkC.gdk_gl_texture_builder_set_sync (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) sync
 
   /// Sets the region to be updated by this texture.
   let setUpdateRegion (self: GLTextureBuilder) (region: option<Cairo.Region>) : unit =
     let zp1 =
       match region with
-      | Some zo -> Glue.obj zo.Id (Cairo.cairo_gobject_region_get_type ())
-      | None -> Glue.none ()
-    gdk_gl_texture_builder_set_update_region (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) zp1
-
-  extern gdk_gl_texture_builder_set_update_texture : cptr -> cptr -> unit
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.CairoC.cairo_gobject_region_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_gl_texture_builder_set_update_region (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) zp1
 
   /// Sets the texture to be updated by this texture.
   let setUpdateTexture (self: GLTextureBuilder) (texture: option<Texture>) : unit =
     let zp1 =
       match texture with
-      | Some zo -> Glue.obj zo.Id (gdk_texture_get_type ())
-      | None -> Glue.none ()
-    gdk_gl_texture_builder_set_update_texture (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) zp1
-
-  extern gdk_gl_texture_builder_set_width : cptr -> i32 -> unit
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_texture_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_gl_texture_builder_set_update_texture (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) zp1
 
   /// Sets the width of the texture.
   let setWidth (self: GLTextureBuilder) (width: int) : unit =
-    gdk_gl_texture_builder_set_width (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) (i32 width)
+    Internal.GdkC.gdk_gl_texture_builder_set_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) (i32 width)
 
   /// Calls `handler` when the `color-state` property changes.
   let onNotifyColorState (self: GLTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::color-state" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) "notify::color-state" handler
 
   /// Calls `handler` when the `context` property changes.
   let onNotifyContext (self: GLTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::context" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) "notify::context" handler
 
   /// Calls `handler` when the `format` property changes.
   let onNotifyFormat (self: GLTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::format" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) "notify::format" handler
 
   /// Calls `handler` when the `has-mipmap` property changes.
   let onNotifyHasMipmap (self: GLTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::has-mipmap" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) "notify::has-mipmap" handler
 
   /// Calls `handler` when the `height` property changes.
   let onNotifyHeight (self: GLTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::height" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) "notify::height" handler
 
   /// Calls `handler` when the `id` property changes.
   let onNotifyId (self: GLTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::id" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) "notify::id" handler
 
   /// Calls `handler` when the `sync` property changes.
   let onNotifySync (self: GLTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::sync" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) "notify::sync" handler
 
   /// Calls `handler` when the `update-region` property changes.
   let onNotifyUpdateRegion (self: GLTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::update-region" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) "notify::update-region" handler
 
   /// Calls `handler` when the `update-texture` property changes.
   let onNotifyUpdateTexture (self: GLTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::update-texture" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) "notify::update-texture" handler
 
   /// Calls `handler` when the `width` property changes.
   let onNotifyWidth (self: GLTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::width" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_gl_texture_builder_get_type ())) "notify::width" handler
 
 module GrabBrokenEvent =
-  extern gdk_grab_broken_event_get_grab_surface : cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_type_Gdk_GrabBrokenEvent ()
 
   /// Extracts the grab surface from a grab broken event.
   let getGrabSurface (self: GrabBrokenEvent) : Surface =
-    Surface (Glue.wrap ((gdk_grab_broken_event_get_grab_surface (Glue.obj self.Id (zgtk_type_Gdk_GrabBrokenEvent ())))) false)
-
-  extern gdk_grab_broken_event_get_implicit : cptr -> i32
+    Surface (Internal.Raw.wrap ((Internal.GdkC.gdk_grab_broken_event_get_grab_surface (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_GrabBrokenEvent ())))) false)
 
   /// Checks whether the grab broken event is for an implicit grab.
   let getImplicit (self: GrabBrokenEvent) : bool =
-    (((gdk_grab_broken_event_get_implicit (Glue.obj self.Id (zgtk_type_Gdk_GrabBrokenEvent ())))) <> i32 0)
+    (((Internal.GdkC.gdk_grab_broken_event_get_implicit (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_GrabBrokenEvent ())))) <> i32 0)
 
 module KeyEvent =
-  extern gdk_key_event_get_consumed_modifiers : cptr -> u32
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_type_Gdk_KeyEvent ()
 
   /// Extracts the consumed modifiers from a key event.
   let getConsumedModifiers (self: KeyEvent) : ModifierType =
-    ModifierType (int ((gdk_key_event_get_consumed_modifiers (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())))))
-
-  extern gdk_key_event_get_keycode : cptr -> u32
+    ModifierType (int ((Internal.GdkC.gdk_key_event_get_consumed_modifiers (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_KeyEvent ())))))
 
   /// Extracts the keycode from a key event.
   let getKeycode (self: KeyEvent) : int =
-    (int ((gdk_key_event_get_keycode (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())))))
-
-  extern gdk_key_event_get_keyval : cptr -> u32
+    (int ((Internal.GdkC.gdk_key_event_get_keycode (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_KeyEvent ())))))
 
   /// Extracts the keyval from a key event.
   let getKeyval (self: KeyEvent) : int =
-    (int ((gdk_key_event_get_keyval (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())))))
-
-  extern gdk_key_event_get_layout : cptr -> u32
+    (int ((Internal.GdkC.gdk_key_event_get_keyval (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_KeyEvent ())))))
 
   /// Extracts the layout from a key event.
   let getLayout (self: KeyEvent) : int =
-    (int ((gdk_key_event_get_layout (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())))))
-
-  extern gdk_key_event_get_level : cptr -> u32
+    (int ((Internal.GdkC.gdk_key_event_get_layout (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_KeyEvent ())))))
 
   /// Extracts the shift level from a key event.
   let getLevel (self: KeyEvent) : int =
-    (int ((gdk_key_event_get_level (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())))))
-
-  extern gdk_key_event_get_match : cptr -> cptr -> cptr -> i32
+    (int ((Internal.GdkC.gdk_key_event_get_level (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_KeyEvent ())))))
 
   /// Gets a keyval and modifier combination that will match the event.
   let getMatch (self: KeyEvent) : (bool * int * ModifierType) =
-    Glue.outBegin ()
-    let zr = gdk_key_event_get_match (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())) (Glue.out 0) (Glue.out 1)
-    let zv = (((zr) <> i32 0), Glue.outU32 0, ModifierType (Glue.outU32 1))
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_key_event_get_match (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_KeyEvent ())) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zv = (((zr) <> i32 0), Internal.Raw.outU32 0, ModifierType (Internal.Raw.outU32 1))
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_key_event_is_modifier : cptr -> i32
 
   /// Extracts whether the key event is for a modifier key.
   let isModifier (self: KeyEvent) : bool =
-    (((gdk_key_event_is_modifier (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())))) <> i32 0)
-
-  extern gdk_key_event_matches : cptr -> u32 -> u32 -> i32
+    (((Internal.GdkC.gdk_key_event_is_modifier (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_KeyEvent ())))) <> i32 0)
 
   /// Matches a key event against a keyval and modifiers.
   let matches (self: KeyEvent) (keyval: int) (modifiers: ModifierType) : KeyMatch =
-    KeyMatch (int ((gdk_key_event_matches (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())) (u32 keyval) (u32 modifiers.Int))))
+    KeyMatch (int ((Internal.GdkC.gdk_key_event_matches (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_KeyEvent ())) (u32 keyval) (u32 modifiers.Int))))
 
 module KeymapKey =
-  /// A new one, every field zero.
-  let create () : KeymapKey = KeymapKey (Glue.allocPlain (zgtk_sizeof_Gdk_KeymapKey ()) (zgtk_tag_Gdk_KeymapKey ()))
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_tag_Gdk_KeymapKey ()
 
-  extern zgtk_get_Gdk_KeymapKey_keycode : cptr -> int
+  /// A new one, every field zero.
+  let create () : KeymapKey = KeymapKey (Internal.Raw.allocPlain (Internal.GdkC.zgtk_sizeof_Gdk_KeymapKey ()) (Internal.GdkC.zgtk_tag_Gdk_KeymapKey ()))
 
   /// The `keycode` field.
-  let getKeycode (self: KeymapKey) : int = zgtk_get_Gdk_KeymapKey_keycode (Glue.obj self.Id (zgtk_tag_Gdk_KeymapKey ()))
-
-  extern zgtk_set_Gdk_KeymapKey_keycode : cptr -> int -> unit
+  let getKeycode (self: KeymapKey) : int = Internal.GdkC.zgtk_get_Gdk_KeymapKey_keycode (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_tag_Gdk_KeymapKey ()))
 
   /// Sets the `keycode` field.
-  let setKeycode (self: KeymapKey) (value: int) : unit = zgtk_set_Gdk_KeymapKey_keycode (Glue.obj self.Id (zgtk_tag_Gdk_KeymapKey ())) value
-
-  extern zgtk_get_Gdk_KeymapKey_group : cptr -> int
+  let setKeycode (self: KeymapKey) (value: int) : unit = Internal.GdkC.zgtk_set_Gdk_KeymapKey_keycode (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_tag_Gdk_KeymapKey ())) value
 
   /// The `group` field.
-  let getGroup (self: KeymapKey) : int = zgtk_get_Gdk_KeymapKey_group (Glue.obj self.Id (zgtk_tag_Gdk_KeymapKey ()))
-
-  extern zgtk_set_Gdk_KeymapKey_group : cptr -> int -> unit
+  let getGroup (self: KeymapKey) : int = Internal.GdkC.zgtk_get_Gdk_KeymapKey_group (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_tag_Gdk_KeymapKey ()))
 
   /// Sets the `group` field.
-  let setGroup (self: KeymapKey) (value: int) : unit = zgtk_set_Gdk_KeymapKey_group (Glue.obj self.Id (zgtk_tag_Gdk_KeymapKey ())) value
-
-  extern zgtk_get_Gdk_KeymapKey_level : cptr -> int
+  let setGroup (self: KeymapKey) (value: int) : unit = Internal.GdkC.zgtk_set_Gdk_KeymapKey_group (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_tag_Gdk_KeymapKey ())) value
 
   /// The `level` field.
-  let getLevel (self: KeymapKey) : int = zgtk_get_Gdk_KeymapKey_level (Glue.obj self.Id (zgtk_tag_Gdk_KeymapKey ()))
-
-  extern zgtk_set_Gdk_KeymapKey_level : cptr -> int -> unit
+  let getLevel (self: KeymapKey) : int = Internal.GdkC.zgtk_get_Gdk_KeymapKey_level (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_tag_Gdk_KeymapKey ()))
 
   /// Sets the `level` field.
-  let setLevel (self: KeymapKey) (value: int) : unit = zgtk_set_Gdk_KeymapKey_level (Glue.obj self.Id (zgtk_tag_Gdk_KeymapKey ())) value
+  let setLevel (self: KeymapKey) (value: int) : unit = Internal.GdkC.zgtk_set_Gdk_KeymapKey_level (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_tag_Gdk_KeymapKey ())) value
 
 module MemoryTexture =
   /// The same object as its interface.
@@ -5929,1616 +5168,1301 @@ module MemoryTexture =
   /// The same object as its ancestor.
   let toGObjectObject (self: MemoryTexture) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_memory_texture_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<MemoryTexture> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_memory_texture_get_type ()) then Some (MemoryTexture object.Id) else None
-
-  extern gdk_memory_texture_new : i32 -> i32 -> i32 -> cptr -> usize -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_memory_texture_get_type ()) then Some (MemoryTexture object.Id) else None
 
   /// Creates a new texture for a blob of image data.
   let create (width: int) (height: int) (format: MemoryFormat) (bytes: GLib.Bytes) (stride: int) : MemoryTexture =
-    MemoryTexture (Glue.wrap ((gdk_memory_texture_new (i32 width) (i32 height) (i32 format.Int) (Glue.obj bytes.Id (GLib.g_bytes_get_type ())) (usize stride))) true)
+    MemoryTexture (Internal.Raw.wrap ((Internal.GdkC.gdk_memory_texture_new (i32 width) (i32 height) (i32 format.Int) (Internal.Raw.obj bytes.Id (Internal.GLibC.g_bytes_get_type ())) (usize stride))) true)
 
 module MemoryTextureBuilder =
   /// The same object as its ancestor.
   let toGObjectObject (self: MemoryTextureBuilder) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_memory_texture_builder_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<MemoryTextureBuilder> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_memory_texture_builder_get_type ()) then Some (MemoryTextureBuilder object.Id) else None
-
-  extern gdk_memory_texture_builder_new : unit -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_memory_texture_builder_get_type ()) then Some (MemoryTextureBuilder object.Id) else None
 
   /// Creates a new texture builder.
   let create () : MemoryTextureBuilder =
-    MemoryTextureBuilder (Glue.wrap ((gdk_memory_texture_builder_new ())) true)
-
-  extern gdk_memory_texture_builder_build : cptr -> cptr
+    MemoryTextureBuilder (Internal.Raw.wrap ((Internal.GdkC.gdk_memory_texture_builder_new ())) true)
 
   /// Builds a new `GdkTexture` with the values set up in the builder.
   let build (self: MemoryTextureBuilder) : Texture =
-    Texture (Glue.wrap ((gdk_memory_texture_builder_build (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())))) true)
-
-  extern gdk_memory_texture_builder_get_bytes : cptr -> cptr
+    Texture (Internal.Raw.wrap ((Internal.GdkC.gdk_memory_texture_builder_build (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())))) true)
 
   /// Gets the bytes previously set via gdk_memory_texture_builder_set_bytes() or %NULL if none was set.
   let getBytes (self: MemoryTextureBuilder) : option<GLib.Bytes> =
-    let zr = gdk_memory_texture_builder_get_bytes (Glue.obj self.Id (gdk_memory_texture_builder_get_type ()))
-    let zid1 = Glue.wrapBoxed (zr) (GLib.g_bytes_get_type ()) false
+    let zr = Internal.GdkC.gdk_memory_texture_builder_get_bytes (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ()))
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.GLibC.g_bytes_get_type ()) false
     (if zid1 = 0 then None else Some (GLib.Bytes zid1))
-
-  extern gdk_memory_texture_builder_get_color_state : cptr -> cptr
 
   /// Gets the colorstate previously set via gdk_memory_texture_builder_set_color_state().
   let getColorState (self: MemoryTextureBuilder) : ColorState =
-    ColorState (Glue.wrapBoxed ((gdk_memory_texture_builder_get_color_state (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())))) (gdk_color_state_get_type ()) false)
-
-  extern gdk_memory_texture_builder_get_format : cptr -> i32
+    ColorState (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_memory_texture_builder_get_color_state (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())))) (Internal.GdkC.gdk_color_state_get_type ()) false)
 
   /// Gets the format previously set via gdk_memory_texture_builder_set_format().
   let getFormat (self: MemoryTextureBuilder) : MemoryFormat =
-    MemoryFormat (int ((gdk_memory_texture_builder_get_format (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())))))
-
-  extern gdk_memory_texture_builder_get_height : cptr -> i32
+    MemoryFormat (int ((Internal.GdkC.gdk_memory_texture_builder_get_format (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())))))
 
   /// Gets the height previously set via gdk_memory_texture_builder_set_height() or 0 if the height wasn't set.
   let getHeight (self: MemoryTextureBuilder) : int =
-    (int ((gdk_memory_texture_builder_get_height (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())))))
-
-  extern gdk_memory_texture_builder_get_offset : cptr -> u32 -> usize
+    (int ((Internal.GdkC.gdk_memory_texture_builder_get_height (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())))))
 
   /// Gets the offset previously set via gdk_memory_texture_builder_set_offset().
   let getOffset (self: MemoryTextureBuilder) (plane: int) : int =
-    (int ((gdk_memory_texture_builder_get_offset (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (u32 plane))))
-
-  extern gdk_memory_texture_builder_get_stride : cptr -> usize
+    (int ((Internal.GdkC.gdk_memory_texture_builder_get_offset (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) (u32 plane))))
 
   /// Gets the stride previously set via gdk_memory_texture_builder_set_stride().
   let getStride (self: MemoryTextureBuilder) : int =
-    (int ((gdk_memory_texture_builder_get_stride (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())))))
-
-  extern gdk_memory_texture_builder_get_stride_for_plane : cptr -> u32 -> usize
+    (int ((Internal.GdkC.gdk_memory_texture_builder_get_stride (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())))))
 
   /// Gets the stride previously set via gdk_memory_texture_builder_set_stride_for_plane().
   let getStrideForPlane (self: MemoryTextureBuilder) (plane: int) : int =
-    (int ((gdk_memory_texture_builder_get_stride_for_plane (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (u32 plane))))
-
-  extern gdk_memory_texture_builder_get_update_region : cptr -> cptr
+    (int ((Internal.GdkC.gdk_memory_texture_builder_get_stride_for_plane (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) (u32 plane))))
 
   /// Gets the region previously set via gdk_memory_texture_builder_set_update_region() or %NULL if none was set.
   let getUpdateRegion (self: MemoryTextureBuilder) : option<Cairo.Region> =
-    let zr = gdk_memory_texture_builder_get_update_region (Glue.obj self.Id (gdk_memory_texture_builder_get_type ()))
-    let zid1 = Glue.wrapBoxed (zr) (Cairo.cairo_gobject_region_get_type ()) false
+    let zr = Internal.GdkC.gdk_memory_texture_builder_get_update_region (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ()))
+    let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.CairoC.cairo_gobject_region_get_type ()) false
     (if zid1 = 0 then None else Some (Cairo.Region zid1))
-
-  extern gdk_memory_texture_builder_get_update_texture : cptr -> cptr
 
   /// Gets the texture previously set via gdk_memory_texture_builder_set_update_texture() or %NULL if none was set.
   let getUpdateTexture (self: MemoryTextureBuilder) : option<Texture> =
-    let zr = gdk_memory_texture_builder_get_update_texture (Glue.obj self.Id (gdk_memory_texture_builder_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_memory_texture_builder_get_update_texture (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Texture zid1))
-
-  extern gdk_memory_texture_builder_get_width : cptr -> i32
 
   /// Gets the width previously set via gdk_memory_texture_builder_set_width() or 0 if the width wasn't set.
   let getWidth (self: MemoryTextureBuilder) : int =
-    (int ((gdk_memory_texture_builder_get_width (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())))))
-
-  extern gdk_memory_texture_builder_set_bytes : cptr -> cptr -> unit
+    (int ((Internal.GdkC.gdk_memory_texture_builder_get_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())))))
 
   /// Sets the data to be shown but the texture.
   let setBytes (self: MemoryTextureBuilder) (bytes: option<GLib.Bytes>) : unit =
     let zp1 =
       match bytes with
-      | Some zo -> Glue.obj zo.Id (GLib.g_bytes_get_type ())
-      | None -> Glue.none ()
-    gdk_memory_texture_builder_set_bytes (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) zp1
-
-  extern gdk_memory_texture_builder_set_color_state : cptr -> cptr -> unit
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GLibC.g_bytes_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_memory_texture_builder_set_bytes (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) zp1
 
   /// Sets the colorstate describing the data.
   let setColorState (self: MemoryTextureBuilder) (colorState: ColorState) : unit =
-    gdk_memory_texture_builder_set_color_state (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (Glue.obj colorState.Id (gdk_color_state_get_type ()))
-
-  extern gdk_memory_texture_builder_set_format : cptr -> i32 -> unit
+    Internal.GdkC.gdk_memory_texture_builder_set_color_state (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) (Internal.Raw.obj colorState.Id (Internal.GdkC.gdk_color_state_get_type ()))
 
   /// Sets the format of the bytes.
   let setFormat (self: MemoryTextureBuilder) (format: MemoryFormat) : unit =
-    gdk_memory_texture_builder_set_format (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (i32 format.Int)
-
-  extern gdk_memory_texture_builder_set_height : cptr -> i32 -> unit
+    Internal.GdkC.gdk_memory_texture_builder_set_format (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) (i32 format.Int)
 
   /// Sets the height of the texture.
   let setHeight (self: MemoryTextureBuilder) (height: int) : unit =
-    gdk_memory_texture_builder_set_height (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (i32 height)
-
-  extern gdk_memory_texture_builder_set_offset : cptr -> u32 -> usize -> unit
+    Internal.GdkC.gdk_memory_texture_builder_set_height (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) (i32 height)
 
   /// Sets the offset of the texture for @plane.
   let setOffset (self: MemoryTextureBuilder) (plane: int) (offset: int) : unit =
-    gdk_memory_texture_builder_set_offset (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (u32 plane) (usize offset)
-
-  extern gdk_memory_texture_builder_set_stride : cptr -> usize -> unit
+    Internal.GdkC.gdk_memory_texture_builder_set_offset (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) (u32 plane) (usize offset)
 
   /// Sets the rowstride of the bytes used.
   let setStride (self: MemoryTextureBuilder) (stride: int) : unit =
-    gdk_memory_texture_builder_set_stride (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (usize stride)
-
-  extern gdk_memory_texture_builder_set_stride_for_plane : cptr -> u32 -> usize -> unit
+    Internal.GdkC.gdk_memory_texture_builder_set_stride (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) (usize stride)
 
   /// Sets the stride of the texture for @plane.
   let setStrideForPlane (self: MemoryTextureBuilder) (plane: int) (stride: int) : unit =
-    gdk_memory_texture_builder_set_stride_for_plane (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (u32 plane) (usize stride)
-
-  extern gdk_memory_texture_builder_set_update_region : cptr -> cptr -> unit
+    Internal.GdkC.gdk_memory_texture_builder_set_stride_for_plane (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) (u32 plane) (usize stride)
 
   /// Sets the region to be updated by this texture.
   let setUpdateRegion (self: MemoryTextureBuilder) (region: option<Cairo.Region>) : unit =
     let zp1 =
       match region with
-      | Some zo -> Glue.obj zo.Id (Cairo.cairo_gobject_region_get_type ())
-      | None -> Glue.none ()
-    gdk_memory_texture_builder_set_update_region (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) zp1
-
-  extern gdk_memory_texture_builder_set_update_texture : cptr -> cptr -> unit
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.CairoC.cairo_gobject_region_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_memory_texture_builder_set_update_region (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) zp1
 
   /// Sets the texture to be updated by this texture.
   let setUpdateTexture (self: MemoryTextureBuilder) (texture: option<Texture>) : unit =
     let zp1 =
       match texture with
-      | Some zo -> Glue.obj zo.Id (gdk_texture_get_type ())
-      | None -> Glue.none ()
-    gdk_memory_texture_builder_set_update_texture (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) zp1
-
-  extern gdk_memory_texture_builder_set_width : cptr -> i32 -> unit
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_texture_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_memory_texture_builder_set_update_texture (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) zp1
 
   /// Sets the width of the texture.
   let setWidth (self: MemoryTextureBuilder) (width: int) : unit =
-    gdk_memory_texture_builder_set_width (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (i32 width)
+    Internal.GdkC.gdk_memory_texture_builder_set_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) (i32 width)
 
   /// Calls `handler` when the `bytes` property changes.
   let onNotifyBytes (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::bytes" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) "notify::bytes" handler
 
   /// Calls `handler` when the `color-state` property changes.
   let onNotifyColorState (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::color-state" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) "notify::color-state" handler
 
   /// Calls `handler` when the `format` property changes.
   let onNotifyFormat (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::format" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) "notify::format" handler
 
   /// Calls `handler` when the `height` property changes.
   let onNotifyHeight (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::height" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) "notify::height" handler
 
   /// Calls `handler` when the `stride` property changes.
   let onNotifyStride (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::stride" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) "notify::stride" handler
 
   /// Calls `handler` when the `update-region` property changes.
   let onNotifyUpdateRegion (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::update-region" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) "notify::update-region" handler
 
   /// Calls `handler` when the `update-texture` property changes.
   let onNotifyUpdateTexture (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::update-texture" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) "notify::update-texture" handler
 
   /// Calls `handler` when the `width` property changes.
   let onNotifyWidth (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::width" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_memory_texture_builder_get_type ())) "notify::width" handler
 
 module Monitor =
   /// The same object as its ancestor.
   let toGObjectObject (self: Monitor) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_monitor_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<Monitor> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_monitor_get_type ()) then Some (Monitor object.Id) else None
-
-  extern gdk_monitor_get_connector : cptr -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_monitor_get_type ()) then Some (Monitor object.Id) else None
 
   /// Gets the name of the monitor's connector, if available.
   let getConnector (self: Monitor) : option<string> =
-    Glue.textOption ((gdk_monitor_get_connector (Glue.obj self.Id (gdk_monitor_get_type ()))))
-
-  extern gdk_monitor_get_description : cptr -> cptr
+    Internal.Raw.textOption ((Internal.GdkC.gdk_monitor_get_connector (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ()))))
 
   /// Gets a string describing the monitor, if available.
   let getDescription (self: Monitor) : option<string> =
-    Glue.textOption ((gdk_monitor_get_description (Glue.obj self.Id (gdk_monitor_get_type ()))))
-
-  extern gdk_monitor_get_display : cptr -> cptr
+    Internal.Raw.textOption ((Internal.GdkC.gdk_monitor_get_description (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ()))))
 
   /// Gets the display that this monitor belongs to.
   let getDisplay (self: Monitor) : Display =
-    Display (Glue.wrap ((gdk_monitor_get_display (Glue.obj self.Id (gdk_monitor_get_type ())))) false)
-
-  extern gdk_monitor_get_geometry : cptr -> cptr -> unit
+    Display (Internal.Raw.wrap ((Internal.GdkC.gdk_monitor_get_display (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())))) false)
 
   /// Retrieves the size and position of the monitor within the display coordinate space.
   let getGeometry (self: Monitor) : Rectangle =
-    let zo1 = Glue.alloc (zgtk_sizeof_Gdk_Rectangle ()) (gdk_rectangle_get_type ())
-    gdk_monitor_get_geometry (Glue.obj self.Id (gdk_monitor_get_type ())) (Glue.obj zo1 (gdk_rectangle_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GdkC.zgtk_sizeof_Gdk_Rectangle ()) (Internal.GdkC.gdk_rectangle_get_type ())
+    Internal.GdkC.gdk_monitor_get_geometry (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())) (Internal.Raw.obj zo1 (Internal.GdkC.gdk_rectangle_get_type ()))
     Rectangle zo1
-
-  extern gdk_monitor_get_height_mm : cptr -> i32
 
   /// Gets the height in millimeters of the monitor.
   let getHeightMm (self: Monitor) : int =
-    (int ((gdk_monitor_get_height_mm (Glue.obj self.Id (gdk_monitor_get_type ())))))
-
-  extern gdk_monitor_get_manufacturer : cptr -> cptr
+    (int ((Internal.GdkC.gdk_monitor_get_height_mm (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())))))
 
   /// Gets the name or PNP ID of the monitor's manufacturer.
   let getManufacturer (self: Monitor) : option<string> =
-    Glue.textOption ((gdk_monitor_get_manufacturer (Glue.obj self.Id (gdk_monitor_get_type ()))))
-
-  extern gdk_monitor_get_model : cptr -> cptr
+    Internal.Raw.textOption ((Internal.GdkC.gdk_monitor_get_manufacturer (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ()))))
 
   /// Gets the string identifying the monitor model, if available.
   let getModel (self: Monitor) : option<string> =
-    Glue.textOption ((gdk_monitor_get_model (Glue.obj self.Id (gdk_monitor_get_type ()))))
-
-  extern gdk_monitor_get_refresh_rate : cptr -> i32
+    Internal.Raw.textOption ((Internal.GdkC.gdk_monitor_get_model (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ()))))
 
   /// Gets the refresh rate of the monitor, if available.
   let getRefreshRate (self: Monitor) : int =
-    (int ((gdk_monitor_get_refresh_rate (Glue.obj self.Id (gdk_monitor_get_type ())))))
-
-  extern gdk_monitor_get_scale : cptr -> f64
+    (int ((Internal.GdkC.gdk_monitor_get_refresh_rate (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())))))
 
   /// Gets the internal scale factor that maps from monitor coordinates to device pixels.
   let getScale (self: Monitor) : float =
-    ((gdk_monitor_get_scale (Glue.obj self.Id (gdk_monitor_get_type ()))))
-
-  extern gdk_monitor_get_scale_factor : cptr -> i32
+    ((Internal.GdkC.gdk_monitor_get_scale (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ()))))
 
   /// Gets the internal scale factor that maps from monitor coordinates to device pixels.
   let getScaleFactor (self: Monitor) : int =
-    (int ((gdk_monitor_get_scale_factor (Glue.obj self.Id (gdk_monitor_get_type ())))))
-
-  extern gdk_monitor_get_subpixel_layout : cptr -> i32
+    (int ((Internal.GdkC.gdk_monitor_get_scale_factor (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())))))
 
   /// Gets information about the layout of red, green and blue primaries for pixels.
   let getSubpixelLayout (self: Monitor) : SubpixelLayout =
-    SubpixelLayout (int ((gdk_monitor_get_subpixel_layout (Glue.obj self.Id (gdk_monitor_get_type ())))))
-
-  extern gdk_monitor_get_width_mm : cptr -> i32
+    SubpixelLayout (int ((Internal.GdkC.gdk_monitor_get_subpixel_layout (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())))))
 
   /// Gets the width in millimeters of the monitor.
   let getWidthMm (self: Monitor) : int =
-    (int ((gdk_monitor_get_width_mm (Glue.obj self.Id (gdk_monitor_get_type ())))))
-
-  extern gdk_monitor_is_valid : cptr -> i32
+    (int ((Internal.GdkC.gdk_monitor_get_width_mm (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())))))
 
   /// Returns %TRUE if the @monitor object corresponds to a physical monitor.
   let isValid (self: Monitor) : bool =
-    (((gdk_monitor_is_valid (Glue.obj self.Id (gdk_monitor_get_type ())))) <> i32 0)
+    (((Internal.GdkC.gdk_monitor_is_valid (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())))) <> i32 0)
 
   /// Emitted when the output represented by @monitor gets disconnected.
   let onInvalidate (self: Monitor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "invalidate" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())) "invalidate" handler
 
   /// Calls `handler` when the `connector` property changes.
   let onNotifyConnector (self: Monitor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::connector" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())) "notify::connector" handler
 
   /// Calls `handler` when the `description` property changes.
   let onNotifyDescription (self: Monitor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::description" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())) "notify::description" handler
 
   /// Calls `handler` when the `display` property changes.
   let onNotifyDisplay (self: Monitor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::display" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())) "notify::display" handler
 
   /// Calls `handler` when the `geometry` property changes.
   let onNotifyGeometry (self: Monitor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::geometry" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())) "notify::geometry" handler
 
   /// Calls `handler` when the `height-mm` property changes.
   let onNotifyHeightMm (self: Monitor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::height-mm" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())) "notify::height-mm" handler
 
   /// Calls `handler` when the `manufacturer` property changes.
   let onNotifyManufacturer (self: Monitor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::manufacturer" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())) "notify::manufacturer" handler
 
   /// Calls `handler` when the `model` property changes.
   let onNotifyModel (self: Monitor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::model" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())) "notify::model" handler
 
   /// Calls `handler` when the `refresh-rate` property changes.
   let onNotifyRefreshRate (self: Monitor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::refresh-rate" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())) "notify::refresh-rate" handler
 
   /// Calls `handler` when the `scale` property changes.
   let onNotifyScale (self: Monitor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::scale" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())) "notify::scale" handler
 
   /// Calls `handler` when the `scale-factor` property changes.
   let onNotifyScaleFactor (self: Monitor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::scale-factor" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())) "notify::scale-factor" handler
 
   /// Calls `handler` when the `subpixel-layout` property changes.
   let onNotifySubpixelLayout (self: Monitor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::subpixel-layout" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())) "notify::subpixel-layout" handler
 
   /// Calls `handler` when the `valid` property changes.
   let onNotifyValid (self: Monitor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::valid" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())) "notify::valid" handler
 
   /// Calls `handler` when the `width-mm` property changes.
   let onNotifyWidthMm (self: Monitor) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::width-mm" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_monitor_get_type ())) "notify::width-mm" handler
+
+module MotionEvent =
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_type_Gdk_MotionEvent ()
 
 module PadEvent =
-  extern gdk_pad_event_get_axis_value : cptr -> cptr -> cptr -> unit
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_type_Gdk_PadEvent ()
 
   /// Extracts the information from a pad strip or ring event.
   let getAxisValue (self: PadEvent) : (int * float) =
-    Glue.outBegin ()
-    gdk_pad_event_get_axis_value (Glue.obj self.Id (zgtk_type_Gdk_PadEvent ())) (Glue.out 0) (Glue.out 1)
-    let zv = (Glue.outU32 0, Glue.outF64 1)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GdkC.gdk_pad_event_get_axis_value (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_PadEvent ())) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zv = (Internal.Raw.outU32 0, Internal.Raw.outF64 1)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_pad_event_get_button : cptr -> u32
 
   /// Extracts information about the pressed button from a pad event.
   let getButton (self: PadEvent) : int =
-    (int ((gdk_pad_event_get_button (Glue.obj self.Id (zgtk_type_Gdk_PadEvent ())))))
-
-  extern gdk_pad_event_get_group_mode : cptr -> cptr -> cptr -> unit
+    (int ((Internal.GdkC.gdk_pad_event_get_button (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_PadEvent ())))))
 
   /// Extracts group and mode information from a pad event.
   let getGroupMode (self: PadEvent) : (int * int) =
-    Glue.outBegin ()
-    gdk_pad_event_get_group_mode (Glue.obj self.Id (zgtk_type_Gdk_PadEvent ())) (Glue.out 0) (Glue.out 1)
-    let zv = (Glue.outU32 0, Glue.outU32 1)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GdkC.gdk_pad_event_get_group_mode (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_PadEvent ())) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zv = (Internal.Raw.outU32 0, Internal.Raw.outU32 1)
+    Internal.Raw.outEnd ()
     zv
 
 module Popup =
   /// The same object as its ancestor.
   let toGObjectObject (self: Popup) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_popup_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<Popup> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_popup_get_type ()) then Some (Popup object.Id) else None
-
-  extern gdk_popup_get_autohide : cptr -> i32
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_popup_get_type ()) then Some (Popup object.Id) else None
 
   /// Returns whether this popup is set to hide on outside clicks.
   let getAutohide (self: Popup) : bool =
-    (((gdk_popup_get_autohide (Glue.obj self.Id (gdk_popup_get_type ())))) <> i32 0)
-
-  extern gdk_popup_get_parent : cptr -> cptr
+    (((Internal.GdkC.gdk_popup_get_autohide (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_get_type ())))) <> i32 0)
 
   /// Returns the parent surface of a popup.
   let getParent (self: Popup) : option<Surface> =
-    let zr = gdk_popup_get_parent (Glue.obj self.Id (gdk_popup_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_popup_get_parent (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Surface zid1))
-
-  extern gdk_popup_get_position_x : cptr -> i32
 
   /// Obtains the position of the popup relative to its parent.
   let getPositionX (self: Popup) : int =
-    (int ((gdk_popup_get_position_x (Glue.obj self.Id (gdk_popup_get_type ())))))
-
-  extern gdk_popup_get_position_y : cptr -> i32
+    (int ((Internal.GdkC.gdk_popup_get_position_x (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_get_type ())))))
 
   /// Obtains the position of the popup relative to its parent.
   let getPositionY (self: Popup) : int =
-    (int ((gdk_popup_get_position_y (Glue.obj self.Id (gdk_popup_get_type ())))))
-
-  extern gdk_popup_get_rect_anchor : cptr -> i32
+    (int ((Internal.GdkC.gdk_popup_get_position_y (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_get_type ())))))
 
   /// Gets the current popup rectangle anchor.
   let getRectAnchor (self: Popup) : Gravity =
-    Gravity (int ((gdk_popup_get_rect_anchor (Glue.obj self.Id (gdk_popup_get_type ())))))
-
-  extern gdk_popup_get_surface_anchor : cptr -> i32
+    Gravity (int ((Internal.GdkC.gdk_popup_get_rect_anchor (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_get_type ())))))
 
   /// Gets the current popup surface anchor.
   let getSurfaceAnchor (self: Popup) : Gravity =
-    Gravity (int ((gdk_popup_get_surface_anchor (Glue.obj self.Id (gdk_popup_get_type ())))))
-
-  extern gdk_popup_present : cptr -> i32 -> i32 -> cptr -> i32
+    Gravity (int ((Internal.GdkC.gdk_popup_get_surface_anchor (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_get_type ())))))
 
   /// Present @popup after having processed the `GdkPopupLayout` rules.
   let present (self: Popup) (width: int) (height: int) (layout: PopupLayout) : bool =
-    (((gdk_popup_present (Glue.obj self.Id (gdk_popup_get_type ())) (i32 width) (i32 height) (Glue.obj layout.Id (gdk_popup_layout_get_type ())))) <> i32 0)
+    (((Internal.GdkC.gdk_popup_present (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_get_type ())) (i32 width) (i32 height) (Internal.Raw.obj layout.Id (Internal.GdkC.gdk_popup_layout_get_type ())))) <> i32 0)
 
   /// Calls `handler` when the `autohide` property changes.
   let onNotifyAutohide (self: Popup) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_popup_get_type ())) "notify::autohide" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_get_type ())) "notify::autohide" handler
 
   /// Calls `handler` when the `parent` property changes.
   let onNotifyParent (self: Popup) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_popup_get_type ())) "notify::parent" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_get_type ())) "notify::parent" handler
 
 module PopupLayout =
-  extern gdk_popup_layout_new : cptr -> i32 -> i32 -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_popup_layout_get_type ()
 
   /// Create a popup layout description.
   let create (anchorRect: Rectangle) (rectAnchor: Gravity) (surfaceAnchor: Gravity) : PopupLayout =
-    PopupLayout (Glue.wrapBoxed ((gdk_popup_layout_new (Glue.obj anchorRect.Id (gdk_rectangle_get_type ())) (i32 rectAnchor.Int) (i32 surfaceAnchor.Int))) (gdk_popup_layout_get_type ()) true)
-
-  extern gdk_popup_layout_copy : cptr -> cptr
+    PopupLayout (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_popup_layout_new (Internal.Raw.obj anchorRect.Id (Internal.GdkC.gdk_rectangle_get_type ())) (i32 rectAnchor.Int) (i32 surfaceAnchor.Int))) (Internal.GdkC.gdk_popup_layout_get_type ()) true)
 
   /// Makes a copy of @layout.
   let copy (self: PopupLayout) : PopupLayout =
-    PopupLayout (Glue.wrapBoxed ((gdk_popup_layout_copy (Glue.obj self.Id (gdk_popup_layout_get_type ())))) (gdk_popup_layout_get_type ()) true)
-
-  extern gdk_popup_layout_equal : cptr -> cptr -> i32
+    PopupLayout (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_popup_layout_copy (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ())))) (Internal.GdkC.gdk_popup_layout_get_type ()) true)
 
   /// Check whether @layout and @other has identical layout properties.
   let equal (self: PopupLayout) (other: PopupLayout) : bool =
-    (((gdk_popup_layout_equal (Glue.obj self.Id (gdk_popup_layout_get_type ())) (Glue.obj other.Id (gdk_popup_layout_get_type ())))) <> i32 0)
-
-  extern gdk_popup_layout_get_anchor_hints : cptr -> u32
+    (((Internal.GdkC.gdk_popup_layout_equal (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ())) (Internal.Raw.obj other.Id (Internal.GdkC.gdk_popup_layout_get_type ())))) <> i32 0)
 
   /// Get the anchor hints.
   let getAnchorHints (self: PopupLayout) : AnchorHints =
-    AnchorHints (int ((gdk_popup_layout_get_anchor_hints (Glue.obj self.Id (gdk_popup_layout_get_type ())))))
-
-  extern gdk_popup_layout_get_anchor_rect : cptr -> cptr
+    AnchorHints (int ((Internal.GdkC.gdk_popup_layout_get_anchor_hints (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ())))))
 
   /// Get the anchor rectangle.
   let getAnchorRect (self: PopupLayout) : Rectangle =
-    Rectangle (Glue.wrapBoxed ((gdk_popup_layout_get_anchor_rect (Glue.obj self.Id (gdk_popup_layout_get_type ())))) (gdk_rectangle_get_type ()) false)
-
-  extern gdk_popup_layout_get_offset : cptr -> cptr -> cptr -> unit
+    Rectangle (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_popup_layout_get_anchor_rect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ())))) (Internal.GdkC.gdk_rectangle_get_type ()) false)
 
   /// Retrieves the offset for the anchor rectangle.
   let getOffset (self: PopupLayout) : (int * int) =
-    Glue.outBegin ()
-    gdk_popup_layout_get_offset (Glue.obj self.Id (gdk_popup_layout_get_type ())) (Glue.out 0) (Glue.out 1)
-    let zv = (Glue.outI32 0, Glue.outI32 1)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GdkC.gdk_popup_layout_get_offset (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ())) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zv = (Internal.Raw.outI32 0, Internal.Raw.outI32 1)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_popup_layout_get_rect_anchor : cptr -> i32
 
   /// Returns the anchor position on the anchor rectangle.
   let getRectAnchor (self: PopupLayout) : Gravity =
-    Gravity (int ((gdk_popup_layout_get_rect_anchor (Glue.obj self.Id (gdk_popup_layout_get_type ())))))
-
-  extern gdk_popup_layout_get_shadow_width : cptr -> cptr -> cptr -> cptr -> cptr -> unit
+    Gravity (int ((Internal.GdkC.gdk_popup_layout_get_rect_anchor (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ())))))
 
   /// Obtains the shadow widths of this layout.
   let getShadowWidth (self: PopupLayout) : (int * int * int * int) =
-    Glue.outBegin ()
-    gdk_popup_layout_get_shadow_width (Glue.obj self.Id (gdk_popup_layout_get_type ())) (Glue.out 0) (Glue.out 1) (Glue.out 2) (Glue.out 3)
-    let zv = (Glue.outI32 0, Glue.outI32 1, Glue.outI32 2, Glue.outI32 3)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GdkC.gdk_popup_layout_get_shadow_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ())) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.out 2) (Internal.Raw.out 3)
+    let zv = (Internal.Raw.outI32 0, Internal.Raw.outI32 1, Internal.Raw.outI32 2, Internal.Raw.outI32 3)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_popup_layout_get_surface_anchor : cptr -> i32
 
   /// Returns the anchor position on the popup surface.
   let getSurfaceAnchor (self: PopupLayout) : Gravity =
-    Gravity (int ((gdk_popup_layout_get_surface_anchor (Glue.obj self.Id (gdk_popup_layout_get_type ())))))
-
-  extern gdk_popup_layout_ref : cptr -> cptr
+    Gravity (int ((Internal.GdkC.gdk_popup_layout_get_surface_anchor (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ())))))
 
   /// Increases the reference count of @value.
   [<Unsafe>]
   let ref_ (self: PopupLayout) : PopupLayout =
-    PopupLayout (Glue.wrapBoxed ((gdk_popup_layout_ref (Glue.obj self.Id (gdk_popup_layout_get_type ())))) (gdk_popup_layout_get_type ()) true)
-
-  extern gdk_popup_layout_set_anchor_hints : cptr -> u32 -> unit
+    PopupLayout (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_popup_layout_ref (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ())))) (Internal.GdkC.gdk_popup_layout_get_type ()) true)
 
   /// Set new anchor hints.
   let setAnchorHints (self: PopupLayout) (anchorHints: AnchorHints) : unit =
-    gdk_popup_layout_set_anchor_hints (Glue.obj self.Id (gdk_popup_layout_get_type ())) (u32 anchorHints.Int)
-
-  extern gdk_popup_layout_set_anchor_rect : cptr -> cptr -> unit
+    Internal.GdkC.gdk_popup_layout_set_anchor_hints (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ())) (u32 anchorHints.Int)
 
   /// Set the anchor rectangle.
   let setAnchorRect (self: PopupLayout) (anchorRect: Rectangle) : unit =
-    gdk_popup_layout_set_anchor_rect (Glue.obj self.Id (gdk_popup_layout_get_type ())) (Glue.obj anchorRect.Id (gdk_rectangle_get_type ()))
-
-  extern gdk_popup_layout_set_offset : cptr -> i32 -> i32 -> unit
+    Internal.GdkC.gdk_popup_layout_set_anchor_rect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ())) (Internal.Raw.obj anchorRect.Id (Internal.GdkC.gdk_rectangle_get_type ()))
 
   /// Offset the position of the anchor rectangle with the given delta.
   let setOffset (self: PopupLayout) (dx: int) (dy: int) : unit =
-    gdk_popup_layout_set_offset (Glue.obj self.Id (gdk_popup_layout_get_type ())) (i32 dx) (i32 dy)
-
-  extern gdk_popup_layout_set_rect_anchor : cptr -> i32 -> unit
+    Internal.GdkC.gdk_popup_layout_set_offset (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ())) (i32 dx) (i32 dy)
 
   /// Set the anchor on the anchor rectangle.
   let setRectAnchor (self: PopupLayout) (anchor: Gravity) : unit =
-    gdk_popup_layout_set_rect_anchor (Glue.obj self.Id (gdk_popup_layout_get_type ())) (i32 anchor.Int)
-
-  extern gdk_popup_layout_set_shadow_width : cptr -> i32 -> i32 -> i32 -> i32 -> unit
+    Internal.GdkC.gdk_popup_layout_set_rect_anchor (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ())) (i32 anchor.Int)
 
   /// Sets the shadow width of the popup.
   let setShadowWidth (self: PopupLayout) (left: int) (right: int) (top: int) (bottom: int) : unit =
-    gdk_popup_layout_set_shadow_width (Glue.obj self.Id (gdk_popup_layout_get_type ())) (i32 left) (i32 right) (i32 top) (i32 bottom)
-
-  extern gdk_popup_layout_set_surface_anchor : cptr -> i32 -> unit
+    Internal.GdkC.gdk_popup_layout_set_shadow_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ())) (i32 left) (i32 right) (i32 top) (i32 bottom)
 
   /// Set the anchor on the popup surface.
   let setSurfaceAnchor (self: PopupLayout) (anchor: Gravity) : unit =
-    gdk_popup_layout_set_surface_anchor (Glue.obj self.Id (gdk_popup_layout_get_type ())) (i32 anchor.Int)
-
-  extern gdk_popup_layout_unref : cptr -> unit
+    Internal.GdkC.gdk_popup_layout_set_surface_anchor (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ())) (i32 anchor.Int)
 
   /// Decreases the reference count of @value.
   [<Unsafe>]
   let unref (self: PopupLayout) : unit =
-    gdk_popup_layout_unref (Glue.obj self.Id (gdk_popup_layout_get_type ()))
+    Internal.GdkC.gdk_popup_layout_unref (Internal.Raw.obj self.Id (Internal.GdkC.gdk_popup_layout_get_type ()))
+
+module ProximityEvent =
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_type_Gdk_ProximityEvent ()
 
 module RGBA =
-  extern gdk_rgba_copy : cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_rgba_get_type ()
 
   /// Makes a copy of a `GdkRGBA`.
   let copy (self: RGBA) : RGBA =
-    RGBA (Glue.wrapBoxed ((gdk_rgba_copy (Glue.obj self.Id (gdk_rgba_get_type ())))) (gdk_rgba_get_type ()) true)
-
-  extern gdk_rgba_equal : cptr -> cptr -> i32
+    RGBA (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_rgba_copy (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ())))) (Internal.GdkC.gdk_rgba_get_type ()) true)
 
   /// Compares two `GdkRGBA` colors.
   let equal (self: RGBA) (p2: RGBA) : bool =
-    (((gdk_rgba_equal (Glue.obj self.Id (gdk_rgba_get_type ())) (Glue.obj p2.Id (gdk_rgba_get_type ())))) <> i32 0)
-
-  extern gdk_rgba_free : cptr -> unit
+    (((Internal.GdkC.gdk_rgba_equal (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ())) (Internal.Raw.obj p2.Id (Internal.GdkC.gdk_rgba_get_type ())))) <> i32 0)
 
   /// Frees a `GdkRGBA`.
   [<Unsafe>]
   let free (self: RGBA) : unit =
-    gdk_rgba_free (Glue.obj self.Id (gdk_rgba_get_type ()))
-
-  extern gdk_rgba_hash : cptr -> u32
+    Internal.GdkC.gdk_rgba_free (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ()))
 
   /// A hash function suitable for using for a hash table that stores `GdkRGBA`s.
   let hash (self: RGBA) : int =
-    (int ((gdk_rgba_hash (Glue.obj self.Id (gdk_rgba_get_type ())))))
-
-  extern gdk_rgba_is_clear : cptr -> i32
+    (int ((Internal.GdkC.gdk_rgba_hash (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ())))))
 
   /// Checks if an @rgba value is transparent.
   let isClear (self: RGBA) : bool =
-    (((gdk_rgba_is_clear (Glue.obj self.Id (gdk_rgba_get_type ())))) <> i32 0)
-
-  extern gdk_rgba_is_opaque : cptr -> i32
+    (((Internal.GdkC.gdk_rgba_is_clear (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ())))) <> i32 0)
 
   /// Checks if an @rgba value is opaque.
   let isOpaque (self: RGBA) : bool =
-    (((gdk_rgba_is_opaque (Glue.obj self.Id (gdk_rgba_get_type ())))) <> i32 0)
-
-  extern gdk_rgba_parse : cptr -> cstr -> i32
+    (((Internal.GdkC.gdk_rgba_is_opaque (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ())))) <> i32 0)
 
   /// Parses a textual representation of a color.
   let parse (self: RGBA) (spec: string) : bool =
-    (((gdk_rgba_parse (Glue.obj self.Id (gdk_rgba_get_type ())) spec)) <> i32 0)
-
-  extern gdk_rgba_print : cptr -> cptr -> cptr
+    (((Internal.GdkC.gdk_rgba_parse (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ())) spec)) <> i32 0)
 
   /// `gdk_rgba_print`.
   let print (self: RGBA) (string: GLib.String) : GLib.String =
-    GLib.String (Glue.wrapBoxed ((gdk_rgba_print (Glue.obj self.Id (gdk_rgba_get_type ())) (Glue.obj string.Id (GLib.g_gstring_get_type ())))) (GLib.g_gstring_get_type ()) true)
-
-  extern gdk_rgba_to_string : cptr -> cptr
+    GLib.String (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_rgba_print (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ())) (Internal.Raw.obj string.Id (Internal.GLibC.g_gstring_get_type ())))) (Internal.GLibC.g_gstring_get_type ()) true)
 
   /// Returns a textual specification of @rgba in the form `rgb(r,g,b)` or `rgba(r,g,b,a)`, where “r”, “g”, “b” and “a” represent the red, green, blue and alpha values respectively.
   let toString (self: RGBA) : string =
-    Glue.takeText ((gdk_rgba_to_string (Glue.obj self.Id (gdk_rgba_get_type ()))))
+    Internal.Raw.takeText ((Internal.GdkC.gdk_rgba_to_string (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ()))))
 
   /// A new one, every field zero.
-  let create () : RGBA = RGBA (Glue.alloc (zgtk_sizeof_Gdk_RGBA ()) (gdk_rgba_get_type ()))
-
-  extern zgtk_get_Gdk_RGBA_red : cptr -> f64
+  let create () : RGBA = RGBA (Internal.Raw.alloc (Internal.GdkC.zgtk_sizeof_Gdk_RGBA ()) (Internal.GdkC.gdk_rgba_get_type ()))
 
   /// The `red` field.
-  let getRed (self: RGBA) : float = zgtk_get_Gdk_RGBA_red (Glue.obj self.Id (gdk_rgba_get_type ()))
-
-  extern zgtk_set_Gdk_RGBA_red : cptr -> f64 -> unit
+  let getRed (self: RGBA) : float = Internal.GdkC.zgtk_get_Gdk_RGBA_red (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ()))
 
   /// Sets the `red` field.
-  let setRed (self: RGBA) (value: float) : unit = zgtk_set_Gdk_RGBA_red (Glue.obj self.Id (gdk_rgba_get_type ())) value
-
-  extern zgtk_get_Gdk_RGBA_green : cptr -> f64
+  let setRed (self: RGBA) (value: float) : unit = Internal.GdkC.zgtk_set_Gdk_RGBA_red (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ())) value
 
   /// The `green` field.
-  let getGreen (self: RGBA) : float = zgtk_get_Gdk_RGBA_green (Glue.obj self.Id (gdk_rgba_get_type ()))
-
-  extern zgtk_set_Gdk_RGBA_green : cptr -> f64 -> unit
+  let getGreen (self: RGBA) : float = Internal.GdkC.zgtk_get_Gdk_RGBA_green (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ()))
 
   /// Sets the `green` field.
-  let setGreen (self: RGBA) (value: float) : unit = zgtk_set_Gdk_RGBA_green (Glue.obj self.Id (gdk_rgba_get_type ())) value
-
-  extern zgtk_get_Gdk_RGBA_blue : cptr -> f64
+  let setGreen (self: RGBA) (value: float) : unit = Internal.GdkC.zgtk_set_Gdk_RGBA_green (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ())) value
 
   /// The `blue` field.
-  let getBlue (self: RGBA) : float = zgtk_get_Gdk_RGBA_blue (Glue.obj self.Id (gdk_rgba_get_type ()))
-
-  extern zgtk_set_Gdk_RGBA_blue : cptr -> f64 -> unit
+  let getBlue (self: RGBA) : float = Internal.GdkC.zgtk_get_Gdk_RGBA_blue (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ()))
 
   /// Sets the `blue` field.
-  let setBlue (self: RGBA) (value: float) : unit = zgtk_set_Gdk_RGBA_blue (Glue.obj self.Id (gdk_rgba_get_type ())) value
-
-  extern zgtk_get_Gdk_RGBA_alpha : cptr -> f64
+  let setBlue (self: RGBA) (value: float) : unit = Internal.GdkC.zgtk_set_Gdk_RGBA_blue (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ())) value
 
   /// The `alpha` field.
-  let getAlpha (self: RGBA) : float = zgtk_get_Gdk_RGBA_alpha (Glue.obj self.Id (gdk_rgba_get_type ()))
-
-  extern zgtk_set_Gdk_RGBA_alpha : cptr -> f64 -> unit
+  let getAlpha (self: RGBA) : float = Internal.GdkC.zgtk_get_Gdk_RGBA_alpha (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ()))
 
   /// Sets the `alpha` field.
-  let setAlpha (self: RGBA) (value: float) : unit = zgtk_set_Gdk_RGBA_alpha (Glue.obj self.Id (gdk_rgba_get_type ())) value
+  let setAlpha (self: RGBA) (value: float) : unit = Internal.GdkC.zgtk_set_Gdk_RGBA_alpha (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rgba_get_type ())) value
 
 module Rectangle =
-  extern gdk_rectangle_contains_point : cptr -> i32 -> i32 -> i32
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_rectangle_get_type ()
 
   /// Returns %TRUE if @rect contains the point described by @x and @y.
   let containsPoint (self: Rectangle) (x: int) (y: int) : bool =
-    (((gdk_rectangle_contains_point (Glue.obj self.Id (gdk_rectangle_get_type ())) (i32 x) (i32 y))) <> i32 0)
-
-  extern gdk_rectangle_equal : cptr -> cptr -> i32
+    (((Internal.GdkC.gdk_rectangle_contains_point (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rectangle_get_type ())) (i32 x) (i32 y))) <> i32 0)
 
   /// Checks if the two given rectangles are equal.
   let equal (self: Rectangle) (rect2: Rectangle) : bool =
-    (((gdk_rectangle_equal (Glue.obj self.Id (gdk_rectangle_get_type ())) (Glue.obj rect2.Id (gdk_rectangle_get_type ())))) <> i32 0)
-
-  extern gdk_rectangle_intersect : cptr -> cptr -> cptr -> i32
+    (((Internal.GdkC.gdk_rectangle_equal (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rectangle_get_type ())) (Internal.Raw.obj rect2.Id (Internal.GdkC.gdk_rectangle_get_type ())))) <> i32 0)
 
   /// Calculates the intersection of two rectangles.
   let intersect (self: Rectangle) (src2: Rectangle) : (bool * Rectangle) =
-    let zo1 = Glue.alloc (zgtk_sizeof_Gdk_Rectangle ()) (gdk_rectangle_get_type ())
-    let zr = gdk_rectangle_intersect (Glue.obj self.Id (gdk_rectangle_get_type ())) (Glue.obj src2.Id (gdk_rectangle_get_type ())) (Glue.obj zo1 (gdk_rectangle_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GdkC.zgtk_sizeof_Gdk_Rectangle ()) (Internal.GdkC.gdk_rectangle_get_type ())
+    let zr = Internal.GdkC.gdk_rectangle_intersect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rectangle_get_type ())) (Internal.Raw.obj src2.Id (Internal.GdkC.gdk_rectangle_get_type ())) (Internal.Raw.obj zo1 (Internal.GdkC.gdk_rectangle_get_type ()))
     (((zr) <> i32 0), Rectangle zo1)
-
-  extern gdk_rectangle_union : cptr -> cptr -> cptr -> unit
 
   /// Calculates the union of two rectangles.
   let union (self: Rectangle) (src2: Rectangle) : Rectangle =
-    let zo1 = Glue.alloc (zgtk_sizeof_Gdk_Rectangle ()) (gdk_rectangle_get_type ())
-    gdk_rectangle_union (Glue.obj self.Id (gdk_rectangle_get_type ())) (Glue.obj src2.Id (gdk_rectangle_get_type ())) (Glue.obj zo1 (gdk_rectangle_get_type ()))
+    let zo1 = Internal.Raw.alloc (Internal.GdkC.zgtk_sizeof_Gdk_Rectangle ()) (Internal.GdkC.gdk_rectangle_get_type ())
+    Internal.GdkC.gdk_rectangle_union (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rectangle_get_type ())) (Internal.Raw.obj src2.Id (Internal.GdkC.gdk_rectangle_get_type ())) (Internal.Raw.obj zo1 (Internal.GdkC.gdk_rectangle_get_type ()))
     Rectangle zo1
 
   /// A new one, every field zero.
-  let create () : Rectangle = Rectangle (Glue.alloc (zgtk_sizeof_Gdk_Rectangle ()) (gdk_rectangle_get_type ()))
-
-  extern zgtk_get_Gdk_Rectangle_x : cptr -> int
+  let create () : Rectangle = Rectangle (Internal.Raw.alloc (Internal.GdkC.zgtk_sizeof_Gdk_Rectangle ()) (Internal.GdkC.gdk_rectangle_get_type ()))
 
   /// The `x` field.
-  let getX (self: Rectangle) : int = zgtk_get_Gdk_Rectangle_x (Glue.obj self.Id (gdk_rectangle_get_type ()))
-
-  extern zgtk_set_Gdk_Rectangle_x : cptr -> int -> unit
+  let getX (self: Rectangle) : int = Internal.GdkC.zgtk_get_Gdk_Rectangle_x (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rectangle_get_type ()))
 
   /// Sets the `x` field.
-  let setX (self: Rectangle) (value: int) : unit = zgtk_set_Gdk_Rectangle_x (Glue.obj self.Id (gdk_rectangle_get_type ())) value
-
-  extern zgtk_get_Gdk_Rectangle_y : cptr -> int
+  let setX (self: Rectangle) (value: int) : unit = Internal.GdkC.zgtk_set_Gdk_Rectangle_x (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rectangle_get_type ())) value
 
   /// The `y` field.
-  let getY (self: Rectangle) : int = zgtk_get_Gdk_Rectangle_y (Glue.obj self.Id (gdk_rectangle_get_type ()))
-
-  extern zgtk_set_Gdk_Rectangle_y : cptr -> int -> unit
+  let getY (self: Rectangle) : int = Internal.GdkC.zgtk_get_Gdk_Rectangle_y (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rectangle_get_type ()))
 
   /// Sets the `y` field.
-  let setY (self: Rectangle) (value: int) : unit = zgtk_set_Gdk_Rectangle_y (Glue.obj self.Id (gdk_rectangle_get_type ())) value
-
-  extern zgtk_get_Gdk_Rectangle_width : cptr -> int
+  let setY (self: Rectangle) (value: int) : unit = Internal.GdkC.zgtk_set_Gdk_Rectangle_y (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rectangle_get_type ())) value
 
   /// The `width` field.
-  let getWidth (self: Rectangle) : int = zgtk_get_Gdk_Rectangle_width (Glue.obj self.Id (gdk_rectangle_get_type ()))
-
-  extern zgtk_set_Gdk_Rectangle_width : cptr -> int -> unit
+  let getWidth (self: Rectangle) : int = Internal.GdkC.zgtk_get_Gdk_Rectangle_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rectangle_get_type ()))
 
   /// Sets the `width` field.
-  let setWidth (self: Rectangle) (value: int) : unit = zgtk_set_Gdk_Rectangle_width (Glue.obj self.Id (gdk_rectangle_get_type ())) value
-
-  extern zgtk_get_Gdk_Rectangle_height : cptr -> int
+  let setWidth (self: Rectangle) (value: int) : unit = Internal.GdkC.zgtk_set_Gdk_Rectangle_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rectangle_get_type ())) value
 
   /// The `height` field.
-  let getHeight (self: Rectangle) : int = zgtk_get_Gdk_Rectangle_height (Glue.obj self.Id (gdk_rectangle_get_type ()))
-
-  extern zgtk_set_Gdk_Rectangle_height : cptr -> int -> unit
+  let getHeight (self: Rectangle) : int = Internal.GdkC.zgtk_get_Gdk_Rectangle_height (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rectangle_get_type ()))
 
   /// Sets the `height` field.
-  let setHeight (self: Rectangle) (value: int) : unit = zgtk_set_Gdk_Rectangle_height (Glue.obj self.Id (gdk_rectangle_get_type ())) value
+  let setHeight (self: Rectangle) (value: int) : unit = Internal.GdkC.zgtk_set_Gdk_Rectangle_height (Internal.Raw.obj self.Id (Internal.GdkC.gdk_rectangle_get_type ())) value
 
 module ScrollEvent =
-  extern gdk_scroll_event_get_deltas : cptr -> cptr -> cptr -> unit
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_type_Gdk_ScrollEvent ()
 
   /// Extracts the scroll deltas of a scroll event.
   let getDeltas (self: ScrollEvent) : (float * float) =
-    Glue.outBegin ()
-    gdk_scroll_event_get_deltas (Glue.obj self.Id (zgtk_type_Gdk_ScrollEvent ())) (Glue.out 0) (Glue.out 1)
-    let zv = (Glue.outF64 0, Glue.outF64 1)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GdkC.gdk_scroll_event_get_deltas (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_ScrollEvent ())) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zv = (Internal.Raw.outF64 0, Internal.Raw.outF64 1)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_scroll_event_get_direction : cptr -> i32
 
   /// Extracts the direction of a scroll event.
   let getDirection (self: ScrollEvent) : ScrollDirection =
-    ScrollDirection (int ((gdk_scroll_event_get_direction (Glue.obj self.Id (zgtk_type_Gdk_ScrollEvent ())))))
-
-  extern gdk_scroll_event_get_relative_direction : cptr -> i32
+    ScrollDirection (int ((Internal.GdkC.gdk_scroll_event_get_direction (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_ScrollEvent ())))))
 
   /// Extracts the scroll direction relative to the physical motion.
   let getRelativeDirection (self: ScrollEvent) : ScrollRelativeDirection =
-    ScrollRelativeDirection (int ((gdk_scroll_event_get_relative_direction (Glue.obj self.Id (zgtk_type_Gdk_ScrollEvent ())))))
-
-  extern gdk_scroll_event_get_unit : cptr -> i32
+    ScrollRelativeDirection (int ((Internal.GdkC.gdk_scroll_event_get_relative_direction (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_ScrollEvent ())))))
 
   /// Extracts the scroll delta unit of a scroll event.
   let getUnit (self: ScrollEvent) : ScrollUnit =
-    ScrollUnit (int ((gdk_scroll_event_get_unit (Glue.obj self.Id (zgtk_type_Gdk_ScrollEvent ())))))
-
-  extern gdk_scroll_event_is_stop : cptr -> i32
+    ScrollUnit (int ((Internal.GdkC.gdk_scroll_event_get_unit (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_ScrollEvent ())))))
 
   /// Check whether a scroll event is a stop scroll event.
   let isStop (self: ScrollEvent) : bool =
-    (((gdk_scroll_event_is_stop (Glue.obj self.Id (zgtk_type_Gdk_ScrollEvent ())))) <> i32 0)
+    (((Internal.GdkC.gdk_scroll_event_is_stop (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_ScrollEvent ())))) <> i32 0)
 
 module Seat =
   /// The same object as its ancestor.
   let toGObjectObject (self: Seat) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_seat_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<Seat> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_seat_get_type ()) then Some (Seat object.Id) else None
-
-  extern gdk_seat_get_capabilities : cptr -> u32
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_seat_get_type ()) then Some (Seat object.Id) else None
 
   /// Returns the capabilities this `GdkSeat` currently has.
   let getCapabilities (self: Seat) : SeatCapabilities =
-    SeatCapabilities (int ((gdk_seat_get_capabilities (Glue.obj self.Id (gdk_seat_get_type ())))))
-
-  extern gdk_seat_get_devices : cptr -> u32 -> cptr
+    SeatCapabilities (int ((Internal.GdkC.gdk_seat_get_capabilities (Internal.Raw.obj self.Id (Internal.GdkC.gdk_seat_get_type ())))))
 
   /// Returns the devices that match the given capabilities.
   let getDevices (self: Seat) (capabilities: SeatCapabilities) : list<Device> =
-    Glue.mapList (fun zp -> Device (Glue.wrap (zp) false)) (Glue.pointers ((gdk_seat_get_devices (Glue.obj self.Id (gdk_seat_get_type ())) (u32 capabilities.Int))) false true)
-
-  extern gdk_seat_get_display : cptr -> cptr
+    Internal.Raw.mapList (fun zp -> Device (Internal.Raw.wrap (zp) false)) (Internal.Raw.pointers ((Internal.GdkC.gdk_seat_get_devices (Internal.Raw.obj self.Id (Internal.GdkC.gdk_seat_get_type ())) (u32 capabilities.Int))) false true)
 
   /// Returns the `GdkDisplay` this seat belongs to.
   let getDisplay (self: Seat) : Display =
-    Display (Glue.wrap ((gdk_seat_get_display (Glue.obj self.Id (gdk_seat_get_type ())))) false)
-
-  extern gdk_seat_get_keyboard : cptr -> cptr
+    Display (Internal.Raw.wrap ((Internal.GdkC.gdk_seat_get_display (Internal.Raw.obj self.Id (Internal.GdkC.gdk_seat_get_type ())))) false)
 
   /// Returns the device that routes keyboard events.
   let getKeyboard (self: Seat) : option<Device> =
-    let zr = gdk_seat_get_keyboard (Glue.obj self.Id (gdk_seat_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_seat_get_keyboard (Internal.Raw.obj self.Id (Internal.GdkC.gdk_seat_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Device zid1))
-
-  extern gdk_seat_get_pointer : cptr -> cptr
 
   /// Returns the device that routes pointer events.
   let getPointer (self: Seat) : option<Device> =
-    let zr = gdk_seat_get_pointer (Glue.obj self.Id (gdk_seat_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_seat_get_pointer (Internal.Raw.obj self.Id (Internal.GdkC.gdk_seat_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Device zid1))
-
-  extern gdk_seat_get_tools : cptr -> cptr
 
   /// Returns all `GdkDeviceTools` that are known to the application.
   let getTools (self: Seat) : list<DeviceTool> =
-    Glue.mapList (fun zp -> DeviceTool (Glue.wrap (zp) false)) (Glue.pointers ((gdk_seat_get_tools (Glue.obj self.Id (gdk_seat_get_type ())))) false true)
+    Internal.Raw.mapList (fun zp -> DeviceTool (Internal.Raw.wrap (zp) false)) (Internal.Raw.pointers ((Internal.GdkC.gdk_seat_get_tools (Internal.Raw.obj self.Id (Internal.GdkC.gdk_seat_get_type ())))) false true)
 
   /// Emitted when a new input device is related to this seat.
   let onDeviceAdded (self: Seat) (handler: Device -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_seat_get_type ())) "device-added" (fun () ->
-      let device = Device (Glue.wrap (Glue.argPointer 1) false)
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_seat_get_type ())) "device-added" (fun () ->
+      let device = Device (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
       handler device)
 
   /// Emitted when an input device is removed (e.g.
   let onDeviceRemoved (self: Seat) (handler: Device -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_seat_get_type ())) "device-removed" (fun () ->
-      let device = Device (Glue.wrap (Glue.argPointer 1) false)
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_seat_get_type ())) "device-removed" (fun () ->
+      let device = Device (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
       handler device)
 
   /// Emitted whenever a new tool is made known to the seat.
   let onToolAdded (self: Seat) (handler: DeviceTool -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_seat_get_type ())) "tool-added" (fun () ->
-      let tool = DeviceTool (Glue.wrap (Glue.argPointer 1) false)
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_seat_get_type ())) "tool-added" (fun () ->
+      let tool = DeviceTool (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
       handler tool)
 
   /// Emitted whenever a tool is no longer known to this @seat.
   let onToolRemoved (self: Seat) (handler: DeviceTool -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_seat_get_type ())) "tool-removed" (fun () ->
-      let tool = DeviceTool (Glue.wrap (Glue.argPointer 1) false)
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_seat_get_type ())) "tool-removed" (fun () ->
+      let tool = DeviceTool (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
       handler tool)
 
   /// Calls `handler` when the `display` property changes.
   let onNotifyDisplay (self: Seat) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_seat_get_type ())) "notify::display" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_seat_get_type ())) "notify::display" handler
 
 module Snapshot =
   /// The same object as its ancestor.
   let toGObjectObject (self: Snapshot) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_snapshot_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<Snapshot> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_snapshot_get_type ()) then Some (Snapshot object.Id) else None
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_snapshot_get_type ()) then Some (Snapshot object.Id) else None
 
 module Surface =
   /// The same object as its ancestor.
   let toGObjectObject (self: Surface) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_surface_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<Surface> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_surface_get_type ()) then Some (Surface object.Id) else None
-
-  extern gdk_surface_new_popup : cptr -> i32 -> cptr
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_surface_get_type ()) then Some (Surface object.Id) else None
 
   /// Create a new popup surface.
   let createPopup (parent: Surface) (autohide: bool) : Surface =
-    Surface (Glue.wrap ((gdk_surface_new_popup (Glue.obj parent.Id (gdk_surface_get_type ())) (if autohide then i32 1 else i32 0))) true)
-
-  extern gdk_surface_new_toplevel : cptr -> cptr
+    Surface (Internal.Raw.wrap ((Internal.GdkC.gdk_surface_new_popup (Internal.Raw.obj parent.Id (Internal.GdkC.gdk_surface_get_type ())) (if autohide then i32 1 else i32 0))) true)
 
   /// Creates a new toplevel surface.
   let createToplevel (display: Display) : Surface =
-    Surface (Glue.wrap ((gdk_surface_new_toplevel (Glue.obj display.Id (gdk_display_get_type ())))) true)
-
-  extern gdk_surface_beep : cptr -> unit
+    Surface (Internal.Raw.wrap ((Internal.GdkC.gdk_surface_new_toplevel (Internal.Raw.obj display.Id (Internal.GdkC.gdk_display_get_type ())))) true)
 
   /// Emits a short beep associated to @surface.
   let beep (self: Surface) : unit =
-    gdk_surface_beep (Glue.obj self.Id (gdk_surface_get_type ()))
-
-  extern gdk_surface_create_cairo_context : cptr -> cptr
+    Internal.GdkC.gdk_surface_beep (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ()))
 
   /// Deprecated. Creates a new `GdkCairoContext` for rendering on @surface.
   let createCairoContext (self: Surface) : CairoContext =
-    CairoContext (Glue.wrap ((gdk_surface_create_cairo_context (Glue.obj self.Id (gdk_surface_get_type ())))) true)
-
-  extern gdk_surface_create_gl_context : cptr -> cptr -> cptr
+    CairoContext (Internal.Raw.wrap ((Internal.GdkC.gdk_surface_create_cairo_context (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())))) true)
 
   /// Creates a new `GdkGLContext` for the `GdkSurface`.
   let createGlContext (self: Surface) : result<GLContext, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_surface_create_gl_context (Glue.obj self.Id (gdk_surface_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_surface_create_gl_context (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
-      let zv = GLContext (Glue.wrap (zr) true)
-      Glue.outEnd ()
+      let zv = GLContext (Internal.Raw.wrap (zr) true)
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_surface_create_similar_surface : cptr -> i32 -> i32 -> i32 -> cptr
 
   /// Deprecated. Create a new Cairo surface that is as compatible as possible with the given @surface.
   let createSimilarSurface (self: Surface) (content: Cairo.Content) (width: int) (height: int) : Cairo.Surface =
-    Cairo.Surface (Glue.wrapBoxed ((gdk_surface_create_similar_surface (Glue.obj self.Id (gdk_surface_get_type ())) (i32 content.Int) (i32 width) (i32 height))) (Cairo.cairo_gobject_surface_get_type ()) true)
-
-  extern gdk_surface_create_vulkan_context : cptr -> cptr -> cptr
+    Cairo.Surface (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_surface_create_similar_surface (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) (i32 content.Int) (i32 width) (i32 height))) (Internal.CairoC.cairo_gobject_surface_get_type ()) true)
 
   /// Deprecated. Sets an error and returns %NULL.
   let createVulkanContext (self: Surface) : result<VulkanContext, Glue.Error> =
-    Glue.outBegin ()
-    let zr = gdk_surface_create_vulkan_context (Glue.obj self.Id (gdk_surface_get_type ())) (Glue.err ())
-    match Glue.takeError () with
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_surface_create_vulkan_context (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) (Internal.Raw.err ())
+    match Internal.Raw.takeError () with
     | Some ze ->
-      Glue.outEnd ()
-      Error ze
+      Internal.Raw.outEnd ()
+      Error (Glue.error ze)
     | None ->
-      let zv = VulkanContext (Glue.wrap (zr) true)
-      Glue.outEnd ()
+      let zv = VulkanContext (Internal.Raw.wrap (zr) true)
+      Internal.Raw.outEnd ()
       Ok zv
-
-  extern gdk_surface_destroy : cptr -> unit
 
   /// Destroys the window system resources associated with @surface and decrements @surface's reference count.
   let destroy (self: Surface) : unit =
-    gdk_surface_destroy (Glue.obj self.Id (gdk_surface_get_type ()))
-
-  extern gdk_surface_get_cursor : cptr -> cptr
+    Internal.GdkC.gdk_surface_destroy (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ()))
 
   /// Retrieves a `GdkCursor` pointer for the cursor currently set on the `GdkSurface`.
   let getCursor (self: Surface) : option<Cursor> =
-    let zr = gdk_surface_get_cursor (Glue.obj self.Id (gdk_surface_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_surface_get_cursor (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Cursor zid1))
-
-  extern gdk_surface_get_device_cursor : cptr -> cptr -> cptr
 
   /// Retrieves a `GdkCursor` pointer for the @device currently set on the specified `GdkSurface`.
   let getDeviceCursor (self: Surface) (device: Device) : option<Cursor> =
-    let zr = gdk_surface_get_device_cursor (Glue.obj self.Id (gdk_surface_get_type ())) (Glue.obj device.Id (gdk_device_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_surface_get_device_cursor (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) (Internal.Raw.obj device.Id (Internal.GdkC.gdk_device_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Cursor zid1))
-
-  extern gdk_surface_get_device_position : cptr -> cptr -> cptr -> cptr -> cptr -> i32
 
   /// Obtains the current device position and modifier state.
   let getDevicePosition (self: Surface) (device: Device) : (bool * float * float * ModifierType) =
-    Glue.outBegin ()
-    let zr = gdk_surface_get_device_position (Glue.obj self.Id (gdk_surface_get_type ())) (Glue.obj device.Id (gdk_device_get_type ())) (Glue.out 0) (Glue.out 1) (Glue.out 2)
-    let zv = (((zr) <> i32 0), Glue.outF64 0, Glue.outF64 1, ModifierType (Glue.outU32 2))
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_surface_get_device_position (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) (Internal.Raw.obj device.Id (Internal.GdkC.gdk_device_get_type ())) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.out 2)
+    let zv = (((zr) <> i32 0), Internal.Raw.outF64 0, Internal.Raw.outF64 1, ModifierType (Internal.Raw.outU32 2))
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_surface_get_display : cptr -> cptr
 
   /// Gets the `GdkDisplay` associated with a `GdkSurface`.
   let getDisplay (self: Surface) : Display =
-    Display (Glue.wrap ((gdk_surface_get_display (Glue.obj self.Id (gdk_surface_get_type ())))) false)
-
-  extern gdk_surface_get_frame_clock : cptr -> cptr
+    Display (Internal.Raw.wrap ((Internal.GdkC.gdk_surface_get_display (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())))) false)
 
   /// Gets the frame clock for the surface.
   let getFrameClock (self: Surface) : FrameClock =
-    FrameClock (Glue.wrap ((gdk_surface_get_frame_clock (Glue.obj self.Id (gdk_surface_get_type ())))) false)
-
-  extern gdk_surface_get_height : cptr -> i32
+    FrameClock (Internal.Raw.wrap ((Internal.GdkC.gdk_surface_get_frame_clock (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())))) false)
 
   /// Returns the height of the given @surface.
   let getHeight (self: Surface) : int =
-    (int ((gdk_surface_get_height (Glue.obj self.Id (gdk_surface_get_type ())))))
-
-  extern gdk_surface_get_mapped : cptr -> i32
+    (int ((Internal.GdkC.gdk_surface_get_height (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())))))
 
   /// Checks whether the surface has been mapped.
   let getMapped (self: Surface) : bool =
-    (((gdk_surface_get_mapped (Glue.obj self.Id (gdk_surface_get_type ())))) <> i32 0)
-
-  extern gdk_surface_get_scale : cptr -> f64
+    (((Internal.GdkC.gdk_surface_get_mapped (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())))) <> i32 0)
 
   /// Returns the internal scale that maps from surface coordinates to the actual device pixels.
   let getScale (self: Surface) : float =
-    ((gdk_surface_get_scale (Glue.obj self.Id (gdk_surface_get_type ()))))
-
-  extern gdk_surface_get_scale_factor : cptr -> i32
+    ((Internal.GdkC.gdk_surface_get_scale (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ()))))
 
   /// Returns the internal scale factor that maps from surface coordinates to the actual device pixels.
   let getScaleFactor (self: Surface) : int =
-    (int ((gdk_surface_get_scale_factor (Glue.obj self.Id (gdk_surface_get_type ())))))
-
-  extern gdk_surface_get_width : cptr -> i32
+    (int ((Internal.GdkC.gdk_surface_get_scale_factor (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())))))
 
   /// Returns the width of the given @surface.
   let getWidth (self: Surface) : int =
-    (int ((gdk_surface_get_width (Glue.obj self.Id (gdk_surface_get_type ())))))
-
-  extern gdk_surface_hide : cptr -> unit
+    (int ((Internal.GdkC.gdk_surface_get_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())))))
 
   /// Hide the surface.
   let hide (self: Surface) : unit =
-    gdk_surface_hide (Glue.obj self.Id (gdk_surface_get_type ()))
-
-  extern gdk_surface_is_destroyed : cptr -> i32
+    Internal.GdkC.gdk_surface_hide (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ()))
 
   /// Check to see if a surface is destroyed.
   let isDestroyed (self: Surface) : bool =
-    (((gdk_surface_is_destroyed (Glue.obj self.Id (gdk_surface_get_type ())))) <> i32 0)
-
-  extern gdk_surface_queue_render : cptr -> unit
+    (((Internal.GdkC.gdk_surface_is_destroyed (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())))) <> i32 0)
 
   /// Forces a [signal@Gdk.Surface::render] signal emission for @surface to be scheduled.
   let queueRender (self: Surface) : unit =
-    gdk_surface_queue_render (Glue.obj self.Id (gdk_surface_get_type ()))
-
-  extern gdk_surface_request_layout : cptr -> unit
+    Internal.GdkC.gdk_surface_queue_render (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ()))
 
   /// Request a layout phase from the surface's frame clock.
   let requestLayout (self: Surface) : unit =
-    gdk_surface_request_layout (Glue.obj self.Id (gdk_surface_get_type ()))
-
-  extern gdk_surface_set_cursor : cptr -> cptr -> unit
+    Internal.GdkC.gdk_surface_request_layout (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ()))
 
   /// Sets the default mouse pointer for a `GdkSurface`.
   let setCursor (self: Surface) (cursor: option<Cursor>) : unit =
     let zp1 =
       match cursor with
-      | Some zo -> Glue.obj zo.Id (gdk_cursor_get_type ())
-      | None -> Glue.none ()
-    gdk_surface_set_cursor (Glue.obj self.Id (gdk_surface_get_type ())) zp1
-
-  extern gdk_surface_set_device_cursor : cptr -> cptr -> cptr -> unit
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_cursor_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_surface_set_cursor (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) zp1
 
   /// Sets a specific `GdkCursor` for a given device when it gets inside @surface.
   let setDeviceCursor (self: Surface) (device: Device) (cursor: Cursor) : unit =
-    gdk_surface_set_device_cursor (Glue.obj self.Id (gdk_surface_get_type ())) (Glue.obj device.Id (gdk_device_get_type ())) (Glue.obj cursor.Id (gdk_cursor_get_type ()))
-
-  extern gdk_surface_set_input_region : cptr -> cptr -> unit
+    Internal.GdkC.gdk_surface_set_device_cursor (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) (Internal.Raw.obj device.Id (Internal.GdkC.gdk_device_get_type ())) (Internal.Raw.obj cursor.Id (Internal.GdkC.gdk_cursor_get_type ()))
 
   /// Apply the region to the surface for the purpose of event handling.
   let setInputRegion (self: Surface) (region: option<Cairo.Region>) : unit =
     let zp1 =
       match region with
-      | Some zo -> Glue.obj zo.Id (Cairo.cairo_gobject_region_get_type ())
-      | None -> Glue.none ()
-    gdk_surface_set_input_region (Glue.obj self.Id (gdk_surface_get_type ())) zp1
-
-  extern gdk_surface_set_opaque_region : cptr -> cptr -> unit
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.CairoC.cairo_gobject_region_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_surface_set_input_region (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) zp1
 
   /// Deprecated. Marks a region of the `GdkSurface` as opaque.
   let setOpaqueRegion (self: Surface) (region: option<Cairo.Region>) : unit =
     let zp1 =
       match region with
-      | Some zo -> Glue.obj zo.Id (Cairo.cairo_gobject_region_get_type ())
-      | None -> Glue.none ()
-    gdk_surface_set_opaque_region (Glue.obj self.Id (gdk_surface_get_type ())) zp1
-
-  extern gdk_surface_translate_coordinates : cptr -> cptr -> cptr -> cptr -> i32
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.CairoC.cairo_gobject_region_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_surface_set_opaque_region (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) zp1
 
   /// Translates coordinates between two surfaces.
   let translateCoordinates (self: Surface) (to: Surface) (x: float) (y: float) : (bool * float * float) =
-    Glue.outBegin ()
-    Glue.outSetF64 0 x
-    Glue.outSetF64 1 y
-    let zr = gdk_surface_translate_coordinates (Glue.obj self.Id (gdk_surface_get_type ())) (Glue.obj to.Id (gdk_surface_get_type ())) (Glue.out 0) (Glue.out 1)
-    let zv = (((zr) <> i32 0), Glue.outF64 0, Glue.outF64 1)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.Raw.outSetF64 0 x
+    Internal.Raw.outSetF64 1 y
+    let zr = Internal.GdkC.gdk_surface_translate_coordinates (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) (Internal.Raw.obj to.Id (Internal.GdkC.gdk_surface_get_type ())) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zv = (((zr) <> i32 0), Internal.Raw.outF64 0, Internal.Raw.outF64 1)
+    Internal.Raw.outEnd ()
     zv
 
   /// Emitted when @surface starts being present on the monitor.
   let onEnterMonitor (self: Surface) (handler: Monitor -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "enter-monitor" (fun () ->
-      let monitor = Monitor (Glue.wrap (Glue.argPointer 1) false)
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) "enter-monitor" (fun () ->
+      let monitor = Monitor (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
       handler monitor)
 
   /// Emitted when GDK receives an input event for @surface.
   let onEvent (self: Surface) (handler: Event -> bool) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "event" (fun () ->
-      let event = Event (zgtk_wrap_Gdk_Event (Glue.argPointer 1) (i32 0))
-      Glue.returnBool (handler event))
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) "event" (fun () ->
+      let event = Event (Internal.GdkC.zgtk_wrap_Gdk_Event (Internal.Raw.argPointer 1) (i32 0))
+      Internal.Raw.returnBool (handler event))
 
   /// Emitted when the size of @surface is changed, or when relayout should be performed.
   let onLayout (self: Surface) (handler: int -> int -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "layout" (fun () ->
-      let width = Glue.argInt 1
-      let height = Glue.argInt 2
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) "layout" (fun () ->
+      let width = Internal.Raw.argInt 1
+      let height = Internal.Raw.argInt 2
       handler width height)
 
   /// Emitted when @surface stops being present on the monitor.
   let onLeaveMonitor (self: Surface) (handler: Monitor -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "leave-monitor" (fun () ->
-      let monitor = Monitor (Glue.wrap (Glue.argPointer 1) false)
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) "leave-monitor" (fun () ->
+      let monitor = Monitor (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
       handler monitor)
 
   /// Emitted when part of the surface needs to be redrawn.
   let onRender (self: Surface) (handler: Cairo.Region -> bool) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "render" (fun () ->
-      let region = Cairo.Region (Glue.wrapBoxed (Glue.argPointer 1) (Cairo.cairo_gobject_region_get_type ()) false)
-      Glue.returnBool (handler region))
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) "render" (fun () ->
+      let region = Cairo.Region (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.CairoC.cairo_gobject_region_get_type ()) false)
+      Internal.Raw.returnBool (handler region))
 
   /// Calls `handler` when the `cursor` property changes.
   let onNotifyCursor (self: Surface) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::cursor" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) "notify::cursor" handler
 
   /// Calls `handler` when the `display` property changes.
   let onNotifyDisplay (self: Surface) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::display" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) "notify::display" handler
 
   /// Calls `handler` when the `frame-clock` property changes.
   let onNotifyFrameClock (self: Surface) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::frame-clock" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) "notify::frame-clock" handler
 
   /// Calls `handler` when the `height` property changes.
   let onNotifyHeight (self: Surface) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::height" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) "notify::height" handler
 
   /// Calls `handler` when the `mapped` property changes.
   let onNotifyMapped (self: Surface) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::mapped" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) "notify::mapped" handler
 
   /// Calls `handler` when the `scale` property changes.
   let onNotifyScale (self: Surface) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::scale" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) "notify::scale" handler
 
   /// Calls `handler` when the `scale-factor` property changes.
   let onNotifyScaleFactor (self: Surface) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::scale-factor" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) "notify::scale-factor" handler
 
   /// Calls `handler` when the `width` property changes.
   let onNotifyWidth (self: Surface) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::width" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_surface_get_type ())) "notify::width" handler
 
 module TextureDownloader =
-  extern gdk_texture_downloader_new : cptr -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_texture_downloader_get_type ()
 
   /// Creates a new texture downloader for @texture.
   let create (texture: Texture) : TextureDownloader =
-    TextureDownloader (Glue.wrapBoxed ((gdk_texture_downloader_new (Glue.obj texture.Id (gdk_texture_get_type ())))) (gdk_texture_downloader_get_type ()) true)
-
-  extern gdk_texture_downloader_copy : cptr -> cptr
+    TextureDownloader (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_texture_downloader_new (Internal.Raw.obj texture.Id (Internal.GdkC.gdk_texture_get_type ())))) (Internal.GdkC.gdk_texture_downloader_get_type ()) true)
 
   /// Creates a copy of the downloader.
   let copy (self: TextureDownloader) : TextureDownloader =
-    TextureDownloader (Glue.wrapBoxed ((gdk_texture_downloader_copy (Glue.obj self.Id (gdk_texture_downloader_get_type ())))) (gdk_texture_downloader_get_type ()) true)
-
-  extern gdk_texture_downloader_download_bytes : cptr -> cptr -> cptr
+    TextureDownloader (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_texture_downloader_copy (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_downloader_get_type ())))) (Internal.GdkC.gdk_texture_downloader_get_type ()) true)
 
   /// Downloads the given texture pixels into a `GBytes`.
   let downloadBytes (self: TextureDownloader) : (GLib.Bytes * int) =
-    Glue.outBegin ()
-    let zr = gdk_texture_downloader_download_bytes (Glue.obj self.Id (gdk_texture_downloader_get_type ())) (Glue.out 0)
-    let zv = (GLib.Bytes (Glue.wrapBoxed (zr) (GLib.g_bytes_get_type ()) true), Glue.outI64 0)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_texture_downloader_download_bytes (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_downloader_get_type ())) (Internal.Raw.out 0)
+    let zv = (GLib.Bytes (Internal.Raw.wrapBoxed (zr) (Internal.GLibC.g_bytes_get_type ()) true), Internal.Raw.outI64 0)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_texture_downloader_download_bytes_with_planes : cptr -> cptr -> cptr -> cptr
 
   /// Downloads the given texture pixels into a `GBytes`.
   let downloadBytesWithPlanes (self: TextureDownloader) : (GLib.Bytes * list<int> * list<int>) =
-    let zbuf1 = Glue.room (4) 8
-    let zbuf2 = Glue.room (4) 8
-    let zr = gdk_texture_downloader_download_bytes_with_planes (Glue.obj self.Id (gdk_texture_downloader_get_type ())) zbuf1 zbuf2
-    (GLib.Bytes (Glue.wrapBoxed (zr) (GLib.g_bytes_get_type ()) true), Glue.intsOf (zbuf1) (4) 8 false true, Glue.intsOf (zbuf2) (4) 8 false true)
-
-  extern gdk_texture_downloader_download_into : cptr -> cptr -> usize -> unit
+    let zbuf1 = Internal.Raw.room (4) 8
+    let zbuf2 = Internal.Raw.room (4) 8
+    let zr = Internal.GdkC.gdk_texture_downloader_download_bytes_with_planes (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_downloader_get_type ())) zbuf1 zbuf2
+    (GLib.Bytes (Internal.Raw.wrapBoxed (zr) (Internal.GLibC.g_bytes_get_type ()) true), Internal.Raw.intsOf (zbuf1) (4) 8 false true, Internal.Raw.intsOf (zbuf2) (4) 8 false true)
 
   /// Downloads the @texture into local memory.
   let downloadInto (self: TextureDownloader) (data: array<u8>) (stride: int) : unit =
-    let za1 = Glue.bytes data
-    gdk_texture_downloader_download_into (Glue.obj self.Id (gdk_texture_downloader_get_type ())) za1 (usize stride)
-    Glue.free za1
-
-  extern gdk_texture_downloader_free : cptr -> unit
+    let za1 = Internal.Raw.bytes data
+    Internal.GdkC.gdk_texture_downloader_download_into (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_downloader_get_type ())) za1 (usize stride)
+    Internal.Raw.free za1
 
   /// Frees the given downloader and all its associated resources.
   [<Unsafe>]
   let free (self: TextureDownloader) : unit =
-    gdk_texture_downloader_free (Glue.obj self.Id (gdk_texture_downloader_get_type ()))
-
-  extern gdk_texture_downloader_get_color_state : cptr -> cptr
+    Internal.GdkC.gdk_texture_downloader_free (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_downloader_get_type ()))
 
   /// Gets the color state that the data will be downloaded in.
   let getColorState (self: TextureDownloader) : ColorState =
-    ColorState (Glue.wrapBoxed ((gdk_texture_downloader_get_color_state (Glue.obj self.Id (gdk_texture_downloader_get_type ())))) (gdk_color_state_get_type ()) true)
-
-  extern gdk_texture_downloader_get_format : cptr -> i32
+    ColorState (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_texture_downloader_get_color_state (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_downloader_get_type ())))) (Internal.GdkC.gdk_color_state_get_type ()) true)
 
   /// Gets the format that the data will be downloaded in.
   let getFormat (self: TextureDownloader) : MemoryFormat =
-    MemoryFormat (int ((gdk_texture_downloader_get_format (Glue.obj self.Id (gdk_texture_downloader_get_type ())))))
-
-  extern gdk_texture_downloader_get_texture : cptr -> cptr
+    MemoryFormat (int ((Internal.GdkC.gdk_texture_downloader_get_format (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_downloader_get_type ())))))
 
   /// Gets the texture that the downloader will download.
   let getTexture (self: TextureDownloader) : Texture =
-    Texture (Glue.wrap ((gdk_texture_downloader_get_texture (Glue.obj self.Id (gdk_texture_downloader_get_type ())))) false)
-
-  extern gdk_texture_downloader_set_color_state : cptr -> cptr -> unit
+    Texture (Internal.Raw.wrap ((Internal.GdkC.gdk_texture_downloader_get_texture (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_downloader_get_type ())))) false)
 
   /// Sets the color state the downloader will convert the data to.
   let setColorState (self: TextureDownloader) (colorState: ColorState) : unit =
-    gdk_texture_downloader_set_color_state (Glue.obj self.Id (gdk_texture_downloader_get_type ())) (Glue.obj colorState.Id (gdk_color_state_get_type ()))
-
-  extern gdk_texture_downloader_set_format : cptr -> i32 -> unit
+    Internal.GdkC.gdk_texture_downloader_set_color_state (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_downloader_get_type ())) (Internal.Raw.obj colorState.Id (Internal.GdkC.gdk_color_state_get_type ()))
 
   /// Sets the format the downloader will download.
   let setFormat (self: TextureDownloader) (format: MemoryFormat) : unit =
-    gdk_texture_downloader_set_format (Glue.obj self.Id (gdk_texture_downloader_get_type ())) (i32 format.Int)
-
-  extern gdk_texture_downloader_set_texture : cptr -> cptr -> unit
+    Internal.GdkC.gdk_texture_downloader_set_format (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_downloader_get_type ())) (i32 format.Int)
 
   /// Changes the texture the downloader will download.
   let setTexture (self: TextureDownloader) (texture: Texture) : unit =
-    gdk_texture_downloader_set_texture (Glue.obj self.Id (gdk_texture_downloader_get_type ())) (Glue.obj texture.Id (gdk_texture_get_type ()))
+    Internal.GdkC.gdk_texture_downloader_set_texture (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_downloader_get_type ())) (Internal.Raw.obj texture.Id (Internal.GdkC.gdk_texture_get_type ()))
 
 module TimeCoord =
-  /// A new one, every field zero.
-  let create () : TimeCoord = TimeCoord (Glue.allocPlain (zgtk_sizeof_Gdk_TimeCoord ()) (zgtk_tag_Gdk_TimeCoord ()))
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_tag_Gdk_TimeCoord ()
 
-  extern zgtk_get_Gdk_TimeCoord_time : cptr -> int
+  /// A new one, every field zero.
+  let create () : TimeCoord = TimeCoord (Internal.Raw.allocPlain (Internal.GdkC.zgtk_sizeof_Gdk_TimeCoord ()) (Internal.GdkC.zgtk_tag_Gdk_TimeCoord ()))
 
   /// The `time` field.
-  let getTime (self: TimeCoord) : int = zgtk_get_Gdk_TimeCoord_time (Glue.obj self.Id (zgtk_tag_Gdk_TimeCoord ()))
-
-  extern zgtk_set_Gdk_TimeCoord_time : cptr -> int -> unit
+  let getTime (self: TimeCoord) : int = Internal.GdkC.zgtk_get_Gdk_TimeCoord_time (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_tag_Gdk_TimeCoord ()))
 
   /// Sets the `time` field.
-  let setTime (self: TimeCoord) (value: int) : unit = zgtk_set_Gdk_TimeCoord_time (Glue.obj self.Id (zgtk_tag_Gdk_TimeCoord ())) value
-
-  extern zgtk_get_Gdk_TimeCoord_flags : cptr -> int
+  let setTime (self: TimeCoord) (value: int) : unit = Internal.GdkC.zgtk_set_Gdk_TimeCoord_time (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_tag_Gdk_TimeCoord ())) value
 
   /// The `flags` field.
-  let getFlags (self: TimeCoord) : AxisFlags = AxisFlags (zgtk_get_Gdk_TimeCoord_flags (Glue.obj self.Id (zgtk_tag_Gdk_TimeCoord ())))
-
-  extern zgtk_set_Gdk_TimeCoord_flags : cptr -> int -> unit
+  let getFlags (self: TimeCoord) : AxisFlags = AxisFlags (Internal.GdkC.zgtk_get_Gdk_TimeCoord_flags (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_tag_Gdk_TimeCoord ())))
 
   /// Sets the `flags` field.
-  let setFlags (self: TimeCoord) (value: AxisFlags) : unit = zgtk_set_Gdk_TimeCoord_flags (Glue.obj self.Id (zgtk_tag_Gdk_TimeCoord ())) value.Int
+  let setFlags (self: TimeCoord) (value: AxisFlags) : unit = Internal.GdkC.zgtk_set_Gdk_TimeCoord_flags (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_tag_Gdk_TimeCoord ())) value.Int
 
 module Toplevel =
   /// The same object as its ancestor.
   let toGObjectObject (self: Toplevel) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_toplevel_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<Toplevel> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_toplevel_get_type ()) then Some (Toplevel object.Id) else None
-
-  extern gdk_toplevel_begin_move : cptr -> cptr -> i32 -> f64 -> f64 -> u32 -> unit
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_toplevel_get_type ()) then Some (Toplevel object.Id) else None
 
   /// Begins an interactive move operation.
   let beginMove (self: Toplevel) (device: Device) (button: int) (x: float) (y: float) (timestamp: int) : unit =
-    gdk_toplevel_begin_move (Glue.obj self.Id (gdk_toplevel_get_type ())) (Glue.obj device.Id (gdk_device_get_type ())) (i32 button) x y (u32 timestamp)
-
-  extern gdk_toplevel_begin_resize : cptr -> i32 -> cptr -> i32 -> f64 -> f64 -> u32 -> unit
+    Internal.GdkC.gdk_toplevel_begin_move (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) (Internal.Raw.obj device.Id (Internal.GdkC.gdk_device_get_type ())) (i32 button) x y (u32 timestamp)
 
   /// Begins an interactive resize operation.
   let beginResize (self: Toplevel) (edge: SurfaceEdge) (device: option<Device>) (button: int) (x: float) (y: float) (timestamp: int) : unit =
     let zp1 =
       match device with
-      | Some zo -> Glue.obj zo.Id (gdk_device_get_type ())
-      | None -> Glue.none ()
-    gdk_toplevel_begin_resize (Glue.obj self.Id (gdk_toplevel_get_type ())) (i32 edge.Int) zp1 (i32 button) x y (u32 timestamp)
-
-  extern gdk_toplevel_focus : cptr -> u32 -> unit
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_device_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_toplevel_begin_resize (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) (i32 edge.Int) zp1 (i32 button) x y (u32 timestamp)
 
   /// Sets keyboard focus to @surface.
   let focus (self: Toplevel) (timestamp: int) : unit =
-    gdk_toplevel_focus (Glue.obj self.Id (gdk_toplevel_get_type ())) (u32 timestamp)
-
-  extern gdk_toplevel_get_capabilities : cptr -> u32
+    Internal.GdkC.gdk_toplevel_focus (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) (u32 timestamp)
 
   /// The capabilities that are available for this toplevel.
   let getCapabilities (self: Toplevel) : ToplevelCapabilities =
-    ToplevelCapabilities (int ((gdk_toplevel_get_capabilities (Glue.obj self.Id (gdk_toplevel_get_type ())))))
-
-  extern gdk_toplevel_get_gravity : cptr -> i32
+    ToplevelCapabilities (int ((Internal.GdkC.gdk_toplevel_get_capabilities (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())))))
 
   /// Returns the gravity that is used when changing the toplevel size programmatically.
   let getGravity (self: Toplevel) : Gravity =
-    Gravity (int ((gdk_toplevel_get_gravity (Glue.obj self.Id (gdk_toplevel_get_type ())))))
-
-  extern gdk_toplevel_get_state : cptr -> u32
+    Gravity (int ((Internal.GdkC.gdk_toplevel_get_gravity (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())))))
 
   /// Gets the bitwise or of the currently active surface state flags, from the `GdkToplevelState` enumeration.
   let getState (self: Toplevel) : ToplevelState =
-    ToplevelState (int ((gdk_toplevel_get_state (Glue.obj self.Id (gdk_toplevel_get_type ())))))
-
-  extern gdk_toplevel_inhibit_system_shortcuts : cptr -> cptr -> unit
+    ToplevelState (int ((Internal.GdkC.gdk_toplevel_get_state (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())))))
 
   /// Requests that the @toplevel inhibit the system shortcuts.
   let inhibitSystemShortcuts (self: Toplevel) (event: option<Event>) : unit =
     let zp1 =
       match event with
-      | Some zo -> Glue.obj zo.Id (zgtk_type_Gdk_Event ())
-      | None -> Glue.none ()
-    gdk_toplevel_inhibit_system_shortcuts (Glue.obj self.Id (gdk_toplevel_get_type ())) zp1
-
-  extern gdk_toplevel_lower : cptr -> i32
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GdkC.zgtk_type_Gdk_Event ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_toplevel_inhibit_system_shortcuts (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) zp1
 
   /// Asks to lower the @toplevel below other windows.
   let lower (self: Toplevel) : bool =
-    (((gdk_toplevel_lower (Glue.obj self.Id (gdk_toplevel_get_type ())))) <> i32 0)
-
-  extern gdk_toplevel_minimize : cptr -> i32
+    (((Internal.GdkC.gdk_toplevel_lower (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())))) <> i32 0)
 
   /// Asks to minimize the @toplevel.
   let minimize (self: Toplevel) : bool =
-    (((gdk_toplevel_minimize (Glue.obj self.Id (gdk_toplevel_get_type ())))) <> i32 0)
-
-  extern gdk_toplevel_present : cptr -> cptr -> unit
+    (((Internal.GdkC.gdk_toplevel_minimize (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())))) <> i32 0)
 
   /// Present @toplevel after having processed the `GdkToplevelLayout` rules.
   let present (self: Toplevel) (layout: ToplevelLayout) : unit =
-    gdk_toplevel_present (Glue.obj self.Id (gdk_toplevel_get_type ())) (Glue.obj layout.Id (gdk_toplevel_layout_get_type ()))
-
-  extern gdk_toplevel_restore_system_shortcuts : cptr -> unit
+    Internal.GdkC.gdk_toplevel_present (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) (Internal.Raw.obj layout.Id (Internal.GdkC.gdk_toplevel_layout_get_type ()))
 
   /// Restore default system keyboard shortcuts which were previously inhibited.
   let restoreSystemShortcuts (self: Toplevel) : unit =
-    gdk_toplevel_restore_system_shortcuts (Glue.obj self.Id (gdk_toplevel_get_type ()))
-
-  extern gdk_toplevel_set_decorated : cptr -> i32 -> unit
+    Internal.GdkC.gdk_toplevel_restore_system_shortcuts (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ()))
 
   /// Sets the toplevel to be decorated.
   let setDecorated (self: Toplevel) (decorated: bool) : unit =
-    gdk_toplevel_set_decorated (Glue.obj self.Id (gdk_toplevel_get_type ())) (if decorated then i32 1 else i32 0)
-
-  extern gdk_toplevel_set_deletable : cptr -> i32 -> unit
+    Internal.GdkC.gdk_toplevel_set_decorated (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) (if decorated then i32 1 else i32 0)
 
   /// Sets the toplevel to be deletable.
   let setDeletable (self: Toplevel) (deletable: bool) : unit =
-    gdk_toplevel_set_deletable (Glue.obj self.Id (gdk_toplevel_get_type ())) (if deletable then i32 1 else i32 0)
-
-  extern gdk_toplevel_set_gravity : cptr -> i32 -> unit
+    Internal.GdkC.gdk_toplevel_set_deletable (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) (if deletable then i32 1 else i32 0)
 
   /// Sets the gravity that is used when changing the toplevel size programmatically.
   let setGravity (self: Toplevel) (gravity: Gravity) : unit =
-    gdk_toplevel_set_gravity (Glue.obj self.Id (gdk_toplevel_get_type ())) (i32 gravity.Int)
-
-  extern gdk_toplevel_set_icon_list : cptr -> cptr -> unit
+    Internal.GdkC.gdk_toplevel_set_gravity (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) (i32 gravity.Int)
 
   /// Sets a list of icons for the surface.
   let setIconList (self: Toplevel) (surfaces: list<Texture>) : unit =
-    let zl1 = Glue.glist (Glue.mapList (fun (zo: Texture) -> Glue.obj zo.Id (gdk_texture_get_type ())) surfaces) false
-    gdk_toplevel_set_icon_list (Glue.obj self.Id (gdk_toplevel_get_type ())) zl1
-    Glue.freeGlist zl1 false
-
-  extern gdk_toplevel_set_modal : cptr -> i32 -> unit
+    let zl1 = Internal.Raw.glist (Internal.Raw.mapList (fun (zo: Texture) -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_texture_get_type ())) surfaces) false
+    Internal.GdkC.gdk_toplevel_set_icon_list (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) zl1
+    Internal.Raw.freeGlist zl1 false
 
   /// Sets the toplevel to be modal.
   let setModal (self: Toplevel) (modal: bool) : unit =
-    gdk_toplevel_set_modal (Glue.obj self.Id (gdk_toplevel_get_type ())) (if modal then i32 1 else i32 0)
-
-  extern gdk_toplevel_set_startup_id : cptr -> cstr -> unit
+    Internal.GdkC.gdk_toplevel_set_modal (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) (if modal then i32 1 else i32 0)
 
   /// Sets the startup notification ID.
   let setStartupId (self: Toplevel) (startupId: string) : unit =
-    gdk_toplevel_set_startup_id (Glue.obj self.Id (gdk_toplevel_get_type ())) startupId
-
-  extern gdk_toplevel_set_title : cptr -> cstr -> unit
+    Internal.GdkC.gdk_toplevel_set_startup_id (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) startupId
 
   /// Sets the title of a toplevel surface.
   let setTitle (self: Toplevel) (title: string) : unit =
-    gdk_toplevel_set_title (Glue.obj self.Id (gdk_toplevel_get_type ())) title
-
-  extern gdk_toplevel_set_transient_for : cptr -> cptr -> unit
+    Internal.GdkC.gdk_toplevel_set_title (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) title
 
   /// Sets a transient-for parent.
   let setTransientFor (self: Toplevel) (parent: Surface) : unit =
-    gdk_toplevel_set_transient_for (Glue.obj self.Id (gdk_toplevel_get_type ())) (Glue.obj parent.Id (gdk_surface_get_type ()))
-
-  extern gdk_toplevel_show_window_menu : cptr -> cptr -> i32
+    Internal.GdkC.gdk_toplevel_set_transient_for (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) (Internal.Raw.obj parent.Id (Internal.GdkC.gdk_surface_get_type ()))
 
   /// Asks the windowing system to show the window menu.
   let showWindowMenu (self: Toplevel) (event: Event) : bool =
-    (((gdk_toplevel_show_window_menu (Glue.obj self.Id (gdk_toplevel_get_type ())) (Glue.obj event.Id (zgtk_type_Gdk_Event ())))) <> i32 0)
-
-  extern gdk_toplevel_supports_edge_constraints : cptr -> i32
+    (((Internal.GdkC.gdk_toplevel_show_window_menu (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) (Internal.Raw.obj event.Id (Internal.GdkC.zgtk_type_Gdk_Event ())))) <> i32 0)
 
   /// Returns whether the desktop environment supports tiled window states.
   let supportsEdgeConstraints (self: Toplevel) : bool =
-    (((gdk_toplevel_supports_edge_constraints (Glue.obj self.Id (gdk_toplevel_get_type ())))) <> i32 0)
-
-  extern gdk_toplevel_titlebar_gesture : cptr -> i32 -> i32
+    (((Internal.GdkC.gdk_toplevel_supports_edge_constraints (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())))) <> i32 0)
 
   /// Performs a title bar gesture.
   let titlebarGesture (self: Toplevel) (gesture: TitlebarGesture) : bool =
-    (((gdk_toplevel_titlebar_gesture (Glue.obj self.Id (gdk_toplevel_get_type ())) (i32 gesture.Int))) <> i32 0)
+    (((Internal.GdkC.gdk_toplevel_titlebar_gesture (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) (i32 gesture.Int))) <> i32 0)
 
   /// Emitted when the size for the surface needs to be computed, when it is present.
   let onComputeSize (self: Toplevel) (handler: ToplevelSize -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "compute-size" (fun () ->
-      let size = ToplevelSize (Glue.wrapBoxed (Glue.argPointer 1) (gdk_toplevel_size_get_type ()) false)
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "compute-size" (fun () ->
+      let size = ToplevelSize (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GdkC.gdk_toplevel_size_get_type ()) false)
       handler size)
 
   /// Calls `handler` when the `capabilities` property changes.
   let onNotifyCapabilities (self: Toplevel) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::capabilities" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "notify::capabilities" handler
 
   /// Calls `handler` when the `decorated` property changes.
   let onNotifyDecorated (self: Toplevel) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::decorated" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "notify::decorated" handler
 
   /// The `decorated` property.
-  let getDecorated (self: Toplevel) : bool = (Glue.getInt (Glue.obj self.Id (gdk_toplevel_get_type ())) "decorated" <> 0)
+  let getDecorated (self: Toplevel) : bool = (Internal.Raw.getInt (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "decorated" <> 0)
 
   /// Calls `handler` when the `deletable` property changes.
   let onNotifyDeletable (self: Toplevel) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::deletable" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "notify::deletable" handler
 
   /// The `deletable` property.
-  let getDeletable (self: Toplevel) : bool = (Glue.getInt (Glue.obj self.Id (gdk_toplevel_get_type ())) "deletable" <> 0)
+  let getDeletable (self: Toplevel) : bool = (Internal.Raw.getInt (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "deletable" <> 0)
 
   /// Calls `handler` when the `fullscreen-mode` property changes.
   let onNotifyFullscreenMode (self: Toplevel) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::fullscreen-mode" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "notify::fullscreen-mode" handler
 
   /// The `fullscreen-mode` property.
-  let getFullscreenMode (self: Toplevel) : FullscreenMode = FullscreenMode (Glue.getInt (Glue.obj self.Id (gdk_toplevel_get_type ())) "fullscreen-mode")
+  let getFullscreenMode (self: Toplevel) : FullscreenMode = FullscreenMode (Internal.Raw.getInt (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "fullscreen-mode")
 
   /// Sets the `fullscreen-mode` property.
-  let setFullscreenMode (self: Toplevel) (value: FullscreenMode) : unit = Glue.setInt (Glue.obj self.Id (gdk_toplevel_get_type ())) "fullscreen-mode" value.Int
+  let setFullscreenMode (self: Toplevel) (value: FullscreenMode) : unit = Internal.Raw.setInt (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "fullscreen-mode" value.Int
 
   /// Calls `handler` when the `gravity` property changes.
   let onNotifyGravity (self: Toplevel) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::gravity" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "notify::gravity" handler
 
   /// Calls `handler` when the `icon-list` property changes.
   let onNotifyIconList (self: Toplevel) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::icon-list" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "notify::icon-list" handler
 
   /// Calls `handler` when the `modal` property changes.
   let onNotifyModal (self: Toplevel) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::modal" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "notify::modal" handler
 
   /// The `modal` property.
-  let getModal (self: Toplevel) : bool = (Glue.getInt (Glue.obj self.Id (gdk_toplevel_get_type ())) "modal" <> 0)
+  let getModal (self: Toplevel) : bool = (Internal.Raw.getInt (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "modal" <> 0)
 
   /// Calls `handler` when the `shortcuts-inhibited` property changes.
   let onNotifyShortcutsInhibited (self: Toplevel) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::shortcuts-inhibited" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "notify::shortcuts-inhibited" handler
 
   /// The `shortcuts-inhibited` property.
-  let getShortcutsInhibited (self: Toplevel) : bool = (Glue.getInt (Glue.obj self.Id (gdk_toplevel_get_type ())) "shortcuts-inhibited" <> 0)
+  let getShortcutsInhibited (self: Toplevel) : bool = (Internal.Raw.getInt (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "shortcuts-inhibited" <> 0)
 
   /// Calls `handler` when the `startup-id` property changes.
   let onNotifyStartupId (self: Toplevel) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::startup-id" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "notify::startup-id" handler
 
   /// The `startup-id` property.
-  let getStartupId (self: Toplevel) : option<string> = Glue.getText (Glue.obj self.Id (gdk_toplevel_get_type ())) "startup-id"
+  let getStartupId (self: Toplevel) : option<string> = Internal.Raw.getText (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "startup-id"
 
   /// Calls `handler` when the `state` property changes.
   let onNotifyState (self: Toplevel) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::state" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "notify::state" handler
 
   /// Calls `handler` when the `title` property changes.
   let onNotifyTitle (self: Toplevel) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::title" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "notify::title" handler
 
   /// The `title` property.
-  let getTitle (self: Toplevel) : option<string> = Glue.getText (Glue.obj self.Id (gdk_toplevel_get_type ())) "title"
+  let getTitle (self: Toplevel) : option<string> = Internal.Raw.getText (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "title"
 
   /// Calls `handler` when the `transient-for` property changes.
   let onNotifyTransientFor (self: Toplevel) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::transient-for" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "notify::transient-for" handler
 
   /// The `transient-for` property.
   let getTransientFor (self: Toplevel) : option<Surface> =
-    let zid = Glue.getObject (Glue.obj self.Id (gdk_toplevel_get_type ())) "transient-for"
+    let zid = Internal.Raw.getObject (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_get_type ())) "transient-for"
     if zid = 0 then None else Some (Surface zid)
 
 module ToplevelLayout =
-  extern gdk_toplevel_layout_new : unit -> cptr
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_toplevel_layout_get_type ()
 
   /// Create a toplevel layout description.
   let create () : ToplevelLayout =
-    ToplevelLayout (Glue.wrapBoxed ((gdk_toplevel_layout_new ())) (gdk_toplevel_layout_get_type ()) true)
-
-  extern gdk_toplevel_layout_copy : cptr -> cptr
+    ToplevelLayout (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_toplevel_layout_new ())) (Internal.GdkC.gdk_toplevel_layout_get_type ()) true)
 
   /// Create a new `GdkToplevelLayout` and copy the contents of @layout into it.
   let copy (self: ToplevelLayout) : ToplevelLayout =
-    ToplevelLayout (Glue.wrapBoxed ((gdk_toplevel_layout_copy (Glue.obj self.Id (gdk_toplevel_layout_get_type ())))) (gdk_toplevel_layout_get_type ()) true)
-
-  extern gdk_toplevel_layout_equal : cptr -> cptr -> i32
+    ToplevelLayout (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_toplevel_layout_copy (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_layout_get_type ())))) (Internal.GdkC.gdk_toplevel_layout_get_type ()) true)
 
   /// Check whether @layout and @other has identical layout properties.
   let equal (self: ToplevelLayout) (other: ToplevelLayout) : bool =
-    (((gdk_toplevel_layout_equal (Glue.obj self.Id (gdk_toplevel_layout_get_type ())) (Glue.obj other.Id (gdk_toplevel_layout_get_type ())))) <> i32 0)
-
-  extern gdk_toplevel_layout_get_fullscreen : cptr -> cptr -> i32
+    (((Internal.GdkC.gdk_toplevel_layout_equal (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_layout_get_type ())) (Internal.Raw.obj other.Id (Internal.GdkC.gdk_toplevel_layout_get_type ())))) <> i32 0)
 
   /// If the layout specifies whether to the toplevel should go fullscreen, the value pointed to by @fullscreen is set to true if it should go fullscreen, or false, if it should go unfullscreen.
   let getFullscreen (self: ToplevelLayout) : (bool * bool) =
-    Glue.outBegin ()
-    let zr = gdk_toplevel_layout_get_fullscreen (Glue.obj self.Id (gdk_toplevel_layout_get_type ())) (Glue.out 0)
-    let zv = (((zr) <> i32 0), (Glue.outI32 0 <> 0))
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_toplevel_layout_get_fullscreen (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_layout_get_type ())) (Internal.Raw.out 0)
+    let zv = (((zr) <> i32 0), (Internal.Raw.outI32 0 <> 0))
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_toplevel_layout_get_fullscreen_monitor : cptr -> cptr
 
   /// Returns the monitor that the layout is fullscreening the surface on.
   let getFullscreenMonitor (self: ToplevelLayout) : option<Monitor> =
-    let zr = gdk_toplevel_layout_get_fullscreen_monitor (Glue.obj self.Id (gdk_toplevel_layout_get_type ()))
-    let zid1 = Glue.wrap (zr) false
+    let zr = Internal.GdkC.gdk_toplevel_layout_get_fullscreen_monitor (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_layout_get_type ()))
+    let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Monitor zid1))
-
-  extern gdk_toplevel_layout_get_maximized : cptr -> cptr -> i32
 
   /// If the layout specifies whether to the toplevel should go maximized, the value pointed to by @maximized is set to true if it should go maximized, or false, if it should go unmaximized.
   let getMaximized (self: ToplevelLayout) : (bool * bool) =
-    Glue.outBegin ()
-    let zr = gdk_toplevel_layout_get_maximized (Glue.obj self.Id (gdk_toplevel_layout_get_type ())) (Glue.out 0)
-    let zv = (((zr) <> i32 0), (Glue.outI32 0 <> 0))
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    let zr = Internal.GdkC.gdk_toplevel_layout_get_maximized (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_layout_get_type ())) (Internal.Raw.out 0)
+    let zv = (((zr) <> i32 0), (Internal.Raw.outI32 0 <> 0))
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_toplevel_layout_get_resizable : cptr -> i32
 
   /// Returns whether the layout should allow the user to resize the surface.
   let getResizable (self: ToplevelLayout) : bool =
-    (((gdk_toplevel_layout_get_resizable (Glue.obj self.Id (gdk_toplevel_layout_get_type ())))) <> i32 0)
-
-  extern gdk_toplevel_layout_ref : cptr -> cptr
+    (((Internal.GdkC.gdk_toplevel_layout_get_resizable (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_layout_get_type ())))) <> i32 0)
 
   /// Increases the reference count of @layout.
   [<Unsafe>]
   let ref_ (self: ToplevelLayout) : ToplevelLayout =
-    ToplevelLayout (Glue.wrapBoxed ((gdk_toplevel_layout_ref (Glue.obj self.Id (gdk_toplevel_layout_get_type ())))) (gdk_toplevel_layout_get_type ()) true)
-
-  extern gdk_toplevel_layout_set_fullscreen : cptr -> i32 -> cptr -> unit
+    ToplevelLayout (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_toplevel_layout_ref (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_layout_get_type ())))) (Internal.GdkC.gdk_toplevel_layout_get_type ()) true)
 
   /// Sets whether the layout should cause the surface to be fullscreen when presented.
   let setFullscreen (self: ToplevelLayout) (fullscreen: bool) (monitor: option<Monitor>) : unit =
     let zp1 =
       match monitor with
-      | Some zo -> Glue.obj zo.Id (gdk_monitor_get_type ())
-      | None -> Glue.none ()
-    gdk_toplevel_layout_set_fullscreen (Glue.obj self.Id (gdk_toplevel_layout_get_type ())) (if fullscreen then i32 1 else i32 0) zp1
-
-  extern gdk_toplevel_layout_set_maximized : cptr -> i32 -> unit
+      | Some zo -> Internal.Raw.obj zo.Id (Internal.GdkC.gdk_monitor_get_type ())
+      | None -> Internal.Raw.none ()
+    Internal.GdkC.gdk_toplevel_layout_set_fullscreen (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_layout_get_type ())) (if fullscreen then i32 1 else i32 0) zp1
 
   /// Sets whether the layout should cause the surface to be maximized when presented.
   let setMaximized (self: ToplevelLayout) (maximized: bool) : unit =
-    gdk_toplevel_layout_set_maximized (Glue.obj self.Id (gdk_toplevel_layout_get_type ())) (if maximized then i32 1 else i32 0)
-
-  extern gdk_toplevel_layout_set_resizable : cptr -> i32 -> unit
+    Internal.GdkC.gdk_toplevel_layout_set_maximized (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_layout_get_type ())) (if maximized then i32 1 else i32 0)
 
   /// Sets whether the layout should allow the user to resize the surface after it has been presented.
   let setResizable (self: ToplevelLayout) (resizable: bool) : unit =
-    gdk_toplevel_layout_set_resizable (Glue.obj self.Id (gdk_toplevel_layout_get_type ())) (if resizable then i32 1 else i32 0)
-
-  extern gdk_toplevel_layout_unref : cptr -> unit
+    Internal.GdkC.gdk_toplevel_layout_set_resizable (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_layout_get_type ())) (if resizable then i32 1 else i32 0)
 
   /// Decreases the reference count of @layout.
   [<Unsafe>]
   let unref (self: ToplevelLayout) : unit =
-    gdk_toplevel_layout_unref (Glue.obj self.Id (gdk_toplevel_layout_get_type ()))
+    Internal.GdkC.gdk_toplevel_layout_unref (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_layout_get_type ()))
 
 module ToplevelSize =
-  extern gdk_toplevel_size_get_bounds : cptr -> cptr -> cptr -> unit
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_toplevel_size_get_type ()
 
   /// Retrieves the bounds the toplevel is placed within.
   let getBounds (self: ToplevelSize) : (int * int) =
-    Glue.outBegin ()
-    gdk_toplevel_size_get_bounds (Glue.obj self.Id (gdk_toplevel_size_get_type ())) (Glue.out 0) (Glue.out 1)
-    let zv = (Glue.outI32 0, Glue.outI32 1)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GdkC.gdk_toplevel_size_get_bounds (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_size_get_type ())) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zv = (Internal.Raw.outI32 0, Internal.Raw.outI32 1)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_toplevel_size_set_min_size : cptr -> i32 -> i32 -> unit
 
   /// Sets the minimum size of the toplevel.
   let setMinSize (self: ToplevelSize) (minWidth: int) (minHeight: int) : unit =
-    gdk_toplevel_size_set_min_size (Glue.obj self.Id (gdk_toplevel_size_get_type ())) (i32 minWidth) (i32 minHeight)
-
-  extern gdk_toplevel_size_set_shadow_width : cptr -> i32 -> i32 -> i32 -> i32 -> unit
+    Internal.GdkC.gdk_toplevel_size_set_min_size (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_size_get_type ())) (i32 minWidth) (i32 minHeight)
 
   /// Sets the shadows size of the toplevel.
   let setShadowWidth (self: ToplevelSize) (left: int) (right: int) (top: int) (bottom: int) : unit =
-    gdk_toplevel_size_set_shadow_width (Glue.obj self.Id (gdk_toplevel_size_get_type ())) (i32 left) (i32 right) (i32 top) (i32 bottom)
-
-  extern gdk_toplevel_size_set_size : cptr -> i32 -> i32 -> unit
+    Internal.GdkC.gdk_toplevel_size_set_shadow_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_size_get_type ())) (i32 left) (i32 right) (i32 top) (i32 bottom)
 
   /// Sets the size the toplevel prefers to be resized to.
   let setSize (self: ToplevelSize) (width: int) (height: int) : unit =
-    gdk_toplevel_size_set_size (Glue.obj self.Id (gdk_toplevel_size_get_type ())) (i32 width) (i32 height)
+    Internal.GdkC.gdk_toplevel_size_set_size (Internal.Raw.obj self.Id (Internal.GdkC.gdk_toplevel_size_get_type ())) (i32 width) (i32 height)
 
 module TouchEvent =
-  extern gdk_touch_event_get_emulating_pointer : cptr -> i32
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_type_Gdk_TouchEvent ()
 
   /// Extracts whether a touch event is emulating a pointer event.
   let getEmulatingPointer (self: TouchEvent) : bool =
-    (((gdk_touch_event_get_emulating_pointer (Glue.obj self.Id (zgtk_type_Gdk_TouchEvent ())))) <> i32 0)
+    (((Internal.GdkC.gdk_touch_event_get_emulating_pointer (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_TouchEvent ())))) <> i32 0)
 
 module TouchpadEvent =
-  extern gdk_touchpad_event_get_deltas : cptr -> cptr -> cptr -> unit
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.zgtk_type_Gdk_TouchpadEvent ()
 
   /// Extracts delta information from a touchpad event.
   let getDeltas (self: TouchpadEvent) : (float * float) =
-    Glue.outBegin ()
-    gdk_touchpad_event_get_deltas (Glue.obj self.Id (zgtk_type_Gdk_TouchpadEvent ())) (Glue.out 0) (Glue.out 1)
-    let zv = (Glue.outF64 0, Glue.outF64 1)
-    Glue.outEnd ()
+    Internal.Raw.outBegin ()
+    Internal.GdkC.gdk_touchpad_event_get_deltas (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_TouchpadEvent ())) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    let zv = (Internal.Raw.outF64 0, Internal.Raw.outF64 1)
+    Internal.Raw.outEnd ()
     zv
-
-  extern gdk_touchpad_event_get_gesture_phase : cptr -> i32
 
   /// Extracts the touchpad gesture phase from a touchpad event.
   let getGesturePhase (self: TouchpadEvent) : TouchpadGesturePhase =
-    TouchpadGesturePhase (int ((gdk_touchpad_event_get_gesture_phase (Glue.obj self.Id (zgtk_type_Gdk_TouchpadEvent ())))))
-
-  extern gdk_touchpad_event_get_n_fingers : cptr -> u32
+    TouchpadGesturePhase (int ((Internal.GdkC.gdk_touchpad_event_get_gesture_phase (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_TouchpadEvent ())))))
 
   /// Extracts the number of fingers from a touchpad event.
   let getNFingers (self: TouchpadEvent) : int =
-    (int ((gdk_touchpad_event_get_n_fingers (Glue.obj self.Id (zgtk_type_Gdk_TouchpadEvent ())))))
-
-  extern gdk_touchpad_event_get_pinch_angle_delta : cptr -> f64
+    (int ((Internal.GdkC.gdk_touchpad_event_get_n_fingers (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_TouchpadEvent ())))))
 
   /// Extracts the angle delta from a touchpad pinch event.
   let getPinchAngleDelta (self: TouchpadEvent) : float =
-    ((gdk_touchpad_event_get_pinch_angle_delta (Glue.obj self.Id (zgtk_type_Gdk_TouchpadEvent ()))))
-
-  extern gdk_touchpad_event_get_pinch_scale : cptr -> f64
+    ((Internal.GdkC.gdk_touchpad_event_get_pinch_angle_delta (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_TouchpadEvent ()))))
 
   /// Extracts the scale from a touchpad pinch event.
   let getPinchScale (self: TouchpadEvent) : float =
-    ((gdk_touchpad_event_get_pinch_scale (Glue.obj self.Id (zgtk_type_Gdk_TouchpadEvent ()))))
+    ((Internal.GdkC.gdk_touchpad_event_get_pinch_scale (Internal.Raw.obj self.Id (Internal.GdkC.zgtk_type_Gdk_TouchpadEvent ()))))
 
 module VulkanContext =
   /// The same object as its ancestor.
@@ -7547,13 +6471,16 @@ module VulkanContext =
   /// The same object as its ancestor.
   let toGObjectObject (self: VulkanContext) : GObject.Object = GObject.Object self.Id
 
+  /// The type itself, for `Glue.subclass`, `Glue.isA` and a property's or a signal's types.
+  let gtype () : usize = Internal.GdkC.gdk_vulkan_context_get_type ()
+
   /// The object as this type, if it is one.
   let cast (object: GObject.Object) : option<VulkanContext> =
-    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_vulkan_context_get_type ()) then Some (VulkanContext object.Id) else None
+    if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.GdkC.gdk_vulkan_context_get_type ()) then Some (VulkanContext object.Id) else None
 
   /// Emitted when the images managed by this context have changed.
   let onImagesUpdated (self: VulkanContext) (handler: unit -> unit) : unit =
-    Glue.connect (Glue.obj self.Id (gdk_vulkan_context_get_type ())) "images-updated" handler
+    Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_vulkan_context_get_type ())) "images-updated" handler
 
 /// Defines all possible DND actions.
 let actionAll = 7
@@ -13894,247 +12821,187 @@ let modifierMask = 469769999
 /// This is the priority that the idle handler processing surface updates is given in the main loop.
 let priorityRedraw = 120
 
-extern gdk_cairo_draw_from_gl : cptr -> cptr -> i32 -> i32 -> i32 -> i32 -> i32 -> i32 -> i32 -> unit
-
 /// Deprecated. Draws GL content onto a cairo context.
 let cairoDrawFromGl (cr: Cairo.Context) (surface: Surface) (source: int) (sourceType: int) (bufferScale: int) (x: int) (y: int) (width: int) (height: int) : unit =
-  gdk_cairo_draw_from_gl (Glue.obj cr.Id (Cairo.cairo_gobject_context_get_type ())) (Glue.obj surface.Id (gdk_surface_get_type ())) (i32 source) (i32 sourceType) (i32 bufferScale) (i32 x) (i32 y) (i32 width) (i32 height)
-
-extern gdk_cairo_rectangle : cptr -> cptr -> unit
+  Internal.GdkC.gdk_cairo_draw_from_gl (Internal.Raw.obj cr.Id (Internal.CairoC.cairo_gobject_context_get_type ())) (Internal.Raw.obj surface.Id (Internal.GdkC.gdk_surface_get_type ())) (i32 source) (i32 sourceType) (i32 bufferScale) (i32 x) (i32 y) (i32 width) (i32 height)
 
 /// Adds the given rectangle to the current path of @cr.
 let cairoRectangle (cr: Cairo.Context) (rectangle: Rectangle) : unit =
-  gdk_cairo_rectangle (Glue.obj cr.Id (Cairo.cairo_gobject_context_get_type ())) (Glue.obj rectangle.Id (gdk_rectangle_get_type ()))
-
-extern gdk_cairo_region : cptr -> cptr -> unit
+  Internal.GdkC.gdk_cairo_rectangle (Internal.Raw.obj cr.Id (Internal.CairoC.cairo_gobject_context_get_type ())) (Internal.Raw.obj rectangle.Id (Internal.GdkC.gdk_rectangle_get_type ()))
 
 /// Adds the given region to the current path of @cr.
 let cairoRegion (cr: Cairo.Context) (region: Cairo.Region) : unit =
-  gdk_cairo_region (Glue.obj cr.Id (Cairo.cairo_gobject_context_get_type ())) (Glue.obj region.Id (Cairo.cairo_gobject_region_get_type ()))
-
-extern gdk_cairo_region_create_from_surface : cptr -> cptr
+  Internal.GdkC.gdk_cairo_region (Internal.Raw.obj cr.Id (Internal.CairoC.cairo_gobject_context_get_type ())) (Internal.Raw.obj region.Id (Internal.CairoC.cairo_gobject_region_get_type ()))
 
 /// Creates region that covers the area where the given @surface is more than 50% opaque.
 let cairoRegionCreateFromSurface (surface: Cairo.Surface) : Cairo.Region =
-  Cairo.Region (Glue.wrapBoxed ((gdk_cairo_region_create_from_surface (Glue.obj surface.Id (Cairo.cairo_gobject_surface_get_type ())))) (Cairo.cairo_gobject_region_get_type ()) true)
-
-extern gdk_cairo_set_source_pixbuf : cptr -> cptr -> f64 -> f64 -> unit
+  Cairo.Region (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_cairo_region_create_from_surface (Internal.Raw.obj surface.Id (Internal.CairoC.cairo_gobject_surface_get_type ())))) (Internal.CairoC.cairo_gobject_region_get_type ()) true)
 
 /// Deprecated. Sets the given pixbuf as the source pattern for @cr.
 let cairoSetSourcePixbuf (cr: Cairo.Context) (pixbuf: GdkPixbuf.Pixbuf) (pixbufX: float) (pixbufY: float) : unit =
-  gdk_cairo_set_source_pixbuf (Glue.obj cr.Id (Cairo.cairo_gobject_context_get_type ())) (Glue.obj pixbuf.Id (GdkPixbuf.gdk_pixbuf_get_type ())) pixbufX pixbufY
-
-extern gdk_cairo_set_source_rgba : cptr -> cptr -> unit
+  Internal.GdkC.gdk_cairo_set_source_pixbuf (Internal.Raw.obj cr.Id (Internal.CairoC.cairo_gobject_context_get_type ())) (Internal.Raw.obj pixbuf.Id (Internal.GdkPixbufC.gdk_pixbuf_get_type ())) pixbufX pixbufY
 
 /// Sets the specified `GdkRGBA` as the source color of @cr.
 let cairoSetSourceRgba (cr: Cairo.Context) (rgba: RGBA) : unit =
-  gdk_cairo_set_source_rgba (Glue.obj cr.Id (Cairo.cairo_gobject_context_get_type ())) (Glue.obj rgba.Id (gdk_rgba_get_type ()))
-
-extern gdk_content_deserialize_async : cptr -> cstr -> usize -> i32 -> cptr -> cptr -> cptr -> unit
+  Internal.GdkC.gdk_cairo_set_source_rgba (Internal.Raw.obj cr.Id (Internal.CairoC.cairo_gobject_context_get_type ())) (Internal.Raw.obj rgba.Id (Internal.GdkC.gdk_rgba_get_type ()))
 
 /// Reads content from the given input stream and deserialize it, asynchronously.
 let contentDeserializeAsync (stream: Gio.InputStream) (mimeType: string) (type_: usize) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
   let zcb1 =
-    Glue.hold (fun () ->
-      let zid2 = Glue.wrap (Glue.argPointer 0) false
+    Internal.Raw.hold (fun () ->
+      let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 0) false
       let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
-      let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+      let res = Gio.AsyncResult (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
       callback sourceObject res)
   let zp3 =
     match cancellable with
-    | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
-    | None -> Glue.none ()
-  gdk_content_deserialize_async (Glue.obj stream.Id (Gio.g_input_stream_get_type ())) mimeType type_ (i32 ioPriority) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-
-extern gdk_content_deserialize_finish : cptr -> cptr -> cptr -> i32
+    | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
+    | None -> Internal.Raw.none ()
+  Internal.GdkC.gdk_content_deserialize_async (Internal.Raw.obj stream.Id (Internal.GioC.g_input_stream_get_type ())) mimeType type_ (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
 /// Finishes a content deserialization operation.
 let contentDeserializeFinish (result: Gio.AsyncResult) : result<(bool * GObject.Value), Glue.Error> =
-  let zo1 = Glue.alloc (GObject.zgtk_sizeof_GObject_Value ()) (GObject.g_value_get_type ())
-  Glue.outBegin ()
-  let zr = gdk_content_deserialize_finish (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.obj zo1 (GObject.g_value_get_type ())) (Glue.err ())
-  match Glue.takeError () with
+  let zo1 = Internal.Raw.alloc (Internal.GObjectC.zgtk_sizeof_GObject_Value ()) (Internal.GObjectC.g_value_get_type ())
+  Internal.Raw.outBegin ()
+  let zr = Internal.GdkC.gdk_content_deserialize_finish (Internal.Raw.obj result.Id (Internal.GioC.g_async_result_get_type ())) (Internal.Raw.obj zo1 (Internal.GObjectC.g_value_get_type ())) (Internal.Raw.err ())
+  match Internal.Raw.takeError () with
   | Some ze ->
-    Glue.outEnd ()
-    Error ze
+    Internal.Raw.outEnd ()
+    Error (Glue.error ze)
   | None ->
     let zv = (((zr) <> i32 0), GObject.Value zo1)
-    Glue.outEnd ()
+    Internal.Raw.outEnd ()
     Ok zv
-
-extern gdk_content_register_deserializer : cstr -> usize -> cptr -> cptr -> cptr -> unit
 
 /// Registers a function to deserialize object of a given type.
 [<Unsafe>]
 let contentRegisterDeserializer (mimeType: string) (type_: usize) (deserialize: cptr) (data: cptr) (notify: cptr) : unit =
-  gdk_content_register_deserializer mimeType type_ deserialize data notify
-
-extern gdk_content_register_serializer : usize -> cstr -> cptr -> cptr -> cptr -> unit
+  Internal.GdkC.gdk_content_register_deserializer mimeType type_ deserialize data notify
 
 /// Registers a function to serialize objects of a given type.
 [<Unsafe>]
 let contentRegisterSerializer (type_: usize) (mimeType: string) (serialize: cptr) (data: cptr) (notify: cptr) : unit =
-  gdk_content_register_serializer type_ mimeType serialize data notify
-
-extern gdk_content_serialize_async : cptr -> cstr -> cptr -> i32 -> cptr -> cptr -> cptr -> unit
+  Internal.GdkC.gdk_content_register_serializer type_ mimeType serialize data notify
 
 /// Serialize content and write it to the given output stream, asynchronously.
 let contentSerializeAsync (stream: Gio.OutputStream) (mimeType: string) (value: GObject.Value) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
   let zcb1 =
-    Glue.hold (fun () ->
-      let zid2 = Glue.wrap (Glue.argPointer 0) false
+    Internal.Raw.hold (fun () ->
+      let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 0) false
       let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
-      let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+      let res = Gio.AsyncResult (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
       callback sourceObject res)
   let zp3 =
     match cancellable with
-    | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
-    | None -> Glue.none ()
-  gdk_content_serialize_async (Glue.obj stream.Id (Gio.g_output_stream_get_type ())) mimeType (Glue.obj value.Id (GObject.g_value_get_type ())) (i32 ioPriority) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
-
-extern gdk_content_serialize_finish : cptr -> cptr -> i32
+    | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
+    | None -> Internal.Raw.none ()
+  Internal.GdkC.gdk_content_serialize_async (Internal.Raw.obj stream.Id (Internal.GioC.g_output_stream_get_type ())) mimeType (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
 /// Finishes a content serialization operation.
 let contentSerializeFinish (result: Gio.AsyncResult) : result<bool, Glue.Error> =
-  Glue.outBegin ()
-  let zr = gdk_content_serialize_finish (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.err ())
-  match Glue.takeError () with
+  Internal.Raw.outBegin ()
+  let zr = Internal.GdkC.gdk_content_serialize_finish (Internal.Raw.obj result.Id (Internal.GioC.g_async_result_get_type ())) (Internal.Raw.err ())
+  match Internal.Raw.takeError () with
   | Some ze ->
-    Glue.outEnd ()
-    Error ze
+    Internal.Raw.outEnd ()
+    Error (Glue.error ze)
   | None ->
     let zv = ((zr) <> i32 0)
-    Glue.outEnd ()
+    Internal.Raw.outEnd ()
     Ok zv
-
-extern gdk_events_get_angle : cptr -> cptr -> cptr -> i32
 
 /// Returns the relative angle from @event1 to @event2.
 let eventsGetAngle (event1: Event) (event2: Event) : (bool * float) =
-  Glue.outBegin ()
-  let zr = gdk_events_get_angle (Glue.obj event1.Id (zgtk_type_Gdk_Event ())) (Glue.obj event2.Id (zgtk_type_Gdk_Event ())) (Glue.out 0)
-  let zv = (((zr) <> i32 0), Glue.outF64 0)
-  Glue.outEnd ()
+  Internal.Raw.outBegin ()
+  let zr = Internal.GdkC.gdk_events_get_angle (Internal.Raw.obj event1.Id (Internal.GdkC.zgtk_type_Gdk_Event ())) (Internal.Raw.obj event2.Id (Internal.GdkC.zgtk_type_Gdk_Event ())) (Internal.Raw.out 0)
+  let zv = (((zr) <> i32 0), Internal.Raw.outF64 0)
+  Internal.Raw.outEnd ()
   zv
-
-extern gdk_events_get_center : cptr -> cptr -> cptr -> cptr -> i32
 
 /// Returns the point halfway between the events' positions.
 let eventsGetCenter (event1: Event) (event2: Event) : (bool * float * float) =
-  Glue.outBegin ()
-  let zr = gdk_events_get_center (Glue.obj event1.Id (zgtk_type_Gdk_Event ())) (Glue.obj event2.Id (zgtk_type_Gdk_Event ())) (Glue.out 0) (Glue.out 1)
-  let zv = (((zr) <> i32 0), Glue.outF64 0, Glue.outF64 1)
-  Glue.outEnd ()
+  Internal.Raw.outBegin ()
+  let zr = Internal.GdkC.gdk_events_get_center (Internal.Raw.obj event1.Id (Internal.GdkC.zgtk_type_Gdk_Event ())) (Internal.Raw.obj event2.Id (Internal.GdkC.zgtk_type_Gdk_Event ())) (Internal.Raw.out 0) (Internal.Raw.out 1)
+  let zv = (((zr) <> i32 0), Internal.Raw.outF64 0, Internal.Raw.outF64 1)
+  Internal.Raw.outEnd ()
   zv
-
-extern gdk_events_get_distance : cptr -> cptr -> cptr -> i32
 
 /// Returns the distance between the event locations.
 let eventsGetDistance (event1: Event) (event2: Event) : (bool * float) =
-  Glue.outBegin ()
-  let zr = gdk_events_get_distance (Glue.obj event1.Id (zgtk_type_Gdk_Event ())) (Glue.obj event2.Id (zgtk_type_Gdk_Event ())) (Glue.out 0)
-  let zv = (((zr) <> i32 0), Glue.outF64 0)
-  Glue.outEnd ()
+  Internal.Raw.outBegin ()
+  let zr = Internal.GdkC.gdk_events_get_distance (Internal.Raw.obj event1.Id (Internal.GdkC.zgtk_type_Gdk_Event ())) (Internal.Raw.obj event2.Id (Internal.GdkC.zgtk_type_Gdk_Event ())) (Internal.Raw.out 0)
+  let zv = (((zr) <> i32 0), Internal.Raw.outF64 0)
+  Internal.Raw.outEnd ()
   zv
-
-extern gdk_intern_mime_type : cstr -> cptr
 
 /// Canonicalizes the given mime type and interns the result.
 let internMimeType (string: string) : option<string> =
-  Glue.textOption ((gdk_intern_mime_type string))
-
-extern gdk_keyval_convert_case : u32 -> cptr -> cptr -> unit
+  Internal.Raw.textOption ((Internal.GdkC.gdk_intern_mime_type string))
 
 /// Obtains the upper- and lower-case versions of the keyval @symbol.
 let keyvalConvertCase (symbol: int) : (int * int) =
-  Glue.outBegin ()
-  gdk_keyval_convert_case (u32 symbol) (Glue.out 0) (Glue.out 1)
-  let zv = (Glue.outU32 0, Glue.outU32 1)
-  Glue.outEnd ()
+  Internal.Raw.outBegin ()
+  Internal.GdkC.gdk_keyval_convert_case (u32 symbol) (Internal.Raw.out 0) (Internal.Raw.out 1)
+  let zv = (Internal.Raw.outU32 0, Internal.Raw.outU32 1)
+  Internal.Raw.outEnd ()
   zv
-
-extern gdk_keyval_from_name : cstr -> u32
 
 /// Converts a key name to a key value.
 let keyvalFromName (keyvalName: string) : int =
-  (int ((gdk_keyval_from_name keyvalName)))
-
-extern gdk_keyval_is_lower : u32 -> i32
+  (int ((Internal.GdkC.gdk_keyval_from_name keyvalName)))
 
 /// Returns true if the given key value is in lower case.
 let keyvalIsLower (keyval: int) : bool =
-  (((gdk_keyval_is_lower (u32 keyval))) <> i32 0)
-
-extern gdk_keyval_is_upper : u32 -> i32
+  (((Internal.GdkC.gdk_keyval_is_lower (u32 keyval))) <> i32 0)
 
 /// Returns true if the given key value is in upper case.
 let keyvalIsUpper (keyval: int) : bool =
-  (((gdk_keyval_is_upper (u32 keyval))) <> i32 0)
-
-extern gdk_keyval_name : u32 -> cptr
+  (((Internal.GdkC.gdk_keyval_is_upper (u32 keyval))) <> i32 0)
 
 /// Converts a key value into a symbolic name.
 let keyvalName (keyval: int) : option<string> =
-  Glue.textOption ((gdk_keyval_name (u32 keyval)))
-
-extern gdk_keyval_to_lower : u32 -> u32
+  Internal.Raw.textOption ((Internal.GdkC.gdk_keyval_name (u32 keyval)))
 
 /// Converts a key value to lower case, if applicable.
 let keyvalToLower (keyval: int) : int =
-  (int ((gdk_keyval_to_lower (u32 keyval))))
-
-extern gdk_keyval_to_unicode : u32 -> u32
+  (int ((Internal.GdkC.gdk_keyval_to_lower (u32 keyval))))
 
 /// Converts from a GDK key symbol to the corresponding Unicode character.
 let keyvalToUnicode (keyval: int) : int =
-  (int ((gdk_keyval_to_unicode (u32 keyval))))
-
-extern gdk_keyval_to_upper : u32 -> u32
+  (int ((Internal.GdkC.gdk_keyval_to_unicode (u32 keyval))))
 
 /// Converts a key value to upper case, if applicable.
 let keyvalToUpper (keyval: int) : int =
-  (int ((gdk_keyval_to_upper (u32 keyval))))
-
-extern gdk_pango_layout_get_clip_region : cptr -> i32 -> i32 -> i32 -> i32 -> cptr
+  (int ((Internal.GdkC.gdk_keyval_to_upper (u32 keyval))))
 
 /// Obtains a clip region which contains the areas where the given ranges of text would be drawn.
 let pangoLayoutGetClipRegion (layout: Pango.Layout) (xOrigin: int) (yOrigin: int) (indexRanges: int) (nRanges: int) : Cairo.Region =
-  Cairo.Region (Glue.wrapBoxed ((gdk_pango_layout_get_clip_region (Glue.obj layout.Id (Pango.pango_layout_get_type ())) (i32 xOrigin) (i32 yOrigin) (i32 indexRanges) (i32 nRanges))) (Cairo.cairo_gobject_region_get_type ()) true)
-
-extern gdk_pango_layout_line_get_clip_region : cptr -> i32 -> i32 -> cptr -> i32 -> cptr
+  Cairo.Region (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_pango_layout_get_clip_region (Internal.Raw.obj layout.Id (Internal.PangoC.pango_layout_get_type ())) (i32 xOrigin) (i32 yOrigin) (i32 indexRanges) (i32 nRanges))) (Internal.CairoC.cairo_gobject_region_get_type ()) true)
 
 /// Obtains a clip region which contains the areas where the given ranges of text would be drawn.
 let pangoLayoutLineGetClipRegion (line: Pango.LayoutLine) (xOrigin: int) (yOrigin: int) (indexRanges: list<int>) (nRanges: int) : Cairo.Region =
-  let za1 = Glue.ints indexRanges 4
-  let zr = gdk_pango_layout_line_get_clip_region (Glue.obj line.Id (Pango.pango_layout_line_get_type ())) (i32 xOrigin) (i32 yOrigin) za1 (i32 nRanges)
-  let zv = Cairo.Region (Glue.wrapBoxed (zr) (Cairo.cairo_gobject_region_get_type ()) true)
-  Glue.free za1
+  let za1 = Internal.Raw.ints indexRanges 4
+  let zr = Internal.GdkC.gdk_pango_layout_line_get_clip_region (Internal.Raw.obj line.Id (Internal.PangoC.pango_layout_line_get_type ())) (i32 xOrigin) (i32 yOrigin) za1 (i32 nRanges)
+  let zv = Cairo.Region (Internal.Raw.wrapBoxed (zr) (Internal.CairoC.cairo_gobject_region_get_type ()) true)
+  Internal.Raw.free za1
   zv
-
-extern gdk_pixbuf_get_from_surface : cptr -> i32 -> i32 -> i32 -> i32 -> cptr
 
 /// Deprecated. Transfers image data from a `cairo_surface_t` and converts it to a `GdkPixbuf`.
 let pixbufGetFromSurface (surface: Cairo.Surface) (srcX: int) (srcY: int) (width: int) (height: int) : option<GdkPixbuf.Pixbuf> =
-  let zr = gdk_pixbuf_get_from_surface (Glue.obj surface.Id (Cairo.cairo_gobject_surface_get_type ())) (i32 srcX) (i32 srcY) (i32 width) (i32 height)
-  let zid1 = Glue.wrap (zr) true
+  let zr = Internal.GdkC.gdk_pixbuf_get_from_surface (Internal.Raw.obj surface.Id (Internal.CairoC.cairo_gobject_surface_get_type ())) (i32 srcX) (i32 srcY) (i32 width) (i32 height)
+  let zid1 = Internal.Raw.wrap (zr) true
   (if zid1 = 0 then None else Some (GdkPixbuf.Pixbuf zid1))
-
-extern gdk_pixbuf_get_from_texture : cptr -> cptr
 
 /// Deprecated. Creates a new pixbuf from @texture.
 let pixbufGetFromTexture (texture: Texture) : option<GdkPixbuf.Pixbuf> =
-  let zr = gdk_pixbuf_get_from_texture (Glue.obj texture.Id (gdk_texture_get_type ()))
-  let zid1 = Glue.wrap (zr) true
+  let zr = Internal.GdkC.gdk_pixbuf_get_from_texture (Internal.Raw.obj texture.Id (Internal.GdkC.gdk_texture_get_type ()))
+  let zid1 = Internal.Raw.wrap (zr) true
   (if zid1 = 0 then None else Some (GdkPixbuf.Pixbuf zid1))
-
-extern gdk_set_allowed_backends : cstr -> unit
 
 /// Sets a list of backends that GDK should try to use.
 let setAllowedBackends (backends: string) : unit =
-  gdk_set_allowed_backends backends
-
-extern gdk_unicode_to_keyval : u32 -> u32
+  Internal.GdkC.gdk_set_allowed_backends backends
 
 /// Converts from a Unicode character to a key symbol.
 let unicodeToKeyval (wc: int) : int =
-  (int ((gdk_unicode_to_keyval (u32 wc))))
+  (int ((Internal.GdkC.gdk_unicode_to_keyval (u32 wc))))

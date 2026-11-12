@@ -42,6 +42,7 @@ gsize zgtk_tag_GLib_UriParamsIter(void) { static char tag; return (gsize)&tag; }
 gsize zgtk_type_GLib_Variant(void) { return G_TYPE_VARIANT; }
 gint64 zgtk_wrap_GLib_Variant(void *p, int full) { return zgtk_wrap_counted(p, G_TYPE_VARIANT, (void *(*)(void *))g_variant_ref_sink, (void (*)(void *))g_variant_unref, full); }
 void *zgtk_give_GLib_Variant(void *p) { return p ? g_variant_ref_sink(p) : NULL; }
+void *zgtk_lend_GLib_Variant(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))g_variant_ref_sink, (void (*)(void *))g_variant_unref); }
 gsize zgtk_tag_GLib_VariantIter(void) { static char tag; return (gsize)&tag; }
 static void tramp_GLib_ChildWatchFunc(GPid a0, gint a1, gpointer a2) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 3;

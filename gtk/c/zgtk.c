@@ -92,6 +92,9 @@ int64_t zgtk_wrap(void *obj, int full) {
     if (!obj) return 0;
     if (!quark) quark = g_quark_from_static_string("zgtk-handle");
     uint32_t i = GPOINTER_TO_UINT(g_object_get_qdata(obj, quark));
+    // the mark of an entry that went when the object was disposed (a window destroyed while a
+    // list still holds it) is no entry of its own any more: the place may be another object's
+    if (i && (i > n_entries || entries[i - 1].kind != OBJECT || entries[i - 1].ptr != obj)) i = 0;
     if (i) {
         i--;
     } else {
@@ -206,6 +209,13 @@ static void drain_from(guint start) {
     }
 }
 
+// Where the pool stands, and giving up what it took since: for what tasks make, which is made in
+// no handler, when the last of them has finished.
+int64_t zgtk_pool_mark(void) { return pool ? pool->len : 0; }
+void zgtk_drain_since(int64_t mark) {
+    if (mark >= 0 && (guint)mark >= frame) drain_from((guint)mark);
+}
+
 // Gives up what was made since the running handler began; outside any, all the pool holds.
 void zgtk_drain(void) { drain_from(frame); }
 
@@ -230,6 +240,34 @@ void zgtk_unkeep(int64_t id) {
 void *zgtk_give(void *obj) { return obj ? g_object_ref(obj) : NULL; }
 
 void *zgtk_give_boxed(void *p, GType type) { return p ? g_boxed_copy(type, p) : NULL; }
+
+// ---- what a handler gives C only to borrow: a reference of its own (or a copy), given up when
+// the main loop next turns, after whoever called has done with it
+
+typedef struct {
+    void (*unref)(void *);
+    void *p;
+    GType boxed;
+} Lent;
+
+static gboolean lent_back(gpointer data) {
+    Lent *l = data;
+    if (l->boxed) g_boxed_free(l->boxed, l->p);
+    else l->unref(l->p);
+    g_free(l);
+    return G_SOURCE_REMOVE;
+}
+
+static void *lend(void *p, void (*unref)(void *), GType boxed) {
+    Lent *l = g_new0(Lent, 1);
+    l->unref = unref, l->p = p, l->boxed = boxed;
+    g_idle_add_full(G_PRIORITY_LOW, lent_back, l, NULL);
+    return p;
+}
+
+void *zgtk_lend(void *obj) { return obj ? lend(g_object_ref(obj), g_object_unref, 0) : NULL; }
+void *zgtk_lend_boxed(void *p, GType type) { return p ? lend(g_boxed_copy(type, p), NULL, type) : NULL; }
+void *zgtk_lend_counted(void *p, void *(*ref)(void *), void (*unref)(void *)) { return p ? lend(ref(p), unref, 0) : NULL; }
 
 // ---- dispatch: signals and callbacks
 
@@ -437,6 +475,8 @@ void zgtk_add_signal(gsize type, const char *name, void *arg_types, int64_t n) {
     if (!type || g_signal_lookup(name, type)) return;
     g_signal_newv(name, type, G_SIGNAL_RUN_LAST, NULL, NULL, NULL, NULL, G_TYPE_NONE, (guint)n, (GType *)arg_types);
 }
+
+gsize zgtk_value_type(void) { return G_TYPE_VALUE; }
 
 // Emits a signal with arguments, each a GValue.
 void zgtk_emit_values(void *object, const char *signal, void *values, int64_t n) {
@@ -934,6 +974,39 @@ void zgtk_loop_dispatch(void) {
 
 // Makes the wait end: something outside GLib's sight gave it work.
 void zgtk_loop_kick(void) { g_main_context_wakeup(g_main_context_default()); }
+
+// ---- a child of any container, as GtkBuilder gives one: through the container's own
+// add_child, with the place a <child type="…"> names ("start", "end", "suffix", "top")
+
+void zgtk_add_child(void *parent, void *child, const char *place) {
+    static GtkBuilder *builder;
+    if (!parent || !child || !GTK_IS_BUILDABLE(parent)) return;
+    if (!builder) builder = gtk_builder_new();
+    GtkBuildableIface *iface = GTK_BUILDABLE_GET_IFACE(parent);
+    if (iface->add_child) iface->add_child(parent, builder, child, place && *place ? place : NULL);
+}
+
+void zgtk_remove_child(void *parent, void *child) {
+    if (!parent || !child || !GTK_IS_WIDGET(child)) return;
+    if (GTK_IS_BOX(parent)) gtk_box_remove(parent, child);
+    else if (GTK_IS_LIST_BOX(parent)) gtk_list_box_remove(parent, child);
+    else if (GTK_IS_FLOW_BOX(parent)) gtk_flow_box_remove(parent, child);
+    else if (GTK_IS_GRID(parent)) gtk_grid_remove(parent, child);
+    else if (GTK_IS_STACK(parent)) gtk_stack_remove(parent, child);
+    else if (GTK_IS_HEADER_BAR(parent)) gtk_header_bar_remove(parent, child);
+    else if (GTK_IS_ACTION_BAR(parent)) gtk_action_bar_remove(parent, child);
+    else if (GTK_IS_FIXED(parent)) gtk_fixed_remove(parent, child);
+    else if (GTK_IS_OVERLAY(parent) && gtk_overlay_get_child(parent) != child) gtk_overlay_remove_overlay(parent, child);
+    else if (GTK_IS_CENTER_BOX(parent) || GTK_IS_OVERLAY(parent)) gtk_widget_unparent(child);
+    else if (ADW_IS_HEADER_BAR(parent)) adw_header_bar_remove(parent, child);
+    else if (ADW_IS_PREFERENCES_GROUP(parent)) adw_preferences_group_remove(parent, child);
+    else if (ADW_IS_EXPANDER_ROW(parent)) adw_expander_row_remove(parent, child);
+    else if (ADW_IS_ACTION_ROW(parent)) adw_action_row_remove(parent, child);
+    else if (ADW_IS_TOOLBAR_VIEW(parent)) adw_toolbar_view_remove(parent, child);
+    else if (ADW_IS_CAROUSEL(parent)) adw_carousel_remove(parent, child);
+    else if (ADW_IS_WRAP_BOX(parent)) adw_wrap_box_remove(parent, child);
+    else if (gtk_widget_get_parent(child)) gtk_widget_unparent(child);
+}
 
 // ---- what takes a NULL, variable arguments or a record
 

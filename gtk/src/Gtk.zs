@@ -165,6 +165,32 @@ type Widget<'msg> =
   /// twenty do.
   | Lazy of int * (int -> Widget<'msg>)
 
+  /// Any widget GTK or libadwaita has, by its type: its properties and events, and the widgets
+  /// inside it. `Ui` and `AdwUi` have a module for each widget (`Ui.Calendar.make`), with a
+  /// function for each property and each signal; this is what they give.
+  | Element of usize * list<Prop<'msg>> * list<Widget<'msg>>
+  /// A child of an `Element` in one of its named places, as a `<child type="…">` in GtkBuilder:
+  /// "start" or "end" of a header bar, "prefix" or "suffix" of a row.
+  | In of string * Widget<'msg>
+
+/// A property or an event of an `Element`, by its name in GTK.
+and Prop<'msg> =
+  /// A property that is a bool.
+  | PropBool of string * bool
+  /// A property that is an integer, an enumeration or flags.
+  | PropInt of string * int
+  /// A property that is a float or a double.
+  | PropFloat of string * float
+  /// A property that is a string.
+  | PropText of string * string
+  /// A property that is an object, by its handle's number: a model, an adjustment.
+  | PropObject of string * int
+  /// A property that is a widget: the child of a window, the title of a header bar.
+  | PropWidget of string * Widget<'msg>
+  /// A signal, and the function that gives its message: inside it, Glue's `argInt` and the
+  /// others read the signal's arguments.
+  | PropSignal of string * (unit -> 'msg)
+
 /// One of the views of `Tabs`.
 and Tab<'msg> =
   /// Its title, which names it, its icon's name (`folder-symbolic`) and what it shows.
@@ -369,7 +395,8 @@ let private leaf (w: Gtk4.Widget) (apply: Widget<'msg> -> bool) (probes: unit ->
 
 let private noProbes () : list<Probe> = []
 
-let private emit (id: int) (signal: string) : unit = Glue.emit (Glue.obj id (usize 0)) signal
+let private emit (id: int) (signal: string) : unit =
+  Internal.Raw.emit (Internal.Raw.obj id (usize 0)) signal
 
 let private setMargin (w: Gtk4.Widget) (n: int) =
   Gtk4.Widget.setMarginTop w n
@@ -932,6 +959,14 @@ let rec private build (send: 'msg -> unit) (widget: Widget<'msg>) : Live<'msg> =
   | Canvas draw -> canvas draw
   | Native (key, make) -> native key make
   | Lazy (count, row) -> lazyList send count row
+  | Element (gtype, props, children) -> element send gtype props children
+  | In (place, inner) ->
+    let live = build send inner
+    let apply (next: Widget<'msg>) : bool =
+      match next with
+      | In (other, inner) -> other = place && live.apply inner
+      | _ -> false
+    { live with apply = apply }
   | ActionRow (title, subtitle) -> actionRow title subtitle
   | NavRow (title, subtitle, msg) -> navRow send title subtitle msg
   | ButtonRow (title, msg) -> buttonRow send title msg
@@ -1218,15 +1253,98 @@ and private tabsOf (send: 'msg -> unit) (shown: string) (tabs: list<Tab<'msg>>) 
   // from over its views into a header bar, held while it has no parent
   let hoist (place: Gtk4.Widget -> unit) : unit =
     let w = Adw.ViewSwitcher.toGtkWidget switcher
-    Glue.keep w.Id
+    Internal.Raw.keep w.Id
     Gtk4.Box.remove outer w
     place w
-    Glue.unkeep w.Id
+    Internal.Raw.unkeep w.Id
   { native = Gtk4.Box.toWidget outer
     apply = apply
     kids = (fun () -> lives)
     probes = probes
     hoisted = Some hoist }
+
+// Any widget, by its type: properties set by name where their values differ from the last
+// tree's, signals connected once and given each tree's function, children added as GtkBuilder
+// adds them.
+and private element (send: 'msg -> unit) (gtype: usize) (props: list<Prop<'msg>>) (children: list<Widget<'msg>>) : Live<'msg> =
+  let id = Internal.Raw.create gtype
+  let w =
+    match Gtk4.Widget.cast (GObject.Object id) with
+    | Some w -> w
+    | None -> panic "Element: the type is no widget's"
+  let ptr () = Internal.Raw.obj id (usize 0)
+  let shown: ref<list<string * string>> = ref []
+  let slots: ref<list<string * ref<unit -> 'msg>>> = ref []
+  let inside: ref<list<string * Live<'msg>>> = ref []
+  let setValue (name: string) (text: string) (set: unit -> unit) : unit =
+    if not (List.exists (fun (n, t) -> n = name && t = text) shown.Value) then
+      set ()
+      shown.Value <- (name, text) :: List.filter (fun (n, _) -> n <> name) shown.Value
+  let setProp (p: Prop<'msg>) : unit =
+    match p with
+    | PropBool (name, v) ->
+      setValue name $"{v}" (fun () -> Internal.Raw.setInt (ptr ()) name (if v then 1 else 0))
+    | PropInt (name, v) -> setValue name $"{v}" (fun () -> Internal.Raw.setInt (ptr ()) name v)
+    | PropFloat (name, v) -> setValue name $"{v}" (fun () -> Internal.Raw.setFloat (ptr ()) name v)
+    | PropText (name, v) -> setValue name v (fun () -> Internal.Raw.setText (ptr ()) name v)
+    | PropObject (name, object) ->
+      setValue name $"{object}" (fun () ->
+        Internal.Raw.setObject (ptr ()) name (Internal.Raw.obj object (usize 0)))
+    | PropWidget (name, child) ->
+      match List.tryFind (fun (n, _) -> n = name) inside.Value with
+      | Some (_, live) when applies live child -> ()
+      | _ ->
+        let fresh = build send child
+        Internal.Raw.setObject (ptr ()) name (Internal.Raw.obj fresh.native.Id (usize 0))
+        inside.Value <- (name, fresh) :: List.filter (fun (n, _) -> n <> name) inside.Value
+    | PropSignal (name, f) ->
+      match List.tryFind (fun (n, _) -> n = name) slots.Value with
+      | Some (_, slot) -> slot.Value <- f
+      | None ->
+        let slot = ref f
+        Internal.Raw.connect (ptr ()) name (fun () -> send (slot.Value ()))
+        slots.Value <- (name, slot) :: slots.Value
+  List.iter setProp props
+  let placeOf (c: Widget<'msg>) : string =
+    match c with
+    | In (place, _) -> place
+    | _ -> ""
+  let add (c: Widget<'msg>) : Live<'msg> =
+    let live = build send c
+    Internal.Raw.addChild (ptr ()) (Internal.Raw.obj live.native.Id (usize 0)) (placeOf c)
+    live
+  let remove (live: Live<'msg>) : unit =
+    Internal.Raw.removeChild (ptr ()) (Internal.Raw.obj live.native.Id (usize 0))
+  let kids = ref (List.map add children)
+  let rec sync (lives: list<Live<'msg>>) (wanted: list<Widget<'msg>>) : list<Live<'msg>> =
+    match (lives, wanted) with
+    | (l :: ls, c :: cs) ->
+      if applies l c then
+        l :: sync ls cs
+      else
+        List.iter remove lives
+        List.map add wanted
+    | ([], cs) -> List.map add cs
+    | (ls, []) ->
+      List.iter remove ls
+      []
+  let apply (next: Widget<'msg>) : bool =
+    match next with
+    | Element (other, props, children) when other = gtype ->
+      List.iter setProp props
+      kids.Value <- sync kids.Value children
+      true
+    | _ -> false
+  // a test reads the strings it shows, and fires its signals by their names
+  let probes () =
+    let texts =
+      List.map (fun (_, text) -> ProbeText text) (List.filter (fun (n, _) ->
+          n = "label" || n = "text" || n = "title") shown.Value)
+    let fire =
+      List.map (fun (name, _) -> ProbePress (name, fun () -> Internal.Raw.emit (ptr ()) name)) slots.Value
+    List.append texts fire
+  let all () = List.append (List.map snd inside.Value) kids.Value
+  { native = w; apply = apply; kids = all; probes = probes; hoisted = None }
 
 // A list view over a model of as many blanks as there are rows: GTK asks for a row's widget
 // when it comes on screen, and takes the widget back for another row when it leaves.
@@ -1678,7 +1796,7 @@ let private syncKeys (send: 'msg -> unit) (frame: Host) (shell: Shell<'msg>) (wa
       List.collect (fun (i, (accelerator, _)) ->
         let trigger = Gtk4.ShortcutTrigger.parseString accelerator
         // an accelerator GTK can't read is no shortcut
-        if Glue.alive trigger.Id then
+        if Internal.Raw.alive trigger.Id then
           let action =
             Gtk4.CallbackAction.create (fun _ _ ->
               Option.iter send (List.tryItem i shell.keyed.Value)
@@ -1890,20 +2008,20 @@ let private runApp (id: string) (opened: Host -> unit) : int =
         setContent = fun content -> Adw.ApplicationWindow.setContent w (Some content)
         animate = true
         narrow = fun split ->
-          Glue.collapseWhenNarrow (Glue.obj w.Id (usize 0)) (Glue.obj split.Id (usize 0)) })
+          Internal.Raw.collapseWhenNarrow (Internal.Raw.obj w.Id (usize 0)) (Internal.Raw.obj split.Id (usize 0)) })
   // on Z#'s event loop, so a command's task runs beside the window
   Loop.run app.GtkApplication
 
 // A window of no application and no animations, for a test.
 let private testFrame () : Host =
   Adw.init ()
-  Glue.still ()
+  Internal.Raw.still ()
   let w = Adw.Window.create ()
   { window = Adw.Window.toGtkWindow w
     setContent = fun content -> Adw.Window.setContent w (Some content)
     animate = false
     narrow = fun split ->
-      Glue.collapseWhenNarrow (Glue.obj w.Id (usize 0)) (Glue.obj split.Id (usize 0)) }
+      Internal.Raw.collapseWhenNarrow (Internal.Raw.obj w.Id (usize 0)) (Internal.Raw.obj split.Id (usize 0)) }
 
 let private pure (update: 'msg -> 'model -> 'model) (msg: 'msg) (model: 'model) : 'model * list<Cmd<'msg>> =
   (update msg model, [])
@@ -1942,7 +2060,7 @@ module Test =
   let startSignals (view: unit -> Window<unit -> unit>) = mountSignals (testFrame ()) view
 
   /// Runs what is waiting for the main loop: a command's timer that is due, an idle call.
-  let settle () : unit = Glue.settle ()
+  let settle () : unit = Internal.Raw.settle ()
 
   let rec private probesOf (live: Live<'msg>) : list<Probe> =
     List.append (live.probes ()) (List.collect probesOf (live.kids ()))
@@ -2076,7 +2194,7 @@ module Test =
     match Option.bind (fun (s: Shell<'msg>) -> s.modal.Value) p.shell.Value with
     | Some (LiveAlert (d, (_, _, labels), _, opened)) when opened.Value ->
       match List.tryFind (fun (_, text) -> text = label) (List.indexed labels) with
-      | Some (i, _) -> Glue.emitText (Glue.obj d.Id (usize 0)) "response" $"{i}"
+      | Some (i, _) -> Internal.Raw.emitText (Internal.Raw.obj d.Id (usize 0)) "response" $"{i}"
       | None -> ()
     | _ -> ()
 
@@ -2085,10 +2203,10 @@ module Test =
     match Option.bind (fun (s: Shell<'msg>) -> s.modal.Value) p.shell.Value with
     | Some (LiveSheet (d, _, _, _, opened)) when opened.Value ->
       Adw.Dialog.close d |> ignore
-      Glue.settle ()
+      Internal.Raw.settle ()
     | Some (LiveAbout (d, _, _, opened)) when opened.Value ->
       Adw.Dialog.close (Adw.AboutDialog.toDialog d) |> ignore
-      Glue.settle ()
+      Internal.Raw.settle ()
     | _ -> ()
 
   /// Makes the window narrow or wide, as its width would: narrow, a sidebar and the content
@@ -2129,7 +2247,7 @@ module Test =
     | Some s ->
       List.iter (fun (n: LiveToast<'msg>) ->
         if n.text = text && n.shown.Value then Adw.Toast.dismiss n.toast) s.notes.Value
-      Glue.settle ()
+      Internal.Raw.settle ()
     | None -> ()
 
   /// Presses a shortcut's keys, as the user would with the window focused.
@@ -2147,4 +2265,4 @@ module Test =
   let close (p: Program<'model, 'msg>) : unit =
     Gtk4.Window.destroy p.window
     // what the test made outside any handler, a toast say, goes now
-    Glue.drain ()
+    Internal.Raw.drain ()

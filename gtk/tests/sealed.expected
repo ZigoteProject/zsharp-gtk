@@ -1,0 +1,7 @@
+a handle's pointer: refused
+a handle's pointer, by the package's name: refused
+a C function, through the module it was in: refused
+a C function, through the module that declares it: refused
+a C function of variable arguments: refused
+an unsafe function, outside unsafe: refused
+the public functions: built

@@ -5,7 +5,7 @@ Two packages for [Z#](../zsharp), for writing GNOME applications.
 - **`gtk/`**: GTK 4 and libadwaita, two ways that mix.
   - **The libraries themselves**, as modules to call directly: `Gtk4`, `Adw`, `Gio`, `Gdk`,
     `GLib`, `GObject`, `Pango`, `PangoCairo`, `Cairo`, `GdkPixbuf`, `Gsk`, `Graphene`. About
-    16,500 functions, signals, properties and virtual methods, written by a generator from the
+    16,400 functions, signals, properties and virtual methods, written by a generator from the
     libraries' own descriptions (`.gir`), so they are what the C documentation says.
   - **A tree of values** over them (`open Gtk`): a `view` function gives the window for a
     model, and the widgets on screen are changed only where the tree differs.
@@ -40,6 +40,10 @@ let main () = App.run "org.example.Counter" 0 update view
   makes only the rows on screen.
 - **Around any widget:** `Margin`, `Styled` (style classes), `With` (expand, align, size,
   tooltip, disabled, hidden, spacing), `Keyed`.
+- **Every widget GTK and libadwaita have** is there too, through `Ui` and `AdwUi`, written
+  from the libraries' descriptions: `Ui.Calendar.make [ Ui.Calendar.showHeading true;
+  Ui.Calendar.onDaySelected Picked ] []`, with a function for each property and each signal
+  of each of the 166 widget classes, and `In ("start", w)` for a child's place.
 - **`Native`** puts a widget made with the libraries themselves into the tree.
 - **The window** is Adwaita's, with a header bar. Its value also holds the `pages` opened over
   its content, a `sidebar`, the `dialog` over it (`Alert`, `Sheet`, `About`), its `toasts`, its
@@ -85,25 +89,26 @@ Gtk4.Button.onClicked button (fun () -> Gtk4.ListBox.append list row.Widget)
   `Glue.addProperty` and `Glue.addSignal` give it properties and signals that bind and notify
   as GTK's do; `Glue.setTemplate` builds its widgets from a GtkBuilder template.
 - **Deprecated functions and types** are there, their documentation saying so.
+- **How much of the libraries is there** is counted in [gtk/COVERAGE.md](gtk/COVERAGE.md),
+  which `./generate` writes: every type, signal, property and virtual method, and every
+  function but C's functions of variable arguments (`g_object_set`, `g_strdup_printf`), which
+  have no safe form and whose plain counterparts are there (`GObject.Object.setv`, a Z# string
+  with `{…}` in it).
 - **What C alone can vouch for is for `unsafe`.** A raw pointer (`gpointer`) and a C function
   pointer are a `cptr`, and a type GLib can neither copy nor count (a `GTimer`, a class
   structure) is a type of its own over a pointer; a function that takes one is `[<Unsafe>]`,
-  called inside `unsafe`, as it trusts what it's given. So are `ref`, `unref` and `free`:
-  the handles count for themselves, and a program that counts too answers for the count.
-- **C's functions of variable arguments** (`g_object_set`, `g_strdup_printf`) are there as C
-  has them, externs under their C names that take pointers (`Glue.obj`), for code that keeps
-  C's rules itself; each has a plain counterpart beside it (`GObject.Object.setv`, a Z#
-  string with `{…}` in it).
+  called inside `unsafe`, as it trusts what it's given. So are `ref`, `unref` and `free`: the
+  handles count for themselves. About one function in twenty is, nearly all of them GLib's
+  own containers and GObject's type system; of GTK's 8,200 and Adwaita's 2,500, 70 are.
+- **The pointers are the package's own.** C's functions are declared in `gtk/src/internal/`,
+  with the functions that turn a handle into a pointer, where a program that depends on the
+  package can't name them (`tests/sealed.sh` tries). `Glue` is what a program has: `keep`,
+  properties and signals by name, a type of its own, all by a handle's number. A program can
+  still call a C function by its bare C name, as it can declare an extern of its own: that is
+  the language's line between safe code and C, not the package's.
 - **GLib's error** is the record a failed call gives (`Glue.Error`), in a handler's arguments
   too; a `GPtrArray` or a GList is a list, a `GByteArray` an `array<u8>`, and a stream's
   `read` gives the bytes it read.
-- **Nothing the libraries export is left out.** Where a parameter or a result has no shape
-  of its own here (a `va_list`, an in-out string, an array with no length), it is C's
-  pointer, a `cptr`, and the function is `[<Unsafe>]`. The few functions a description lists
-  and its library doesn't have are not there, as there is nothing to call.
-  About one function in twenty is `[<Unsafe>]`, nearly all of them GLib's own containers and
-  GObject's type system; of GTK's 8,200 and Adwaita's 2,500, 70 are.
-  `ZGIR_WHY=1 tools/zs-provider-gir <file.gir>` says what was passed over, and why.
 - **For GNOME on Linux.** That is where it is built and tested. The loop has a second way of
   waiting, through a thread and a pipe, for a system with no epoll, which `./test` runs the
   libraries' tests on too; nothing has been built on another system.
@@ -131,7 +136,8 @@ and a drawing), `plain` (the libraries used directly).
 built on first use, with the compiler from the Z# checkout beside this one (`ZSHARP`, default
 `../zsharp`, built there by `./dev ./test.sh`).
 
-`gtk/src/Gtk4.zs`, `Adw.zs` and the other library modules, and `gtk/c/gen/`, are written by
+`gtk/src/Gtk4.zs`, `Adw.zs` and the other library modules, `Ui.zs` and `AdwUi.zs`, the
+declarations in `gtk/src/internal/`, `gtk/COVERAGE.md` and `gtk/c/gen/` are written by
 `tools/zs-provider-gir` and kept in git, so an editor has their types without running anything.
 They are never edited by hand: `./generate` writes them, and `./test` fails when they are not
 what it would write. cairo's functions, which its description leaves out, are in

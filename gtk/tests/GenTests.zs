@@ -203,16 +203,16 @@ let tests =
         changes.Value <- changes.Value + 1) false
       |> ignore
       Gtk4.Label.setLabel label "b"
-      unsafe (GObject.Object.setData label.Object "mine" (Glue.none ()))
-      expect (changes.Value, Glue.isNull (GObject.Object.getData label.Object "mine")) "(1, true)"
+      unsafe (GObject.Object.setData label.Object "mine" (Ptr.toCPtr (Ptr.null ())))
+      expect (changes.Value, Internal.Raw.isNull (GObject.Object.getData label.Object "mine")) "(1, true)"
       let w = Gtk4.Window.create ()
       Gtk4.Window.setChild w (Some label.Widget)
       Gtk4.Window.destroy w)
     test "a type of the program's own gives an interface's methods: a list model" (fun () ->
       Gtk4.init ()
-      let numbers = Glue.subclass (GObject.g_object_get_type ()) "ZsNumbers"
-      Glue.implement numbers (Gio.g_list_model_get_type ())
-      Gio.ListModel.overrideGetItemType numbers (fun _ -> Gtk4.gtk_string_object_get_type ())
+      let numbers = Glue.subclass (GObject.Object.gtype ()) "ZsNumbers"
+      Glue.implement numbers (Gio.ListModel.gtype ())
+      Gio.ListModel.overrideGetItemType numbers (fun _ -> Gtk4.StringObject.gtype ())
       Gio.ListModel.overrideGetNItems numbers (fun _ -> 3)
       Gio.ListModel.overrideGetItem numbers (fun _ i ->
         Some (Gtk4.StringObject.create $"item {i}").Object)
@@ -234,7 +234,7 @@ let tests =
     test "a widget of the program's own measures and draws itself" (fun () ->
       Gtk4.init ()
       let drawn = ref 0
-      let square = Glue.subclass (Gtk4.gtk_widget_get_type ()) "ZsSquare"
+      let square = Glue.subclass (Gtk4.Widget.gtype ()) "ZsSquare"
       Gtk4.Widget.overrideMeasure square (fun _ _ _ -> (48, 48, -1, -1))
       Gtk4.Widget.overrideSnapshot square (fun widget snapshot ->
         drawn.Value <- drawn.Value + 1
@@ -275,7 +275,7 @@ let tests =
       expect (List.rev log.Value) "[glib timer; task after its sleep; from an idle call]")
     test "a widget type of the program's own is built from a template" (fun () ->
       Gtk4.init ()
-      let card = Glue.subclass (Gtk4.gtk_box_get_type ()) "ZsCard"
+      let card = Glue.subclass (Gtk4.Box.gtype ()) "ZsCard"
       let xml =
         "<interface><template class='ZsCard' parent='GtkBox'><child><object class='GtkLabel' id='title'><property name='label'>From a template</property></object></child></template></interface>"
       Glue.setTemplate card xml
@@ -293,22 +293,21 @@ let tests =
         Gtk4.Window.destroy w)
     test "a type of the program's own has properties and signals of its own" (fun () ->
       Gtk4.init ()
-      let person = Glue.subclass (GObject.g_object_get_type ()) "ZsPerson"
+      let person = Glue.subclass (GObject.Object.gtype ()) "ZsPerson"
       Glue.addProperty person "name" (GObject.typeFromName "gchararray")
       Glue.addProperty person "age" (GObject.typeFromName "gint")
       Glue.addSignal person "greeted" [ GObject.typeFromName "gchararray" ]
       let ada = GObject.Object (Glue.create person)
-      let p = Glue.obj ada.Id (usize 0)
       let seen = ref []
-      Glue.connect p "notify::name" (fun () -> seen.Value <- "name changed" :: seen.Value)
-      Glue.connect p "greeted" (fun () -> seen.Value <- Glue.text (Glue.argPointer 1) :: seen.Value)
-      Glue.setText p "name" "Ada"
-      Glue.setInt p "age" 36
+      Glue.connect ada.Id "notify::name" (fun () -> seen.Value <- "name changed" :: seen.Value)
+      Glue.connect ada.Id "greeted" (fun () -> seen.Value <- unsafe (Glue.argText 1) :: seen.Value)
+      Glue.setText ada.Id "name" "Ada"
+      Glue.setInt ada.Id "age" 36
       let words = GObject.Value.create ()
       GObject.Value.init words (GObject.typeFromName "gchararray") |> ignore
       GObject.Value.setString words (Some "hello")
-      Glue.emitValues p "greeted" [ Glue.obj words.Id (GObject.g_value_get_type ()) ]
-      expect (Glue.getText p "name", Glue.getInt p "age", List.rev seen.Value) "(Some Ada, 36, [name changed; hello])"
+      Glue.emitValues ada.Id "greeted" [ words.Id ]
+      expect (Glue.getText ada.Id "name", Glue.getInt ada.Id "age", List.rev seen.Value) "(Some Ada, 36, [name changed; hello])"
       // a binding carries it to a label, as it would a property of GTK's
       let label = Gtk4.Label.create None
       GObject.Object.bindProperty ada "name" label.Object "label" GObject.BindingFlags.syncCreate
@@ -373,11 +372,11 @@ let tests =
       Gio.File.delete file None |> ignore
       Gtk4.init ()
       // a type is known once it has been asked for
-      let toggle = Gtk4.gtk_toggle_button_get_type ()
-      let kinds = GObject.typeChildren (Gtk4.gtk_button_get_type ())
+      let toggle = Gtk4.ToggleButton.gtype ()
+      let kinds = GObject.typeChildren (Gtk4.Button.gtype ())
       expect (List.exists (fun t -> t = toggle) kinds) "true")
-    test "a C function of variable arguments is there as C has it, and so is a count's unref" (fun () ->
-      expect (Glue.takeText (GLib.g_strdup_printf "%d-%s" (i32 7) "x")) "7-x"
+    test "a C function of variable arguments is the package's own, and a count's unref is for unsafe code" (fun () ->
+      expect (Internal.Raw.takeText (Internal.GLibC.g_strdup_printf "%d-%s" (i32 7) "x")) "7-x"
       Gtk4.init ()
       // a reference taken by hand is given back by hand: the program answers for the count
       let label = Gtk4.Label.create (Some "counted")
@@ -399,4 +398,54 @@ let tests =
       let w = Gtk4.Window.create ()
       Gtk4.Window.setChild w (Some entry.Widget)
       Gtk4.Window.destroy w)
+    test "a window destroyed while a list still holds it is itself when read back" (fun () ->
+      Gtk4.init ()
+      let store = Gio.ListStore.create (Gtk4.Window.gtype ())
+      let first = Gtk4.Window.create ()
+      Gtk4.Window.setTitle first (Some "one")
+      Gio.ListStore.append store first.Object
+      Gtk4.Window.destroy first
+      // the next object made takes the place the first one's entry had
+      let second = Gtk4.Window.create ()
+      Gtk4.Window.setTitle second (Some "two")
+      let back = Option.bind Gtk4.Window.cast (Gio.ListModel.getItem store.ListModel 0)
+      let title = Option.bind Gtk4.Window.getTitle back
+      expect (title, Option.map (fun (w: Gtk4.Window) -> w.Id = second.Id) back) "(Some one, Some false)"
+      Gtk4.Window.destroy second
+      Glue.drain ())
+    test "what a virtual method gives C to borrow outlives the handler that made it" (fun () ->
+      let action = Glue.subclass (GObject.Object.gtype ()) "ZsAction"
+      Glue.implement action (Gio.Action.gtype ())
+      Gio.Action.overrideGetParameterType action (fun _ -> Some (GLib.VariantType.create "a{sv}"))
+      Gio.Action.overrideGetName action (fun _ -> "made-in-the-handler")
+      match Gio.Action.cast (GObject.Object (Glue.create action)) with
+      | None -> expect "no action" "an action"
+      | Some a ->
+        let kind = Gio.Action.getParameterType a |> Option.map GLib.VariantType.dupString
+        expect (kind, Gio.Action.getName a) "(Some a{sv}, made-in-the-handler)"
+      Glue.drain ()
+      Glue.dropOverrides ())
+    test "what a task makes is good across its waits, and goes when no task runs" (fun () ->
+      Gtk4.init ()
+      let finished = ref false
+      let ids = ref []
+      let during = ref (false, 0)
+      Loop.runWhile (fun () -> not finished.Value) (fun () ->
+        Loop.start (
+          task {
+            let before = Gio.SimpleAction.create "before" None
+            do! Task.sleep 10
+            let rec make (n: int) : Task<unit> =
+              task {
+                if n > 0 then
+                  ids.Value <- (Gio.SimpleAction.create "x" None).Id :: ids.Value
+                  do! Task.sleep 1
+                  return! make (n - 1)
+              }
+            do! make 20
+            during.Value <- (Glue.alive before.Id, List.length (List.filter Glue.alive ids.Value))
+            finished.Value <- true
+          }
+        ))
+      expect (during.Value, List.length (List.filter Glue.alive ids.Value)) "((true, 20), 0)")
   ]

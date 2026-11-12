@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 ./dev sh -c 'set -e
   d=$(mktemp -d); trap "rm -rf $d" EXIT
   tools/generate.sh "$d" 2>/dev/null
-  for f in $(cd "$d" && ls src/*.zs c/gen/*.c); do
+  for f in $(cd "$d" && ls src/*.zs src/internal/*.zs c/gen/*.c COVERAGE.md); do
     diff -q "$d/$f" "gtk/$f" >/dev/null || { echo "gtk/$f is stale: run ./generate"; exit 1; }
   done
   (cd signals && ZS_LEAKCHECK=1 timeout 300 zs test --strict)
@@ -15,4 +15,6 @@ cd "$(dirname "$0")"
   (cd gtk && ZGTK_LOOP_THREAD=1 GSK_RENDERER=cairo GDK_DISABLE=gl,vulkan GTK_A11Y=none ZS_LEAKCHECK=1 timeout 600 xvfb-run -a zs test --strict tests/GenTests.zs)
   # a window clicked and typed in through the display, as a user would
   (cd gtk && timeout 120 tests/e2e.sh | diff - tests/e2e.expected && echo "ok   e2e: clicks, keys and a shortcut reach update")
+  # a program that depends on the package reaches no pointer of it
+  (cd gtk && timeout 600 tests/sealed.sh | diff - tests/sealed.expected && echo "ok   sealed: a dependent program is refused the pointers and C functions")
   for e in examples/*/; do (cd "$e" && timeout 300 zs build --strict); done'

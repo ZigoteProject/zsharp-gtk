@@ -5,115 +5,151 @@
 gsize zgtk_type_Gsk_BlendNode(void) { return gsk_blend_node_get_type(); }
 gint64 zgtk_wrap_Gsk_BlendNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_blend_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_BlendNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_BlendNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_BlurNode(void) { return gsk_blur_node_get_type(); }
 gint64 zgtk_wrap_Gsk_BlurNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_blur_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_BlurNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_BlurNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_BorderNode(void) { return gsk_border_node_get_type(); }
 gint64 zgtk_wrap_Gsk_BorderNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_border_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_BorderNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_BorderNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_CairoNode(void) { return gsk_cairo_node_get_type(); }
 gint64 zgtk_wrap_Gsk_CairoNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_cairo_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_CairoNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_CairoNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_ClipNode(void) { return gsk_clip_node_get_type(); }
 gint64 zgtk_wrap_Gsk_ClipNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_clip_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_ClipNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_ClipNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_ColorMatrixNode(void) { return gsk_color_matrix_node_get_type(); }
 gint64 zgtk_wrap_Gsk_ColorMatrixNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_color_matrix_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_ColorMatrixNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_ColorMatrixNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_ColorNode(void) { return gsk_color_node_get_type(); }
 gint64 zgtk_wrap_Gsk_ColorNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_color_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_ColorNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_ColorNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_tag_Gsk_ColorStop(void) { static char tag; return (gsize)&tag; }
 gsize zgtk_type_Gsk_ComponentTransferNode(void) { return gsk_component_transfer_node_get_type(); }
 gint64 zgtk_wrap_Gsk_ComponentTransferNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_component_transfer_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_ComponentTransferNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_ComponentTransferNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_CompositeNode(void) { return gsk_composite_node_get_type(); }
 gint64 zgtk_wrap_Gsk_CompositeNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_composite_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_CompositeNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_CompositeNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_ConicGradientNode(void) { return gsk_conic_gradient_node_get_type(); }
 gint64 zgtk_wrap_Gsk_ConicGradientNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_conic_gradient_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_ConicGradientNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_ConicGradientNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_ContainerNode(void) { return gsk_container_node_get_type(); }
 gint64 zgtk_wrap_Gsk_ContainerNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_container_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_ContainerNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_ContainerNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_CopyNode(void) { return gsk_copy_node_get_type(); }
 gint64 zgtk_wrap_Gsk_CopyNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_copy_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_CopyNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_CopyNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_CrossFadeNode(void) { return gsk_cross_fade_node_get_type(); }
 gint64 zgtk_wrap_Gsk_CrossFadeNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_cross_fade_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_CrossFadeNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_CrossFadeNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_DebugNode(void) { return gsk_debug_node_get_type(); }
 gint64 zgtk_wrap_Gsk_DebugNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_debug_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_DebugNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_DebugNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_FillNode(void) { return gsk_fill_node_get_type(); }
 gint64 zgtk_wrap_Gsk_FillNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_fill_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_FillNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_FillNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_GLShaderNode(void) { return gsk_gl_shader_node_get_type(); }
 gint64 zgtk_wrap_Gsk_GLShaderNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_gl_shader_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_GLShaderNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_GLShaderNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_InsetShadowNode(void) { return gsk_inset_shadow_node_get_type(); }
 gint64 zgtk_wrap_Gsk_InsetShadowNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_inset_shadow_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_InsetShadowNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_InsetShadowNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_IsolationNode(void) { return gsk_isolation_node_get_type(); }
 gint64 zgtk_wrap_Gsk_IsolationNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_isolation_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_IsolationNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_IsolationNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_LinearGradientNode(void) { return gsk_linear_gradient_node_get_type(); }
 gint64 zgtk_wrap_Gsk_LinearGradientNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_linear_gradient_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_LinearGradientNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_LinearGradientNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_MaskNode(void) { return gsk_mask_node_get_type(); }
 gint64 zgtk_wrap_Gsk_MaskNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_mask_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_MaskNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_MaskNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_OpacityNode(void) { return gsk_opacity_node_get_type(); }
 gint64 zgtk_wrap_Gsk_OpacityNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_opacity_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_OpacityNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_OpacityNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_OutsetShadowNode(void) { return gsk_outset_shadow_node_get_type(); }
 gint64 zgtk_wrap_Gsk_OutsetShadowNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_outset_shadow_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_OutsetShadowNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_OutsetShadowNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_tag_Gsk_ParseLocation(void) { static char tag; return (gsize)&tag; }
 gsize zgtk_type_Gsk_PasteNode(void) { return gsk_paste_node_get_type(); }
 gint64 zgtk_wrap_Gsk_PasteNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_paste_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_PasteNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_PasteNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_RadialGradientNode(void) { return gsk_radial_gradient_node_get_type(); }
 gint64 zgtk_wrap_Gsk_RadialGradientNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_radial_gradient_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_RadialGradientNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_RadialGradientNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_RenderNode(void) { return gsk_render_node_get_type(); }
 gint64 zgtk_wrap_Gsk_RenderNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_render_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_RenderNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_RenderNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_RepeatNode(void) { return gsk_repeat_node_get_type(); }
 gint64 zgtk_wrap_Gsk_RepeatNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_repeat_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_RepeatNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_RepeatNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_RepeatingLinearGradientNode(void) { return gsk_repeating_linear_gradient_node_get_type(); }
 gint64 zgtk_wrap_Gsk_RepeatingLinearGradientNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_repeating_linear_gradient_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_RepeatingLinearGradientNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_RepeatingLinearGradientNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_RepeatingRadialGradientNode(void) { return gsk_repeating_radial_gradient_node_get_type(); }
 gint64 zgtk_wrap_Gsk_RepeatingRadialGradientNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_repeating_radial_gradient_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_RepeatingRadialGradientNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_RepeatingRadialGradientNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_RoundedClipNode(void) { return gsk_rounded_clip_node_get_type(); }
 gint64 zgtk_wrap_Gsk_RoundedClipNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_rounded_clip_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_RoundedClipNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_RoundedClipNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_tag_Gsk_RoundedRect(void) { static char tag; return (gsize)&tag; }
 gsize zgtk_tag_Gsk_Shadow(void) { static char tag; return (gsize)&tag; }
 gsize zgtk_type_Gsk_ShadowNode(void) { return gsk_shadow_node_get_type(); }
 gint64 zgtk_wrap_Gsk_ShadowNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_shadow_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_ShadowNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_ShadowNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_StrokeNode(void) { return gsk_stroke_node_get_type(); }
 gint64 zgtk_wrap_Gsk_StrokeNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_stroke_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_StrokeNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_StrokeNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_SubsurfaceNode(void) { return gsk_subsurface_node_get_type(); }
 gint64 zgtk_wrap_Gsk_SubsurfaceNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_subsurface_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_SubsurfaceNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_SubsurfaceNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_TextNode(void) { return gsk_text_node_get_type(); }
 gint64 zgtk_wrap_Gsk_TextNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_text_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_TextNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_TextNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_TextureNode(void) { return gsk_texture_node_get_type(); }
 gint64 zgtk_wrap_Gsk_TextureNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_texture_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_TextureNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_TextureNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_TextureScaleNode(void) { return gsk_texture_scale_node_get_type(); }
 gint64 zgtk_wrap_Gsk_TextureScaleNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_texture_scale_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_TextureScaleNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_TextureScaleNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 gsize zgtk_type_Gsk_TransformNode(void) { return gsk_transform_node_get_type(); }
 gint64 zgtk_wrap_Gsk_TransformNode(void *p, int full) { return zgtk_wrap_counted(p, gsk_transform_node_get_type(), (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref, full); }
 void *zgtk_give_Gsk_TransformNode(void *p) { return p ? gsk_render_node_ref(p) : NULL; }
+void *zgtk_lend_Gsk_TransformNode(void *p) { return zgtk_lend_counted(p, (void *(*)(void *))gsk_render_node_ref, (void (*)(void *))gsk_render_node_unref); }
 static void tramp_Gsk_ParseErrorFunc(const GskParseLocation* a0, const GskParseLocation* a1, const GError* a2, gpointer a3) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 4;
     c.args[0].p = (void *)a0;
