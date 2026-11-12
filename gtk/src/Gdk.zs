@@ -1,0 +1,14124 @@
+// provided by gir 2 from Gdk-4.0.gir
+// input: /usr/share/gir-1.0/Gdk-4.0.gir
+// input: /usr/share/gir-1.0/GdkPixbuf-2.0.gir
+// input: /usr/share/gir-1.0/GModule-2.0.gir
+// input: /usr/share/gir-1.0/GLib-2.0.gir
+// input: /usr/share/gir-1.0/Gio-2.0.gir
+// input: /usr/share/gir-1.0/GObject-2.0.gir
+// input: /usr/share/gir-1.0/Pango-1.0.gir
+// input: /usr/share/gir-1.0/HarfBuzz-0.0.gir
+// input: /usr/share/gir-1.0/freetype2-2.0.gir
+// input: /usr/share/gir-1.0/cairo-1.0.gir
+// input: /usr/share/gir-1.0/PangoCairo-1.0.gir
+// Gdk 4.0. A class, an interface or a boxed record is a handle of its own type; see Glue
+// for how long a handle is good and what happens to one that isn't.
+
+extern gdk_app_launch_context_get_type : unit -> usize
+extern gdk_draw_context_get_type : unit -> usize
+extern gdk_cairo_context_get_type : unit -> usize
+extern gdk_cicp_params_get_type : unit -> usize
+extern gdk_clipboard_get_type : unit -> usize
+extern gdk_color_state_get_type : unit -> usize
+extern gdk_content_deserializer_get_type : unit -> usize
+extern gdk_content_formats_get_type : unit -> usize
+extern gdk_content_formats_builder_get_type : unit -> usize
+extern gdk_content_provider_get_type : unit -> usize
+extern gdk_content_serializer_get_type : unit -> usize
+extern gdk_cursor_get_type : unit -> usize
+extern gdk_device_get_type : unit -> usize
+extern gdk_device_pad_get_type : unit -> usize
+extern gdk_device_tool_get_type : unit -> usize
+extern gdk_display_get_type : unit -> usize
+extern gdk_display_manager_get_type : unit -> usize
+extern gdk_dmabuf_formats_get_type : unit -> usize
+extern gdk_paintable_get_type : unit -> usize
+extern gdk_texture_get_type : unit -> usize
+extern gdk_dmabuf_texture_get_type : unit -> usize
+extern gdk_dmabuf_texture_builder_get_type : unit -> usize
+extern gdk_drag_get_type : unit -> usize
+extern gdk_drag_surface_get_type : unit -> usize
+extern gdk_drag_surface_size_get_type : unit -> usize
+extern gdk_drop_get_type : unit -> usize
+extern zgtk_type_Gdk_Event : unit -> usize
+extern zgtk_wrap_Gdk_Event : cptr -> i32 -> int
+extern zgtk_give_Gdk_Event : cptr -> cptr
+extern gdk_event_sequence_get_type : unit -> usize
+extern gdk_file_list_get_type : unit -> usize
+extern gdk_frame_clock_get_type : unit -> usize
+extern gdk_frame_timings_get_type : unit -> usize
+extern gdk_gl_context_get_type : unit -> usize
+extern gdk_gl_texture_get_type : unit -> usize
+extern gdk_gl_texture_builder_get_type : unit -> usize
+extern zgtk_tag_Gdk_KeymapKey : unit -> usize
+extern zgtk_sizeof_Gdk_KeymapKey : unit -> usize
+extern gdk_memory_texture_get_type : unit -> usize
+extern gdk_memory_texture_builder_get_type : unit -> usize
+extern gdk_monitor_get_type : unit -> usize
+extern gdk_popup_get_type : unit -> usize
+extern gdk_popup_layout_get_type : unit -> usize
+extern gdk_rgba_get_type : unit -> usize
+extern zgtk_sizeof_Gdk_RGBA : unit -> usize
+extern gdk_rectangle_get_type : unit -> usize
+extern zgtk_sizeof_Gdk_Rectangle : unit -> usize
+extern gdk_seat_get_type : unit -> usize
+extern gdk_snapshot_get_type : unit -> usize
+extern gdk_surface_get_type : unit -> usize
+extern gdk_texture_downloader_get_type : unit -> usize
+extern zgtk_tag_Gdk_TimeCoord : unit -> usize
+extern zgtk_sizeof_Gdk_TimeCoord : unit -> usize
+extern gdk_toplevel_get_type : unit -> usize
+extern gdk_toplevel_layout_get_type : unit -> usize
+extern gdk_toplevel_size_get_type : unit -> usize
+extern gdk_vulkan_context_get_type : unit -> usize
+extern zgtk_tramp_Gdk_CursorGetTextureCallback : unit -> cptr
+extern zgtk_tramp_Gdk_CursorGetTextureCallback_once : unit -> cptr
+
+/// Positioning hints for aligning a surface relative to a rectangle.
+type AnchorHints =
+  | AnchorHints of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | AnchorHints v -> v
+
+/// Flags describing the current capabilities of a device/tool.
+type AxisFlags =
+  | AxisFlags of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | AxisFlags v -> v
+
+/// Defines how device axes are interpreted by GTK.
+type AxisUse =
+  | AxisUse of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | AxisUse v -> v
+
+/// The values of this enumeration describe whether image data uses the full range of 8-bit values.
+type CicpRange =
+  | CicpRange of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | CicpRange v -> v
+
+/// Enumerates the color channels of RGBA values as used in `GdkColor` and OpenGL/Vulkan shaders.
+type ColorChannel =
+  | ColorChannel of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | ColorChannel v -> v
+
+/// Specifies the crossing mode for enter and leave events.
+type CrossingMode =
+  | CrossingMode of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | CrossingMode v -> v
+
+/// A pad feature.
+type DevicePadFeature =
+  | DevicePadFeature of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | DevicePadFeature v -> v
+
+/// Indicates the specific type of tool being used being a tablet.
+type DeviceToolType =
+  | DeviceToolType of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | DeviceToolType v -> v
+
+/// Error enumeration for `GdkDmabufTexture`.
+type DmabufError =
+  | DmabufError of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | DmabufError v -> v
+
+/// Used in `GdkDrop` and `GdkDrag` to indicate the actions that the destination can and should do with the dropped data.
+type DragAction =
+  | DragAction of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | DragAction v -> v
+
+/// Used in `GdkDrag` to the reason of a cancelled DND operation.
+type DragCancelReason =
+  | DragCancelReason of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | DragCancelReason v -> v
+
+/// Specifies the type of the event.
+type EventType =
+  | EventType of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | EventType v -> v
+
+/// Used to represent the different paint clock phases that can be requested.
+type FrameClockPhase =
+  | FrameClockPhase of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | FrameClockPhase v -> v
+
+/// Indicates which monitor a surface should span over when in fullscreen mode.
+type FullscreenMode =
+  | FullscreenMode of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | FullscreenMode v -> v
+
+/// The list of the different APIs that GdkGLContext can potentially support.
+type GLAPI =
+  | GLAPI of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | GLAPI v -> v
+
+/// Error enumeration for `GdkGLContext`.
+type GLError =
+  | GLError of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | GLError v -> v
+
+/// Defines the reference point of a surface and is used in `GdkPopupLayout`.
+type Gravity =
+  | Gravity of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | Gravity v -> v
+
+/// An enumeration describing the type of an input device in general terms.
+type InputSource =
+  | InputSource of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | InputSource v -> v
+
+/// Describes how well an event matches a given keyval and modifiers.
+type KeyMatch =
+  | KeyMatch of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | KeyMatch v -> v
+
+/// Describes formats that image data can have in memory.
+type MemoryFormat =
+  | MemoryFormat of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | MemoryFormat v -> v
+
+/// Flags to indicate the state of modifier keys and mouse buttons in events.
+type ModifierType =
+  | ModifierType of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | ModifierType v -> v
+
+/// Specifies the kind of crossing for enter and leave events.
+type NotifyType =
+  | NotifyType of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | NotifyType v -> v
+
+/// Flags about a paintable object.
+type PaintableFlags =
+  | PaintableFlags of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | PaintableFlags v -> v
+
+/// Specifies the direction for scroll events.
+type ScrollDirection =
+  | ScrollDirection of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | ScrollDirection v -> v
+
+/// Used in scroll events, to announce the direction relative to physical motion.
+type ScrollRelativeDirection =
+  | ScrollRelativeDirection of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | ScrollRelativeDirection v -> v
+
+/// Specifies the unit of scroll deltas.
+type ScrollUnit =
+  | ScrollUnit of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | ScrollUnit v -> v
+
+/// Flags describing the seat capabilities.
+type SeatCapabilities =
+  | SeatCapabilities of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | SeatCapabilities v -> v
+
+/// This enumeration describes how the red, green and blue components of physical pixels on an output device are laid out.
+type SubpixelLayout =
+  | SubpixelLayout of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | SubpixelLayout v -> v
+
+/// Determines a surface edge or corner.
+type SurfaceEdge =
+  | SurfaceEdge of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | SurfaceEdge v -> v
+
+/// Possible errors that can be returned by `GdkTexture` constructors.
+type TextureError =
+  | TextureError of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | TextureError v -> v
+
+/// The kind of title bar gesture to emit with [method@Gdk.Toplevel.titlebar_gesture].
+type TitlebarGesture =
+  | TitlebarGesture of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | TitlebarGesture v -> v
+
+/// Reflects what features a `GdkToplevel` supports.
+type ToplevelCapabilities =
+  | ToplevelCapabilities of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | ToplevelCapabilities v -> v
+
+/// Specifies the state of a toplevel surface.
+type ToplevelState =
+  | ToplevelState of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | ToplevelState v -> v
+
+/// Specifies the current state of a touchpad gesture.
+type TouchpadGesturePhase =
+  | TouchpadGesturePhase of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | TouchpadGesturePhase v -> v
+
+/// Error enumeration for `GdkVulkanContext`.
+type VulkanError =
+  | VulkanError of int
+
+  /// C's value.
+  member x.Int =
+    match x with
+    | VulkanError v -> v
+
+/// Handles launching an application in a graphical context.
+type AppLaunchContext =
+  | AppLaunchContext of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | AppLaunchContext v -> v
+
+  /// The same object as its ancestor.
+  member x.GioAppLaunchContext = Gio.AppLaunchContext x.Id
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// An event related to a button on a pointer device.
+type ButtonEvent =
+  | ButtonEvent of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | ButtonEvent p -> p
+
+/// Base class for objects implementing different rendering methods.
+type DrawContext =
+  | DrawContext of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | DrawContext v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// Represents the platform-specific draw context.
+type CairoContext =
+  | CairoContext of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | CairoContext v -> v
+
+  /// The same object as its ancestor.
+  member x.DrawContext = DrawContext x.Id
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// Contains the parameters that define a colorstate with cicp parameters.
+type CicpParams =
+  | CicpParams of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | CicpParams v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// `GdkCicpParamsClass`.
+type CicpParamsClass =
+  | CicpParamsClass of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | CicpParamsClass p -> p
+
+/// Represents data shared between applications or inside an application.
+type Clipboard =
+  | Clipboard of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Clipboard v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// Provides information to interpret colors and pixels in a variety of ways.
+type ColorState =
+  | ColorState of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | ColorState v -> v
+
+/// Deserializes content received via inter-application data transfers.
+type ContentDeserializer =
+  | ContentDeserializer of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | ContentDeserializer v -> v
+
+  /// The same object as its interface.
+  member x.AsyncResult = Gio.AsyncResult x.Id
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// Used to advertise and negotiate the format of content.
+type ContentFormats =
+  | ContentFormats of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | ContentFormats v -> v
+
+/// Creates `GdkContentFormats` objects.
+type ContentFormatsBuilder =
+  | ContentFormatsBuilder of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | ContentFormatsBuilder v -> v
+
+/// Provides content for the clipboard or for drag-and-drop operations in a number of formats.
+type ContentProvider =
+  | ContentProvider of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | ContentProvider v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// Class structure for `GdkContentProvider`.
+type ContentProviderClass =
+  | ContentProviderClass of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | ContentProviderClass p -> p
+
+/// Serializes content for inter-application data transfers.
+type ContentSerializer =
+  | ContentSerializer of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | ContentSerializer v -> v
+
+  /// The same object as its interface.
+  member x.AsyncResult = Gio.AsyncResult x.Id
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// An event caused by a pointing device moving between surfaces.
+type CrossingEvent =
+  | CrossingEvent of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | CrossingEvent p -> p
+
+/// Used to create and destroy cursors.
+type Cursor =
+  | Cursor of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Cursor v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// An event related to drag and drop operations.
+type DNDEvent =
+  | DNDEvent of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | DNDEvent p -> p
+
+/// An event related to closing a top-level surface.
+type DeleteEvent =
+  | DeleteEvent of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | DeleteEvent p -> p
+
+/// Represents an input device, such as a keyboard, mouse or touchpad.
+type Device =
+  | Device of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Device v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// An interface for tablet pad devices.
+type DevicePad =
+  | DevicePad of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | DevicePad v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// `GdkDevicePadInterface`.
+type DevicePadInterface =
+  | DevicePadInterface of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | DevicePadInterface p -> p
+
+/// A physical tool associated to a `GdkDevice`.
+type DeviceTool =
+  | DeviceTool of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | DeviceTool v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// A representation of a workstation.
+type Display =
+  | Display of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Display v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// Offers notification when displays appear or disappear.
+type DisplayManager =
+  | DisplayManager of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | DisplayManager v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// Provides information about supported DMA buffer formats.
+type DmabufFormats =
+  | DmabufFormats of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | DmabufFormats v -> v
+
+/// An interface for content that can be painted.
+type Paintable =
+  | Paintable of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Paintable v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// Refers to pixel data in various forms.
+type Texture =
+  | Texture of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Texture v -> v
+
+  /// The same object as its interface.
+  member x.Paintable = Paintable x.Id
+
+  /// The same object as its interface.
+  member x.Icon = Gio.Icon x.Id
+
+  /// The same object as its interface.
+  member x.LoadableIcon = Gio.LoadableIcon x.Id
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// A `GdkTexture` representing a DMA buffer.
+type DmabufTexture =
+  | DmabufTexture of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | DmabufTexture v -> v
+
+  /// The same object as its interface.
+  member x.Paintable = Paintable x.Id
+
+  /// The same object as its interface.
+  member x.Icon = Gio.Icon x.Id
+
+  /// The same object as its interface.
+  member x.LoadableIcon = Gio.LoadableIcon x.Id
+
+  /// The same object as its ancestor.
+  member x.Texture = Texture x.Id
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// Constructs [class@Gdk.Texture] objects from DMA buffers.
+type DmabufTextureBuilder =
+  | DmabufTextureBuilder of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | DmabufTextureBuilder v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// `GdkDmabufTextureBuilderClass`.
+type DmabufTextureBuilderClass =
+  | DmabufTextureBuilderClass of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | DmabufTextureBuilderClass p -> p
+
+/// `GdkDmabufTextureClass`.
+type DmabufTextureClass =
+  | DmabufTextureClass of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | DmabufTextureClass p -> p
+
+/// Represents the source of an ongoing DND operation.
+type Drag =
+  | Drag of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Drag v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// A surface that is used during DND.
+type DragSurface =
+  | DragSurface of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | DragSurface v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// The `GdkDragSurfaceInterface` implementation is private to GDK.
+type DragSurfaceInterface =
+  | DragSurfaceInterface of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | DragSurfaceInterface p -> p
+
+/// Contains information that is useful to compute the size of a drag surface.
+type DragSurfaceSize =
+  | DragSurfaceSize of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | DragSurfaceSize v -> v
+
+/// Represents the target of an ongoing DND operation.
+type Drop =
+  | Drop of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Drop v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// Represents windowing system events.
+type Event =
+  | Event of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Event v -> v
+
+/// An opaque type representing a sequence of related events.
+type EventSequence =
+  | EventSequence of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | EventSequence v -> v
+
+/// An opaque type representing a list of files.
+type FileList =
+  | FileList of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | FileList v -> v
+
+/// An event related to a keyboard focus change.
+type FocusEvent =
+  | FocusEvent of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | FocusEvent p -> p
+
+/// Tells the application when to update and repaint a surface.
+type FrameClock =
+  | FrameClock of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | FrameClock v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// `GdkFrameClockClass`.
+type FrameClockClass =
+  | FrameClockClass of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | FrameClockClass p -> p
+
+/// `GdkFrameClockPrivate`.
+type FrameClockPrivate =
+  | FrameClockPrivate of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | FrameClockPrivate p -> p
+
+/// Holds timing information for a single frame of the application’s displays.
+type FrameTimings =
+  | FrameTimings of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | FrameTimings v -> v
+
+/// Represents a platform-specific OpenGL draw context.
+type GLContext =
+  | GLContext of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | GLContext v -> v
+
+  /// The same object as its ancestor.
+  member x.DrawContext = DrawContext x.Id
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// A `GdkTexture` representing a GL texture object.
+type GLTexture =
+  | GLTexture of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | GLTexture v -> v
+
+  /// The same object as its interface.
+  member x.Paintable = Paintable x.Id
+
+  /// The same object as its interface.
+  member x.Icon = Gio.Icon x.Id
+
+  /// The same object as its interface.
+  member x.LoadableIcon = Gio.LoadableIcon x.Id
+
+  /// The same object as its ancestor.
+  member x.Texture = Texture x.Id
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// Constructs [class@Gdk.Texture] objects from GL textures.
+type GLTextureBuilder =
+  | GLTextureBuilder of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | GLTextureBuilder v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// `GdkGLTextureBuilderClass`.
+type GLTextureBuilderClass =
+  | GLTextureBuilderClass of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | GLTextureBuilderClass p -> p
+
+/// `GdkGLTextureClass`.
+type GLTextureClass =
+  | GLTextureClass of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | GLTextureClass p -> p
+
+/// An event related to a broken windowing system grab.
+type GrabBrokenEvent =
+  | GrabBrokenEvent of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | GrabBrokenEvent p -> p
+
+/// An event related to a key-based device.
+type KeyEvent =
+  | KeyEvent of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | KeyEvent p -> p
+
+/// Represents a hardware key that can be mapped to a keyval.
+type KeymapKey =
+  | KeymapKey of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | KeymapKey v -> v
+
+/// A `GdkTexture` representing image data in memory.
+type MemoryTexture =
+  | MemoryTexture of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | MemoryTexture v -> v
+
+  /// The same object as its interface.
+  member x.Paintable = Paintable x.Id
+
+  /// The same object as its interface.
+  member x.Icon = Gio.Icon x.Id
+
+  /// The same object as its interface.
+  member x.LoadableIcon = Gio.LoadableIcon x.Id
+
+  /// The same object as its ancestor.
+  member x.Texture = Texture x.Id
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// Constructs [class@Gdk.Texture] objects from system memory provided via [struct@GLib.Bytes].
+type MemoryTextureBuilder =
+  | MemoryTextureBuilder of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | MemoryTextureBuilder v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// `GdkMemoryTextureBuilderClass`.
+type MemoryTextureBuilderClass =
+  | MemoryTextureBuilderClass of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | MemoryTextureBuilderClass p -> p
+
+/// `GdkMemoryTextureClass`.
+type MemoryTextureClass =
+  | MemoryTextureClass of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | MemoryTextureClass p -> p
+
+/// Represents the individual outputs that are associated with a `GdkDisplay`.
+type Monitor =
+  | Monitor of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Monitor v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// `GdkMonitorClass`.
+type MonitorClass =
+  | MonitorClass of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | MonitorClass p -> p
+
+/// An event related to a pointer or touch device motion.
+type MotionEvent =
+  | MotionEvent of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | MotionEvent p -> p
+
+/// An event related to a pad-based device.
+type PadEvent =
+  | PadEvent of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | PadEvent p -> p
+
+/// The list of functions that can be implemented for the `GdkPaintable` interface.
+type PaintableInterface =
+  | PaintableInterface of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | PaintableInterface p -> p
+
+/// A surface that is attached to another surface.
+type Popup =
+  | Popup of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Popup v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// `GdkPopupInterface`.
+type PopupInterface =
+  | PopupInterface of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | PopupInterface p -> p
+
+/// Contains information that is necessary position a [iface@Gdk.Popup] relative to its parent.
+type PopupLayout =
+  | PopupLayout of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | PopupLayout v -> v
+
+/// An event related to the proximity of a tool to a device.
+type ProximityEvent =
+  | ProximityEvent of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | ProximityEvent p -> p
+
+/// Represents a color, in a way that is compatible with cairo’s notion of color.
+type RGBA =
+  | RGBA of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | RGBA v -> v
+
+/// Represents a rectangle.
+type Rectangle =
+  | Rectangle of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Rectangle v -> v
+
+/// An event related to a scrolling motion.
+type ScrollEvent =
+  | ScrollEvent of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | ScrollEvent p -> p
+
+/// Represents a collection of input devices that belong to a user.
+type Seat =
+  | Seat of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Seat v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// Base type for snapshot operations.
+type Snapshot =
+  | Snapshot of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Snapshot v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// `GdkSnapshotClass`.
+type SnapshotClass =
+  | SnapshotClass of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | SnapshotClass p -> p
+
+/// Represents a rectangular region on the screen.
+type Surface =
+  | Surface of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Surface v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// `GdkSurfaceClass`.
+type SurfaceClass =
+  | SurfaceClass of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | SurfaceClass p -> p
+
+/// `GdkTextureClass`.
+type TextureClass =
+  | TextureClass of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | TextureClass p -> p
+
+/// Used to download the contents of a [class@Gdk.Texture].
+type TextureDownloader =
+  | TextureDownloader of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | TextureDownloader v -> v
+
+/// Stores a single event in a motion history.
+type TimeCoord =
+  | TimeCoord of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | TimeCoord v -> v
+
+/// A freestanding toplevel surface.
+type Toplevel =
+  | Toplevel of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | Toplevel v -> v
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+/// `GdkToplevelInterface`.
+type ToplevelInterface =
+  | ToplevelInterface of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | ToplevelInterface p -> p
+
+/// Contains information that is necessary to present a sovereign window on screen.
+type ToplevelLayout =
+  | ToplevelLayout of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | ToplevelLayout v -> v
+
+/// Contains information that is useful to compute the size of a toplevel.
+type ToplevelSize =
+  | ToplevelSize of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | ToplevelSize v -> v
+
+/// An event related to a touch-based device.
+type TouchEvent =
+  | TouchEvent of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | TouchEvent p -> p
+
+/// An event related to a gesture on a touchpad device.
+type TouchpadEvent =
+  | TouchpadEvent of cptr
+
+  /// C's pointer, which functions marked `[<Unsafe>]` trust.
+  member x.Ptr =
+    match x with
+    | TouchpadEvent p -> p
+
+/// Deprecated. Represents the platform-specific Vulkan draw context.
+type VulkanContext =
+  | VulkanContext of int
+
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
+    match x with
+    | VulkanContext v -> v
+
+  /// The same object as its ancestor.
+  member x.DrawContext = DrawContext x.Id
+
+  /// The same object as its ancestor.
+  member x.Object = GObject.Object x.Id
+
+module AnchorHints =
+  /// allow flipping anchors horizontally
+  let flipX = AnchorHints 1
+
+  /// allow flipping anchors vertically
+  let flipY = AnchorHints 2
+
+  /// allow sliding surface horizontally
+  let slideX = AnchorHints 4
+
+  /// allow sliding surface vertically
+  let slideY = AnchorHints 8
+
+  /// allow resizing surface horizontally
+  let resizeX = AnchorHints 16
+
+  /// allow resizing surface vertically
+  let resizeY = AnchorHints 32
+
+  /// allow flipping anchors on both axes
+  let flip = AnchorHints 3
+
+  /// allow sliding surface on both axes
+  let slide = AnchorHints 12
+
+  /// allow resizing surface on both axes
+  let resize = AnchorHints 48
+
+module AxisFlags =
+  /// X axis is present
+  let x = AxisFlags 2
+
+  /// Y axis is present
+  let y = AxisFlags 4
+
+  /// Scroll X delta axis is present
+  let deltaX = AxisFlags 8
+
+  /// Scroll Y delta axis is present
+  let deltaY = AxisFlags 16
+
+  /// Pressure axis is present
+  let pressure = AxisFlags 32
+
+  /// X tilt axis is present
+  let xtilt = AxisFlags 64
+
+  /// Y tilt axis is present
+  let ytilt = AxisFlags 128
+
+  /// Wheel axis is present
+  let wheel = AxisFlags 256
+
+  /// Distance axis is present
+  let distance = AxisFlags 512
+
+  /// Z-axis rotation is present
+  let rotation = AxisFlags 1024
+
+  /// Slider axis is present
+  let slider = AxisFlags 2048
+
+module AxisUse =
+  /// the axis is ignored.
+  let ignore_ = AxisUse 0
+
+  /// the axis is used as the x axis.
+  let x = AxisUse 1
+
+  /// the axis is used as the y axis.
+  let y = AxisUse 2
+
+  /// the axis is used as the scroll x delta
+  let deltaX = AxisUse 3
+
+  /// the axis is used as the scroll y delta
+  let deltaY = AxisUse 4
+
+  /// the axis is used for pressure information.
+  let pressure = AxisUse 5
+
+  /// the axis is used for x tilt information.
+  let xtilt = AxisUse 6
+
+  /// the axis is used for y tilt information.
+  let ytilt = AxisUse 7
+
+  /// the axis is used for wheel information.
+  let wheel = AxisUse 8
+
+  /// the axis is used for pen/tablet distance information
+  let distance = AxisUse 9
+
+  /// the axis is used for pen rotation information
+  let rotation = AxisUse 10
+
+  /// the axis is used for pen slider information
+  let slider = AxisUse 11
+
+  /// a constant equal to the numerically highest axis value.
+  let last = AxisUse 12
+
+module CicpRange =
+  /// The values use the range of 16-235 (for Y) and 16-240 for u and v.
+  let narrow = CicpRange 0
+
+  /// The values use the full range.
+  let full = CicpRange 1
+
+module ColorChannel =
+  /// The red color channel, aka 0
+  let red = ColorChannel 0
+
+  /// The green color channel, aka 1
+  let green = ColorChannel 1
+
+  /// The blue color channel, aka 2
+  let blue = ColorChannel 2
+
+  /// The alpha color channel, aka 3
+  let alpha = ColorChannel 3
+
+module CrossingMode =
+  /// crossing because of pointer motion.
+  let normal = CrossingMode 0
+
+  /// crossing because a grab is activated.
+  let grab = CrossingMode 1
+
+  /// crossing because a grab is deactivated.
+  let ungrab = CrossingMode 2
+
+  /// crossing because a GTK grab is activated.
+  let gtkGrab = CrossingMode 3
+
+  /// crossing because a GTK grab is deactivated.
+  let gtkUngrab = CrossingMode 4
+
+  /// crossing because a GTK widget changed state (e.g.
+  let stateChanged = CrossingMode 5
+
+  /// crossing because a touch sequence has begun, this event is synthetic as the pointer might have not left the surface.
+  let touchBegin = CrossingMode 6
+
+  /// crossing because a touch sequence has ended, this event is synthetic as the pointer might have not left the surface.
+  let touchEnd = CrossingMode 7
+
+  /// crossing because of a device switch (i.e.
+  let deviceSwitch = CrossingMode 8
+
+module DevicePadFeature =
+  /// a button
+  let button = DevicePadFeature 0
+
+  /// a ring-shaped interactive area
+  let ring = DevicePadFeature 1
+
+  /// a straight interactive area
+  let strip = DevicePadFeature 2
+
+module DeviceToolType =
+  /// Tool is of an unknown type.
+  let unknown = DeviceToolType 0
+
+  /// Tool is a standard tablet stylus.
+  let pen = DeviceToolType 1
+
+  /// Tool is standard tablet eraser.
+  let eraser = DeviceToolType 2
+
+  /// Tool is a brush stylus.
+  let brush = DeviceToolType 3
+
+  /// Tool is a pencil stylus.
+  let pencil = DeviceToolType 4
+
+  /// Tool is an airbrush stylus.
+  let airbrush = DeviceToolType 5
+
+  /// Tool is a mouse.
+  let mouse = DeviceToolType 6
+
+  /// Tool is a lens cursor.
+  let lens = DeviceToolType 7
+
+module DmabufError =
+  /// Dmabuf support is not available, because the OS is not Linux, or it was explicitly disabled at compile- or runtime
+  let notAvailable = DmabufError 0
+
+  /// The requested format is not supported
+  let unsupportedFormat = DmabufError 1
+
+  /// GTK failed to create the resource for other reasons
+  let creationFailed = DmabufError 2
+
+module DragAction =
+  /// No action.
+  let none = DragAction 0
+
+  /// Copy the data.
+  let copy = DragAction 1
+
+  /// Move the data, i.e.
+  let move = DragAction 2
+
+  /// Add a link to the data.
+  let link = DragAction 4
+
+  /// Ask the user what to do with the data.
+  let ask = DragAction 8
+
+module DragCancelReason =
+  /// There is no suitable drop target.
+  let noTarget = DragCancelReason 0
+
+  /// Drag cancelled by the user
+  let userCancelled = DragCancelReason 1
+
+  /// Unspecified error.
+  let error = DragCancelReason 2
+
+module EventType =
+  /// the window manager has requested that the toplevel surface be hidden or destroyed, usually when the user clicks on a special icon in the title bar.
+  let delete = EventType 0
+
+  /// the pointer (usually a mouse) has moved.
+  let motionNotify = EventType 1
+
+  /// a mouse button has been pressed.
+  let buttonPress = EventType 2
+
+  /// a mouse button has been released.
+  let buttonRelease = EventType 3
+
+  /// a key has been pressed.
+  let keyPress = EventType 4
+
+  /// a key has been released.
+  let keyRelease = EventType 5
+
+  /// the pointer has entered the surface.
+  let enterNotify = EventType 6
+
+  /// the pointer has left the surface.
+  let leaveNotify = EventType 7
+
+  /// the keyboard focus has entered or left the surface.
+  let focusChange = EventType 8
+
+  /// an input device has moved into contact with a sensing surface (e.g.
+  let proximityIn = EventType 9
+
+  /// an input device has moved out of contact with a sensing surface.
+  let proximityOut = EventType 10
+
+  /// the mouse has entered the surface while a drag is in progress.
+  let dragEnter = EventType 11
+
+  /// the mouse has left the surface while a drag is in progress.
+  let dragLeave = EventType 12
+
+  /// the mouse has moved in the surface while a drag is in progress.
+  let dragMotion = EventType 13
+
+  /// a drop operation onto the surface has started.
+  let dropStart = EventType 14
+
+  /// the scroll wheel was turned
+  let scroll = EventType 15
+
+  /// a pointer or keyboard grab was broken.
+  let grabBroken = EventType 16
+
+  /// A new touch event sequence has just started.
+  let touchBegin = EventType 17
+
+  /// A touch event sequence has been updated.
+  let touchUpdate = EventType 18
+
+  /// A touch event sequence has finished.
+  let touchEnd = EventType 19
+
+  /// A touch event sequence has been canceled.
+  let touchCancel = EventType 20
+
+  /// A touchpad swipe gesture event, the current state is determined by its phase field.
+  let touchpadSwipe = EventType 21
+
+  /// A touchpad pinch gesture event, the current state is determined by its phase field.
+  let touchpadPinch = EventType 22
+
+  /// A tablet pad button press event.
+  let padButtonPress = EventType 23
+
+  /// A tablet pad button release event.
+  let padButtonRelease = EventType 24
+
+  /// A tablet pad axis event from a "ring".
+  let padRing = EventType 25
+
+  /// A tablet pad axis event from a "strip".
+  let padStrip = EventType 26
+
+  /// A tablet pad group mode change.
+  let padGroupMode = EventType 27
+
+  /// A touchpad hold gesture event, the current state is determined by its phase field.
+  let touchpadHold = EventType 28
+
+  /// A tablet pad axis event from a "dial".
+  let padDial = EventType 29
+
+  /// marks the end of the GdkEventType enumeration.
+  let eventLast = EventType 30
+
+module FrameClockPhase =
+  /// no phase
+  let none = FrameClockPhase 0
+
+  /// corresponds to GdkFrameClock::flush-events.
+  let flushEvents = FrameClockPhase 1
+
+  /// corresponds to GdkFrameClock::before-paint.
+  let beforePaint = FrameClockPhase 2
+
+  /// corresponds to GdkFrameClock::update.
+  let update = FrameClockPhase 4
+
+  /// corresponds to GdkFrameClock::layout.
+  let layout = FrameClockPhase 8
+
+  /// corresponds to GdkFrameClock::paint.
+  let paint = FrameClockPhase 16
+
+  /// corresponds to GdkFrameClock::resume-events.
+  let resumeEvents = FrameClockPhase 32
+
+  /// corresponds to GdkFrameClock::after-paint.
+  let afterPaint = FrameClockPhase 64
+
+module FullscreenMode =
+  /// Fullscreen on current monitor only.
+  let currentMonitor = FullscreenMode 0
+
+  /// Span across all monitors when fullscreen.
+  let allMonitors = FullscreenMode 1
+
+module GLAPI =
+  /// The OpenGL API
+  let gl = GLAPI 1
+
+  /// The OpenGL ES API
+  let gles = GLAPI 2
+
+module GLError =
+  /// OpenGL support is not available
+  let notAvailable = GLError 0
+
+  /// The requested visual format is not supported
+  let unsupportedFormat = GLError 1
+
+  /// The requested profile is not supported
+  let unsupportedProfile = GLError 2
+
+  /// The shader compilation failed
+  let compilationFailed = GLError 3
+
+  /// The shader linking failed
+  let linkFailed = GLError 4
+
+module Gravity =
+  /// the reference point is at the top left corner.
+  let northWest = Gravity 1
+
+  /// the reference point is in the middle of the top edge.
+  let north = Gravity 2
+
+  /// the reference point is at the top right corner.
+  let northEast = Gravity 3
+
+  /// the reference point is at the middle of the left edge.
+  let west = Gravity 4
+
+  /// the reference point is at the center of the surface.
+  let center = Gravity 5
+
+  /// the reference point is at the middle of the right edge.
+  let east = Gravity 6
+
+  /// the reference point is at the lower left corner.
+  let southWest = Gravity 7
+
+  /// the reference point is at the middle of the lower edge.
+  let south = Gravity 8
+
+  /// the reference point is at the lower right corner.
+  let southEast = Gravity 9
+
+  /// the reference point is at the top left corner of the surface itself, ignoring window manager decorations.
+  let static_ = Gravity 10
+
+module InputSource =
+  /// the device is a mouse.
+  let mouse = InputSource 0
+
+  /// the device is a stylus of a graphics tablet or similar device.
+  let pen = InputSource 1
+
+  /// the device is a keyboard.
+  let keyboard = InputSource 2
+
+  /// the device is a direct-input touch device, such as a touchscreen or tablet
+  let touchscreen = InputSource 3
+
+  /// the device is an indirect touch device, such as a touchpad
+  let touchpad = InputSource 4
+
+  /// the device is a trackpoint
+  let trackpoint = InputSource 5
+
+  /// the device is a "pad", a collection of buttons, rings and strips found in drawing tablets
+  let tabletPad = InputSource 6
+
+module KeyMatch =
+  /// The key event does not match
+  let none = KeyMatch 0
+
+  /// The key event matches if keyboard state (specifically, the currently active group) is ignored
+  let partial = KeyMatch 1
+
+  /// The key event matches
+  let exact = KeyMatch 2
+
+module MemoryFormat =
+  /// 4 bytes; for blue, green, red, alpha.
+  let b8g8r8a8Premultiplied = MemoryFormat 0
+
+  /// 4 bytes; for alpha, red, green, blue.
+  let a8r8g8b8Premultiplied = MemoryFormat 1
+
+  /// 4 bytes; for red, green, blue, alpha The color values are premultiplied with the alpha value.
+  let r8g8b8a8Premultiplied = MemoryFormat 2
+
+  /// 4 bytes; for blue, green, red, alpha.
+  let b8g8r8a8 = MemoryFormat 3
+
+  /// 4 bytes; for alpha, red, green, blue.
+  let a8r8g8b8 = MemoryFormat 4
+
+  /// 4 bytes; for red, green, blue, alpha.
+  let r8g8b8a8 = MemoryFormat 5
+
+  /// 4 bytes; for alpha, blue, green, red.
+  let a8b8g8r8 = MemoryFormat 6
+
+  /// 3 bytes; for red, green, blue.
+  let r8g8b8 = MemoryFormat 7
+
+  /// 3 bytes; for blue, green, red.
+  let b8g8r8 = MemoryFormat 8
+
+  /// 3 guint16 values; for red, green, blue.
+  let r16g16b16 = MemoryFormat 9
+
+  /// 4 guint16 values; for red, green, blue, alpha.
+  let r16g16b16a16Premultiplied = MemoryFormat 10
+
+  /// 4 guint16 values; for red, green, blue, alpha.
+  let r16g16b16a16 = MemoryFormat 11
+
+  /// 3 half-float values; for red, green, blue.
+  let r16g16b16Float = MemoryFormat 12
+
+  /// 4 half-float values; for red, green, blue and alpha.
+  let r16g16b16a16FloatPremultiplied = MemoryFormat 13
+
+  /// 4 half-float values; for red, green, blue and alpha.
+  let r16g16b16a16Float = MemoryFormat 14
+
+  /// 3 float values; for red, green, blue.
+  let r32g32b32Float = MemoryFormat 15
+
+  /// 4 float values; for red, green, blue and alpha.
+  let r32g32b32a32FloatPremultiplied = MemoryFormat 16
+
+  /// 4 float values; for red, green, blue and alpha.
+  let r32g32b32a32Float = MemoryFormat 17
+
+  /// 2 bytes; for grayscale, alpha.
+  let g8a8Premultiplied = MemoryFormat 18
+
+  /// 2 bytes; for grayscale, alpha.
+  let g8a8 = MemoryFormat 19
+
+  /// One byte; for grayscale.
+  let g8 = MemoryFormat 20
+
+  /// 2 guint16 values; for grayscale, alpha.
+  let g16a16Premultiplied = MemoryFormat 21
+
+  /// 2 guint16 values; for grayscale, alpha.
+  let g16a16 = MemoryFormat 22
+
+  /// One guint16 value; for grayscale.
+  let g16 = MemoryFormat 23
+
+  /// One byte; for alpha.
+  let a8 = MemoryFormat 24
+
+  /// One guint16 value; for alpha.
+  let a16 = MemoryFormat 25
+
+  /// One half-float value; for alpha.
+  let a16Float = MemoryFormat 26
+
+  /// One float value; for alpha.
+  let a32Float = MemoryFormat 27
+
+  /// 4 bytes; for alpha, blue, green, red, The color values are premultiplied with the alpha value.
+  let a8b8g8r8Premultiplied = MemoryFormat 28
+
+  /// 4 bytes; for blue, green, red, unused.
+  let b8g8r8x8 = MemoryFormat 29
+
+  /// 4 bytes; for unused, red, green, blue.
+  let x8r8g8b8 = MemoryFormat 30
+
+  /// 4 bytes; for red, green, blue, unused.
+  let r8g8b8x8 = MemoryFormat 31
+
+  /// 4 bytes; for unused, blue, green, red.
+  let x8b8g8r8 = MemoryFormat 32
+
+  /// Multiplane format with 2 planes.
+  let g8B8r8420 = MemoryFormat 33
+
+  /// Multiplane format with 2 planes.
+  let g8R8b8420 = MemoryFormat 34
+
+  /// Multiplane format with 2 planes.
+  let g8B8r8422 = MemoryFormat 35
+
+  /// Multiplane format with 2 planes.
+  let g8R8b8422 = MemoryFormat 36
+
+  /// Multiplane format with 2 planes.
+  let g8B8r8444 = MemoryFormat 37
+
+  /// Multiplane format with 2 planes.
+  let g8R8b8444 = MemoryFormat 38
+
+  /// Multiplane format with 2 planes.
+  let g10x6B10x6r10x6420 = MemoryFormat 39
+
+  /// Multiplane format with 2 planes.
+  let g12x4B12x4r12x4420 = MemoryFormat 40
+
+  /// Multiplane format with 2 planes.
+  let g16B16r16420 = MemoryFormat 41
+
+  /// Multiplane format with 3 planes.
+  let g8B8R8410 = MemoryFormat 42
+
+  /// Multiplane format with 3 planes.
+  let g8R8B8410 = MemoryFormat 43
+
+  /// Multiplane format with 3 planes.
+  let g8B8R8411 = MemoryFormat 44
+
+  /// Multiplane format with 3 planes.
+  let g8R8B8411 = MemoryFormat 45
+
+  /// Multiplane format with 3 planes.
+  let g8B8R8420 = MemoryFormat 46
+
+  /// Multiplane format with 3 planes.
+  let g8R8B8420 = MemoryFormat 47
+
+  /// Multiplane format with 3 planes.
+  let g8B8R8422 = MemoryFormat 48
+
+  /// Multiplane format with 3 planes.
+  let g8R8B8422 = MemoryFormat 49
+
+  /// Multiplane format with 3 planes.
+  let g8B8R8444 = MemoryFormat 50
+
+  /// Multiplane format with 3 planes.
+  let g8R8B8444 = MemoryFormat 51
+
+  /// Packed format with subsampled channels.
+  let g8b8g8r8422 = MemoryFormat 52
+
+  /// Packed format with subsampled channels.
+  let g8r8g8b8422 = MemoryFormat 53
+
+  /// Packed format with subsampled channels.
+  let r8g8b8g8422 = MemoryFormat 54
+
+  /// Packed format with subsampled channels.
+  let b8g8r8g8422 = MemoryFormat 55
+
+  /// Multiplane format with 3 planes.
+  let x6g10X6b10X6r10420 = MemoryFormat 56
+
+  /// Multiplane format with 3 planes.
+  let x6g10X6b10X6r10422 = MemoryFormat 57
+
+  /// Multiplane format with 3 planes.
+  let x6g10X6b10X6r10444 = MemoryFormat 58
+
+  /// Multiplane format with 3 planes.
+  let x4g12X4b12X4r12420 = MemoryFormat 59
+
+  /// Multiplane format with 3 planes.
+  let x4g12X4b12X4r12422 = MemoryFormat 60
+
+  /// Multiplane format with 3 planes.
+  let x4g12X4b12X4r12444 = MemoryFormat 61
+
+  /// Multiplane format with 3 planes.
+  let g16B16R16420 = MemoryFormat 62
+
+  /// Multiplane format with 3 planes.
+  let g16B16R16422 = MemoryFormat 63
+
+  /// Multiplane format with 3 planes.
+  let g16B16R16444 = MemoryFormat 64
+
+  /// The number of formats.
+  let nFormats = MemoryFormat 65
+
+module ModifierType =
+  /// No modifier.
+  let noModifierMask = ModifierType 0
+
+  /// the Shift key.
+  let shiftMask = ModifierType 1
+
+  /// a Lock key (depending on the Windowing System configuration, this may either be <kbd>CapsLock</kbd> or <kbd>ShiftLock</kbd>).
+  let lockMask = ModifierType 2
+
+  /// the Control key.
+  let controlMask = ModifierType 4
+
+  /// the fourth modifier key (it depends on the Windowing System configuration which key is interpreted as this modifier, but normally it is the <kbd>Alt</kbd> key).
+  let altMask = ModifierType 8
+
+  /// the first mouse button.
+  let button1Mask = ModifierType 256
+
+  /// the second mouse button.
+  let button2Mask = ModifierType 512
+
+  /// the third mouse button.
+  let button3Mask = ModifierType 1024
+
+  /// the fourth mouse button.
+  let button4Mask = ModifierType 2048
+
+  /// the fifth mouse button.
+  let button5Mask = ModifierType 4096
+
+  /// the Super modifier.
+  let superMask = ModifierType 67108864
+
+  /// the Hyper modifier.
+  let hyperMask = ModifierType 134217728
+
+  /// the Meta modifier.
+  let metaMask = ModifierType 268435456
+
+module NotifyType =
+  /// the surface is entered from an ancestor or left towards an ancestor.
+  let ancestor = NotifyType 0
+
+  /// the pointer moves between an ancestor and an inferior of the surface.
+  let virtual = NotifyType 1
+
+  /// the surface is entered from an inferior or left towards an inferior.
+  let inferior = NotifyType 2
+
+  /// the surface is entered from or left towards a surface which is neither an ancestor nor an inferior.
+  let nonlinear = NotifyType 3
+
+  /// the pointer moves between two surfaces which are not ancestors of each other and the surface is part of the ancestor chain between one of these surfaces and their least common ancestor.
+  let nonlinearVirtual = NotifyType 4
+
+  /// an unknown type of enter/leave event occurred.
+  let unknown = NotifyType 5
+
+module PaintableFlags =
+  /// The size is immutable.
+  let staticSize = PaintableFlags 1
+
+  /// The content is immutable.
+  let staticContents = PaintableFlags 2
+
+module ScrollDirection =
+  /// the surface is scrolled up.
+  let up = ScrollDirection 0
+
+  /// the surface is scrolled down.
+  let down = ScrollDirection 1
+
+  /// the surface is scrolled to the left.
+  let left = ScrollDirection 2
+
+  /// the surface is scrolled to the right.
+  let right = ScrollDirection 3
+
+  /// the scrolling is determined by the delta values in scroll events.
+  let smooth = ScrollDirection 4
+
+module ScrollRelativeDirection =
+  /// Physical motion and event motion are the same
+  let identical = ScrollRelativeDirection 0
+
+  /// Physical motion is inverted relative to event motion
+  let inverted = ScrollRelativeDirection 1
+
+  /// Relative motion is unknown on this device or backend
+  let unknown = ScrollRelativeDirection 2
+
+module ScrollUnit =
+  /// The delta is in number of wheel clicks.
+  let wheel = ScrollUnit 0
+
+  /// The delta is in surface pixels to scroll directly on screen.
+  let surface = ScrollUnit 1
+
+module SeatCapabilities =
+  /// No input capabilities
+  let none = SeatCapabilities 0
+
+  /// The seat has a pointer (e.g.
+  let pointer = SeatCapabilities 1
+
+  /// The seat has touchscreen(s) attached
+  let touch = SeatCapabilities 2
+
+  /// The seat has drawing tablet(s) attached
+  let tabletStylus = SeatCapabilities 4
+
+  /// The seat has keyboard(s) attached
+  let keyboard = SeatCapabilities 8
+
+  /// The seat has drawing tablet pad(s) attached
+  let tabletPad = SeatCapabilities 16
+
+  /// The union of all pointing capabilities
+  let allPointing = SeatCapabilities 7
+
+  /// The union of all capabilities
+  let all = SeatCapabilities 31
+
+module SubpixelLayout =
+  /// The layout is not known
+  let unknown = SubpixelLayout 0
+
+  /// Not organized in this way
+  let none = SubpixelLayout 1
+
+  /// The layout is horizontal, the order is RGB
+  let horizontalRgb = SubpixelLayout 2
+
+  /// The layout is horizontal, the order is BGR
+  let horizontalBgr = SubpixelLayout 3
+
+  /// The layout is vertical, the order is RGB
+  let verticalRgb = SubpixelLayout 4
+
+  /// The layout is vertical, the order is BGR
+  let verticalBgr = SubpixelLayout 5
+
+module SurfaceEdge =
+  /// the top left corner.
+  let northWest = SurfaceEdge 0
+
+  /// the top edge.
+  let north = SurfaceEdge 1
+
+  /// the top right corner.
+  let northEast = SurfaceEdge 2
+
+  /// the left edge.
+  let west = SurfaceEdge 3
+
+  /// the right edge.
+  let east = SurfaceEdge 4
+
+  /// the lower left corner.
+  let southWest = SurfaceEdge 5
+
+  /// the lower edge.
+  let south = SurfaceEdge 6
+
+  /// the lower right corner.
+  let southEast = SurfaceEdge 7
+
+module TextureError =
+  /// Not enough memory to handle this image
+  let tooLarge = TextureError 0
+
+  /// The image data appears corrupted
+  let corruptImage = TextureError 1
+
+  /// The image contains features that cannot be loaded
+  let unsupportedContent = TextureError 2
+
+  /// The image format is not supported
+  let unsupportedFormat = TextureError 3
+
+module TitlebarGesture =
+  /// double click gesture
+  let doubleClick = TitlebarGesture 1
+
+  /// right click gesture
+  let rightClick = TitlebarGesture 2
+
+  /// middle click gesture
+  let middleClick = TitlebarGesture 3
+
+module ToplevelCapabilities =
+  /// Whether tiled window states are supported.
+  let edgeConstraints = ToplevelCapabilities 1
+
+  /// Whether inhibiting system shortcuts is supported.
+  let inhibitShortcuts = ToplevelCapabilities 2
+
+  /// Whether titlebar gestures are supported.
+  let titlebarGestures = ToplevelCapabilities 4
+
+  /// Whether showing the window menu is supported.
+  let windowMenu = ToplevelCapabilities 8
+
+  /// Whether the toplevel can be maximized.
+  let maximize = ToplevelCapabilities 16
+
+  /// Whether the toplevel can be made fullscreen.
+  let fullscreen = ToplevelCapabilities 32
+
+  /// Whether the toplevel can be minimized.
+  let minimize = ToplevelCapabilities 64
+
+  /// Whether the toplevel can be lowered.
+  let lower = ToplevelCapabilities 128
+
+module ToplevelState =
+  /// the surface is minimized
+  let minimized = ToplevelState 1
+
+  /// the surface is maximized
+  let maximized = ToplevelState 2
+
+  /// the surface is sticky
+  let sticky = ToplevelState 4
+
+  /// the surface is maximized without decorations
+  let fullscreen = ToplevelState 8
+
+  /// the surface is kept above other surfaces
+  let above = ToplevelState 16
+
+  /// the surface is kept below other surfaces
+  let below = ToplevelState 32
+
+  /// the surface is presented as focused (with active decorations)
+  let focused = ToplevelState 64
+
+  /// the surface is in a tiled state
+  let tiled = ToplevelState 128
+
+  /// whether the top edge is tiled
+  let topTiled = ToplevelState 256
+
+  /// whether the top edge is resizable
+  let topResizable = ToplevelState 512
+
+  /// whether the right edge is tiled
+  let rightTiled = ToplevelState 1024
+
+  /// whether the right edge is resizable
+  let rightResizable = ToplevelState 2048
+
+  /// whether the bottom edge is tiled
+  let bottomTiled = ToplevelState 4096
+
+  /// whether the bottom edge is resizable
+  let bottomResizable = ToplevelState 8192
+
+  /// whether the left edge is tiled
+  let leftTiled = ToplevelState 16384
+
+  /// whether the left edge is resizable
+  let leftResizable = ToplevelState 32768
+
+  /// The surface is not visible to the user.
+  let suspended = ToplevelState 65536
+
+module TouchpadGesturePhase =
+  /// The gesture has begun.
+  let begin = TouchpadGesturePhase 0
+
+  /// The gesture has been updated.
+  let update = TouchpadGesturePhase 1
+
+  /// The gesture was finished, changes should be permanently applied.
+  let end = TouchpadGesturePhase 2
+
+  /// The gesture was cancelled, all changes should be undone.
+  let cancel = TouchpadGesturePhase 3
+
+module VulkanError =
+  /// Vulkan is not supported on this backend or has not been compiled in.
+  let unsupported = VulkanError 0
+
+  /// Vulkan support is not available on this Surface
+  let notAvailable = VulkanError 1
+
+module AppLaunchContext =
+  /// The same object as its ancestor.
+  let toGioAppLaunchContext (self: AppLaunchContext) : Gio.AppLaunchContext = Gio.AppLaunchContext self.Id
+
+  /// The same object as its ancestor.
+  let toGObjectObject (self: AppLaunchContext) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<AppLaunchContext> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_app_launch_context_get_type ()) then Some (AppLaunchContext object.Id) else None
+
+  extern gdk_app_launch_context_get_display : cptr -> cptr
+
+  /// Gets the `GdkDisplay` that @context is for.
+  let getDisplay (self: AppLaunchContext) : Display =
+    Display (Glue.wrap ((gdk_app_launch_context_get_display (Glue.obj self.Id (gdk_app_launch_context_get_type ())))) false)
+
+  extern gdk_app_launch_context_set_desktop : cptr -> i32 -> unit
+
+  /// Sets the workspace on which applications will be launched.
+  let setDesktop (self: AppLaunchContext) (desktop: int) : unit =
+    gdk_app_launch_context_set_desktop (Glue.obj self.Id (gdk_app_launch_context_get_type ())) (i32 desktop)
+
+  extern gdk_app_launch_context_set_icon : cptr -> cptr -> unit
+
+  /// Sets the icon for applications that are launched with this context.
+  let setIcon (self: AppLaunchContext) (icon: option<Gio.Icon>) : unit =
+    let zp1 =
+      match icon with
+      | Some zo -> Glue.obj zo.Id (Gio.g_icon_get_type ())
+      | None -> Glue.none ()
+    gdk_app_launch_context_set_icon (Glue.obj self.Id (gdk_app_launch_context_get_type ())) zp1
+
+  extern gdk_app_launch_context_set_icon_name : cptr -> cptr -> unit
+
+  /// Sets the icon for applications that are launched with this context.
+  let setIconName (self: AppLaunchContext) (iconName: option<string>) : unit =
+    let zs1 = Glue.dupOption iconName
+    gdk_app_launch_context_set_icon_name (Glue.obj self.Id (gdk_app_launch_context_get_type ())) zs1
+    Glue.free zs1
+
+  extern gdk_app_launch_context_set_timestamp : cptr -> u32 -> unit
+
+  /// Sets the timestamp of @context.
+  let setTimestamp (self: AppLaunchContext) (timestamp: int) : unit =
+    gdk_app_launch_context_set_timestamp (Glue.obj self.Id (gdk_app_launch_context_get_type ())) (u32 timestamp)
+
+  /// Calls `handler` when the `display` property changes.
+  let onNotifyDisplay (self: AppLaunchContext) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_app_launch_context_get_type ())) "notify::display" handler
+
+module ButtonEvent =
+  extern gdk_button_event_get_button : cptr -> u32
+
+  /// Extract the button number from a button event.
+  [<Unsafe>]
+  let getButton (self: ButtonEvent) : int =
+    (int ((gdk_button_event_get_button self.Ptr)))
+
+module DrawContext =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: DrawContext) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<DrawContext> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_draw_context_get_type ()) then Some (DrawContext object.Id) else None
+
+  extern gdk_draw_context_begin_frame : cptr -> cptr -> unit
+
+  /// Deprecated. Indicates that you are beginning the process of redrawing @region on the @context's surface.
+  let beginFrame (self: DrawContext) (region: Cairo.Region) : unit =
+    gdk_draw_context_begin_frame (Glue.obj self.Id (gdk_draw_context_get_type ())) (Glue.obj region.Id (Cairo.cairo_gobject_region_get_type ()))
+
+  extern gdk_draw_context_end_frame : cptr -> unit
+
+  /// Deprecated. Ends a drawing operation started with gdk_draw_context_begin_frame().
+  let endFrame (self: DrawContext) : unit =
+    gdk_draw_context_end_frame (Glue.obj self.Id (gdk_draw_context_get_type ()))
+
+  extern gdk_draw_context_get_display : cptr -> cptr
+
+  /// Retrieves the `GdkDisplay` the @context is created for
+  let getDisplay (self: DrawContext) : option<Display> =
+    let zr = gdk_draw_context_get_display (Glue.obj self.Id (gdk_draw_context_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Display zid1))
+
+  extern gdk_draw_context_get_frame_region : cptr -> cptr
+
+  /// Deprecated. Retrieves the region that is currently being repainted.
+  let getFrameRegion (self: DrawContext) : option<Cairo.Region> =
+    let zr = gdk_draw_context_get_frame_region (Glue.obj self.Id (gdk_draw_context_get_type ()))
+    let zid1 = Glue.wrapBoxed (zr) (Cairo.cairo_gobject_region_get_type ()) false
+    (if zid1 = 0 then None else Some (Cairo.Region zid1))
+
+  extern gdk_draw_context_get_surface : cptr -> cptr
+
+  /// Retrieves the surface that @context is bound to.
+  let getSurface (self: DrawContext) : option<Surface> =
+    let zr = gdk_draw_context_get_surface (Glue.obj self.Id (gdk_draw_context_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Surface zid1))
+
+  extern gdk_draw_context_is_in_frame : cptr -> i32
+
+  /// Deprecated. Returns %TRUE if @context is in the process of drawing to its surface.
+  let isInFrame (self: DrawContext) : bool =
+    (((gdk_draw_context_is_in_frame (Glue.obj self.Id (gdk_draw_context_get_type ())))) <> i32 0)
+
+  /// Calls `handler` when the `display` property changes.
+  let onNotifyDisplay (self: DrawContext) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_draw_context_get_type ())) "notify::display" handler
+
+  /// Calls `handler` when the `surface` property changes.
+  let onNotifySurface (self: DrawContext) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_draw_context_get_type ())) "notify::surface" handler
+
+module CairoContext =
+  /// The same object as its ancestor.
+  let toDrawContext (self: CairoContext) : DrawContext = DrawContext self.Id
+
+  /// The same object as its ancestor.
+  let toGObjectObject (self: CairoContext) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<CairoContext> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_cairo_context_get_type ()) then Some (CairoContext object.Id) else None
+
+  extern gdk_cairo_context_cairo_create : cptr -> cptr
+
+  /// Deprecated. Retrieves a Cairo context to be used to draw on the `GdkSurface` of @context.
+  let cairoCreate (self: CairoContext) : option<Cairo.Context> =
+    let zr = gdk_cairo_context_cairo_create (Glue.obj self.Id (gdk_cairo_context_get_type ()))
+    let zid1 = Glue.wrapBoxed (zr) (Cairo.cairo_gobject_context_get_type ()) true
+    (if zid1 = 0 then None else Some (Cairo.Context zid1))
+
+module CicpParams =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: CicpParams) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<CicpParams> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_cicp_params_get_type ()) then Some (CicpParams object.Id) else None
+
+  extern gdk_cicp_params_new : unit -> cptr
+
+  /// Creates a new `GdkCicpParams` object.
+  let create () : CicpParams =
+    CicpParams (Glue.wrap ((gdk_cicp_params_new ())) true)
+
+  extern gdk_cicp_params_build_color_state : cptr -> cptr -> cptr
+
+  /// Creates a new `GdkColorState` object for the cicp parameters in @self.
+  let buildColorState (self: CicpParams) : result<ColorState, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_cicp_params_build_color_state (Glue.obj self.Id (gdk_cicp_params_get_type ())) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = ColorState (Glue.wrapBoxed (zr) (gdk_color_state_get_type ()) true)
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_cicp_params_get_color_primaries : cptr -> u32
+
+  /// Returns the value of the color-primaries property of @self.
+  let getColorPrimaries (self: CicpParams) : int =
+    (int ((gdk_cicp_params_get_color_primaries (Glue.obj self.Id (gdk_cicp_params_get_type ())))))
+
+  extern gdk_cicp_params_get_matrix_coefficients : cptr -> u32
+
+  /// Gets the matrix-coefficients property of @self.
+  let getMatrixCoefficients (self: CicpParams) : int =
+    (int ((gdk_cicp_params_get_matrix_coefficients (Glue.obj self.Id (gdk_cicp_params_get_type ())))))
+
+  extern gdk_cicp_params_get_range : cptr -> i32
+
+  /// Gets the range property of @self.
+  let getRange (self: CicpParams) : CicpRange =
+    CicpRange (int ((gdk_cicp_params_get_range (Glue.obj self.Id (gdk_cicp_params_get_type ())))))
+
+  extern gdk_cicp_params_get_transfer_function : cptr -> u32
+
+  /// Gets the transfer-function property of @self.
+  let getTransferFunction (self: CicpParams) : int =
+    (int ((gdk_cicp_params_get_transfer_function (Glue.obj self.Id (gdk_cicp_params_get_type ())))))
+
+  extern gdk_cicp_params_set_color_primaries : cptr -> u32 -> unit
+
+  /// Sets the color-primaries property of @self.
+  let setColorPrimaries (self: CicpParams) (colorPrimaries: int) : unit =
+    gdk_cicp_params_set_color_primaries (Glue.obj self.Id (gdk_cicp_params_get_type ())) (u32 colorPrimaries)
+
+  extern gdk_cicp_params_set_matrix_coefficients : cptr -> u32 -> unit
+
+  /// @self a `GdkCicpParams` Sets the matrix-coefficients property of @self.
+  let setMatrixCoefficients (self: CicpParams) (matrixCoefficients: int) : unit =
+    gdk_cicp_params_set_matrix_coefficients (Glue.obj self.Id (gdk_cicp_params_get_type ())) (u32 matrixCoefficients)
+
+  extern gdk_cicp_params_set_range : cptr -> i32 -> unit
+
+  /// Sets the range property of @self
+  let setRange (self: CicpParams) (range: CicpRange) : unit =
+    gdk_cicp_params_set_range (Glue.obj self.Id (gdk_cicp_params_get_type ())) (i32 range.Int)
+
+  extern gdk_cicp_params_set_transfer_function : cptr -> u32 -> unit
+
+  /// Sets the transfer-function property of @self.
+  let setTransferFunction (self: CicpParams) (transferFunction: int) : unit =
+    gdk_cicp_params_set_transfer_function (Glue.obj self.Id (gdk_cicp_params_get_type ())) (u32 transferFunction)
+
+  /// Calls `handler` when the `color-primaries` property changes.
+  let onNotifyColorPrimaries (self: CicpParams) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_cicp_params_get_type ())) "notify::color-primaries" handler
+
+  /// Calls `handler` when the `matrix-coefficients` property changes.
+  let onNotifyMatrixCoefficients (self: CicpParams) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_cicp_params_get_type ())) "notify::matrix-coefficients" handler
+
+  /// Calls `handler` when the `range` property changes.
+  let onNotifyRange (self: CicpParams) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_cicp_params_get_type ())) "notify::range" handler
+
+  /// Calls `handler` when the `transfer-function` property changes.
+  let onNotifyTransferFunction (self: CicpParams) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_cicp_params_get_type ())) "notify::transfer-function" handler
+
+module Clipboard =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: Clipboard) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<Clipboard> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_clipboard_get_type ()) then Some (Clipboard object.Id) else None
+
+  extern gdk_clipboard_get_content : cptr -> cptr
+
+  /// Returns the `GdkContentProvider` currently set on @clipboard.
+  let getContent (self: Clipboard) : option<ContentProvider> =
+    let zr = gdk_clipboard_get_content (Glue.obj self.Id (gdk_clipboard_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (ContentProvider zid1))
+
+  extern gdk_clipboard_get_display : cptr -> cptr
+
+  /// Gets the `GdkDisplay` that the clipboard was created for.
+  let getDisplay (self: Clipboard) : Display =
+    Display (Glue.wrap ((gdk_clipboard_get_display (Glue.obj self.Id (gdk_clipboard_get_type ())))) false)
+
+  extern gdk_clipboard_get_formats : cptr -> cptr
+
+  /// Gets the formats that the clipboard can provide its current contents in.
+  let getFormats (self: Clipboard) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((gdk_clipboard_get_formats (Glue.obj self.Id (gdk_clipboard_get_type ())))) (gdk_content_formats_get_type ()) false)
+
+  extern gdk_clipboard_is_local : cptr -> i32
+
+  /// Returns if the clipboard is local.
+  let isLocal (self: Clipboard) : bool =
+    (((gdk_clipboard_is_local (Glue.obj self.Id (gdk_clipboard_get_type ())))) <> i32 0)
+
+  extern gdk_clipboard_read_async : cptr -> cptr -> i32 -> cptr -> cptr -> cptr -> unit
+
+  /// Asynchronously requests an input stream to read the @clipboard's contents from.
+  let readAsync (self: Clipboard) (mimeTypes: list<string>) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let zid2 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        callback sourceObject res)
+    let zv3 = Glue.strv mimeTypes
+    let zp4 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
+      | None -> Glue.none ()
+    gdk_clipboard_read_async (Glue.obj self.Id (gdk_clipboard_get_type ())) zv3 (i32 ioPriority) zp4 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+    Glue.freeStrv zv3
+
+  extern gdk_clipboard_read_finish : cptr -> cptr -> cptr -> cptr -> cptr
+
+  /// Finishes an asynchronous clipboard read.
+  let readFinish (self: Clipboard) (result: Gio.AsyncResult) : result<(option<Gio.InputStream> * option<string>), Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_clipboard_read_finish (Glue.obj self.Id (gdk_clipboard_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.out 0) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zid1 = Glue.wrap (zr) true
+      let zv = ((if zid1 = 0 then None else Some (Gio.InputStream zid1)), Glue.textOption (Glue.outPtr 0))
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_clipboard_read_text_async : cptr -> cptr -> cptr -> cptr -> unit
+
+  /// Asynchronously request the @clipboard contents converted to a string.
+  let readTextAsync (self: Clipboard) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let zid2 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        callback sourceObject res)
+    let zp3 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
+      | None -> Glue.none ()
+    gdk_clipboard_read_text_async (Glue.obj self.Id (gdk_clipboard_get_type ())) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+
+  extern gdk_clipboard_read_text_finish : cptr -> cptr -> cptr -> cptr
+
+  /// Finishes an asynchronous clipboard read.
+  let readTextFinish (self: Clipboard) (result: Gio.AsyncResult) : result<option<string>, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_clipboard_read_text_finish (Glue.obj self.Id (gdk_clipboard_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = Glue.takeTextOption (zr)
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_clipboard_read_texture_async : cptr -> cptr -> cptr -> cptr -> unit
+
+  /// Asynchronously request the @clipboard contents converted to a `GdkPixbuf`.
+  let readTextureAsync (self: Clipboard) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let zid2 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        callback sourceObject res)
+    let zp3 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
+      | None -> Glue.none ()
+    gdk_clipboard_read_texture_async (Glue.obj self.Id (gdk_clipboard_get_type ())) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+
+  extern gdk_clipboard_read_texture_finish : cptr -> cptr -> cptr -> cptr
+
+  /// Finishes an asynchronous clipboard read.
+  let readTextureFinish (self: Clipboard) (result: Gio.AsyncResult) : result<option<Texture>, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_clipboard_read_texture_finish (Glue.obj self.Id (gdk_clipboard_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zid1 = Glue.wrap (zr) true
+      let zv = (if zid1 = 0 then None else Some (Texture zid1))
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_clipboard_read_value_async : cptr -> usize -> i32 -> cptr -> cptr -> cptr -> unit
+
+  /// Asynchronously request the @clipboard contents converted to the given @type.
+  let readValueAsync (self: Clipboard) (type_: usize) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let zid2 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        callback sourceObject res)
+    let zp3 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
+      | None -> Glue.none ()
+    gdk_clipboard_read_value_async (Glue.obj self.Id (gdk_clipboard_get_type ())) type_ (i32 ioPriority) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+
+  extern gdk_clipboard_read_value_finish : cptr -> cptr -> cptr -> cptr
+
+  /// Finishes an asynchronous clipboard read.
+  let readValueFinish (self: Clipboard) (result: Gio.AsyncResult) : result<GObject.Value, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_clipboard_read_value_finish (Glue.obj self.Id (gdk_clipboard_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = GObject.Value (Glue.wrapBoxed (zr) (GObject.g_value_get_type ()) false)
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_clipboard_set_content : cptr -> cptr -> i32
+
+  /// Sets a new content provider on @clipboard.
+  let setContent (self: Clipboard) (provider: option<ContentProvider>) : bool =
+    let zp1 =
+      match provider with
+      | Some zo -> Glue.obj zo.Id (gdk_content_provider_get_type ())
+      | None -> Glue.none ()
+    let zr = gdk_clipboard_set_content (Glue.obj self.Id (gdk_clipboard_get_type ())) zp1
+    ((zr) <> i32 0)
+
+  extern gdk_clipboard_set_text : cptr -> cstr -> unit
+
+  /// Puts the given @text into the clipboard.
+  let setText (self: Clipboard) (text: string) : unit =
+    gdk_clipboard_set_text (Glue.obj self.Id (gdk_clipboard_get_type ())) text
+
+  extern gdk_clipboard_set_texture : cptr -> cptr -> unit
+
+  /// Puts the given @texture into the clipboard.
+  let setTexture (self: Clipboard) (texture: Texture) : unit =
+    gdk_clipboard_set_texture (Glue.obj self.Id (gdk_clipboard_get_type ())) (Glue.obj texture.Id (gdk_texture_get_type ()))
+
+  extern gdk_clipboard_set_value : cptr -> cptr -> unit
+
+  /// Sets the @clipboard to contain the given @value.
+  let set (self: Clipboard) (value: GObject.Value) : unit =
+    gdk_clipboard_set_value (Glue.obj self.Id (gdk_clipboard_get_type ())) (Glue.obj value.Id (GObject.g_value_get_type ()))
+
+  extern gdk_clipboard_store_async : cptr -> i32 -> cptr -> cptr -> cptr -> unit
+
+  /// Asynchronously instructs the @clipboard to store its contents remotely.
+  let storeAsync (self: Clipboard) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let zid2 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        callback sourceObject res)
+    let zp3 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
+      | None -> Glue.none ()
+    gdk_clipboard_store_async (Glue.obj self.Id (gdk_clipboard_get_type ())) (i32 ioPriority) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+
+  extern gdk_clipboard_store_finish : cptr -> cptr -> cptr -> i32
+
+  /// Finishes an asynchronous clipboard store.
+  let storeFinish (self: Clipboard) (result: Gio.AsyncResult) : result<bool, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_clipboard_store_finish (Glue.obj self.Id (gdk_clipboard_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = ((zr) <> i32 0)
+      Glue.outEnd ()
+      Ok zv
+
+  /// Emitted when the clipboard changes ownership.
+  let onChanged (self: Clipboard) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_clipboard_get_type ())) "changed" handler
+
+  /// Calls `handler` when the `content` property changes.
+  let onNotifyContent (self: Clipboard) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_clipboard_get_type ())) "notify::content" handler
+
+  /// Calls `handler` when the `display` property changes.
+  let onNotifyDisplay (self: Clipboard) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_clipboard_get_type ())) "notify::display" handler
+
+  /// Calls `handler` when the `formats` property changes.
+  let onNotifyFormats (self: Clipboard) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_clipboard_get_type ())) "notify::formats" handler
+
+  /// Calls `handler` when the `local` property changes.
+  let onNotifyLocal (self: Clipboard) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_clipboard_get_type ())) "notify::local" handler
+
+module ColorState =
+  extern gdk_color_state_create_cicp_params : cptr -> cptr
+
+  /// Create a [class@Gdk.CicpParams] representing the colorstate.
+  let createCicpParams (self: ColorState) : option<CicpParams> =
+    let zr = gdk_color_state_create_cicp_params (Glue.obj self.Id (gdk_color_state_get_type ()))
+    let zid1 = Glue.wrap (zr) true
+    (if zid1 = 0 then None else Some (CicpParams zid1))
+
+  extern gdk_color_state_equal : cptr -> cptr -> i32
+
+  /// Compares two `GdkColorStates` for equality.
+  let equal (self: ColorState) (other: ColorState) : bool =
+    (((gdk_color_state_equal (Glue.obj self.Id (gdk_color_state_get_type ())) (Glue.obj other.Id (gdk_color_state_get_type ())))) <> i32 0)
+
+  extern gdk_color_state_equivalent : cptr -> cptr -> i32
+
+  /// Compares two `GdkColorStates` for equivalence.
+  let equivalent (self: ColorState) (other: ColorState) : bool =
+    (((gdk_color_state_equivalent (Glue.obj self.Id (gdk_color_state_get_type ())) (Glue.obj other.Id (gdk_color_state_get_type ())))) <> i32 0)
+
+  extern gdk_color_state_ref : cptr -> cptr
+
+  /// Increase the reference count of @self.
+  [<Unsafe>]
+  let ref_ (self: ColorState) : ColorState =
+    ColorState (Glue.wrapBoxed ((gdk_color_state_ref (Glue.obj self.Id (gdk_color_state_get_type ())))) (gdk_color_state_get_type ()) true)
+
+  extern gdk_color_state_unref : cptr -> unit
+
+  /// Decrease the reference count of @self.
+  [<Unsafe>]
+  let unref (self: ColorState) : unit =
+    gdk_color_state_unref (Glue.obj self.Id (gdk_color_state_get_type ()))
+
+  extern gdk_color_state_get_oklab : unit -> cptr
+
+  /// Returns the color state object representing the oklab color space.
+  let getOklab () : ColorState =
+    ColorState (Glue.wrapBoxed ((gdk_color_state_get_oklab ())) (gdk_color_state_get_type ()) true)
+
+  extern gdk_color_state_get_oklch : unit -> cptr
+
+  /// Returns the color state object representing the oklch color space.
+  let getOklch () : ColorState =
+    ColorState (Glue.wrapBoxed ((gdk_color_state_get_oklch ())) (gdk_color_state_get_type ()) true)
+
+  extern gdk_color_state_get_rec2100_linear : unit -> cptr
+
+  /// Returns the color state object representing the linear rec2100 color space.
+  let getRec2100Linear () : ColorState =
+    ColorState (Glue.wrapBoxed ((gdk_color_state_get_rec2100_linear ())) (gdk_color_state_get_type ()) true)
+
+  extern gdk_color_state_get_rec2100_pq : unit -> cptr
+
+  /// Returns the color state object representing the rec2100-pq color space.
+  let getRec2100Pq () : ColorState =
+    ColorState (Glue.wrapBoxed ((gdk_color_state_get_rec2100_pq ())) (gdk_color_state_get_type ()) true)
+
+  extern gdk_color_state_get_srgb : unit -> cptr
+
+  /// Returns the color state object representing the sRGB color space.
+  let getSrgb () : ColorState =
+    ColorState (Glue.wrapBoxed ((gdk_color_state_get_srgb ())) (gdk_color_state_get_type ()) true)
+
+  extern gdk_color_state_get_srgb_linear : unit -> cptr
+
+  /// Returns the color state object representing the linearized sRGB color space.
+  let getSrgbLinear () : ColorState =
+    ColorState (Glue.wrapBoxed ((gdk_color_state_get_srgb_linear ())) (gdk_color_state_get_type ()) true)
+
+module ContentDeserializer =
+  /// The same object as its interface.
+  let toGioAsyncResult (self: ContentDeserializer) : Gio.AsyncResult = Gio.AsyncResult self.Id
+
+  /// The same object as its ancestor.
+  let toGObjectObject (self: ContentDeserializer) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<ContentDeserializer> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_content_deserializer_get_type ()) then Some (ContentDeserializer object.Id) else None
+
+  extern gdk_content_deserializer_get_cancellable : cptr -> cptr
+
+  /// Gets the cancellable for the current operation.
+  let getCancellable (self: ContentDeserializer) : option<Gio.Cancellable> =
+    let zr = gdk_content_deserializer_get_cancellable (Glue.obj self.Id (gdk_content_deserializer_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Gio.Cancellable zid1))
+
+  extern gdk_content_deserializer_get_gtype : cptr -> usize
+
+  /// Gets the `GType` to create an instance of.
+  let getGtype (self: ContentDeserializer) : usize =
+    ((gdk_content_deserializer_get_gtype (Glue.obj self.Id (gdk_content_deserializer_get_type ()))))
+
+  extern gdk_content_deserializer_get_input_stream : cptr -> cptr
+
+  /// Gets the input stream for the current operation.
+  let getInputStream (self: ContentDeserializer) : Gio.InputStream =
+    Gio.InputStream (Glue.wrap ((gdk_content_deserializer_get_input_stream (Glue.obj self.Id (gdk_content_deserializer_get_type ())))) false)
+
+  extern gdk_content_deserializer_get_mime_type : cptr -> cptr
+
+  /// Gets the mime type to deserialize from.
+  let getMimeType (self: ContentDeserializer) : string =
+    Glue.text ((gdk_content_deserializer_get_mime_type (Glue.obj self.Id (gdk_content_deserializer_get_type ()))))
+
+  extern gdk_content_deserializer_get_priority : cptr -> i32
+
+  /// Gets the I/O priority for the current operation.
+  let getPriority (self: ContentDeserializer) : int =
+    (int ((gdk_content_deserializer_get_priority (Glue.obj self.Id (gdk_content_deserializer_get_type ())))))
+
+  extern gdk_content_deserializer_get_task_data : cptr -> cptr
+
+  /// Gets the data that was associated with the current operation.
+  let getTaskData (self: ContentDeserializer) : cptr =
+    ((gdk_content_deserializer_get_task_data (Glue.obj self.Id (gdk_content_deserializer_get_type ()))))
+
+  extern gdk_content_deserializer_get_user_data : cptr -> cptr
+
+  /// Gets the user data that was passed when the deserializer was registered.
+  let getUserData (self: ContentDeserializer) : cptr =
+    ((gdk_content_deserializer_get_user_data (Glue.obj self.Id (gdk_content_deserializer_get_type ()))))
+
+  extern gdk_content_deserializer_get_value : cptr -> cptr
+
+  /// Gets the `GValue` to store the deserialized object in.
+  let getValue (self: ContentDeserializer) : GObject.Value =
+    GObject.Value (Glue.wrapBoxed ((gdk_content_deserializer_get_value (Glue.obj self.Id (gdk_content_deserializer_get_type ())))) (GObject.g_value_get_type ()) false)
+
+  extern gdk_content_deserializer_return_error : cptr -> cptr -> unit
+
+  /// Indicate that the deserialization has ended with an error.
+  let returnError (self: ContentDeserializer) (error: Glue.Error) : unit =
+    let ze1 = Glue.errorNew error
+    gdk_content_deserializer_return_error (Glue.obj self.Id (gdk_content_deserializer_get_type ())) ze1
+
+  extern gdk_content_deserializer_return_success : cptr -> unit
+
+  /// Indicate that the deserialization has been successfully completed.
+  let returnSuccess (self: ContentDeserializer) : unit =
+    gdk_content_deserializer_return_success (Glue.obj self.Id (gdk_content_deserializer_get_type ()))
+
+  extern gdk_content_deserializer_set_task_data : cptr -> cptr -> cptr -> unit
+
+  /// Associate data with the current deserialization operation.
+  [<Unsafe>]
+  let setTaskData (self: ContentDeserializer) (data: cptr) (notify: cptr) : unit =
+    gdk_content_deserializer_set_task_data (Glue.obj self.Id (gdk_content_deserializer_get_type ())) data notify
+
+module ContentFormats =
+  extern gdk_content_formats_new : cptr -> u32 -> cptr
+
+  /// Creates a new `GdkContentFormats` from an array of mime types.
+  let create (mimeTypes: list<string>) : ContentFormats =
+    let zv1 = Glue.strv mimeTypes
+    let zr = gdk_content_formats_new zv1 (u32 (Glue.count mimeTypes))
+    let zv = ContentFormats (Glue.wrapBoxed (zr) (gdk_content_formats_get_type ()) true)
+    Glue.freeStrv zv1
+    zv
+
+  extern gdk_content_formats_new_for_gtype : usize -> cptr
+
+  /// Creates a new `GdkContentFormats` for a given `GType`.
+  let createForGtype (type_: usize) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_new_for_gtype type_)) (gdk_content_formats_get_type ()) true)
+
+  extern gdk_content_formats_contain_gtype : cptr -> usize -> i32
+
+  /// Checks if a given `GType` is part of the given @formats.
+  let containGtype (self: ContentFormats) (type_: usize) : bool =
+    (((gdk_content_formats_contain_gtype (Glue.obj self.Id (gdk_content_formats_get_type ())) type_)) <> i32 0)
+
+  extern gdk_content_formats_contain_mime_type : cptr -> cstr -> i32
+
+  /// Checks if a given mime type is part of the given @formats.
+  let containMimeType (self: ContentFormats) (mimeType: string) : bool =
+    (((gdk_content_formats_contain_mime_type (Glue.obj self.Id (gdk_content_formats_get_type ())) mimeType)) <> i32 0)
+
+  extern gdk_content_formats_get_gtypes : cptr -> cptr -> cptr
+
+  /// Gets the `GType`s included in @formats.
+  let getGtypes (self: ContentFormats) : list<usize> =
+    Glue.outBegin ()
+    let zr = gdk_content_formats_get_gtypes (Glue.obj self.Id (gdk_content_formats_get_type ())) (Glue.out 0)
+    let zv = Glue.mapList (fun zi -> usize zi) (Glue.intsOf (zr) (Glue.outI64 0) 8 false false)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_content_formats_get_mime_types : cptr -> cptr -> cptr
+
+  /// Gets the mime types included in @formats.
+  let getMimeTypes (self: ContentFormats) : list<string> =
+    Glue.outBegin ()
+    let zr = gdk_content_formats_get_mime_types (Glue.obj self.Id (gdk_content_formats_get_type ())) (Glue.out 0)
+    let zv = Glue.strvList (zr) 0
+    Glue.outEnd ()
+    zv
+
+  extern gdk_content_formats_is_empty : cptr -> i32
+
+  /// Returns whether the content formats contain any formats.
+  let isEmpty (self: ContentFormats) : bool =
+    (((gdk_content_formats_is_empty (Glue.obj self.Id (gdk_content_formats_get_type ())))) <> i32 0)
+
+  extern gdk_content_formats_match : cptr -> cptr -> i32
+
+  /// Checks if @first and @second have any matching formats.
+  let match_ (self: ContentFormats) (second: ContentFormats) : bool =
+    (((gdk_content_formats_match (Glue.obj self.Id (gdk_content_formats_get_type ())) (Glue.obj second.Id (gdk_content_formats_get_type ())))) <> i32 0)
+
+  extern gdk_content_formats_match_gtype : cptr -> cptr -> usize
+
+  /// Finds the first `GType` from @first that is also contained in @second.
+  let matchGtype (self: ContentFormats) (second: ContentFormats) : usize =
+    ((gdk_content_formats_match_gtype (Glue.obj self.Id (gdk_content_formats_get_type ())) (Glue.obj second.Id (gdk_content_formats_get_type ()))))
+
+  extern gdk_content_formats_match_mime_type : cptr -> cptr -> cptr
+
+  /// Finds the first mime type from @first that is also contained in @second.
+  let matchMimeType (self: ContentFormats) (second: ContentFormats) : option<string> =
+    Glue.textOption ((gdk_content_formats_match_mime_type (Glue.obj self.Id (gdk_content_formats_get_type ())) (Glue.obj second.Id (gdk_content_formats_get_type ()))))
+
+  extern gdk_content_formats_print : cptr -> cptr -> unit
+
+  /// Prints the given @formats into a string for human consumption.
+  let print (self: ContentFormats) (string: GLib.String) : unit =
+    gdk_content_formats_print (Glue.obj self.Id (gdk_content_formats_get_type ())) (Glue.obj string.Id (GLib.g_gstring_get_type ()))
+
+  extern gdk_content_formats_ref : cptr -> cptr
+
+  /// Increases the reference count of a `GdkContentFormats` by one.
+  [<Unsafe>]
+  let ref_ (self: ContentFormats) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_ref (Glue.obj self.Id (gdk_content_formats_get_type ())))) (gdk_content_formats_get_type ()) true)
+
+  extern gdk_content_formats_to_string : cptr -> cptr
+
+  /// Prints the given @formats into a human-readable string.
+  let toString (self: ContentFormats) : string =
+    Glue.takeText ((gdk_content_formats_to_string (Glue.obj self.Id (gdk_content_formats_get_type ()))))
+
+  extern gdk_content_formats_union : cptr -> cptr -> cptr
+
+  /// Append all missing types from @second to @first, in the order they had in @second.
+  let union (self: ContentFormats) (second: ContentFormats) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_union (Glue.obj self.Id (gdk_content_formats_get_type ())) (Glue.obj second.Id (gdk_content_formats_get_type ())))) (gdk_content_formats_get_type ()) true)
+
+  extern gdk_content_formats_union_deserialize_gtypes : cptr -> cptr
+
+  /// Add GTypes for mime types in @formats for which deserializers are registered.
+  let unionDeserializeGtypes (self: ContentFormats) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_union_deserialize_gtypes (Glue.obj self.Id (gdk_content_formats_get_type ())))) (gdk_content_formats_get_type ()) true)
+
+  extern gdk_content_formats_union_deserialize_mime_types : cptr -> cptr
+
+  /// Add mime types for GTypes in @formats for which deserializers are registered.
+  let unionDeserializeMimeTypes (self: ContentFormats) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_union_deserialize_mime_types (Glue.obj self.Id (gdk_content_formats_get_type ())))) (gdk_content_formats_get_type ()) true)
+
+  extern gdk_content_formats_union_serialize_gtypes : cptr -> cptr
+
+  /// Add GTypes for the mime types in @formats for which serializers are registered.
+  let unionSerializeGtypes (self: ContentFormats) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_union_serialize_gtypes (Glue.obj self.Id (gdk_content_formats_get_type ())))) (gdk_content_formats_get_type ()) true)
+
+  extern gdk_content_formats_union_serialize_mime_types : cptr -> cptr
+
+  /// Add mime types for GTypes in @formats for which serializers are registered.
+  let unionSerializeMimeTypes (self: ContentFormats) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_union_serialize_mime_types (Glue.obj self.Id (gdk_content_formats_get_type ())))) (gdk_content_formats_get_type ()) true)
+
+  extern gdk_content_formats_unref : cptr -> unit
+
+  /// Decreases the reference count of a `GdkContentFormats` by one.
+  [<Unsafe>]
+  let unref (self: ContentFormats) : unit =
+    gdk_content_formats_unref (Glue.obj self.Id (gdk_content_formats_get_type ()))
+
+  extern gdk_content_formats_parse : cstr -> cptr
+
+  /// Parses the given @string into `GdkContentFormats` and returns the formats.
+  let parse (string: string) : option<ContentFormats> =
+    let zr = gdk_content_formats_parse string
+    let zid1 = Glue.wrapBoxed (zr) (gdk_content_formats_get_type ()) true
+    (if zid1 = 0 then None else Some (ContentFormats zid1))
+
+module ContentFormatsBuilder =
+  extern gdk_content_formats_builder_new : unit -> cptr
+
+  /// Create a new `GdkContentFormatsBuilder` object.
+  let create () : ContentFormatsBuilder =
+    ContentFormatsBuilder (Glue.wrapBoxed ((gdk_content_formats_builder_new ())) (gdk_content_formats_builder_get_type ()) true)
+
+  extern gdk_content_formats_builder_add_formats : cptr -> cptr -> unit
+
+  /// Appends all formats from @formats to @builder, skipping those that already exist.
+  let addFormats (self: ContentFormatsBuilder) (formats: ContentFormats) : unit =
+    gdk_content_formats_builder_add_formats (Glue.obj self.Id (gdk_content_formats_builder_get_type ())) (Glue.obj formats.Id (gdk_content_formats_get_type ()))
+
+  extern gdk_content_formats_builder_add_gtype : cptr -> usize -> unit
+
+  /// Appends @type to @builder if it has not already been added.
+  let addGtype (self: ContentFormatsBuilder) (type_: usize) : unit =
+    gdk_content_formats_builder_add_gtype (Glue.obj self.Id (gdk_content_formats_builder_get_type ())) type_
+
+  extern gdk_content_formats_builder_add_mime_type : cptr -> cstr -> unit
+
+  /// Appends @mime_type to @builder if it has not already been added.
+  let addMimeType (self: ContentFormatsBuilder) (mimeType: string) : unit =
+    gdk_content_formats_builder_add_mime_type (Glue.obj self.Id (gdk_content_formats_builder_get_type ())) mimeType
+
+  extern gdk_content_formats_builder_free_to_formats : cptr -> cptr
+
+  /// Creates a new `GdkContentFormats` from the current state of the given @builder, and frees the @builder instance.
+  let freeToFormats (self: ContentFormatsBuilder) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_builder_free_to_formats (Glue.obj self.Id (gdk_content_formats_builder_get_type ())))) (gdk_content_formats_get_type ()) true)
+
+  extern gdk_content_formats_builder_ref : cptr -> cptr
+
+  /// Acquires a reference on the given @builder.
+  [<Unsafe>]
+  let ref_ (self: ContentFormatsBuilder) : ContentFormatsBuilder =
+    ContentFormatsBuilder (Glue.wrapBoxed ((gdk_content_formats_builder_ref (Glue.obj self.Id (gdk_content_formats_builder_get_type ())))) (gdk_content_formats_builder_get_type ()) false)
+
+  extern gdk_content_formats_builder_to_formats : cptr -> cptr
+
+  /// Creates a new `GdkContentFormats` from the given @builder.
+  let toFormats (self: ContentFormatsBuilder) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((gdk_content_formats_builder_to_formats (Glue.obj self.Id (gdk_content_formats_builder_get_type ())))) (gdk_content_formats_get_type ()) true)
+
+  extern gdk_content_formats_builder_unref : cptr -> unit
+
+  /// Releases a reference on the given @builder.
+  [<Unsafe>]
+  let unref (self: ContentFormatsBuilder) : unit =
+    gdk_content_formats_builder_unref (Glue.obj self.Id (gdk_content_formats_builder_get_type ()))
+
+module ContentProvider =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: ContentProvider) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<ContentProvider> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_content_provider_get_type ()) then Some (ContentProvider object.Id) else None
+
+  extern gdk_content_provider_new_for_bytes : cstr -> cptr -> cptr
+
+  /// Create a content provider that provides the given @bytes as data for the given @mime_type.
+  let createForBytes (mimeType: string) (bytes: GLib.Bytes) : ContentProvider =
+    ContentProvider (Glue.wrap ((gdk_content_provider_new_for_bytes mimeType (Glue.obj bytes.Id (GLib.g_bytes_get_type ())))) true)
+
+  extern gdk_content_provider_new_for_value : cptr -> cptr
+
+  /// Create a content provider that provides the given @value.
+  let createForValue (value: GObject.Value) : ContentProvider =
+    ContentProvider (Glue.wrap ((gdk_content_provider_new_for_value (Glue.obj value.Id (GObject.g_value_get_type ())))) true)
+
+  /// Create a content provider that provides the value of the given @type. C's own function, of variable arguments: called as C calls it, by code that
+  /// answers for what it passes.
+  extern gdk_content_provider_new_typed : usize -> ... -> cptr
+
+  extern gdk_content_provider_new_union : cptr -> usize -> cptr
+
+  /// Creates a content provider that represents all the given @providers.
+  let createUnion (providers: list<ContentProvider>) : ContentProvider =
+    let za1 = Glue.ptrs (Glue.mapList (fun (zo: ContentProvider) -> Glue.give (Glue.obj zo.Id (gdk_content_provider_get_type ()))) providers)
+    let zr = gdk_content_provider_new_union za1 (usize (Glue.count providers))
+    ContentProvider (Glue.wrap (zr) true)
+
+  extern gdk_content_provider_content_changed : cptr -> unit
+
+  /// Emits the ::content-changed signal.
+  let contentChanged (self: ContentProvider) : unit =
+    gdk_content_provider_content_changed (Glue.obj self.Id (gdk_content_provider_get_type ()))
+
+  extern gdk_content_provider_get_value : cptr -> cptr -> cptr -> i32
+
+  /// Gets the contents of @provider stored in @value.
+  let getValue (self: ContentProvider) : result<(bool * GObject.Value), Glue.Error> =
+    let zo1 = Glue.alloc (GObject.zgtk_sizeof_GObject_Value ()) (GObject.g_value_get_type ())
+    Glue.outBegin ()
+    let zr = gdk_content_provider_get_value (Glue.obj self.Id (gdk_content_provider_get_type ())) (Glue.obj zo1 (GObject.g_value_get_type ())) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = (((zr) <> i32 0), GObject.Value zo1)
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_content_provider_ref_formats : cptr -> cptr
+
+  /// Gets the formats that the provider can provide its current contents in.
+  let refFormats (self: ContentProvider) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((gdk_content_provider_ref_formats (Glue.obj self.Id (gdk_content_provider_get_type ())))) (gdk_content_formats_get_type ()) true)
+
+  extern gdk_content_provider_ref_storable_formats : cptr -> cptr
+
+  /// Gets the formats that the provider suggests other applications to store the data in.
+  let refStorableFormats (self: ContentProvider) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((gdk_content_provider_ref_storable_formats (Glue.obj self.Id (gdk_content_provider_get_type ())))) (gdk_content_formats_get_type ()) true)
+
+  extern gdk_content_provider_write_mime_type_async : cptr -> cstr -> cptr -> i32 -> cptr -> cptr -> cptr -> unit
+
+  /// Asynchronously writes the contents of @provider to @stream in the given @mime_type.
+  let writeMimeTypeAsync (self: ContentProvider) (mimeType: string) (stream: Gio.OutputStream) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let zid2 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        callback sourceObject res)
+    let zp3 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
+      | None -> Glue.none ()
+    gdk_content_provider_write_mime_type_async (Glue.obj self.Id (gdk_content_provider_get_type ())) mimeType (Glue.obj stream.Id (Gio.g_output_stream_get_type ())) (i32 ioPriority) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+
+  extern gdk_content_provider_write_mime_type_finish : cptr -> cptr -> cptr -> i32
+
+  /// Finishes an asynchronous write operation.
+  let writeMimeTypeFinish (self: ContentProvider) (result: Gio.AsyncResult) : result<bool, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_content_provider_write_mime_type_finish (Glue.obj self.Id (gdk_content_provider_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = ((zr) <> i32 0)
+      Glue.outEnd ()
+      Ok zv
+
+  /// Emitted whenever the content provided by this provider has changed.
+  let onContentChanged (self: ContentProvider) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_content_provider_get_type ())) "content-changed" handler
+
+  /// Calls `handler` when the `formats` property changes.
+  let onNotifyFormats (self: ContentProvider) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_content_provider_get_type ())) "notify::formats" handler
+
+  /// Calls `handler` when the `storable-formats` property changes.
+  let onNotifyStorableFormats (self: ContentProvider) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_content_provider_get_type ())) "notify::storable-formats" handler
+
+  extern zgtk_override_Gdk_ContentProvider_attach_clipboard : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `attach_clipboard`: a virtual method.
+  let overrideAttachClipboard (gtype: usize) (handler: ContentProvider -> Clipboard -> unit) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let provider = ContentProvider (Glue.wrap (Glue.argPointer 0) false)
+        let clipboard = Clipboard (Glue.wrap (Glue.argPointer 1) false)
+        handler provider clipboard)
+    zgtk_override_Gdk_ContentProvider_attach_clipboard gtype zcb
+
+  extern zgtk_parent_Gdk_ContentProvider_attach_clipboard : cptr -> cptr -> unit
+
+  /// `zgtk_parent_Gdk_ContentProvider_attach_clipboard`.
+  let parentAttachClipboard (self: ContentProvider) (clipboard: Clipboard) : unit =
+    zgtk_parent_Gdk_ContentProvider_attach_clipboard (Glue.obj self.Id (gdk_content_provider_get_type ())) (Glue.obj clipboard.Id (gdk_clipboard_get_type ()))
+
+  extern zgtk_override_Gdk_ContentProvider_content_changed : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `content_changed`: Emits the ::content-changed signal.
+  let overrideContentChanged (gtype: usize) (handler: ContentProvider -> unit) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let provider = ContentProvider (Glue.wrap (Glue.argPointer 0) false)
+        handler provider)
+    zgtk_override_Gdk_ContentProvider_content_changed gtype zcb
+
+  extern zgtk_parent_Gdk_ContentProvider_content_changed : cptr -> unit
+
+  /// Emits the ::content-changed signal.
+  let parentContentChanged (self: ContentProvider) : unit =
+    zgtk_parent_Gdk_ContentProvider_content_changed (Glue.obj self.Id (gdk_content_provider_get_type ()))
+
+  extern zgtk_override_Gdk_ContentProvider_detach_clipboard : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `detach_clipboard`: a virtual method.
+  let overrideDetachClipboard (gtype: usize) (handler: ContentProvider -> Clipboard -> unit) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let provider = ContentProvider (Glue.wrap (Glue.argPointer 0) false)
+        let clipboard = Clipboard (Glue.wrap (Glue.argPointer 1) false)
+        handler provider clipboard)
+    zgtk_override_Gdk_ContentProvider_detach_clipboard gtype zcb
+
+  extern zgtk_parent_Gdk_ContentProvider_detach_clipboard : cptr -> cptr -> unit
+
+  /// `zgtk_parent_Gdk_ContentProvider_detach_clipboard`.
+  let parentDetachClipboard (self: ContentProvider) (clipboard: Clipboard) : unit =
+    zgtk_parent_Gdk_ContentProvider_detach_clipboard (Glue.obj self.Id (gdk_content_provider_get_type ())) (Glue.obj clipboard.Id (gdk_clipboard_get_type ()))
+
+  extern zgtk_override_Gdk_ContentProvider_ref_formats : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `ref_formats`: Gets the formats that the provider can provide its current contents in.
+  let overrideRefFormats (gtype: usize) (handler: ContentProvider -> ContentFormats) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let provider = ContentProvider (Glue.wrap (Glue.argPointer 0) false)
+        Glue.returnPointer (Glue.giveBoxed (Glue.obj (handler provider).Id (gdk_content_formats_get_type ())) (gdk_content_formats_get_type ())))
+    zgtk_override_Gdk_ContentProvider_ref_formats gtype zcb
+
+  extern zgtk_parent_Gdk_ContentProvider_ref_formats : cptr -> cptr
+
+  /// Gets the formats that the provider can provide its current contents in.
+  let parentRefFormats (self: ContentProvider) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((zgtk_parent_Gdk_ContentProvider_ref_formats (Glue.obj self.Id (gdk_content_provider_get_type ())))) (gdk_content_formats_get_type ()) true)
+
+  extern zgtk_override_Gdk_ContentProvider_ref_storable_formats : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `ref_storable_formats`: Gets the formats that the provider suggests other applications to store the data in.
+  let overrideRefStorableFormats (gtype: usize) (handler: ContentProvider -> ContentFormats) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let provider = ContentProvider (Glue.wrap (Glue.argPointer 0) false)
+        Glue.returnPointer (Glue.giveBoxed (Glue.obj (handler provider).Id (gdk_content_formats_get_type ())) (gdk_content_formats_get_type ())))
+    zgtk_override_Gdk_ContentProvider_ref_storable_formats gtype zcb
+
+  extern zgtk_parent_Gdk_ContentProvider_ref_storable_formats : cptr -> cptr
+
+  /// Gets the formats that the provider suggests other applications to store the data in.
+  let parentRefStorableFormats (self: ContentProvider) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((zgtk_parent_Gdk_ContentProvider_ref_storable_formats (Glue.obj self.Id (gdk_content_provider_get_type ())))) (gdk_content_formats_get_type ()) true)
+
+  extern zgtk_override_Gdk_ContentProvider_write_mime_type_async : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `write_mime_type_async`: Asynchronously writes the contents of @provider to @stream in the given @mime_type.
+  let overrideWriteMimeTypeAsync (gtype: usize) (handler: ContentProvider -> string -> Gio.OutputStream -> int -> option<Gio.Cancellable> -> cptr -> cptr -> unit) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let provider = ContentProvider (Glue.wrap (Glue.argPointer 0) false)
+        let mimeType = Glue.text (Glue.argPointer 1)
+        let stream = Gio.OutputStream (Glue.wrap (Glue.argPointer 2) false)
+        let ioPriority = Glue.argInt 3
+        let zid1 = Glue.wrap (Glue.argPointer 4) false
+        let cancellable = (if zid1 = 0 then None else Some (Gio.Cancellable zid1))
+        let callback = Glue.argPointer 5
+        let userData = Glue.argPointer 6
+        handler provider mimeType stream ioPriority cancellable callback userData)
+    zgtk_override_Gdk_ContentProvider_write_mime_type_async gtype zcb
+
+  extern zgtk_parent_Gdk_ContentProvider_write_mime_type_async : cptr -> cstr -> cptr -> i32 -> cptr -> cptr -> cptr -> unit
+
+  /// Asynchronously writes the contents of @provider to @stream in the given @mime_type.
+  let parentWriteMimeTypeAsync (self: ContentProvider) (mimeType: string) (stream: Gio.OutputStream) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let zid2 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        callback sourceObject res)
+    let zp3 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
+      | None -> Glue.none ()
+    zgtk_parent_Gdk_ContentProvider_write_mime_type_async (Glue.obj self.Id (gdk_content_provider_get_type ())) mimeType (Glue.obj stream.Id (Gio.g_output_stream_get_type ())) (i32 ioPriority) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+
+module ContentSerializer =
+  /// The same object as its interface.
+  let toGioAsyncResult (self: ContentSerializer) : Gio.AsyncResult = Gio.AsyncResult self.Id
+
+  /// The same object as its ancestor.
+  let toGObjectObject (self: ContentSerializer) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<ContentSerializer> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_content_serializer_get_type ()) then Some (ContentSerializer object.Id) else None
+
+  extern gdk_content_serializer_get_cancellable : cptr -> cptr
+
+  /// Gets the cancellable for the current operation.
+  let getCancellable (self: ContentSerializer) : option<Gio.Cancellable> =
+    let zr = gdk_content_serializer_get_cancellable (Glue.obj self.Id (gdk_content_serializer_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Gio.Cancellable zid1))
+
+  extern gdk_content_serializer_get_gtype : cptr -> usize
+
+  /// Gets the `GType` to of the object to serialize.
+  let getGtype (self: ContentSerializer) : usize =
+    ((gdk_content_serializer_get_gtype (Glue.obj self.Id (gdk_content_serializer_get_type ()))))
+
+  extern gdk_content_serializer_get_mime_type : cptr -> cptr
+
+  /// Gets the mime type to serialize to.
+  let getMimeType (self: ContentSerializer) : string =
+    Glue.text ((gdk_content_serializer_get_mime_type (Glue.obj self.Id (gdk_content_serializer_get_type ()))))
+
+  extern gdk_content_serializer_get_output_stream : cptr -> cptr
+
+  /// Gets the output stream for the current operation.
+  let getOutputStream (self: ContentSerializer) : Gio.OutputStream =
+    Gio.OutputStream (Glue.wrap ((gdk_content_serializer_get_output_stream (Glue.obj self.Id (gdk_content_serializer_get_type ())))) false)
+
+  extern gdk_content_serializer_get_priority : cptr -> i32
+
+  /// Gets the I/O priority for the current operation.
+  let getPriority (self: ContentSerializer) : int =
+    (int ((gdk_content_serializer_get_priority (Glue.obj self.Id (gdk_content_serializer_get_type ())))))
+
+  extern gdk_content_serializer_get_task_data : cptr -> cptr
+
+  /// Gets the data that was associated with the current operation.
+  let getTaskData (self: ContentSerializer) : cptr =
+    ((gdk_content_serializer_get_task_data (Glue.obj self.Id (gdk_content_serializer_get_type ()))))
+
+  extern gdk_content_serializer_get_user_data : cptr -> cptr
+
+  /// Gets the user data that was passed when the serializer was registered.
+  let getUserData (self: ContentSerializer) : cptr =
+    ((gdk_content_serializer_get_user_data (Glue.obj self.Id (gdk_content_serializer_get_type ()))))
+
+  extern gdk_content_serializer_get_value : cptr -> cptr
+
+  /// Gets the `GValue` to read the object to serialize from.
+  let getValue (self: ContentSerializer) : GObject.Value =
+    GObject.Value (Glue.wrapBoxed ((gdk_content_serializer_get_value (Glue.obj self.Id (gdk_content_serializer_get_type ())))) (GObject.g_value_get_type ()) false)
+
+  extern gdk_content_serializer_return_error : cptr -> cptr -> unit
+
+  /// Indicate that the serialization has ended with an error.
+  let returnError (self: ContentSerializer) (error: Glue.Error) : unit =
+    let ze1 = Glue.errorNew error
+    gdk_content_serializer_return_error (Glue.obj self.Id (gdk_content_serializer_get_type ())) ze1
+
+  extern gdk_content_serializer_return_success : cptr -> unit
+
+  /// Indicate that the serialization has been successfully completed.
+  let returnSuccess (self: ContentSerializer) : unit =
+    gdk_content_serializer_return_success (Glue.obj self.Id (gdk_content_serializer_get_type ()))
+
+  extern gdk_content_serializer_set_task_data : cptr -> cptr -> cptr -> unit
+
+  /// Associate data with the current serialization operation.
+  [<Unsafe>]
+  let setTaskData (self: ContentSerializer) (data: cptr) (notify: cptr) : unit =
+    gdk_content_serializer_set_task_data (Glue.obj self.Id (gdk_content_serializer_get_type ())) data notify
+
+module CrossingEvent =
+  extern gdk_crossing_event_get_detail : cptr -> i32
+
+  /// Extracts the notify detail from a crossing event.
+  [<Unsafe>]
+  let getDetail (self: CrossingEvent) : NotifyType =
+    NotifyType (int ((gdk_crossing_event_get_detail self.Ptr)))
+
+  extern gdk_crossing_event_get_focus : cptr -> i32
+
+  /// Checks if the @event surface is the focus surface.
+  [<Unsafe>]
+  let getFocus (self: CrossingEvent) : bool =
+    (((gdk_crossing_event_get_focus self.Ptr)) <> i32 0)
+
+  extern gdk_crossing_event_get_mode : cptr -> i32
+
+  /// Extracts the crossing mode from a crossing event.
+  [<Unsafe>]
+  let getMode (self: CrossingEvent) : CrossingMode =
+    CrossingMode (int ((gdk_crossing_event_get_mode self.Ptr)))
+
+module Cursor =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: Cursor) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<Cursor> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_cursor_get_type ()) then Some (Cursor object.Id) else None
+
+  extern gdk_cursor_new_from_callback : cptr -> cptr -> cptr -> cptr -> cptr
+
+  /// Creates a new callback-based cursor object.
+  let createFromCallback (callback: Cursor -> int -> float -> (option<Texture> * int * int * int * int)) (fallback: option<Cursor>) : Cursor =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let cursor = Cursor (Glue.wrap (Glue.argPointer 0) false)
+        let cursorSize = Glue.argInt 1
+        let scale = Glue.argFloat 2
+        let (zres, width, height, hotspotX, hotspotY) = callback cursor cursorSize scale
+        Glue.setI32 3 width
+        Glue.setI32 4 height
+        Glue.setI32 5 hotspotX
+        Glue.setI32 6 hotspotY
+        match zres with
+        | Some zo -> Glue.returnPointer (Glue.give (Glue.obj zo.Id (gdk_texture_get_type ())))
+        | None -> Glue.returnPointer (Glue.none ()))
+    let zp2 =
+      match fallback with
+      | Some zo -> Glue.obj zo.Id (gdk_cursor_get_type ())
+      | None -> Glue.none ()
+    let zr = gdk_cursor_new_from_callback (zgtk_tramp_Gdk_CursorGetTextureCallback ()) zcb1 (Glue.dropFn ()) zp2
+    Cursor (Glue.wrap (zr) true)
+
+  extern gdk_cursor_new_from_name : cstr -> cptr -> cptr
+
+  /// Creates a new cursor by looking up @name in the current cursor theme.
+  let createFromName (name: string) (fallback: option<Cursor>) : Cursor =
+    let zp1 =
+      match fallback with
+      | Some zo -> Glue.obj zo.Id (gdk_cursor_get_type ())
+      | None -> Glue.none ()
+    let zr = gdk_cursor_new_from_name name zp1
+    Cursor (Glue.wrap (zr) true)
+
+  extern gdk_cursor_new_from_texture : cptr -> i32 -> i32 -> cptr -> cptr
+
+  /// Creates a new cursor from a `GdkTexture`.
+  let createFromTexture (texture: Texture) (hotspotX: int) (hotspotY: int) (fallback: option<Cursor>) : Cursor =
+    let zp1 =
+      match fallback with
+      | Some zo -> Glue.obj zo.Id (gdk_cursor_get_type ())
+      | None -> Glue.none ()
+    let zr = gdk_cursor_new_from_texture (Glue.obj texture.Id (gdk_texture_get_type ())) (i32 hotspotX) (i32 hotspotY) zp1
+    Cursor (Glue.wrap (zr) true)
+
+  extern gdk_cursor_get_fallback : cptr -> cptr
+
+  /// Returns the fallback for this @cursor.
+  let getFallback (self: Cursor) : option<Cursor> =
+    let zr = gdk_cursor_get_fallback (Glue.obj self.Id (gdk_cursor_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Cursor zid1))
+
+  extern gdk_cursor_get_hotspot_x : cptr -> i32
+
+  /// Returns the horizontal offset of the hotspot.
+  let getHotspotX (self: Cursor) : int =
+    (int ((gdk_cursor_get_hotspot_x (Glue.obj self.Id (gdk_cursor_get_type ())))))
+
+  extern gdk_cursor_get_hotspot_y : cptr -> i32
+
+  /// Returns the vertical offset of the hotspot.
+  let getHotspotY (self: Cursor) : int =
+    (int ((gdk_cursor_get_hotspot_y (Glue.obj self.Id (gdk_cursor_get_type ())))))
+
+  extern gdk_cursor_get_name : cptr -> cptr
+
+  /// Returns the name of the cursor.
+  let getName (self: Cursor) : option<string> =
+    Glue.textOption ((gdk_cursor_get_name (Glue.obj self.Id (gdk_cursor_get_type ()))))
+
+  extern gdk_cursor_get_texture : cptr -> cptr
+
+  /// Returns the texture for the cursor.
+  let getTexture (self: Cursor) : option<Texture> =
+    let zr = gdk_cursor_get_texture (Glue.obj self.Id (gdk_cursor_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Texture zid1))
+
+  /// Calls `handler` when the `fallback` property changes.
+  let onNotifyFallback (self: Cursor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_cursor_get_type ())) "notify::fallback" handler
+
+  /// Calls `handler` when the `hotspot-x` property changes.
+  let onNotifyHotspotX (self: Cursor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_cursor_get_type ())) "notify::hotspot-x" handler
+
+  /// Calls `handler` when the `hotspot-y` property changes.
+  let onNotifyHotspotY (self: Cursor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_cursor_get_type ())) "notify::hotspot-y" handler
+
+  /// Calls `handler` when the `name` property changes.
+  let onNotifyName (self: Cursor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_cursor_get_type ())) "notify::name" handler
+
+  /// Calls `handler` when the `texture` property changes.
+  let onNotifyTexture (self: Cursor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_cursor_get_type ())) "notify::texture" handler
+
+module DNDEvent =
+  extern gdk_dnd_event_get_drop : cptr -> cptr
+
+  /// Gets the `GdkDrop` object from a DND event.
+  [<Unsafe>]
+  let getDrop (self: DNDEvent) : option<Drop> =
+    let zr = gdk_dnd_event_get_drop self.Ptr
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Drop zid1))
+
+module Device =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: Device) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<Device> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_device_get_type ()) then Some (Device object.Id) else None
+
+  extern gdk_device_get_active_layout_index : cptr -> i32
+
+  /// Retrieves the index of the active layout of the keyboard.
+  let getActiveLayoutIndex (self: Device) : int =
+    (int ((gdk_device_get_active_layout_index (Glue.obj self.Id (gdk_device_get_type ())))))
+
+  extern gdk_device_get_caps_lock_state : cptr -> i32
+
+  /// Retrieves whether the Caps Lock modifier of the keyboard is locked.
+  let getCapsLockState (self: Device) : bool =
+    (((gdk_device_get_caps_lock_state (Glue.obj self.Id (gdk_device_get_type ())))) <> i32 0)
+
+  extern gdk_device_get_device_tool : cptr -> cptr
+
+  /// Retrieves the current tool for @device.
+  let getDeviceTool (self: Device) : option<DeviceTool> =
+    let zr = gdk_device_get_device_tool (Glue.obj self.Id (gdk_device_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (DeviceTool zid1))
+
+  extern gdk_device_get_direction : cptr -> i32
+
+  /// Returns the direction of effective layout of the keyboard.
+  let getDirection (self: Device) : Pango.Direction =
+    Pango.Direction (int ((gdk_device_get_direction (Glue.obj self.Id (gdk_device_get_type ())))))
+
+  extern gdk_device_get_display : cptr -> cptr
+
+  /// Returns the `GdkDisplay` to which @device pertains.
+  let getDisplay (self: Device) : Display =
+    Display (Glue.wrap ((gdk_device_get_display (Glue.obj self.Id (gdk_device_get_type ())))) false)
+
+  extern gdk_device_get_has_cursor : cptr -> i32
+
+  /// Determines whether the pointer follows device motion.
+  let getHasCursor (self: Device) : bool =
+    (((gdk_device_get_has_cursor (Glue.obj self.Id (gdk_device_get_type ())))) <> i32 0)
+
+  extern gdk_device_get_layout_names : cptr -> cptr
+
+  /// Retrieves the names of the layouts of the keyboard.
+  let getLayoutNames (self: Device) : list<string> =
+    Glue.strvList ((gdk_device_get_layout_names (Glue.obj self.Id (gdk_device_get_type ())))) 2
+
+  extern gdk_device_get_modifier_state : cptr -> u32
+
+  /// Retrieves the current modifier state of the keyboard.
+  let getModifierState (self: Device) : ModifierType =
+    ModifierType (int ((gdk_device_get_modifier_state (Glue.obj self.Id (gdk_device_get_type ())))))
+
+  extern gdk_device_get_name : cptr -> cptr
+
+  /// The name of the device, suitable for showing in a user interface.
+  let getName (self: Device) : string =
+    Glue.text ((gdk_device_get_name (Glue.obj self.Id (gdk_device_get_type ()))))
+
+  extern gdk_device_get_num_lock_state : cptr -> i32
+
+  /// Retrieves whether the Num Lock modifier of the keyboard is locked.
+  let getNumLockState (self: Device) : bool =
+    (((gdk_device_get_num_lock_state (Glue.obj self.Id (gdk_device_get_type ())))) <> i32 0)
+
+  extern gdk_device_get_num_touches : cptr -> u32
+
+  /// Retrieves the number of touch points associated to @device.
+  let getNumTouches (self: Device) : int =
+    (int ((gdk_device_get_num_touches (Glue.obj self.Id (gdk_device_get_type ())))))
+
+  extern gdk_device_get_product_id : cptr -> cptr
+
+  /// Returns the product ID of this device.
+  let getProductId (self: Device) : option<string> =
+    Glue.textOption ((gdk_device_get_product_id (Glue.obj self.Id (gdk_device_get_type ()))))
+
+  extern gdk_device_get_scroll_lock_state : cptr -> i32
+
+  /// Retrieves whether the Scroll Lock modifier of the keyboard is locked.
+  let getScrollLockState (self: Device) : bool =
+    (((gdk_device_get_scroll_lock_state (Glue.obj self.Id (gdk_device_get_type ())))) <> i32 0)
+
+  extern gdk_device_get_seat : cptr -> cptr
+
+  /// Returns the `GdkSeat` the device belongs to.
+  let getSeat (self: Device) : Seat =
+    Seat (Glue.wrap ((gdk_device_get_seat (Glue.obj self.Id (gdk_device_get_type ())))) false)
+
+  extern gdk_device_get_source : cptr -> i32
+
+  /// Determines the type of the device.
+  let getSource (self: Device) : InputSource =
+    InputSource (int ((gdk_device_get_source (Glue.obj self.Id (gdk_device_get_type ())))))
+
+  extern gdk_device_get_surface_at_position : cptr -> cptr -> cptr -> cptr
+
+  /// Obtains the surface underneath @device, returning the location of the device in @win_x and @win_y.
+  let getSurfaceAtPosition (self: Device) : (option<Surface> * float * float) =
+    Glue.outBegin ()
+    let zr = gdk_device_get_surface_at_position (Glue.obj self.Id (gdk_device_get_type ())) (Glue.out 0) (Glue.out 1)
+    let zid1 = Glue.wrap (zr) false
+    let zv = ((if zid1 = 0 then None else Some (Surface zid1)), Glue.outF64 0, Glue.outF64 1)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_device_get_timestamp : cptr -> u32
+
+  /// Returns the timestamp of the last activity for this device.
+  let getTimestamp (self: Device) : int =
+    (int ((gdk_device_get_timestamp (Glue.obj self.Id (gdk_device_get_type ())))))
+
+  extern gdk_device_get_vendor_id : cptr -> cptr
+
+  /// Returns the vendor ID of this device.
+  let getVendorId (self: Device) : option<string> =
+    Glue.textOption ((gdk_device_get_vendor_id (Glue.obj self.Id (gdk_device_get_type ()))))
+
+  extern gdk_device_has_bidi_layouts : cptr -> i32
+
+  /// Determines if layouts for both right-to-left and left-to-right languages are in use on the keyboard.
+  let hasBidiLayouts (self: Device) : bool =
+    (((gdk_device_has_bidi_layouts (Glue.obj self.Id (gdk_device_get_type ())))) <> i32 0)
+
+  /// Emitted either when the number of either axes or keys changes.
+  let onChanged (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "changed" handler
+
+  /// Emitted on pen/eraser devices whenever tools enter or leave proximity.
+  let onToolChanged (self: Device) (handler: DeviceTool -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "tool-changed" (fun () ->
+      let tool = DeviceTool (Glue.wrap (Glue.argPointer 1) false)
+      handler tool)
+
+  /// Calls `handler` when the `active-layout-index` property changes.
+  let onNotifyActiveLayoutIndex (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::active-layout-index" handler
+
+  /// Calls `handler` when the `caps-lock-state` property changes.
+  let onNotifyCapsLockState (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::caps-lock-state" handler
+
+  /// Calls `handler` when the `direction` property changes.
+  let onNotifyDirection (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::direction" handler
+
+  /// Calls `handler` when the `display` property changes.
+  let onNotifyDisplay (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::display" handler
+
+  /// Calls `handler` when the `has-bidi-layouts` property changes.
+  let onNotifyHasBidiLayouts (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::has-bidi-layouts" handler
+
+  /// Calls `handler` when the `has-cursor` property changes.
+  let onNotifyHasCursor (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::has-cursor" handler
+
+  /// Calls `handler` when the `layout-names` property changes.
+  let onNotifyLayoutNames (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::layout-names" handler
+
+  /// Calls `handler` when the `modifier-state` property changes.
+  let onNotifyModifierState (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::modifier-state" handler
+
+  /// Calls `handler` when the `n-axes` property changes.
+  let onNotifyNAxes (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::n-axes" handler
+
+  /// The `n-axes` property.
+  let getNAxes (self: Device) : int = Glue.getInt (Glue.obj self.Id (gdk_device_get_type ())) "n-axes"
+
+  /// Calls `handler` when the `name` property changes.
+  let onNotifyName (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::name" handler
+
+  /// Calls `handler` when the `num-lock-state` property changes.
+  let onNotifyNumLockState (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::num-lock-state" handler
+
+  /// Calls `handler` when the `num-touches` property changes.
+  let onNotifyNumTouches (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::num-touches" handler
+
+  /// Calls `handler` when the `product-id` property changes.
+  let onNotifyProductId (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::product-id" handler
+
+  /// Calls `handler` when the `scroll-lock-state` property changes.
+  let onNotifyScrollLockState (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::scroll-lock-state" handler
+
+  /// Calls `handler` when the `seat` property changes.
+  let onNotifySeat (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::seat" handler
+
+  /// Sets the `seat` property.
+  let setSeat (self: Device) (value: Seat) : unit = Glue.setObject (Glue.obj self.Id (gdk_device_get_type ())) "seat" (Glue.obj value.Id (gdk_seat_get_type ()))
+
+  /// Calls `handler` when the `source` property changes.
+  let onNotifySource (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::source" handler
+
+  /// Calls `handler` when the `tool` property changes.
+  let onNotifyTool (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::tool" handler
+
+  /// Calls `handler` when the `vendor-id` property changes.
+  let onNotifyVendorId (self: Device) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_get_type ())) "notify::vendor-id" handler
+
+module DevicePad =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: DevicePad) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<DevicePad> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_device_pad_get_type ()) then Some (DevicePad object.Id) else None
+
+  extern gdk_device_pad_get_feature_group : cptr -> i32 -> i32 -> i32
+
+  /// Returns the group the given @feature and @idx belong to.
+  let getFeatureGroup (self: DevicePad) (feature: DevicePadFeature) (featureIdx: int) : int =
+    (int ((gdk_device_pad_get_feature_group (Glue.obj self.Id (gdk_device_pad_get_type ())) (i32 feature.Int) (i32 featureIdx))))
+
+  extern gdk_device_pad_get_group_n_modes : cptr -> i32 -> i32
+
+  /// Returns the number of modes that @group may have.
+  let getGroupNModes (self: DevicePad) (groupIdx: int) : int =
+    (int ((gdk_device_pad_get_group_n_modes (Glue.obj self.Id (gdk_device_pad_get_type ())) (i32 groupIdx))))
+
+  extern gdk_device_pad_get_n_features : cptr -> i32 -> i32
+
+  /// Returns the number of features a tablet pad has.
+  let getNFeatures (self: DevicePad) (feature: DevicePadFeature) : int =
+    (int ((gdk_device_pad_get_n_features (Glue.obj self.Id (gdk_device_pad_get_type ())) (i32 feature.Int))))
+
+  extern gdk_device_pad_get_n_groups : cptr -> i32
+
+  /// Returns the number of groups this pad device has.
+  let getNGroups (self: DevicePad) : int =
+    (int ((gdk_device_pad_get_n_groups (Glue.obj self.Id (gdk_device_pad_get_type ())))))
+
+module DeviceTool =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: DeviceTool) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<DeviceTool> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_device_tool_get_type ()) then Some (DeviceTool object.Id) else None
+
+  extern gdk_device_tool_get_axes : cptr -> u32
+
+  /// Gets the axes of the tool.
+  let getAxes (self: DeviceTool) : AxisFlags =
+    AxisFlags (int ((gdk_device_tool_get_axes (Glue.obj self.Id (gdk_device_tool_get_type ())))))
+
+  extern gdk_device_tool_get_hardware_id : cptr -> u64
+
+  /// Gets the hardware ID of this tool, or 0 if it's not known.
+  let getHardwareId (self: DeviceTool) : int =
+    (int ((gdk_device_tool_get_hardware_id (Glue.obj self.Id (gdk_device_tool_get_type ())))))
+
+  extern gdk_device_tool_get_serial : cptr -> u64
+
+  /// Gets the serial number of this tool.
+  let getSerial (self: DeviceTool) : int =
+    (int ((gdk_device_tool_get_serial (Glue.obj self.Id (gdk_device_tool_get_type ())))))
+
+  extern gdk_device_tool_get_tool_type : cptr -> i32
+
+  /// Gets the `GdkDeviceToolType` of the tool.
+  let getToolType (self: DeviceTool) : DeviceToolType =
+    DeviceToolType (int ((gdk_device_tool_get_tool_type (Glue.obj self.Id (gdk_device_tool_get_type ())))))
+
+  /// Calls `handler` when the `axes` property changes.
+  let onNotifyAxes (self: DeviceTool) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_tool_get_type ())) "notify::axes" handler
+
+  /// Calls `handler` when the `hardware-id` property changes.
+  let onNotifyHardwareId (self: DeviceTool) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_tool_get_type ())) "notify::hardware-id" handler
+
+  /// Calls `handler` when the `serial` property changes.
+  let onNotifySerial (self: DeviceTool) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_tool_get_type ())) "notify::serial" handler
+
+  /// Calls `handler` when the `tool-type` property changes.
+  let onNotifyToolType (self: DeviceTool) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_device_tool_get_type ())) "notify::tool-type" handler
+
+module Display =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: Display) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<Display> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_display_get_type ()) then Some (Display object.Id) else None
+
+  extern gdk_display_beep : cptr -> unit
+
+  /// Emits a short beep on @display
+  let beep (self: Display) : unit =
+    gdk_display_beep (Glue.obj self.Id (gdk_display_get_type ()))
+
+  extern gdk_display_close : cptr -> unit
+
+  /// Closes the connection to the windowing system for the given display.
+  let close (self: Display) : unit =
+    gdk_display_close (Glue.obj self.Id (gdk_display_get_type ()))
+
+  extern gdk_display_create_gl_context : cptr -> cptr -> cptr
+
+  /// Creates a new `GdkGLContext` for the `GdkDisplay`.
+  let createGlContext (self: Display) : result<GLContext, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_display_create_gl_context (Glue.obj self.Id (gdk_display_get_type ())) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = GLContext (Glue.wrap (zr) true)
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_display_device_is_grabbed : cptr -> cptr -> i32
+
+  /// Returns %TRUE if there is an ongoing grab on @device for @display.
+  let deviceIsGrabbed (self: Display) (device: Device) : bool =
+    (((gdk_display_device_is_grabbed (Glue.obj self.Id (gdk_display_get_type ())) (Glue.obj device.Id (gdk_device_get_type ())))) <> i32 0)
+
+  extern gdk_display_flush : cptr -> unit
+
+  /// Flushes any requests queued for the windowing system.
+  let flush (self: Display) : unit =
+    gdk_display_flush (Glue.obj self.Id (gdk_display_get_type ()))
+
+  extern gdk_display_get_app_launch_context : cptr -> cptr
+
+  /// Returns a `GdkAppLaunchContext` suitable for launching applications on the given display.
+  let getAppLaunchContext (self: Display) : AppLaunchContext =
+    AppLaunchContext (Glue.wrap ((gdk_display_get_app_launch_context (Glue.obj self.Id (gdk_display_get_type ())))) true)
+
+  extern gdk_display_get_clipboard : cptr -> cptr
+
+  /// Gets the clipboard used for copy/paste operations.
+  let getClipboard (self: Display) : Clipboard =
+    Clipboard (Glue.wrap ((gdk_display_get_clipboard (Glue.obj self.Id (gdk_display_get_type ())))) false)
+
+  extern gdk_display_get_default_seat : cptr -> cptr
+
+  /// Returns the default `GdkSeat` for this display.
+  let getDefaultSeat (self: Display) : option<Seat> =
+    let zr = gdk_display_get_default_seat (Glue.obj self.Id (gdk_display_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Seat zid1))
+
+  extern gdk_display_get_dmabuf_formats : cptr -> cptr
+
+  /// Returns the dma-buf formats that are supported on this display.
+  let getDmabufFormats (self: Display) : DmabufFormats =
+    DmabufFormats (Glue.wrapBoxed ((gdk_display_get_dmabuf_formats (Glue.obj self.Id (gdk_display_get_type ())))) (gdk_dmabuf_formats_get_type ()) false)
+
+  extern gdk_display_get_monitor_at_surface : cptr -> cptr -> cptr
+
+  /// Gets the monitor in which the largest area of @surface resides.
+  let getMonitorAtSurface (self: Display) (surface: Surface) : option<Monitor> =
+    let zr = gdk_display_get_monitor_at_surface (Glue.obj self.Id (gdk_display_get_type ())) (Glue.obj surface.Id (gdk_surface_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Monitor zid1))
+
+  extern gdk_display_get_monitors : cptr -> cptr
+
+  /// Gets the list of monitors associated with this display.
+  let getMonitors (self: Display) : Gio.ListModel =
+    Gio.ListModel (Glue.wrap ((gdk_display_get_monitors (Glue.obj self.Id (gdk_display_get_type ())))) false)
+
+  extern gdk_display_get_name : cptr -> cptr
+
+  /// Gets the name of the display.
+  let getName (self: Display) : string =
+    Glue.text ((gdk_display_get_name (Glue.obj self.Id (gdk_display_get_type ()))))
+
+  extern gdk_display_get_primary_clipboard : cptr -> cptr
+
+  /// Gets the clipboard used for the primary selection.
+  let getPrimaryClipboard (self: Display) : Clipboard =
+    Clipboard (Glue.wrap ((gdk_display_get_primary_clipboard (Glue.obj self.Id (gdk_display_get_type ())))) false)
+
+  extern gdk_display_get_setting : cptr -> cstr -> cptr -> i32
+
+  /// Retrieves a desktop-wide setting such as double-click time for the @display.
+  let getSetting (self: Display) (name: string) (value: GObject.Value) : bool =
+    (((gdk_display_get_setting (Glue.obj self.Id (gdk_display_get_type ())) name (Glue.obj value.Id (GObject.g_value_get_type ())))) <> i32 0)
+
+  extern gdk_display_get_startup_notification_id : cptr -> cptr
+
+  /// Deprecated. Gets the startup notification ID for a Wayland display, or %NULL if no ID has been defined.
+  let getStartupNotificationId (self: Display) : option<string> =
+    Glue.textOption ((gdk_display_get_startup_notification_id (Glue.obj self.Id (gdk_display_get_type ()))))
+
+  extern gdk_display_is_closed : cptr -> i32
+
+  /// Finds out if the display has been closed.
+  let isClosed (self: Display) : bool =
+    (((gdk_display_is_closed (Glue.obj self.Id (gdk_display_get_type ())))) <> i32 0)
+
+  extern gdk_display_is_composited : cptr -> i32
+
+  /// Returns whether surfaces can reasonably be expected to have their alpha channel drawn correctly on the screen.
+  let isComposited (self: Display) : bool =
+    (((gdk_display_is_composited (Glue.obj self.Id (gdk_display_get_type ())))) <> i32 0)
+
+  extern gdk_display_is_rgba : cptr -> i32
+
+  /// Returns whether surfaces on this @display are created with an alpha channel.
+  let isRgba (self: Display) : bool =
+    (((gdk_display_is_rgba (Glue.obj self.Id (gdk_display_get_type ())))) <> i32 0)
+
+  extern gdk_display_list_seats : cptr -> cptr
+
+  /// Returns the list of seats known to @display.
+  let listSeats (self: Display) : list<Seat> =
+    Glue.mapList (fun zp -> Seat (Glue.wrap (zp) false)) (Glue.pointers ((gdk_display_list_seats (Glue.obj self.Id (gdk_display_get_type ())))) false true)
+
+  extern gdk_display_map_keycode : cptr -> u32 -> cptr -> cptr -> cptr -> i32
+
+  /// Returns the keyvals bound to @keycode.
+  let mapKeycode (self: Display) (keycode: int) : (bool * list<KeymapKey> * list<int>) =
+    Glue.outBegin ()
+    let zr = gdk_display_map_keycode (Glue.obj self.Id (gdk_display_get_type ())) (u32 keycode) (Glue.out 1) (Glue.out 2) (Glue.out 0)
+    let zrs1 = Glue.mapList (fun zp -> KeymapKey (Glue.copyPlain (zp) (zgtk_sizeof_Gdk_KeymapKey ()) (zgtk_tag_Gdk_KeymapKey ()))) (Glue.ptrsOf (Glue.outPtr 1) (Glue.outI32 0) false)
+    Glue.free (Glue.outPtr 1)
+    let zv = (((zr) <> i32 0), zrs1, Glue.intsOf (Glue.outPtr 2) (Glue.outI32 0) 4 false true)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_display_map_keyval : cptr -> u32 -> cptr -> cptr -> i32
+
+  /// Obtains a list of keycode/group/level combinations that will generate @keyval.
+  let mapKeyval (self: Display) (keyval: int) : (bool * list<KeymapKey>) =
+    Glue.outBegin ()
+    let zr = gdk_display_map_keyval (Glue.obj self.Id (gdk_display_get_type ())) (u32 keyval) (Glue.out 1) (Glue.out 0)
+    let zrs1 = Glue.mapList (fun zp -> KeymapKey (Glue.copyPlain (zp) (zgtk_sizeof_Gdk_KeymapKey ()) (zgtk_tag_Gdk_KeymapKey ()))) (Glue.ptrsOf (Glue.outPtr 1) (Glue.outI32 0) false)
+    Glue.free (Glue.outPtr 1)
+    let zv = (((zr) <> i32 0), zrs1)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_display_notify_startup_complete : cptr -> cstr -> unit
+
+  /// Deprecated. Indicates to the GUI environment that the application has finished loading, using a given identifier.
+  let notifyStartupComplete (self: Display) (startupId: string) : unit =
+    gdk_display_notify_startup_complete (Glue.obj self.Id (gdk_display_get_type ())) startupId
+
+  extern gdk_display_prepare_gl : cptr -> cptr -> i32
+
+  /// Checks that OpenGL is available for @self and ensures that it is properly initialized.
+  let prepareGl (self: Display) : result<bool, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_display_prepare_gl (Glue.obj self.Id (gdk_display_get_type ())) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = ((zr) <> i32 0)
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_display_put_event : cptr -> cptr -> unit
+
+  /// Deprecated. Adds the given event to the event queue for @display.
+  let putEvent (self: Display) (event: Event) : unit =
+    gdk_display_put_event (Glue.obj self.Id (gdk_display_get_type ())) (Glue.obj event.Id (zgtk_type_Gdk_Event ()))
+
+  extern gdk_display_supports_input_shapes : cptr -> i32
+
+  /// Returns %TRUE if the display supports input shapes.
+  let supportsInputShapes (self: Display) : bool =
+    (((gdk_display_supports_input_shapes (Glue.obj self.Id (gdk_display_get_type ())))) <> i32 0)
+
+  extern gdk_display_supports_shadow_width : cptr -> i32
+
+  /// Returns whether it's possible for a surface to draw outside of the window area.
+  let supportsShadowWidth (self: Display) : bool =
+    (((gdk_display_supports_shadow_width (Glue.obj self.Id (gdk_display_get_type ())))) <> i32 0)
+
+  extern gdk_display_sync : cptr -> unit
+
+  /// Flushes any requests queued for the windowing system and waits until all requests have been handled.
+  let sync (self: Display) : unit =
+    gdk_display_sync (Glue.obj self.Id (gdk_display_get_type ()))
+
+  extern gdk_display_translate_key : cptr -> u32 -> u32 -> i32 -> cptr -> cptr -> cptr -> cptr -> i32
+
+  /// Translates the contents of a `GdkEventKey` into a keyval, effective group, and level.
+  let translateKey (self: Display) (keycode: int) (state: ModifierType) (group: int) : (bool * int * int * int * ModifierType) =
+    Glue.outBegin ()
+    let zr = gdk_display_translate_key (Glue.obj self.Id (gdk_display_get_type ())) (u32 keycode) (u32 state.Int) (i32 group) (Glue.out 0) (Glue.out 1) (Glue.out 2) (Glue.out 3)
+    let zv = (((zr) <> i32 0), Glue.outU32 0, Glue.outI32 1, Glue.outI32 2, ModifierType (Glue.outU32 3))
+    Glue.outEnd ()
+    zv
+
+  extern gdk_display_get_default : unit -> cptr
+
+  /// Gets the default `GdkDisplay`.
+  let getDefault () : option<Display> =
+    let zr = gdk_display_get_default ()
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Display zid1))
+
+  extern gdk_display_open : cptr -> cptr
+
+  /// Opens a display.
+  let open_ (displayName: option<string>) : option<Display> =
+    let zs1 = Glue.dupOption displayName
+    let zr = gdk_display_open zs1
+    let zid2 = Glue.wrap (zr) false
+    let zv = (if zid2 = 0 then None else Some (Display zid2))
+    Glue.free zs1
+    zv
+
+  /// Emitted when the connection to the windowing system for @display is closed.
+  let onClosed (self: Display) (handler: bool -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "closed" (fun () ->
+      let isError = (Glue.argInt 1 <> 0)
+      handler isError)
+
+  /// Emitted when the connection to the windowing system for @display is opened.
+  let onOpened (self: Display) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "opened" handler
+
+  /// Emitted whenever a new seat is made known to the windowing system.
+  let onSeatAdded (self: Display) (handler: Seat -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "seat-added" (fun () ->
+      let seat = Seat (Glue.wrap (Glue.argPointer 1) false)
+      handler seat)
+
+  /// Emitted whenever a seat is removed by the windowing system.
+  let onSeatRemoved (self: Display) (handler: Seat -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "seat-removed" (fun () ->
+      let seat = Seat (Glue.wrap (Glue.argPointer 1) false)
+      handler seat)
+
+  /// Emitted whenever a setting changes its value.
+  let onSettingChanged (self: Display) (handler: string -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "setting-changed" (fun () ->
+      let setting = Glue.text (Glue.argPointer 1)
+      handler setting)
+
+  /// Calls `handler` when the `composited` property changes.
+  let onNotifyComposited (self: Display) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "notify::composited" handler
+
+  /// Calls `handler` when the `dmabuf-formats` property changes.
+  let onNotifyDmabufFormats (self: Display) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "notify::dmabuf-formats" handler
+
+  /// Calls `handler` when the `input-shapes` property changes.
+  let onNotifyInputShapes (self: Display) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "notify::input-shapes" handler
+
+  /// Calls `handler` when the `rgba` property changes.
+  let onNotifyRgba (self: Display) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "notify::rgba" handler
+
+  /// Calls `handler` when the `shadow-width` property changes.
+  let onNotifyShadowWidth (self: Display) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_display_get_type ())) "notify::shadow-width" handler
+
+module DisplayManager =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: DisplayManager) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<DisplayManager> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_display_manager_get_type ()) then Some (DisplayManager object.Id) else None
+
+  extern gdk_display_manager_get_default_display : cptr -> cptr
+
+  /// Gets the default `GdkDisplay`.
+  let getDefaultDisplay (self: DisplayManager) : option<Display> =
+    let zr = gdk_display_manager_get_default_display (Glue.obj self.Id (gdk_display_manager_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Display zid1))
+
+  extern gdk_display_manager_list_displays : cptr -> cptr
+
+  /// List all currently open displays.
+  let listDisplays (self: DisplayManager) : list<Display> =
+    Glue.mapList (fun zp -> Display (Glue.wrap (zp) false)) (Glue.pointers ((gdk_display_manager_list_displays (Glue.obj self.Id (gdk_display_manager_get_type ())))) true true)
+
+  extern gdk_display_manager_open_display : cptr -> cptr -> cptr
+
+  /// Opens a display.
+  let openDisplay (self: DisplayManager) (name: option<string>) : option<Display> =
+    let zs1 = Glue.dupOption name
+    let zr = gdk_display_manager_open_display (Glue.obj self.Id (gdk_display_manager_get_type ())) zs1
+    let zid2 = Glue.wrap (zr) false
+    let zv = (if zid2 = 0 then None else Some (Display zid2))
+    Glue.free zs1
+    zv
+
+  extern gdk_display_manager_set_default_display : cptr -> cptr -> unit
+
+  /// Sets @display as the default display.
+  let setDefaultDisplay (self: DisplayManager) (display: Display) : unit =
+    gdk_display_manager_set_default_display (Glue.obj self.Id (gdk_display_manager_get_type ())) (Glue.obj display.Id (gdk_display_get_type ()))
+
+  extern gdk_display_manager_get : unit -> cptr
+
+  /// Gets the singleton `GdkDisplayManager` object.
+  let get () : DisplayManager =
+    DisplayManager (Glue.wrap ((gdk_display_manager_get ())) false)
+
+  /// Emitted when a display is opened.
+  let onDisplayOpened (self: DisplayManager) (handler: Display -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_display_manager_get_type ())) "display-opened" (fun () ->
+      let display = Display (Glue.wrap (Glue.argPointer 1) false)
+      handler display)
+
+  /// Calls `handler` when the `default-display` property changes.
+  let onNotifyDefaultDisplay (self: DisplayManager) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_display_manager_get_type ())) "notify::default-display" handler
+
+module DmabufFormats =
+  extern gdk_dmabuf_formats_contains : cptr -> u32 -> u64 -> i32
+
+  /// Returns whether a given format is contained in @formats.
+  let contains (self: DmabufFormats) (fourcc: int) (modifier: int) : bool =
+    (((gdk_dmabuf_formats_contains (Glue.obj self.Id (gdk_dmabuf_formats_get_type ())) (u32 fourcc) (u64 modifier))) <> i32 0)
+
+  extern gdk_dmabuf_formats_equal : cptr -> cptr -> i32
+
+  /// Returns whether @formats1 and @formats2 contain the same dmabuf formats, in the same order.
+  let equal (self: DmabufFormats) (formats2: option<DmabufFormats>) : bool =
+    let zp1 =
+      match formats2 with
+      | Some zo -> Glue.obj zo.Id (gdk_dmabuf_formats_get_type ())
+      | None -> Glue.none ()
+    let zr = gdk_dmabuf_formats_equal (Glue.obj self.Id (gdk_dmabuf_formats_get_type ())) zp1
+    ((zr) <> i32 0)
+
+  extern gdk_dmabuf_formats_get_format : cptr -> usize -> cptr -> cptr -> unit
+
+  /// Gets the fourcc code and modifier for a format that is contained in @formats.
+  let getFormat (self: DmabufFormats) (idx: int) : (int * int) =
+    Glue.outBegin ()
+    gdk_dmabuf_formats_get_format (Glue.obj self.Id (gdk_dmabuf_formats_get_type ())) (usize idx) (Glue.out 0) (Glue.out 1)
+    let zv = (Glue.outU32 0, Glue.outI64 1)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_dmabuf_formats_get_n_formats : cptr -> usize
+
+  /// Returns the number of formats that the @formats object contains.
+  let getNFormats (self: DmabufFormats) : int =
+    (int ((gdk_dmabuf_formats_get_n_formats (Glue.obj self.Id (gdk_dmabuf_formats_get_type ())))))
+
+  extern gdk_dmabuf_formats_ref : cptr -> cptr
+
+  /// Increases the reference count of @formats.
+  [<Unsafe>]
+  let ref_ (self: DmabufFormats) : DmabufFormats =
+    DmabufFormats (Glue.wrapBoxed ((gdk_dmabuf_formats_ref (Glue.obj self.Id (gdk_dmabuf_formats_get_type ())))) (gdk_dmabuf_formats_get_type ()) true)
+
+  extern gdk_dmabuf_formats_unref : cptr -> unit
+
+  /// Decreases the reference count of @formats.
+  [<Unsafe>]
+  let unref (self: DmabufFormats) : unit =
+    gdk_dmabuf_formats_unref (Glue.obj self.Id (gdk_dmabuf_formats_get_type ()))
+
+module Paintable =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: Paintable) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<Paintable> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_paintable_get_type ()) then Some (Paintable object.Id) else None
+
+  extern gdk_paintable_compute_concrete_size : cptr -> f64 -> f64 -> f64 -> f64 -> cptr -> cptr -> unit
+
+  /// Compute a concrete size for the `GdkPaintable`.
+  let computeConcreteSize (self: Paintable) (specifiedWidth: float) (specifiedHeight: float) (defaultWidth: float) (defaultHeight: float) : (float * float) =
+    Glue.outBegin ()
+    gdk_paintable_compute_concrete_size (Glue.obj self.Id (gdk_paintable_get_type ())) specifiedWidth specifiedHeight defaultWidth defaultHeight (Glue.out 0) (Glue.out 1)
+    let zv = (Glue.outF64 0, Glue.outF64 1)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_paintable_get_current_image : cptr -> cptr
+
+  /// Gets an immutable paintable for the current contents displayed by @paintable.
+  let getCurrentImage (self: Paintable) : Paintable =
+    Paintable (Glue.wrap ((gdk_paintable_get_current_image (Glue.obj self.Id (gdk_paintable_get_type ())))) true)
+
+  extern gdk_paintable_get_flags : cptr -> u32
+
+  /// Get flags for the paintable.
+  let getFlags (self: Paintable) : PaintableFlags =
+    PaintableFlags (int ((gdk_paintable_get_flags (Glue.obj self.Id (gdk_paintable_get_type ())))))
+
+  extern gdk_paintable_get_intrinsic_aspect_ratio : cptr -> f64
+
+  /// Gets the preferred aspect ratio the @paintable would like to be displayed at.
+  let getIntrinsicAspectRatio (self: Paintable) : float =
+    ((gdk_paintable_get_intrinsic_aspect_ratio (Glue.obj self.Id (gdk_paintable_get_type ()))))
+
+  extern gdk_paintable_get_intrinsic_height : cptr -> i32
+
+  /// Gets the preferred height the @paintable would like to be displayed at.
+  let getIntrinsicHeight (self: Paintable) : int =
+    (int ((gdk_paintable_get_intrinsic_height (Glue.obj self.Id (gdk_paintable_get_type ())))))
+
+  extern gdk_paintable_get_intrinsic_width : cptr -> i32
+
+  /// Gets the preferred width the @paintable would like to be displayed at.
+  let getIntrinsicWidth (self: Paintable) : int =
+    (int ((gdk_paintable_get_intrinsic_width (Glue.obj self.Id (gdk_paintable_get_type ())))))
+
+  extern gdk_paintable_invalidate_contents : cptr -> unit
+
+  /// Called by implementations of `GdkPaintable` to invalidate their contents.
+  let invalidateContents (self: Paintable) : unit =
+    gdk_paintable_invalidate_contents (Glue.obj self.Id (gdk_paintable_get_type ()))
+
+  extern gdk_paintable_invalidate_size : cptr -> unit
+
+  /// Called by implementations of `GdkPaintable` to invalidate their size.
+  let invalidateSize (self: Paintable) : unit =
+    gdk_paintable_invalidate_size (Glue.obj self.Id (gdk_paintable_get_type ()))
+
+  extern gdk_paintable_snapshot : cptr -> cptr -> f64 -> f64 -> unit
+
+  /// Snapshots the given paintable with the given @width and @height.
+  let snapshot (self: Paintable) (snapshot: Snapshot) (width: float) (height: float) : unit =
+    gdk_paintable_snapshot (Glue.obj self.Id (gdk_paintable_get_type ())) (Glue.obj snapshot.Id (gdk_snapshot_get_type ())) width height
+
+  extern gdk_paintable_new_empty : i32 -> i32 -> cptr
+
+  /// Returns a paintable that has the given intrinsic size and draws nothing.
+  let createEmpty (intrinsicWidth: int) (intrinsicHeight: int) : Paintable =
+    Paintable (Glue.wrap ((gdk_paintable_new_empty (i32 intrinsicWidth) (i32 intrinsicHeight))) true)
+
+  /// Emitted when the contents of the @paintable change.
+  let onInvalidateContents (self: Paintable) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_paintable_get_type ())) "invalidate-contents" handler
+
+  /// Emitted when the intrinsic size of the @paintable changes.
+  let onInvalidateSize (self: Paintable) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_paintable_get_type ())) "invalidate-size" handler
+
+  extern zgtk_override_Gdk_Paintable_get_current_image : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_current_image`: Gets an immutable paintable for the current contents displayed by @paintable.
+  let overrideGetCurrentImage (gtype: usize) (handler: Paintable -> Paintable) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let paintable = Paintable (Glue.wrap (Glue.argPointer 0) false)
+        Glue.returnPointer (Glue.give (Glue.obj (handler paintable).Id (gdk_paintable_get_type ()))))
+    zgtk_override_Gdk_Paintable_get_current_image gtype zcb
+
+  extern zgtk_parent_Gdk_Paintable_get_current_image : cptr -> cptr
+
+  /// Gets an immutable paintable for the current contents displayed by @paintable.
+  let parentGetCurrentImage (self: Paintable) : Paintable =
+    Paintable (Glue.wrap ((zgtk_parent_Gdk_Paintable_get_current_image (Glue.obj self.Id (gdk_paintable_get_type ())))) true)
+
+  extern zgtk_override_Gdk_Paintable_get_flags : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_flags`: Get flags for the paintable.
+  let overrideGetFlags (gtype: usize) (handler: Paintable -> PaintableFlags) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let paintable = Paintable (Glue.wrap (Glue.argPointer 0) false)
+        Glue.returnInt (handler paintable).Int)
+    zgtk_override_Gdk_Paintable_get_flags gtype zcb
+
+  extern zgtk_parent_Gdk_Paintable_get_flags : cptr -> u32
+
+  /// Get flags for the paintable.
+  let parentGetFlags (self: Paintable) : PaintableFlags =
+    PaintableFlags (int ((zgtk_parent_Gdk_Paintable_get_flags (Glue.obj self.Id (gdk_paintable_get_type ())))))
+
+  extern zgtk_override_Gdk_Paintable_get_intrinsic_aspect_ratio : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_intrinsic_aspect_ratio`: Gets the preferred aspect ratio the @paintable would like to be displayed at.
+  let overrideGetIntrinsicAspectRatio (gtype: usize) (handler: Paintable -> float) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let paintable = Paintable (Glue.wrap (Glue.argPointer 0) false)
+        Glue.returnFloat (handler paintable))
+    zgtk_override_Gdk_Paintable_get_intrinsic_aspect_ratio gtype zcb
+
+  extern zgtk_parent_Gdk_Paintable_get_intrinsic_aspect_ratio : cptr -> f64
+
+  /// Gets the preferred aspect ratio the @paintable would like to be displayed at.
+  let parentGetIntrinsicAspectRatio (self: Paintable) : float =
+    ((zgtk_parent_Gdk_Paintable_get_intrinsic_aspect_ratio (Glue.obj self.Id (gdk_paintable_get_type ()))))
+
+  extern zgtk_override_Gdk_Paintable_get_intrinsic_height : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_intrinsic_height`: Gets the preferred height the @paintable would like to be displayed at.
+  let overrideGetIntrinsicHeight (gtype: usize) (handler: Paintable -> int) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let paintable = Paintable (Glue.wrap (Glue.argPointer 0) false)
+        Glue.returnInt (handler paintable))
+    zgtk_override_Gdk_Paintable_get_intrinsic_height gtype zcb
+
+  extern zgtk_parent_Gdk_Paintable_get_intrinsic_height : cptr -> i32
+
+  /// Gets the preferred height the @paintable would like to be displayed at.
+  let parentGetIntrinsicHeight (self: Paintable) : int =
+    (int ((zgtk_parent_Gdk_Paintable_get_intrinsic_height (Glue.obj self.Id (gdk_paintable_get_type ())))))
+
+  extern zgtk_override_Gdk_Paintable_get_intrinsic_width : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `get_intrinsic_width`: Gets the preferred width the @paintable would like to be displayed at.
+  let overrideGetIntrinsicWidth (gtype: usize) (handler: Paintable -> int) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let paintable = Paintable (Glue.wrap (Glue.argPointer 0) false)
+        Glue.returnInt (handler paintable))
+    zgtk_override_Gdk_Paintable_get_intrinsic_width gtype zcb
+
+  extern zgtk_parent_Gdk_Paintable_get_intrinsic_width : cptr -> i32
+
+  /// Gets the preferred width the @paintable would like to be displayed at.
+  let parentGetIntrinsicWidth (self: Paintable) : int =
+    (int ((zgtk_parent_Gdk_Paintable_get_intrinsic_width (Glue.obj self.Id (gdk_paintable_get_type ())))))
+
+  extern zgtk_override_Gdk_Paintable_snapshot : usize -> cptr -> unit
+
+  /// Gives a type made with `Glue.subclass` its own `snapshot`: Snapshots the given paintable with the given @width and @height.
+  let overrideSnapshot (gtype: usize) (handler: Paintable -> Snapshot -> float -> float -> unit) : unit =
+    let zcb =
+      Glue.hold (fun () ->
+        let paintable = Paintable (Glue.wrap (Glue.argPointer 0) false)
+        let snapshot = Snapshot (Glue.wrap (Glue.argPointer 1) false)
+        let width = Glue.argFloat 2
+        let height = Glue.argFloat 3
+        handler paintable snapshot width height)
+    zgtk_override_Gdk_Paintable_snapshot gtype zcb
+
+  extern zgtk_parent_Gdk_Paintable_snapshot : cptr -> cptr -> f64 -> f64 -> unit
+
+  /// Snapshots the given paintable with the given @width and @height.
+  let parentSnapshot (self: Paintable) (snapshot: Snapshot) (width: float) (height: float) : unit =
+    zgtk_parent_Gdk_Paintable_snapshot (Glue.obj self.Id (gdk_paintable_get_type ())) (Glue.obj snapshot.Id (gdk_snapshot_get_type ())) width height
+
+module Texture =
+  /// The same object as its interface.
+  let toPaintable (self: Texture) : Paintable = Paintable self.Id
+
+  /// The same object as its interface.
+  let toGioIcon (self: Texture) : Gio.Icon = Gio.Icon self.Id
+
+  /// The same object as its interface.
+  let toGioLoadableIcon (self: Texture) : Gio.LoadableIcon = Gio.LoadableIcon self.Id
+
+  /// The same object as its ancestor.
+  let toGObjectObject (self: Texture) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<Texture> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_texture_get_type ()) then Some (Texture object.Id) else None
+
+  extern gdk_texture_new_for_pixbuf : cptr -> cptr
+
+  /// Deprecated. Creates a new texture object representing the `GdkPixbuf`.
+  let createForPixbuf (pixbuf: GdkPixbuf.Pixbuf) : Texture =
+    Texture (Glue.wrap ((gdk_texture_new_for_pixbuf (Glue.obj pixbuf.Id (GdkPixbuf.gdk_pixbuf_get_type ())))) true)
+
+  extern gdk_texture_new_from_bytes : cptr -> cptr -> cptr
+
+  /// Creates a new texture by loading an image from memory,
+  let createFromBytes (bytes: GLib.Bytes) : result<Texture, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_texture_new_from_bytes (Glue.obj bytes.Id (GLib.g_bytes_get_type ())) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = Texture (Glue.wrap (zr) true)
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_texture_new_from_file : cptr -> cptr -> cptr
+
+  /// Creates a new texture by loading an image from a file.
+  let createFromFile (file: Gio.File) : result<Texture, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_texture_new_from_file (Glue.obj file.Id (Gio.g_file_get_type ())) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = Texture (Glue.wrap (zr) true)
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_texture_new_from_filename : cstr -> cptr -> cptr
+
+  /// Creates a new texture by loading an image from a file.
+  let createFromFilename (path: string) : result<Texture, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_texture_new_from_filename path (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = Texture (Glue.wrap (zr) true)
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_texture_new_from_resource : cstr -> cptr
+
+  /// Creates a new texture by loading an image from a resource.
+  let createFromResource (resourcePath: string) : Texture =
+    Texture (Glue.wrap ((gdk_texture_new_from_resource resourcePath)) true)
+
+  extern gdk_texture_download : cptr -> cptr -> usize -> unit
+
+  /// Downloads the @texture into local memory.
+  let download (self: Texture) (data: array<u8>) (stride: int) : unit =
+    let za1 = Glue.bytes data
+    gdk_texture_download (Glue.obj self.Id (gdk_texture_get_type ())) za1 (usize stride)
+    Glue.free za1
+
+  extern gdk_texture_get_color_state : cptr -> cptr
+
+  /// Returns the color state associated with the texture.
+  let getColorState (self: Texture) : ColorState =
+    ColorState (Glue.wrapBoxed ((gdk_texture_get_color_state (Glue.obj self.Id (gdk_texture_get_type ())))) (gdk_color_state_get_type ()) false)
+
+  extern gdk_texture_get_format : cptr -> i32
+
+  /// Gets the memory format most closely associated with the data of the texture.
+  let getFormat (self: Texture) : MemoryFormat =
+    MemoryFormat (int ((gdk_texture_get_format (Glue.obj self.Id (gdk_texture_get_type ())))))
+
+  extern gdk_texture_get_height : cptr -> i32
+
+  /// Returns the height of the @texture, in pixels.
+  let getHeight (self: Texture) : int =
+    (int ((gdk_texture_get_height (Glue.obj self.Id (gdk_texture_get_type ())))))
+
+  extern gdk_texture_get_width : cptr -> i32
+
+  /// Returns the width of @texture, in pixels.
+  let getWidth (self: Texture) : int =
+    (int ((gdk_texture_get_width (Glue.obj self.Id (gdk_texture_get_type ())))))
+
+  extern gdk_texture_save_to_png : cptr -> cstr -> i32
+
+  /// Store the given @texture to the @filename as a PNG file.
+  let saveToPng (self: Texture) (filename: string) : bool =
+    (((gdk_texture_save_to_png (Glue.obj self.Id (gdk_texture_get_type ())) filename)) <> i32 0)
+
+  extern gdk_texture_save_to_png_bytes : cptr -> cptr
+
+  /// Store the given @texture in memory as a PNG file.
+  let saveToPngBytes (self: Texture) : GLib.Bytes =
+    GLib.Bytes (Glue.wrapBoxed ((gdk_texture_save_to_png_bytes (Glue.obj self.Id (gdk_texture_get_type ())))) (GLib.g_bytes_get_type ()) true)
+
+  extern gdk_texture_save_to_tiff : cptr -> cstr -> i32
+
+  /// Store the given @texture to the @filename as a TIFF file.
+  let saveToTiff (self: Texture) (filename: string) : bool =
+    (((gdk_texture_save_to_tiff (Glue.obj self.Id (gdk_texture_get_type ())) filename)) <> i32 0)
+
+  extern gdk_texture_save_to_tiff_bytes : cptr -> cptr
+
+  /// Store the given @texture in memory as a TIFF file.
+  let saveToTiffBytes (self: Texture) : GLib.Bytes =
+    GLib.Bytes (Glue.wrapBoxed ((gdk_texture_save_to_tiff_bytes (Glue.obj self.Id (gdk_texture_get_type ())))) (GLib.g_bytes_get_type ()) true)
+
+  /// Calls `handler` when the `color-state` property changes.
+  let onNotifyColorState (self: Texture) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_texture_get_type ())) "notify::color-state" handler
+
+  /// Calls `handler` when the `height` property changes.
+  let onNotifyHeight (self: Texture) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_texture_get_type ())) "notify::height" handler
+
+  /// Calls `handler` when the `width` property changes.
+  let onNotifyWidth (self: Texture) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_texture_get_type ())) "notify::width" handler
+
+module DmabufTexture =
+  /// The same object as its interface.
+  let toPaintable (self: DmabufTexture) : Paintable = Paintable self.Id
+
+  /// The same object as its interface.
+  let toGioIcon (self: DmabufTexture) : Gio.Icon = Gio.Icon self.Id
+
+  /// The same object as its interface.
+  let toGioLoadableIcon (self: DmabufTexture) : Gio.LoadableIcon = Gio.LoadableIcon self.Id
+
+  /// The same object as its ancestor.
+  let toTexture (self: DmabufTexture) : Texture = Texture self.Id
+
+  /// The same object as its ancestor.
+  let toGObjectObject (self: DmabufTexture) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<DmabufTexture> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_dmabuf_texture_get_type ()) then Some (DmabufTexture object.Id) else None
+
+module DmabufTextureBuilder =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: DmabufTextureBuilder) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<DmabufTextureBuilder> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_dmabuf_texture_builder_get_type ()) then Some (DmabufTextureBuilder object.Id) else None
+
+  extern gdk_dmabuf_texture_builder_new : unit -> cptr
+
+  /// Creates a new texture builder.
+  let create () : DmabufTextureBuilder =
+    DmabufTextureBuilder (Glue.wrap ((gdk_dmabuf_texture_builder_new ())) true)
+
+  extern gdk_dmabuf_texture_builder_build : cptr -> cptr -> cptr -> cptr -> cptr
+
+  /// Builds a new `GdkTexture` with the values set up in the builder.
+  [<Unsafe>]
+  let build (self: DmabufTextureBuilder) (destroy: cptr) (data: cptr) : result<option<Texture>, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_dmabuf_texture_builder_build (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) destroy data (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zid1 = Glue.wrap (zr) true
+      let zv = (if zid1 = 0 then None else Some (Texture zid1))
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_dmabuf_texture_builder_get_color_state : cptr -> cptr
+
+  /// Gets the color state previously set via gdk_dmabuf_texture_builder_set_color_state().
+  let getColorState (self: DmabufTextureBuilder) : option<ColorState> =
+    let zr = gdk_dmabuf_texture_builder_get_color_state (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ()))
+    let zid1 = Glue.wrapBoxed (zr) (gdk_color_state_get_type ()) false
+    (if zid1 = 0 then None else Some (ColorState zid1))
+
+  extern gdk_dmabuf_texture_builder_get_display : cptr -> cptr
+
+  /// Returns the display that this texture builder is associated with.
+  let getDisplay (self: DmabufTextureBuilder) : Display =
+    Display (Glue.wrap ((gdk_dmabuf_texture_builder_get_display (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())))) false)
+
+  extern gdk_dmabuf_texture_builder_get_fd : cptr -> u32 -> i32
+
+  /// Gets the file descriptor for a plane or -1 if none.
+  let getFd (self: DmabufTextureBuilder) (plane: int) : int =
+    (int ((gdk_dmabuf_texture_builder_get_fd (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 plane))))
+
+  extern gdk_dmabuf_texture_builder_get_fourcc : cptr -> u32
+
+  /// Gets the format previously set via gdk_dmabuf_texture_builder_set_fourcc() or 0 if the format wasn't set.
+  let getFourcc (self: DmabufTextureBuilder) : int =
+    (int ((gdk_dmabuf_texture_builder_get_fourcc (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())))))
+
+  extern gdk_dmabuf_texture_builder_get_height : cptr -> u32
+
+  /// Gets the height previously set via gdk_dmabuf_texture_builder_set_height() or 0 if the height wasn't set.
+  let getHeight (self: DmabufTextureBuilder) : int =
+    (int ((gdk_dmabuf_texture_builder_get_height (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())))))
+
+  extern gdk_dmabuf_texture_builder_get_modifier : cptr -> u64
+
+  /// Gets the modifier value.
+  let getModifier (self: DmabufTextureBuilder) : int =
+    (int ((gdk_dmabuf_texture_builder_get_modifier (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())))))
+
+  extern gdk_dmabuf_texture_builder_get_n_planes : cptr -> u32
+
+  /// Gets the number of planes.
+  let getNPlanes (self: DmabufTextureBuilder) : int =
+    (int ((gdk_dmabuf_texture_builder_get_n_planes (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())))))
+
+  extern gdk_dmabuf_texture_builder_get_offset : cptr -> u32 -> u32
+
+  /// Gets the offset value for a plane.
+  let getOffset (self: DmabufTextureBuilder) (plane: int) : int =
+    (int ((gdk_dmabuf_texture_builder_get_offset (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 plane))))
+
+  extern gdk_dmabuf_texture_builder_get_premultiplied : cptr -> i32
+
+  /// Whether the data is premultiplied.
+  let getPremultiplied (self: DmabufTextureBuilder) : bool =
+    (((gdk_dmabuf_texture_builder_get_premultiplied (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())))) <> i32 0)
+
+  extern gdk_dmabuf_texture_builder_get_stride : cptr -> u32 -> u32
+
+  /// Gets the stride value for a plane.
+  let getStride (self: DmabufTextureBuilder) (plane: int) : int =
+    (int ((gdk_dmabuf_texture_builder_get_stride (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 plane))))
+
+  extern gdk_dmabuf_texture_builder_get_update_region : cptr -> cptr
+
+  /// Gets the region previously set via gdk_dmabuf_texture_builder_set_update_region() or %NULL if none was set.
+  let getUpdateRegion (self: DmabufTextureBuilder) : option<Cairo.Region> =
+    let zr = gdk_dmabuf_texture_builder_get_update_region (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ()))
+    let zid1 = Glue.wrapBoxed (zr) (Cairo.cairo_gobject_region_get_type ()) false
+    (if zid1 = 0 then None else Some (Cairo.Region zid1))
+
+  extern gdk_dmabuf_texture_builder_get_update_texture : cptr -> cptr
+
+  /// Gets the texture previously set via gdk_dmabuf_texture_builder_set_update_texture() or %NULL if none was set.
+  let getUpdateTexture (self: DmabufTextureBuilder) : option<Texture> =
+    let zr = gdk_dmabuf_texture_builder_get_update_texture (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Texture zid1))
+
+  extern gdk_dmabuf_texture_builder_get_width : cptr -> u32
+
+  /// Gets the width previously set via gdk_dmabuf_texture_builder_set_width() or 0 if the width wasn't set.
+  let getWidth (self: DmabufTextureBuilder) : int =
+    (int ((gdk_dmabuf_texture_builder_get_width (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())))))
+
+  extern gdk_dmabuf_texture_builder_set_color_state : cptr -> cptr -> unit
+
+  /// Sets the color state for the texture.
+  let setColorState (self: DmabufTextureBuilder) (colorState: option<ColorState>) : unit =
+    let zp1 =
+      match colorState with
+      | Some zo -> Glue.obj zo.Id (gdk_color_state_get_type ())
+      | None -> Glue.none ()
+    gdk_dmabuf_texture_builder_set_color_state (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) zp1
+
+  extern gdk_dmabuf_texture_builder_set_display : cptr -> cptr -> unit
+
+  /// Sets the display that this texture builder is associated with.
+  let setDisplay (self: DmabufTextureBuilder) (display: Display) : unit =
+    gdk_dmabuf_texture_builder_set_display (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (Glue.obj display.Id (gdk_display_get_type ()))
+
+  extern gdk_dmabuf_texture_builder_set_fd : cptr -> u32 -> i32 -> unit
+
+  /// Sets the file descriptor for a plane or to -1 to unset it.
+  let setFd (self: DmabufTextureBuilder) (plane: int) (fd: int) : unit =
+    gdk_dmabuf_texture_builder_set_fd (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 plane) (i32 fd)
+
+  extern gdk_dmabuf_texture_builder_set_fourcc : cptr -> u32 -> unit
+
+  /// Sets the format of the texture.
+  let setFourcc (self: DmabufTextureBuilder) (fourcc: int) : unit =
+    gdk_dmabuf_texture_builder_set_fourcc (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 fourcc)
+
+  extern gdk_dmabuf_texture_builder_set_height : cptr -> u32 -> unit
+
+  /// Sets the height of the texture.
+  let setHeight (self: DmabufTextureBuilder) (height: int) : unit =
+    gdk_dmabuf_texture_builder_set_height (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 height)
+
+  extern gdk_dmabuf_texture_builder_set_modifier : cptr -> u64 -> unit
+
+  /// Sets the modifier.
+  let setModifier (self: DmabufTextureBuilder) (modifier: int) : unit =
+    gdk_dmabuf_texture_builder_set_modifier (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u64 modifier)
+
+  extern gdk_dmabuf_texture_builder_set_n_planes : cptr -> u32 -> unit
+
+  /// Sets the number of planes of the texture.
+  let setNPlanes (self: DmabufTextureBuilder) (nPlanes: int) : unit =
+    gdk_dmabuf_texture_builder_set_n_planes (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 nPlanes)
+
+  extern gdk_dmabuf_texture_builder_set_offset : cptr -> u32 -> u32 -> unit
+
+  /// Sets the offset for a plane.
+  let setOffset (self: DmabufTextureBuilder) (plane: int) (offset: int) : unit =
+    gdk_dmabuf_texture_builder_set_offset (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 plane) (u32 offset)
+
+  extern gdk_dmabuf_texture_builder_set_premultiplied : cptr -> i32 -> unit
+
+  /// Sets whether the data is premultiplied.
+  let setPremultiplied (self: DmabufTextureBuilder) (premultiplied: bool) : unit =
+    gdk_dmabuf_texture_builder_set_premultiplied (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (if premultiplied then i32 1 else i32 0)
+
+  extern gdk_dmabuf_texture_builder_set_stride : cptr -> u32 -> u32 -> unit
+
+  /// Sets the stride for a plane.
+  let setStride (self: DmabufTextureBuilder) (plane: int) (stride: int) : unit =
+    gdk_dmabuf_texture_builder_set_stride (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 plane) (u32 stride)
+
+  extern gdk_dmabuf_texture_builder_set_update_region : cptr -> cptr -> unit
+
+  /// Sets the region to be updated by this texture.
+  let setUpdateRegion (self: DmabufTextureBuilder) (region: option<Cairo.Region>) : unit =
+    let zp1 =
+      match region with
+      | Some zo -> Glue.obj zo.Id (Cairo.cairo_gobject_region_get_type ())
+      | None -> Glue.none ()
+    gdk_dmabuf_texture_builder_set_update_region (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) zp1
+
+  extern gdk_dmabuf_texture_builder_set_update_texture : cptr -> cptr -> unit
+
+  /// Sets the texture to be updated by this texture.
+  let setUpdateTexture (self: DmabufTextureBuilder) (texture: option<Texture>) : unit =
+    let zp1 =
+      match texture with
+      | Some zo -> Glue.obj zo.Id (gdk_texture_get_type ())
+      | None -> Glue.none ()
+    gdk_dmabuf_texture_builder_set_update_texture (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) zp1
+
+  extern gdk_dmabuf_texture_builder_set_width : cptr -> u32 -> unit
+
+  /// Sets the width of the texture.
+  let setWidth (self: DmabufTextureBuilder) (width: int) : unit =
+    gdk_dmabuf_texture_builder_set_width (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) (u32 width)
+
+  /// Calls `handler` when the `color-state` property changes.
+  let onNotifyColorState (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::color-state" handler
+
+  /// Calls `handler` when the `display` property changes.
+  let onNotifyDisplay (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::display" handler
+
+  /// Calls `handler` when the `fourcc` property changes.
+  let onNotifyFourcc (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::fourcc" handler
+
+  /// Calls `handler` when the `height` property changes.
+  let onNotifyHeight (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::height" handler
+
+  /// Calls `handler` when the `modifier` property changes.
+  let onNotifyModifier (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::modifier" handler
+
+  /// Calls `handler` when the `n-planes` property changes.
+  let onNotifyNPlanes (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::n-planes" handler
+
+  /// Calls `handler` when the `premultiplied` property changes.
+  let onNotifyPremultiplied (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::premultiplied" handler
+
+  /// Calls `handler` when the `update-region` property changes.
+  let onNotifyUpdateRegion (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::update-region" handler
+
+  /// Calls `handler` when the `update-texture` property changes.
+  let onNotifyUpdateTexture (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::update-texture" handler
+
+  /// Calls `handler` when the `width` property changes.
+  let onNotifyWidth (self: DmabufTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_dmabuf_texture_builder_get_type ())) "notify::width" handler
+
+module Drag =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: Drag) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<Drag> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_drag_get_type ()) then Some (Drag object.Id) else None
+
+  extern gdk_drag_drop_done : cptr -> i32 -> unit
+
+  /// Informs GDK that the drop ended.
+  let dropDone (self: Drag) (success: bool) : unit =
+    gdk_drag_drop_done (Glue.obj self.Id (gdk_drag_get_type ())) (if success then i32 1 else i32 0)
+
+  extern gdk_drag_get_actions : cptr -> u32
+
+  /// Determines the bitmask of possible actions proposed by the source.
+  let getActions (self: Drag) : DragAction =
+    DragAction (int ((gdk_drag_get_actions (Glue.obj self.Id (gdk_drag_get_type ())))))
+
+  extern gdk_drag_get_content : cptr -> cptr
+
+  /// Returns the `GdkContentProvider` associated to the `GdkDrag` object.
+  let getContent (self: Drag) : ContentProvider =
+    ContentProvider (Glue.wrap ((gdk_drag_get_content (Glue.obj self.Id (gdk_drag_get_type ())))) false)
+
+  extern gdk_drag_get_device : cptr -> cptr
+
+  /// Returns the `GdkDevice` associated to the `GdkDrag` object.
+  let getDevice (self: Drag) : Device =
+    Device (Glue.wrap ((gdk_drag_get_device (Glue.obj self.Id (gdk_drag_get_type ())))) false)
+
+  extern gdk_drag_get_display : cptr -> cptr
+
+  /// Gets the `GdkDisplay` that the drag object was created for.
+  let getDisplay (self: Drag) : Display =
+    Display (Glue.wrap ((gdk_drag_get_display (Glue.obj self.Id (gdk_drag_get_type ())))) false)
+
+  extern gdk_drag_get_drag_surface : cptr -> cptr
+
+  /// Returns the surface on which the drag icon should be rendered during the drag operation.
+  let getDragSurface (self: Drag) : option<Surface> =
+    let zr = gdk_drag_get_drag_surface (Glue.obj self.Id (gdk_drag_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Surface zid1))
+
+  extern gdk_drag_get_formats : cptr -> cptr
+
+  /// Retrieves the formats supported by this `GdkDrag` object.
+  let getFormats (self: Drag) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((gdk_drag_get_formats (Glue.obj self.Id (gdk_drag_get_type ())))) (gdk_content_formats_get_type ()) false)
+
+  extern gdk_drag_get_selected_action : cptr -> u32
+
+  /// Determines the action chosen by the drag destination.
+  let getSelectedAction (self: Drag) : DragAction =
+    DragAction (int ((gdk_drag_get_selected_action (Glue.obj self.Id (gdk_drag_get_type ())))))
+
+  extern gdk_drag_get_surface : cptr -> cptr
+
+  /// Returns the `GdkSurface` where the drag originates.
+  let getSurface (self: Drag) : Surface =
+    Surface (Glue.wrap ((gdk_drag_get_surface (Glue.obj self.Id (gdk_drag_get_type ())))) false)
+
+  extern gdk_drag_set_hotspot : cptr -> i32 -> i32 -> unit
+
+  /// Sets the position of the drag surface that will be kept under the cursor hotspot.
+  let setHotspot (self: Drag) (hotX: int) (hotY: int) : unit =
+    gdk_drag_set_hotspot (Glue.obj self.Id (gdk_drag_get_type ())) (i32 hotX) (i32 hotY)
+
+  extern gdk_drag_begin : cptr -> cptr -> cptr -> u32 -> f64 -> f64 -> cptr
+
+  /// Starts a drag and creates a new drag context for it.
+  let begin (surface: Surface) (device: Device) (content: ContentProvider) (actions: DragAction) (dx: float) (dy: float) : option<Drag> =
+    let zr = gdk_drag_begin (Glue.obj surface.Id (gdk_surface_get_type ())) (Glue.obj device.Id (gdk_device_get_type ())) (Glue.obj content.Id (gdk_content_provider_get_type ())) (u32 actions.Int) dx dy
+    let zid1 = Glue.wrap (zr) true
+    (if zid1 = 0 then None else Some (Drag zid1))
+
+  /// Emitted when the drag operation is cancelled.
+  let onCancel (self: Drag) (handler: DragCancelReason -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "cancel" (fun () ->
+      let reason = DragCancelReason (int (Glue.argInt 1))
+      handler reason)
+
+  /// Emitted when the destination side has finished reading all data.
+  let onDndFinished (self: Drag) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "dnd-finished" handler
+
+  /// Emitted when the drop operation is performed on an accepting client.
+  let onDropPerformed (self: Drag) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "drop-performed" handler
+
+  /// Calls `handler` when the `actions` property changes.
+  let onNotifyActions (self: Drag) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "notify::actions" handler
+
+  /// Sets the `actions` property.
+  let setActions (self: Drag) (value: DragAction) : unit = Glue.setInt (Glue.obj self.Id (gdk_drag_get_type ())) "actions" value.Int
+
+  /// Calls `handler` when the `content` property changes.
+  let onNotifyContent (self: Drag) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "notify::content" handler
+
+  /// Calls `handler` when the `device` property changes.
+  let onNotifyDevice (self: Drag) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "notify::device" handler
+
+  /// Calls `handler` when the `display` property changes.
+  let onNotifyDisplay (self: Drag) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "notify::display" handler
+
+  /// Calls `handler` when the `formats` property changes.
+  let onNotifyFormats (self: Drag) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "notify::formats" handler
+
+  /// Calls `handler` when the `selected-action` property changes.
+  let onNotifySelectedAction (self: Drag) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "notify::selected-action" handler
+
+  /// Sets the `selected-action` property.
+  let setSelectedAction (self: Drag) (value: DragAction) : unit = Glue.setInt (Glue.obj self.Id (gdk_drag_get_type ())) "selected-action" value.Int
+
+  /// Calls `handler` when the `surface` property changes.
+  let onNotifySurface (self: Drag) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drag_get_type ())) "notify::surface" handler
+
+module DragSurface =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: DragSurface) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<DragSurface> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_drag_surface_get_type ()) then Some (DragSurface object.Id) else None
+
+  extern gdk_drag_surface_present : cptr -> i32 -> i32 -> i32
+
+  /// Present @drag_surface.
+  let present (self: DragSurface) (width: int) (height: int) : bool =
+    (((gdk_drag_surface_present (Glue.obj self.Id (gdk_drag_surface_get_type ())) (i32 width) (i32 height))) <> i32 0)
+
+  /// Emitted when the size for the surface needs to be computed, when it is present.
+  let onComputeSize (self: DragSurface) (handler: DragSurfaceSize -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drag_surface_get_type ())) "compute-size" (fun () ->
+      let size = DragSurfaceSize (Glue.wrapBoxed (Glue.argPointer 1) (gdk_drag_surface_size_get_type ()) false)
+      handler size)
+
+module DragSurfaceSize =
+  extern gdk_drag_surface_size_set_size : cptr -> i32 -> i32 -> unit
+
+  /// Sets the size the drag surface prefers to be resized to.
+  let setSize (self: DragSurfaceSize) (width: int) (height: int) : unit =
+    gdk_drag_surface_size_set_size (Glue.obj self.Id (gdk_drag_surface_size_get_type ())) (i32 width) (i32 height)
+
+module Drop =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: Drop) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<Drop> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_drop_get_type ()) then Some (Drop object.Id) else None
+
+  extern gdk_drop_finish : cptr -> u32 -> unit
+
+  /// Ends the drag operation after a drop.
+  let finish (self: Drop) (action: DragAction) : unit =
+    gdk_drop_finish (Glue.obj self.Id (gdk_drop_get_type ())) (u32 action.Int)
+
+  extern gdk_drop_get_actions : cptr -> u32
+
+  /// Returns the possible actions for this `GdkDrop`.
+  let getActions (self: Drop) : DragAction =
+    DragAction (int ((gdk_drop_get_actions (Glue.obj self.Id (gdk_drop_get_type ())))))
+
+  extern gdk_drop_get_device : cptr -> cptr
+
+  /// Returns the `GdkDevice` performing the drop.
+  let getDevice (self: Drop) : Device =
+    Device (Glue.wrap ((gdk_drop_get_device (Glue.obj self.Id (gdk_drop_get_type ())))) false)
+
+  extern gdk_drop_get_display : cptr -> cptr
+
+  /// Gets the `GdkDisplay` that @self was created for.
+  let getDisplay (self: Drop) : Display =
+    Display (Glue.wrap ((gdk_drop_get_display (Glue.obj self.Id (gdk_drop_get_type ())))) false)
+
+  extern gdk_drop_get_drag : cptr -> cptr
+
+  /// If this is an in-app drag-and-drop operation, returns the `GdkDrag` that corresponds to this drop.
+  let getDrag (self: Drop) : option<Drag> =
+    let zr = gdk_drop_get_drag (Glue.obj self.Id (gdk_drop_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Drag zid1))
+
+  extern gdk_drop_get_formats : cptr -> cptr
+
+  /// Returns the `GdkContentFormats` that the drop offers the data to be read in.
+  let getFormats (self: Drop) : ContentFormats =
+    ContentFormats (Glue.wrapBoxed ((gdk_drop_get_formats (Glue.obj self.Id (gdk_drop_get_type ())))) (gdk_content_formats_get_type ()) false)
+
+  extern gdk_drop_get_surface : cptr -> cptr
+
+  /// Returns the `GdkSurface` performing the drop.
+  let getSurface (self: Drop) : Surface =
+    Surface (Glue.wrap ((gdk_drop_get_surface (Glue.obj self.Id (gdk_drop_get_type ())))) false)
+
+  extern gdk_drop_read_async : cptr -> cptr -> i32 -> cptr -> cptr -> cptr -> unit
+
+  /// Asynchronously read the dropped data from a `GdkDrop` in a format that complies with one of the mime types.
+  let readAsync (self: Drop) (mimeTypes: list<string>) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let zid2 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        callback sourceObject res)
+    let zv3 = Glue.strv mimeTypes
+    let zp4 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
+      | None -> Glue.none ()
+    gdk_drop_read_async (Glue.obj self.Id (gdk_drop_get_type ())) zv3 (i32 ioPriority) zp4 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+    Glue.freeStrv zv3
+
+  extern gdk_drop_read_finish : cptr -> cptr -> cptr -> cptr -> cptr
+
+  /// Finishes an async drop read operation.
+  let readFinish (self: Drop) (result: Gio.AsyncResult) : result<(option<Gio.InputStream> * string), Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_drop_read_finish (Glue.obj self.Id (gdk_drop_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.out 0) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zid1 = Glue.wrap (zr) true
+      let zv = ((if zid1 = 0 then None else Some (Gio.InputStream zid1)), Glue.text (Glue.outPtr 0))
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_drop_read_value_async : cptr -> usize -> i32 -> cptr -> cptr -> cptr -> unit
+
+  /// Asynchronously request the drag operation's contents converted to the given @type.
+  let readValueAsync (self: Drop) (type_: usize) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
+    let zcb1 =
+      Glue.hold (fun () ->
+        let zid2 = Glue.wrap (Glue.argPointer 0) false
+        let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+        let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+        callback sourceObject res)
+    let zp3 =
+      match cancellable with
+      | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
+      | None -> Glue.none ()
+    gdk_drop_read_value_async (Glue.obj self.Id (gdk_drop_get_type ())) type_ (i32 ioPriority) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+
+  extern gdk_drop_read_value_finish : cptr -> cptr -> cptr -> cptr
+
+  /// Finishes an async drop read.
+  let readValueFinish (self: Drop) (result: Gio.AsyncResult) : result<GObject.Value, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_drop_read_value_finish (Glue.obj self.Id (gdk_drop_get_type ())) (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = GObject.Value (Glue.wrapBoxed (zr) (GObject.g_value_get_type ()) false)
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_drop_status : cptr -> u32 -> u32 -> unit
+
+  /// Selects all actions that are potentially supported by the destination.
+  let status (self: Drop) (actions: DragAction) (preferred: DragAction) : unit =
+    gdk_drop_status (Glue.obj self.Id (gdk_drop_get_type ())) (u32 actions.Int) (u32 preferred.Int)
+
+  /// Calls `handler` when the `actions` property changes.
+  let onNotifyActions (self: Drop) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drop_get_type ())) "notify::actions" handler
+
+  /// Calls `handler` when the `device` property changes.
+  let onNotifyDevice (self: Drop) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drop_get_type ())) "notify::device" handler
+
+  /// Calls `handler` when the `display` property changes.
+  let onNotifyDisplay (self: Drop) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drop_get_type ())) "notify::display" handler
+
+  /// Calls `handler` when the `drag` property changes.
+  let onNotifyDrag (self: Drop) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drop_get_type ())) "notify::drag" handler
+
+  /// Calls `handler` when the `formats` property changes.
+  let onNotifyFormats (self: Drop) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drop_get_type ())) "notify::formats" handler
+
+  /// Calls `handler` when the `surface` property changes.
+  let onNotifySurface (self: Drop) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_drop_get_type ())) "notify::surface" handler
+
+module Event =
+  extern gdk_event_get_axes : cptr -> cptr -> cptr -> i32
+
+  /// Extracts all axis values from an event.
+  let getAxes (self: Event) : (bool * list<float>) =
+    Glue.outBegin ()
+    let zr = gdk_event_get_axes (Glue.obj self.Id (zgtk_type_Gdk_Event ())) (Glue.out 1) (Glue.out 0)
+    let zv = (((zr) <> i32 0), Glue.floatsOf (Glue.outPtr 1) (Glue.outU32 0) 8 false)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_event_get_axis : cptr -> i32 -> cptr -> i32
+
+  /// Extract the axis value for a particular axis use from an event structure.
+  let getAxis (self: Event) (axisUse: AxisUse) : (bool * float) =
+    Glue.outBegin ()
+    let zr = gdk_event_get_axis (Glue.obj self.Id (zgtk_type_Gdk_Event ())) (i32 axisUse.Int) (Glue.out 0)
+    let zv = (((zr) <> i32 0), Glue.outF64 0)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_event_get_device : cptr -> cptr
+
+  /// Returns the device of an event.
+  let getDevice (self: Event) : option<Device> =
+    let zr = gdk_event_get_device (Glue.obj self.Id (zgtk_type_Gdk_Event ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Device zid1))
+
+  extern gdk_event_get_device_tool : cptr -> cptr
+
+  /// Returns a `GdkDeviceTool` representing the tool that caused the event.
+  let getDeviceTool (self: Event) : option<DeviceTool> =
+    let zr = gdk_event_get_device_tool (Glue.obj self.Id (zgtk_type_Gdk_Event ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (DeviceTool zid1))
+
+  extern gdk_event_get_display : cptr -> cptr
+
+  /// Retrieves the display associated to the @event.
+  let getDisplay (self: Event) : option<Display> =
+    let zr = gdk_event_get_display (Glue.obj self.Id (zgtk_type_Gdk_Event ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Display zid1))
+
+  extern gdk_event_get_event_sequence : cptr -> cptr
+
+  /// Returns the event sequence to which the event belongs.
+  let getEventSequence (self: Event) : EventSequence =
+    EventSequence (Glue.wrapBoxed ((gdk_event_get_event_sequence (Glue.obj self.Id (zgtk_type_Gdk_Event ())))) (gdk_event_sequence_get_type ()) false)
+
+  extern gdk_event_get_event_type : cptr -> i32
+
+  /// Retrieves the type of the event.
+  let getEventType (self: Event) : EventType =
+    EventType (int ((gdk_event_get_event_type (Glue.obj self.Id (zgtk_type_Gdk_Event ())))))
+
+  extern gdk_event_get_history : cptr -> cptr -> cptr
+
+  /// Retrieves the history of the device that @event is for, as a list of time and coordinates.
+  let getHistory (self: Event) : list<TimeCoord> =
+    Glue.outBegin ()
+    let zr = gdk_event_get_history (Glue.obj self.Id (zgtk_type_Gdk_Event ())) (Glue.out 0)
+    let zrs1 = Glue.mapList (fun zp -> TimeCoord (Glue.copyPlain (zp) (zgtk_sizeof_Gdk_TimeCoord ()) (zgtk_tag_Gdk_TimeCoord ()))) (Glue.recordsOf (zr) (Glue.outU32 0) (zgtk_sizeof_Gdk_TimeCoord ()))
+    Glue.free (zr)
+    let zv = zrs1
+    Glue.outEnd ()
+    zv
+
+  extern gdk_event_get_modifier_state : cptr -> u32
+
+  /// Returns the modifier state field of an event.
+  let getModifierState (self: Event) : ModifierType =
+    ModifierType (int ((gdk_event_get_modifier_state (Glue.obj self.Id (zgtk_type_Gdk_Event ())))))
+
+  extern gdk_event_get_pointer_emulated : cptr -> i32
+
+  /// Returns whether this event is an 'emulated' pointer event.
+  let getPointerEmulated (self: Event) : bool =
+    (((gdk_event_get_pointer_emulated (Glue.obj self.Id (zgtk_type_Gdk_Event ())))) <> i32 0)
+
+  extern gdk_event_get_position : cptr -> cptr -> cptr -> i32
+
+  /// Extract the event surface relative x/y coordinates from an event.
+  let getPosition (self: Event) : (bool * float * float) =
+    Glue.outBegin ()
+    let zr = gdk_event_get_position (Glue.obj self.Id (zgtk_type_Gdk_Event ())) (Glue.out 0) (Glue.out 1)
+    let zv = (((zr) <> i32 0), Glue.outF64 0, Glue.outF64 1)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_event_get_seat : cptr -> cptr
+
+  /// Returns the seat that originated the event.
+  let getSeat (self: Event) : option<Seat> =
+    let zr = gdk_event_get_seat (Glue.obj self.Id (zgtk_type_Gdk_Event ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Seat zid1))
+
+  extern gdk_event_get_surface : cptr -> cptr
+
+  /// Extracts the surface associated with an event.
+  let getSurface (self: Event) : option<Surface> =
+    let zr = gdk_event_get_surface (Glue.obj self.Id (zgtk_type_Gdk_Event ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Surface zid1))
+
+  extern gdk_event_get_time : cptr -> u32
+
+  /// Returns the timestamp of @event.
+  let getTime (self: Event) : int =
+    (int ((gdk_event_get_time (Glue.obj self.Id (zgtk_type_Gdk_Event ())))))
+
+  extern gdk_event_ref : cptr -> cptr
+
+  /// Increase the ref count of @event.
+  [<Unsafe>]
+  let ref_ (self: Event) : Event =
+    Event (zgtk_wrap_Gdk_Event ((gdk_event_ref (Glue.obj self.Id (zgtk_type_Gdk_Event ())))) (i32 1))
+
+  extern gdk_event_triggers_context_menu : cptr -> i32
+
+  /// Returns whether a `GdkEvent` should trigger a context menu, according to platform conventions.
+  let triggersContextMenu (self: Event) : bool =
+    (((gdk_event_triggers_context_menu (Glue.obj self.Id (zgtk_type_Gdk_Event ())))) <> i32 0)
+
+  extern gdk_event_unref : cptr -> unit
+
+  /// Decrease the ref count of @event.
+  [<Unsafe>]
+  let unref (self: Event) : unit =
+    gdk_event_unref (Glue.obj self.Id (zgtk_type_Gdk_Event ()))
+
+module FileList =
+  extern gdk_file_list_new_from_array : cptr -> usize -> cptr
+
+  /// Creates a new `GdkFileList` for the given array of files.
+  let createFromArray (files: list<Gio.File>) : FileList =
+    let za1 = Glue.ptrs (Glue.mapList (fun (zo: Gio.File) -> Glue.obj zo.Id (Gio.g_file_get_type ())) files)
+    let zr = gdk_file_list_new_from_array za1 (usize (Glue.count files))
+    let zv = FileList (Glue.wrapBoxed (zr) (gdk_file_list_get_type ()) true)
+    Glue.free za1
+    zv
+
+  extern gdk_file_list_new_from_list : cptr -> cptr
+
+  /// Creates a new files list container from a singly linked list of `GFile` instances.
+  let createFromList (files: list<Gio.File>) : FileList =
+    let zl1 = Glue.glist (Glue.mapList (fun (zo: Gio.File) -> Glue.obj zo.Id (Gio.g_file_get_type ())) files) true
+    let zr = gdk_file_list_new_from_list zl1
+    let zv = FileList (Glue.wrapBoxed (zr) (gdk_file_list_get_type ()) true)
+    Glue.freeGlist zl1 true
+    zv
+
+  extern gdk_file_list_get_files : cptr -> cptr
+
+  /// Retrieves the list of files inside a `GdkFileList`.
+  let getFiles (self: FileList) : list<Gio.File> =
+    Glue.mapList (fun zp -> Gio.File (Glue.wrap (zp) false)) (Glue.pointers ((gdk_file_list_get_files (Glue.obj self.Id (gdk_file_list_get_type ())))) true true)
+
+module FocusEvent =
+  extern gdk_focus_event_get_in : cptr -> i32
+
+  /// Extracts whether this event is about focus entering or leaving the surface.
+  [<Unsafe>]
+  let getIn (self: FocusEvent) : bool =
+    (((gdk_focus_event_get_in self.Ptr)) <> i32 0)
+
+module FrameClock =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: FrameClock) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<FrameClock> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_frame_clock_get_type ()) then Some (FrameClock object.Id) else None
+
+  extern gdk_frame_clock_begin_updating : cptr -> unit
+
+  /// Starts updates for an animation.
+  let beginUpdating (self: FrameClock) : unit =
+    gdk_frame_clock_begin_updating (Glue.obj self.Id (gdk_frame_clock_get_type ()))
+
+  extern gdk_frame_clock_end_updating : cptr -> unit
+
+  /// Stops updates for an animation.
+  let endUpdating (self: FrameClock) : unit =
+    gdk_frame_clock_end_updating (Glue.obj self.Id (gdk_frame_clock_get_type ()))
+
+  extern gdk_frame_clock_get_current_timings : cptr -> cptr
+
+  /// Gets the frame timings for the current frame.
+  let getCurrentTimings (self: FrameClock) : option<FrameTimings> =
+    let zr = gdk_frame_clock_get_current_timings (Glue.obj self.Id (gdk_frame_clock_get_type ()))
+    let zid1 = Glue.wrapBoxed (zr) (gdk_frame_timings_get_type ()) false
+    (if zid1 = 0 then None else Some (FrameTimings zid1))
+
+  extern gdk_frame_clock_get_fps : cptr -> f64
+
+  /// Calculates the current frames-per-second, based on the frame timings of @frame_clock.
+  let getFps (self: FrameClock) : float =
+    ((gdk_frame_clock_get_fps (Glue.obj self.Id (gdk_frame_clock_get_type ()))))
+
+  extern gdk_frame_clock_get_frame_counter : cptr -> i64
+
+  /// `gdk_frame_clock_get_frame_counter`.
+  let getFrameCounter (self: FrameClock) : int =
+    (int ((gdk_frame_clock_get_frame_counter (Glue.obj self.Id (gdk_frame_clock_get_type ())))))
+
+  extern gdk_frame_clock_get_frame_time : cptr -> i64
+
+  /// Gets the time that should currently be used for animations.
+  let getFrameTime (self: FrameClock) : int =
+    (int ((gdk_frame_clock_get_frame_time (Glue.obj self.Id (gdk_frame_clock_get_type ())))))
+
+  extern gdk_frame_clock_get_history_start : cptr -> i64
+
+  /// Returns the frame counter for the oldest frame available in history.
+  let getHistoryStart (self: FrameClock) : int =
+    (int ((gdk_frame_clock_get_history_start (Glue.obj self.Id (gdk_frame_clock_get_type ())))))
+
+  extern gdk_frame_clock_get_refresh_info : cptr -> i64 -> cptr -> cptr -> unit
+
+  /// Predicts a presentation time, based on history.
+  let getRefreshInfo (self: FrameClock) (baseTime: int) : (int * int) =
+    Glue.outBegin ()
+    gdk_frame_clock_get_refresh_info (Glue.obj self.Id (gdk_frame_clock_get_type ())) (i64 baseTime) (Glue.out 0) (Glue.out 1)
+    let zv = (Glue.outI64 0, Glue.outI64 1)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_frame_clock_get_timings : cptr -> i64 -> cptr
+
+  /// Retrieves a `GdkFrameTimings` object holding timing information for the current frame or a recent frame.
+  let getTimings (self: FrameClock) (frameCounter: int) : option<FrameTimings> =
+    let zr = gdk_frame_clock_get_timings (Glue.obj self.Id (gdk_frame_clock_get_type ())) (i64 frameCounter)
+    let zid1 = Glue.wrapBoxed (zr) (gdk_frame_timings_get_type ()) false
+    (if zid1 = 0 then None else Some (FrameTimings zid1))
+
+  extern gdk_frame_clock_request_phase : cptr -> u32 -> unit
+
+  /// Asks the frame clock to run a particular phase.
+  let requestPhase (self: FrameClock) (phase: FrameClockPhase) : unit =
+    gdk_frame_clock_request_phase (Glue.obj self.Id (gdk_frame_clock_get_type ())) (u32 phase.Int)
+
+  /// This signal ends processing of the frame.
+  let onAfterPaint (self: FrameClock) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_frame_clock_get_type ())) "after-paint" handler
+
+  /// Begins processing of the frame.
+  let onBeforePaint (self: FrameClock) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_frame_clock_get_type ())) "before-paint" handler
+
+  /// Used to flush pending motion events that are being batched up and compressed together.
+  let onFlushEvents (self: FrameClock) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_frame_clock_get_type ())) "flush-events" handler
+
+  /// Emitted as the second step of toolkit and application processing of the frame.
+  let onLayout (self: FrameClock) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_frame_clock_get_type ())) "layout" handler
+
+  /// Emitted as the third step of toolkit and application processing of the frame.
+  let onPaint (self: FrameClock) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_frame_clock_get_type ())) "paint" handler
+
+  /// Emitted after processing of the frame is finished.
+  let onResumeEvents (self: FrameClock) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_frame_clock_get_type ())) "resume-events" handler
+
+  /// Emitted as the first step of toolkit and application processing of the frame.
+  let onUpdate (self: FrameClock) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_frame_clock_get_type ())) "update" handler
+
+module FrameTimings =
+  extern gdk_frame_timings_get_complete : cptr -> i32
+
+  /// Returns whether @timings are complete.
+  let getComplete (self: FrameTimings) : bool =
+    (((gdk_frame_timings_get_complete (Glue.obj self.Id (gdk_frame_timings_get_type ())))) <> i32 0)
+
+  extern gdk_frame_timings_get_frame_counter : cptr -> i64
+
+  /// Gets the frame counter value of the `GdkFrameClock` when this frame was drawn.
+  let getFrameCounter (self: FrameTimings) : int =
+    (int ((gdk_frame_timings_get_frame_counter (Glue.obj self.Id (gdk_frame_timings_get_type ())))))
+
+  extern gdk_frame_timings_get_frame_time : cptr -> i64
+
+  /// Returns the frame time for the frame.
+  let getFrameTime (self: FrameTimings) : int =
+    (int ((gdk_frame_timings_get_frame_time (Glue.obj self.Id (gdk_frame_timings_get_type ())))))
+
+  extern gdk_frame_timings_get_predicted_presentation_time : cptr -> i64
+
+  /// Gets the predicted time at which this frame will be displayed.
+  let getPredictedPresentationTime (self: FrameTimings) : int =
+    (int ((gdk_frame_timings_get_predicted_presentation_time (Glue.obj self.Id (gdk_frame_timings_get_type ())))))
+
+  extern gdk_frame_timings_get_presentation_time : cptr -> i64
+
+  /// Reurns the presentation time.
+  let getPresentationTime (self: FrameTimings) : int =
+    (int ((gdk_frame_timings_get_presentation_time (Glue.obj self.Id (gdk_frame_timings_get_type ())))))
+
+  extern gdk_frame_timings_get_refresh_interval : cptr -> i64
+
+  /// Gets the natural interval between presentation times for the display that this frame was displayed on.
+  let getRefreshInterval (self: FrameTimings) : int =
+    (int ((gdk_frame_timings_get_refresh_interval (Glue.obj self.Id (gdk_frame_timings_get_type ())))))
+
+  extern gdk_frame_timings_ref : cptr -> cptr
+
+  /// Increases the reference count of @timings.
+  [<Unsafe>]
+  let ref_ (self: FrameTimings) : FrameTimings =
+    FrameTimings (Glue.wrapBoxed ((gdk_frame_timings_ref (Glue.obj self.Id (gdk_frame_timings_get_type ())))) (gdk_frame_timings_get_type ()) true)
+
+  extern gdk_frame_timings_unref : cptr -> unit
+
+  /// Decreases the reference count of @timings.
+  [<Unsafe>]
+  let unref (self: FrameTimings) : unit =
+    gdk_frame_timings_unref (Glue.obj self.Id (gdk_frame_timings_get_type ()))
+
+module GLContext =
+  /// The same object as its ancestor.
+  let toDrawContext (self: GLContext) : DrawContext = DrawContext self.Id
+
+  /// The same object as its ancestor.
+  let toGObjectObject (self: GLContext) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<GLContext> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_gl_context_get_type ()) then Some (GLContext object.Id) else None
+
+  extern gdk_gl_context_get_allowed_apis : cptr -> u32
+
+  /// Gets the allowed APIs set via gdk_gl_context_set_allowed_apis().
+  let getAllowedApis (self: GLContext) : GLAPI =
+    GLAPI (int ((gdk_gl_context_get_allowed_apis (Glue.obj self.Id (gdk_gl_context_get_type ())))))
+
+  extern gdk_gl_context_get_api : cptr -> u32
+
+  /// Gets the API currently in use.
+  let getApi (self: GLContext) : GLAPI =
+    GLAPI (int ((gdk_gl_context_get_api (Glue.obj self.Id (gdk_gl_context_get_type ())))))
+
+  extern gdk_gl_context_get_debug_enabled : cptr -> i32
+
+  /// Retrieves whether the context is doing extra validations and runtime checking.
+  let getDebugEnabled (self: GLContext) : bool =
+    (((gdk_gl_context_get_debug_enabled (Glue.obj self.Id (gdk_gl_context_get_type ())))) <> i32 0)
+
+  extern gdk_gl_context_get_display : cptr -> cptr
+
+  /// Retrieves the display the @context is created for
+  let getDisplay (self: GLContext) : option<Display> =
+    let zr = gdk_gl_context_get_display (Glue.obj self.Id (gdk_gl_context_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Display zid1))
+
+  extern gdk_gl_context_get_forward_compatible : cptr -> i32
+
+  /// Retrieves whether the context is forward-compatible.
+  let getForwardCompatible (self: GLContext) : bool =
+    (((gdk_gl_context_get_forward_compatible (Glue.obj self.Id (gdk_gl_context_get_type ())))) <> i32 0)
+
+  extern gdk_gl_context_get_required_version : cptr -> cptr -> cptr -> unit
+
+  /// Retrieves required OpenGL version set as a requirement for the @context realization.
+  let getRequiredVersion (self: GLContext) : (int * int) =
+    Glue.outBegin ()
+    gdk_gl_context_get_required_version (Glue.obj self.Id (gdk_gl_context_get_type ())) (Glue.out 0) (Glue.out 1)
+    let zv = (Glue.outI32 0, Glue.outI32 1)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_gl_context_get_shared_context : cptr -> cptr
+
+  /// Deprecated. Used to retrieves the `GdkGLContext` that this @context share data with.
+  let getSharedContext (self: GLContext) : option<GLContext> =
+    let zr = gdk_gl_context_get_shared_context (Glue.obj self.Id (gdk_gl_context_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (GLContext zid1))
+
+  extern gdk_gl_context_get_surface : cptr -> cptr
+
+  /// Retrieves the surface used by the @context.
+  let getSurface (self: GLContext) : option<Surface> =
+    let zr = gdk_gl_context_get_surface (Glue.obj self.Id (gdk_gl_context_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Surface zid1))
+
+  extern gdk_gl_context_get_use_es : cptr -> i32
+
+  /// Checks whether the @context is using an OpenGL or OpenGL ES profile.
+  let getUseEs (self: GLContext) : bool =
+    (((gdk_gl_context_get_use_es (Glue.obj self.Id (gdk_gl_context_get_type ())))) <> i32 0)
+
+  extern gdk_gl_context_get_version : cptr -> cptr -> cptr -> unit
+
+  /// Retrieves the OpenGL version of the @context.
+  let getVersion (self: GLContext) : (int * int) =
+    Glue.outBegin ()
+    gdk_gl_context_get_version (Glue.obj self.Id (gdk_gl_context_get_type ())) (Glue.out 0) (Glue.out 1)
+    let zv = (Glue.outI32 0, Glue.outI32 1)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_gl_context_is_legacy : cptr -> i32
+
+  /// Whether the `GdkGLContext` is in legacy mode or not.
+  let isLegacy (self: GLContext) : bool =
+    (((gdk_gl_context_is_legacy (Glue.obj self.Id (gdk_gl_context_get_type ())))) <> i32 0)
+
+  extern gdk_gl_context_is_shared : cptr -> cptr -> i32
+
+  /// Checks if the two GL contexts can share resources.
+  let isShared (self: GLContext) (other: GLContext) : bool =
+    (((gdk_gl_context_is_shared (Glue.obj self.Id (gdk_gl_context_get_type ())) (Glue.obj other.Id (gdk_gl_context_get_type ())))) <> i32 0)
+
+  extern gdk_gl_context_make_current : cptr -> unit
+
+  /// Makes the @context the current one.
+  let makeCurrent (self: GLContext) : unit =
+    gdk_gl_context_make_current (Glue.obj self.Id (gdk_gl_context_get_type ()))
+
+  extern gdk_gl_context_realize : cptr -> cptr -> i32
+
+  /// Realizes the given `GdkGLContext`.
+  let realize (self: GLContext) : result<bool, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_gl_context_realize (Glue.obj self.Id (gdk_gl_context_get_type ())) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = ((zr) <> i32 0)
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_gl_context_set_allowed_apis : cptr -> u32 -> unit
+
+  /// Sets the allowed APIs.
+  let setAllowedApis (self: GLContext) (apis: GLAPI) : unit =
+    gdk_gl_context_set_allowed_apis (Glue.obj self.Id (gdk_gl_context_get_type ())) (u32 apis.Int)
+
+  extern gdk_gl_context_set_debug_enabled : cptr -> i32 -> unit
+
+  /// Sets whether the `GdkGLContext` should perform extra validations and runtime checking.
+  let setDebugEnabled (self: GLContext) (enabled: bool) : unit =
+    gdk_gl_context_set_debug_enabled (Glue.obj self.Id (gdk_gl_context_get_type ())) (if enabled then i32 1 else i32 0)
+
+  extern gdk_gl_context_set_forward_compatible : cptr -> i32 -> unit
+
+  /// Sets whether the `GdkGLContext` should be forward-compatible.
+  let setForwardCompatible (self: GLContext) (compatible: bool) : unit =
+    gdk_gl_context_set_forward_compatible (Glue.obj self.Id (gdk_gl_context_get_type ())) (if compatible then i32 1 else i32 0)
+
+  extern gdk_gl_context_set_required_version : cptr -> i32 -> i32 -> unit
+
+  /// Sets the major and minor version of OpenGL to request.
+  let setRequiredVersion (self: GLContext) (major: int) (minor: int) : unit =
+    gdk_gl_context_set_required_version (Glue.obj self.Id (gdk_gl_context_get_type ())) (i32 major) (i32 minor)
+
+  extern gdk_gl_context_set_use_es : cptr -> i32 -> unit
+
+  /// Requests that GDK create an OpenGL ES context instead of an OpenGL one.
+  let setUseEs (self: GLContext) (useEs: int) : unit =
+    gdk_gl_context_set_use_es (Glue.obj self.Id (gdk_gl_context_get_type ())) (i32 useEs)
+
+  extern gdk_gl_context_clear_current : unit -> unit
+
+  /// Clears the current `GdkGLContext`.
+  let clearCurrent () : unit =
+    gdk_gl_context_clear_current ()
+
+  extern gdk_gl_context_get_current : unit -> cptr
+
+  /// Retrieves the current `GdkGLContext`.
+  let getCurrent () : option<GLContext> =
+    let zr = gdk_gl_context_get_current ()
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (GLContext zid1))
+
+  /// Calls `handler` when the `allowed-apis` property changes.
+  let onNotifyAllowedApis (self: GLContext) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_gl_context_get_type ())) "notify::allowed-apis" handler
+
+  /// Calls `handler` when the `api` property changes.
+  let onNotifyApi (self: GLContext) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_gl_context_get_type ())) "notify::api" handler
+
+  /// Calls `handler` when the `shared-context` property changes.
+  let onNotifySharedContext (self: GLContext) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_gl_context_get_type ())) "notify::shared-context" handler
+
+module GLTexture =
+  /// The same object as its interface.
+  let toPaintable (self: GLTexture) : Paintable = Paintable self.Id
+
+  /// The same object as its interface.
+  let toGioIcon (self: GLTexture) : Gio.Icon = Gio.Icon self.Id
+
+  /// The same object as its interface.
+  let toGioLoadableIcon (self: GLTexture) : Gio.LoadableIcon = Gio.LoadableIcon self.Id
+
+  /// The same object as its ancestor.
+  let toTexture (self: GLTexture) : Texture = Texture self.Id
+
+  /// The same object as its ancestor.
+  let toGObjectObject (self: GLTexture) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<GLTexture> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_gl_texture_get_type ()) then Some (GLTexture object.Id) else None
+
+  extern gdk_gl_texture_new : cptr -> u32 -> i32 -> i32 -> cptr -> cptr -> cptr
+
+  /// Deprecated. Creates a new texture for an existing GL texture.
+  [<Unsafe>]
+  let create (context: GLContext) (id: int) (width: int) (height: int) (destroy: cptr) (data: cptr) : GLTexture =
+    GLTexture (Glue.wrap ((gdk_gl_texture_new (Glue.obj context.Id (gdk_gl_context_get_type ())) (u32 id) (i32 width) (i32 height) destroy data)) true)
+
+  extern gdk_gl_texture_release : cptr -> unit
+
+  /// Releases the GL resources held by a `GdkGLTexture`.
+  let release (self: GLTexture) : unit =
+    gdk_gl_texture_release (Glue.obj self.Id (gdk_gl_texture_get_type ()))
+
+module GLTextureBuilder =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: GLTextureBuilder) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<GLTextureBuilder> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_gl_texture_builder_get_type ()) then Some (GLTextureBuilder object.Id) else None
+
+  extern gdk_gl_texture_builder_new : unit -> cptr
+
+  /// Creates a new texture builder.
+  let create () : GLTextureBuilder =
+    GLTextureBuilder (Glue.wrap ((gdk_gl_texture_builder_new ())) true)
+
+  extern gdk_gl_texture_builder_build : cptr -> cptr -> cptr -> cptr
+
+  /// Builds a new `GdkTexture` with the values set up in the builder.
+  [<Unsafe>]
+  let build (self: GLTextureBuilder) (destroy: cptr) (data: cptr) : Texture =
+    Texture (Glue.wrap ((gdk_gl_texture_builder_build (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) destroy data)) true)
+
+  extern gdk_gl_texture_builder_get_color_state : cptr -> cptr
+
+  /// Gets the color state previously set via gdk_gl_texture_builder_set_color_state().
+  let getColorState (self: GLTextureBuilder) : ColorState =
+    ColorState (Glue.wrapBoxed ((gdk_gl_texture_builder_get_color_state (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())))) (gdk_color_state_get_type ()) false)
+
+  extern gdk_gl_texture_builder_get_context : cptr -> cptr
+
+  /// Gets the context previously set via gdk_gl_texture_builder_set_context() or %NULL if none was set.
+  let getContext (self: GLTextureBuilder) : option<GLContext> =
+    let zr = gdk_gl_texture_builder_get_context (Glue.obj self.Id (gdk_gl_texture_builder_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (GLContext zid1))
+
+  extern gdk_gl_texture_builder_get_format : cptr -> i32
+
+  /// Gets the format previously set via gdk_gl_texture_builder_set_format().
+  let getFormat (self: GLTextureBuilder) : MemoryFormat =
+    MemoryFormat (int ((gdk_gl_texture_builder_get_format (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())))))
+
+  extern gdk_gl_texture_builder_get_has_mipmap : cptr -> i32
+
+  /// Gets whether the texture has a mipmap.
+  let getHasMipmap (self: GLTextureBuilder) : bool =
+    (((gdk_gl_texture_builder_get_has_mipmap (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())))) <> i32 0)
+
+  extern gdk_gl_texture_builder_get_height : cptr -> i32
+
+  /// Gets the height previously set via gdk_gl_texture_builder_set_height() or 0 if the height wasn't set.
+  let getHeight (self: GLTextureBuilder) : int =
+    (int ((gdk_gl_texture_builder_get_height (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())))))
+
+  extern gdk_gl_texture_builder_get_id : cptr -> u32
+
+  /// Gets the texture id previously set via gdk_gl_texture_builder_set_id() or 0 if the id wasn't set.
+  let getId (self: GLTextureBuilder) : int =
+    (int ((gdk_gl_texture_builder_get_id (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())))))
+
+  extern gdk_gl_texture_builder_get_sync : cptr -> cptr
+
+  /// Gets the `GLsync` previously set via gdk_gl_texture_builder_set_sync().
+  let getSync (self: GLTextureBuilder) : cptr =
+    ((gdk_gl_texture_builder_get_sync (Glue.obj self.Id (gdk_gl_texture_builder_get_type ()))))
+
+  extern gdk_gl_texture_builder_get_update_region : cptr -> cptr
+
+  /// Gets the region previously set via gdk_gl_texture_builder_set_update_region() or %NULL if none was set.
+  let getUpdateRegion (self: GLTextureBuilder) : option<Cairo.Region> =
+    let zr = gdk_gl_texture_builder_get_update_region (Glue.obj self.Id (gdk_gl_texture_builder_get_type ()))
+    let zid1 = Glue.wrapBoxed (zr) (Cairo.cairo_gobject_region_get_type ()) false
+    (if zid1 = 0 then None else Some (Cairo.Region zid1))
+
+  extern gdk_gl_texture_builder_get_update_texture : cptr -> cptr
+
+  /// Gets the texture previously set via gdk_gl_texture_builder_set_update_texture() or %NULL if none was set.
+  let getUpdateTexture (self: GLTextureBuilder) : option<Texture> =
+    let zr = gdk_gl_texture_builder_get_update_texture (Glue.obj self.Id (gdk_gl_texture_builder_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Texture zid1))
+
+  extern gdk_gl_texture_builder_get_width : cptr -> i32
+
+  /// Gets the width previously set via gdk_gl_texture_builder_set_width() or 0 if the width wasn't set.
+  let getWidth (self: GLTextureBuilder) : int =
+    (int ((gdk_gl_texture_builder_get_width (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())))))
+
+  extern gdk_gl_texture_builder_set_color_state : cptr -> cptr -> unit
+
+  /// Sets the color state for the texture.
+  let setColorState (self: GLTextureBuilder) (colorState: ColorState) : unit =
+    gdk_gl_texture_builder_set_color_state (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) (Glue.obj colorState.Id (gdk_color_state_get_type ()))
+
+  extern gdk_gl_texture_builder_set_context : cptr -> cptr -> unit
+
+  /// Sets the context to be used for the texture.
+  let setContext (self: GLTextureBuilder) (context: option<GLContext>) : unit =
+    let zp1 =
+      match context with
+      | Some zo -> Glue.obj zo.Id (gdk_gl_context_get_type ())
+      | None -> Glue.none ()
+    gdk_gl_texture_builder_set_context (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) zp1
+
+  extern gdk_gl_texture_builder_set_format : cptr -> i32 -> unit
+
+  /// Sets the format of the texture.
+  let setFormat (self: GLTextureBuilder) (format: MemoryFormat) : unit =
+    gdk_gl_texture_builder_set_format (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) (i32 format.Int)
+
+  extern gdk_gl_texture_builder_set_has_mipmap : cptr -> i32 -> unit
+
+  /// Sets whether the texture has a mipmap.
+  let setHasMipmap (self: GLTextureBuilder) (hasMipmap: bool) : unit =
+    gdk_gl_texture_builder_set_has_mipmap (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) (if hasMipmap then i32 1 else i32 0)
+
+  extern gdk_gl_texture_builder_set_height : cptr -> i32 -> unit
+
+  /// Sets the height of the texture.
+  let setHeight (self: GLTextureBuilder) (height: int) : unit =
+    gdk_gl_texture_builder_set_height (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) (i32 height)
+
+  extern gdk_gl_texture_builder_set_id : cptr -> u32 -> unit
+
+  /// Sets the texture id of the texture.
+  let setId (self: GLTextureBuilder) (id: int) : unit =
+    gdk_gl_texture_builder_set_id (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) (u32 id)
+
+  extern gdk_gl_texture_builder_set_sync : cptr -> cptr -> unit
+
+  /// Sets the GLSync object to use for the texture.
+  [<Unsafe>]
+  let setSync (self: GLTextureBuilder) (sync: cptr) : unit =
+    gdk_gl_texture_builder_set_sync (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) sync
+
+  extern gdk_gl_texture_builder_set_update_region : cptr -> cptr -> unit
+
+  /// Sets the region to be updated by this texture.
+  let setUpdateRegion (self: GLTextureBuilder) (region: option<Cairo.Region>) : unit =
+    let zp1 =
+      match region with
+      | Some zo -> Glue.obj zo.Id (Cairo.cairo_gobject_region_get_type ())
+      | None -> Glue.none ()
+    gdk_gl_texture_builder_set_update_region (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) zp1
+
+  extern gdk_gl_texture_builder_set_update_texture : cptr -> cptr -> unit
+
+  /// Sets the texture to be updated by this texture.
+  let setUpdateTexture (self: GLTextureBuilder) (texture: option<Texture>) : unit =
+    let zp1 =
+      match texture with
+      | Some zo -> Glue.obj zo.Id (gdk_texture_get_type ())
+      | None -> Glue.none ()
+    gdk_gl_texture_builder_set_update_texture (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) zp1
+
+  extern gdk_gl_texture_builder_set_width : cptr -> i32 -> unit
+
+  /// Sets the width of the texture.
+  let setWidth (self: GLTextureBuilder) (width: int) : unit =
+    gdk_gl_texture_builder_set_width (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) (i32 width)
+
+  /// Calls `handler` when the `color-state` property changes.
+  let onNotifyColorState (self: GLTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::color-state" handler
+
+  /// Calls `handler` when the `context` property changes.
+  let onNotifyContext (self: GLTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::context" handler
+
+  /// Calls `handler` when the `format` property changes.
+  let onNotifyFormat (self: GLTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::format" handler
+
+  /// Calls `handler` when the `has-mipmap` property changes.
+  let onNotifyHasMipmap (self: GLTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::has-mipmap" handler
+
+  /// Calls `handler` when the `height` property changes.
+  let onNotifyHeight (self: GLTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::height" handler
+
+  /// Calls `handler` when the `id` property changes.
+  let onNotifyId (self: GLTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::id" handler
+
+  /// Calls `handler` when the `sync` property changes.
+  let onNotifySync (self: GLTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::sync" handler
+
+  /// Calls `handler` when the `update-region` property changes.
+  let onNotifyUpdateRegion (self: GLTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::update-region" handler
+
+  /// Calls `handler` when the `update-texture` property changes.
+  let onNotifyUpdateTexture (self: GLTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::update-texture" handler
+
+  /// Calls `handler` when the `width` property changes.
+  let onNotifyWidth (self: GLTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_gl_texture_builder_get_type ())) "notify::width" handler
+
+module GrabBrokenEvent =
+  extern gdk_grab_broken_event_get_grab_surface : cptr -> cptr
+
+  /// Extracts the grab surface from a grab broken event.
+  [<Unsafe>]
+  let getGrabSurface (self: GrabBrokenEvent) : Surface =
+    Surface (Glue.wrap ((gdk_grab_broken_event_get_grab_surface self.Ptr)) false)
+
+  extern gdk_grab_broken_event_get_implicit : cptr -> i32
+
+  /// Checks whether the grab broken event is for an implicit grab.
+  [<Unsafe>]
+  let getImplicit (self: GrabBrokenEvent) : bool =
+    (((gdk_grab_broken_event_get_implicit self.Ptr)) <> i32 0)
+
+module KeyEvent =
+  extern gdk_key_event_get_consumed_modifiers : cptr -> u32
+
+  /// Extracts the consumed modifiers from a key event.
+  [<Unsafe>]
+  let getConsumedModifiers (self: KeyEvent) : ModifierType =
+    ModifierType (int ((gdk_key_event_get_consumed_modifiers self.Ptr)))
+
+  extern gdk_key_event_get_keycode : cptr -> u32
+
+  /// Extracts the keycode from a key event.
+  [<Unsafe>]
+  let getKeycode (self: KeyEvent) : int =
+    (int ((gdk_key_event_get_keycode self.Ptr)))
+
+  extern gdk_key_event_get_keyval : cptr -> u32
+
+  /// Extracts the keyval from a key event.
+  [<Unsafe>]
+  let getKeyval (self: KeyEvent) : int =
+    (int ((gdk_key_event_get_keyval self.Ptr)))
+
+  extern gdk_key_event_get_layout : cptr -> u32
+
+  /// Extracts the layout from a key event.
+  [<Unsafe>]
+  let getLayout (self: KeyEvent) : int =
+    (int ((gdk_key_event_get_layout self.Ptr)))
+
+  extern gdk_key_event_get_level : cptr -> u32
+
+  /// Extracts the shift level from a key event.
+  [<Unsafe>]
+  let getLevel (self: KeyEvent) : int =
+    (int ((gdk_key_event_get_level self.Ptr)))
+
+  extern gdk_key_event_get_match : cptr -> cptr -> cptr -> i32
+
+  /// Gets a keyval and modifier combination that will match the event.
+  [<Unsafe>]
+  let getMatch (self: KeyEvent) : (bool * int * ModifierType) =
+    Glue.outBegin ()
+    let zr = gdk_key_event_get_match self.Ptr (Glue.out 0) (Glue.out 1)
+    let zv = (((zr) <> i32 0), Glue.outU32 0, ModifierType (Glue.outU32 1))
+    Glue.outEnd ()
+    zv
+
+  extern gdk_key_event_is_modifier : cptr -> i32
+
+  /// Extracts whether the key event is for a modifier key.
+  [<Unsafe>]
+  let isModifier (self: KeyEvent) : bool =
+    (((gdk_key_event_is_modifier self.Ptr)) <> i32 0)
+
+  extern gdk_key_event_matches : cptr -> u32 -> u32 -> i32
+
+  /// Matches a key event against a keyval and modifiers.
+  [<Unsafe>]
+  let matches (self: KeyEvent) (keyval: int) (modifiers: ModifierType) : KeyMatch =
+    KeyMatch (int ((gdk_key_event_matches self.Ptr (u32 keyval) (u32 modifiers.Int))))
+
+module KeymapKey =
+  /// A new one, every field zero.
+  let create () : KeymapKey = KeymapKey (Glue.allocPlain (zgtk_sizeof_Gdk_KeymapKey ()) (zgtk_tag_Gdk_KeymapKey ()))
+
+  extern zgtk_get_Gdk_KeymapKey_keycode : cptr -> int
+
+  /// The `keycode` field.
+  let getKeycode (self: KeymapKey) : int = zgtk_get_Gdk_KeymapKey_keycode (Glue.obj self.Id (zgtk_tag_Gdk_KeymapKey ()))
+
+  extern zgtk_set_Gdk_KeymapKey_keycode : cptr -> int -> unit
+
+  /// Sets the `keycode` field.
+  let setKeycode (self: KeymapKey) (value: int) : unit = zgtk_set_Gdk_KeymapKey_keycode (Glue.obj self.Id (zgtk_tag_Gdk_KeymapKey ())) value
+
+  extern zgtk_get_Gdk_KeymapKey_group : cptr -> int
+
+  /// The `group` field.
+  let getGroup (self: KeymapKey) : int = zgtk_get_Gdk_KeymapKey_group (Glue.obj self.Id (zgtk_tag_Gdk_KeymapKey ()))
+
+  extern zgtk_set_Gdk_KeymapKey_group : cptr -> int -> unit
+
+  /// Sets the `group` field.
+  let setGroup (self: KeymapKey) (value: int) : unit = zgtk_set_Gdk_KeymapKey_group (Glue.obj self.Id (zgtk_tag_Gdk_KeymapKey ())) value
+
+  extern zgtk_get_Gdk_KeymapKey_level : cptr -> int
+
+  /// The `level` field.
+  let getLevel (self: KeymapKey) : int = zgtk_get_Gdk_KeymapKey_level (Glue.obj self.Id (zgtk_tag_Gdk_KeymapKey ()))
+
+  extern zgtk_set_Gdk_KeymapKey_level : cptr -> int -> unit
+
+  /// Sets the `level` field.
+  let setLevel (self: KeymapKey) (value: int) : unit = zgtk_set_Gdk_KeymapKey_level (Glue.obj self.Id (zgtk_tag_Gdk_KeymapKey ())) value
+
+module MemoryTexture =
+  /// The same object as its interface.
+  let toPaintable (self: MemoryTexture) : Paintable = Paintable self.Id
+
+  /// The same object as its interface.
+  let toGioIcon (self: MemoryTexture) : Gio.Icon = Gio.Icon self.Id
+
+  /// The same object as its interface.
+  let toGioLoadableIcon (self: MemoryTexture) : Gio.LoadableIcon = Gio.LoadableIcon self.Id
+
+  /// The same object as its ancestor.
+  let toTexture (self: MemoryTexture) : Texture = Texture self.Id
+
+  /// The same object as its ancestor.
+  let toGObjectObject (self: MemoryTexture) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<MemoryTexture> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_memory_texture_get_type ()) then Some (MemoryTexture object.Id) else None
+
+  extern gdk_memory_texture_new : i32 -> i32 -> i32 -> cptr -> usize -> cptr
+
+  /// Creates a new texture for a blob of image data.
+  let create (width: int) (height: int) (format: MemoryFormat) (bytes: GLib.Bytes) (stride: int) : MemoryTexture =
+    MemoryTexture (Glue.wrap ((gdk_memory_texture_new (i32 width) (i32 height) (i32 format.Int) (Glue.obj bytes.Id (GLib.g_bytes_get_type ())) (usize stride))) true)
+
+module MemoryTextureBuilder =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: MemoryTextureBuilder) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<MemoryTextureBuilder> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_memory_texture_builder_get_type ()) then Some (MemoryTextureBuilder object.Id) else None
+
+  extern gdk_memory_texture_builder_new : unit -> cptr
+
+  /// Creates a new texture builder.
+  let create () : MemoryTextureBuilder =
+    MemoryTextureBuilder (Glue.wrap ((gdk_memory_texture_builder_new ())) true)
+
+  extern gdk_memory_texture_builder_build : cptr -> cptr
+
+  /// Builds a new `GdkTexture` with the values set up in the builder.
+  let build (self: MemoryTextureBuilder) : Texture =
+    Texture (Glue.wrap ((gdk_memory_texture_builder_build (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())))) true)
+
+  extern gdk_memory_texture_builder_get_bytes : cptr -> cptr
+
+  /// Gets the bytes previously set via gdk_memory_texture_builder_set_bytes() or %NULL if none was set.
+  let getBytes (self: MemoryTextureBuilder) : option<GLib.Bytes> =
+    let zr = gdk_memory_texture_builder_get_bytes (Glue.obj self.Id (gdk_memory_texture_builder_get_type ()))
+    let zid1 = Glue.wrapBoxed (zr) (GLib.g_bytes_get_type ()) false
+    (if zid1 = 0 then None else Some (GLib.Bytes zid1))
+
+  extern gdk_memory_texture_builder_get_color_state : cptr -> cptr
+
+  /// Gets the colorstate previously set via gdk_memory_texture_builder_set_color_state().
+  let getColorState (self: MemoryTextureBuilder) : ColorState =
+    ColorState (Glue.wrapBoxed ((gdk_memory_texture_builder_get_color_state (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())))) (gdk_color_state_get_type ()) false)
+
+  extern gdk_memory_texture_builder_get_format : cptr -> i32
+
+  /// Gets the format previously set via gdk_memory_texture_builder_set_format().
+  let getFormat (self: MemoryTextureBuilder) : MemoryFormat =
+    MemoryFormat (int ((gdk_memory_texture_builder_get_format (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())))))
+
+  extern gdk_memory_texture_builder_get_height : cptr -> i32
+
+  /// Gets the height previously set via gdk_memory_texture_builder_set_height() or 0 if the height wasn't set.
+  let getHeight (self: MemoryTextureBuilder) : int =
+    (int ((gdk_memory_texture_builder_get_height (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())))))
+
+  extern gdk_memory_texture_builder_get_offset : cptr -> u32 -> usize
+
+  /// Gets the offset previously set via gdk_memory_texture_builder_set_offset().
+  let getOffset (self: MemoryTextureBuilder) (plane: int) : int =
+    (int ((gdk_memory_texture_builder_get_offset (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (u32 plane))))
+
+  extern gdk_memory_texture_builder_get_stride : cptr -> usize
+
+  /// Gets the stride previously set via gdk_memory_texture_builder_set_stride().
+  let getStride (self: MemoryTextureBuilder) : int =
+    (int ((gdk_memory_texture_builder_get_stride (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())))))
+
+  extern gdk_memory_texture_builder_get_stride_for_plane : cptr -> u32 -> usize
+
+  /// Gets the stride previously set via gdk_memory_texture_builder_set_stride_for_plane().
+  let getStrideForPlane (self: MemoryTextureBuilder) (plane: int) : int =
+    (int ((gdk_memory_texture_builder_get_stride_for_plane (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (u32 plane))))
+
+  extern gdk_memory_texture_builder_get_update_region : cptr -> cptr
+
+  /// Gets the region previously set via gdk_memory_texture_builder_set_update_region() or %NULL if none was set.
+  let getUpdateRegion (self: MemoryTextureBuilder) : option<Cairo.Region> =
+    let zr = gdk_memory_texture_builder_get_update_region (Glue.obj self.Id (gdk_memory_texture_builder_get_type ()))
+    let zid1 = Glue.wrapBoxed (zr) (Cairo.cairo_gobject_region_get_type ()) false
+    (if zid1 = 0 then None else Some (Cairo.Region zid1))
+
+  extern gdk_memory_texture_builder_get_update_texture : cptr -> cptr
+
+  /// Gets the texture previously set via gdk_memory_texture_builder_set_update_texture() or %NULL if none was set.
+  let getUpdateTexture (self: MemoryTextureBuilder) : option<Texture> =
+    let zr = gdk_memory_texture_builder_get_update_texture (Glue.obj self.Id (gdk_memory_texture_builder_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Texture zid1))
+
+  extern gdk_memory_texture_builder_get_width : cptr -> i32
+
+  /// Gets the width previously set via gdk_memory_texture_builder_set_width() or 0 if the width wasn't set.
+  let getWidth (self: MemoryTextureBuilder) : int =
+    (int ((gdk_memory_texture_builder_get_width (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())))))
+
+  extern gdk_memory_texture_builder_set_bytes : cptr -> cptr -> unit
+
+  /// Sets the data to be shown but the texture.
+  let setBytes (self: MemoryTextureBuilder) (bytes: option<GLib.Bytes>) : unit =
+    let zp1 =
+      match bytes with
+      | Some zo -> Glue.obj zo.Id (GLib.g_bytes_get_type ())
+      | None -> Glue.none ()
+    gdk_memory_texture_builder_set_bytes (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) zp1
+
+  extern gdk_memory_texture_builder_set_color_state : cptr -> cptr -> unit
+
+  /// Sets the colorstate describing the data.
+  let setColorState (self: MemoryTextureBuilder) (colorState: ColorState) : unit =
+    gdk_memory_texture_builder_set_color_state (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (Glue.obj colorState.Id (gdk_color_state_get_type ()))
+
+  extern gdk_memory_texture_builder_set_format : cptr -> i32 -> unit
+
+  /// Sets the format of the bytes.
+  let setFormat (self: MemoryTextureBuilder) (format: MemoryFormat) : unit =
+    gdk_memory_texture_builder_set_format (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (i32 format.Int)
+
+  extern gdk_memory_texture_builder_set_height : cptr -> i32 -> unit
+
+  /// Sets the height of the texture.
+  let setHeight (self: MemoryTextureBuilder) (height: int) : unit =
+    gdk_memory_texture_builder_set_height (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (i32 height)
+
+  extern gdk_memory_texture_builder_set_offset : cptr -> u32 -> usize -> unit
+
+  /// Sets the offset of the texture for @plane.
+  let setOffset (self: MemoryTextureBuilder) (plane: int) (offset: int) : unit =
+    gdk_memory_texture_builder_set_offset (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (u32 plane) (usize offset)
+
+  extern gdk_memory_texture_builder_set_stride : cptr -> usize -> unit
+
+  /// Sets the rowstride of the bytes used.
+  let setStride (self: MemoryTextureBuilder) (stride: int) : unit =
+    gdk_memory_texture_builder_set_stride (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (usize stride)
+
+  extern gdk_memory_texture_builder_set_stride_for_plane : cptr -> u32 -> usize -> unit
+
+  /// Sets the stride of the texture for @plane.
+  let setStrideForPlane (self: MemoryTextureBuilder) (plane: int) (stride: int) : unit =
+    gdk_memory_texture_builder_set_stride_for_plane (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (u32 plane) (usize stride)
+
+  extern gdk_memory_texture_builder_set_update_region : cptr -> cptr -> unit
+
+  /// Sets the region to be updated by this texture.
+  let setUpdateRegion (self: MemoryTextureBuilder) (region: option<Cairo.Region>) : unit =
+    let zp1 =
+      match region with
+      | Some zo -> Glue.obj zo.Id (Cairo.cairo_gobject_region_get_type ())
+      | None -> Glue.none ()
+    gdk_memory_texture_builder_set_update_region (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) zp1
+
+  extern gdk_memory_texture_builder_set_update_texture : cptr -> cptr -> unit
+
+  /// Sets the texture to be updated by this texture.
+  let setUpdateTexture (self: MemoryTextureBuilder) (texture: option<Texture>) : unit =
+    let zp1 =
+      match texture with
+      | Some zo -> Glue.obj zo.Id (gdk_texture_get_type ())
+      | None -> Glue.none ()
+    gdk_memory_texture_builder_set_update_texture (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) zp1
+
+  extern gdk_memory_texture_builder_set_width : cptr -> i32 -> unit
+
+  /// Sets the width of the texture.
+  let setWidth (self: MemoryTextureBuilder) (width: int) : unit =
+    gdk_memory_texture_builder_set_width (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) (i32 width)
+
+  /// Calls `handler` when the `bytes` property changes.
+  let onNotifyBytes (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::bytes" handler
+
+  /// Calls `handler` when the `color-state` property changes.
+  let onNotifyColorState (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::color-state" handler
+
+  /// Calls `handler` when the `format` property changes.
+  let onNotifyFormat (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::format" handler
+
+  /// Calls `handler` when the `height` property changes.
+  let onNotifyHeight (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::height" handler
+
+  /// Calls `handler` when the `stride` property changes.
+  let onNotifyStride (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::stride" handler
+
+  /// Calls `handler` when the `update-region` property changes.
+  let onNotifyUpdateRegion (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::update-region" handler
+
+  /// Calls `handler` when the `update-texture` property changes.
+  let onNotifyUpdateTexture (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::update-texture" handler
+
+  /// Calls `handler` when the `width` property changes.
+  let onNotifyWidth (self: MemoryTextureBuilder) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_memory_texture_builder_get_type ())) "notify::width" handler
+
+module Monitor =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: Monitor) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<Monitor> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_monitor_get_type ()) then Some (Monitor object.Id) else None
+
+  extern gdk_monitor_get_connector : cptr -> cptr
+
+  /// Gets the name of the monitor's connector, if available.
+  let getConnector (self: Monitor) : option<string> =
+    Glue.textOption ((gdk_monitor_get_connector (Glue.obj self.Id (gdk_monitor_get_type ()))))
+
+  extern gdk_monitor_get_description : cptr -> cptr
+
+  /// Gets a string describing the monitor, if available.
+  let getDescription (self: Monitor) : option<string> =
+    Glue.textOption ((gdk_monitor_get_description (Glue.obj self.Id (gdk_monitor_get_type ()))))
+
+  extern gdk_monitor_get_display : cptr -> cptr
+
+  /// Gets the display that this monitor belongs to.
+  let getDisplay (self: Monitor) : Display =
+    Display (Glue.wrap ((gdk_monitor_get_display (Glue.obj self.Id (gdk_monitor_get_type ())))) false)
+
+  extern gdk_monitor_get_geometry : cptr -> cptr -> unit
+
+  /// Retrieves the size and position of the monitor within the display coordinate space.
+  let getGeometry (self: Monitor) : Rectangle =
+    let zo1 = Glue.alloc (zgtk_sizeof_Gdk_Rectangle ()) (gdk_rectangle_get_type ())
+    gdk_monitor_get_geometry (Glue.obj self.Id (gdk_monitor_get_type ())) (Glue.obj zo1 (gdk_rectangle_get_type ()))
+    Rectangle zo1
+
+  extern gdk_monitor_get_height_mm : cptr -> i32
+
+  /// Gets the height in millimeters of the monitor.
+  let getHeightMm (self: Monitor) : int =
+    (int ((gdk_monitor_get_height_mm (Glue.obj self.Id (gdk_monitor_get_type ())))))
+
+  extern gdk_monitor_get_manufacturer : cptr -> cptr
+
+  /// Gets the name or PNP ID of the monitor's manufacturer.
+  let getManufacturer (self: Monitor) : option<string> =
+    Glue.textOption ((gdk_monitor_get_manufacturer (Glue.obj self.Id (gdk_monitor_get_type ()))))
+
+  extern gdk_monitor_get_model : cptr -> cptr
+
+  /// Gets the string identifying the monitor model, if available.
+  let getModel (self: Monitor) : option<string> =
+    Glue.textOption ((gdk_monitor_get_model (Glue.obj self.Id (gdk_monitor_get_type ()))))
+
+  extern gdk_monitor_get_refresh_rate : cptr -> i32
+
+  /// Gets the refresh rate of the monitor, if available.
+  let getRefreshRate (self: Monitor) : int =
+    (int ((gdk_monitor_get_refresh_rate (Glue.obj self.Id (gdk_monitor_get_type ())))))
+
+  extern gdk_monitor_get_scale : cptr -> f64
+
+  /// Gets the internal scale factor that maps from monitor coordinates to device pixels.
+  let getScale (self: Monitor) : float =
+    ((gdk_monitor_get_scale (Glue.obj self.Id (gdk_monitor_get_type ()))))
+
+  extern gdk_monitor_get_scale_factor : cptr -> i32
+
+  /// Gets the internal scale factor that maps from monitor coordinates to device pixels.
+  let getScaleFactor (self: Monitor) : int =
+    (int ((gdk_monitor_get_scale_factor (Glue.obj self.Id (gdk_monitor_get_type ())))))
+
+  extern gdk_monitor_get_subpixel_layout : cptr -> i32
+
+  /// Gets information about the layout of red, green and blue primaries for pixels.
+  let getSubpixelLayout (self: Monitor) : SubpixelLayout =
+    SubpixelLayout (int ((gdk_monitor_get_subpixel_layout (Glue.obj self.Id (gdk_monitor_get_type ())))))
+
+  extern gdk_monitor_get_width_mm : cptr -> i32
+
+  /// Gets the width in millimeters of the monitor.
+  let getWidthMm (self: Monitor) : int =
+    (int ((gdk_monitor_get_width_mm (Glue.obj self.Id (gdk_monitor_get_type ())))))
+
+  extern gdk_monitor_is_valid : cptr -> i32
+
+  /// Returns %TRUE if the @monitor object corresponds to a physical monitor.
+  let isValid (self: Monitor) : bool =
+    (((gdk_monitor_is_valid (Glue.obj self.Id (gdk_monitor_get_type ())))) <> i32 0)
+
+  /// Emitted when the output represented by @monitor gets disconnected.
+  let onInvalidate (self: Monitor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "invalidate" handler
+
+  /// Calls `handler` when the `connector` property changes.
+  let onNotifyConnector (self: Monitor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::connector" handler
+
+  /// Calls `handler` when the `description` property changes.
+  let onNotifyDescription (self: Monitor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::description" handler
+
+  /// Calls `handler` when the `display` property changes.
+  let onNotifyDisplay (self: Monitor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::display" handler
+
+  /// Calls `handler` when the `geometry` property changes.
+  let onNotifyGeometry (self: Monitor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::geometry" handler
+
+  /// Calls `handler` when the `height-mm` property changes.
+  let onNotifyHeightMm (self: Monitor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::height-mm" handler
+
+  /// Calls `handler` when the `manufacturer` property changes.
+  let onNotifyManufacturer (self: Monitor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::manufacturer" handler
+
+  /// Calls `handler` when the `model` property changes.
+  let onNotifyModel (self: Monitor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::model" handler
+
+  /// Calls `handler` when the `refresh-rate` property changes.
+  let onNotifyRefreshRate (self: Monitor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::refresh-rate" handler
+
+  /// Calls `handler` when the `scale` property changes.
+  let onNotifyScale (self: Monitor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::scale" handler
+
+  /// Calls `handler` when the `scale-factor` property changes.
+  let onNotifyScaleFactor (self: Monitor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::scale-factor" handler
+
+  /// Calls `handler` when the `subpixel-layout` property changes.
+  let onNotifySubpixelLayout (self: Monitor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::subpixel-layout" handler
+
+  /// Calls `handler` when the `valid` property changes.
+  let onNotifyValid (self: Monitor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::valid" handler
+
+  /// Calls `handler` when the `width-mm` property changes.
+  let onNotifyWidthMm (self: Monitor) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_monitor_get_type ())) "notify::width-mm" handler
+
+module PadEvent =
+  extern gdk_pad_event_get_axis_value : cptr -> cptr -> cptr -> unit
+
+  /// Extracts the information from a pad strip or ring event.
+  [<Unsafe>]
+  let getAxisValue (self: PadEvent) : (int * float) =
+    Glue.outBegin ()
+    gdk_pad_event_get_axis_value self.Ptr (Glue.out 0) (Glue.out 1)
+    let zv = (Glue.outU32 0, Glue.outF64 1)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_pad_event_get_button : cptr -> u32
+
+  /// Extracts information about the pressed button from a pad event.
+  [<Unsafe>]
+  let getButton (self: PadEvent) : int =
+    (int ((gdk_pad_event_get_button self.Ptr)))
+
+  extern gdk_pad_event_get_group_mode : cptr -> cptr -> cptr -> unit
+
+  /// Extracts group and mode information from a pad event.
+  [<Unsafe>]
+  let getGroupMode (self: PadEvent) : (int * int) =
+    Glue.outBegin ()
+    gdk_pad_event_get_group_mode self.Ptr (Glue.out 0) (Glue.out 1)
+    let zv = (Glue.outU32 0, Glue.outU32 1)
+    Glue.outEnd ()
+    zv
+
+module Popup =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: Popup) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<Popup> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_popup_get_type ()) then Some (Popup object.Id) else None
+
+  extern gdk_popup_get_autohide : cptr -> i32
+
+  /// Returns whether this popup is set to hide on outside clicks.
+  let getAutohide (self: Popup) : bool =
+    (((gdk_popup_get_autohide (Glue.obj self.Id (gdk_popup_get_type ())))) <> i32 0)
+
+  extern gdk_popup_get_parent : cptr -> cptr
+
+  /// Returns the parent surface of a popup.
+  let getParent (self: Popup) : option<Surface> =
+    let zr = gdk_popup_get_parent (Glue.obj self.Id (gdk_popup_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Surface zid1))
+
+  extern gdk_popup_get_position_x : cptr -> i32
+
+  /// Obtains the position of the popup relative to its parent.
+  let getPositionX (self: Popup) : int =
+    (int ((gdk_popup_get_position_x (Glue.obj self.Id (gdk_popup_get_type ())))))
+
+  extern gdk_popup_get_position_y : cptr -> i32
+
+  /// Obtains the position of the popup relative to its parent.
+  let getPositionY (self: Popup) : int =
+    (int ((gdk_popup_get_position_y (Glue.obj self.Id (gdk_popup_get_type ())))))
+
+  extern gdk_popup_get_rect_anchor : cptr -> i32
+
+  /// Gets the current popup rectangle anchor.
+  let getRectAnchor (self: Popup) : Gravity =
+    Gravity (int ((gdk_popup_get_rect_anchor (Glue.obj self.Id (gdk_popup_get_type ())))))
+
+  extern gdk_popup_get_surface_anchor : cptr -> i32
+
+  /// Gets the current popup surface anchor.
+  let getSurfaceAnchor (self: Popup) : Gravity =
+    Gravity (int ((gdk_popup_get_surface_anchor (Glue.obj self.Id (gdk_popup_get_type ())))))
+
+  extern gdk_popup_present : cptr -> i32 -> i32 -> cptr -> i32
+
+  /// Present @popup after having processed the `GdkPopupLayout` rules.
+  let present (self: Popup) (width: int) (height: int) (layout: PopupLayout) : bool =
+    (((gdk_popup_present (Glue.obj self.Id (gdk_popup_get_type ())) (i32 width) (i32 height) (Glue.obj layout.Id (gdk_popup_layout_get_type ())))) <> i32 0)
+
+  /// Calls `handler` when the `autohide` property changes.
+  let onNotifyAutohide (self: Popup) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_popup_get_type ())) "notify::autohide" handler
+
+  /// Calls `handler` when the `parent` property changes.
+  let onNotifyParent (self: Popup) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_popup_get_type ())) "notify::parent" handler
+
+module PopupLayout =
+  extern gdk_popup_layout_new : cptr -> i32 -> i32 -> cptr
+
+  /// Create a popup layout description.
+  let create (anchorRect: Rectangle) (rectAnchor: Gravity) (surfaceAnchor: Gravity) : PopupLayout =
+    PopupLayout (Glue.wrapBoxed ((gdk_popup_layout_new (Glue.obj anchorRect.Id (gdk_rectangle_get_type ())) (i32 rectAnchor.Int) (i32 surfaceAnchor.Int))) (gdk_popup_layout_get_type ()) true)
+
+  extern gdk_popup_layout_copy : cptr -> cptr
+
+  /// Makes a copy of @layout.
+  let copy (self: PopupLayout) : PopupLayout =
+    PopupLayout (Glue.wrapBoxed ((gdk_popup_layout_copy (Glue.obj self.Id (gdk_popup_layout_get_type ())))) (gdk_popup_layout_get_type ()) true)
+
+  extern gdk_popup_layout_equal : cptr -> cptr -> i32
+
+  /// Check whether @layout and @other has identical layout properties.
+  let equal (self: PopupLayout) (other: PopupLayout) : bool =
+    (((gdk_popup_layout_equal (Glue.obj self.Id (gdk_popup_layout_get_type ())) (Glue.obj other.Id (gdk_popup_layout_get_type ())))) <> i32 0)
+
+  extern gdk_popup_layout_get_anchor_hints : cptr -> u32
+
+  /// Get the anchor hints.
+  let getAnchorHints (self: PopupLayout) : AnchorHints =
+    AnchorHints (int ((gdk_popup_layout_get_anchor_hints (Glue.obj self.Id (gdk_popup_layout_get_type ())))))
+
+  extern gdk_popup_layout_get_anchor_rect : cptr -> cptr
+
+  /// Get the anchor rectangle.
+  let getAnchorRect (self: PopupLayout) : Rectangle =
+    Rectangle (Glue.wrapBoxed ((gdk_popup_layout_get_anchor_rect (Glue.obj self.Id (gdk_popup_layout_get_type ())))) (gdk_rectangle_get_type ()) false)
+
+  extern gdk_popup_layout_get_offset : cptr -> cptr -> cptr -> unit
+
+  /// Retrieves the offset for the anchor rectangle.
+  let getOffset (self: PopupLayout) : (int * int) =
+    Glue.outBegin ()
+    gdk_popup_layout_get_offset (Glue.obj self.Id (gdk_popup_layout_get_type ())) (Glue.out 0) (Glue.out 1)
+    let zv = (Glue.outI32 0, Glue.outI32 1)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_popup_layout_get_rect_anchor : cptr -> i32
+
+  /// Returns the anchor position on the anchor rectangle.
+  let getRectAnchor (self: PopupLayout) : Gravity =
+    Gravity (int ((gdk_popup_layout_get_rect_anchor (Glue.obj self.Id (gdk_popup_layout_get_type ())))))
+
+  extern gdk_popup_layout_get_shadow_width : cptr -> cptr -> cptr -> cptr -> cptr -> unit
+
+  /// Obtains the shadow widths of this layout.
+  let getShadowWidth (self: PopupLayout) : (int * int * int * int) =
+    Glue.outBegin ()
+    gdk_popup_layout_get_shadow_width (Glue.obj self.Id (gdk_popup_layout_get_type ())) (Glue.out 0) (Glue.out 1) (Glue.out 2) (Glue.out 3)
+    let zv = (Glue.outI32 0, Glue.outI32 1, Glue.outI32 2, Glue.outI32 3)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_popup_layout_get_surface_anchor : cptr -> i32
+
+  /// Returns the anchor position on the popup surface.
+  let getSurfaceAnchor (self: PopupLayout) : Gravity =
+    Gravity (int ((gdk_popup_layout_get_surface_anchor (Glue.obj self.Id (gdk_popup_layout_get_type ())))))
+
+  extern gdk_popup_layout_ref : cptr -> cptr
+
+  /// Increases the reference count of @value.
+  [<Unsafe>]
+  let ref_ (self: PopupLayout) : PopupLayout =
+    PopupLayout (Glue.wrapBoxed ((gdk_popup_layout_ref (Glue.obj self.Id (gdk_popup_layout_get_type ())))) (gdk_popup_layout_get_type ()) true)
+
+  extern gdk_popup_layout_set_anchor_hints : cptr -> u32 -> unit
+
+  /// Set new anchor hints.
+  let setAnchorHints (self: PopupLayout) (anchorHints: AnchorHints) : unit =
+    gdk_popup_layout_set_anchor_hints (Glue.obj self.Id (gdk_popup_layout_get_type ())) (u32 anchorHints.Int)
+
+  extern gdk_popup_layout_set_anchor_rect : cptr -> cptr -> unit
+
+  /// Set the anchor rectangle.
+  let setAnchorRect (self: PopupLayout) (anchorRect: Rectangle) : unit =
+    gdk_popup_layout_set_anchor_rect (Glue.obj self.Id (gdk_popup_layout_get_type ())) (Glue.obj anchorRect.Id (gdk_rectangle_get_type ()))
+
+  extern gdk_popup_layout_set_offset : cptr -> i32 -> i32 -> unit
+
+  /// Offset the position of the anchor rectangle with the given delta.
+  let setOffset (self: PopupLayout) (dx: int) (dy: int) : unit =
+    gdk_popup_layout_set_offset (Glue.obj self.Id (gdk_popup_layout_get_type ())) (i32 dx) (i32 dy)
+
+  extern gdk_popup_layout_set_rect_anchor : cptr -> i32 -> unit
+
+  /// Set the anchor on the anchor rectangle.
+  let setRectAnchor (self: PopupLayout) (anchor: Gravity) : unit =
+    gdk_popup_layout_set_rect_anchor (Glue.obj self.Id (gdk_popup_layout_get_type ())) (i32 anchor.Int)
+
+  extern gdk_popup_layout_set_shadow_width : cptr -> i32 -> i32 -> i32 -> i32 -> unit
+
+  /// Sets the shadow width of the popup.
+  let setShadowWidth (self: PopupLayout) (left: int) (right: int) (top: int) (bottom: int) : unit =
+    gdk_popup_layout_set_shadow_width (Glue.obj self.Id (gdk_popup_layout_get_type ())) (i32 left) (i32 right) (i32 top) (i32 bottom)
+
+  extern gdk_popup_layout_set_surface_anchor : cptr -> i32 -> unit
+
+  /// Set the anchor on the popup surface.
+  let setSurfaceAnchor (self: PopupLayout) (anchor: Gravity) : unit =
+    gdk_popup_layout_set_surface_anchor (Glue.obj self.Id (gdk_popup_layout_get_type ())) (i32 anchor.Int)
+
+  extern gdk_popup_layout_unref : cptr -> unit
+
+  /// Decreases the reference count of @value.
+  [<Unsafe>]
+  let unref (self: PopupLayout) : unit =
+    gdk_popup_layout_unref (Glue.obj self.Id (gdk_popup_layout_get_type ()))
+
+module RGBA =
+  extern gdk_rgba_copy : cptr -> cptr
+
+  /// Makes a copy of a `GdkRGBA`.
+  let copy (self: RGBA) : RGBA =
+    RGBA (Glue.wrapBoxed ((gdk_rgba_copy (Glue.obj self.Id (gdk_rgba_get_type ())))) (gdk_rgba_get_type ()) true)
+
+  extern gdk_rgba_equal : cptr -> cptr -> i32
+
+  /// Compares two `GdkRGBA` colors.
+  let equal (self: RGBA) (p2: RGBA) : bool =
+    (((gdk_rgba_equal (Glue.obj self.Id (gdk_rgba_get_type ())) (Glue.obj p2.Id (gdk_rgba_get_type ())))) <> i32 0)
+
+  extern gdk_rgba_free : cptr -> unit
+
+  /// Frees a `GdkRGBA`.
+  [<Unsafe>]
+  let free (self: RGBA) : unit =
+    gdk_rgba_free (Glue.obj self.Id (gdk_rgba_get_type ()))
+
+  extern gdk_rgba_hash : cptr -> u32
+
+  /// A hash function suitable for using for a hash table that stores `GdkRGBA`s.
+  let hash (self: RGBA) : int =
+    (int ((gdk_rgba_hash (Glue.obj self.Id (gdk_rgba_get_type ())))))
+
+  extern gdk_rgba_is_clear : cptr -> i32
+
+  /// Checks if an @rgba value is transparent.
+  let isClear (self: RGBA) : bool =
+    (((gdk_rgba_is_clear (Glue.obj self.Id (gdk_rgba_get_type ())))) <> i32 0)
+
+  extern gdk_rgba_is_opaque : cptr -> i32
+
+  /// Checks if an @rgba value is opaque.
+  let isOpaque (self: RGBA) : bool =
+    (((gdk_rgba_is_opaque (Glue.obj self.Id (gdk_rgba_get_type ())))) <> i32 0)
+
+  extern gdk_rgba_parse : cptr -> cstr -> i32
+
+  /// Parses a textual representation of a color.
+  let parse (self: RGBA) (spec: string) : bool =
+    (((gdk_rgba_parse (Glue.obj self.Id (gdk_rgba_get_type ())) spec)) <> i32 0)
+
+  extern gdk_rgba_print : cptr -> cptr -> cptr
+
+  /// `gdk_rgba_print`.
+  let print (self: RGBA) (string: GLib.String) : GLib.String =
+    GLib.String (Glue.wrapBoxed ((gdk_rgba_print (Glue.obj self.Id (gdk_rgba_get_type ())) (Glue.obj string.Id (GLib.g_gstring_get_type ())))) (GLib.g_gstring_get_type ()) true)
+
+  extern gdk_rgba_to_string : cptr -> cptr
+
+  /// Returns a textual specification of @rgba in the form `rgb(r,g,b)` or `rgba(r,g,b,a)`, where “r”, “g”, “b” and “a” represent the red, green, blue and alpha values respectively.
+  let toString (self: RGBA) : string =
+    Glue.takeText ((gdk_rgba_to_string (Glue.obj self.Id (gdk_rgba_get_type ()))))
+
+  /// A new one, every field zero.
+  let create () : RGBA = RGBA (Glue.alloc (zgtk_sizeof_Gdk_RGBA ()) (gdk_rgba_get_type ()))
+
+  extern zgtk_get_Gdk_RGBA_red : cptr -> f64
+
+  /// The `red` field.
+  let getRed (self: RGBA) : float = zgtk_get_Gdk_RGBA_red (Glue.obj self.Id (gdk_rgba_get_type ()))
+
+  extern zgtk_set_Gdk_RGBA_red : cptr -> f64 -> unit
+
+  /// Sets the `red` field.
+  let setRed (self: RGBA) (value: float) : unit = zgtk_set_Gdk_RGBA_red (Glue.obj self.Id (gdk_rgba_get_type ())) value
+
+  extern zgtk_get_Gdk_RGBA_green : cptr -> f64
+
+  /// The `green` field.
+  let getGreen (self: RGBA) : float = zgtk_get_Gdk_RGBA_green (Glue.obj self.Id (gdk_rgba_get_type ()))
+
+  extern zgtk_set_Gdk_RGBA_green : cptr -> f64 -> unit
+
+  /// Sets the `green` field.
+  let setGreen (self: RGBA) (value: float) : unit = zgtk_set_Gdk_RGBA_green (Glue.obj self.Id (gdk_rgba_get_type ())) value
+
+  extern zgtk_get_Gdk_RGBA_blue : cptr -> f64
+
+  /// The `blue` field.
+  let getBlue (self: RGBA) : float = zgtk_get_Gdk_RGBA_blue (Glue.obj self.Id (gdk_rgba_get_type ()))
+
+  extern zgtk_set_Gdk_RGBA_blue : cptr -> f64 -> unit
+
+  /// Sets the `blue` field.
+  let setBlue (self: RGBA) (value: float) : unit = zgtk_set_Gdk_RGBA_blue (Glue.obj self.Id (gdk_rgba_get_type ())) value
+
+  extern zgtk_get_Gdk_RGBA_alpha : cptr -> f64
+
+  /// The `alpha` field.
+  let getAlpha (self: RGBA) : float = zgtk_get_Gdk_RGBA_alpha (Glue.obj self.Id (gdk_rgba_get_type ()))
+
+  extern zgtk_set_Gdk_RGBA_alpha : cptr -> f64 -> unit
+
+  /// Sets the `alpha` field.
+  let setAlpha (self: RGBA) (value: float) : unit = zgtk_set_Gdk_RGBA_alpha (Glue.obj self.Id (gdk_rgba_get_type ())) value
+
+module Rectangle =
+  extern gdk_rectangle_contains_point : cptr -> i32 -> i32 -> i32
+
+  /// Returns %TRUE if @rect contains the point described by @x and @y.
+  let containsPoint (self: Rectangle) (x: int) (y: int) : bool =
+    (((gdk_rectangle_contains_point (Glue.obj self.Id (gdk_rectangle_get_type ())) (i32 x) (i32 y))) <> i32 0)
+
+  extern gdk_rectangle_equal : cptr -> cptr -> i32
+
+  /// Checks if the two given rectangles are equal.
+  let equal (self: Rectangle) (rect2: Rectangle) : bool =
+    (((gdk_rectangle_equal (Glue.obj self.Id (gdk_rectangle_get_type ())) (Glue.obj rect2.Id (gdk_rectangle_get_type ())))) <> i32 0)
+
+  extern gdk_rectangle_intersect : cptr -> cptr -> cptr -> i32
+
+  /// Calculates the intersection of two rectangles.
+  let intersect (self: Rectangle) (src2: Rectangle) : (bool * Rectangle) =
+    let zo1 = Glue.alloc (zgtk_sizeof_Gdk_Rectangle ()) (gdk_rectangle_get_type ())
+    let zr = gdk_rectangle_intersect (Glue.obj self.Id (gdk_rectangle_get_type ())) (Glue.obj src2.Id (gdk_rectangle_get_type ())) (Glue.obj zo1 (gdk_rectangle_get_type ()))
+    (((zr) <> i32 0), Rectangle zo1)
+
+  extern gdk_rectangle_union : cptr -> cptr -> cptr -> unit
+
+  /// Calculates the union of two rectangles.
+  let union (self: Rectangle) (src2: Rectangle) : Rectangle =
+    let zo1 = Glue.alloc (zgtk_sizeof_Gdk_Rectangle ()) (gdk_rectangle_get_type ())
+    gdk_rectangle_union (Glue.obj self.Id (gdk_rectangle_get_type ())) (Glue.obj src2.Id (gdk_rectangle_get_type ())) (Glue.obj zo1 (gdk_rectangle_get_type ()))
+    Rectangle zo1
+
+  /// A new one, every field zero.
+  let create () : Rectangle = Rectangle (Glue.alloc (zgtk_sizeof_Gdk_Rectangle ()) (gdk_rectangle_get_type ()))
+
+  extern zgtk_get_Gdk_Rectangle_x : cptr -> int
+
+  /// The `x` field.
+  let getX (self: Rectangle) : int = zgtk_get_Gdk_Rectangle_x (Glue.obj self.Id (gdk_rectangle_get_type ()))
+
+  extern zgtk_set_Gdk_Rectangle_x : cptr -> int -> unit
+
+  /// Sets the `x` field.
+  let setX (self: Rectangle) (value: int) : unit = zgtk_set_Gdk_Rectangle_x (Glue.obj self.Id (gdk_rectangle_get_type ())) value
+
+  extern zgtk_get_Gdk_Rectangle_y : cptr -> int
+
+  /// The `y` field.
+  let getY (self: Rectangle) : int = zgtk_get_Gdk_Rectangle_y (Glue.obj self.Id (gdk_rectangle_get_type ()))
+
+  extern zgtk_set_Gdk_Rectangle_y : cptr -> int -> unit
+
+  /// Sets the `y` field.
+  let setY (self: Rectangle) (value: int) : unit = zgtk_set_Gdk_Rectangle_y (Glue.obj self.Id (gdk_rectangle_get_type ())) value
+
+  extern zgtk_get_Gdk_Rectangle_width : cptr -> int
+
+  /// The `width` field.
+  let getWidth (self: Rectangle) : int = zgtk_get_Gdk_Rectangle_width (Glue.obj self.Id (gdk_rectangle_get_type ()))
+
+  extern zgtk_set_Gdk_Rectangle_width : cptr -> int -> unit
+
+  /// Sets the `width` field.
+  let setWidth (self: Rectangle) (value: int) : unit = zgtk_set_Gdk_Rectangle_width (Glue.obj self.Id (gdk_rectangle_get_type ())) value
+
+  extern zgtk_get_Gdk_Rectangle_height : cptr -> int
+
+  /// The `height` field.
+  let getHeight (self: Rectangle) : int = zgtk_get_Gdk_Rectangle_height (Glue.obj self.Id (gdk_rectangle_get_type ()))
+
+  extern zgtk_set_Gdk_Rectangle_height : cptr -> int -> unit
+
+  /// Sets the `height` field.
+  let setHeight (self: Rectangle) (value: int) : unit = zgtk_set_Gdk_Rectangle_height (Glue.obj self.Id (gdk_rectangle_get_type ())) value
+
+module ScrollEvent =
+  extern gdk_scroll_event_get_deltas : cptr -> cptr -> cptr -> unit
+
+  /// Extracts the scroll deltas of a scroll event.
+  [<Unsafe>]
+  let getDeltas (self: ScrollEvent) : (float * float) =
+    Glue.outBegin ()
+    gdk_scroll_event_get_deltas self.Ptr (Glue.out 0) (Glue.out 1)
+    let zv = (Glue.outF64 0, Glue.outF64 1)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_scroll_event_get_direction : cptr -> i32
+
+  /// Extracts the direction of a scroll event.
+  [<Unsafe>]
+  let getDirection (self: ScrollEvent) : ScrollDirection =
+    ScrollDirection (int ((gdk_scroll_event_get_direction self.Ptr)))
+
+  extern gdk_scroll_event_get_relative_direction : cptr -> i32
+
+  /// Extracts the scroll direction relative to the physical motion.
+  [<Unsafe>]
+  let getRelativeDirection (self: ScrollEvent) : ScrollRelativeDirection =
+    ScrollRelativeDirection (int ((gdk_scroll_event_get_relative_direction self.Ptr)))
+
+  extern gdk_scroll_event_get_unit : cptr -> i32
+
+  /// Extracts the scroll delta unit of a scroll event.
+  [<Unsafe>]
+  let getUnit (self: ScrollEvent) : ScrollUnit =
+    ScrollUnit (int ((gdk_scroll_event_get_unit self.Ptr)))
+
+  extern gdk_scroll_event_is_stop : cptr -> i32
+
+  /// Check whether a scroll event is a stop scroll event.
+  [<Unsafe>]
+  let isStop (self: ScrollEvent) : bool =
+    (((gdk_scroll_event_is_stop self.Ptr)) <> i32 0)
+
+module Seat =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: Seat) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<Seat> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_seat_get_type ()) then Some (Seat object.Id) else None
+
+  extern gdk_seat_get_capabilities : cptr -> u32
+
+  /// Returns the capabilities this `GdkSeat` currently has.
+  let getCapabilities (self: Seat) : SeatCapabilities =
+    SeatCapabilities (int ((gdk_seat_get_capabilities (Glue.obj self.Id (gdk_seat_get_type ())))))
+
+  extern gdk_seat_get_devices : cptr -> u32 -> cptr
+
+  /// Returns the devices that match the given capabilities.
+  let getDevices (self: Seat) (capabilities: SeatCapabilities) : list<Device> =
+    Glue.mapList (fun zp -> Device (Glue.wrap (zp) false)) (Glue.pointers ((gdk_seat_get_devices (Glue.obj self.Id (gdk_seat_get_type ())) (u32 capabilities.Int))) false true)
+
+  extern gdk_seat_get_display : cptr -> cptr
+
+  /// Returns the `GdkDisplay` this seat belongs to.
+  let getDisplay (self: Seat) : Display =
+    Display (Glue.wrap ((gdk_seat_get_display (Glue.obj self.Id (gdk_seat_get_type ())))) false)
+
+  extern gdk_seat_get_keyboard : cptr -> cptr
+
+  /// Returns the device that routes keyboard events.
+  let getKeyboard (self: Seat) : option<Device> =
+    let zr = gdk_seat_get_keyboard (Glue.obj self.Id (gdk_seat_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Device zid1))
+
+  extern gdk_seat_get_pointer : cptr -> cptr
+
+  /// Returns the device that routes pointer events.
+  let getPointer (self: Seat) : option<Device> =
+    let zr = gdk_seat_get_pointer (Glue.obj self.Id (gdk_seat_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Device zid1))
+
+  extern gdk_seat_get_tools : cptr -> cptr
+
+  /// Returns all `GdkDeviceTools` that are known to the application.
+  let getTools (self: Seat) : list<DeviceTool> =
+    Glue.mapList (fun zp -> DeviceTool (Glue.wrap (zp) false)) (Glue.pointers ((gdk_seat_get_tools (Glue.obj self.Id (gdk_seat_get_type ())))) false true)
+
+  /// Emitted when a new input device is related to this seat.
+  let onDeviceAdded (self: Seat) (handler: Device -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_seat_get_type ())) "device-added" (fun () ->
+      let device = Device (Glue.wrap (Glue.argPointer 1) false)
+      handler device)
+
+  /// Emitted when an input device is removed (e.g.
+  let onDeviceRemoved (self: Seat) (handler: Device -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_seat_get_type ())) "device-removed" (fun () ->
+      let device = Device (Glue.wrap (Glue.argPointer 1) false)
+      handler device)
+
+  /// Emitted whenever a new tool is made known to the seat.
+  let onToolAdded (self: Seat) (handler: DeviceTool -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_seat_get_type ())) "tool-added" (fun () ->
+      let tool = DeviceTool (Glue.wrap (Glue.argPointer 1) false)
+      handler tool)
+
+  /// Emitted whenever a tool is no longer known to this @seat.
+  let onToolRemoved (self: Seat) (handler: DeviceTool -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_seat_get_type ())) "tool-removed" (fun () ->
+      let tool = DeviceTool (Glue.wrap (Glue.argPointer 1) false)
+      handler tool)
+
+  /// Calls `handler` when the `display` property changes.
+  let onNotifyDisplay (self: Seat) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_seat_get_type ())) "notify::display" handler
+
+module Snapshot =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: Snapshot) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<Snapshot> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_snapshot_get_type ()) then Some (Snapshot object.Id) else None
+
+module Surface =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: Surface) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<Surface> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_surface_get_type ()) then Some (Surface object.Id) else None
+
+  extern gdk_surface_new_popup : cptr -> i32 -> cptr
+
+  /// Create a new popup surface.
+  let createPopup (parent: Surface) (autohide: bool) : Surface =
+    Surface (Glue.wrap ((gdk_surface_new_popup (Glue.obj parent.Id (gdk_surface_get_type ())) (if autohide then i32 1 else i32 0))) true)
+
+  extern gdk_surface_new_toplevel : cptr -> cptr
+
+  /// Creates a new toplevel surface.
+  let createToplevel (display: Display) : Surface =
+    Surface (Glue.wrap ((gdk_surface_new_toplevel (Glue.obj display.Id (gdk_display_get_type ())))) true)
+
+  extern gdk_surface_beep : cptr -> unit
+
+  /// Emits a short beep associated to @surface.
+  let beep (self: Surface) : unit =
+    gdk_surface_beep (Glue.obj self.Id (gdk_surface_get_type ()))
+
+  extern gdk_surface_create_cairo_context : cptr -> cptr
+
+  /// Deprecated. Creates a new `GdkCairoContext` for rendering on @surface.
+  let createCairoContext (self: Surface) : CairoContext =
+    CairoContext (Glue.wrap ((gdk_surface_create_cairo_context (Glue.obj self.Id (gdk_surface_get_type ())))) true)
+
+  extern gdk_surface_create_gl_context : cptr -> cptr -> cptr
+
+  /// Creates a new `GdkGLContext` for the `GdkSurface`.
+  let createGlContext (self: Surface) : result<GLContext, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_surface_create_gl_context (Glue.obj self.Id (gdk_surface_get_type ())) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = GLContext (Glue.wrap (zr) true)
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_surface_create_similar_surface : cptr -> i32 -> i32 -> i32 -> cptr
+
+  /// Deprecated. Create a new Cairo surface that is as compatible as possible with the given @surface.
+  let createSimilarSurface (self: Surface) (content: Cairo.Content) (width: int) (height: int) : Cairo.Surface =
+    Cairo.Surface (Glue.wrapBoxed ((gdk_surface_create_similar_surface (Glue.obj self.Id (gdk_surface_get_type ())) (i32 content.Int) (i32 width) (i32 height))) (Cairo.cairo_gobject_surface_get_type ()) true)
+
+  extern gdk_surface_create_vulkan_context : cptr -> cptr -> cptr
+
+  /// Deprecated. Sets an error and returns %NULL.
+  let createVulkanContext (self: Surface) : result<VulkanContext, Glue.Error> =
+    Glue.outBegin ()
+    let zr = gdk_surface_create_vulkan_context (Glue.obj self.Id (gdk_surface_get_type ())) (Glue.err ())
+    match Glue.takeError () with
+    | Some ze ->
+      Glue.outEnd ()
+      Error ze
+    | None ->
+      let zv = VulkanContext (Glue.wrap (zr) true)
+      Glue.outEnd ()
+      Ok zv
+
+  extern gdk_surface_destroy : cptr -> unit
+
+  /// Destroys the window system resources associated with @surface and decrements @surface's reference count.
+  let destroy (self: Surface) : unit =
+    gdk_surface_destroy (Glue.obj self.Id (gdk_surface_get_type ()))
+
+  extern gdk_surface_get_cursor : cptr -> cptr
+
+  /// Retrieves a `GdkCursor` pointer for the cursor currently set on the `GdkSurface`.
+  let getCursor (self: Surface) : option<Cursor> =
+    let zr = gdk_surface_get_cursor (Glue.obj self.Id (gdk_surface_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Cursor zid1))
+
+  extern gdk_surface_get_device_cursor : cptr -> cptr -> cptr
+
+  /// Retrieves a `GdkCursor` pointer for the @device currently set on the specified `GdkSurface`.
+  let getDeviceCursor (self: Surface) (device: Device) : option<Cursor> =
+    let zr = gdk_surface_get_device_cursor (Glue.obj self.Id (gdk_surface_get_type ())) (Glue.obj device.Id (gdk_device_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Cursor zid1))
+
+  extern gdk_surface_get_device_position : cptr -> cptr -> cptr -> cptr -> cptr -> i32
+
+  /// Obtains the current device position and modifier state.
+  let getDevicePosition (self: Surface) (device: Device) : (bool * float * float * ModifierType) =
+    Glue.outBegin ()
+    let zr = gdk_surface_get_device_position (Glue.obj self.Id (gdk_surface_get_type ())) (Glue.obj device.Id (gdk_device_get_type ())) (Glue.out 0) (Glue.out 1) (Glue.out 2)
+    let zv = (((zr) <> i32 0), Glue.outF64 0, Glue.outF64 1, ModifierType (Glue.outU32 2))
+    Glue.outEnd ()
+    zv
+
+  extern gdk_surface_get_display : cptr -> cptr
+
+  /// Gets the `GdkDisplay` associated with a `GdkSurface`.
+  let getDisplay (self: Surface) : Display =
+    Display (Glue.wrap ((gdk_surface_get_display (Glue.obj self.Id (gdk_surface_get_type ())))) false)
+
+  extern gdk_surface_get_frame_clock : cptr -> cptr
+
+  /// Gets the frame clock for the surface.
+  let getFrameClock (self: Surface) : FrameClock =
+    FrameClock (Glue.wrap ((gdk_surface_get_frame_clock (Glue.obj self.Id (gdk_surface_get_type ())))) false)
+
+  extern gdk_surface_get_height : cptr -> i32
+
+  /// Returns the height of the given @surface.
+  let getHeight (self: Surface) : int =
+    (int ((gdk_surface_get_height (Glue.obj self.Id (gdk_surface_get_type ())))))
+
+  extern gdk_surface_get_mapped : cptr -> i32
+
+  /// Checks whether the surface has been mapped.
+  let getMapped (self: Surface) : bool =
+    (((gdk_surface_get_mapped (Glue.obj self.Id (gdk_surface_get_type ())))) <> i32 0)
+
+  extern gdk_surface_get_scale : cptr -> f64
+
+  /// Returns the internal scale that maps from surface coordinates to the actual device pixels.
+  let getScale (self: Surface) : float =
+    ((gdk_surface_get_scale (Glue.obj self.Id (gdk_surface_get_type ()))))
+
+  extern gdk_surface_get_scale_factor : cptr -> i32
+
+  /// Returns the internal scale factor that maps from surface coordinates to the actual device pixels.
+  let getScaleFactor (self: Surface) : int =
+    (int ((gdk_surface_get_scale_factor (Glue.obj self.Id (gdk_surface_get_type ())))))
+
+  extern gdk_surface_get_width : cptr -> i32
+
+  /// Returns the width of the given @surface.
+  let getWidth (self: Surface) : int =
+    (int ((gdk_surface_get_width (Glue.obj self.Id (gdk_surface_get_type ())))))
+
+  extern gdk_surface_hide : cptr -> unit
+
+  /// Hide the surface.
+  let hide (self: Surface) : unit =
+    gdk_surface_hide (Glue.obj self.Id (gdk_surface_get_type ()))
+
+  extern gdk_surface_is_destroyed : cptr -> i32
+
+  /// Check to see if a surface is destroyed.
+  let isDestroyed (self: Surface) : bool =
+    (((gdk_surface_is_destroyed (Glue.obj self.Id (gdk_surface_get_type ())))) <> i32 0)
+
+  extern gdk_surface_queue_render : cptr -> unit
+
+  /// Forces a [signal@Gdk.Surface::render] signal emission for @surface to be scheduled.
+  let queueRender (self: Surface) : unit =
+    gdk_surface_queue_render (Glue.obj self.Id (gdk_surface_get_type ()))
+
+  extern gdk_surface_request_layout : cptr -> unit
+
+  /// Request a layout phase from the surface's frame clock.
+  let requestLayout (self: Surface) : unit =
+    gdk_surface_request_layout (Glue.obj self.Id (gdk_surface_get_type ()))
+
+  extern gdk_surface_set_cursor : cptr -> cptr -> unit
+
+  /// Sets the default mouse pointer for a `GdkSurface`.
+  let setCursor (self: Surface) (cursor: option<Cursor>) : unit =
+    let zp1 =
+      match cursor with
+      | Some zo -> Glue.obj zo.Id (gdk_cursor_get_type ())
+      | None -> Glue.none ()
+    gdk_surface_set_cursor (Glue.obj self.Id (gdk_surface_get_type ())) zp1
+
+  extern gdk_surface_set_device_cursor : cptr -> cptr -> cptr -> unit
+
+  /// Sets a specific `GdkCursor` for a given device when it gets inside @surface.
+  let setDeviceCursor (self: Surface) (device: Device) (cursor: Cursor) : unit =
+    gdk_surface_set_device_cursor (Glue.obj self.Id (gdk_surface_get_type ())) (Glue.obj device.Id (gdk_device_get_type ())) (Glue.obj cursor.Id (gdk_cursor_get_type ()))
+
+  extern gdk_surface_set_input_region : cptr -> cptr -> unit
+
+  /// Apply the region to the surface for the purpose of event handling.
+  let setInputRegion (self: Surface) (region: option<Cairo.Region>) : unit =
+    let zp1 =
+      match region with
+      | Some zo -> Glue.obj zo.Id (Cairo.cairo_gobject_region_get_type ())
+      | None -> Glue.none ()
+    gdk_surface_set_input_region (Glue.obj self.Id (gdk_surface_get_type ())) zp1
+
+  extern gdk_surface_set_opaque_region : cptr -> cptr -> unit
+
+  /// Deprecated. Marks a region of the `GdkSurface` as opaque.
+  let setOpaqueRegion (self: Surface) (region: option<Cairo.Region>) : unit =
+    let zp1 =
+      match region with
+      | Some zo -> Glue.obj zo.Id (Cairo.cairo_gobject_region_get_type ())
+      | None -> Glue.none ()
+    gdk_surface_set_opaque_region (Glue.obj self.Id (gdk_surface_get_type ())) zp1
+
+  extern gdk_surface_translate_coordinates : cptr -> cptr -> cptr -> cptr -> i32
+
+  /// Translates coordinates between two surfaces.
+  let translateCoordinates (self: Surface) (to: Surface) (x: float) (y: float) : (bool * float * float) =
+    Glue.outBegin ()
+    Glue.outSetF64 0 x
+    Glue.outSetF64 1 y
+    let zr = gdk_surface_translate_coordinates (Glue.obj self.Id (gdk_surface_get_type ())) (Glue.obj to.Id (gdk_surface_get_type ())) (Glue.out 0) (Glue.out 1)
+    let zv = (((zr) <> i32 0), Glue.outF64 0, Glue.outF64 1)
+    Glue.outEnd ()
+    zv
+
+  /// Emitted when @surface starts being present on the monitor.
+  let onEnterMonitor (self: Surface) (handler: Monitor -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "enter-monitor" (fun () ->
+      let monitor = Monitor (Glue.wrap (Glue.argPointer 1) false)
+      handler monitor)
+
+  /// Emitted when GDK receives an input event for @surface.
+  let onEvent (self: Surface) (handler: Event -> bool) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "event" (fun () ->
+      let event = Event (zgtk_wrap_Gdk_Event (Glue.argPointer 1) (i32 0))
+      Glue.returnBool (handler event))
+
+  /// Emitted when the size of @surface is changed, or when relayout should be performed.
+  let onLayout (self: Surface) (handler: int -> int -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "layout" (fun () ->
+      let width = Glue.argInt 1
+      let height = Glue.argInt 2
+      handler width height)
+
+  /// Emitted when @surface stops being present on the monitor.
+  let onLeaveMonitor (self: Surface) (handler: Monitor -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "leave-monitor" (fun () ->
+      let monitor = Monitor (Glue.wrap (Glue.argPointer 1) false)
+      handler monitor)
+
+  /// Emitted when part of the surface needs to be redrawn.
+  let onRender (self: Surface) (handler: Cairo.Region -> bool) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "render" (fun () ->
+      let region = Cairo.Region (Glue.wrapBoxed (Glue.argPointer 1) (Cairo.cairo_gobject_region_get_type ()) false)
+      Glue.returnBool (handler region))
+
+  /// Calls `handler` when the `cursor` property changes.
+  let onNotifyCursor (self: Surface) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::cursor" handler
+
+  /// Calls `handler` when the `display` property changes.
+  let onNotifyDisplay (self: Surface) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::display" handler
+
+  /// Calls `handler` when the `frame-clock` property changes.
+  let onNotifyFrameClock (self: Surface) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::frame-clock" handler
+
+  /// Calls `handler` when the `height` property changes.
+  let onNotifyHeight (self: Surface) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::height" handler
+
+  /// Calls `handler` when the `mapped` property changes.
+  let onNotifyMapped (self: Surface) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::mapped" handler
+
+  /// Calls `handler` when the `scale` property changes.
+  let onNotifyScale (self: Surface) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::scale" handler
+
+  /// Calls `handler` when the `scale-factor` property changes.
+  let onNotifyScaleFactor (self: Surface) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::scale-factor" handler
+
+  /// Calls `handler` when the `width` property changes.
+  let onNotifyWidth (self: Surface) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_surface_get_type ())) "notify::width" handler
+
+module TextureDownloader =
+  extern gdk_texture_downloader_new : cptr -> cptr
+
+  /// Creates a new texture downloader for @texture.
+  let create (texture: Texture) : TextureDownloader =
+    TextureDownloader (Glue.wrapBoxed ((gdk_texture_downloader_new (Glue.obj texture.Id (gdk_texture_get_type ())))) (gdk_texture_downloader_get_type ()) true)
+
+  extern gdk_texture_downloader_copy : cptr -> cptr
+
+  /// Creates a copy of the downloader.
+  let copy (self: TextureDownloader) : TextureDownloader =
+    TextureDownloader (Glue.wrapBoxed ((gdk_texture_downloader_copy (Glue.obj self.Id (gdk_texture_downloader_get_type ())))) (gdk_texture_downloader_get_type ()) true)
+
+  extern gdk_texture_downloader_download_bytes : cptr -> cptr -> cptr
+
+  /// Downloads the given texture pixels into a `GBytes`.
+  let downloadBytes (self: TextureDownloader) : (GLib.Bytes * int) =
+    Glue.outBegin ()
+    let zr = gdk_texture_downloader_download_bytes (Glue.obj self.Id (gdk_texture_downloader_get_type ())) (Glue.out 0)
+    let zv = (GLib.Bytes (Glue.wrapBoxed (zr) (GLib.g_bytes_get_type ()) true), Glue.outI64 0)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_texture_downloader_download_bytes_with_planes : cptr -> cptr -> cptr -> cptr
+
+  /// Downloads the given texture pixels into a `GBytes`.
+  let downloadBytesWithPlanes (self: TextureDownloader) : (GLib.Bytes * list<int> * list<int>) =
+    let zbuf1 = Glue.room (4) 8
+    let zbuf2 = Glue.room (4) 8
+    let zr = gdk_texture_downloader_download_bytes_with_planes (Glue.obj self.Id (gdk_texture_downloader_get_type ())) zbuf1 zbuf2
+    (GLib.Bytes (Glue.wrapBoxed (zr) (GLib.g_bytes_get_type ()) true), Glue.intsOf (zbuf1) (4) 8 false true, Glue.intsOf (zbuf2) (4) 8 false true)
+
+  extern gdk_texture_downloader_download_into : cptr -> cptr -> usize -> unit
+
+  /// Downloads the @texture into local memory.
+  let downloadInto (self: TextureDownloader) (data: array<u8>) (stride: int) : unit =
+    let za1 = Glue.bytes data
+    gdk_texture_downloader_download_into (Glue.obj self.Id (gdk_texture_downloader_get_type ())) za1 (usize stride)
+    Glue.free za1
+
+  extern gdk_texture_downloader_free : cptr -> unit
+
+  /// Frees the given downloader and all its associated resources.
+  [<Unsafe>]
+  let free (self: TextureDownloader) : unit =
+    gdk_texture_downloader_free (Glue.obj self.Id (gdk_texture_downloader_get_type ()))
+
+  extern gdk_texture_downloader_get_color_state : cptr -> cptr
+
+  /// Gets the color state that the data will be downloaded in.
+  let getColorState (self: TextureDownloader) : ColorState =
+    ColorState (Glue.wrapBoxed ((gdk_texture_downloader_get_color_state (Glue.obj self.Id (gdk_texture_downloader_get_type ())))) (gdk_color_state_get_type ()) true)
+
+  extern gdk_texture_downloader_get_format : cptr -> i32
+
+  /// Gets the format that the data will be downloaded in.
+  let getFormat (self: TextureDownloader) : MemoryFormat =
+    MemoryFormat (int ((gdk_texture_downloader_get_format (Glue.obj self.Id (gdk_texture_downloader_get_type ())))))
+
+  extern gdk_texture_downloader_get_texture : cptr -> cptr
+
+  /// Gets the texture that the downloader will download.
+  let getTexture (self: TextureDownloader) : Texture =
+    Texture (Glue.wrap ((gdk_texture_downloader_get_texture (Glue.obj self.Id (gdk_texture_downloader_get_type ())))) false)
+
+  extern gdk_texture_downloader_set_color_state : cptr -> cptr -> unit
+
+  /// Sets the color state the downloader will convert the data to.
+  let setColorState (self: TextureDownloader) (colorState: ColorState) : unit =
+    gdk_texture_downloader_set_color_state (Glue.obj self.Id (gdk_texture_downloader_get_type ())) (Glue.obj colorState.Id (gdk_color_state_get_type ()))
+
+  extern gdk_texture_downloader_set_format : cptr -> i32 -> unit
+
+  /// Sets the format the downloader will download.
+  let setFormat (self: TextureDownloader) (format: MemoryFormat) : unit =
+    gdk_texture_downloader_set_format (Glue.obj self.Id (gdk_texture_downloader_get_type ())) (i32 format.Int)
+
+  extern gdk_texture_downloader_set_texture : cptr -> cptr -> unit
+
+  /// Changes the texture the downloader will download.
+  let setTexture (self: TextureDownloader) (texture: Texture) : unit =
+    gdk_texture_downloader_set_texture (Glue.obj self.Id (gdk_texture_downloader_get_type ())) (Glue.obj texture.Id (gdk_texture_get_type ()))
+
+module TimeCoord =
+  /// A new one, every field zero.
+  let create () : TimeCoord = TimeCoord (Glue.allocPlain (zgtk_sizeof_Gdk_TimeCoord ()) (zgtk_tag_Gdk_TimeCoord ()))
+
+  extern zgtk_get_Gdk_TimeCoord_time : cptr -> int
+
+  /// The `time` field.
+  let getTime (self: TimeCoord) : int = zgtk_get_Gdk_TimeCoord_time (Glue.obj self.Id (zgtk_tag_Gdk_TimeCoord ()))
+
+  extern zgtk_set_Gdk_TimeCoord_time : cptr -> int -> unit
+
+  /// Sets the `time` field.
+  let setTime (self: TimeCoord) (value: int) : unit = zgtk_set_Gdk_TimeCoord_time (Glue.obj self.Id (zgtk_tag_Gdk_TimeCoord ())) value
+
+  extern zgtk_get_Gdk_TimeCoord_flags : cptr -> int
+
+  /// The `flags` field.
+  let getFlags (self: TimeCoord) : AxisFlags = AxisFlags (zgtk_get_Gdk_TimeCoord_flags (Glue.obj self.Id (zgtk_tag_Gdk_TimeCoord ())))
+
+  extern zgtk_set_Gdk_TimeCoord_flags : cptr -> int -> unit
+
+  /// Sets the `flags` field.
+  let setFlags (self: TimeCoord) (value: AxisFlags) : unit = zgtk_set_Gdk_TimeCoord_flags (Glue.obj self.Id (zgtk_tag_Gdk_TimeCoord ())) value.Int
+
+module Toplevel =
+  /// The same object as its ancestor.
+  let toGObjectObject (self: Toplevel) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<Toplevel> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_toplevel_get_type ()) then Some (Toplevel object.Id) else None
+
+  extern gdk_toplevel_begin_move : cptr -> cptr -> i32 -> f64 -> f64 -> u32 -> unit
+
+  /// Begins an interactive move operation.
+  let beginMove (self: Toplevel) (device: Device) (button: int) (x: float) (y: float) (timestamp: int) : unit =
+    gdk_toplevel_begin_move (Glue.obj self.Id (gdk_toplevel_get_type ())) (Glue.obj device.Id (gdk_device_get_type ())) (i32 button) x y (u32 timestamp)
+
+  extern gdk_toplevel_begin_resize : cptr -> i32 -> cptr -> i32 -> f64 -> f64 -> u32 -> unit
+
+  /// Begins an interactive resize operation.
+  let beginResize (self: Toplevel) (edge: SurfaceEdge) (device: option<Device>) (button: int) (x: float) (y: float) (timestamp: int) : unit =
+    let zp1 =
+      match device with
+      | Some zo -> Glue.obj zo.Id (gdk_device_get_type ())
+      | None -> Glue.none ()
+    gdk_toplevel_begin_resize (Glue.obj self.Id (gdk_toplevel_get_type ())) (i32 edge.Int) zp1 (i32 button) x y (u32 timestamp)
+
+  extern gdk_toplevel_focus : cptr -> u32 -> unit
+
+  /// Sets keyboard focus to @surface.
+  let focus (self: Toplevel) (timestamp: int) : unit =
+    gdk_toplevel_focus (Glue.obj self.Id (gdk_toplevel_get_type ())) (u32 timestamp)
+
+  extern gdk_toplevel_get_capabilities : cptr -> u32
+
+  /// The capabilities that are available for this toplevel.
+  let getCapabilities (self: Toplevel) : ToplevelCapabilities =
+    ToplevelCapabilities (int ((gdk_toplevel_get_capabilities (Glue.obj self.Id (gdk_toplevel_get_type ())))))
+
+  extern gdk_toplevel_get_gravity : cptr -> i32
+
+  /// Returns the gravity that is used when changing the toplevel size programmatically.
+  let getGravity (self: Toplevel) : Gravity =
+    Gravity (int ((gdk_toplevel_get_gravity (Glue.obj self.Id (gdk_toplevel_get_type ())))))
+
+  extern gdk_toplevel_get_state : cptr -> u32
+
+  /// Gets the bitwise or of the currently active surface state flags, from the `GdkToplevelState` enumeration.
+  let getState (self: Toplevel) : ToplevelState =
+    ToplevelState (int ((gdk_toplevel_get_state (Glue.obj self.Id (gdk_toplevel_get_type ())))))
+
+  extern gdk_toplevel_inhibit_system_shortcuts : cptr -> cptr -> unit
+
+  /// Requests that the @toplevel inhibit the system shortcuts.
+  let inhibitSystemShortcuts (self: Toplevel) (event: option<Event>) : unit =
+    let zp1 =
+      match event with
+      | Some zo -> Glue.obj zo.Id (zgtk_type_Gdk_Event ())
+      | None -> Glue.none ()
+    gdk_toplevel_inhibit_system_shortcuts (Glue.obj self.Id (gdk_toplevel_get_type ())) zp1
+
+  extern gdk_toplevel_lower : cptr -> i32
+
+  /// Asks to lower the @toplevel below other windows.
+  let lower (self: Toplevel) : bool =
+    (((gdk_toplevel_lower (Glue.obj self.Id (gdk_toplevel_get_type ())))) <> i32 0)
+
+  extern gdk_toplevel_minimize : cptr -> i32
+
+  /// Asks to minimize the @toplevel.
+  let minimize (self: Toplevel) : bool =
+    (((gdk_toplevel_minimize (Glue.obj self.Id (gdk_toplevel_get_type ())))) <> i32 0)
+
+  extern gdk_toplevel_present : cptr -> cptr -> unit
+
+  /// Present @toplevel after having processed the `GdkToplevelLayout` rules.
+  let present (self: Toplevel) (layout: ToplevelLayout) : unit =
+    gdk_toplevel_present (Glue.obj self.Id (gdk_toplevel_get_type ())) (Glue.obj layout.Id (gdk_toplevel_layout_get_type ()))
+
+  extern gdk_toplevel_restore_system_shortcuts : cptr -> unit
+
+  /// Restore default system keyboard shortcuts which were previously inhibited.
+  let restoreSystemShortcuts (self: Toplevel) : unit =
+    gdk_toplevel_restore_system_shortcuts (Glue.obj self.Id (gdk_toplevel_get_type ()))
+
+  extern gdk_toplevel_set_decorated : cptr -> i32 -> unit
+
+  /// Sets the toplevel to be decorated.
+  let setDecorated (self: Toplevel) (decorated: bool) : unit =
+    gdk_toplevel_set_decorated (Glue.obj self.Id (gdk_toplevel_get_type ())) (if decorated then i32 1 else i32 0)
+
+  extern gdk_toplevel_set_deletable : cptr -> i32 -> unit
+
+  /// Sets the toplevel to be deletable.
+  let setDeletable (self: Toplevel) (deletable: bool) : unit =
+    gdk_toplevel_set_deletable (Glue.obj self.Id (gdk_toplevel_get_type ())) (if deletable then i32 1 else i32 0)
+
+  extern gdk_toplevel_set_gravity : cptr -> i32 -> unit
+
+  /// Sets the gravity that is used when changing the toplevel size programmatically.
+  let setGravity (self: Toplevel) (gravity: Gravity) : unit =
+    gdk_toplevel_set_gravity (Glue.obj self.Id (gdk_toplevel_get_type ())) (i32 gravity.Int)
+
+  extern gdk_toplevel_set_icon_list : cptr -> cptr -> unit
+
+  /// Sets a list of icons for the surface.
+  let setIconList (self: Toplevel) (surfaces: list<Texture>) : unit =
+    let zl1 = Glue.glist (Glue.mapList (fun (zo: Texture) -> Glue.obj zo.Id (gdk_texture_get_type ())) surfaces) false
+    gdk_toplevel_set_icon_list (Glue.obj self.Id (gdk_toplevel_get_type ())) zl1
+    Glue.freeGlist zl1 false
+
+  extern gdk_toplevel_set_modal : cptr -> i32 -> unit
+
+  /// Sets the toplevel to be modal.
+  let setModal (self: Toplevel) (modal: bool) : unit =
+    gdk_toplevel_set_modal (Glue.obj self.Id (gdk_toplevel_get_type ())) (if modal then i32 1 else i32 0)
+
+  extern gdk_toplevel_set_startup_id : cptr -> cstr -> unit
+
+  /// Sets the startup notification ID.
+  let setStartupId (self: Toplevel) (startupId: string) : unit =
+    gdk_toplevel_set_startup_id (Glue.obj self.Id (gdk_toplevel_get_type ())) startupId
+
+  extern gdk_toplevel_set_title : cptr -> cstr -> unit
+
+  /// Sets the title of a toplevel surface.
+  let setTitle (self: Toplevel) (title: string) : unit =
+    gdk_toplevel_set_title (Glue.obj self.Id (gdk_toplevel_get_type ())) title
+
+  extern gdk_toplevel_set_transient_for : cptr -> cptr -> unit
+
+  /// Sets a transient-for parent.
+  let setTransientFor (self: Toplevel) (parent: Surface) : unit =
+    gdk_toplevel_set_transient_for (Glue.obj self.Id (gdk_toplevel_get_type ())) (Glue.obj parent.Id (gdk_surface_get_type ()))
+
+  extern gdk_toplevel_show_window_menu : cptr -> cptr -> i32
+
+  /// Asks the windowing system to show the window menu.
+  let showWindowMenu (self: Toplevel) (event: Event) : bool =
+    (((gdk_toplevel_show_window_menu (Glue.obj self.Id (gdk_toplevel_get_type ())) (Glue.obj event.Id (zgtk_type_Gdk_Event ())))) <> i32 0)
+
+  extern gdk_toplevel_supports_edge_constraints : cptr -> i32
+
+  /// Returns whether the desktop environment supports tiled window states.
+  let supportsEdgeConstraints (self: Toplevel) : bool =
+    (((gdk_toplevel_supports_edge_constraints (Glue.obj self.Id (gdk_toplevel_get_type ())))) <> i32 0)
+
+  extern gdk_toplevel_titlebar_gesture : cptr -> i32 -> i32
+
+  /// Performs a title bar gesture.
+  let titlebarGesture (self: Toplevel) (gesture: TitlebarGesture) : bool =
+    (((gdk_toplevel_titlebar_gesture (Glue.obj self.Id (gdk_toplevel_get_type ())) (i32 gesture.Int))) <> i32 0)
+
+  /// Emitted when the size for the surface needs to be computed, when it is present.
+  let onComputeSize (self: Toplevel) (handler: ToplevelSize -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "compute-size" (fun () ->
+      let size = ToplevelSize (Glue.wrapBoxed (Glue.argPointer 1) (gdk_toplevel_size_get_type ()) false)
+      handler size)
+
+  /// Calls `handler` when the `capabilities` property changes.
+  let onNotifyCapabilities (self: Toplevel) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::capabilities" handler
+
+  /// Calls `handler` when the `decorated` property changes.
+  let onNotifyDecorated (self: Toplevel) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::decorated" handler
+
+  /// The `decorated` property.
+  let getDecorated (self: Toplevel) : bool = (Glue.getInt (Glue.obj self.Id (gdk_toplevel_get_type ())) "decorated" <> 0)
+
+  /// Calls `handler` when the `deletable` property changes.
+  let onNotifyDeletable (self: Toplevel) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::deletable" handler
+
+  /// The `deletable` property.
+  let getDeletable (self: Toplevel) : bool = (Glue.getInt (Glue.obj self.Id (gdk_toplevel_get_type ())) "deletable" <> 0)
+
+  /// Calls `handler` when the `fullscreen-mode` property changes.
+  let onNotifyFullscreenMode (self: Toplevel) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::fullscreen-mode" handler
+
+  /// The `fullscreen-mode` property.
+  let getFullscreenMode (self: Toplevel) : FullscreenMode = FullscreenMode (Glue.getInt (Glue.obj self.Id (gdk_toplevel_get_type ())) "fullscreen-mode")
+
+  /// Sets the `fullscreen-mode` property.
+  let setFullscreenMode (self: Toplevel) (value: FullscreenMode) : unit = Glue.setInt (Glue.obj self.Id (gdk_toplevel_get_type ())) "fullscreen-mode" value.Int
+
+  /// Calls `handler` when the `gravity` property changes.
+  let onNotifyGravity (self: Toplevel) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::gravity" handler
+
+  /// Calls `handler` when the `icon-list` property changes.
+  let onNotifyIconList (self: Toplevel) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::icon-list" handler
+
+  /// Calls `handler` when the `modal` property changes.
+  let onNotifyModal (self: Toplevel) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::modal" handler
+
+  /// The `modal` property.
+  let getModal (self: Toplevel) : bool = (Glue.getInt (Glue.obj self.Id (gdk_toplevel_get_type ())) "modal" <> 0)
+
+  /// Calls `handler` when the `shortcuts-inhibited` property changes.
+  let onNotifyShortcutsInhibited (self: Toplevel) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::shortcuts-inhibited" handler
+
+  /// The `shortcuts-inhibited` property.
+  let getShortcutsInhibited (self: Toplevel) : bool = (Glue.getInt (Glue.obj self.Id (gdk_toplevel_get_type ())) "shortcuts-inhibited" <> 0)
+
+  /// Calls `handler` when the `startup-id` property changes.
+  let onNotifyStartupId (self: Toplevel) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::startup-id" handler
+
+  /// The `startup-id` property.
+  let getStartupId (self: Toplevel) : option<string> = Glue.getText (Glue.obj self.Id (gdk_toplevel_get_type ())) "startup-id"
+
+  /// Calls `handler` when the `state` property changes.
+  let onNotifyState (self: Toplevel) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::state" handler
+
+  /// Calls `handler` when the `title` property changes.
+  let onNotifyTitle (self: Toplevel) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::title" handler
+
+  /// The `title` property.
+  let getTitle (self: Toplevel) : option<string> = Glue.getText (Glue.obj self.Id (gdk_toplevel_get_type ())) "title"
+
+  /// Calls `handler` when the `transient-for` property changes.
+  let onNotifyTransientFor (self: Toplevel) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_toplevel_get_type ())) "notify::transient-for" handler
+
+  /// The `transient-for` property.
+  let getTransientFor (self: Toplevel) : option<Surface> =
+    let zid = Glue.getObject (Glue.obj self.Id (gdk_toplevel_get_type ())) "transient-for"
+    if zid = 0 then None else Some (Surface zid)
+
+module ToplevelLayout =
+  extern gdk_toplevel_layout_new : unit -> cptr
+
+  /// Create a toplevel layout description.
+  let create () : ToplevelLayout =
+    ToplevelLayout (Glue.wrapBoxed ((gdk_toplevel_layout_new ())) (gdk_toplevel_layout_get_type ()) true)
+
+  extern gdk_toplevel_layout_copy : cptr -> cptr
+
+  /// Create a new `GdkToplevelLayout` and copy the contents of @layout into it.
+  let copy (self: ToplevelLayout) : ToplevelLayout =
+    ToplevelLayout (Glue.wrapBoxed ((gdk_toplevel_layout_copy (Glue.obj self.Id (gdk_toplevel_layout_get_type ())))) (gdk_toplevel_layout_get_type ()) true)
+
+  extern gdk_toplevel_layout_equal : cptr -> cptr -> i32
+
+  /// Check whether @layout and @other has identical layout properties.
+  let equal (self: ToplevelLayout) (other: ToplevelLayout) : bool =
+    (((gdk_toplevel_layout_equal (Glue.obj self.Id (gdk_toplevel_layout_get_type ())) (Glue.obj other.Id (gdk_toplevel_layout_get_type ())))) <> i32 0)
+
+  extern gdk_toplevel_layout_get_fullscreen : cptr -> cptr -> i32
+
+  /// If the layout specifies whether to the toplevel should go fullscreen, the value pointed to by @fullscreen is set to true if it should go fullscreen, or false, if it should go unfullscreen.
+  let getFullscreen (self: ToplevelLayout) : (bool * bool) =
+    Glue.outBegin ()
+    let zr = gdk_toplevel_layout_get_fullscreen (Glue.obj self.Id (gdk_toplevel_layout_get_type ())) (Glue.out 0)
+    let zv = (((zr) <> i32 0), (Glue.outI32 0 <> 0))
+    Glue.outEnd ()
+    zv
+
+  extern gdk_toplevel_layout_get_fullscreen_monitor : cptr -> cptr
+
+  /// Returns the monitor that the layout is fullscreening the surface on.
+  let getFullscreenMonitor (self: ToplevelLayout) : option<Monitor> =
+    let zr = gdk_toplevel_layout_get_fullscreen_monitor (Glue.obj self.Id (gdk_toplevel_layout_get_type ()))
+    let zid1 = Glue.wrap (zr) false
+    (if zid1 = 0 then None else Some (Monitor zid1))
+
+  extern gdk_toplevel_layout_get_maximized : cptr -> cptr -> i32
+
+  /// If the layout specifies whether to the toplevel should go maximized, the value pointed to by @maximized is set to true if it should go maximized, or false, if it should go unmaximized.
+  let getMaximized (self: ToplevelLayout) : (bool * bool) =
+    Glue.outBegin ()
+    let zr = gdk_toplevel_layout_get_maximized (Glue.obj self.Id (gdk_toplevel_layout_get_type ())) (Glue.out 0)
+    let zv = (((zr) <> i32 0), (Glue.outI32 0 <> 0))
+    Glue.outEnd ()
+    zv
+
+  extern gdk_toplevel_layout_get_resizable : cptr -> i32
+
+  /// Returns whether the layout should allow the user to resize the surface.
+  let getResizable (self: ToplevelLayout) : bool =
+    (((gdk_toplevel_layout_get_resizable (Glue.obj self.Id (gdk_toplevel_layout_get_type ())))) <> i32 0)
+
+  extern gdk_toplevel_layout_ref : cptr -> cptr
+
+  /// Increases the reference count of @layout.
+  [<Unsafe>]
+  let ref_ (self: ToplevelLayout) : ToplevelLayout =
+    ToplevelLayout (Glue.wrapBoxed ((gdk_toplevel_layout_ref (Glue.obj self.Id (gdk_toplevel_layout_get_type ())))) (gdk_toplevel_layout_get_type ()) true)
+
+  extern gdk_toplevel_layout_set_fullscreen : cptr -> i32 -> cptr -> unit
+
+  /// Sets whether the layout should cause the surface to be fullscreen when presented.
+  let setFullscreen (self: ToplevelLayout) (fullscreen: bool) (monitor: option<Monitor>) : unit =
+    let zp1 =
+      match monitor with
+      | Some zo -> Glue.obj zo.Id (gdk_monitor_get_type ())
+      | None -> Glue.none ()
+    gdk_toplevel_layout_set_fullscreen (Glue.obj self.Id (gdk_toplevel_layout_get_type ())) (if fullscreen then i32 1 else i32 0) zp1
+
+  extern gdk_toplevel_layout_set_maximized : cptr -> i32 -> unit
+
+  /// Sets whether the layout should cause the surface to be maximized when presented.
+  let setMaximized (self: ToplevelLayout) (maximized: bool) : unit =
+    gdk_toplevel_layout_set_maximized (Glue.obj self.Id (gdk_toplevel_layout_get_type ())) (if maximized then i32 1 else i32 0)
+
+  extern gdk_toplevel_layout_set_resizable : cptr -> i32 -> unit
+
+  /// Sets whether the layout should allow the user to resize the surface after it has been presented.
+  let setResizable (self: ToplevelLayout) (resizable: bool) : unit =
+    gdk_toplevel_layout_set_resizable (Glue.obj self.Id (gdk_toplevel_layout_get_type ())) (if resizable then i32 1 else i32 0)
+
+  extern gdk_toplevel_layout_unref : cptr -> unit
+
+  /// Decreases the reference count of @layout.
+  [<Unsafe>]
+  let unref (self: ToplevelLayout) : unit =
+    gdk_toplevel_layout_unref (Glue.obj self.Id (gdk_toplevel_layout_get_type ()))
+
+module ToplevelSize =
+  extern gdk_toplevel_size_get_bounds : cptr -> cptr -> cptr -> unit
+
+  /// Retrieves the bounds the toplevel is placed within.
+  let getBounds (self: ToplevelSize) : (int * int) =
+    Glue.outBegin ()
+    gdk_toplevel_size_get_bounds (Glue.obj self.Id (gdk_toplevel_size_get_type ())) (Glue.out 0) (Glue.out 1)
+    let zv = (Glue.outI32 0, Glue.outI32 1)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_toplevel_size_set_min_size : cptr -> i32 -> i32 -> unit
+
+  /// Sets the minimum size of the toplevel.
+  let setMinSize (self: ToplevelSize) (minWidth: int) (minHeight: int) : unit =
+    gdk_toplevel_size_set_min_size (Glue.obj self.Id (gdk_toplevel_size_get_type ())) (i32 minWidth) (i32 minHeight)
+
+  extern gdk_toplevel_size_set_shadow_width : cptr -> i32 -> i32 -> i32 -> i32 -> unit
+
+  /// Sets the shadows size of the toplevel.
+  let setShadowWidth (self: ToplevelSize) (left: int) (right: int) (top: int) (bottom: int) : unit =
+    gdk_toplevel_size_set_shadow_width (Glue.obj self.Id (gdk_toplevel_size_get_type ())) (i32 left) (i32 right) (i32 top) (i32 bottom)
+
+  extern gdk_toplevel_size_set_size : cptr -> i32 -> i32 -> unit
+
+  /// Sets the size the toplevel prefers to be resized to.
+  let setSize (self: ToplevelSize) (width: int) (height: int) : unit =
+    gdk_toplevel_size_set_size (Glue.obj self.Id (gdk_toplevel_size_get_type ())) (i32 width) (i32 height)
+
+module TouchEvent =
+  extern gdk_touch_event_get_emulating_pointer : cptr -> i32
+
+  /// Extracts whether a touch event is emulating a pointer event.
+  [<Unsafe>]
+  let getEmulatingPointer (self: TouchEvent) : bool =
+    (((gdk_touch_event_get_emulating_pointer self.Ptr)) <> i32 0)
+
+module TouchpadEvent =
+  extern gdk_touchpad_event_get_deltas : cptr -> cptr -> cptr -> unit
+
+  /// Extracts delta information from a touchpad event.
+  [<Unsafe>]
+  let getDeltas (self: TouchpadEvent) : (float * float) =
+    Glue.outBegin ()
+    gdk_touchpad_event_get_deltas self.Ptr (Glue.out 0) (Glue.out 1)
+    let zv = (Glue.outF64 0, Glue.outF64 1)
+    Glue.outEnd ()
+    zv
+
+  extern gdk_touchpad_event_get_gesture_phase : cptr -> i32
+
+  /// Extracts the touchpad gesture phase from a touchpad event.
+  [<Unsafe>]
+  let getGesturePhase (self: TouchpadEvent) : TouchpadGesturePhase =
+    TouchpadGesturePhase (int ((gdk_touchpad_event_get_gesture_phase self.Ptr)))
+
+  extern gdk_touchpad_event_get_n_fingers : cptr -> u32
+
+  /// Extracts the number of fingers from a touchpad event.
+  [<Unsafe>]
+  let getNFingers (self: TouchpadEvent) : int =
+    (int ((gdk_touchpad_event_get_n_fingers self.Ptr)))
+
+  extern gdk_touchpad_event_get_pinch_angle_delta : cptr -> f64
+
+  /// Extracts the angle delta from a touchpad pinch event.
+  [<Unsafe>]
+  let getPinchAngleDelta (self: TouchpadEvent) : float =
+    ((gdk_touchpad_event_get_pinch_angle_delta self.Ptr))
+
+  extern gdk_touchpad_event_get_pinch_scale : cptr -> f64
+
+  /// Extracts the scale from a touchpad pinch event.
+  [<Unsafe>]
+  let getPinchScale (self: TouchpadEvent) : float =
+    ((gdk_touchpad_event_get_pinch_scale self.Ptr))
+
+module VulkanContext =
+  /// The same object as its ancestor.
+  let toDrawContext (self: VulkanContext) : DrawContext = DrawContext self.Id
+
+  /// The same object as its ancestor.
+  let toGObjectObject (self: VulkanContext) : GObject.Object = GObject.Object self.Id
+
+  /// The object as this type, if it is one.
+  let cast (object: GObject.Object) : option<VulkanContext> =
+    if Glue.isA (Glue.obj object.Id (usize 0)) (gdk_vulkan_context_get_type ()) then Some (VulkanContext object.Id) else None
+
+  /// Emitted when the images managed by this context have changed.
+  let onImagesUpdated (self: VulkanContext) (handler: unit -> unit) : unit =
+    Glue.connect (Glue.obj self.Id (gdk_vulkan_context_get_type ())) "images-updated" handler
+
+/// Defines all possible DND actions.
+let actionAll = 7
+
+/// The middle button.
+let buttonMiddle = 2
+
+/// The primary button.
+let buttonPrimary = 1
+
+/// The secondary button.
+let buttonSecondary = 3
+
+/// Represents the current time, and can be used anywhere a time is expected.
+let currentTime = 0
+
+/// `GDK_KEY_0`.
+let key0 = 48
+
+/// `GDK_KEY_1`.
+let key1 = 49
+
+/// `GDK_KEY_10ChannelsDown`.
+let key10channelsdown = 268964281
+
+/// `GDK_KEY_10ChannelsUp`.
+let key10channelsup = 268964280
+
+/// `GDK_KEY_2`.
+let key2 = 50
+
+/// `GDK_KEY_3`.
+let key3 = 51
+
+/// `GDK_KEY_3270_AltCursor`.
+let key3270Altcursor = 64784
+
+/// `GDK_KEY_3270_Attn`.
+let key3270Attn = 64782
+
+/// `GDK_KEY_3270_BackTab`.
+let key3270Backtab = 64773
+
+/// `GDK_KEY_3270_ChangeScreen`.
+let key3270Changescreen = 64793
+
+/// `GDK_KEY_3270_Copy`.
+let key3270Copy = 64789
+
+/// `GDK_KEY_3270_CursorBlink`.
+let key3270Cursorblink = 64783
+
+/// `GDK_KEY_3270_CursorSelect`.
+let key3270Cursorselect = 64796
+
+/// `GDK_KEY_3270_DeleteWord`.
+let key3270Deleteword = 64794
+
+/// `GDK_KEY_3270_Duplicate`.
+let key3270Duplicate = 64769
+
+/// `GDK_KEY_3270_Enter`.
+let key3270Enter = 64798
+
+/// `GDK_KEY_3270_EraseEOF`.
+let key3270Eraseeof = 64774
+
+/// `GDK_KEY_3270_EraseInput`.
+let key3270Eraseinput = 64775
+
+/// `GDK_KEY_3270_ExSelect`.
+let key3270Exselect = 64795
+
+/// `GDK_KEY_3270_FieldMark`.
+let key3270Fieldmark = 64770
+
+/// `GDK_KEY_3270_Ident`.
+let key3270Ident = 64787
+
+/// `GDK_KEY_3270_Jump`.
+let key3270Jump = 64786
+
+/// `GDK_KEY_3270_KeyClick`.
+let key3270Keyclick = 64785
+
+/// `GDK_KEY_3270_Left2`.
+let key3270Left2 = 64772
+
+/// `GDK_KEY_3270_PA1`.
+let key3270Pa1 = 64778
+
+/// `GDK_KEY_3270_PA2`.
+let key3270Pa2 = 64779
+
+/// `GDK_KEY_3270_PA3`.
+let key3270Pa3 = 64780
+
+/// `GDK_KEY_3270_Play`.
+let key3270Play = 64790
+
+/// `GDK_KEY_3270_PrintScreen`.
+let key3270Printscreen = 64797
+
+/// `GDK_KEY_3270_Quit`.
+let key3270Quit = 64777
+
+/// `GDK_KEY_3270_Record`.
+let key3270Record = 64792
+
+/// `GDK_KEY_3270_Reset`.
+let key3270Reset = 64776
+
+/// `GDK_KEY_3270_Right2`.
+let key3270Right2 = 64771
+
+/// `GDK_KEY_3270_Rule`.
+let key3270Rule = 64788
+
+/// `GDK_KEY_3270_Setup`.
+let key3270Setup = 64791
+
+/// `GDK_KEY_3270_Test`.
+let key3270Test = 64781
+
+/// `GDK_KEY_3DMode`.
+let key3dmode = 268964463
+
+/// `GDK_KEY_4`.
+let key4 = 52
+
+/// `GDK_KEY_5`.
+let key5 = 53
+
+/// `GDK_KEY_6`.
+let key6 = 54
+
+/// `GDK_KEY_7`.
+let key7 = 55
+
+/// `GDK_KEY_8`.
+let key8 = 56
+
+/// `GDK_KEY_9`.
+let key9 = 57
+
+/// `GDK_KEY_A`.
+let keyA = 65
+
+/// `GDK_KEY_AE`.
+let keyAe = 198
+
+/// `GDK_KEY_ALSToggle`.
+let keyAlstoggle = 268964400
+
+/// `GDK_KEY_Aacute`.
+let keyAacute = 193
+
+/// `GDK_KEY_Abelowdot`.
+let keyAbelowdot = 16785056
+
+/// `GDK_KEY_Abreve`.
+let keyAbreve = 451
+
+/// `GDK_KEY_Abreveacute`.
+let keyAbreveacute = 16785070
+
+/// `GDK_KEY_Abrevebelowdot`.
+let keyAbrevebelowdot = 16785078
+
+/// `GDK_KEY_Abrevegrave`.
+let keyAbrevegrave = 16785072
+
+/// `GDK_KEY_Abrevehook`.
+let keyAbrevehook = 16785074
+
+/// `GDK_KEY_Abrevetilde`.
+let keyAbrevetilde = 16785076
+
+/// `GDK_KEY_AccessX_Enable`.
+let keyAccessxEnable = 65136
+
+/// `GDK_KEY_AccessX_Feedback_Enable`.
+let keyAccessxFeedbackEnable = 65137
+
+/// `GDK_KEY_Accessibility`.
+let keyAccessibility = 268964430
+
+/// `GDK_KEY_Acircumflex`.
+let keyAcircumflex = 194
+
+/// `GDK_KEY_Acircumflexacute`.
+let keyAcircumflexacute = 16785060
+
+/// `GDK_KEY_Acircumflexbelowdot`.
+let keyAcircumflexbelowdot = 16785068
+
+/// `GDK_KEY_Acircumflexgrave`.
+let keyAcircumflexgrave = 16785062
+
+/// `GDK_KEY_Acircumflexhook`.
+let keyAcircumflexhook = 16785064
+
+/// `GDK_KEY_Acircumflextilde`.
+let keyAcircumflextilde = 16785066
+
+/// `GDK_KEY_AddFavorite`.
+let keyAddfavorite = 269025081
+
+/// `GDK_KEY_Addressbook`.
+let keyAddressbook = 268964269
+
+/// `GDK_KEY_Adiaeresis`.
+let keyAdiaeresis = 196
+
+/// `GDK_KEY_Agrave`.
+let keyAgrave = 192
+
+/// `GDK_KEY_Ahook`.
+let keyAhook = 16785058
+
+/// `GDK_KEY_Alt_L`.
+let keyAltL = 65513
+
+/// `GDK_KEY_Alt_R`.
+let keyAltR = 65514
+
+/// `GDK_KEY_Amacron`.
+let keyAmacron = 960
+
+/// `GDK_KEY_Aogonek`.
+let keyAogonek = 417
+
+/// `GDK_KEY_AppSelect`.
+let keyAppselect = 268964420
+
+/// `GDK_KEY_ApplicationLeft`.
+let keyApplicationleft = 269025104
+
+/// `GDK_KEY_ApplicationRight`.
+let keyApplicationright = 269025105
+
+/// `GDK_KEY_Arabic_0`.
+let keyArabic0 = 16778848
+
+/// `GDK_KEY_Arabic_1`.
+let keyArabic1 = 16778849
+
+/// `GDK_KEY_Arabic_2`.
+let keyArabic2 = 16778850
+
+/// `GDK_KEY_Arabic_3`.
+let keyArabic3 = 16778851
+
+/// `GDK_KEY_Arabic_4`.
+let keyArabic4 = 16778852
+
+/// `GDK_KEY_Arabic_5`.
+let keyArabic5 = 16778853
+
+/// `GDK_KEY_Arabic_6`.
+let keyArabic6 = 16778854
+
+/// `GDK_KEY_Arabic_7`.
+let keyArabic7 = 16778855
+
+/// `GDK_KEY_Arabic_8`.
+let keyArabic8 = 16778856
+
+/// `GDK_KEY_Arabic_9`.
+let keyArabic9 = 16778857
+
+/// `GDK_KEY_Arabic_ain`.
+let keyArabicAin = 1497
+
+/// `GDK_KEY_Arabic_alef`.
+let keyArabicAlef = 1479
+
+/// `GDK_KEY_Arabic_alefmaksura`.
+let keyArabicAlefmaksura = 1513
+
+/// `GDK_KEY_Arabic_beh`.
+let keyArabicBeh = 1480
+
+/// `GDK_KEY_Arabic_comma`.
+let keyArabicComma = 1452
+
+/// `GDK_KEY_Arabic_dad`.
+let keyArabicDad = 1494
+
+/// `GDK_KEY_Arabic_dal`.
+let keyArabicDal = 1487
+
+/// `GDK_KEY_Arabic_damma`.
+let keyArabicDamma = 1519
+
+/// `GDK_KEY_Arabic_dammatan`.
+let keyArabicDammatan = 1516
+
+/// `GDK_KEY_Arabic_ddal`.
+let keyArabicDdal = 16778888
+
+/// `GDK_KEY_Arabic_farsi_yeh`.
+let keyArabicFarsiYeh = 16778956
+
+/// `GDK_KEY_Arabic_fatha`.
+let keyArabicFatha = 1518
+
+/// `GDK_KEY_Arabic_fathatan`.
+let keyArabicFathatan = 1515
+
+/// `GDK_KEY_Arabic_feh`.
+let keyArabicFeh = 1505
+
+/// `GDK_KEY_Arabic_fullstop`.
+let keyArabicFullstop = 16778964
+
+/// `GDK_KEY_Arabic_gaf`.
+let keyArabicGaf = 16778927
+
+/// `GDK_KEY_Arabic_ghain`.
+let keyArabicGhain = 1498
+
+/// `GDK_KEY_Arabic_ha`.
+let keyArabicHa = 1511
+
+/// `GDK_KEY_Arabic_hah`.
+let keyArabicHah = 1485
+
+/// `GDK_KEY_Arabic_hamza`.
+let keyArabicHamza = 1473
+
+/// `GDK_KEY_Arabic_hamza_above`.
+let keyArabicHamzaAbove = 16778836
+
+/// `GDK_KEY_Arabic_hamza_below`.
+let keyArabicHamzaBelow = 16778837
+
+/// `GDK_KEY_Arabic_hamzaonalef`.
+let keyArabicHamzaonalef = 1475
+
+/// `GDK_KEY_Arabic_hamzaonwaw`.
+let keyArabicHamzaonwaw = 1476
+
+/// `GDK_KEY_Arabic_hamzaonyeh`.
+let keyArabicHamzaonyeh = 1478
+
+/// `GDK_KEY_Arabic_hamzaunderalef`.
+let keyArabicHamzaunderalef = 1477
+
+/// `GDK_KEY_Arabic_heh`.
+let keyArabicHeh = 1511
+
+/// `GDK_KEY_Arabic_heh_doachashmee`.
+let keyArabicHehDoachashmee = 16778942
+
+/// `GDK_KEY_Arabic_heh_goal`.
+let keyArabicHehGoal = 16778945
+
+/// `GDK_KEY_Arabic_jeem`.
+let keyArabicJeem = 1484
+
+/// `GDK_KEY_Arabic_jeh`.
+let keyArabicJeh = 16778904
+
+/// `GDK_KEY_Arabic_kaf`.
+let keyArabicKaf = 1507
+
+/// `GDK_KEY_Arabic_kasra`.
+let keyArabicKasra = 1520
+
+/// `GDK_KEY_Arabic_kasratan`.
+let keyArabicKasratan = 1517
+
+/// `GDK_KEY_Arabic_keheh`.
+let keyArabicKeheh = 16778921
+
+/// `GDK_KEY_Arabic_khah`.
+let keyArabicKhah = 1486
+
+/// `GDK_KEY_Arabic_lam`.
+let keyArabicLam = 1508
+
+/// `GDK_KEY_Arabic_madda_above`.
+let keyArabicMaddaAbove = 16778835
+
+/// `GDK_KEY_Arabic_maddaonalef`.
+let keyArabicMaddaonalef = 1474
+
+/// `GDK_KEY_Arabic_meem`.
+let keyArabicMeem = 1509
+
+/// `GDK_KEY_Arabic_noon`.
+let keyArabicNoon = 1510
+
+/// `GDK_KEY_Arabic_noon_ghunna`.
+let keyArabicNoonGhunna = 16778938
+
+/// `GDK_KEY_Arabic_peh`.
+let keyArabicPeh = 16778878
+
+/// `GDK_KEY_Arabic_percent`.
+let keyArabicPercent = 16778858
+
+/// `GDK_KEY_Arabic_qaf`.
+let keyArabicQaf = 1506
+
+/// `GDK_KEY_Arabic_question_mark`.
+let keyArabicQuestionMark = 1471
+
+/// `GDK_KEY_Arabic_ra`.
+let keyArabicRa = 1489
+
+/// `GDK_KEY_Arabic_rreh`.
+let keyArabicRreh = 16778897
+
+/// `GDK_KEY_Arabic_sad`.
+let keyArabicSad = 1493
+
+/// `GDK_KEY_Arabic_seen`.
+let keyArabicSeen = 1491
+
+/// `GDK_KEY_Arabic_semicolon`.
+let keyArabicSemicolon = 1467
+
+/// `GDK_KEY_Arabic_shadda`.
+let keyArabicShadda = 1521
+
+/// `GDK_KEY_Arabic_sheen`.
+let keyArabicSheen = 1492
+
+/// `GDK_KEY_Arabic_sukun`.
+let keyArabicSukun = 1522
+
+/// `GDK_KEY_Arabic_superscript_alef`.
+let keyArabicSuperscriptAlef = 16778864
+
+/// `GDK_KEY_Arabic_switch`.
+let keyArabicSwitch = 65406
+
+/// `GDK_KEY_Arabic_tah`.
+let keyArabicTah = 1495
+
+/// `GDK_KEY_Arabic_tatweel`.
+let keyArabicTatweel = 1504
+
+/// `GDK_KEY_Arabic_tcheh`.
+let keyArabicTcheh = 16778886
+
+/// `GDK_KEY_Arabic_teh`.
+let keyArabicTeh = 1482
+
+/// `GDK_KEY_Arabic_tehmarbuta`.
+let keyArabicTehmarbuta = 1481
+
+/// `GDK_KEY_Arabic_thal`.
+let keyArabicThal = 1488
+
+/// `GDK_KEY_Arabic_theh`.
+let keyArabicTheh = 1483
+
+/// `GDK_KEY_Arabic_tteh`.
+let keyArabicTteh = 16778873
+
+/// `GDK_KEY_Arabic_veh`.
+let keyArabicVeh = 16778916
+
+/// `GDK_KEY_Arabic_waw`.
+let keyArabicWaw = 1512
+
+/// `GDK_KEY_Arabic_yeh`.
+let keyArabicYeh = 1514
+
+/// `GDK_KEY_Arabic_yeh_baree`.
+let keyArabicYehBaree = 16778962
+
+/// `GDK_KEY_Arabic_zah`.
+let keyArabicZah = 1496
+
+/// `GDK_KEY_Arabic_zain`.
+let keyArabicZain = 1490
+
+/// `GDK_KEY_Aring`.
+let keyAring = 197
+
+/// `GDK_KEY_Armenian_AT`.
+let keyArmenianAt = 16778552
+
+/// `GDK_KEY_Armenian_AYB`.
+let keyArmenianAyb = 16778545
+
+/// `GDK_KEY_Armenian_BEN`.
+let keyArmenianBen = 16778546
+
+/// `GDK_KEY_Armenian_CHA`.
+let keyArmenianCha = 16778569
+
+/// `GDK_KEY_Armenian_DA`.
+let keyArmenianDa = 16778548
+
+/// `GDK_KEY_Armenian_DZA`.
+let keyArmenianDza = 16778561
+
+/// `GDK_KEY_Armenian_E`.
+let keyArmenianE = 16778551
+
+/// `GDK_KEY_Armenian_FE`.
+let keyArmenianFe = 16778582
+
+/// `GDK_KEY_Armenian_GHAT`.
+let keyArmenianGhat = 16778562
+
+/// `GDK_KEY_Armenian_GIM`.
+let keyArmenianGim = 16778547
+
+/// `GDK_KEY_Armenian_HI`.
+let keyArmenianHi = 16778565
+
+/// `GDK_KEY_Armenian_HO`.
+let keyArmenianHo = 16778560
+
+/// `GDK_KEY_Armenian_INI`.
+let keyArmenianIni = 16778555
+
+/// `GDK_KEY_Armenian_JE`.
+let keyArmenianJe = 16778571
+
+/// `GDK_KEY_Armenian_KE`.
+let keyArmenianKe = 16778580
+
+/// `GDK_KEY_Armenian_KEN`.
+let keyArmenianKen = 16778559
+
+/// `GDK_KEY_Armenian_KHE`.
+let keyArmenianKhe = 16778557
+
+/// `GDK_KEY_Armenian_LYUN`.
+let keyArmenianLyun = 16778556
+
+/// `GDK_KEY_Armenian_MEN`.
+let keyArmenianMen = 16778564
+
+/// `GDK_KEY_Armenian_NU`.
+let keyArmenianNu = 16778566
+
+/// `GDK_KEY_Armenian_O`.
+let keyArmenianO = 16778581
+
+/// `GDK_KEY_Armenian_PE`.
+let keyArmenianPe = 16778570
+
+/// `GDK_KEY_Armenian_PYUR`.
+let keyArmenianPyur = 16778579
+
+/// `GDK_KEY_Armenian_RA`.
+let keyArmenianRa = 16778572
+
+/// `GDK_KEY_Armenian_RE`.
+let keyArmenianRe = 16778576
+
+/// `GDK_KEY_Armenian_SE`.
+let keyArmenianSe = 16778573
+
+/// `GDK_KEY_Armenian_SHA`.
+let keyArmenianSha = 16778567
+
+/// `GDK_KEY_Armenian_TCHE`.
+let keyArmenianTche = 16778563
+
+/// `GDK_KEY_Armenian_TO`.
+let keyArmenianTo = 16778553
+
+/// `GDK_KEY_Armenian_TSA`.
+let keyArmenianTsa = 16778558
+
+/// `GDK_KEY_Armenian_TSO`.
+let keyArmenianTso = 16778577
+
+/// `GDK_KEY_Armenian_TYUN`.
+let keyArmenianTyun = 16778575
+
+/// `GDK_KEY_Armenian_VEV`.
+let keyArmenianVev = 16778574
+
+/// `GDK_KEY_Armenian_VO`.
+let keyArmenianVo = 16778568
+
+/// `GDK_KEY_Armenian_VYUN`.
+let keyArmenianVyun = 16778578
+
+/// `GDK_KEY_Armenian_YECH`.
+let keyArmenianYech = 16778549
+
+/// `GDK_KEY_Armenian_ZA`.
+let keyArmenianZa = 16778550
+
+/// `GDK_KEY_Armenian_ZHE`.
+let keyArmenianZhe = 16778554
+
+/// `GDK_KEY_Armenian_accent`.
+let keyArmenianAccent = 16778587
+
+/// `GDK_KEY_Armenian_amanak`.
+let keyArmenianAmanak = 16778588
+
+/// `GDK_KEY_Armenian_apostrophe`.
+let keyArmenianApostrophe = 16778586
+
+/// `GDK_KEY_Armenian_but`.
+let keyArmenianBut = 16778589
+
+/// `GDK_KEY_Armenian_exclam`.
+let keyArmenianExclam = 16778588
+
+/// `GDK_KEY_Armenian_full_stop`.
+let keyArmenianFullStop = 16778633
+
+/// `GDK_KEY_Armenian_hyphen`.
+let keyArmenianHyphen = 16778634
+
+/// `GDK_KEY_Armenian_ligature_ew`.
+let keyArmenianLigatureEw = 16778631
+
+/// `GDK_KEY_Armenian_paruyk`.
+let keyArmenianParuyk = 16778590
+
+/// `GDK_KEY_Armenian_question`.
+let keyArmenianQuestion = 16778590
+
+/// `GDK_KEY_Armenian_separation_mark`.
+let keyArmenianSeparationMark = 16778589
+
+/// `GDK_KEY_Armenian_shesht`.
+let keyArmenianShesht = 16778587
+
+/// `GDK_KEY_Armenian_verjaket`.
+let keyArmenianVerjaket = 16778633
+
+/// `GDK_KEY_Armenian_yentamna`.
+let keyArmenianYentamna = 16778634
+
+/// `GDK_KEY_AspectRatio`.
+let keyAspectratio = 268964215
+
+/// `GDK_KEY_Assistant`.
+let keyAssistant = 268964423
+
+/// `GDK_KEY_Atilde`.
+let keyAtilde = 195
+
+/// `GDK_KEY_AttendantOff`.
+let keyAttendantoff = 268964380
+
+/// `GDK_KEY_AttendantOn`.
+let keyAttendanton = 268964379
+
+/// `GDK_KEY_AttendantToggle`.
+let keyAttendanttoggle = 268964381
+
+/// `GDK_KEY_AudibleBell_Enable`.
+let keyAudiblebellEnable = 65146
+
+/// `GDK_KEY_Audio`.
+let keyAudio = 268964232
+
+/// `GDK_KEY_AudioCycleTrack`.
+let keyAudiocycletrack = 269025179
+
+/// `GDK_KEY_AudioDesc`.
+let keyAudiodesc = 268964462
+
+/// `GDK_KEY_AudioForward`.
+let keyAudioforward = 269025175
+
+/// `GDK_KEY_AudioLowerVolume`.
+let keyAudiolowervolume = 269025041
+
+/// `GDK_KEY_AudioMedia`.
+let keyAudiomedia = 269025074
+
+/// `GDK_KEY_AudioMicMute`.
+let keyAudiomicmute = 269025202
+
+/// `GDK_KEY_AudioMute`.
+let keyAudiomute = 269025042
+
+/// `GDK_KEY_AudioNext`.
+let keyAudionext = 269025047
+
+/// `GDK_KEY_AudioPause`.
+let keyAudiopause = 269025073
+
+/// `GDK_KEY_AudioPlay`.
+let keyAudioplay = 269025044
+
+/// `GDK_KEY_AudioPreset`.
+let keyAudiopreset = 269025206
+
+/// `GDK_KEY_AudioPrev`.
+let keyAudioprev = 269025046
+
+/// `GDK_KEY_AudioRaiseVolume`.
+let keyAudioraisevolume = 269025043
+
+/// `GDK_KEY_AudioRandomPlay`.
+let keyAudiorandomplay = 269025177
+
+/// `GDK_KEY_AudioRecord`.
+let keyAudiorecord = 269025052
+
+/// `GDK_KEY_AudioRepeat`.
+let keyAudiorepeat = 269025176
+
+/// `GDK_KEY_AudioRewind`.
+let keyAudiorewind = 269025086
+
+/// `GDK_KEY_AudioStop`.
+let keyAudiostop = 269025045
+
+/// `GDK_KEY_AutopilotEngageToggle`.
+let keyAutopilotengagetoggle = 268964477
+
+/// `GDK_KEY_Away`.
+let keyAway = 269025165
+
+/// `GDK_KEY_B`.
+let keyB = 66
+
+/// `GDK_KEY_Babovedot`.
+let keyBabovedot = 16784898
+
+/// `GDK_KEY_Back`.
+let keyBack = 269025062
+
+/// `GDK_KEY_BackForward`.
+let keyBackforward = 269025087
+
+/// `GDK_KEY_BackSpace`.
+let keyBackspace = 65288
+
+/// `GDK_KEY_Battery`.
+let keyBattery = 269025171
+
+/// `GDK_KEY_Begin`.
+let keyBegin = 65368
+
+/// `GDK_KEY_Blue`.
+let keyBlue = 269025190
+
+/// `GDK_KEY_Bluetooth`.
+let keyBluetooth = 269025172
+
+/// `GDK_KEY_Book`.
+let keyBook = 269025106
+
+/// `GDK_KEY_BounceKeys_Enable`.
+let keyBouncekeysEnable = 65140
+
+/// `GDK_KEY_Break`.
+let keyBreak = 65387
+
+/// `GDK_KEY_BrightnessAdjust`.
+let keyBrightnessadjust = 269025083
+
+/// `GDK_KEY_BrightnessAuto`.
+let keyBrightnessauto = 268964084
+
+/// `GDK_KEY_BrightnessMax`.
+let keyBrightnessmax = 268964433
+
+/// `GDK_KEY_BrightnessMin`.
+let keyBrightnessmin = 268964432
+
+/// `GDK_KEY_Buttonconfig`.
+let keyButtonconfig = 268964416
+
+/// `GDK_KEY_Byelorussian_SHORTU`.
+let keyByelorussianShortu = 1726
+
+/// `GDK_KEY_C`.
+let keyC = 67
+
+/// `GDK_KEY_CD`.
+let keyCd = 269025107
+
+/// `GDK_KEY_CH`.
+let keyCh = 65186
+
+/// `GDK_KEY_C_H`.
+let keyCH = 65189
+
+/// `GDK_KEY_Cabovedot`.
+let keyCabovedot = 709
+
+/// `GDK_KEY_Cacute`.
+let keyCacute = 454
+
+/// `GDK_KEY_Calculator`.
+let keyCalculator = 269025053
+
+/// `GDK_KEY_Calendar`.
+let keyCalendar = 269025056
+
+/// `GDK_KEY_CameraAccessDisable`.
+let keyCameraaccessdisable = 268964428
+
+/// `GDK_KEY_CameraAccessEnable`.
+let keyCameraaccessenable = 268964427
+
+/// `GDK_KEY_CameraAccessToggle`.
+let keyCameraaccesstoggle = 268964429
+
+/// `GDK_KEY_CameraDown`.
+let keyCameradown = 268964376
+
+/// `GDK_KEY_CameraFocus`.
+let keyCamerafocus = 268964368
+
+/// `GDK_KEY_CameraLeft`.
+let keyCameraleft = 268964377
+
+/// `GDK_KEY_CameraRight`.
+let keyCameraright = 268964378
+
+/// `GDK_KEY_CameraUp`.
+let keyCameraup = 268964375
+
+/// `GDK_KEY_CameraZoomIn`.
+let keyCamerazoomin = 268964373
+
+/// `GDK_KEY_CameraZoomOut`.
+let keyCamerazoomout = 268964374
+
+/// `GDK_KEY_Cancel`.
+let keyCancel = 65385
+
+/// `GDK_KEY_Caps_Lock`.
+let keyCapsLock = 65509
+
+/// `GDK_KEY_Ccaron`.
+let keyCcaron = 456
+
+/// `GDK_KEY_Ccedilla`.
+let keyCcedilla = 199
+
+/// `GDK_KEY_Ccircumflex`.
+let keyCcircumflex = 710
+
+/// `GDK_KEY_ChannelDown`.
+let keyChanneldown = 268964243
+
+/// `GDK_KEY_ChannelUp`.
+let keyChannelup = 268964242
+
+/// `GDK_KEY_Clear`.
+let keyClear = 65291
+
+/// `GDK_KEY_ClearGrab`.
+let keyCleargrab = 269024801
+
+/// `GDK_KEY_ClearvuSonar`.
+let keyClearvusonar = 268964486
+
+/// `GDK_KEY_Close`.
+let keyClose = 269025110
+
+/// `GDK_KEY_Codeinput`.
+let keyCodeinput = 65335
+
+/// `GDK_KEY_ColonSign`.
+let keyColonsign = 16785569
+
+/// `GDK_KEY_Community`.
+let keyCommunity = 269025085
+
+/// `GDK_KEY_ContextMenu`.
+let keyContextmenu = 268964278
+
+/// `GDK_KEY_ContrastAdjust`.
+let keyContrastadjust = 269025058
+
+/// `GDK_KEY_ControlPanel`.
+let keyControlpanel = 268964419
+
+/// `GDK_KEY_Control_L`.
+let keyControlL = 65507
+
+/// `GDK_KEY_Control_R`.
+let keyControlR = 65508
+
+/// `GDK_KEY_Copy`.
+let keyCopy = 269025111
+
+/// `GDK_KEY_CruzeiroSign`.
+let keyCruzeirosign = 16785570
+
+/// `GDK_KEY_Cut`.
+let keyCut = 269025112
+
+/// `GDK_KEY_CycleAngle`.
+let keyCycleangle = 269025180
+
+/// `GDK_KEY_Cyrillic_A`.
+let keyCyrillicA = 1761
+
+/// `GDK_KEY_Cyrillic_BE`.
+let keyCyrillicBe = 1762
+
+/// `GDK_KEY_Cyrillic_CHE`.
+let keyCyrillicChe = 1790
+
+/// `GDK_KEY_Cyrillic_CHE_descender`.
+let keyCyrillicCheDescender = 16778422
+
+/// `GDK_KEY_Cyrillic_CHE_vertstroke`.
+let keyCyrillicCheVertstroke = 16778424
+
+/// `GDK_KEY_Cyrillic_DE`.
+let keyCyrillicDe = 1764
+
+/// `GDK_KEY_Cyrillic_DZHE`.
+let keyCyrillicDzhe = 1727
+
+/// `GDK_KEY_Cyrillic_E`.
+let keyCyrillicE = 1788
+
+/// `GDK_KEY_Cyrillic_EF`.
+let keyCyrillicEf = 1766
+
+/// `GDK_KEY_Cyrillic_EL`.
+let keyCyrillicEl = 1772
+
+/// `GDK_KEY_Cyrillic_EM`.
+let keyCyrillicEm = 1773
+
+/// `GDK_KEY_Cyrillic_EN`.
+let keyCyrillicEn = 1774
+
+/// `GDK_KEY_Cyrillic_EN_descender`.
+let keyCyrillicEnDescender = 16778402
+
+/// `GDK_KEY_Cyrillic_ER`.
+let keyCyrillicEr = 1778
+
+/// `GDK_KEY_Cyrillic_ES`.
+let keyCyrillicEs = 1779
+
+/// `GDK_KEY_Cyrillic_GHE`.
+let keyCyrillicGhe = 1767
+
+/// `GDK_KEY_Cyrillic_GHE_bar`.
+let keyCyrillicGheBar = 16778386
+
+/// `GDK_KEY_Cyrillic_HA`.
+let keyCyrillicHa = 1768
+
+/// `GDK_KEY_Cyrillic_HARDSIGN`.
+let keyCyrillicHardsign = 1791
+
+/// `GDK_KEY_Cyrillic_HA_descender`.
+let keyCyrillicHaDescender = 16778418
+
+/// `GDK_KEY_Cyrillic_I`.
+let keyCyrillicI = 1769
+
+/// `GDK_KEY_Cyrillic_IE`.
+let keyCyrillicIe = 1765
+
+/// `GDK_KEY_Cyrillic_IO`.
+let keyCyrillicIo = 1715
+
+/// `GDK_KEY_Cyrillic_I_macron`.
+let keyCyrillicIMacron = 16778466
+
+/// `GDK_KEY_Cyrillic_JE`.
+let keyCyrillicJe = 1720
+
+/// `GDK_KEY_Cyrillic_KA`.
+let keyCyrillicKa = 1771
+
+/// `GDK_KEY_Cyrillic_KA_descender`.
+let keyCyrillicKaDescender = 16778394
+
+/// `GDK_KEY_Cyrillic_KA_vertstroke`.
+let keyCyrillicKaVertstroke = 16778396
+
+/// `GDK_KEY_Cyrillic_LJE`.
+let keyCyrillicLje = 1721
+
+/// `GDK_KEY_Cyrillic_NJE`.
+let keyCyrillicNje = 1722
+
+/// `GDK_KEY_Cyrillic_O`.
+let keyCyrillicO = 1775
+
+/// `GDK_KEY_Cyrillic_O_bar`.
+let keyCyrillicOBar = 16778472
+
+/// `GDK_KEY_Cyrillic_PE`.
+let keyCyrillicPe = 1776
+
+/// `GDK_KEY_Cyrillic_SCHWA`.
+let keyCyrillicSchwa = 16778456
+
+/// `GDK_KEY_Cyrillic_SHA`.
+let keyCyrillicSha = 1787
+
+/// `GDK_KEY_Cyrillic_SHCHA`.
+let keyCyrillicShcha = 1789
+
+/// `GDK_KEY_Cyrillic_SHHA`.
+let keyCyrillicShha = 16778426
+
+/// `GDK_KEY_Cyrillic_SHORTI`.
+let keyCyrillicShorti = 1770
+
+/// `GDK_KEY_Cyrillic_SOFTSIGN`.
+let keyCyrillicSoftsign = 1784
+
+/// `GDK_KEY_Cyrillic_TE`.
+let keyCyrillicTe = 1780
+
+/// `GDK_KEY_Cyrillic_TSE`.
+let keyCyrillicTse = 1763
+
+/// `GDK_KEY_Cyrillic_U`.
+let keyCyrillicU = 1781
+
+/// `GDK_KEY_Cyrillic_U_macron`.
+let keyCyrillicUMacron = 16778478
+
+/// `GDK_KEY_Cyrillic_U_straight`.
+let keyCyrillicUStraight = 16778414
+
+/// `GDK_KEY_Cyrillic_U_straight_bar`.
+let keyCyrillicUStraightBar = 16778416
+
+/// `GDK_KEY_Cyrillic_VE`.
+let keyCyrillicVe = 1783
+
+/// `GDK_KEY_Cyrillic_YA`.
+let keyCyrillicYa = 1777
+
+/// `GDK_KEY_Cyrillic_YERU`.
+let keyCyrillicYeru = 1785
+
+/// `GDK_KEY_Cyrillic_YU`.
+let keyCyrillicYu = 1760
+
+/// `GDK_KEY_Cyrillic_ZE`.
+let keyCyrillicZe = 1786
+
+/// `GDK_KEY_Cyrillic_ZHE`.
+let keyCyrillicZhe = 1782
+
+/// `GDK_KEY_Cyrillic_ZHE_descender`.
+let keyCyrillicZheDescender = 16778390
+
+/// `GDK_KEY_D`.
+let keyD = 68
+
+/// `GDK_KEY_DOS`.
+let keyDos = 269025114
+
+/// `GDK_KEY_DVD`.
+let keyDvd = 268964229
+
+/// `GDK_KEY_Dabovedot`.
+let keyDabovedot = 16784906
+
+/// `GDK_KEY_Data`.
+let keyData = 268964471
+
+/// `GDK_KEY_Database`.
+let keyDatabase = 268964266
+
+/// `GDK_KEY_Dcaron`.
+let keyDcaron = 463
+
+/// `GDK_KEY_Delete`.
+let keyDelete = 65535
+
+/// `GDK_KEY_Dictate`.
+let keyDictate = 268964426
+
+/// `GDK_KEY_Display`.
+let keyDisplay = 269025113
+
+/// `GDK_KEY_DisplayOff`.
+let keyDisplayoff = 268964085
+
+/// `GDK_KEY_DisplayToggle`.
+let keyDisplaytoggle = 268964271
+
+/// `GDK_KEY_DoNotDisturb`.
+let keyDonotdisturb = 268964431
+
+/// `GDK_KEY_Documents`.
+let keyDocuments = 269025115
+
+/// `GDK_KEY_DongSign`.
+let keyDongsign = 16785579
+
+/// `GDK_KEY_Down`.
+let keyDown = 65364
+
+/// `GDK_KEY_Dstroke`.
+let keyDstroke = 464
+
+/// `GDK_KEY_DualRangeRadar`.
+let keyDualrangeradar = 268964483
+
+/// `GDK_KEY_E`.
+let keyE = 69
+
+/// `GDK_KEY_ENG`.
+let keyEng = 957
+
+/// `GDK_KEY_ETH`.
+let keyEth = 208
+
+/// `GDK_KEY_EZH`.
+let keyEzh = 16777655
+
+/// `GDK_KEY_Eabovedot`.
+let keyEabovedot = 972
+
+/// `GDK_KEY_Eacute`.
+let keyEacute = 201
+
+/// `GDK_KEY_Ebelowdot`.
+let keyEbelowdot = 16785080
+
+/// `GDK_KEY_Ecaron`.
+let keyEcaron = 460
+
+/// `GDK_KEY_Ecircumflex`.
+let keyEcircumflex = 202
+
+/// `GDK_KEY_Ecircumflexacute`.
+let keyEcircumflexacute = 16785086
+
+/// `GDK_KEY_Ecircumflexbelowdot`.
+let keyEcircumflexbelowdot = 16785094
+
+/// `GDK_KEY_Ecircumflexgrave`.
+let keyEcircumflexgrave = 16785088
+
+/// `GDK_KEY_Ecircumflexhook`.
+let keyEcircumflexhook = 16785090
+
+/// `GDK_KEY_Ecircumflextilde`.
+let keyEcircumflextilde = 16785092
+
+/// `GDK_KEY_EcuSign`.
+let keyEcusign = 16785568
+
+/// `GDK_KEY_Ediaeresis`.
+let keyEdiaeresis = 203
+
+/// `GDK_KEY_Editor`.
+let keyEditor = 268964262
+
+/// `GDK_KEY_Egrave`.
+let keyEgrave = 200
+
+/// `GDK_KEY_Ehook`.
+let keyEhook = 16785082
+
+/// `GDK_KEY_Eisu_Shift`.
+let keyEisuShift = 65327
+
+/// `GDK_KEY_Eisu_toggle`.
+let keyEisuToggle = 65328
+
+/// `GDK_KEY_Eject`.
+let keyEject = 269025068
+
+/// `GDK_KEY_Emacron`.
+let keyEmacron = 938
+
+/// `GDK_KEY_EmojiPicker`.
+let keyEmojipicker = 268964425
+
+/// `GDK_KEY_End`.
+let keyEnd = 65367
+
+/// `GDK_KEY_Eogonek`.
+let keyEogonek = 458
+
+/// `GDK_KEY_Escape`.
+let keyEscape = 65307
+
+/// `GDK_KEY_Etilde`.
+let keyEtilde = 16785084
+
+/// `GDK_KEY_EuroSign`.
+let keyEurosign = 8364
+
+/// `GDK_KEY_Excel`.
+let keyExcel = 269025116
+
+/// `GDK_KEY_Execute`.
+let keyExecute = 65378
+
+/// `GDK_KEY_Explorer`.
+let keyExplorer = 269025117
+
+/// `GDK_KEY_F`.
+let keyF = 70
+
+/// `GDK_KEY_F1`.
+let keyF1 = 65470
+
+/// `GDK_KEY_F10`.
+let keyF10 = 65479
+
+/// `GDK_KEY_F11`.
+let keyF11 = 65480
+
+/// `GDK_KEY_F12`.
+let keyF12 = 65481
+
+/// `GDK_KEY_F13`.
+let keyF13 = 65482
+
+/// `GDK_KEY_F14`.
+let keyF14 = 65483
+
+/// `GDK_KEY_F15`.
+let keyF15 = 65484
+
+/// `GDK_KEY_F16`.
+let keyF16 = 65485
+
+/// `GDK_KEY_F17`.
+let keyF17 = 65486
+
+/// `GDK_KEY_F18`.
+let keyF18 = 65487
+
+/// `GDK_KEY_F19`.
+let keyF19 = 65488
+
+/// `GDK_KEY_F2`.
+let keyF2 = 65471
+
+/// `GDK_KEY_F20`.
+let keyF20 = 65489
+
+/// `GDK_KEY_F21`.
+let keyF21 = 65490
+
+/// `GDK_KEY_F22`.
+let keyF22 = 65491
+
+/// `GDK_KEY_F23`.
+let keyF23 = 65492
+
+/// `GDK_KEY_F24`.
+let keyF24 = 65493
+
+/// `GDK_KEY_F25`.
+let keyF25 = 65494
+
+/// `GDK_KEY_F26`.
+let keyF26 = 65495
+
+/// `GDK_KEY_F27`.
+let keyF27 = 65496
+
+/// `GDK_KEY_F28`.
+let keyF28 = 65497
+
+/// `GDK_KEY_F29`.
+let keyF29 = 65498
+
+/// `GDK_KEY_F3`.
+let keyF3 = 65472
+
+/// `GDK_KEY_F30`.
+let keyF30 = 65499
+
+/// `GDK_KEY_F31`.
+let keyF31 = 65500
+
+/// `GDK_KEY_F32`.
+let keyF32 = 65501
+
+/// `GDK_KEY_F33`.
+let keyF33 = 65502
+
+/// `GDK_KEY_F34`.
+let keyF34 = 65503
+
+/// `GDK_KEY_F35`.
+let keyF35 = 65504
+
+/// `GDK_KEY_F4`.
+let keyF4 = 65473
+
+/// `GDK_KEY_F5`.
+let keyF5 = 65474
+
+/// `GDK_KEY_F6`.
+let keyF6 = 65475
+
+/// `GDK_KEY_F7`.
+let keyF7 = 65476
+
+/// `GDK_KEY_F8`.
+let keyF8 = 65477
+
+/// `GDK_KEY_F9`.
+let keyF9 = 65478
+
+/// `GDK_KEY_FFrancSign`.
+let keyFfrancsign = 16785571
+
+/// `GDK_KEY_Fabovedot`.
+let keyFabovedot = 16784926
+
+/// `GDK_KEY_Farsi_0`.
+let keyFarsi0 = 16778992
+
+/// `GDK_KEY_Farsi_1`.
+let keyFarsi1 = 16778993
+
+/// `GDK_KEY_Farsi_2`.
+let keyFarsi2 = 16778994
+
+/// `GDK_KEY_Farsi_3`.
+let keyFarsi3 = 16778995
+
+/// `GDK_KEY_Farsi_4`.
+let keyFarsi4 = 16778996
+
+/// `GDK_KEY_Farsi_5`.
+let keyFarsi5 = 16778997
+
+/// `GDK_KEY_Farsi_6`.
+let keyFarsi6 = 16778998
+
+/// `GDK_KEY_Farsi_7`.
+let keyFarsi7 = 16778999
+
+/// `GDK_KEY_Farsi_8`.
+let keyFarsi8 = 16779000
+
+/// `GDK_KEY_Farsi_9`.
+let keyFarsi9 = 16779001
+
+/// `GDK_KEY_Farsi_yeh`.
+let keyFarsiYeh = 16778956
+
+/// `GDK_KEY_FastReverse`.
+let keyFastreverse = 268964469
+
+/// `GDK_KEY_Favorites`.
+let keyFavorites = 269025072
+
+/// `GDK_KEY_Finance`.
+let keyFinance = 269025084
+
+/// `GDK_KEY_Find`.
+let keyFind = 65384
+
+/// `GDK_KEY_First_Virtual_Screen`.
+let keyFirstVirtualScreen = 65232
+
+/// `GDK_KEY_FishingChart`.
+let keyFishingchart = 268964481
+
+/// `GDK_KEY_Fn`.
+let keyFn = 268964304
+
+/// `GDK_KEY_FnRightShift`.
+let keyFnrightshift = 268964325
+
+/// `GDK_KEY_Fn_Esc`.
+let keyFnEsc = 268964305
+
+/// `GDK_KEY_Forward`.
+let keyForward = 269025063
+
+/// `GDK_KEY_FrameBack`.
+let keyFrameback = 269025181
+
+/// `GDK_KEY_FrameForward`.
+let keyFrameforward = 269025182
+
+/// `GDK_KEY_FullScreen`.
+let keyFullscreen = 269025208
+
+/// `GDK_KEY_G`.
+let keyG = 71
+
+/// `GDK_KEY_Gabovedot`.
+let keyGabovedot = 725
+
+/// `GDK_KEY_Game`.
+let keyGame = 269025118
+
+/// `GDK_KEY_Gbreve`.
+let keyGbreve = 683
+
+/// `GDK_KEY_Gcaron`.
+let keyGcaron = 16777702
+
+/// `GDK_KEY_Gcedilla`.
+let keyGcedilla = 939
+
+/// `GDK_KEY_Gcircumflex`.
+let keyGcircumflex = 728
+
+/// `GDK_KEY_Georgian_an`.
+let keyGeorgianAn = 16781520
+
+/// `GDK_KEY_Georgian_ban`.
+let keyGeorgianBan = 16781521
+
+/// `GDK_KEY_Georgian_can`.
+let keyGeorgianCan = 16781546
+
+/// `GDK_KEY_Georgian_char`.
+let keyGeorgianChar = 16781549
+
+/// `GDK_KEY_Georgian_chin`.
+let keyGeorgianChin = 16781545
+
+/// `GDK_KEY_Georgian_cil`.
+let keyGeorgianCil = 16781548
+
+/// `GDK_KEY_Georgian_don`.
+let keyGeorgianDon = 16781523
+
+/// `GDK_KEY_Georgian_en`.
+let keyGeorgianEn = 16781524
+
+/// `GDK_KEY_Georgian_fi`.
+let keyGeorgianFi = 16781558
+
+/// `GDK_KEY_Georgian_gan`.
+let keyGeorgianGan = 16781522
+
+/// `GDK_KEY_Georgian_ghan`.
+let keyGeorgianGhan = 16781542
+
+/// `GDK_KEY_Georgian_hae`.
+let keyGeorgianHae = 16781552
+
+/// `GDK_KEY_Georgian_har`.
+let keyGeorgianHar = 16781556
+
+/// `GDK_KEY_Georgian_he`.
+let keyGeorgianHe = 16781553
+
+/// `GDK_KEY_Georgian_hie`.
+let keyGeorgianHie = 16781554
+
+/// `GDK_KEY_Georgian_hoe`.
+let keyGeorgianHoe = 16781557
+
+/// `GDK_KEY_Georgian_in`.
+let keyGeorgianIn = 16781528
+
+/// `GDK_KEY_Georgian_jhan`.
+let keyGeorgianJhan = 16781551
+
+/// `GDK_KEY_Georgian_jil`.
+let keyGeorgianJil = 16781547
+
+/// `GDK_KEY_Georgian_kan`.
+let keyGeorgianKan = 16781529
+
+/// `GDK_KEY_Georgian_khar`.
+let keyGeorgianKhar = 16781541
+
+/// `GDK_KEY_Georgian_las`.
+let keyGeorgianLas = 16781530
+
+/// `GDK_KEY_Georgian_man`.
+let keyGeorgianMan = 16781531
+
+/// `GDK_KEY_Georgian_nar`.
+let keyGeorgianNar = 16781532
+
+/// `GDK_KEY_Georgian_on`.
+let keyGeorgianOn = 16781533
+
+/// `GDK_KEY_Georgian_par`.
+let keyGeorgianPar = 16781534
+
+/// `GDK_KEY_Georgian_phar`.
+let keyGeorgianPhar = 16781540
+
+/// `GDK_KEY_Georgian_qar`.
+let keyGeorgianQar = 16781543
+
+/// `GDK_KEY_Georgian_rae`.
+let keyGeorgianRae = 16781536
+
+/// `GDK_KEY_Georgian_san`.
+let keyGeorgianSan = 16781537
+
+/// `GDK_KEY_Georgian_shin`.
+let keyGeorgianShin = 16781544
+
+/// `GDK_KEY_Georgian_tan`.
+let keyGeorgianTan = 16781527
+
+/// `GDK_KEY_Georgian_tar`.
+let keyGeorgianTar = 16781538
+
+/// `GDK_KEY_Georgian_un`.
+let keyGeorgianUn = 16781539
+
+/// `GDK_KEY_Georgian_vin`.
+let keyGeorgianVin = 16781525
+
+/// `GDK_KEY_Georgian_we`.
+let keyGeorgianWe = 16781555
+
+/// `GDK_KEY_Georgian_xan`.
+let keyGeorgianXan = 16781550
+
+/// `GDK_KEY_Georgian_zen`.
+let keyGeorgianZen = 16781526
+
+/// `GDK_KEY_Georgian_zhar`.
+let keyGeorgianZhar = 16781535
+
+/// `GDK_KEY_Go`.
+let keyGo = 269025119
+
+/// `GDK_KEY_GraphicsEditor`.
+let keyGraphicseditor = 268964264
+
+/// `GDK_KEY_Greek_ALPHA`.
+let keyGreekAlpha = 1985
+
+/// `GDK_KEY_Greek_ALPHAaccent`.
+let keyGreekAlphaaccent = 1953
+
+/// `GDK_KEY_Greek_BETA`.
+let keyGreekBeta = 1986
+
+/// `GDK_KEY_Greek_CHI`.
+let keyGreekChi = 2007
+
+/// `GDK_KEY_Greek_DELTA`.
+let keyGreekDelta = 1988
+
+/// `GDK_KEY_Greek_EPSILON`.
+let keyGreekEpsilon = 1989
+
+/// `GDK_KEY_Greek_EPSILONaccent`.
+let keyGreekEpsilonaccent = 1954
+
+/// `GDK_KEY_Greek_ETA`.
+let keyGreekEta = 1991
+
+/// `GDK_KEY_Greek_ETAaccent`.
+let keyGreekEtaaccent = 1955
+
+/// `GDK_KEY_Greek_GAMMA`.
+let keyGreekGamma = 1987
+
+/// `GDK_KEY_Greek_IOTA`.
+let keyGreekIota = 1993
+
+/// `GDK_KEY_Greek_IOTAaccent`.
+let keyGreekIotaaccent = 1956
+
+/// `GDK_KEY_Greek_IOTAdiaeresis`.
+let keyGreekIotadiaeresis = 1957
+
+/// `GDK_KEY_Greek_IOTAdieresis`.
+let keyGreekIotadieresis = 1957
+
+/// `GDK_KEY_Greek_KAPPA`.
+let keyGreekKappa = 1994
+
+/// `GDK_KEY_Greek_LAMBDA`.
+let keyGreekLambda = 1995
+
+/// `GDK_KEY_Greek_LAMDA`.
+let keyGreekLamda = 1995
+
+/// `GDK_KEY_Greek_MU`.
+let keyGreekMu = 1996
+
+/// `GDK_KEY_Greek_NU`.
+let keyGreekNu = 1997
+
+/// `GDK_KEY_Greek_OMEGA`.
+let keyGreekOmega = 2009
+
+/// `GDK_KEY_Greek_OMEGAaccent`.
+let keyGreekOmegaaccent = 1963
+
+/// `GDK_KEY_Greek_OMICRON`.
+let keyGreekOmicron = 1999
+
+/// `GDK_KEY_Greek_OMICRONaccent`.
+let keyGreekOmicronaccent = 1959
+
+/// `GDK_KEY_Greek_PHI`.
+let keyGreekPhi = 2006
+
+/// `GDK_KEY_Greek_PI`.
+let keyGreekPi = 2000
+
+/// `GDK_KEY_Greek_PSI`.
+let keyGreekPsi = 2008
+
+/// `GDK_KEY_Greek_RHO`.
+let keyGreekRho = 2001
+
+/// `GDK_KEY_Greek_SIGMA`.
+let keyGreekSigma = 2002
+
+/// `GDK_KEY_Greek_TAU`.
+let keyGreekTau = 2004
+
+/// `GDK_KEY_Greek_THETA`.
+let keyGreekTheta = 1992
+
+/// `GDK_KEY_Greek_UPSILON`.
+let keyGreekUpsilon = 2005
+
+/// `GDK_KEY_Greek_UPSILONaccent`.
+let keyGreekUpsilonaccent = 1960
+
+/// `GDK_KEY_Greek_UPSILONdieresis`.
+let keyGreekUpsilondieresis = 1961
+
+/// `GDK_KEY_Greek_XI`.
+let keyGreekXi = 1998
+
+/// `GDK_KEY_Greek_ZETA`.
+let keyGreekZeta = 1990
+
+/// `GDK_KEY_Greek_accentdieresis`.
+let keyGreekAccentdieresis = 1966
+
+/// `GDK_KEY_Greek_finalsmallsigma`.
+let keyGreekFinalsmallsigma = 2035
+
+/// `GDK_KEY_Greek_horizbar`.
+let keyGreekHorizbar = 1967
+
+/// `GDK_KEY_Greek_iotaaccentdieresis`.
+let keyGreekIotaaccentdieresis = 1974
+
+/// `GDK_KEY_Greek_switch`.
+let keyGreekSwitch = 65406
+
+/// `GDK_KEY_Greek_upsilonaccentdieresis`.
+let keyGreekUpsilonaccentdieresis = 1978
+
+/// `GDK_KEY_Green`.
+let keyGreen = 269025188
+
+/// `GDK_KEY_H`.
+let keyH = 72
+
+/// `GDK_KEY_Hangul`.
+let keyHangul = 65329
+
+/// `GDK_KEY_Hangul_A`.
+let keyHangulA = 3775
+
+/// `GDK_KEY_Hangul_AE`.
+let keyHangulAe = 3776
+
+/// `GDK_KEY_Hangul_AraeA`.
+let keyHangulAraea = 3830
+
+/// `GDK_KEY_Hangul_AraeAE`.
+let keyHangulAraeae = 3831
+
+/// `GDK_KEY_Hangul_Banja`.
+let keyHangulBanja = 65337
+
+/// `GDK_KEY_Hangul_Cieuc`.
+let keyHangulCieuc = 3770
+
+/// `GDK_KEY_Hangul_Codeinput`.
+let keyHangulCodeinput = 65335
+
+/// `GDK_KEY_Hangul_Dikeud`.
+let keyHangulDikeud = 3751
+
+/// `GDK_KEY_Hangul_E`.
+let keyHangulE = 3780
+
+/// `GDK_KEY_Hangul_EO`.
+let keyHangulEo = 3779
+
+/// `GDK_KEY_Hangul_EU`.
+let keyHangulEu = 3793
+
+/// `GDK_KEY_Hangul_End`.
+let keyHangulEnd = 65331
+
+/// `GDK_KEY_Hangul_Hanja`.
+let keyHangulHanja = 65332
+
+/// `GDK_KEY_Hangul_Hieuh`.
+let keyHangulHieuh = 3774
+
+/// `GDK_KEY_Hangul_I`.
+let keyHangulI = 3795
+
+/// `GDK_KEY_Hangul_Ieung`.
+let keyHangulIeung = 3767
+
+/// `GDK_KEY_Hangul_J_Cieuc`.
+let keyHangulJCieuc = 3818
+
+/// `GDK_KEY_Hangul_J_Dikeud`.
+let keyHangulJDikeud = 3802
+
+/// `GDK_KEY_Hangul_J_Hieuh`.
+let keyHangulJHieuh = 3822
+
+/// `GDK_KEY_Hangul_J_Ieung`.
+let keyHangulJIeung = 3816
+
+/// `GDK_KEY_Hangul_J_Jieuj`.
+let keyHangulJJieuj = 3817
+
+/// `GDK_KEY_Hangul_J_Khieuq`.
+let keyHangulJKhieuq = 3819
+
+/// `GDK_KEY_Hangul_J_Kiyeog`.
+let keyHangulJKiyeog = 3796
+
+/// `GDK_KEY_Hangul_J_KiyeogSios`.
+let keyHangulJKiyeogsios = 3798
+
+/// `GDK_KEY_Hangul_J_KkogjiDalrinIeung`.
+let keyHangulJKkogjidalrinieung = 3833
+
+/// `GDK_KEY_Hangul_J_Mieum`.
+let keyHangulJMieum = 3811
+
+/// `GDK_KEY_Hangul_J_Nieun`.
+let keyHangulJNieun = 3799
+
+/// `GDK_KEY_Hangul_J_NieunHieuh`.
+let keyHangulJNieunhieuh = 3801
+
+/// `GDK_KEY_Hangul_J_NieunJieuj`.
+let keyHangulJNieunjieuj = 3800
+
+/// `GDK_KEY_Hangul_J_PanSios`.
+let keyHangulJPansios = 3832
+
+/// `GDK_KEY_Hangul_J_Phieuf`.
+let keyHangulJPhieuf = 3821
+
+/// `GDK_KEY_Hangul_J_Pieub`.
+let keyHangulJPieub = 3812
+
+/// `GDK_KEY_Hangul_J_PieubSios`.
+let keyHangulJPieubsios = 3813
+
+/// `GDK_KEY_Hangul_J_Rieul`.
+let keyHangulJRieul = 3803
+
+/// `GDK_KEY_Hangul_J_RieulHieuh`.
+let keyHangulJRieulhieuh = 3810
+
+/// `GDK_KEY_Hangul_J_RieulKiyeog`.
+let keyHangulJRieulkiyeog = 3804
+
+/// `GDK_KEY_Hangul_J_RieulMieum`.
+let keyHangulJRieulmieum = 3805
+
+/// `GDK_KEY_Hangul_J_RieulPhieuf`.
+let keyHangulJRieulphieuf = 3809
+
+/// `GDK_KEY_Hangul_J_RieulPieub`.
+let keyHangulJRieulpieub = 3806
+
+/// `GDK_KEY_Hangul_J_RieulSios`.
+let keyHangulJRieulsios = 3807
+
+/// `GDK_KEY_Hangul_J_RieulTieut`.
+let keyHangulJRieultieut = 3808
+
+/// `GDK_KEY_Hangul_J_Sios`.
+let keyHangulJSios = 3814
+
+/// `GDK_KEY_Hangul_J_SsangKiyeog`.
+let keyHangulJSsangkiyeog = 3797
+
+/// `GDK_KEY_Hangul_J_SsangSios`.
+let keyHangulJSsangsios = 3815
+
+/// `GDK_KEY_Hangul_J_Tieut`.
+let keyHangulJTieut = 3820
+
+/// `GDK_KEY_Hangul_J_YeorinHieuh`.
+let keyHangulJYeorinhieuh = 3834
+
+/// `GDK_KEY_Hangul_Jamo`.
+let keyHangulJamo = 65333
+
+/// `GDK_KEY_Hangul_Jeonja`.
+let keyHangulJeonja = 65336
+
+/// `GDK_KEY_Hangul_Jieuj`.
+let keyHangulJieuj = 3768
+
+/// `GDK_KEY_Hangul_Khieuq`.
+let keyHangulKhieuq = 3771
+
+/// `GDK_KEY_Hangul_Kiyeog`.
+let keyHangulKiyeog = 3745
+
+/// `GDK_KEY_Hangul_KiyeogSios`.
+let keyHangulKiyeogsios = 3747
+
+/// `GDK_KEY_Hangul_KkogjiDalrinIeung`.
+let keyHangulKkogjidalrinieung = 3827
+
+/// `GDK_KEY_Hangul_Mieum`.
+let keyHangulMieum = 3761
+
+/// `GDK_KEY_Hangul_MultipleCandidate`.
+let keyHangulMultiplecandidate = 65341
+
+/// `GDK_KEY_Hangul_Nieun`.
+let keyHangulNieun = 3748
+
+/// `GDK_KEY_Hangul_NieunHieuh`.
+let keyHangulNieunhieuh = 3750
+
+/// `GDK_KEY_Hangul_NieunJieuj`.
+let keyHangulNieunjieuj = 3749
+
+/// `GDK_KEY_Hangul_O`.
+let keyHangulO = 3783
+
+/// `GDK_KEY_Hangul_OE`.
+let keyHangulOe = 3786
+
+/// `GDK_KEY_Hangul_PanSios`.
+let keyHangulPansios = 3826
+
+/// `GDK_KEY_Hangul_Phieuf`.
+let keyHangulPhieuf = 3773
+
+/// `GDK_KEY_Hangul_Pieub`.
+let keyHangulPieub = 3762
+
+/// `GDK_KEY_Hangul_PieubSios`.
+let keyHangulPieubsios = 3764
+
+/// `GDK_KEY_Hangul_PostHanja`.
+let keyHangulPosthanja = 65339
+
+/// `GDK_KEY_Hangul_PreHanja`.
+let keyHangulPrehanja = 65338
+
+/// `GDK_KEY_Hangul_PreviousCandidate`.
+let keyHangulPreviouscandidate = 65342
+
+/// `GDK_KEY_Hangul_Rieul`.
+let keyHangulRieul = 3753
+
+/// `GDK_KEY_Hangul_RieulHieuh`.
+let keyHangulRieulhieuh = 3760
+
+/// `GDK_KEY_Hangul_RieulKiyeog`.
+let keyHangulRieulkiyeog = 3754
+
+/// `GDK_KEY_Hangul_RieulMieum`.
+let keyHangulRieulmieum = 3755
+
+/// `GDK_KEY_Hangul_RieulPhieuf`.
+let keyHangulRieulphieuf = 3759
+
+/// `GDK_KEY_Hangul_RieulPieub`.
+let keyHangulRieulpieub = 3756
+
+/// `GDK_KEY_Hangul_RieulSios`.
+let keyHangulRieulsios = 3757
+
+/// `GDK_KEY_Hangul_RieulTieut`.
+let keyHangulRieultieut = 3758
+
+/// `GDK_KEY_Hangul_RieulYeorinHieuh`.
+let keyHangulRieulyeorinhieuh = 3823
+
+/// `GDK_KEY_Hangul_Romaja`.
+let keyHangulRomaja = 65334
+
+/// `GDK_KEY_Hangul_SingleCandidate`.
+let keyHangulSinglecandidate = 65340
+
+/// `GDK_KEY_Hangul_Sios`.
+let keyHangulSios = 3765
+
+/// `GDK_KEY_Hangul_Special`.
+let keyHangulSpecial = 65343
+
+/// `GDK_KEY_Hangul_SsangDikeud`.
+let keyHangulSsangdikeud = 3752
+
+/// `GDK_KEY_Hangul_SsangJieuj`.
+let keyHangulSsangjieuj = 3769
+
+/// `GDK_KEY_Hangul_SsangKiyeog`.
+let keyHangulSsangkiyeog = 3746
+
+/// `GDK_KEY_Hangul_SsangPieub`.
+let keyHangulSsangpieub = 3763
+
+/// `GDK_KEY_Hangul_SsangSios`.
+let keyHangulSsangsios = 3766
+
+/// `GDK_KEY_Hangul_Start`.
+let keyHangulStart = 65330
+
+/// `GDK_KEY_Hangul_SunkyeongeumMieum`.
+let keyHangulSunkyeongeummieum = 3824
+
+/// `GDK_KEY_Hangul_SunkyeongeumPhieuf`.
+let keyHangulSunkyeongeumphieuf = 3828
+
+/// `GDK_KEY_Hangul_SunkyeongeumPieub`.
+let keyHangulSunkyeongeumpieub = 3825
+
+/// `GDK_KEY_Hangul_Tieut`.
+let keyHangulTieut = 3772
+
+/// `GDK_KEY_Hangul_U`.
+let keyHangulU = 3788
+
+/// `GDK_KEY_Hangul_WA`.
+let keyHangulWa = 3784
+
+/// `GDK_KEY_Hangul_WAE`.
+let keyHangulWae = 3785
+
+/// `GDK_KEY_Hangul_WE`.
+let keyHangulWe = 3790
+
+/// `GDK_KEY_Hangul_WEO`.
+let keyHangulWeo = 3789
+
+/// `GDK_KEY_Hangul_WI`.
+let keyHangulWi = 3791
+
+/// `GDK_KEY_Hangul_YA`.
+let keyHangulYa = 3777
+
+/// `GDK_KEY_Hangul_YAE`.
+let keyHangulYae = 3778
+
+/// `GDK_KEY_Hangul_YE`.
+let keyHangulYe = 3782
+
+/// `GDK_KEY_Hangul_YEO`.
+let keyHangulYeo = 3781
+
+/// `GDK_KEY_Hangul_YI`.
+let keyHangulYi = 3794
+
+/// `GDK_KEY_Hangul_YO`.
+let keyHangulYo = 3787
+
+/// `GDK_KEY_Hangul_YU`.
+let keyHangulYu = 3792
+
+/// `GDK_KEY_Hangul_YeorinHieuh`.
+let keyHangulYeorinhieuh = 3829
+
+/// `GDK_KEY_Hangul_switch`.
+let keyHangulSwitch = 65406
+
+/// `GDK_KEY_HangupPhone`.
+let keyHangupphone = 268964286
+
+/// `GDK_KEY_Hankaku`.
+let keyHankaku = 65321
+
+/// `GDK_KEY_Hcircumflex`.
+let keyHcircumflex = 678
+
+/// `GDK_KEY_Hebrew_switch`.
+let keyHebrewSwitch = 65406
+
+/// `GDK_KEY_Help`.
+let keyHelp = 65386
+
+/// `GDK_KEY_Henkan`.
+let keyHenkan = 65315
+
+/// `GDK_KEY_Henkan_Mode`.
+let keyHenkanMode = 65315
+
+/// `GDK_KEY_Hibernate`.
+let keyHibernate = 269025192
+
+/// `GDK_KEY_Hiragana`.
+let keyHiragana = 65317
+
+/// `GDK_KEY_Hiragana_Katakana`.
+let keyHiraganaKatakana = 65319
+
+/// `GDK_KEY_History`.
+let keyHistory = 269025079
+
+/// `GDK_KEY_Home`.
+let keyHome = 65360
+
+/// `GDK_KEY_HomePage`.
+let keyHomepage = 269025048
+
+/// `GDK_KEY_HotLinks`.
+let keyHotlinks = 269025082
+
+/// `GDK_KEY_Hstroke`.
+let keyHstroke = 673
+
+/// `GDK_KEY_Hyper_L`.
+let keyHyperL = 65517
+
+/// `GDK_KEY_Hyper_R`.
+let keyHyperR = 65518
+
+/// `GDK_KEY_I`.
+let keyI = 73
+
+/// `GDK_KEY_ISO_Center_Object`.
+let keyIsoCenterObject = 65075
+
+/// `GDK_KEY_ISO_Continuous_Underline`.
+let keyIsoContinuousUnderline = 65072
+
+/// `GDK_KEY_ISO_Discontinuous_Underline`.
+let keyIsoDiscontinuousUnderline = 65073
+
+/// `GDK_KEY_ISO_Emphasize`.
+let keyIsoEmphasize = 65074
+
+/// `GDK_KEY_ISO_Enter`.
+let keyIsoEnter = 65076
+
+/// `GDK_KEY_ISO_Fast_Cursor_Down`.
+let keyIsoFastCursorDown = 65071
+
+/// `GDK_KEY_ISO_Fast_Cursor_Left`.
+let keyIsoFastCursorLeft = 65068
+
+/// `GDK_KEY_ISO_Fast_Cursor_Right`.
+let keyIsoFastCursorRight = 65069
+
+/// `GDK_KEY_ISO_Fast_Cursor_Up`.
+let keyIsoFastCursorUp = 65070
+
+/// `GDK_KEY_ISO_First_Group`.
+let keyIsoFirstGroup = 65036
+
+/// `GDK_KEY_ISO_First_Group_Lock`.
+let keyIsoFirstGroupLock = 65037
+
+/// `GDK_KEY_ISO_Group_Latch`.
+let keyIsoGroupLatch = 65030
+
+/// `GDK_KEY_ISO_Group_Lock`.
+let keyIsoGroupLock = 65031
+
+/// `GDK_KEY_ISO_Group_Shift`.
+let keyIsoGroupShift = 65406
+
+/// `GDK_KEY_ISO_Last_Group`.
+let keyIsoLastGroup = 65038
+
+/// `GDK_KEY_ISO_Last_Group_Lock`.
+let keyIsoLastGroupLock = 65039
+
+/// `GDK_KEY_ISO_Left_Tab`.
+let keyIsoLeftTab = 65056
+
+/// `GDK_KEY_ISO_Level2_Latch`.
+let keyIsoLevel2Latch = 65026
+
+/// `GDK_KEY_ISO_Level3_Latch`.
+let keyIsoLevel3Latch = 65028
+
+/// `GDK_KEY_ISO_Level3_Lock`.
+let keyIsoLevel3Lock = 65029
+
+/// `GDK_KEY_ISO_Level3_Shift`.
+let keyIsoLevel3Shift = 65027
+
+/// `GDK_KEY_ISO_Level5_Latch`.
+let keyIsoLevel5Latch = 65042
+
+/// `GDK_KEY_ISO_Level5_Lock`.
+let keyIsoLevel5Lock = 65043
+
+/// `GDK_KEY_ISO_Level5_Shift`.
+let keyIsoLevel5Shift = 65041
+
+/// `GDK_KEY_ISO_Lock`.
+let keyIsoLock = 65025
+
+/// `GDK_KEY_ISO_Move_Line_Down`.
+let keyIsoMoveLineDown = 65058
+
+/// `GDK_KEY_ISO_Move_Line_Up`.
+let keyIsoMoveLineUp = 65057
+
+/// `GDK_KEY_ISO_Next_Group`.
+let keyIsoNextGroup = 65032
+
+/// `GDK_KEY_ISO_Next_Group_Lock`.
+let keyIsoNextGroupLock = 65033
+
+/// `GDK_KEY_ISO_Partial_Line_Down`.
+let keyIsoPartialLineDown = 65060
+
+/// `GDK_KEY_ISO_Partial_Line_Up`.
+let keyIsoPartialLineUp = 65059
+
+/// `GDK_KEY_ISO_Partial_Space_Left`.
+let keyIsoPartialSpaceLeft = 65061
+
+/// `GDK_KEY_ISO_Partial_Space_Right`.
+let keyIsoPartialSpaceRight = 65062
+
+/// `GDK_KEY_ISO_Prev_Group`.
+let keyIsoPrevGroup = 65034
+
+/// `GDK_KEY_ISO_Prev_Group_Lock`.
+let keyIsoPrevGroupLock = 65035
+
+/// `GDK_KEY_ISO_Release_Both_Margins`.
+let keyIsoReleaseBothMargins = 65067
+
+/// `GDK_KEY_ISO_Release_Margin_Left`.
+let keyIsoReleaseMarginLeft = 65065
+
+/// `GDK_KEY_ISO_Release_Margin_Right`.
+let keyIsoReleaseMarginRight = 65066
+
+/// `GDK_KEY_ISO_Set_Margin_Left`.
+let keyIsoSetMarginLeft = 65063
+
+/// `GDK_KEY_ISO_Set_Margin_Right`.
+let keyIsoSetMarginRight = 65064
+
+/// `GDK_KEY_Iabovedot`.
+let keyIabovedot = 681
+
+/// `GDK_KEY_Iacute`.
+let keyIacute = 205
+
+/// `GDK_KEY_Ibelowdot`.
+let keyIbelowdot = 16785098
+
+/// `GDK_KEY_Ibreve`.
+let keyIbreve = 16777516
+
+/// `GDK_KEY_Icircumflex`.
+let keyIcircumflex = 206
+
+/// `GDK_KEY_Idiaeresis`.
+let keyIdiaeresis = 207
+
+/// `GDK_KEY_Igrave`.
+let keyIgrave = 204
+
+/// `GDK_KEY_Ihook`.
+let keyIhook = 16785096
+
+/// `GDK_KEY_Imacron`.
+let keyImacron = 975
+
+/// `GDK_KEY_Images`.
+let keyImages = 268964282
+
+/// `GDK_KEY_Info`.
+let keyInfo = 268964198
+
+/// `GDK_KEY_Insert`.
+let keyInsert = 65379
+
+/// `GDK_KEY_Iogonek`.
+let keyIogonek = 967
+
+/// `GDK_KEY_Itilde`.
+let keyItilde = 933
+
+/// `GDK_KEY_J`.
+let keyJ = 74
+
+/// `GDK_KEY_Jcircumflex`.
+let keyJcircumflex = 684
+
+/// `GDK_KEY_Journal`.
+let keyJournal = 268964418
+
+/// `GDK_KEY_K`.
+let keyK = 75
+
+/// `GDK_KEY_KP_0`.
+let keyKp0 = 65456
+
+/// `GDK_KEY_KP_1`.
+let keyKp1 = 65457
+
+/// `GDK_KEY_KP_2`.
+let keyKp2 = 65458
+
+/// `GDK_KEY_KP_3`.
+let keyKp3 = 65459
+
+/// `GDK_KEY_KP_4`.
+let keyKp4 = 65460
+
+/// `GDK_KEY_KP_5`.
+let keyKp5 = 65461
+
+/// `GDK_KEY_KP_6`.
+let keyKp6 = 65462
+
+/// `GDK_KEY_KP_7`.
+let keyKp7 = 65463
+
+/// `GDK_KEY_KP_8`.
+let keyKp8 = 65464
+
+/// `GDK_KEY_KP_9`.
+let keyKp9 = 65465
+
+/// `GDK_KEY_KP_Add`.
+let keyKpAdd = 65451
+
+/// `GDK_KEY_KP_Begin`.
+let keyKpBegin = 65437
+
+/// `GDK_KEY_KP_Decimal`.
+let keyKpDecimal = 65454
+
+/// `GDK_KEY_KP_Delete`.
+let keyKpDelete = 65439
+
+/// `GDK_KEY_KP_Divide`.
+let keyKpDivide = 65455
+
+/// `GDK_KEY_KP_Down`.
+let keyKpDown = 65433
+
+/// `GDK_KEY_KP_End`.
+let keyKpEnd = 65436
+
+/// `GDK_KEY_KP_Enter`.
+let keyKpEnter = 65421
+
+/// `GDK_KEY_KP_Equal`.
+let keyKpEqual = 65469
+
+/// `GDK_KEY_KP_F1`.
+let keyKpF1 = 65425
+
+/// `GDK_KEY_KP_F2`.
+let keyKpF2 = 65426
+
+/// `GDK_KEY_KP_F3`.
+let keyKpF3 = 65427
+
+/// `GDK_KEY_KP_F4`.
+let keyKpF4 = 65428
+
+/// `GDK_KEY_KP_Home`.
+let keyKpHome = 65429
+
+/// `GDK_KEY_KP_Insert`.
+let keyKpInsert = 65438
+
+/// `GDK_KEY_KP_Left`.
+let keyKpLeft = 65430
+
+/// `GDK_KEY_KP_Multiply`.
+let keyKpMultiply = 65450
+
+/// `GDK_KEY_KP_Next`.
+let keyKpNext = 65435
+
+/// `GDK_KEY_KP_Page_Down`.
+let keyKpPageDown = 65435
+
+/// `GDK_KEY_KP_Page_Up`.
+let keyKpPageUp = 65434
+
+/// `GDK_KEY_KP_Prior`.
+let keyKpPrior = 65434
+
+/// `GDK_KEY_KP_Right`.
+let keyKpRight = 65432
+
+/// `GDK_KEY_KP_Separator`.
+let keyKpSeparator = 65452
+
+/// `GDK_KEY_KP_Space`.
+let keyKpSpace = 65408
+
+/// `GDK_KEY_KP_Subtract`.
+let keyKpSubtract = 65453
+
+/// `GDK_KEY_KP_Tab`.
+let keyKpTab = 65417
+
+/// `GDK_KEY_KP_Up`.
+let keyKpUp = 65431
+
+/// `GDK_KEY_Kana_Lock`.
+let keyKanaLock = 65325
+
+/// `GDK_KEY_Kana_Shift`.
+let keyKanaShift = 65326
+
+/// `GDK_KEY_Kanji`.
+let keyKanji = 65313
+
+/// `GDK_KEY_Kanji_Bangou`.
+let keyKanjiBangou = 65335
+
+/// `GDK_KEY_Katakana`.
+let keyKatakana = 65318
+
+/// `GDK_KEY_KbdBrightnessDown`.
+let keyKbdbrightnessdown = 269025030
+
+/// `GDK_KEY_KbdBrightnessUp`.
+let keyKbdbrightnessup = 269025029
+
+/// `GDK_KEY_KbdInputAssistAccept`.
+let keyKbdinputassistaccept = 268964452
+
+/// `GDK_KEY_KbdInputAssistCancel`.
+let keyKbdinputassistcancel = 268964453
+
+/// `GDK_KEY_KbdInputAssistNext`.
+let keyKbdinputassistnext = 268964449
+
+/// `GDK_KEY_KbdInputAssistNextgroup`.
+let keyKbdinputassistnextgroup = 268964451
+
+/// `GDK_KEY_KbdInputAssistPrev`.
+let keyKbdinputassistprev = 268964448
+
+/// `GDK_KEY_KbdInputAssistPrevgroup`.
+let keyKbdinputassistprevgroup = 268964450
+
+/// `GDK_KEY_KbdLcdMenu1`.
+let keyKbdlcdmenu1 = 268964536
+
+/// `GDK_KEY_KbdLcdMenu2`.
+let keyKbdlcdmenu2 = 268964537
+
+/// `GDK_KEY_KbdLcdMenu3`.
+let keyKbdlcdmenu3 = 268964538
+
+/// `GDK_KEY_KbdLcdMenu4`.
+let keyKbdlcdmenu4 = 268964539
+
+/// `GDK_KEY_KbdLcdMenu5`.
+let keyKbdlcdmenu5 = 268964540
+
+/// `GDK_KEY_KbdLightOnOff`.
+let keyKbdlightonoff = 269025028
+
+/// `GDK_KEY_Kcedilla`.
+let keyKcedilla = 979
+
+/// `GDK_KEY_Keyboard`.
+let keyKeyboard = 269025203
+
+/// `GDK_KEY_Korean_Won`.
+let keyKoreanWon = 3839
+
+/// `GDK_KEY_L`.
+let keyL = 76
+
+/// `GDK_KEY_L1`.
+let keyL1 = 65480
+
+/// `GDK_KEY_L10`.
+let keyL10 = 65489
+
+/// `GDK_KEY_L2`.
+let keyL2 = 65481
+
+/// `GDK_KEY_L3`.
+let keyL3 = 65482
+
+/// `GDK_KEY_L4`.
+let keyL4 = 65483
+
+/// `GDK_KEY_L5`.
+let keyL5 = 65484
+
+/// `GDK_KEY_L6`.
+let keyL6 = 65485
+
+/// `GDK_KEY_L7`.
+let keyL7 = 65486
+
+/// `GDK_KEY_L8`.
+let keyL8 = 65487
+
+/// `GDK_KEY_L9`.
+let keyL9 = 65488
+
+/// `GDK_KEY_Lacute`.
+let keyLacute = 453
+
+/// `GDK_KEY_Last_Virtual_Screen`.
+let keyLastVirtualScreen = 65236
+
+/// `GDK_KEY_Launch0`.
+let keyLaunch0 = 269025088
+
+/// `GDK_KEY_Launch1`.
+let keyLaunch1 = 269025089
+
+/// `GDK_KEY_Launch2`.
+let keyLaunch2 = 269025090
+
+/// `GDK_KEY_Launch3`.
+let keyLaunch3 = 269025091
+
+/// `GDK_KEY_Launch4`.
+let keyLaunch4 = 269025092
+
+/// `GDK_KEY_Launch5`.
+let keyLaunch5 = 269025093
+
+/// `GDK_KEY_Launch6`.
+let keyLaunch6 = 269025094
+
+/// `GDK_KEY_Launch7`.
+let keyLaunch7 = 269025095
+
+/// `GDK_KEY_Launch8`.
+let keyLaunch8 = 269025096
+
+/// `GDK_KEY_Launch9`.
+let keyLaunch9 = 269025097
+
+/// `GDK_KEY_LaunchA`.
+let keyLauncha = 269025098
+
+/// `GDK_KEY_LaunchB`.
+let keyLaunchb = 269025099
+
+/// `GDK_KEY_LaunchC`.
+let keyLaunchc = 269025100
+
+/// `GDK_KEY_LaunchD`.
+let keyLaunchd = 269025101
+
+/// `GDK_KEY_LaunchE`.
+let keyLaunche = 269025102
+
+/// `GDK_KEY_LaunchF`.
+let keyLaunchf = 269025103
+
+/// `GDK_KEY_Lbelowdot`.
+let keyLbelowdot = 16784950
+
+/// `GDK_KEY_Lcaron`.
+let keyLcaron = 421
+
+/// `GDK_KEY_Lcedilla`.
+let keyLcedilla = 934
+
+/// `GDK_KEY_Left`.
+let keyLeft = 65361
+
+/// `GDK_KEY_LeftDown`.
+let keyLeftdown = 268964457
+
+/// `GDK_KEY_LeftUp`.
+let keyLeftup = 268964456
+
+/// `GDK_KEY_LightBulb`.
+let keyLightbulb = 269025077
+
+/// `GDK_KEY_LightsToggle`.
+let keyLightstoggle = 268964382
+
+/// `GDK_KEY_Linefeed`.
+let keyLinefeed = 65290
+
+/// `GDK_KEY_LiraSign`.
+let keyLirasign = 16785572
+
+/// `GDK_KEY_LogGrabInfo`.
+let keyLoggrabinfo = 269024805
+
+/// `GDK_KEY_LogOff`.
+let keyLogoff = 269025121
+
+/// `GDK_KEY_LogWindowTree`.
+let keyLogwindowtree = 269024804
+
+/// `GDK_KEY_Lstroke`.
+let keyLstroke = 419
+
+/// `GDK_KEY_M`.
+let keyM = 77
+
+/// `GDK_KEY_Mabovedot`.
+let keyMabovedot = 16784960
+
+/// `GDK_KEY_Macedonia_DSE`.
+let keyMacedoniaDse = 1717
+
+/// `GDK_KEY_Macedonia_GJE`.
+let keyMacedoniaGje = 1714
+
+/// `GDK_KEY_Macedonia_KJE`.
+let keyMacedoniaKje = 1724
+
+/// `GDK_KEY_Macro1`.
+let keyMacro1 = 268964496
+
+/// `GDK_KEY_Macro10`.
+let keyMacro10 = 268964505
+
+/// `GDK_KEY_Macro11`.
+let keyMacro11 = 268964506
+
+/// `GDK_KEY_Macro12`.
+let keyMacro12 = 268964507
+
+/// `GDK_KEY_Macro13`.
+let keyMacro13 = 268964508
+
+/// `GDK_KEY_Macro14`.
+let keyMacro14 = 268964509
+
+/// `GDK_KEY_Macro15`.
+let keyMacro15 = 268964510
+
+/// `GDK_KEY_Macro16`.
+let keyMacro16 = 268964511
+
+/// `GDK_KEY_Macro17`.
+let keyMacro17 = 268964512
+
+/// `GDK_KEY_Macro18`.
+let keyMacro18 = 268964513
+
+/// `GDK_KEY_Macro19`.
+let keyMacro19 = 268964514
+
+/// `GDK_KEY_Macro2`.
+let keyMacro2 = 268964497
+
+/// `GDK_KEY_Macro20`.
+let keyMacro20 = 268964515
+
+/// `GDK_KEY_Macro21`.
+let keyMacro21 = 268964516
+
+/// `GDK_KEY_Macro22`.
+let keyMacro22 = 268964517
+
+/// `GDK_KEY_Macro23`.
+let keyMacro23 = 268964518
+
+/// `GDK_KEY_Macro24`.
+let keyMacro24 = 268964519
+
+/// `GDK_KEY_Macro25`.
+let keyMacro25 = 268964520
+
+/// `GDK_KEY_Macro26`.
+let keyMacro26 = 268964521
+
+/// `GDK_KEY_Macro27`.
+let keyMacro27 = 268964522
+
+/// `GDK_KEY_Macro28`.
+let keyMacro28 = 268964523
+
+/// `GDK_KEY_Macro29`.
+let keyMacro29 = 268964524
+
+/// `GDK_KEY_Macro3`.
+let keyMacro3 = 268964498
+
+/// `GDK_KEY_Macro30`.
+let keyMacro30 = 268964525
+
+/// `GDK_KEY_Macro4`.
+let keyMacro4 = 268964499
+
+/// `GDK_KEY_Macro5`.
+let keyMacro5 = 268964500
+
+/// `GDK_KEY_Macro6`.
+let keyMacro6 = 268964501
+
+/// `GDK_KEY_Macro7`.
+let keyMacro7 = 268964502
+
+/// `GDK_KEY_Macro8`.
+let keyMacro8 = 268964503
+
+/// `GDK_KEY_Macro9`.
+let keyMacro9 = 268964504
+
+/// `GDK_KEY_MacroPreset1`.
+let keyMacropreset1 = 268964531
+
+/// `GDK_KEY_MacroPreset2`.
+let keyMacropreset2 = 268964532
+
+/// `GDK_KEY_MacroPreset3`.
+let keyMacropreset3 = 268964533
+
+/// `GDK_KEY_MacroPresetCycle`.
+let keyMacropresetcycle = 268964530
+
+/// `GDK_KEY_MacroRecordStart`.
+let keyMacrorecordstart = 268964528
+
+/// `GDK_KEY_MacroRecordStop`.
+let keyMacrorecordstop = 268964529
+
+/// `GDK_KEY_Mae_Koho`.
+let keyMaeKoho = 65342
+
+/// `GDK_KEY_Mail`.
+let keyMail = 269025049
+
+/// `GDK_KEY_MailForward`.
+let keyMailforward = 269025168
+
+/// `GDK_KEY_MarkWaypoint`.
+let keyMarkwaypoint = 268964478
+
+/// `GDK_KEY_Market`.
+let keyMarket = 269025122
+
+/// `GDK_KEY_Massyo`.
+let keyMassyo = 65324
+
+/// `GDK_KEY_MediaRepeat`.
+let keyMediarepeat = 268964279
+
+/// `GDK_KEY_MediaTopMenu`.
+let keyMediatopmenu = 268964459
+
+/// `GDK_KEY_Meeting`.
+let keyMeeting = 269025123
+
+/// `GDK_KEY_Memo`.
+let keyMemo = 269025054
+
+/// `GDK_KEY_Menu`.
+let keyMenu = 65383
+
+/// `GDK_KEY_MenuKB`.
+let keyMenukb = 269025125
+
+/// `GDK_KEY_MenuPB`.
+let keyMenupb = 269025126
+
+/// `GDK_KEY_Messenger`.
+let keyMessenger = 269025166
+
+/// `GDK_KEY_Meta_L`.
+let keyMetaL = 65511
+
+/// `GDK_KEY_Meta_R`.
+let keyMetaR = 65512
+
+/// `GDK_KEY_MillSign`.
+let keyMillsign = 16785573
+
+/// `GDK_KEY_ModeLock`.
+let keyModelock = 269025025
+
+/// `GDK_KEY_Mode_switch`.
+let keyModeSwitch = 65406
+
+/// `GDK_KEY_MonBrightnessCycle`.
+let keyMonbrightnesscycle = 269025031
+
+/// `GDK_KEY_MonBrightnessDown`.
+let keyMonbrightnessdown = 269025027
+
+/// `GDK_KEY_MonBrightnessUp`.
+let keyMonbrightnessup = 269025026
+
+/// `GDK_KEY_MouseKeys_Accel_Enable`.
+let keyMousekeysAccelEnable = 65143
+
+/// `GDK_KEY_MouseKeys_Enable`.
+let keyMousekeysEnable = 65142
+
+/// `GDK_KEY_Muhenkan`.
+let keyMuhenkan = 65314
+
+/// `GDK_KEY_Multi_key`.
+let keyMultiKey = 65312
+
+/// `GDK_KEY_MultipleCandidate`.
+let keyMultiplecandidate = 65341
+
+/// `GDK_KEY_Music`.
+let keyMusic = 269025170
+
+/// `GDK_KEY_MyComputer`.
+let keyMycomputer = 269025075
+
+/// `GDK_KEY_MySites`.
+let keyMysites = 269025127
+
+/// `GDK_KEY_N`.
+let keyN = 78
+
+/// `GDK_KEY_Nacute`.
+let keyNacute = 465
+
+/// `GDK_KEY_NairaSign`.
+let keyNairasign = 16785574
+
+/// `GDK_KEY_NavChart`.
+let keyNavchart = 268964480
+
+/// `GDK_KEY_NavInfo`.
+let keyNavinfo = 268964488
+
+/// `GDK_KEY_Ncaron`.
+let keyNcaron = 466
+
+/// `GDK_KEY_Ncedilla`.
+let keyNcedilla = 977
+
+/// `GDK_KEY_New`.
+let keyNew = 269025128
+
+/// `GDK_KEY_NewSheqelSign`.
+let keyNewsheqelsign = 16785578
+
+/// `GDK_KEY_News`.
+let keyNews = 269025129
+
+/// `GDK_KEY_Next`.
+let keyNext = 65366
+
+/// `GDK_KEY_NextElement`.
+let keyNextelement = 268964475
+
+/// `GDK_KEY_NextFavorite`.
+let keyNextfavorite = 268964464
+
+/// `GDK_KEY_Next_VMode`.
+let keyNextVmode = 269024802
+
+/// `GDK_KEY_Next_Virtual_Screen`.
+let keyNextVirtualScreen = 65234
+
+/// `GDK_KEY_NotificationCenter`.
+let keyNotificationcenter = 268964284
+
+/// `GDK_KEY_Ntilde`.
+let keyNtilde = 209
+
+/// `GDK_KEY_Num_Lock`.
+let keyNumLock = 65407
+
+/// `GDK_KEY_Numeric0`.
+let keyNumeric0 = 268964352
+
+/// `GDK_KEY_Numeric1`.
+let keyNumeric1 = 268964353
+
+/// `GDK_KEY_Numeric11`.
+let keyNumeric11 = 268964460
+
+/// `GDK_KEY_Numeric12`.
+let keyNumeric12 = 268964461
+
+/// `GDK_KEY_Numeric2`.
+let keyNumeric2 = 268964354
+
+/// `GDK_KEY_Numeric3`.
+let keyNumeric3 = 268964355
+
+/// `GDK_KEY_Numeric4`.
+let keyNumeric4 = 268964356
+
+/// `GDK_KEY_Numeric5`.
+let keyNumeric5 = 268964357
+
+/// `GDK_KEY_Numeric6`.
+let keyNumeric6 = 268964358
+
+/// `GDK_KEY_Numeric7`.
+let keyNumeric7 = 268964359
+
+/// `GDK_KEY_Numeric8`.
+let keyNumeric8 = 268964360
+
+/// `GDK_KEY_Numeric9`.
+let keyNumeric9 = 268964361
+
+/// `GDK_KEY_NumericA`.
+let keyNumerica = 268964364
+
+/// `GDK_KEY_NumericB`.
+let keyNumericb = 268964365
+
+/// `GDK_KEY_NumericC`.
+let keyNumericc = 268964366
+
+/// `GDK_KEY_NumericD`.
+let keyNumericd = 268964367
+
+/// `GDK_KEY_NumericPound`.
+let keyNumericpound = 268964363
+
+/// `GDK_KEY_NumericStar`.
+let keyNumericstar = 268964362
+
+/// `GDK_KEY_O`.
+let keyO = 79
+
+/// `GDK_KEY_OE`.
+let keyOe = 5052
+
+/// `GDK_KEY_Oacute`.
+let keyOacute = 211
+
+/// `GDK_KEY_Obarred`.
+let keyObarred = 16777631
+
+/// `GDK_KEY_Obelowdot`.
+let keyObelowdot = 16785100
+
+/// `GDK_KEY_Ocaron`.
+let keyOcaron = 16777681
+
+/// `GDK_KEY_Ocircumflex`.
+let keyOcircumflex = 212
+
+/// `GDK_KEY_Ocircumflexacute`.
+let keyOcircumflexacute = 16785104
+
+/// `GDK_KEY_Ocircumflexbelowdot`.
+let keyOcircumflexbelowdot = 16785112
+
+/// `GDK_KEY_Ocircumflexgrave`.
+let keyOcircumflexgrave = 16785106
+
+/// `GDK_KEY_Ocircumflexhook`.
+let keyOcircumflexhook = 16785108
+
+/// `GDK_KEY_Ocircumflextilde`.
+let keyOcircumflextilde = 16785110
+
+/// `GDK_KEY_Odiaeresis`.
+let keyOdiaeresis = 214
+
+/// `GDK_KEY_Odoubleacute`.
+let keyOdoubleacute = 469
+
+/// `GDK_KEY_OfficeHome`.
+let keyOfficehome = 269025130
+
+/// `GDK_KEY_Ograve`.
+let keyOgrave = 210
+
+/// `GDK_KEY_Ohook`.
+let keyOhook = 16785102
+
+/// `GDK_KEY_Ohorn`.
+let keyOhorn = 16777632
+
+/// `GDK_KEY_Ohornacute`.
+let keyOhornacute = 16785114
+
+/// `GDK_KEY_Ohornbelowdot`.
+let keyOhornbelowdot = 16785122
+
+/// `GDK_KEY_Ohorngrave`.
+let keyOhorngrave = 16785116
+
+/// `GDK_KEY_Ohornhook`.
+let keyOhornhook = 16785118
+
+/// `GDK_KEY_Ohorntilde`.
+let keyOhorntilde = 16785120
+
+/// `GDK_KEY_Omacron`.
+let keyOmacron = 978
+
+/// `GDK_KEY_OnScreenKeyboard`.
+let keyOnscreenkeyboard = 268964472
+
+/// `GDK_KEY_Ooblique`.
+let keyOoblique = 216
+
+/// `GDK_KEY_Open`.
+let keyOpen = 269025131
+
+/// `GDK_KEY_OpenURL`.
+let keyOpenurl = 269025080
+
+/// `GDK_KEY_Option`.
+let keyOption = 269025132
+
+/// `GDK_KEY_Oslash`.
+let keyOslash = 216
+
+/// `GDK_KEY_Otilde`.
+let keyOtilde = 213
+
+/// `GDK_KEY_Overlay1_Enable`.
+let keyOverlay1Enable = 65144
+
+/// `GDK_KEY_Overlay2_Enable`.
+let keyOverlay2Enable = 65145
+
+/// `GDK_KEY_P`.
+let keyP = 80
+
+/// `GDK_KEY_Pabovedot`.
+let keyPabovedot = 16784982
+
+/// `GDK_KEY_Page_Down`.
+let keyPageDown = 65366
+
+/// `GDK_KEY_Page_Up`.
+let keyPageUp = 65365
+
+/// `GDK_KEY_Paste`.
+let keyPaste = 269025133
+
+/// `GDK_KEY_Pause`.
+let keyPause = 65299
+
+/// `GDK_KEY_PauseRecord`.
+let keyPauserecord = 268964466
+
+/// `GDK_KEY_PesetaSign`.
+let keyPesetasign = 16785575
+
+/// `GDK_KEY_Phone`.
+let keyPhone = 269025134
+
+/// `GDK_KEY_PickupPhone`.
+let keyPickupphone = 268964285
+
+/// `GDK_KEY_Pictures`.
+let keyPictures = 269025169
+
+/// `GDK_KEY_Pointer_Accelerate`.
+let keyPointerAccelerate = 65274
+
+/// `GDK_KEY_Pointer_Button1`.
+let keyPointerButton1 = 65257
+
+/// `GDK_KEY_Pointer_Button2`.
+let keyPointerButton2 = 65258
+
+/// `GDK_KEY_Pointer_Button3`.
+let keyPointerButton3 = 65259
+
+/// `GDK_KEY_Pointer_Button4`.
+let keyPointerButton4 = 65260
+
+/// `GDK_KEY_Pointer_Button5`.
+let keyPointerButton5 = 65261
+
+/// `GDK_KEY_Pointer_Button_Dflt`.
+let keyPointerButtonDflt = 65256
+
+/// `GDK_KEY_Pointer_DblClick1`.
+let keyPointerDblclick1 = 65263
+
+/// `GDK_KEY_Pointer_DblClick2`.
+let keyPointerDblclick2 = 65264
+
+/// `GDK_KEY_Pointer_DblClick3`.
+let keyPointerDblclick3 = 65265
+
+/// `GDK_KEY_Pointer_DblClick4`.
+let keyPointerDblclick4 = 65266
+
+/// `GDK_KEY_Pointer_DblClick5`.
+let keyPointerDblclick5 = 65267
+
+/// `GDK_KEY_Pointer_DblClick_Dflt`.
+let keyPointerDblclickDflt = 65262
+
+/// `GDK_KEY_Pointer_DfltBtnNext`.
+let keyPointerDfltbtnnext = 65275
+
+/// `GDK_KEY_Pointer_DfltBtnPrev`.
+let keyPointerDfltbtnprev = 65276
+
+/// `GDK_KEY_Pointer_Down`.
+let keyPointerDown = 65251
+
+/// `GDK_KEY_Pointer_DownLeft`.
+let keyPointerDownleft = 65254
+
+/// `GDK_KEY_Pointer_DownRight`.
+let keyPointerDownright = 65255
+
+/// `GDK_KEY_Pointer_Drag1`.
+let keyPointerDrag1 = 65269
+
+/// `GDK_KEY_Pointer_Drag2`.
+let keyPointerDrag2 = 65270
+
+/// `GDK_KEY_Pointer_Drag3`.
+let keyPointerDrag3 = 65271
+
+/// `GDK_KEY_Pointer_Drag4`.
+let keyPointerDrag4 = 65272
+
+/// `GDK_KEY_Pointer_Drag5`.
+let keyPointerDrag5 = 65277
+
+/// `GDK_KEY_Pointer_Drag_Dflt`.
+let keyPointerDragDflt = 65268
+
+/// `GDK_KEY_Pointer_EnableKeys`.
+let keyPointerEnablekeys = 65273
+
+/// `GDK_KEY_Pointer_Left`.
+let keyPointerLeft = 65248
+
+/// `GDK_KEY_Pointer_Right`.
+let keyPointerRight = 65249
+
+/// `GDK_KEY_Pointer_Up`.
+let keyPointerUp = 65250
+
+/// `GDK_KEY_Pointer_UpLeft`.
+let keyPointerUpleft = 65252
+
+/// `GDK_KEY_Pointer_UpRight`.
+let keyPointerUpright = 65253
+
+/// `GDK_KEY_PowerDown`.
+let keyPowerdown = 269025057
+
+/// `GDK_KEY_PowerOff`.
+let keyPoweroff = 269025066
+
+/// `GDK_KEY_Presentation`.
+let keyPresentation = 268964265
+
+/// `GDK_KEY_Prev_VMode`.
+let keyPrevVmode = 269024803
+
+/// `GDK_KEY_Prev_Virtual_Screen`.
+let keyPrevVirtualScreen = 65233
+
+/// `GDK_KEY_PreviousCandidate`.
+let keyPreviouscandidate = 65342
+
+/// `GDK_KEY_PreviousElement`.
+let keyPreviouselement = 268964476
+
+/// `GDK_KEY_Print`.
+let keyPrint = 65377
+
+/// `GDK_KEY_Prior`.
+let keyPrior = 65365
+
+/// `GDK_KEY_PrivacyScreenToggle`.
+let keyPrivacyscreentoggle = 268964473
+
+/// `GDK_KEY_Q`.
+let keyQ = 81
+
+/// `GDK_KEY_R`.
+let keyR = 82
+
+/// `GDK_KEY_R1`.
+let keyR1 = 65490
+
+/// `GDK_KEY_R10`.
+let keyR10 = 65499
+
+/// `GDK_KEY_R11`.
+let keyR11 = 65500
+
+/// `GDK_KEY_R12`.
+let keyR12 = 65501
+
+/// `GDK_KEY_R13`.
+let keyR13 = 65502
+
+/// `GDK_KEY_R14`.
+let keyR14 = 65503
+
+/// `GDK_KEY_R15`.
+let keyR15 = 65504
+
+/// `GDK_KEY_R2`.
+let keyR2 = 65491
+
+/// `GDK_KEY_R3`.
+let keyR3 = 65492
+
+/// `GDK_KEY_R4`.
+let keyR4 = 65493
+
+/// `GDK_KEY_R5`.
+let keyR5 = 65494
+
+/// `GDK_KEY_R6`.
+let keyR6 = 65495
+
+/// `GDK_KEY_R7`.
+let keyR7 = 65496
+
+/// `GDK_KEY_R8`.
+let keyR8 = 65497
+
+/// `GDK_KEY_R9`.
+let keyR9 = 65498
+
+/// `GDK_KEY_RFKill`.
+let keyRfkill = 269025205
+
+/// `GDK_KEY_Racute`.
+let keyRacute = 448
+
+/// `GDK_KEY_RadarOverlay`.
+let keyRadaroverlay = 268964484
+
+/// `GDK_KEY_Rcaron`.
+let keyRcaron = 472
+
+/// `GDK_KEY_Rcedilla`.
+let keyRcedilla = 931
+
+/// `GDK_KEY_Red`.
+let keyRed = 269025187
+
+/// `GDK_KEY_Redo`.
+let keyRedo = 65382
+
+/// `GDK_KEY_Refresh`.
+let keyRefresh = 269025065
+
+/// `GDK_KEY_RefreshRateToggle`.
+let keyRefreshratetoggle = 268964402
+
+/// `GDK_KEY_Reload`.
+let keyReload = 269025139
+
+/// `GDK_KEY_RepeatKeys_Enable`.
+let keyRepeatkeysEnable = 65138
+
+/// `GDK_KEY_Reply`.
+let keyReply = 269025138
+
+/// `GDK_KEY_Return`.
+let keyReturn = 65293
+
+/// `GDK_KEY_Right`.
+let keyRight = 65363
+
+/// `GDK_KEY_RightDown`.
+let keyRightdown = 268964455
+
+/// `GDK_KEY_RightUp`.
+let keyRightup = 268964454
+
+/// `GDK_KEY_RockerDown`.
+let keyRockerdown = 269025060
+
+/// `GDK_KEY_RockerEnter`.
+let keyRockerenter = 269025061
+
+/// `GDK_KEY_RockerUp`.
+let keyRockerup = 269025059
+
+/// `GDK_KEY_Romaji`.
+let keyRomaji = 65316
+
+/// `GDK_KEY_RootMenu`.
+let keyRootmenu = 268964458
+
+/// `GDK_KEY_RotateWindows`.
+let keyRotatewindows = 269025140
+
+/// `GDK_KEY_RotationKB`.
+let keyRotationkb = 269025142
+
+/// `GDK_KEY_RotationLockToggle`.
+let keyRotationlocktoggle = 269025207
+
+/// `GDK_KEY_RotationPB`.
+let keyRotationpb = 269025141
+
+/// `GDK_KEY_RupeeSign`.
+let keyRupeesign = 16785576
+
+/// `GDK_KEY_S`.
+let keyS = 83
+
+/// `GDK_KEY_SCHWA`.
+let keySchwa = 16777615
+
+/// `GDK_KEY_Sabovedot`.
+let keySabovedot = 16784992
+
+/// `GDK_KEY_Sacute`.
+let keySacute = 422
+
+/// `GDK_KEY_Save`.
+let keySave = 269025143
+
+/// `GDK_KEY_Scaron`.
+let keyScaron = 425
+
+/// `GDK_KEY_Scedilla`.
+let keyScedilla = 426
+
+/// `GDK_KEY_Scircumflex`.
+let keyScircumflex = 734
+
+/// `GDK_KEY_ScreenSaver`.
+let keyScreensaver = 269025069
+
+/// `GDK_KEY_ScrollClick`.
+let keyScrollclick = 269025146
+
+/// `GDK_KEY_ScrollDown`.
+let keyScrolldown = 269025145
+
+/// `GDK_KEY_ScrollUp`.
+let keyScrollup = 269025144
+
+/// `GDK_KEY_Scroll_Lock`.
+let keyScrollLock = 65300
+
+/// `GDK_KEY_Search`.
+let keySearch = 269025051
+
+/// `GDK_KEY_Select`.
+let keySelect = 65376
+
+/// `GDK_KEY_SelectButton`.
+let keySelectbutton = 269025184
+
+/// `GDK_KEY_SelectiveScreenshot`.
+let keySelectivescreenshot = 268964474
+
+/// `GDK_KEY_Send`.
+let keySend = 269025147
+
+/// `GDK_KEY_Serbian_DJE`.
+let keySerbianDje = 1713
+
+/// `GDK_KEY_Serbian_DZE`.
+let keySerbianDze = 1727
+
+/// `GDK_KEY_Serbian_JE`.
+let keySerbianJe = 1720
+
+/// `GDK_KEY_Serbian_LJE`.
+let keySerbianLje = 1721
+
+/// `GDK_KEY_Serbian_NJE`.
+let keySerbianNje = 1722
+
+/// `GDK_KEY_Serbian_TSHE`.
+let keySerbianTshe = 1723
+
+/// `GDK_KEY_Shift_L`.
+let keyShiftL = 65505
+
+/// `GDK_KEY_Shift_Lock`.
+let keyShiftLock = 65510
+
+/// `GDK_KEY_Shift_R`.
+let keyShiftR = 65506
+
+/// `GDK_KEY_Shop`.
+let keyShop = 269025078
+
+/// `GDK_KEY_SidevuSonar`.
+let keySidevusonar = 268964487
+
+/// `GDK_KEY_SingleCandidate`.
+let keySinglecandidate = 65340
+
+/// `GDK_KEY_SingleRangeRadar`.
+let keySinglerangeradar = 268964482
+
+/// `GDK_KEY_Sinh_a`.
+let keySinhA = 16780677
+
+/// `GDK_KEY_Sinh_aa`.
+let keySinhAa = 16780678
+
+/// `GDK_KEY_Sinh_aa2`.
+let keySinhAa2 = 16780751
+
+/// `GDK_KEY_Sinh_ae`.
+let keySinhAe = 16780679
+
+/// `GDK_KEY_Sinh_ae2`.
+let keySinhAe2 = 16780752
+
+/// `GDK_KEY_Sinh_aee`.
+let keySinhAee = 16780680
+
+/// `GDK_KEY_Sinh_aee2`.
+let keySinhAee2 = 16780753
+
+/// `GDK_KEY_Sinh_ai`.
+let keySinhAi = 16780691
+
+/// `GDK_KEY_Sinh_ai2`.
+let keySinhAi2 = 16780763
+
+/// `GDK_KEY_Sinh_al`.
+let keySinhAl = 16780746
+
+/// `GDK_KEY_Sinh_au`.
+let keySinhAu = 16780694
+
+/// `GDK_KEY_Sinh_au2`.
+let keySinhAu2 = 16780766
+
+/// `GDK_KEY_Sinh_ba`.
+let keySinhBa = 16780726
+
+/// `GDK_KEY_Sinh_bha`.
+let keySinhBha = 16780727
+
+/// `GDK_KEY_Sinh_ca`.
+let keySinhCa = 16780704
+
+/// `GDK_KEY_Sinh_cha`.
+let keySinhCha = 16780705
+
+/// `GDK_KEY_Sinh_dda`.
+let keySinhDda = 16780713
+
+/// `GDK_KEY_Sinh_ddha`.
+let keySinhDdha = 16780714
+
+/// `GDK_KEY_Sinh_dha`.
+let keySinhDha = 16780719
+
+/// `GDK_KEY_Sinh_dhha`.
+let keySinhDhha = 16780720
+
+/// `GDK_KEY_Sinh_e`.
+let keySinhE = 16780689
+
+/// `GDK_KEY_Sinh_e2`.
+let keySinhE2 = 16780761
+
+/// `GDK_KEY_Sinh_ee`.
+let keySinhEe = 16780690
+
+/// `GDK_KEY_Sinh_ee2`.
+let keySinhEe2 = 16780762
+
+/// `GDK_KEY_Sinh_fa`.
+let keySinhFa = 16780742
+
+/// `GDK_KEY_Sinh_ga`.
+let keySinhGa = 16780700
+
+/// `GDK_KEY_Sinh_gha`.
+let keySinhGha = 16780701
+
+/// `GDK_KEY_Sinh_h2`.
+let keySinhH2 = 16780675
+
+/// `GDK_KEY_Sinh_ha`.
+let keySinhHa = 16780740
+
+/// `GDK_KEY_Sinh_i`.
+let keySinhI = 16780681
+
+/// `GDK_KEY_Sinh_i2`.
+let keySinhI2 = 16780754
+
+/// `GDK_KEY_Sinh_ii`.
+let keySinhIi = 16780682
+
+/// `GDK_KEY_Sinh_ii2`.
+let keySinhIi2 = 16780755
+
+/// `GDK_KEY_Sinh_ja`.
+let keySinhJa = 16780706
+
+/// `GDK_KEY_Sinh_jha`.
+let keySinhJha = 16780707
+
+/// `GDK_KEY_Sinh_jnya`.
+let keySinhJnya = 16780709
+
+/// `GDK_KEY_Sinh_ka`.
+let keySinhKa = 16780698
+
+/// `GDK_KEY_Sinh_kha`.
+let keySinhKha = 16780699
+
+/// `GDK_KEY_Sinh_kunddaliya`.
+let keySinhKunddaliya = 16780788
+
+/// `GDK_KEY_Sinh_la`.
+let keySinhLa = 16780733
+
+/// `GDK_KEY_Sinh_lla`.
+let keySinhLla = 16780741
+
+/// `GDK_KEY_Sinh_lu`.
+let keySinhLu = 16780687
+
+/// `GDK_KEY_Sinh_lu2`.
+let keySinhLu2 = 16780767
+
+/// `GDK_KEY_Sinh_luu`.
+let keySinhLuu = 16780688
+
+/// `GDK_KEY_Sinh_luu2`.
+let keySinhLuu2 = 16780787
+
+/// `GDK_KEY_Sinh_ma`.
+let keySinhMa = 16780728
+
+/// `GDK_KEY_Sinh_mba`.
+let keySinhMba = 16780729
+
+/// `GDK_KEY_Sinh_na`.
+let keySinhNa = 16780721
+
+/// `GDK_KEY_Sinh_ndda`.
+let keySinhNdda = 16780716
+
+/// `GDK_KEY_Sinh_ndha`.
+let keySinhNdha = 16780723
+
+/// `GDK_KEY_Sinh_ng`.
+let keySinhNg = 16780674
+
+/// `GDK_KEY_Sinh_ng2`.
+let keySinhNg2 = 16780702
+
+/// `GDK_KEY_Sinh_nga`.
+let keySinhNga = 16780703
+
+/// `GDK_KEY_Sinh_nja`.
+let keySinhNja = 16780710
+
+/// `GDK_KEY_Sinh_nna`.
+let keySinhNna = 16780715
+
+/// `GDK_KEY_Sinh_nya`.
+let keySinhNya = 16780708
+
+/// `GDK_KEY_Sinh_o`.
+let keySinhO = 16780692
+
+/// `GDK_KEY_Sinh_o2`.
+let keySinhO2 = 16780764
+
+/// `GDK_KEY_Sinh_oo`.
+let keySinhOo = 16780693
+
+/// `GDK_KEY_Sinh_oo2`.
+let keySinhOo2 = 16780765
+
+/// `GDK_KEY_Sinh_pa`.
+let keySinhPa = 16780724
+
+/// `GDK_KEY_Sinh_pha`.
+let keySinhPha = 16780725
+
+/// `GDK_KEY_Sinh_ra`.
+let keySinhRa = 16780731
+
+/// `GDK_KEY_Sinh_ri`.
+let keySinhRi = 16780685
+
+/// `GDK_KEY_Sinh_rii`.
+let keySinhRii = 16780686
+
+/// `GDK_KEY_Sinh_ru2`.
+let keySinhRu2 = 16780760
+
+/// `GDK_KEY_Sinh_ruu2`.
+let keySinhRuu2 = 16780786
+
+/// `GDK_KEY_Sinh_sa`.
+let keySinhSa = 16780739
+
+/// `GDK_KEY_Sinh_sha`.
+let keySinhSha = 16780737
+
+/// `GDK_KEY_Sinh_ssha`.
+let keySinhSsha = 16780738
+
+/// `GDK_KEY_Sinh_tha`.
+let keySinhTha = 16780717
+
+/// `GDK_KEY_Sinh_thha`.
+let keySinhThha = 16780718
+
+/// `GDK_KEY_Sinh_tta`.
+let keySinhTta = 16780711
+
+/// `GDK_KEY_Sinh_ttha`.
+let keySinhTtha = 16780712
+
+/// `GDK_KEY_Sinh_u`.
+let keySinhU = 16780683
+
+/// `GDK_KEY_Sinh_u2`.
+let keySinhU2 = 16780756
+
+/// `GDK_KEY_Sinh_uu`.
+let keySinhUu = 16780684
+
+/// `GDK_KEY_Sinh_uu2`.
+let keySinhUu2 = 16780758
+
+/// `GDK_KEY_Sinh_va`.
+let keySinhVa = 16780736
+
+/// `GDK_KEY_Sinh_ya`.
+let keySinhYa = 16780730
+
+/// `GDK_KEY_Sleep`.
+let keySleep = 269025071
+
+/// `GDK_KEY_SlowKeys_Enable`.
+let keySlowkeysEnable = 65139
+
+/// `GDK_KEY_SlowReverse`.
+let keySlowreverse = 268964470
+
+/// `GDK_KEY_Sos`.
+let keySos = 268964479
+
+/// `GDK_KEY_Spell`.
+let keySpell = 269025148
+
+/// `GDK_KEY_SpellCheck`.
+let keySpellcheck = 268964272
+
+/// `GDK_KEY_SplitScreen`.
+let keySplitscreen = 269025149
+
+/// `GDK_KEY_Standby`.
+let keyStandby = 269025040
+
+/// `GDK_KEY_Start`.
+let keyStart = 269025050
+
+/// `GDK_KEY_StickyKeys_Enable`.
+let keyStickykeysEnable = 65141
+
+/// `GDK_KEY_Stop`.
+let keyStop = 269025064
+
+/// `GDK_KEY_StopRecord`.
+let keyStoprecord = 268964465
+
+/// `GDK_KEY_Subtitle`.
+let keySubtitle = 269025178
+
+/// `GDK_KEY_Super_L`.
+let keySuperL = 65515
+
+/// `GDK_KEY_Super_R`.
+let keySuperR = 65516
+
+/// `GDK_KEY_Support`.
+let keySupport = 269025150
+
+/// `GDK_KEY_Suspend`.
+let keySuspend = 269025191
+
+/// `GDK_KEY_Switch_VT_1`.
+let keySwitchVt1 = 269024769
+
+/// `GDK_KEY_Switch_VT_10`.
+let keySwitchVt10 = 269024778
+
+/// `GDK_KEY_Switch_VT_11`.
+let keySwitchVt11 = 269024779
+
+/// `GDK_KEY_Switch_VT_12`.
+let keySwitchVt12 = 269024780
+
+/// `GDK_KEY_Switch_VT_2`.
+let keySwitchVt2 = 269024770
+
+/// `GDK_KEY_Switch_VT_3`.
+let keySwitchVt3 = 269024771
+
+/// `GDK_KEY_Switch_VT_4`.
+let keySwitchVt4 = 269024772
+
+/// `GDK_KEY_Switch_VT_5`.
+let keySwitchVt5 = 269024773
+
+/// `GDK_KEY_Switch_VT_6`.
+let keySwitchVt6 = 269024774
+
+/// `GDK_KEY_Switch_VT_7`.
+let keySwitchVt7 = 269024775
+
+/// `GDK_KEY_Switch_VT_8`.
+let keySwitchVt8 = 269024776
+
+/// `GDK_KEY_Switch_VT_9`.
+let keySwitchVt9 = 269024777
+
+/// `GDK_KEY_Sys_Req`.
+let keySysReq = 65301
+
+/// `GDK_KEY_T`.
+let keyT = 84
+
+/// `GDK_KEY_THORN`.
+let keyThorn = 222
+
+/// `GDK_KEY_Tab`.
+let keyTab = 65289
+
+/// `GDK_KEY_Tabovedot`.
+let keyTabovedot = 16785002
+
+/// `GDK_KEY_TaskPane`.
+let keyTaskpane = 269025151
+
+/// `GDK_KEY_Taskmanager`.
+let keyTaskmanager = 268964417
+
+/// `GDK_KEY_Tcaron`.
+let keyTcaron = 427
+
+/// `GDK_KEY_Tcedilla`.
+let keyTcedilla = 478
+
+/// `GDK_KEY_Terminal`.
+let keyTerminal = 269025152
+
+/// `GDK_KEY_Terminate_Server`.
+let keyTerminateServer = 65237
+
+/// `GDK_KEY_Thai_baht`.
+let keyThaiBaht = 3551
+
+/// `GDK_KEY_Thai_bobaimai`.
+let keyThaiBobaimai = 3514
+
+/// `GDK_KEY_Thai_chochan`.
+let keyThaiChochan = 3496
+
+/// `GDK_KEY_Thai_chochang`.
+let keyThaiChochang = 3498
+
+/// `GDK_KEY_Thai_choching`.
+let keyThaiChoching = 3497
+
+/// `GDK_KEY_Thai_chochoe`.
+let keyThaiChochoe = 3500
+
+/// `GDK_KEY_Thai_dochada`.
+let keyThaiDochada = 3502
+
+/// `GDK_KEY_Thai_dodek`.
+let keyThaiDodek = 3508
+
+/// `GDK_KEY_Thai_fofa`.
+let keyThaiFofa = 3517
+
+/// `GDK_KEY_Thai_fofan`.
+let keyThaiFofan = 3519
+
+/// `GDK_KEY_Thai_hohip`.
+let keyThaiHohip = 3531
+
+/// `GDK_KEY_Thai_honokhuk`.
+let keyThaiHonokhuk = 3534
+
+/// `GDK_KEY_Thai_khokhai`.
+let keyThaiKhokhai = 3490
+
+/// `GDK_KEY_Thai_khokhon`.
+let keyThaiKhokhon = 3493
+
+/// `GDK_KEY_Thai_khokhuat`.
+let keyThaiKhokhuat = 3491
+
+/// `GDK_KEY_Thai_khokhwai`.
+let keyThaiKhokhwai = 3492
+
+/// `GDK_KEY_Thai_khorakhang`.
+let keyThaiKhorakhang = 3494
+
+/// `GDK_KEY_Thai_kokai`.
+let keyThaiKokai = 3489
+
+/// `GDK_KEY_Thai_lakkhangyao`.
+let keyThaiLakkhangyao = 3557
+
+/// `GDK_KEY_Thai_lekchet`.
+let keyThaiLekchet = 3575
+
+/// `GDK_KEY_Thai_lekha`.
+let keyThaiLekha = 3573
+
+/// `GDK_KEY_Thai_lekhok`.
+let keyThaiLekhok = 3574
+
+/// `GDK_KEY_Thai_lekkao`.
+let keyThaiLekkao = 3577
+
+/// `GDK_KEY_Thai_leknung`.
+let keyThaiLeknung = 3569
+
+/// `GDK_KEY_Thai_lekpaet`.
+let keyThaiLekpaet = 3576
+
+/// `GDK_KEY_Thai_leksam`.
+let keyThaiLeksam = 3571
+
+/// `GDK_KEY_Thai_leksi`.
+let keyThaiLeksi = 3572
+
+/// `GDK_KEY_Thai_leksong`.
+let keyThaiLeksong = 3570
+
+/// `GDK_KEY_Thai_leksun`.
+let keyThaiLeksun = 3568
+
+/// `GDK_KEY_Thai_lochula`.
+let keyThaiLochula = 3532
+
+/// `GDK_KEY_Thai_loling`.
+let keyThaiLoling = 3525
+
+/// `GDK_KEY_Thai_lu`.
+let keyThaiLu = 3526
+
+/// `GDK_KEY_Thai_maichattawa`.
+let keyThaiMaichattawa = 3563
+
+/// `GDK_KEY_Thai_maiek`.
+let keyThaiMaiek = 3560
+
+/// `GDK_KEY_Thai_maihanakat`.
+let keyThaiMaihanakat = 3537
+
+/// `GDK_KEY_Thai_maihanakat_maitho`.
+let keyThaiMaihanakatMaitho = 3550
+
+/// `GDK_KEY_Thai_maitaikhu`.
+let keyThaiMaitaikhu = 3559
+
+/// `GDK_KEY_Thai_maitho`.
+let keyThaiMaitho = 3561
+
+/// `GDK_KEY_Thai_maitri`.
+let keyThaiMaitri = 3562
+
+/// `GDK_KEY_Thai_maiyamok`.
+let keyThaiMaiyamok = 3558
+
+/// `GDK_KEY_Thai_moma`.
+let keyThaiMoma = 3521
+
+/// `GDK_KEY_Thai_ngongu`.
+let keyThaiNgongu = 3495
+
+/// `GDK_KEY_Thai_nikhahit`.
+let keyThaiNikhahit = 3565
+
+/// `GDK_KEY_Thai_nonen`.
+let keyThaiNonen = 3507
+
+/// `GDK_KEY_Thai_nonu`.
+let keyThaiNonu = 3513
+
+/// `GDK_KEY_Thai_oang`.
+let keyThaiOang = 3533
+
+/// `GDK_KEY_Thai_paiyannoi`.
+let keyThaiPaiyannoi = 3535
+
+/// `GDK_KEY_Thai_phinthu`.
+let keyThaiPhinthu = 3546
+
+/// `GDK_KEY_Thai_phophan`.
+let keyThaiPhophan = 3518
+
+/// `GDK_KEY_Thai_phophung`.
+let keyThaiPhophung = 3516
+
+/// `GDK_KEY_Thai_phosamphao`.
+let keyThaiPhosamphao = 3520
+
+/// `GDK_KEY_Thai_popla`.
+let keyThaiPopla = 3515
+
+/// `GDK_KEY_Thai_rorua`.
+let keyThaiRorua = 3523
+
+/// `GDK_KEY_Thai_ru`.
+let keyThaiRu = 3524
+
+/// `GDK_KEY_Thai_saraa`.
+let keyThaiSaraa = 3536
+
+/// `GDK_KEY_Thai_saraaa`.
+let keyThaiSaraaa = 3538
+
+/// `GDK_KEY_Thai_saraae`.
+let keyThaiSaraae = 3553
+
+/// `GDK_KEY_Thai_saraaimaimalai`.
+let keyThaiSaraaimaimalai = 3556
+
+/// `GDK_KEY_Thai_saraaimaimuan`.
+let keyThaiSaraaimaimuan = 3555
+
+/// `GDK_KEY_Thai_saraam`.
+let keyThaiSaraam = 3539
+
+/// `GDK_KEY_Thai_sarae`.
+let keyThaiSarae = 3552
+
+/// `GDK_KEY_Thai_sarai`.
+let keyThaiSarai = 3540
+
+/// `GDK_KEY_Thai_saraii`.
+let keyThaiSaraii = 3541
+
+/// `GDK_KEY_Thai_sarao`.
+let keyThaiSarao = 3554
+
+/// `GDK_KEY_Thai_sarau`.
+let keyThaiSarau = 3544
+
+/// `GDK_KEY_Thai_saraue`.
+let keyThaiSaraue = 3542
+
+/// `GDK_KEY_Thai_sarauee`.
+let keyThaiSarauee = 3543
+
+/// `GDK_KEY_Thai_sarauu`.
+let keyThaiSarauu = 3545
+
+/// `GDK_KEY_Thai_sorusi`.
+let keyThaiSorusi = 3529
+
+/// `GDK_KEY_Thai_sosala`.
+let keyThaiSosala = 3528
+
+/// `GDK_KEY_Thai_soso`.
+let keyThaiSoso = 3499
+
+/// `GDK_KEY_Thai_sosua`.
+let keyThaiSosua = 3530
+
+/// `GDK_KEY_Thai_thanthakhat`.
+let keyThaiThanthakhat = 3564
+
+/// `GDK_KEY_Thai_thonangmontho`.
+let keyThaiThonangmontho = 3505
+
+/// `GDK_KEY_Thai_thophuthao`.
+let keyThaiThophuthao = 3506
+
+/// `GDK_KEY_Thai_thothahan`.
+let keyThaiThothahan = 3511
+
+/// `GDK_KEY_Thai_thothan`.
+let keyThaiThothan = 3504
+
+/// `GDK_KEY_Thai_thothong`.
+let keyThaiThothong = 3512
+
+/// `GDK_KEY_Thai_thothung`.
+let keyThaiThothung = 3510
+
+/// `GDK_KEY_Thai_topatak`.
+let keyThaiTopatak = 3503
+
+/// `GDK_KEY_Thai_totao`.
+let keyThaiTotao = 3509
+
+/// `GDK_KEY_Thai_wowaen`.
+let keyThaiWowaen = 3527
+
+/// `GDK_KEY_Thai_yoyak`.
+let keyThaiYoyak = 3522
+
+/// `GDK_KEY_Thai_yoying`.
+let keyThaiYoying = 3501
+
+/// `GDK_KEY_Time`.
+let keyTime = 269025183
+
+/// `GDK_KEY_ToDoList`.
+let keyTodolist = 269025055
+
+/// `GDK_KEY_Tools`.
+let keyTools = 269025153
+
+/// `GDK_KEY_TopMenu`.
+let keyTopmenu = 269025186
+
+/// `GDK_KEY_TouchpadOff`.
+let keyTouchpadoff = 269025201
+
+/// `GDK_KEY_TouchpadOn`.
+let keyTouchpadon = 269025200
+
+/// `GDK_KEY_TouchpadToggle`.
+let keyTouchpadtoggle = 269025193
+
+/// `GDK_KEY_Touroku`.
+let keyTouroku = 65323
+
+/// `GDK_KEY_TraditionalSonar`.
+let keyTraditionalsonar = 268964485
+
+/// `GDK_KEY_Travel`.
+let keyTravel = 269025154
+
+/// `GDK_KEY_Tslash`.
+let keyTslash = 940
+
+/// `GDK_KEY_U`.
+let keyU = 85
+
+/// `GDK_KEY_UWB`.
+let keyUwb = 269025174
+
+/// `GDK_KEY_Uacute`.
+let keyUacute = 218
+
+/// `GDK_KEY_Ubelowdot`.
+let keyUbelowdot = 16785124
+
+/// `GDK_KEY_Ubreve`.
+let keyUbreve = 733
+
+/// `GDK_KEY_Ucircumflex`.
+let keyUcircumflex = 219
+
+/// `GDK_KEY_Udiaeresis`.
+let keyUdiaeresis = 220
+
+/// `GDK_KEY_Udoubleacute`.
+let keyUdoubleacute = 475
+
+/// `GDK_KEY_Ugrave`.
+let keyUgrave = 217
+
+/// `GDK_KEY_Uhook`.
+let keyUhook = 16785126
+
+/// `GDK_KEY_Uhorn`.
+let keyUhorn = 16777647
+
+/// `GDK_KEY_Uhornacute`.
+let keyUhornacute = 16785128
+
+/// `GDK_KEY_Uhornbelowdot`.
+let keyUhornbelowdot = 16785136
+
+/// `GDK_KEY_Uhorngrave`.
+let keyUhorngrave = 16785130
+
+/// `GDK_KEY_Uhornhook`.
+let keyUhornhook = 16785132
+
+/// `GDK_KEY_Uhorntilde`.
+let keyUhorntilde = 16785134
+
+/// `GDK_KEY_Ukrainian_GHE_WITH_UPTURN`.
+let keyUkrainianGheWithUpturn = 1725
+
+/// `GDK_KEY_Ukrainian_I`.
+let keyUkrainianI = 1718
+
+/// `GDK_KEY_Ukrainian_IE`.
+let keyUkrainianIe = 1716
+
+/// `GDK_KEY_Ukrainian_YI`.
+let keyUkrainianYi = 1719
+
+/// `GDK_KEY_Ukranian_I`.
+let keyUkranianI = 1718
+
+/// `GDK_KEY_Ukranian_JE`.
+let keyUkranianJe = 1716
+
+/// `GDK_KEY_Ukranian_YI`.
+let keyUkranianYi = 1719
+
+/// `GDK_KEY_Umacron`.
+let keyUmacron = 990
+
+/// `GDK_KEY_Undo`.
+let keyUndo = 65381
+
+/// `GDK_KEY_Ungrab`.
+let keyUngrab = 269024800
+
+/// `GDK_KEY_Unmute`.
+let keyUnmute = 268964468
+
+/// `GDK_KEY_Uogonek`.
+let keyUogonek = 985
+
+/// `GDK_KEY_Up`.
+let keyUp = 65362
+
+/// `GDK_KEY_Uring`.
+let keyUring = 473
+
+/// `GDK_KEY_User1KB`.
+let keyUser1kb = 269025157
+
+/// `GDK_KEY_User2KB`.
+let keyUser2kb = 269025158
+
+/// `GDK_KEY_UserPB`.
+let keyUserpb = 269025156
+
+/// `GDK_KEY_Utilde`.
+let keyUtilde = 989
+
+/// `GDK_KEY_V`.
+let keyV = 86
+
+/// `GDK_KEY_VOD`.
+let keyVod = 268964467
+
+/// `GDK_KEY_VendorHome`.
+let keyVendorhome = 269025076
+
+/// `GDK_KEY_Video`.
+let keyVideo = 269025159
+
+/// `GDK_KEY_VideoPhone`.
+let keyVideophone = 268964256
+
+/// `GDK_KEY_View`.
+let keyView = 269025185
+
+/// `GDK_KEY_VoiceCommand`.
+let keyVoicecommand = 268964422
+
+/// `GDK_KEY_Voicemail`.
+let keyVoicemail = 268964268
+
+/// `GDK_KEY_VoidSymbol`.
+let keyVoidsymbol = 16777215
+
+/// `GDK_KEY_W`.
+let keyW = 87
+
+/// `GDK_KEY_WLAN`.
+let keyWlan = 269025173
+
+/// `GDK_KEY_WPSButton`.
+let keyWpsbutton = 268964369
+
+/// `GDK_KEY_WWAN`.
+let keyWwan = 269025204
+
+/// `GDK_KEY_WWW`.
+let keyWww = 269025070
+
+/// `GDK_KEY_Wacute`.
+let keyWacute = 16785026
+
+/// `GDK_KEY_WakeUp`.
+let keyWakeup = 269025067
+
+/// `GDK_KEY_Wcircumflex`.
+let keyWcircumflex = 16777588
+
+/// `GDK_KEY_Wdiaeresis`.
+let keyWdiaeresis = 16785028
+
+/// `GDK_KEY_WebCam`.
+let keyWebcam = 269025167
+
+/// `GDK_KEY_Wgrave`.
+let keyWgrave = 16785024
+
+/// `GDK_KEY_WheelButton`.
+let keyWheelbutton = 269025160
+
+/// `GDK_KEY_WindowClear`.
+let keyWindowclear = 269025109
+
+/// `GDK_KEY_WonSign`.
+let keyWonsign = 16785577
+
+/// `GDK_KEY_Word`.
+let keyWord = 269025161
+
+/// `GDK_KEY_X`.
+let keyX = 88
+
+/// `GDK_KEY_Xabovedot`.
+let keyXabovedot = 16785034
+
+/// `GDK_KEY_Xfer`.
+let keyXfer = 269025162
+
+/// `GDK_KEY_Y`.
+let keyY = 89
+
+/// `GDK_KEY_Yacute`.
+let keyYacute = 221
+
+/// `GDK_KEY_Ybelowdot`.
+let keyYbelowdot = 16785140
+
+/// `GDK_KEY_Ycircumflex`.
+let keyYcircumflex = 16777590
+
+/// `GDK_KEY_Ydiaeresis`.
+let keyYdiaeresis = 5054
+
+/// `GDK_KEY_Yellow`.
+let keyYellow = 269025189
+
+/// `GDK_KEY_Ygrave`.
+let keyYgrave = 16785138
+
+/// `GDK_KEY_Yhook`.
+let keyYhook = 16785142
+
+/// `GDK_KEY_Ytilde`.
+let keyYtilde = 16785144
+
+/// `GDK_KEY_Z`.
+let keyZ = 90
+
+/// `GDK_KEY_Zabovedot`.
+let keyZabovedot = 431
+
+/// `GDK_KEY_Zacute`.
+let keyZacute = 428
+
+/// `GDK_KEY_Zcaron`.
+let keyZcaron = 430
+
+/// `GDK_KEY_Zen_Koho`.
+let keyZenKoho = 65341
+
+/// `GDK_KEY_Zenkaku`.
+let keyZenkaku = 65320
+
+/// `GDK_KEY_Zenkaku_Hankaku`.
+let keyZenkakuHankaku = 65322
+
+/// `GDK_KEY_ZoomIn`.
+let keyZoomin = 269025163
+
+/// `GDK_KEY_ZoomOut`.
+let keyZoomout = 269025164
+
+/// `GDK_KEY_ZoomReset`.
+let keyZoomreset = 268964260
+
+/// `GDK_KEY_Zstroke`.
+let keyZstroke = 16777653
+
+/// `GDK_KEY_abovedot`.
+let keyAbovedot = 511
+
+/// `GDK_KEY_acute`.
+let keyAcute = 180
+
+/// `GDK_KEY_ampersand`.
+let keyAmpersand = 38
+
+/// `GDK_KEY_apostrophe`.
+let keyApostrophe = 39
+
+/// `GDK_KEY_approxeq`.
+let keyApproxeq = 16785992
+
+/// `GDK_KEY_approximate`.
+let keyApproximate = 2248
+
+/// `GDK_KEY_asciicircum`.
+let keyAsciicircum = 94
+
+/// `GDK_KEY_asciitilde`.
+let keyAsciitilde = 126
+
+/// `GDK_KEY_asterisk`.
+let keyAsterisk = 42
+
+/// `GDK_KEY_at`.
+let keyAt = 64
+
+/// `GDK_KEY_backslash`.
+let keyBackslash = 92
+
+/// `GDK_KEY_ballotcross`.
+let keyBallotcross = 2804
+
+/// `GDK_KEY_bar`.
+let keyBar = 124
+
+/// `GDK_KEY_because`.
+let keyBecause = 16785973
+
+/// `GDK_KEY_blank`.
+let keyBlank = 2527
+
+/// `GDK_KEY_botintegral`.
+let keyBotintegral = 2213
+
+/// `GDK_KEY_botleftparens`.
+let keyBotleftparens = 2220
+
+/// `GDK_KEY_botleftsqbracket`.
+let keyBotleftsqbracket = 2216
+
+/// `GDK_KEY_botleftsummation`.
+let keyBotleftsummation = 2226
+
+/// `GDK_KEY_botrightparens`.
+let keyBotrightparens = 2222
+
+/// `GDK_KEY_botrightsqbracket`.
+let keyBotrightsqbracket = 2218
+
+/// `GDK_KEY_botrightsummation`.
+let keyBotrightsummation = 2230
+
+/// `GDK_KEY_bott`.
+let keyBott = 2550
+
+/// `GDK_KEY_botvertsummationconnector`.
+let keyBotvertsummationconnector = 2228
+
+/// `GDK_KEY_braceleft`.
+let keyBraceleft = 123
+
+/// `GDK_KEY_braceright`.
+let keyBraceright = 125
+
+/// `GDK_KEY_bracketleft`.
+let keyBracketleft = 91
+
+/// `GDK_KEY_bracketright`.
+let keyBracketright = 93
+
+/// `GDK_KEY_braille_blank`.
+let keyBrailleBlank = 16787456
+
+/// `GDK_KEY_braille_dot_1`.
+let keyBrailleDot1 = 65521
+
+/// `GDK_KEY_braille_dot_10`.
+let keyBrailleDot10 = 65530
+
+/// `GDK_KEY_braille_dot_2`.
+let keyBrailleDot2 = 65522
+
+/// `GDK_KEY_braille_dot_3`.
+let keyBrailleDot3 = 65523
+
+/// `GDK_KEY_braille_dot_4`.
+let keyBrailleDot4 = 65524
+
+/// `GDK_KEY_braille_dot_5`.
+let keyBrailleDot5 = 65525
+
+/// `GDK_KEY_braille_dot_6`.
+let keyBrailleDot6 = 65526
+
+/// `GDK_KEY_braille_dot_7`.
+let keyBrailleDot7 = 65527
+
+/// `GDK_KEY_braille_dot_8`.
+let keyBrailleDot8 = 65528
+
+/// `GDK_KEY_braille_dot_9`.
+let keyBrailleDot9 = 65529
+
+/// `GDK_KEY_braille_dots_1`.
+let keyBrailleDots1 = 16787457
+
+/// `GDK_KEY_braille_dots_12`.
+let keyBrailleDots12 = 16787459
+
+/// `GDK_KEY_braille_dots_123`.
+let keyBrailleDots123 = 16787463
+
+/// `GDK_KEY_braille_dots_1234`.
+let keyBrailleDots1234 = 16787471
+
+/// `GDK_KEY_braille_dots_12345`.
+let keyBrailleDots12345 = 16787487
+
+/// `GDK_KEY_braille_dots_123456`.
+let keyBrailleDots123456 = 16787519
+
+/// `GDK_KEY_braille_dots_1234567`.
+let keyBrailleDots1234567 = 16787583
+
+/// `GDK_KEY_braille_dots_12345678`.
+let keyBrailleDots12345678 = 16787711
+
+/// `GDK_KEY_braille_dots_1234568`.
+let keyBrailleDots1234568 = 16787647
+
+/// `GDK_KEY_braille_dots_123457`.
+let keyBrailleDots123457 = 16787551
+
+/// `GDK_KEY_braille_dots_1234578`.
+let keyBrailleDots1234578 = 16787679
+
+/// `GDK_KEY_braille_dots_123458`.
+let keyBrailleDots123458 = 16787615
+
+/// `GDK_KEY_braille_dots_12346`.
+let keyBrailleDots12346 = 16787503
+
+/// `GDK_KEY_braille_dots_123467`.
+let keyBrailleDots123467 = 16787567
+
+/// `GDK_KEY_braille_dots_1234678`.
+let keyBrailleDots1234678 = 16787695
+
+/// `GDK_KEY_braille_dots_123468`.
+let keyBrailleDots123468 = 16787631
+
+/// `GDK_KEY_braille_dots_12347`.
+let keyBrailleDots12347 = 16787535
+
+/// `GDK_KEY_braille_dots_123478`.
+let keyBrailleDots123478 = 16787663
+
+/// `GDK_KEY_braille_dots_12348`.
+let keyBrailleDots12348 = 16787599
+
+/// `GDK_KEY_braille_dots_1235`.
+let keyBrailleDots1235 = 16787479
+
+/// `GDK_KEY_braille_dots_12356`.
+let keyBrailleDots12356 = 16787511
+
+/// `GDK_KEY_braille_dots_123567`.
+let keyBrailleDots123567 = 16787575
+
+/// `GDK_KEY_braille_dots_1235678`.
+let keyBrailleDots1235678 = 16787703
+
+/// `GDK_KEY_braille_dots_123568`.
+let keyBrailleDots123568 = 16787639
+
+/// `GDK_KEY_braille_dots_12357`.
+let keyBrailleDots12357 = 16787543
+
+/// `GDK_KEY_braille_dots_123578`.
+let keyBrailleDots123578 = 16787671
+
+/// `GDK_KEY_braille_dots_12358`.
+let keyBrailleDots12358 = 16787607
+
+/// `GDK_KEY_braille_dots_1236`.
+let keyBrailleDots1236 = 16787495
+
+/// `GDK_KEY_braille_dots_12367`.
+let keyBrailleDots12367 = 16787559
+
+/// `GDK_KEY_braille_dots_123678`.
+let keyBrailleDots123678 = 16787687
+
+/// `GDK_KEY_braille_dots_12368`.
+let keyBrailleDots12368 = 16787623
+
+/// `GDK_KEY_braille_dots_1237`.
+let keyBrailleDots1237 = 16787527
+
+/// `GDK_KEY_braille_dots_12378`.
+let keyBrailleDots12378 = 16787655
+
+/// `GDK_KEY_braille_dots_1238`.
+let keyBrailleDots1238 = 16787591
+
+/// `GDK_KEY_braille_dots_124`.
+let keyBrailleDots124 = 16787467
+
+/// `GDK_KEY_braille_dots_1245`.
+let keyBrailleDots1245 = 16787483
+
+/// `GDK_KEY_braille_dots_12456`.
+let keyBrailleDots12456 = 16787515
+
+/// `GDK_KEY_braille_dots_124567`.
+let keyBrailleDots124567 = 16787579
+
+/// `GDK_KEY_braille_dots_1245678`.
+let keyBrailleDots1245678 = 16787707
+
+/// `GDK_KEY_braille_dots_124568`.
+let keyBrailleDots124568 = 16787643
+
+/// `GDK_KEY_braille_dots_12457`.
+let keyBrailleDots12457 = 16787547
+
+/// `GDK_KEY_braille_dots_124578`.
+let keyBrailleDots124578 = 16787675
+
+/// `GDK_KEY_braille_dots_12458`.
+let keyBrailleDots12458 = 16787611
+
+/// `GDK_KEY_braille_dots_1246`.
+let keyBrailleDots1246 = 16787499
+
+/// `GDK_KEY_braille_dots_12467`.
+let keyBrailleDots12467 = 16787563
+
+/// `GDK_KEY_braille_dots_124678`.
+let keyBrailleDots124678 = 16787691
+
+/// `GDK_KEY_braille_dots_12468`.
+let keyBrailleDots12468 = 16787627
+
+/// `GDK_KEY_braille_dots_1247`.
+let keyBrailleDots1247 = 16787531
+
+/// `GDK_KEY_braille_dots_12478`.
+let keyBrailleDots12478 = 16787659
+
+/// `GDK_KEY_braille_dots_1248`.
+let keyBrailleDots1248 = 16787595
+
+/// `GDK_KEY_braille_dots_125`.
+let keyBrailleDots125 = 16787475
+
+/// `GDK_KEY_braille_dots_1256`.
+let keyBrailleDots1256 = 16787507
+
+/// `GDK_KEY_braille_dots_12567`.
+let keyBrailleDots12567 = 16787571
+
+/// `GDK_KEY_braille_dots_125678`.
+let keyBrailleDots125678 = 16787699
+
+/// `GDK_KEY_braille_dots_12568`.
+let keyBrailleDots12568 = 16787635
+
+/// `GDK_KEY_braille_dots_1257`.
+let keyBrailleDots1257 = 16787539
+
+/// `GDK_KEY_braille_dots_12578`.
+let keyBrailleDots12578 = 16787667
+
+/// `GDK_KEY_braille_dots_1258`.
+let keyBrailleDots1258 = 16787603
+
+/// `GDK_KEY_braille_dots_126`.
+let keyBrailleDots126 = 16787491
+
+/// `GDK_KEY_braille_dots_1267`.
+let keyBrailleDots1267 = 16787555
+
+/// `GDK_KEY_braille_dots_12678`.
+let keyBrailleDots12678 = 16787683
+
+/// `GDK_KEY_braille_dots_1268`.
+let keyBrailleDots1268 = 16787619
+
+/// `GDK_KEY_braille_dots_127`.
+let keyBrailleDots127 = 16787523
+
+/// `GDK_KEY_braille_dots_1278`.
+let keyBrailleDots1278 = 16787651
+
+/// `GDK_KEY_braille_dots_128`.
+let keyBrailleDots128 = 16787587
+
+/// `GDK_KEY_braille_dots_13`.
+let keyBrailleDots13 = 16787461
+
+/// `GDK_KEY_braille_dots_134`.
+let keyBrailleDots134 = 16787469
+
+/// `GDK_KEY_braille_dots_1345`.
+let keyBrailleDots1345 = 16787485
+
+/// `GDK_KEY_braille_dots_13456`.
+let keyBrailleDots13456 = 16787517
+
+/// `GDK_KEY_braille_dots_134567`.
+let keyBrailleDots134567 = 16787581
+
+/// `GDK_KEY_braille_dots_1345678`.
+let keyBrailleDots1345678 = 16787709
+
+/// `GDK_KEY_braille_dots_134568`.
+let keyBrailleDots134568 = 16787645
+
+/// `GDK_KEY_braille_dots_13457`.
+let keyBrailleDots13457 = 16787549
+
+/// `GDK_KEY_braille_dots_134578`.
+let keyBrailleDots134578 = 16787677
+
+/// `GDK_KEY_braille_dots_13458`.
+let keyBrailleDots13458 = 16787613
+
+/// `GDK_KEY_braille_dots_1346`.
+let keyBrailleDots1346 = 16787501
+
+/// `GDK_KEY_braille_dots_13467`.
+let keyBrailleDots13467 = 16787565
+
+/// `GDK_KEY_braille_dots_134678`.
+let keyBrailleDots134678 = 16787693
+
+/// `GDK_KEY_braille_dots_13468`.
+let keyBrailleDots13468 = 16787629
+
+/// `GDK_KEY_braille_dots_1347`.
+let keyBrailleDots1347 = 16787533
+
+/// `GDK_KEY_braille_dots_13478`.
+let keyBrailleDots13478 = 16787661
+
+/// `GDK_KEY_braille_dots_1348`.
+let keyBrailleDots1348 = 16787597
+
+/// `GDK_KEY_braille_dots_135`.
+let keyBrailleDots135 = 16787477
+
+/// `GDK_KEY_braille_dots_1356`.
+let keyBrailleDots1356 = 16787509
+
+/// `GDK_KEY_braille_dots_13567`.
+let keyBrailleDots13567 = 16787573
+
+/// `GDK_KEY_braille_dots_135678`.
+let keyBrailleDots135678 = 16787701
+
+/// `GDK_KEY_braille_dots_13568`.
+let keyBrailleDots13568 = 16787637
+
+/// `GDK_KEY_braille_dots_1357`.
+let keyBrailleDots1357 = 16787541
+
+/// `GDK_KEY_braille_dots_13578`.
+let keyBrailleDots13578 = 16787669
+
+/// `GDK_KEY_braille_dots_1358`.
+let keyBrailleDots1358 = 16787605
+
+/// `GDK_KEY_braille_dots_136`.
+let keyBrailleDots136 = 16787493
+
+/// `GDK_KEY_braille_dots_1367`.
+let keyBrailleDots1367 = 16787557
+
+/// `GDK_KEY_braille_dots_13678`.
+let keyBrailleDots13678 = 16787685
+
+/// `GDK_KEY_braille_dots_1368`.
+let keyBrailleDots1368 = 16787621
+
+/// `GDK_KEY_braille_dots_137`.
+let keyBrailleDots137 = 16787525
+
+/// `GDK_KEY_braille_dots_1378`.
+let keyBrailleDots1378 = 16787653
+
+/// `GDK_KEY_braille_dots_138`.
+let keyBrailleDots138 = 16787589
+
+/// `GDK_KEY_braille_dots_14`.
+let keyBrailleDots14 = 16787465
+
+/// `GDK_KEY_braille_dots_145`.
+let keyBrailleDots145 = 16787481
+
+/// `GDK_KEY_braille_dots_1456`.
+let keyBrailleDots1456 = 16787513
+
+/// `GDK_KEY_braille_dots_14567`.
+let keyBrailleDots14567 = 16787577
+
+/// `GDK_KEY_braille_dots_145678`.
+let keyBrailleDots145678 = 16787705
+
+/// `GDK_KEY_braille_dots_14568`.
+let keyBrailleDots14568 = 16787641
+
+/// `GDK_KEY_braille_dots_1457`.
+let keyBrailleDots1457 = 16787545
+
+/// `GDK_KEY_braille_dots_14578`.
+let keyBrailleDots14578 = 16787673
+
+/// `GDK_KEY_braille_dots_1458`.
+let keyBrailleDots1458 = 16787609
+
+/// `GDK_KEY_braille_dots_146`.
+let keyBrailleDots146 = 16787497
+
+/// `GDK_KEY_braille_dots_1467`.
+let keyBrailleDots1467 = 16787561
+
+/// `GDK_KEY_braille_dots_14678`.
+let keyBrailleDots14678 = 16787689
+
+/// `GDK_KEY_braille_dots_1468`.
+let keyBrailleDots1468 = 16787625
+
+/// `GDK_KEY_braille_dots_147`.
+let keyBrailleDots147 = 16787529
+
+/// `GDK_KEY_braille_dots_1478`.
+let keyBrailleDots1478 = 16787657
+
+/// `GDK_KEY_braille_dots_148`.
+let keyBrailleDots148 = 16787593
+
+/// `GDK_KEY_braille_dots_15`.
+let keyBrailleDots15 = 16787473
+
+/// `GDK_KEY_braille_dots_156`.
+let keyBrailleDots156 = 16787505
+
+/// `GDK_KEY_braille_dots_1567`.
+let keyBrailleDots1567 = 16787569
+
+/// `GDK_KEY_braille_dots_15678`.
+let keyBrailleDots15678 = 16787697
+
+/// `GDK_KEY_braille_dots_1568`.
+let keyBrailleDots1568 = 16787633
+
+/// `GDK_KEY_braille_dots_157`.
+let keyBrailleDots157 = 16787537
+
+/// `GDK_KEY_braille_dots_1578`.
+let keyBrailleDots1578 = 16787665
+
+/// `GDK_KEY_braille_dots_158`.
+let keyBrailleDots158 = 16787601
+
+/// `GDK_KEY_braille_dots_16`.
+let keyBrailleDots16 = 16787489
+
+/// `GDK_KEY_braille_dots_167`.
+let keyBrailleDots167 = 16787553
+
+/// `GDK_KEY_braille_dots_1678`.
+let keyBrailleDots1678 = 16787681
+
+/// `GDK_KEY_braille_dots_168`.
+let keyBrailleDots168 = 16787617
+
+/// `GDK_KEY_braille_dots_17`.
+let keyBrailleDots17 = 16787521
+
+/// `GDK_KEY_braille_dots_178`.
+let keyBrailleDots178 = 16787649
+
+/// `GDK_KEY_braille_dots_18`.
+let keyBrailleDots18 = 16787585
+
+/// `GDK_KEY_braille_dots_2`.
+let keyBrailleDots2 = 16787458
+
+/// `GDK_KEY_braille_dots_23`.
+let keyBrailleDots23 = 16787462
+
+/// `GDK_KEY_braille_dots_234`.
+let keyBrailleDots234 = 16787470
+
+/// `GDK_KEY_braille_dots_2345`.
+let keyBrailleDots2345 = 16787486
+
+/// `GDK_KEY_braille_dots_23456`.
+let keyBrailleDots23456 = 16787518
+
+/// `GDK_KEY_braille_dots_234567`.
+let keyBrailleDots234567 = 16787582
+
+/// `GDK_KEY_braille_dots_2345678`.
+let keyBrailleDots2345678 = 16787710
+
+/// `GDK_KEY_braille_dots_234568`.
+let keyBrailleDots234568 = 16787646
+
+/// `GDK_KEY_braille_dots_23457`.
+let keyBrailleDots23457 = 16787550
+
+/// `GDK_KEY_braille_dots_234578`.
+let keyBrailleDots234578 = 16787678
+
+/// `GDK_KEY_braille_dots_23458`.
+let keyBrailleDots23458 = 16787614
+
+/// `GDK_KEY_braille_dots_2346`.
+let keyBrailleDots2346 = 16787502
+
+/// `GDK_KEY_braille_dots_23467`.
+let keyBrailleDots23467 = 16787566
+
+/// `GDK_KEY_braille_dots_234678`.
+let keyBrailleDots234678 = 16787694
+
+/// `GDK_KEY_braille_dots_23468`.
+let keyBrailleDots23468 = 16787630
+
+/// `GDK_KEY_braille_dots_2347`.
+let keyBrailleDots2347 = 16787534
+
+/// `GDK_KEY_braille_dots_23478`.
+let keyBrailleDots23478 = 16787662
+
+/// `GDK_KEY_braille_dots_2348`.
+let keyBrailleDots2348 = 16787598
+
+/// `GDK_KEY_braille_dots_235`.
+let keyBrailleDots235 = 16787478
+
+/// `GDK_KEY_braille_dots_2356`.
+let keyBrailleDots2356 = 16787510
+
+/// `GDK_KEY_braille_dots_23567`.
+let keyBrailleDots23567 = 16787574
+
+/// `GDK_KEY_braille_dots_235678`.
+let keyBrailleDots235678 = 16787702
+
+/// `GDK_KEY_braille_dots_23568`.
+let keyBrailleDots23568 = 16787638
+
+/// `GDK_KEY_braille_dots_2357`.
+let keyBrailleDots2357 = 16787542
+
+/// `GDK_KEY_braille_dots_23578`.
+let keyBrailleDots23578 = 16787670
+
+/// `GDK_KEY_braille_dots_2358`.
+let keyBrailleDots2358 = 16787606
+
+/// `GDK_KEY_braille_dots_236`.
+let keyBrailleDots236 = 16787494
+
+/// `GDK_KEY_braille_dots_2367`.
+let keyBrailleDots2367 = 16787558
+
+/// `GDK_KEY_braille_dots_23678`.
+let keyBrailleDots23678 = 16787686
+
+/// `GDK_KEY_braille_dots_2368`.
+let keyBrailleDots2368 = 16787622
+
+/// `GDK_KEY_braille_dots_237`.
+let keyBrailleDots237 = 16787526
+
+/// `GDK_KEY_braille_dots_2378`.
+let keyBrailleDots2378 = 16787654
+
+/// `GDK_KEY_braille_dots_238`.
+let keyBrailleDots238 = 16787590
+
+/// `GDK_KEY_braille_dots_24`.
+let keyBrailleDots24 = 16787466
+
+/// `GDK_KEY_braille_dots_245`.
+let keyBrailleDots245 = 16787482
+
+/// `GDK_KEY_braille_dots_2456`.
+let keyBrailleDots2456 = 16787514
+
+/// `GDK_KEY_braille_dots_24567`.
+let keyBrailleDots24567 = 16787578
+
+/// `GDK_KEY_braille_dots_245678`.
+let keyBrailleDots245678 = 16787706
+
+/// `GDK_KEY_braille_dots_24568`.
+let keyBrailleDots24568 = 16787642
+
+/// `GDK_KEY_braille_dots_2457`.
+let keyBrailleDots2457 = 16787546
+
+/// `GDK_KEY_braille_dots_24578`.
+let keyBrailleDots24578 = 16787674
+
+/// `GDK_KEY_braille_dots_2458`.
+let keyBrailleDots2458 = 16787610
+
+/// `GDK_KEY_braille_dots_246`.
+let keyBrailleDots246 = 16787498
+
+/// `GDK_KEY_braille_dots_2467`.
+let keyBrailleDots2467 = 16787562
+
+/// `GDK_KEY_braille_dots_24678`.
+let keyBrailleDots24678 = 16787690
+
+/// `GDK_KEY_braille_dots_2468`.
+let keyBrailleDots2468 = 16787626
+
+/// `GDK_KEY_braille_dots_247`.
+let keyBrailleDots247 = 16787530
+
+/// `GDK_KEY_braille_dots_2478`.
+let keyBrailleDots2478 = 16787658
+
+/// `GDK_KEY_braille_dots_248`.
+let keyBrailleDots248 = 16787594
+
+/// `GDK_KEY_braille_dots_25`.
+let keyBrailleDots25 = 16787474
+
+/// `GDK_KEY_braille_dots_256`.
+let keyBrailleDots256 = 16787506
+
+/// `GDK_KEY_braille_dots_2567`.
+let keyBrailleDots2567 = 16787570
+
+/// `GDK_KEY_braille_dots_25678`.
+let keyBrailleDots25678 = 16787698
+
+/// `GDK_KEY_braille_dots_2568`.
+let keyBrailleDots2568 = 16787634
+
+/// `GDK_KEY_braille_dots_257`.
+let keyBrailleDots257 = 16787538
+
+/// `GDK_KEY_braille_dots_2578`.
+let keyBrailleDots2578 = 16787666
+
+/// `GDK_KEY_braille_dots_258`.
+let keyBrailleDots258 = 16787602
+
+/// `GDK_KEY_braille_dots_26`.
+let keyBrailleDots26 = 16787490
+
+/// `GDK_KEY_braille_dots_267`.
+let keyBrailleDots267 = 16787554
+
+/// `GDK_KEY_braille_dots_2678`.
+let keyBrailleDots2678 = 16787682
+
+/// `GDK_KEY_braille_dots_268`.
+let keyBrailleDots268 = 16787618
+
+/// `GDK_KEY_braille_dots_27`.
+let keyBrailleDots27 = 16787522
+
+/// `GDK_KEY_braille_dots_278`.
+let keyBrailleDots278 = 16787650
+
+/// `GDK_KEY_braille_dots_28`.
+let keyBrailleDots28 = 16787586
+
+/// `GDK_KEY_braille_dots_3`.
+let keyBrailleDots3 = 16787460
+
+/// `GDK_KEY_braille_dots_34`.
+let keyBrailleDots34 = 16787468
+
+/// `GDK_KEY_braille_dots_345`.
+let keyBrailleDots345 = 16787484
+
+/// `GDK_KEY_braille_dots_3456`.
+let keyBrailleDots3456 = 16787516
+
+/// `GDK_KEY_braille_dots_34567`.
+let keyBrailleDots34567 = 16787580
+
+/// `GDK_KEY_braille_dots_345678`.
+let keyBrailleDots345678 = 16787708
+
+/// `GDK_KEY_braille_dots_34568`.
+let keyBrailleDots34568 = 16787644
+
+/// `GDK_KEY_braille_dots_3457`.
+let keyBrailleDots3457 = 16787548
+
+/// `GDK_KEY_braille_dots_34578`.
+let keyBrailleDots34578 = 16787676
+
+/// `GDK_KEY_braille_dots_3458`.
+let keyBrailleDots3458 = 16787612
+
+/// `GDK_KEY_braille_dots_346`.
+let keyBrailleDots346 = 16787500
+
+/// `GDK_KEY_braille_dots_3467`.
+let keyBrailleDots3467 = 16787564
+
+/// `GDK_KEY_braille_dots_34678`.
+let keyBrailleDots34678 = 16787692
+
+/// `GDK_KEY_braille_dots_3468`.
+let keyBrailleDots3468 = 16787628
+
+/// `GDK_KEY_braille_dots_347`.
+let keyBrailleDots347 = 16787532
+
+/// `GDK_KEY_braille_dots_3478`.
+let keyBrailleDots3478 = 16787660
+
+/// `GDK_KEY_braille_dots_348`.
+let keyBrailleDots348 = 16787596
+
+/// `GDK_KEY_braille_dots_35`.
+let keyBrailleDots35 = 16787476
+
+/// `GDK_KEY_braille_dots_356`.
+let keyBrailleDots356 = 16787508
+
+/// `GDK_KEY_braille_dots_3567`.
+let keyBrailleDots3567 = 16787572
+
+/// `GDK_KEY_braille_dots_35678`.
+let keyBrailleDots35678 = 16787700
+
+/// `GDK_KEY_braille_dots_3568`.
+let keyBrailleDots3568 = 16787636
+
+/// `GDK_KEY_braille_dots_357`.
+let keyBrailleDots357 = 16787540
+
+/// `GDK_KEY_braille_dots_3578`.
+let keyBrailleDots3578 = 16787668
+
+/// `GDK_KEY_braille_dots_358`.
+let keyBrailleDots358 = 16787604
+
+/// `GDK_KEY_braille_dots_36`.
+let keyBrailleDots36 = 16787492
+
+/// `GDK_KEY_braille_dots_367`.
+let keyBrailleDots367 = 16787556
+
+/// `GDK_KEY_braille_dots_3678`.
+let keyBrailleDots3678 = 16787684
+
+/// `GDK_KEY_braille_dots_368`.
+let keyBrailleDots368 = 16787620
+
+/// `GDK_KEY_braille_dots_37`.
+let keyBrailleDots37 = 16787524
+
+/// `GDK_KEY_braille_dots_378`.
+let keyBrailleDots378 = 16787652
+
+/// `GDK_KEY_braille_dots_38`.
+let keyBrailleDots38 = 16787588
+
+/// `GDK_KEY_braille_dots_4`.
+let keyBrailleDots4 = 16787464
+
+/// `GDK_KEY_braille_dots_45`.
+let keyBrailleDots45 = 16787480
+
+/// `GDK_KEY_braille_dots_456`.
+let keyBrailleDots456 = 16787512
+
+/// `GDK_KEY_braille_dots_4567`.
+let keyBrailleDots4567 = 16787576
+
+/// `GDK_KEY_braille_dots_45678`.
+let keyBrailleDots45678 = 16787704
+
+/// `GDK_KEY_braille_dots_4568`.
+let keyBrailleDots4568 = 16787640
+
+/// `GDK_KEY_braille_dots_457`.
+let keyBrailleDots457 = 16787544
+
+/// `GDK_KEY_braille_dots_4578`.
+let keyBrailleDots4578 = 16787672
+
+/// `GDK_KEY_braille_dots_458`.
+let keyBrailleDots458 = 16787608
+
+/// `GDK_KEY_braille_dots_46`.
+let keyBrailleDots46 = 16787496
+
+/// `GDK_KEY_braille_dots_467`.
+let keyBrailleDots467 = 16787560
+
+/// `GDK_KEY_braille_dots_4678`.
+let keyBrailleDots4678 = 16787688
+
+/// `GDK_KEY_braille_dots_468`.
+let keyBrailleDots468 = 16787624
+
+/// `GDK_KEY_braille_dots_47`.
+let keyBrailleDots47 = 16787528
+
+/// `GDK_KEY_braille_dots_478`.
+let keyBrailleDots478 = 16787656
+
+/// `GDK_KEY_braille_dots_48`.
+let keyBrailleDots48 = 16787592
+
+/// `GDK_KEY_braille_dots_5`.
+let keyBrailleDots5 = 16787472
+
+/// `GDK_KEY_braille_dots_56`.
+let keyBrailleDots56 = 16787504
+
+/// `GDK_KEY_braille_dots_567`.
+let keyBrailleDots567 = 16787568
+
+/// `GDK_KEY_braille_dots_5678`.
+let keyBrailleDots5678 = 16787696
+
+/// `GDK_KEY_braille_dots_568`.
+let keyBrailleDots568 = 16787632
+
+/// `GDK_KEY_braille_dots_57`.
+let keyBrailleDots57 = 16787536
+
+/// `GDK_KEY_braille_dots_578`.
+let keyBrailleDots578 = 16787664
+
+/// `GDK_KEY_braille_dots_58`.
+let keyBrailleDots58 = 16787600
+
+/// `GDK_KEY_braille_dots_6`.
+let keyBrailleDots6 = 16787488
+
+/// `GDK_KEY_braille_dots_67`.
+let keyBrailleDots67 = 16787552
+
+/// `GDK_KEY_braille_dots_678`.
+let keyBrailleDots678 = 16787680
+
+/// `GDK_KEY_braille_dots_68`.
+let keyBrailleDots68 = 16787616
+
+/// `GDK_KEY_braille_dots_7`.
+let keyBrailleDots7 = 16787520
+
+/// `GDK_KEY_braille_dots_78`.
+let keyBrailleDots78 = 16787648
+
+/// `GDK_KEY_braille_dots_8`.
+let keyBrailleDots8 = 16787584
+
+/// `GDK_KEY_breve`.
+let keyBreve = 418
+
+/// `GDK_KEY_brokenbar`.
+let keyBrokenbar = 166
+
+/// `GDK_KEY_careof`.
+let keyCareof = 2744
+
+/// `GDK_KEY_caret`.
+let keyCaret = 2812
+
+/// `GDK_KEY_caron`.
+let keyCaron = 439
+
+/// `GDK_KEY_cedilla`.
+let keyCedilla = 184
+
+/// `GDK_KEY_cent`.
+let keyCent = 162
+
+/// `GDK_KEY_checkerboard`.
+let keyCheckerboard = 2529
+
+/// `GDK_KEY_checkmark`.
+let keyCheckmark = 2803
+
+/// `GDK_KEY_circle`.
+let keyCircle = 3023
+
+/// `GDK_KEY_club`.
+let keyClub = 2796
+
+/// `GDK_KEY_colon`.
+let keyColon = 58
+
+/// `GDK_KEY_combining_acute`.
+let keyCombiningAcute = 16777985
+
+/// `GDK_KEY_combining_belowdot`.
+let keyCombiningBelowdot = 16778019
+
+/// `GDK_KEY_combining_grave`.
+let keyCombiningGrave = 16777984
+
+/// `GDK_KEY_combining_hook`.
+let keyCombiningHook = 16777993
+
+/// `GDK_KEY_combining_tilde`.
+let keyCombiningTilde = 16777987
+
+/// `GDK_KEY_comma`.
+let keyComma = 44
+
+/// `GDK_KEY_containsas`.
+let keyContainsas = 16785931
+
+/// `GDK_KEY_copyright`.
+let keyCopyright = 169
+
+/// `GDK_KEY_cr`.
+let keyCr = 2532
+
+/// `GDK_KEY_crossinglines`.
+let keyCrossinglines = 2542
+
+/// `GDK_KEY_cuberoot`.
+let keyCuberoot = 16785947
+
+/// `GDK_KEY_currency`.
+let keyCurrency = 164
+
+/// `GDK_KEY_cursor`.
+let keyCursor = 2815
+
+/// `GDK_KEY_dagger`.
+let keyDagger = 2801
+
+/// `GDK_KEY_dead_A`.
+let keyDeadA = 65153
+
+/// `GDK_KEY_dead_E`.
+let keyDeadE = 65155
+
+/// `GDK_KEY_dead_I`.
+let keyDeadI = 65157
+
+/// `GDK_KEY_dead_O`.
+let keyDeadO = 65159
+
+/// `GDK_KEY_dead_SCHWA`.
+let keyDeadSchwa = 65163
+
+/// `GDK_KEY_dead_U`.
+let keyDeadU = 65161
+
+/// `GDK_KEY_dead_abovecomma`.
+let keyDeadAbovecomma = 65124
+
+/// `GDK_KEY_dead_abovedot`.
+let keyDeadAbovedot = 65110
+
+/// `GDK_KEY_dead_abovereversedcomma`.
+let keyDeadAbovereversedcomma = 65125
+
+/// `GDK_KEY_dead_abovering`.
+let keyDeadAbovering = 65112
+
+/// `GDK_KEY_dead_aboveverticalline`.
+let keyDeadAboveverticalline = 65169
+
+/// `GDK_KEY_dead_acute`.
+let keyDeadAcute = 65105
+
+/// `GDK_KEY_dead_belowbreve`.
+let keyDeadBelowbreve = 65131
+
+/// `GDK_KEY_dead_belowcircumflex`.
+let keyDeadBelowcircumflex = 65129
+
+/// `GDK_KEY_dead_belowcomma`.
+let keyDeadBelowcomma = 65134
+
+/// `GDK_KEY_dead_belowdiaeresis`.
+let keyDeadBelowdiaeresis = 65132
+
+/// `GDK_KEY_dead_belowdot`.
+let keyDeadBelowdot = 65120
+
+/// `GDK_KEY_dead_belowmacron`.
+let keyDeadBelowmacron = 65128
+
+/// `GDK_KEY_dead_belowring`.
+let keyDeadBelowring = 65127
+
+/// `GDK_KEY_dead_belowtilde`.
+let keyDeadBelowtilde = 65130
+
+/// `GDK_KEY_dead_belowverticalline`.
+let keyDeadBelowverticalline = 65170
+
+/// `GDK_KEY_dead_breve`.
+let keyDeadBreve = 65109
+
+/// `GDK_KEY_dead_capital_schwa`.
+let keyDeadCapitalSchwa = 65163
+
+/// `GDK_KEY_dead_caron`.
+let keyDeadCaron = 65114
+
+/// `GDK_KEY_dead_cedilla`.
+let keyDeadCedilla = 65115
+
+/// `GDK_KEY_dead_circumflex`.
+let keyDeadCircumflex = 65106
+
+/// `GDK_KEY_dead_currency`.
+let keyDeadCurrency = 65135
+
+/// `GDK_KEY_dead_dasia`.
+let keyDeadDasia = 65125
+
+/// `GDK_KEY_dead_diaeresis`.
+let keyDeadDiaeresis = 65111
+
+/// `GDK_KEY_dead_doubleacute`.
+let keyDeadDoubleacute = 65113
+
+/// `GDK_KEY_dead_doublegrave`.
+let keyDeadDoublegrave = 65126
+
+/// `GDK_KEY_dead_grave`.
+let keyDeadGrave = 65104
+
+/// `GDK_KEY_dead_greek`.
+let keyDeadGreek = 65164
+
+/// `GDK_KEY_dead_hamza`.
+let keyDeadHamza = 65165
+
+/// `GDK_KEY_dead_hook`.
+let keyDeadHook = 65121
+
+/// `GDK_KEY_dead_horn`.
+let keyDeadHorn = 65122
+
+/// `GDK_KEY_dead_invertedbreve`.
+let keyDeadInvertedbreve = 65133
+
+/// `GDK_KEY_dead_iota`.
+let keyDeadIota = 65117
+
+/// `GDK_KEY_dead_longsolidusoverlay`.
+let keyDeadLongsolidusoverlay = 65171
+
+/// `GDK_KEY_dead_lowline`.
+let keyDeadLowline = 65168
+
+/// `GDK_KEY_dead_macron`.
+let keyDeadMacron = 65108
+
+/// `GDK_KEY_dead_ogonek`.
+let keyDeadOgonek = 65116
+
+/// `GDK_KEY_dead_perispomeni`.
+let keyDeadPerispomeni = 65107
+
+/// `GDK_KEY_dead_psili`.
+let keyDeadPsili = 65124
+
+/// `GDK_KEY_dead_semivoiced_sound`.
+let keyDeadSemivoicedSound = 65119
+
+/// `GDK_KEY_dead_small_schwa`.
+let keyDeadSmallSchwa = 65162
+
+/// `GDK_KEY_dead_stroke`.
+let keyDeadStroke = 65123
+
+/// `GDK_KEY_dead_tilde`.
+let keyDeadTilde = 65107
+
+/// `GDK_KEY_dead_voiced_sound`.
+let keyDeadVoicedSound = 65118
+
+/// `GDK_KEY_decimalpoint`.
+let keyDecimalpoint = 2749
+
+/// `GDK_KEY_degree`.
+let keyDegree = 176
+
+/// `GDK_KEY_diaeresis`.
+let keyDiaeresis = 168
+
+/// `GDK_KEY_diamond`.
+let keyDiamond = 2797
+
+/// `GDK_KEY_digitspace`.
+let keyDigitspace = 2725
+
+/// `GDK_KEY_dintegral`.
+let keyDintegral = 16785964
+
+/// `GDK_KEY_division`.
+let keyDivision = 247
+
+/// `GDK_KEY_dollar`.
+let keyDollar = 36
+
+/// `GDK_KEY_doubbaselinedot`.
+let keyDoubbaselinedot = 2735
+
+/// `GDK_KEY_doubleacute`.
+let keyDoubleacute = 445
+
+/// `GDK_KEY_doubledagger`.
+let keyDoubledagger = 2802
+
+/// `GDK_KEY_doublelowquotemark`.
+let keyDoublelowquotemark = 2814
+
+/// `GDK_KEY_downarrow`.
+let keyDownarrow = 2302
+
+/// `GDK_KEY_downcaret`.
+let keyDowncaret = 2984
+
+/// `GDK_KEY_downshoe`.
+let keyDownshoe = 3030
+
+/// `GDK_KEY_downstile`.
+let keyDownstile = 3012
+
+/// `GDK_KEY_downtack`.
+let keyDowntack = 3010
+
+/// `GDK_KEY_eightsubscript`.
+let keyEightsubscript = 16785544
+
+/// `GDK_KEY_eightsuperior`.
+let keyEightsuperior = 16785528
+
+/// `GDK_KEY_elementof`.
+let keyElementof = 16785928
+
+/// `GDK_KEY_ellipsis`.
+let keyEllipsis = 2734
+
+/// `GDK_KEY_em3space`.
+let keyEm3space = 2723
+
+/// `GDK_KEY_em4space`.
+let keyEm4space = 2724
+
+/// `GDK_KEY_emdash`.
+let keyEmdash = 2729
+
+/// `GDK_KEY_emfilledcircle`.
+let keyEmfilledcircle = 2782
+
+/// `GDK_KEY_emfilledrect`.
+let keyEmfilledrect = 2783
+
+/// `GDK_KEY_emopencircle`.
+let keyEmopencircle = 2766
+
+/// `GDK_KEY_emopenrectangle`.
+let keyEmopenrectangle = 2767
+
+/// `GDK_KEY_emptyset`.
+let keyEmptyset = 16785925
+
+/// `GDK_KEY_emspace`.
+let keyEmspace = 2721
+
+/// `GDK_KEY_endash`.
+let keyEndash = 2730
+
+/// `GDK_KEY_enfilledcircbullet`.
+let keyEnfilledcircbullet = 2790
+
+/// `GDK_KEY_enfilledsqbullet`.
+let keyEnfilledsqbullet = 2791
+
+/// `GDK_KEY_enopencircbullet`.
+let keyEnopencircbullet = 2784
+
+/// `GDK_KEY_enopensquarebullet`.
+let keyEnopensquarebullet = 2785
+
+/// `GDK_KEY_enspace`.
+let keyEnspace = 2722
+
+/// `GDK_KEY_equal`.
+let keyEqual = 61
+
+/// `GDK_KEY_exclam`.
+let keyExclam = 33
+
+/// `GDK_KEY_exclamdown`.
+let keyExclamdown = 161
+
+/// `GDK_KEY_femalesymbol`.
+let keyFemalesymbol = 2808
+
+/// `GDK_KEY_ff`.
+let keyFf = 2531
+
+/// `GDK_KEY_figdash`.
+let keyFigdash = 2747
+
+/// `GDK_KEY_filledlefttribullet`.
+let keyFilledlefttribullet = 2780
+
+/// `GDK_KEY_filledrectbullet`.
+let keyFilledrectbullet = 2779
+
+/// `GDK_KEY_filledrighttribullet`.
+let keyFilledrighttribullet = 2781
+
+/// `GDK_KEY_filledtribulletdown`.
+let keyFilledtribulletdown = 2793
+
+/// `GDK_KEY_filledtribulletup`.
+let keyFilledtribulletup = 2792
+
+/// `GDK_KEY_fiveeighths`.
+let keyFiveeighths = 2757
+
+/// `GDK_KEY_fivesixths`.
+let keyFivesixths = 2743
+
+/// `GDK_KEY_fivesubscript`.
+let keyFivesubscript = 16785541
+
+/// `GDK_KEY_fivesuperior`.
+let keyFivesuperior = 16785525
+
+/// `GDK_KEY_fourfifths`.
+let keyFourfifths = 2741
+
+/// `GDK_KEY_foursubscript`.
+let keyFoursubscript = 16785540
+
+/// `GDK_KEY_foursuperior`.
+let keyFoursuperior = 16785524
+
+/// `GDK_KEY_fourthroot`.
+let keyFourthroot = 16785948
+
+/// `GDK_KEY_function`.
+let keyFunction = 2294
+
+/// `GDK_KEY_grave`.
+let keyGrave = 96
+
+/// `GDK_KEY_greater`.
+let keyGreater = 62
+
+/// `GDK_KEY_greaterthanequal`.
+let keyGreaterthanequal = 2238
+
+/// `GDK_KEY_guillemetleft`.
+let keyGuillemetleft = 171
+
+/// `GDK_KEY_guillemetright`.
+let keyGuillemetright = 187
+
+/// `GDK_KEY_guillemotleft`.
+let keyGuillemotleft = 171
+
+/// `GDK_KEY_guillemotright`.
+let keyGuillemotright = 187
+
+/// `GDK_KEY_hairspace`.
+let keyHairspace = 2728
+
+/// `GDK_KEY_heart`.
+let keyHeart = 2798
+
+/// `GDK_KEY_hebrew_aleph`.
+let keyHebrewAleph = 3296
+
+/// `GDK_KEY_hebrew_ayin`.
+let keyHebrewAyin = 3314
+
+/// `GDK_KEY_hebrew_bet`.
+let keyHebrewBet = 3297
+
+/// `GDK_KEY_hebrew_beth`.
+let keyHebrewBeth = 3297
+
+/// `GDK_KEY_hebrew_chet`.
+let keyHebrewChet = 3303
+
+/// `GDK_KEY_hebrew_dalet`.
+let keyHebrewDalet = 3299
+
+/// `GDK_KEY_hebrew_daleth`.
+let keyHebrewDaleth = 3299
+
+/// `GDK_KEY_hebrew_doublelowline`.
+let keyHebrewDoublelowline = 3295
+
+/// `GDK_KEY_hebrew_finalkaph`.
+let keyHebrewFinalkaph = 3306
+
+/// `GDK_KEY_hebrew_finalmem`.
+let keyHebrewFinalmem = 3309
+
+/// `GDK_KEY_hebrew_finalnun`.
+let keyHebrewFinalnun = 3311
+
+/// `GDK_KEY_hebrew_finalpe`.
+let keyHebrewFinalpe = 3315
+
+/// `GDK_KEY_hebrew_finalzade`.
+let keyHebrewFinalzade = 3317
+
+/// `GDK_KEY_hebrew_finalzadi`.
+let keyHebrewFinalzadi = 3317
+
+/// `GDK_KEY_hebrew_gimel`.
+let keyHebrewGimel = 3298
+
+/// `GDK_KEY_hebrew_gimmel`.
+let keyHebrewGimmel = 3298
+
+/// `GDK_KEY_hebrew_he`.
+let keyHebrewHe = 3300
+
+/// `GDK_KEY_hebrew_het`.
+let keyHebrewHet = 3303
+
+/// `GDK_KEY_hebrew_kaph`.
+let keyHebrewKaph = 3307
+
+/// `GDK_KEY_hebrew_kuf`.
+let keyHebrewKuf = 3319
+
+/// `GDK_KEY_hebrew_lamed`.
+let keyHebrewLamed = 3308
+
+/// `GDK_KEY_hebrew_mem`.
+let keyHebrewMem = 3310
+
+/// `GDK_KEY_hebrew_nun`.
+let keyHebrewNun = 3312
+
+/// `GDK_KEY_hebrew_pe`.
+let keyHebrewPe = 3316
+
+/// `GDK_KEY_hebrew_qoph`.
+let keyHebrewQoph = 3319
+
+/// `GDK_KEY_hebrew_resh`.
+let keyHebrewResh = 3320
+
+/// `GDK_KEY_hebrew_samech`.
+let keyHebrewSamech = 3313
+
+/// `GDK_KEY_hebrew_samekh`.
+let keyHebrewSamekh = 3313
+
+/// `GDK_KEY_hebrew_shin`.
+let keyHebrewShin = 3321
+
+/// `GDK_KEY_hebrew_taf`.
+let keyHebrewTaf = 3322
+
+/// `GDK_KEY_hebrew_taw`.
+let keyHebrewTaw = 3322
+
+/// `GDK_KEY_hebrew_tet`.
+let keyHebrewTet = 3304
+
+/// `GDK_KEY_hebrew_teth`.
+let keyHebrewTeth = 3304
+
+/// `GDK_KEY_hebrew_waw`.
+let keyHebrewWaw = 3301
+
+/// `GDK_KEY_hebrew_yod`.
+let keyHebrewYod = 3305
+
+/// `GDK_KEY_hebrew_zade`.
+let keyHebrewZade = 3318
+
+/// `GDK_KEY_hebrew_zadi`.
+let keyHebrewZadi = 3318
+
+/// `GDK_KEY_hebrew_zain`.
+let keyHebrewZain = 3302
+
+/// `GDK_KEY_hebrew_zayin`.
+let keyHebrewZayin = 3302
+
+/// `GDK_KEY_hexagram`.
+let keyHexagram = 2778
+
+/// `GDK_KEY_horizconnector`.
+let keyHorizconnector = 2211
+
+/// `GDK_KEY_horizlinescan1`.
+let keyHorizlinescan1 = 2543
+
+/// `GDK_KEY_horizlinescan3`.
+let keyHorizlinescan3 = 2544
+
+/// `GDK_KEY_horizlinescan5`.
+let keyHorizlinescan5 = 2545
+
+/// `GDK_KEY_horizlinescan7`.
+let keyHorizlinescan7 = 2546
+
+/// `GDK_KEY_horizlinescan9`.
+let keyHorizlinescan9 = 2547
+
+/// `GDK_KEY_ht`.
+let keyHt = 2530
+
+/// `GDK_KEY_hyphen`.
+let keyHyphen = 173
+
+/// `GDK_KEY_iTouch`.
+let keyItouch = 269025120
+
+/// `GDK_KEY_identical`.
+let keyIdentical = 2255
+
+/// `GDK_KEY_idotless`.
+let keyIdotless = 697
+
+/// `GDK_KEY_ifonlyif`.
+let keyIfonlyif = 2253
+
+/// `GDK_KEY_implies`.
+let keyImplies = 2254
+
+/// `GDK_KEY_includedin`.
+let keyIncludedin = 2266
+
+/// `GDK_KEY_includes`.
+let keyIncludes = 2267
+
+/// `GDK_KEY_infinity`.
+let keyInfinity = 2242
+
+/// `GDK_KEY_integral`.
+let keyIntegral = 2239
+
+/// `GDK_KEY_intersection`.
+let keyIntersection = 2268
+
+/// `GDK_KEY_jot`.
+let keyJot = 3018
+
+/// `GDK_KEY_kana_A`.
+let keyKanaA = 1201
+
+/// `GDK_KEY_kana_CHI`.
+let keyKanaChi = 1217
+
+/// `GDK_KEY_kana_E`.
+let keyKanaE = 1204
+
+/// `GDK_KEY_kana_FU`.
+let keyKanaFu = 1228
+
+/// `GDK_KEY_kana_HA`.
+let keyKanaHa = 1226
+
+/// `GDK_KEY_kana_HE`.
+let keyKanaHe = 1229
+
+/// `GDK_KEY_kana_HI`.
+let keyKanaHi = 1227
+
+/// `GDK_KEY_kana_HO`.
+let keyKanaHo = 1230
+
+/// `GDK_KEY_kana_HU`.
+let keyKanaHu = 1228
+
+/// `GDK_KEY_kana_I`.
+let keyKanaI = 1202
+
+/// `GDK_KEY_kana_KA`.
+let keyKanaKa = 1206
+
+/// `GDK_KEY_kana_KE`.
+let keyKanaKe = 1209
+
+/// `GDK_KEY_kana_KI`.
+let keyKanaKi = 1207
+
+/// `GDK_KEY_kana_KO`.
+let keyKanaKo = 1210
+
+/// `GDK_KEY_kana_KU`.
+let keyKanaKu = 1208
+
+/// `GDK_KEY_kana_MA`.
+let keyKanaMa = 1231
+
+/// `GDK_KEY_kana_ME`.
+let keyKanaMe = 1234
+
+/// `GDK_KEY_kana_MI`.
+let keyKanaMi = 1232
+
+/// `GDK_KEY_kana_MO`.
+let keyKanaMo = 1235
+
+/// `GDK_KEY_kana_MU`.
+let keyKanaMu = 1233
+
+/// `GDK_KEY_kana_N`.
+let keyKanaN = 1245
+
+/// `GDK_KEY_kana_NA`.
+let keyKanaNa = 1221
+
+/// `GDK_KEY_kana_NE`.
+let keyKanaNe = 1224
+
+/// `GDK_KEY_kana_NI`.
+let keyKanaNi = 1222
+
+/// `GDK_KEY_kana_NO`.
+let keyKanaNo = 1225
+
+/// `GDK_KEY_kana_NU`.
+let keyKanaNu = 1223
+
+/// `GDK_KEY_kana_O`.
+let keyKanaO = 1205
+
+/// `GDK_KEY_kana_RA`.
+let keyKanaRa = 1239
+
+/// `GDK_KEY_kana_RE`.
+let keyKanaRe = 1242
+
+/// `GDK_KEY_kana_RI`.
+let keyKanaRi = 1240
+
+/// `GDK_KEY_kana_RO`.
+let keyKanaRo = 1243
+
+/// `GDK_KEY_kana_RU`.
+let keyKanaRu = 1241
+
+/// `GDK_KEY_kana_SA`.
+let keyKanaSa = 1211
+
+/// `GDK_KEY_kana_SE`.
+let keyKanaSe = 1214
+
+/// `GDK_KEY_kana_SHI`.
+let keyKanaShi = 1212
+
+/// `GDK_KEY_kana_SO`.
+let keyKanaSo = 1215
+
+/// `GDK_KEY_kana_SU`.
+let keyKanaSu = 1213
+
+/// `GDK_KEY_kana_TA`.
+let keyKanaTa = 1216
+
+/// `GDK_KEY_kana_TE`.
+let keyKanaTe = 1219
+
+/// `GDK_KEY_kana_TI`.
+let keyKanaTi = 1217
+
+/// `GDK_KEY_kana_TO`.
+let keyKanaTo = 1220
+
+/// `GDK_KEY_kana_TSU`.
+let keyKanaTsu = 1218
+
+/// `GDK_KEY_kana_TU`.
+let keyKanaTu = 1218
+
+/// `GDK_KEY_kana_U`.
+let keyKanaU = 1203
+
+/// `GDK_KEY_kana_WA`.
+let keyKanaWa = 1244
+
+/// `GDK_KEY_kana_WO`.
+let keyKanaWo = 1190
+
+/// `GDK_KEY_kana_YA`.
+let keyKanaYa = 1236
+
+/// `GDK_KEY_kana_YO`.
+let keyKanaYo = 1238
+
+/// `GDK_KEY_kana_YU`.
+let keyKanaYu = 1237
+
+/// `GDK_KEY_kana_closingbracket`.
+let keyKanaClosingbracket = 1187
+
+/// `GDK_KEY_kana_comma`.
+let keyKanaComma = 1188
+
+/// `GDK_KEY_kana_conjunctive`.
+let keyKanaConjunctive = 1189
+
+/// `GDK_KEY_kana_fullstop`.
+let keyKanaFullstop = 1185
+
+/// `GDK_KEY_kana_middledot`.
+let keyKanaMiddledot = 1189
+
+/// `GDK_KEY_kana_openingbracket`.
+let keyKanaOpeningbracket = 1186
+
+/// `GDK_KEY_kana_switch`.
+let keyKanaSwitch = 65406
+
+/// `GDK_KEY_kappa`.
+let keyKappa = 930
+
+/// `GDK_KEY_kra`.
+let keyKra = 930
+
+/// `GDK_KEY_latincross`.
+let keyLatincross = 2777
+
+/// `GDK_KEY_leftanglebracket`.
+let keyLeftanglebracket = 2748
+
+/// `GDK_KEY_leftarrow`.
+let keyLeftarrow = 2299
+
+/// `GDK_KEY_leftcaret`.
+let keyLeftcaret = 2979
+
+/// `GDK_KEY_leftdoublequotemark`.
+let keyLeftdoublequotemark = 2770
+
+/// `GDK_KEY_leftmiddlecurlybrace`.
+let keyLeftmiddlecurlybrace = 2223
+
+/// `GDK_KEY_leftopentriangle`.
+let keyLeftopentriangle = 2764
+
+/// `GDK_KEY_leftpointer`.
+let keyLeftpointer = 2794
+
+/// `GDK_KEY_leftradical`.
+let keyLeftradical = 2209
+
+/// `GDK_KEY_leftshoe`.
+let keyLeftshoe = 3034
+
+/// `GDK_KEY_leftsinglequotemark`.
+let keyLeftsinglequotemark = 2768
+
+/// `GDK_KEY_leftt`.
+let keyLeftt = 2548
+
+/// `GDK_KEY_lefttack`.
+let keyLefttack = 3036
+
+/// `GDK_KEY_less`.
+let keyLess = 60
+
+/// `GDK_KEY_lessthanequal`.
+let keyLessthanequal = 2236
+
+/// `GDK_KEY_lf`.
+let keyLf = 2533
+
+/// `GDK_KEY_logicaland`.
+let keyLogicaland = 2270
+
+/// `GDK_KEY_logicalor`.
+let keyLogicalor = 2271
+
+/// `GDK_KEY_lowleftcorner`.
+let keyLowleftcorner = 2541
+
+/// `GDK_KEY_lowrightcorner`.
+let keyLowrightcorner = 2538
+
+/// `GDK_KEY_macron`.
+let keyMacron = 175
+
+/// `GDK_KEY_malesymbol`.
+let keyMalesymbol = 2807
+
+/// `GDK_KEY_maltesecross`.
+let keyMaltesecross = 2800
+
+/// `GDK_KEY_marker`.
+let keyMarker = 2751
+
+/// `GDK_KEY_masculine`.
+let keyMasculine = 186
+
+/// `GDK_KEY_minus`.
+let keyMinus = 45
+
+/// `GDK_KEY_minutes`.
+let keyMinutes = 2774
+
+/// `GDK_KEY_mu`.
+let keyMu = 181
+
+/// `GDK_KEY_multiply`.
+let keyMultiply = 215
+
+/// `GDK_KEY_musicalflat`.
+let keyMusicalflat = 2806
+
+/// `GDK_KEY_musicalsharp`.
+let keyMusicalsharp = 2805
+
+/// `GDK_KEY_nabla`.
+let keyNabla = 2245
+
+/// `GDK_KEY_ninesubscript`.
+let keyNinesubscript = 16785545
+
+/// `GDK_KEY_ninesuperior`.
+let keyNinesuperior = 16785529
+
+/// `GDK_KEY_nl`.
+let keyNl = 2536
+
+/// `GDK_KEY_nobreakspace`.
+let keyNobreakspace = 160
+
+/// `GDK_KEY_notapproxeq`.
+let keyNotapproxeq = 16785991
+
+/// `GDK_KEY_notelementof`.
+let keyNotelementof = 16785929
+
+/// `GDK_KEY_notequal`.
+let keyNotequal = 2237
+
+/// `GDK_KEY_notidentical`.
+let keyNotidentical = 16786018
+
+/// `GDK_KEY_notsign`.
+let keyNotsign = 172
+
+/// `GDK_KEY_numbersign`.
+let keyNumbersign = 35
+
+/// `GDK_KEY_numerosign`.
+let keyNumerosign = 1712
+
+/// `GDK_KEY_ogonek`.
+let keyOgonek = 434
+
+/// `GDK_KEY_oneeighth`.
+let keyOneeighth = 2755
+
+/// `GDK_KEY_onefifth`.
+let keyOnefifth = 2738
+
+/// `GDK_KEY_onehalf`.
+let keyOnehalf = 189
+
+/// `GDK_KEY_onequarter`.
+let keyOnequarter = 188
+
+/// `GDK_KEY_onesixth`.
+let keyOnesixth = 2742
+
+/// `GDK_KEY_onesubscript`.
+let keyOnesubscript = 16785537
+
+/// `GDK_KEY_onesuperior`.
+let keyOnesuperior = 185
+
+/// `GDK_KEY_onethird`.
+let keyOnethird = 2736
+
+/// `GDK_KEY_openrectbullet`.
+let keyOpenrectbullet = 2786
+
+/// `GDK_KEY_openstar`.
+let keyOpenstar = 2789
+
+/// `GDK_KEY_opentribulletdown`.
+let keyOpentribulletdown = 2788
+
+/// `GDK_KEY_opentribulletup`.
+let keyOpentribulletup = 2787
+
+/// `GDK_KEY_ordfeminine`.
+let keyOrdfeminine = 170
+
+/// `GDK_KEY_ordmasculine`.
+let keyOrdmasculine = 186
+
+/// `GDK_KEY_overbar`.
+let keyOverbar = 3008
+
+/// `GDK_KEY_overline`.
+let keyOverline = 1150
+
+/// `GDK_KEY_paragraph`.
+let keyParagraph = 182
+
+/// `GDK_KEY_parenleft`.
+let keyParenleft = 40
+
+/// `GDK_KEY_parenright`.
+let keyParenright = 41
+
+/// `GDK_KEY_partdifferential`.
+let keyPartdifferential = 16785922
+
+/// `GDK_KEY_partialderivative`.
+let keyPartialderivative = 2287
+
+/// `GDK_KEY_percent`.
+let keyPercent = 37
+
+/// `GDK_KEY_period`.
+let keyPeriod = 46
+
+/// `GDK_KEY_periodcentered`.
+let keyPeriodcentered = 183
+
+/// `GDK_KEY_permille`.
+let keyPermille = 2773
+
+/// `GDK_KEY_phonographcopyright`.
+let keyPhonographcopyright = 2811
+
+/// `GDK_KEY_plus`.
+let keyPlus = 43
+
+/// `GDK_KEY_plusminus`.
+let keyPlusminus = 177
+
+/// `GDK_KEY_prescription`.
+let keyPrescription = 2772
+
+/// `GDK_KEY_prolongedsound`.
+let keyProlongedsound = 1200
+
+/// `GDK_KEY_punctspace`.
+let keyPunctspace = 2726
+
+/// `GDK_KEY_quad`.
+let keyQuad = 3020
+
+/// `GDK_KEY_question`.
+let keyQuestion = 63
+
+/// `GDK_KEY_questiondown`.
+let keyQuestiondown = 191
+
+/// `GDK_KEY_quotedbl`.
+let keyQuotedbl = 34
+
+/// `GDK_KEY_quoteleft`.
+let keyQuoteleft = 96
+
+/// `GDK_KEY_quoteright`.
+let keyQuoteright = 39
+
+/// `GDK_KEY_radical`.
+let keyRadical = 2262
+
+/// `GDK_KEY_registered`.
+let keyRegistered = 174
+
+/// `GDK_KEY_rightanglebracket`.
+let keyRightanglebracket = 2750
+
+/// `GDK_KEY_rightarrow`.
+let keyRightarrow = 2301
+
+/// `GDK_KEY_rightcaret`.
+let keyRightcaret = 2982
+
+/// `GDK_KEY_rightdoublequotemark`.
+let keyRightdoublequotemark = 2771
+
+/// `GDK_KEY_rightmiddlecurlybrace`.
+let keyRightmiddlecurlybrace = 2224
+
+/// `GDK_KEY_rightmiddlesummation`.
+let keyRightmiddlesummation = 2231
+
+/// `GDK_KEY_rightopentriangle`.
+let keyRightopentriangle = 2765
+
+/// `GDK_KEY_rightpointer`.
+let keyRightpointer = 2795
+
+/// `GDK_KEY_rightshoe`.
+let keyRightshoe = 3032
+
+/// `GDK_KEY_rightsinglequotemark`.
+let keyRightsinglequotemark = 2769
+
+/// `GDK_KEY_rightt`.
+let keyRightt = 2549
+
+/// `GDK_KEY_righttack`.
+let keyRighttack = 3068
+
+/// `GDK_KEY_script_switch`.
+let keyScriptSwitch = 65406
+
+/// `GDK_KEY_seconds`.
+let keySeconds = 2775
+
+/// `GDK_KEY_section`.
+let keySection = 167
+
+/// `GDK_KEY_semicolon`.
+let keySemicolon = 59
+
+/// `GDK_KEY_semivoicedsound`.
+let keySemivoicedsound = 1247
+
+/// `GDK_KEY_seveneighths`.
+let keySeveneighths = 2758
+
+/// `GDK_KEY_sevensubscript`.
+let keySevensubscript = 16785543
+
+/// `GDK_KEY_sevensuperior`.
+let keySevensuperior = 16785527
+
+/// `GDK_KEY_signaturemark`.
+let keySignaturemark = 2762
+
+/// `GDK_KEY_signifblank`.
+let keySignifblank = 2732
+
+/// `GDK_KEY_similarequal`.
+let keySimilarequal = 2249
+
+/// `GDK_KEY_singlelowquotemark`.
+let keySinglelowquotemark = 2813
+
+/// `GDK_KEY_sixsubscript`.
+let keySixsubscript = 16785542
+
+/// `GDK_KEY_sixsuperior`.
+let keySixsuperior = 16785526
+
+/// `GDK_KEY_slash`.
+let keySlash = 47
+
+/// `GDK_KEY_soliddiamond`.
+let keySoliddiamond = 2528
+
+/// `GDK_KEY_space`.
+let keySpace = 32
+
+/// `GDK_KEY_squareroot`.
+let keySquareroot = 16785946
+
+/// `GDK_KEY_ssharp`.
+let keySsharp = 223
+
+/// `GDK_KEY_sterling`.
+let keySterling = 163
+
+/// `GDK_KEY_stricteq`.
+let keyStricteq = 16786019
+
+/// `GDK_KEY_telephone`.
+let keyTelephone = 2809
+
+/// `GDK_KEY_telephonerecorder`.
+let keyTelephonerecorder = 2810
+
+/// `GDK_KEY_therefore`.
+let keyTherefore = 2240
+
+/// `GDK_KEY_thinspace`.
+let keyThinspace = 2727
+
+/// `GDK_KEY_threeeighths`.
+let keyThreeeighths = 2756
+
+/// `GDK_KEY_threefifths`.
+let keyThreefifths = 2740
+
+/// `GDK_KEY_threequarters`.
+let keyThreequarters = 190
+
+/// `GDK_KEY_threesubscript`.
+let keyThreesubscript = 16785539
+
+/// `GDK_KEY_threesuperior`.
+let keyThreesuperior = 179
+
+/// `GDK_KEY_tintegral`.
+let keyTintegral = 16785965
+
+/// `GDK_KEY_topintegral`.
+let keyTopintegral = 2212
+
+/// `GDK_KEY_topleftparens`.
+let keyTopleftparens = 2219
+
+/// `GDK_KEY_topleftradical`.
+let keyTopleftradical = 2210
+
+/// `GDK_KEY_topleftsqbracket`.
+let keyTopleftsqbracket = 2215
+
+/// `GDK_KEY_topleftsummation`.
+let keyTopleftsummation = 2225
+
+/// `GDK_KEY_toprightparens`.
+let keyToprightparens = 2221
+
+/// `GDK_KEY_toprightsqbracket`.
+let keyToprightsqbracket = 2217
+
+/// `GDK_KEY_toprightsummation`.
+let keyToprightsummation = 2229
+
+/// `GDK_KEY_topt`.
+let keyTopt = 2551
+
+/// `GDK_KEY_topvertsummationconnector`.
+let keyTopvertsummationconnector = 2227
+
+/// `GDK_KEY_trademark`.
+let keyTrademark = 2761
+
+/// `GDK_KEY_trademarkincircle`.
+let keyTrademarkincircle = 2763
+
+/// `GDK_KEY_twofifths`.
+let keyTwofifths = 2739
+
+/// `GDK_KEY_twosubscript`.
+let keyTwosubscript = 16785538
+
+/// `GDK_KEY_twosuperior`.
+let keyTwosuperior = 178
+
+/// `GDK_KEY_twothirds`.
+let keyTwothirds = 2737
+
+/// `GDK_KEY_underbar`.
+let keyUnderbar = 3014
+
+/// `GDK_KEY_underscore`.
+let keyUnderscore = 95
+
+/// `GDK_KEY_union`.
+let keyUnion = 2269
+
+/// `GDK_KEY_uparrow`.
+let keyUparrow = 2300
+
+/// `GDK_KEY_upcaret`.
+let keyUpcaret = 2985
+
+/// `GDK_KEY_upleftcorner`.
+let keyUpleftcorner = 2540
+
+/// `GDK_KEY_uprightcorner`.
+let keyUprightcorner = 2539
+
+/// `GDK_KEY_upshoe`.
+let keyUpshoe = 3011
+
+/// `GDK_KEY_upstile`.
+let keyUpstile = 3027
+
+/// `GDK_KEY_uptack`.
+let keyUptack = 3022
+
+/// `GDK_KEY_variation`.
+let keyVariation = 2241
+
+/// `GDK_KEY_vertbar`.
+let keyVertbar = 2552
+
+/// `GDK_KEY_vertconnector`.
+let keyVertconnector = 2214
+
+/// `GDK_KEY_voicedsound`.
+let keyVoicedsound = 1246
+
+/// `GDK_KEY_vt`.
+let keyVt = 2537
+
+/// `GDK_KEY_yen`.
+let keyYen = 165
+
+/// `GDK_KEY_zerosubscript`.
+let keyZerosubscript = 16785536
+
+/// `GDK_KEY_zerosuperior`.
+let keyZerosuperior = 16785520
+
+/// A mask covering all entries in `GdkModifierType`.
+let modifierMask = 469769999
+
+/// This is the priority that the idle handler processing surface updates is given in the main loop.
+let priorityRedraw = 120
+
+extern gdk_cairo_draw_from_gl : cptr -> cptr -> i32 -> i32 -> i32 -> i32 -> i32 -> i32 -> i32 -> unit
+
+/// Deprecated. Draws GL content onto a cairo context.
+let cairoDrawFromGl (cr: Cairo.Context) (surface: Surface) (source: int) (sourceType: int) (bufferScale: int) (x: int) (y: int) (width: int) (height: int) : unit =
+  gdk_cairo_draw_from_gl (Glue.obj cr.Id (Cairo.cairo_gobject_context_get_type ())) (Glue.obj surface.Id (gdk_surface_get_type ())) (i32 source) (i32 sourceType) (i32 bufferScale) (i32 x) (i32 y) (i32 width) (i32 height)
+
+extern gdk_cairo_rectangle : cptr -> cptr -> unit
+
+/// Adds the given rectangle to the current path of @cr.
+let cairoRectangle (cr: Cairo.Context) (rectangle: Rectangle) : unit =
+  gdk_cairo_rectangle (Glue.obj cr.Id (Cairo.cairo_gobject_context_get_type ())) (Glue.obj rectangle.Id (gdk_rectangle_get_type ()))
+
+extern gdk_cairo_region : cptr -> cptr -> unit
+
+/// Adds the given region to the current path of @cr.
+let cairoRegion (cr: Cairo.Context) (region: Cairo.Region) : unit =
+  gdk_cairo_region (Glue.obj cr.Id (Cairo.cairo_gobject_context_get_type ())) (Glue.obj region.Id (Cairo.cairo_gobject_region_get_type ()))
+
+extern gdk_cairo_region_create_from_surface : cptr -> cptr
+
+/// Creates region that covers the area where the given @surface is more than 50% opaque.
+let cairoRegionCreateFromSurface (surface: Cairo.Surface) : Cairo.Region =
+  Cairo.Region (Glue.wrapBoxed ((gdk_cairo_region_create_from_surface (Glue.obj surface.Id (Cairo.cairo_gobject_surface_get_type ())))) (Cairo.cairo_gobject_region_get_type ()) true)
+
+extern gdk_cairo_set_source_pixbuf : cptr -> cptr -> f64 -> f64 -> unit
+
+/// Deprecated. Sets the given pixbuf as the source pattern for @cr.
+let cairoSetSourcePixbuf (cr: Cairo.Context) (pixbuf: GdkPixbuf.Pixbuf) (pixbufX: float) (pixbufY: float) : unit =
+  gdk_cairo_set_source_pixbuf (Glue.obj cr.Id (Cairo.cairo_gobject_context_get_type ())) (Glue.obj pixbuf.Id (GdkPixbuf.gdk_pixbuf_get_type ())) pixbufX pixbufY
+
+extern gdk_cairo_set_source_rgba : cptr -> cptr -> unit
+
+/// Sets the specified `GdkRGBA` as the source color of @cr.
+let cairoSetSourceRgba (cr: Cairo.Context) (rgba: RGBA) : unit =
+  gdk_cairo_set_source_rgba (Glue.obj cr.Id (Cairo.cairo_gobject_context_get_type ())) (Glue.obj rgba.Id (gdk_rgba_get_type ()))
+
+extern gdk_content_deserialize_async : cptr -> cstr -> usize -> i32 -> cptr -> cptr -> cptr -> unit
+
+/// Reads content from the given input stream and deserialize it, asynchronously.
+let contentDeserializeAsync (stream: Gio.InputStream) (mimeType: string) (type_: usize) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
+  let zcb1 =
+    Glue.hold (fun () ->
+      let zid2 = Glue.wrap (Glue.argPointer 0) false
+      let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+      let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+      callback sourceObject res)
+  let zp3 =
+    match cancellable with
+    | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
+    | None -> Glue.none ()
+  gdk_content_deserialize_async (Glue.obj stream.Id (Gio.g_input_stream_get_type ())) mimeType type_ (i32 ioPriority) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+
+extern gdk_content_deserialize_finish : cptr -> cptr -> cptr -> i32
+
+/// Finishes a content deserialization operation.
+let contentDeserializeFinish (result: Gio.AsyncResult) : result<(bool * GObject.Value), Glue.Error> =
+  let zo1 = Glue.alloc (GObject.zgtk_sizeof_GObject_Value ()) (GObject.g_value_get_type ())
+  Glue.outBegin ()
+  let zr = gdk_content_deserialize_finish (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.obj zo1 (GObject.g_value_get_type ())) (Glue.err ())
+  match Glue.takeError () with
+  | Some ze ->
+    Glue.outEnd ()
+    Error ze
+  | None ->
+    let zv = (((zr) <> i32 0), GObject.Value zo1)
+    Glue.outEnd ()
+    Ok zv
+
+extern gdk_content_register_deserializer : cstr -> usize -> cptr -> cptr -> cptr -> unit
+
+/// Registers a function to deserialize object of a given type.
+[<Unsafe>]
+let contentRegisterDeserializer (mimeType: string) (type_: usize) (deserialize: cptr) (data: cptr) (notify: cptr) : unit =
+  gdk_content_register_deserializer mimeType type_ deserialize data notify
+
+extern gdk_content_register_serializer : usize -> cstr -> cptr -> cptr -> cptr -> unit
+
+/// Registers a function to serialize objects of a given type.
+[<Unsafe>]
+let contentRegisterSerializer (type_: usize) (mimeType: string) (serialize: cptr) (data: cptr) (notify: cptr) : unit =
+  gdk_content_register_serializer type_ mimeType serialize data notify
+
+extern gdk_content_serialize_async : cptr -> cstr -> cptr -> i32 -> cptr -> cptr -> cptr -> unit
+
+/// Serialize content and write it to the given output stream, asynchronously.
+let contentSerializeAsync (stream: Gio.OutputStream) (mimeType: string) (value: GObject.Value) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
+  let zcb1 =
+    Glue.hold (fun () ->
+      let zid2 = Glue.wrap (Glue.argPointer 0) false
+      let sourceObject = (if zid2 = 0 then None else Some (GObject.Object zid2))
+      let res = Gio.AsyncResult (Glue.wrap (Glue.argPointer 1) false)
+      callback sourceObject res)
+  let zp3 =
+    match cancellable with
+    | Some zo -> Glue.obj zo.Id (Gio.g_cancellable_get_type ())
+    | None -> Glue.none ()
+  gdk_content_serialize_async (Glue.obj stream.Id (Gio.g_output_stream_get_type ())) mimeType (Glue.obj value.Id (GObject.g_value_get_type ())) (i32 ioPriority) zp3 (Gio.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+
+extern gdk_content_serialize_finish : cptr -> cptr -> i32
+
+/// Finishes a content serialization operation.
+let contentSerializeFinish (result: Gio.AsyncResult) : result<bool, Glue.Error> =
+  Glue.outBegin ()
+  let zr = gdk_content_serialize_finish (Glue.obj result.Id (Gio.g_async_result_get_type ())) (Glue.err ())
+  match Glue.takeError () with
+  | Some ze ->
+    Glue.outEnd ()
+    Error ze
+  | None ->
+    let zv = ((zr) <> i32 0)
+    Glue.outEnd ()
+    Ok zv
+
+extern gdk_events_get_angle : cptr -> cptr -> cptr -> i32
+
+/// Returns the relative angle from @event1 to @event2.
+let eventsGetAngle (event1: Event) (event2: Event) : (bool * float) =
+  Glue.outBegin ()
+  let zr = gdk_events_get_angle (Glue.obj event1.Id (zgtk_type_Gdk_Event ())) (Glue.obj event2.Id (zgtk_type_Gdk_Event ())) (Glue.out 0)
+  let zv = (((zr) <> i32 0), Glue.outF64 0)
+  Glue.outEnd ()
+  zv
+
+extern gdk_events_get_center : cptr -> cptr -> cptr -> cptr -> i32
+
+/// Returns the point halfway between the events' positions.
+let eventsGetCenter (event1: Event) (event2: Event) : (bool * float * float) =
+  Glue.outBegin ()
+  let zr = gdk_events_get_center (Glue.obj event1.Id (zgtk_type_Gdk_Event ())) (Glue.obj event2.Id (zgtk_type_Gdk_Event ())) (Glue.out 0) (Glue.out 1)
+  let zv = (((zr) <> i32 0), Glue.outF64 0, Glue.outF64 1)
+  Glue.outEnd ()
+  zv
+
+extern gdk_events_get_distance : cptr -> cptr -> cptr -> i32
+
+/// Returns the distance between the event locations.
+let eventsGetDistance (event1: Event) (event2: Event) : (bool * float) =
+  Glue.outBegin ()
+  let zr = gdk_events_get_distance (Glue.obj event1.Id (zgtk_type_Gdk_Event ())) (Glue.obj event2.Id (zgtk_type_Gdk_Event ())) (Glue.out 0)
+  let zv = (((zr) <> i32 0), Glue.outF64 0)
+  Glue.outEnd ()
+  zv
+
+extern gdk_intern_mime_type : cstr -> cptr
+
+/// Canonicalizes the given mime type and interns the result.
+let internMimeType (string: string) : option<string> =
+  Glue.textOption ((gdk_intern_mime_type string))
+
+extern gdk_keyval_convert_case : u32 -> cptr -> cptr -> unit
+
+/// Obtains the upper- and lower-case versions of the keyval @symbol.
+let keyvalConvertCase (symbol: int) : (int * int) =
+  Glue.outBegin ()
+  gdk_keyval_convert_case (u32 symbol) (Glue.out 0) (Glue.out 1)
+  let zv = (Glue.outU32 0, Glue.outU32 1)
+  Glue.outEnd ()
+  zv
+
+extern gdk_keyval_from_name : cstr -> u32
+
+/// Converts a key name to a key value.
+let keyvalFromName (keyvalName: string) : int =
+  (int ((gdk_keyval_from_name keyvalName)))
+
+extern gdk_keyval_is_lower : u32 -> i32
+
+/// Returns true if the given key value is in lower case.
+let keyvalIsLower (keyval: int) : bool =
+  (((gdk_keyval_is_lower (u32 keyval))) <> i32 0)
+
+extern gdk_keyval_is_upper : u32 -> i32
+
+/// Returns true if the given key value is in upper case.
+let keyvalIsUpper (keyval: int) : bool =
+  (((gdk_keyval_is_upper (u32 keyval))) <> i32 0)
+
+extern gdk_keyval_name : u32 -> cptr
+
+/// Converts a key value into a symbolic name.
+let keyvalName (keyval: int) : option<string> =
+  Glue.textOption ((gdk_keyval_name (u32 keyval)))
+
+extern gdk_keyval_to_lower : u32 -> u32
+
+/// Converts a key value to lower case, if applicable.
+let keyvalToLower (keyval: int) : int =
+  (int ((gdk_keyval_to_lower (u32 keyval))))
+
+extern gdk_keyval_to_unicode : u32 -> u32
+
+/// Converts from a GDK key symbol to the corresponding Unicode character.
+let keyvalToUnicode (keyval: int) : int =
+  (int ((gdk_keyval_to_unicode (u32 keyval))))
+
+extern gdk_keyval_to_upper : u32 -> u32
+
+/// Converts a key value to upper case, if applicable.
+let keyvalToUpper (keyval: int) : int =
+  (int ((gdk_keyval_to_upper (u32 keyval))))
+
+extern gdk_pango_layout_get_clip_region : cptr -> i32 -> i32 -> i32 -> i32 -> cptr
+
+/// Obtains a clip region which contains the areas where the given ranges of text would be drawn.
+let pangoLayoutGetClipRegion (layout: Pango.Layout) (xOrigin: int) (yOrigin: int) (indexRanges: int) (nRanges: int) : Cairo.Region =
+  Cairo.Region (Glue.wrapBoxed ((gdk_pango_layout_get_clip_region (Glue.obj layout.Id (Pango.pango_layout_get_type ())) (i32 xOrigin) (i32 yOrigin) (i32 indexRanges) (i32 nRanges))) (Cairo.cairo_gobject_region_get_type ()) true)
+
+extern gdk_pango_layout_line_get_clip_region : cptr -> i32 -> i32 -> cptr -> i32 -> cptr
+
+/// Obtains a clip region which contains the areas where the given ranges of text would be drawn.
+let pangoLayoutLineGetClipRegion (line: Pango.LayoutLine) (xOrigin: int) (yOrigin: int) (indexRanges: list<int>) (nRanges: int) : Cairo.Region =
+  let za1 = Glue.ints indexRanges 4
+  let zr = gdk_pango_layout_line_get_clip_region (Glue.obj line.Id (Pango.pango_layout_line_get_type ())) (i32 xOrigin) (i32 yOrigin) za1 (i32 nRanges)
+  let zv = Cairo.Region (Glue.wrapBoxed (zr) (Cairo.cairo_gobject_region_get_type ()) true)
+  Glue.free za1
+  zv
+
+extern gdk_pixbuf_get_from_surface : cptr -> i32 -> i32 -> i32 -> i32 -> cptr
+
+/// Deprecated. Transfers image data from a `cairo_surface_t` and converts it to a `GdkPixbuf`.
+let pixbufGetFromSurface (surface: Cairo.Surface) (srcX: int) (srcY: int) (width: int) (height: int) : option<GdkPixbuf.Pixbuf> =
+  let zr = gdk_pixbuf_get_from_surface (Glue.obj surface.Id (Cairo.cairo_gobject_surface_get_type ())) (i32 srcX) (i32 srcY) (i32 width) (i32 height)
+  let zid1 = Glue.wrap (zr) true
+  (if zid1 = 0 then None else Some (GdkPixbuf.Pixbuf zid1))
+
+extern gdk_pixbuf_get_from_texture : cptr -> cptr
+
+/// Deprecated. Creates a new pixbuf from @texture.
+let pixbufGetFromTexture (texture: Texture) : option<GdkPixbuf.Pixbuf> =
+  let zr = gdk_pixbuf_get_from_texture (Glue.obj texture.Id (gdk_texture_get_type ()))
+  let zid1 = Glue.wrap (zr) true
+  (if zid1 = 0 then None else Some (GdkPixbuf.Pixbuf zid1))
+
+extern gdk_set_allowed_backends : cstr -> unit
+
+/// Sets a list of backends that GDK should try to use.
+let setAllowedBackends (backends: string) : unit =
+  gdk_set_allowed_backends backends
+
+extern gdk_unicode_to_keyval : u32 -> u32
+
+/// Converts from a Unicode character to a key symbol.
+let unicodeToKeyval (wc: int) : int =
+  (int ((gdk_unicode_to_keyval (u32 wc))))

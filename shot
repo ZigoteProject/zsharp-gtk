@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# A picture of an example's window without a display: built and run in the container on Xvfb,
+# whose frame buffer becomes build/<example>.png. ./shot [example [arguments…]] (default
+# counter).
+set -euo pipefail
+cd "$(dirname "$0")"
+example=${1:-counter}
+shift || true
+args=$*
+mkdir -p build
+./dev sh -c "set -e
+  (cd examples/$example && zs build >/dev/null)
+  name=\$(sed -n 's/^name = \"\\(.*\\)\"/\\1/p' examples/$example/zs.toml)
+  d=\$(mktemp -d)
+  Xvfb :97 -screen 0 640x640x24 -fbdir \$d >/dev/null 2>&1 & x=\$!
+  sleep 1
+  DISPLAY=:97 GSK_RENDERER=cairo GDK_DISABLE=gl,vulkan GTK_A11Y=none timeout 4 examples/$example/build/\$name $args >/dev/null 2>&1 &
+  sleep 3
+  python3 tools/xwd2png.py \$d/Xvfb_screen0 build/$example.png
+  kill \$x; wait 2>/dev/null; rm -rf \$d"
+echo "build/$example.png"

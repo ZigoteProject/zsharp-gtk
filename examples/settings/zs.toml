@@ -1,0 +1,5 @@
+[package]
+name = "settings"
+
+[dependencies]
+gtk = { path = "../../gtk" }

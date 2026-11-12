@@ -1,0 +1,5 @@
+[package]
+name = "notes"
+
+[dependencies]
+gtk = { path = "../../gtk" }

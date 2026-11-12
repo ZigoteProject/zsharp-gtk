@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Runs a command in this project's container (zsharp-gtk-dev: zsharp-dev plus GTK 4, built on
+# first use or with --rebuild) with the project at /work and the Z# checkout's compiler on PATH,
+# e.g. ./dev zs build. ZSHARP: the Z# checkout (default ../zsharp).
+set -euo pipefail
+cd "$(dirname "$0")"
+image=zsharp-gtk-dev
+if [ "${1:-}" = "--rebuild" ] || ! podman image exists "$image"; then
+  [ "${1:-}" = "--rebuild" ] && shift
+  podman build -t "$image" -f Containerfile .
+fi
+zsharp=$(realpath "${ZSHARP:-../zsharp}")
+tty=(); [ -t 0 ] && tty=(-it)
+exec podman run --rm "${tty[@]}" --userns=keep-id --user "$(id -u):$(id -g)" -v "$PWD":/work:z -v "$zsharp":/zsharp:ro,z \
+  -v zsharp-home:/tmp/home:U -e HOME=/tmp/home -e PATH=/zsharp/bin:/opt/llvm/bin:/usr/bin:/bin \
+  -w /work "$image" "${@:-bash}"

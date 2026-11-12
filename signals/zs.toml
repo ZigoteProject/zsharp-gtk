@@ -1,0 +1,6 @@
+# Signals for Z#: reactive state after @preact/signals-core (signal, computed, effect, batch,
+# untracked), with its semantics: lazy cached computeds, effects that run once per batch and only
+# when something they read really changed.
+[package]
+name = "signals"
+main = "src/Signals.zs"

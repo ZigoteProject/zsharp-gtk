@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Writes the gtk package's generated modules and their C again from the container's .gir files,
+# after a change to tools/zs-provider-gir or to the image's GTK. ./test fails when they aren't
+# what this writes.
+set -euo pipefail
+cd "$(dirname "$0")"
+./dev tools/generate.sh gtk

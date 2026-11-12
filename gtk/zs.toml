@@ -1,0 +1,17 @@
+# GTK 4 and libadwaita for Z#: the system's libraries (pkg-config).
+# - src/Gtk.zs: widgets as a tree of values, under a model/update/view loop or signals.
+# - src/Gtk4.zs, Adw.zs, Gio.zs, Gdk.zs, GLib.zs, GObject.zs, Pango.zs, PangoCairo.zs, Cairo.zs, GdkPixbuf.zs, Gsk.zs,
+#   Graphene.zs and c/gen/: the libraries themselves, written by tools/zs-provider-gir from
+#   their .gir files (./generate). Never edited by hand.
+# - src/Glue.zs and c/zgtk.c: what those are made of.
+[package]
+name = "gtk"
+main = "src/Gtk.zs"
+
+[dependencies]
+signals = { path = "../signals" }
+
+[c]
+sources = ["c/zgtk.c", "c/gen/GLib.c", "c/gen/GObject.c", "c/gen/cairo.c", "c/gen/Gio.c", "c/gen/GdkPixbuf.c", "c/gen/Pango.c", "c/gen/PangoCairo.c", "c/gen/Graphene.c", "c/gen/Gdk.c", "c/gen/Gsk.c", "c/gen/Gtk.c", "c/gen/Adw.c"]
+include = ["c"]
+pkg-config = ["gtk4", "gtk4-unix-print", "libadwaita-1"]

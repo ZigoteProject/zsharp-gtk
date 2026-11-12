@@ -1,0 +1,5 @@
+[package]
+name = "counter"
+
+[dependencies]
+gtk = { path = "../../gtk" }

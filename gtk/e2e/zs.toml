@@ -1,0 +1,6 @@
+# A program for tests/e2e.sh to click and type in: it prints each message it is sent.
+[package]
+name = "e2e"
+
+[dependencies]
+gtk = { path = ".." }

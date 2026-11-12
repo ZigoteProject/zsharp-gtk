@@ -1,0 +1,1786 @@
+#!/usr/bin/env python3
+"""A Z# type provider for GObject-Introspection: prints one namespace of a .gir file as a Z#
+module, and writes the C that module needs.
+
+  zs-provider-gir Gtk-4.0.gir [--dir=/usr/share/gir-1.0] [--c=out.c] [--only=Name,...]
+                  [--foreign=Ns.*,Ns.Name,...] [--modules=Ns=Module,...] [--prefix=]
+
+What the module gives:
+- a class, an interface, a boxed record or a counted type as a handle of its own type (a number
+  into Glue's table, never a pointer), with its constructors, methods and functions;
+- `toX` for every ancestor and interface, and `cast` from GObject's Object;
+- `onX` for every signal and `onNotifyX` for every property, the handler taking the signal's
+  arguments, and `getX`/`setX` for a property that has no method of its own;
+- an enumeration or flags as a type of its values;
+- out parameters as a tuple with the result, a function that can fail as a `result`, a callback
+  as a Z# function, an array of strings and a GList as a list;
+- a record's fields as `getX`/`setX`, and `create` for a record to fill in.
+
+--extra: a file of Z# added after the generated declarations, for a library whose .gir has its
+types and not its functions (cairo). --seen: a file of the C functions the modules before this one declare, which this adds its own
+to: a function two .gir files list is given once. --only: the types to give (default: all). --foreign: types of other namespaces that their
+modules give. --modules: a namespace whose module has another name than its own. --prefix: what
+stands before `Glue` and the other modules, where they aren't found bare. --c: where the C goes
+(callback trampolines, field access, counted types). What a function needs and this can't give
+leaves the function out; the count of each reason goes to standard error."""
+import collections
+import os
+import re
+import subprocess
+import sys
+import xml.etree.ElementTree as ET
+
+VERSION = 2
+CORE = "{http://www.gtk.org/introspection/core/1.0}"
+C = "{http://www.gtk.org/introspection/c/1.0}"
+GLIB = "{http://www.gtk.org/introspection/glib/1.0}"
+RESERVED = set("""abstract and as break continue derive do effect else extern false for fun
+function if impl in let match member module mutable namespace not of open private rec static then
+trait true type unsafe when while with return use yield handle import assert dyn sizeof alignof
+offsetof task seq try self""".split())
+
+# gir name -> (the extern's type, the Z# type, Z# to C, C to Z#, an out slot's reader, how a
+# handler reads it, how a handler returns it, the ZArg member)
+P = collections.namedtuple("P", "c z to_c of_c out arg ret member")
+
+
+def _int(c, out):
+    return P(c, "int", "(%s {})" % c, "(int {})", out, "Glue.argInt {}", "Glue.returnInt ({})", "i")
+
+
+PRIMS = {
+    "gint": _int("i32", "Glue.outI32 {}"), "gint32": _int("i32", "Glue.outI32 {}"),
+    "guint": _int("u32", "Glue.outU32 {}"), "guint32": _int("u32", "Glue.outU32 {}"),
+    "gunichar": _int("u32", "Glue.outU32 {}"),
+    "gint8": _int("i8", None), "guint8": _int("u8", None), "gchar": _int("i8", None),
+    "guchar": _int("u8", None), "gint16": _int("i16", None), "guint16": _int("u16", None),
+    "gshort": _int("i16", None), "gushort": _int("u16", None),
+    "gint64": _int("i64", "Glue.outI64 {}"), "guint64": _int("u64", "Glue.outI64 {}"),
+    "glong": _int("i64", "Glue.outI64 {}"), "gulong": _int("u64", "Glue.outI64 {}"),
+    "gsize": _int("usize", "Glue.outI64 {}"), "gssize": _int("i64", "Glue.outI64 {}"),
+    "goffset": _int("i64", "Glue.outI64 {}"),
+    "gboolean": P("i32", "bool", "(if {} then i32 1 else i32 0)", "({} <> i32 0)",
+                  "(Glue.outI32 {} <> 0)", "(Glue.argInt {} <> 0)", "Glue.returnBool ({})", "i"),
+    "gfloat": P("f32", "float", "(f32 {})", "(float {})", "Glue.outF32 {}", "Glue.argFloat {}",
+                "Glue.returnFloat ({})", "d"),
+    "gdouble": P("f64", "float", "{}", "{}", "Glue.outF64 {}", "Glue.argFloat {}",
+                 "Glue.returnFloat ({})", "d"),
+}
+for _name, _c, _out in (("time_t", "i64", "Glue.outI64 {}"), ("gintptr", "i64", "Glue.outI64 {}"),
+                        ("guintptr", "u64", "Glue.outI64 {}"), ("uid_t", "u32", "Glue.outU32 {}"),
+                        ("gid_t", "u32", "Glue.outU32 {}"), ("pid_t", "i32", "Glue.outI32 {}"),
+                        ("gunichar2", "u16", None)):
+    PRIMS[_name] = _int(_c, _out)
+PRIMS["GType"] = P("usize", "usize", "{}", "{}", None, "(usize (Glue.argInt {}))", "Glue.returnInt (int ({}))", "i")
+# an array's element: its size in bytes and whether it has a sign
+SIZES = {"i8": (1, True), "u8": (1, False), "i16": (2, True), "u16": (2, False), "i32": (4, True),
+         "u32": (4, False), "i64": (8, True), "u64": (8, False), "usize": (8, False), "f32": (4, True),
+         "f64": (8, True)}
+TEXT = ("utf8", "filename")
+RAW = ("gpointer", "gconstpointer")
+# what a handle's table manages: the program must not
+UNSAFE = {"ref", "unref", "ref_sink", "free", "destroy", "weak_ref", "weak_unref", "run_dispose",
+          "force_floating", "steal_data", "steal_qdata", "add_weak_pointer",
+          "remove_weak_pointer", "add_toggle_ref", "remove_toggle_ref", "take_ref", "sink"}
+# counted types the .gir gives no functions for
+COUNTED = {"GLib.Variant": ("G_TYPE_VARIANT", "g_variant_ref_sink", "g_variant_unref"),
+           "GObject.ParamSpec": ("G_TYPE_PARAM", "g_param_spec_ref", "g_param_spec_unref")}
+# GLib's error is a `result`'s Error here, and has no type of its own
+LEFT_OUT = {"GLib.Error"}
+# records whose fields the .gir lists and the headers hide
+OPAQUE = {"GdkPixbuf.PixbufFormat", "GdkPixbuf.PixbufModule", "GdkPixbuf.PixbufModulePattern"}
+# classes whose class structures the headers hide: no type can be made from them
+SEALED = {"Gio.SettingsBackend", "GdkPixbuf.PixbufAnimation", "GdkPixbuf.PixbufAnimationIter"}
+# records C knows the size of, whatever their fields are
+SIZED = {"GObject.Value", "cairo.Matrix", "cairo.Rectangle", "cairo.RectangleInt", "Gsk.PathPoint"}
+# headers a namespace's types are in that its .gir doesn't name
+HEADERS = {"Gtk": ["gtk/gtkunixprint.h"]}
+
+
+class Skip(Exception):
+    """A function this can't give, with the reason counted."""
+
+
+class Alias(Skip):
+    """Another name of a function that is given under the name bindings use: not left out."""
+
+
+def words(name):
+    return [w for w in re.split(r"[_\-]", name) if w]
+
+
+def camel(name):
+    ws = words(name) or ["x"]
+    s = ws[0].lower() if ws[0].isupper() else ws[0][:1].lower() + ws[0][1:]
+    s += "".join(w[:1].upper() + w[1:] for w in ws[1:])
+    return "n" + s if s[0].isdigit() else s
+
+
+def pascal(name):
+    return "".join(w[:1].upper() + w[1:] for w in words(name))
+
+
+# names the generated code itself calls: a function of one of these names is given a `_`
+BUILTIN = set("int i8 i16 i32 i64 u8 u16 u32 u64 usize f32 f64 float bool string char ignore not panic fst snd id ref".split())
+
+
+def public(name):
+    # a quoted name can't be reached through its module: a keyword's name gets a `_` too
+    return name + "_" if name in BUILTIN or name in RESERVED else name
+
+
+def local(name):
+    name = camel(name.lower() if name.isupper() else name)
+    return name + "_" if name in RESERVED or re.match(r"z[a-z]*\d*$", name) else name
+
+
+def doc(el, fallback):
+    """The first sentence of an element's documentation, on one line."""
+    d = el.find(CORE + "doc")
+    text = ""
+    if d is not None and d.text:
+        for para in d.text.split("\n\n"):
+            para = " ".join(para.split())
+            if para and para[0] not in "<#|-`!":
+                text = para
+                break
+    text = re.split(r"(?<=[.!?])\s", text)[0] if text else fallback
+    if flag(el, "deprecated"):
+        text = "Deprecated. " + text
+    return text.replace("\\", "/")[:240]
+
+
+def flag(el, name):
+    return el.get(name) == "1"
+
+
+def nullable(el):
+    return flag(el, "nullable") or flag(el, "allow-none")
+
+
+Info = collections.namedtuple("Info", "kind el ns name ctype gtype")
+NOTHING = Info(None, None, None, None, None, None)
+
+
+class Gir:
+    """A namespace and those it includes: what each type name is."""
+
+    def __init__(self, path, directory):
+        self.types = {}  # "Ns.Name" -> Info
+        self.parents = {}
+        self.implements = collections.defaultdict(list)
+        self.aliases = {}
+        self.inputs = []
+        self.directory = directory
+        self.root = self.load(path)
+        self.ns = self.root.find(CORE + "namespace")
+        self.name = self.ns.get("name")
+        self.includes = [i.get("name") for i in self.root.findall(C + "include")]
+
+    def load(self, path):
+        if not os.path.isfile(path):
+            path = os.path.join(self.directory, path)
+        if not os.path.isfile(path):
+            sys.exit("gir: %s not found" % path)
+        if path in self.inputs:
+            return None
+        self.inputs.append(path)
+        root = ET.parse(path).getroot()
+        ns = root.find(CORE + "namespace")
+        name = ns.get("name")
+        qual = lambda n: n if "." in n else name + "." + n
+        for el in ns:
+            tag = el.tag.replace(CORE, "")
+            n = el.get("name")
+            if n is None:
+                continue
+            full = name + "." + n
+            ctype, gtype = el.get(C + "type") or el.get(GLIB + "type-name"), el.get(GLIB + "get-type")
+            if tag == "class":
+                self.types[full] = Info("class", el, name, n, ctype, gtype)
+                if el.get("parent"):
+                    self.parents[full] = qual(el.get("parent"))
+                for i in el.findall(CORE + "implements"):
+                    self.implements[full].append(qual(i.get("name")))
+            elif tag == "interface":
+                self.types[full] = Info("iface", el, name, n, ctype, gtype)
+            elif tag == "enumeration":
+                self.types[full] = Info("enum", el, name, n, ctype, gtype)
+            elif tag == "bitfield":
+                self.types[full] = Info("flags", el, name, n, ctype, gtype)
+            elif tag == "record":
+                self.types[full] = Info("record", el, name, n, ctype, gtype)
+            elif tag == "callback":
+                self.types[full] = Info("callback", el, name, n, ctype, None)
+            elif tag == "alias":
+                t = el.find(CORE + "type")
+                if t is not None and t.get("name"):
+                    target = t.get("name")
+                    self.aliases[full] = target if target in PRIMS or target in TEXT or target == "none" else qual(target)
+        for inc in root.findall(CORE + "include"):
+            self.load("%s-%s.gir" % (inc.get("name"), inc.get("version")))
+        return root
+
+    def exported(self):
+        """The functions the namespace's libraries export, or None when that can't be told: what
+        the .gir lists and a library doesn't have (an inline function, another platform's)
+        would fail the program's link."""
+        names = set()
+        for lib in (self.ns.get("shared-library") or "").split(","):
+            path = next((os.path.join(d, lib) for d in ("/usr/lib64", "/usr/lib", "/lib64", "/usr/lib/x86_64-linux-gnu")
+                         if os.path.exists(os.path.join(d, lib))), None)
+            if path is None:
+                return None
+            try:
+                out = subprocess.run(["nm", "-D", "--defined-only", path], capture_output=True, text=True, check=True).stdout
+            except (OSError, subprocess.CalledProcessError):
+                return None
+            names.update(line.split()[-1].split("@")[0] for line in out.splitlines() if line.strip())
+        return names or None
+
+    def is_object(self, full):
+        """Whether a class is made from GObject's Object."""
+        seen = set()
+        while full and full not in seen:
+            if full == "GObject.Object":
+                return True
+            seen.add(full)
+            full = self.parents.get(full)
+        return False
+
+    def kind(self, full):
+        """class, counted, iface, enum, flags, boxed, plain, callback, or None for what has no
+        handle."""
+        if full in LEFT_OUT:
+            return None
+        if full in COUNTED:
+            return "counted"
+        info = self.types.get(full)
+        if info is None:
+            return None
+        el = info.el
+        if info.kind == "class":
+            if self.is_object(full):
+                return "class" if info.gtype else None
+            if el.get(GLIB + "ref-func") and el.get(GLIB + "unref-func") and info.gtype and info.gtype != "intern":
+                return "counted"
+            return "pointer" if info.ctype else None
+        if info.kind == "iface":
+            return "iface" if info.gtype else None
+        if info.kind == "record":
+            if el.get(GLIB + "is-gtype-struct-for") or not info.ctype:
+                return "pointer" if info.ctype else None
+            if info.gtype and info.gtype != "intern":
+                return "boxed"
+            # a record GLib knows no type for: a value of its own where C knows its size, and
+            # otherwise a pointer C gave, good for as long as C says
+            return "plain" if not info.gtype and self.sized(full) else "pointer"
+        return info.kind
+
+    def sized(self, full):
+        """Whether C knows a record's size, so one can be made to fill in."""
+        el = self.types[full].el
+        if full in SIZED:
+            return True
+        return (full not in OPAQUE and el.find(CORE + "field") is not None and not flag(el, "opaque")
+                and not flag(el, "disguised") and el.find(CORE + "union") is None)
+
+
+class Gen:
+    def __init__(self, gir, only, foreign, modules):
+        self.gir, self.only, self.foreign, self.modules = gir, only, foreign, modules
+        self.out, self.c = [], []
+        self.skipped = collections.Counter()
+        self.given = 0
+        self.temp = 0
+        self.exported = gir.exported()
+        self.seen = set()  # the C functions other modules declare: a second declaration is an error
+        self.within = None  # the namespace of the callback whose parameters are being read
+        self.raw = False  # the function being written takes a raw pointer
+
+    def emit(self, line=""):
+        self.out.append(line)
+
+    def tmp(self, stem):
+        self.temp += 1
+        return "z%s%d" % (stem, self.temp)
+
+    def full(self, name):
+        # a name with no namespace is of the namespace it's written in: this one's, or a
+        # callback's own
+        name = name if "." in name else (self.within or self.gir.name) + "." + name
+        seen = set()
+        while name in self.gir.aliases and name not in seen:
+            seen.add(name)
+            name = self.gir.aliases[name]
+        return name
+
+    def available(self, full):
+        if "." not in full or self.gir.kind(full) is None:
+            return False
+        ns, name = full.split(".", 1)
+        if ns == self.gir.name:
+            return not self.only or name in self.only
+        return full in self.foreign or ns + ".*" in self.foreign
+
+    def mod(self, ns):
+        return "" if ns == self.gir.name else self.modules.get(ns, ns) + "."
+
+    def zs(self, full):
+        """A type's name in the module: bare if it's this namespace's."""
+        ns, name = full.split(".", 1)
+        return self.mod(ns) + name
+
+    def cname(self, full):
+        """A type's name inside a C identifier of the generated C."""
+        return full.replace(".", "_")
+
+    def gt(self, full):
+        """The expression for a type's GType."""
+        ns = full.split(".", 1)[0]
+        if self.gir.kind(full) == "counted":
+            return "(%szgtk_type_%s ())" % (self.mod(ns), self.cname(full))
+        if self.gir.kind(full) == "plain":
+            return "(%szgtk_tag_%s ())" % (self.mod(ns), self.cname(full))
+        return "(%s%s ())" % (self.mod(ns), self.gir.types[full].gtype)
+
+    def classify(self, el):
+        """What a parameter's or a result's type is: (kind, name)."""
+        if el.find(CORE + "varargs") is not None:
+            raise Skip("variable arguments")
+        arr = el.find(CORE + "array")
+        if arr is not None:
+            inner = arr.find(CORE + "type")
+            if arr.get("name") == "GLib.ByteArray":
+                return ("bytearray", None)
+            if arr.get("name") == "GLib.PtrArray" and inner is not None and inner.get("name"):
+                kind, full = self.classify_name(inner.get("name"))
+                if kind not in ("text", "class", "iface", "boxed", "counted", "pointer", "raw"):
+                    raise Skip("a GPtrArray of numbers or of records with no type")
+                return ("ptrarray", (kind, full))
+            if arr.get("name") in ("GLib.Array", "GLib.PtrArray") and self.available(arr.get("name")):
+                # of what C alone knows: the array itself, as its own type
+                return (self.gir.kind(arr.get("name")), arr.get("name"))
+            if arr.get("name") is not None or inner is None or inner.get("name") is None:
+                raise Skip("a GArray")
+            length, fixed = arr.get("length"), arr.get("fixed-size")
+            counted = length is not None or fixed is not None
+            shape = {"length": None if length is None else int(length),
+                     "fixed": None if fixed is None else int(fixed),
+                     "zt": arr.get("zero-terminated", "0" if counted else "1") == "1", "n": None}
+            if inner.get("name") in TEXT:
+                return ("strv", shape)
+            ekind, ename = self.classify_name(inner.get("name"))
+            if ekind == "prim":
+                pass
+            elif ekind in ("enum", "flags"):
+                pass
+            elif ekind in ("class", "iface", "counted", "pointer", "raw"):
+                # always pointers to them, whatever the C type says (`gpointer*`)
+                pass
+            elif ekind in ("boxed", "plain") and self.gir.sized(ename):
+                # records side by side, or pointers to them
+                shape["inline"] = (arr.get(C + "type") or "*").count("*") < 2
+            else:
+                raise Skip("an array of bools, of records of no known size, or of arrays")
+            return ("array", dict(shape, ekind=ekind, ename=ename))
+        t = el.find(CORE + "type")
+        if t is None or t.get("name") is None:
+            raise Skip("a type without a name")
+        name = t.get("name")
+        if name in ("GLib.List", "GLib.SList"):
+            inner = t.find(CORE + "type")
+            if inner is None or inner.get("name") is None:
+                raise Skip("a list of no known type")
+            kind, full = self.classify_name(inner.get("name"))
+            if kind not in ("text", "class", "iface", "boxed", "counted", "pointer", "raw"):
+                raise Skip("a list of numbers or of records with no type")
+            return ("list", (kind, full, name == "GLib.SList"))
+        return self.classify_name(name)
+
+    def classify_name(self, name):
+        if name == "none":
+            return ("none", name)
+        if name in RAW:
+            return ("raw", name)
+        if name not in PRIMS and name not in TEXT:
+            name = self.full(name)
+        if name in RAW:
+            return ("raw", name)
+        if name == "GObject.Closure":
+            return ("closure", name)
+        if name == "GLib.Error":
+            return ("gerror", name)
+        if name == "none":
+            return ("none", name)
+        if name in PRIMS:
+            return ("prim", name)
+        if name in TEXT:
+            return ("text", name)
+        kind = self.gir.kind(name)
+        if kind is None:
+            if os.environ.get("ZGIR_WHY") == "types":
+                print("gir: no handle for %s" % name, file=sys.stderr)
+            raise Skip("a pointer, a GValue, a GType, or a type with no handle")
+        if not self.available(name):
+            raise Skip("a type of another namespace, or one left out")
+        return (kind, name)
+
+    def handle(self, kind, full, expr, full_transfer):
+        """The Z# expression for a handle's id from a C pointer."""
+        own = "true" if full_transfer else "false"
+        if kind in ("class", "iface"):
+            return "Glue.wrap (%s) %s" % (expr, own)
+        if kind == "boxed":
+            return "Glue.wrapBoxed (%s) %s %s" % (expr, self.gt(full), own)
+        ns = full.split(".", 1)[0]
+        if kind == "plain":
+            if full_transfer:
+                return "Glue.wrapPlain (%s) %s" % (expr, self.gt(full))
+            return "Glue.copyPlain (%s) (%szgtk_sizeof_%s ()) %s" % (expr, self.mod(ns), self.cname(full), self.gt(full))
+        return "%szgtk_wrap_%s (%s) (i32 %d)" % (self.mod(ns), self.cname(full), expr, 1 if full_transfer else 0)
+
+    # ---- values coming from C: a result, an out slot, a handler's argument
+
+    def of_c(self, kind, name, el, expr, pre):
+        """(the Z# type, the expression) of a value C gave as `expr`; `pre` takes lets."""
+        owned = el.get("transfer-ownership", "none") == "full"
+        null = nullable(el)
+        if kind == "prim":
+            return (PRIMS[name].z, PRIMS[name].of_c.format("(%s)" % expr))
+        if kind in ("raw", "callback", "closure"):
+            # a pointer C gave, a function pointer or a closure: opaque, to give back to C
+            return ("cptr", "(%s)" % expr)
+        if kind == "text":
+            if owned:
+                return ("option<string>", "Glue.takeTextOption (%s)" % expr) if null else ("string", "Glue.takeText (%s)" % expr)
+            return ("option<string>", "Glue.textOption (%s)" % expr) if null else ("string", "Glue.text (%s)" % expr)
+        if kind in ("enum", "flags"):
+            return (self.zs(name), "%s (int (%s))" % (self.zs(name), expr))
+        if kind == "pointer":
+            t = self.zs(name)
+            if null:
+                v = self.tmp("p")
+                pre.append("let %s = %s" % (v, expr))
+                return ("option<%s>" % t, "(if Glue.isNull %s then None else Some (%s %s))" % (v, t, v))
+            return (t, "%s (%s)" % (t, expr))
+        if kind == "gerror":
+            # GLib's error as the record a failed call gives; one that is the caller's is freed
+            return ("option<Glue.Error>", "Glue.errorOf (%s) %s" % (expr, "true" if owned else "false"))
+        if kind == "ptrarray":
+            ekind, efull = name
+            transfer = el.get("transfer-ownership", "none")
+            ptrs = "Glue.ptrArrayOf (%s) %s" % (expr, "false" if transfer == "none" else "true")
+            if ekind == "text":
+                return ("list<string>", "Glue.mapList Glue.text (%s)" % ptrs)
+            if ekind == "raw":
+                return ("list<cptr>", "(%s)" % ptrs)
+            t = self.zs(efull)
+            each = "zp" if ekind == "pointer" else self.handle(ekind, efull, "zp", False)
+            return ("list<%s>" % t, "Glue.mapList (fun zp -> %s (%s)) (%s)" % (t, each, ptrs))
+        if kind == "bytearray":
+            return ("array<u8>", "Glue.byteArrayOf (%s) %s" % (expr, "false" if el.get("transfer-ownership", "none") == "none" else "true"))
+        if kind in ("class", "iface", "boxed", "counted", "plain"):
+            t = self.zs(name)
+            if null:
+                v = self.tmp("id")
+                pre.append("let %s = %s" % (v, self.handle(kind, name, expr, owned)))
+                return ("option<%s>" % t, "(if %s = 0 then None else Some (%s %s))" % (v, t, v))
+            return (t, "%s (%s)" % (t, self.handle(kind, name, expr, owned)))
+        if kind == "strv":
+            transfer = el.get("transfer-ownership", "none")
+            if name["zt"]:
+                mode = {"none": 0, "container": 1, "full": 2}[transfer]
+                return ("list<string>", "Glue.strvList (%s) %d" % (expr, mode))
+            n = self.count_of(name)
+            f = "Glue.takeText" if transfer == "full" else "Glue.text"
+            return ("list<string>", "Glue.mapList %s (Glue.ptrsOf (%s) (%s) %s)" % (f, expr, n, "false" if transfer == "none" else "true"))
+        if kind == "array":
+            transfer = el.get("transfer-ownership", "none")
+            free = "false" if transfer == "none" else "true"
+            ekind, ename = name["ekind"], name["ename"]
+            if ekind == "raw":
+                n = "(-1)" if name["zt"] and name["n"] is None and name["fixed"] is None else self.count_of(name)
+                return ("list<cptr>", "(Glue.ptrsOf (%s) (%s) %s)" % (expr, n, free))
+            if ekind in ("class", "iface", "counted", "pointer"):
+                n = "(-1)" if name["zt"] and name["n"] is None and name["fixed"] is None else self.count_of(name)
+                t = self.zs(ename)
+                each = "zp" if ekind == "pointer" else self.handle(ekind, ename, "zp", transfer == "full")
+                return ("list<%s>" % t, "Glue.mapList (fun zp -> %s (%s)) (Glue.ptrsOf (%s) (%s) %s)" % (t, each, expr, n, free))
+            if ekind in ("boxed", "plain"):
+                t, ens = self.zs(ename), ename.split(".", 1)[0]
+                size = "(%szgtk_sizeof_%s ())" % (self.mod(ens), self.cname(ename))
+                if name.get("inline"):
+                    ptrs = "Glue.recordsOf (%s) (%s) %s" % (expr, self.count_of(name), size)
+                else:
+                    n = "(-1)" if name["zt"] and name["n"] is None and name["fixed"] is None else self.count_of(name)
+                    ptrs = "Glue.ptrsOf (%s) (%s) false" % (expr, n)
+                # each is copied: the array is C's, or freed once they are
+                v = self.tmp("rs")
+                pre.append("let %s = Glue.mapList (fun zp -> %s (%s)) (%s)" % (v, t, self.handle(ekind, ename, "zp", False), ptrs))
+                if transfer != "none":
+                    pre.append("Glue.free (%s)" % expr)
+                return ("list<%s>" % t, v)
+            if ekind in ("enum", "flags"):
+                n = self.count_of(name)
+                t = self.zs(ename)
+                return ("list<%s>" % t, "Glue.mapList (fun zi -> %s zi) (Glue.intsOf (%s) (%s) 4 %s %s)" % (t, expr, n, "true" if ekind == "enum" else "false", free))
+            c = PRIMS[ename].c
+            size, signed = SIZES[c]
+            if c == "u8" and name["n"] is None and name["fixed"] is None and name["zt"]:
+                # bytes up to a zero: a C string given as bytes
+                return ("array<u8>", "Glue.bytesToZero (%s) %s" % (expr, free))
+            n = self.count_of(name)
+            if PRIMS[ename].z == "usize":
+                return ("list<usize>", "Glue.mapList (fun zi -> usize zi) (Glue.intsOf (%s) (%s) 8 false %s)" % (expr, n, free))
+            if PRIMS[ename].z == "bool":
+                return ("list<bool>", "Glue.mapList (fun zi -> zi <> 0) (Glue.intsOf (%s) (%s) 4 true %s)" % (expr, n, free))
+            if c == "u8":
+                return ("array<u8>", "Glue.bytesOf (%s) (%s) %s" % (expr, n, free))
+            if PRIMS[ename].z == "float":
+                return ("list<float>", "Glue.floatsOf (%s) (%s) %d %s" % (expr, n, size, free))
+            return ("list<int>", "Glue.intsOf (%s) (%s) %d %s %s" % (expr, n, size, "true" if signed else "false", free))
+        if kind == "list":
+            ekind, efull, single = name
+            transfer = el.get("transfer-ownership", "none")
+            ptrs = "Glue.pointers (%s) %s %s" % (expr, "true" if single else "false", "true" if transfer != "none" else "false")
+            if ekind == "text":
+                f = "Glue.takeText" if transfer == "full" else "Glue.text"
+                return ("list<string>", "Glue.mapList %s (%s)" % (f, ptrs))
+            if ekind == "raw":
+                return ("list<cptr>", "(%s)" % ptrs)
+            t = self.zs(efull)
+            each = "zp" if ekind == "pointer" else self.handle(ekind, efull, "zp", transfer == "full")
+            return ("list<%s>" % t, "Glue.mapList (fun zp -> %s (%s)) (%s)" % (t, each, ptrs))
+        raise Skip("a result of a kind this can't give")
+
+    def count_of(self, shape):
+        """The expression for how many elements an array C gave has."""
+        if shape["n"] is not None:
+            return shape["n"]
+        if shape["fixed"] is not None:
+            return str(shape["fixed"])
+        raise Skip("an array of no known length")
+
+    def c_of(self, kind):
+        """The extern's type for a value C gives."""
+        return {"text": "cptr", "enum": "i32", "flags": "u32", "class": "cptr", "iface": "cptr",
+                "boxed": "cptr", "counted": "cptr", "plain": "cptr", "strv": "cptr", "list": "cptr", "raw": "cptr", "callback": "cptr", "pointer": "cptr", "gerror": "cptr", "ptrarray": "cptr", "bytearray": "cptr", "closure": "cptr",
+                "array": "cptr"}[kind]
+
+    # ---- values going to C: a parameter, a handler's result
+
+    def to_c(self, kind, name, el, v, pre, post):
+        """(the extern's type, the Z# type, the expression passed) for the Z# value `v`."""
+        owned = el.get("transfer-ownership", "none") != "none"
+        null = nullable(el)
+        if kind == "prim":
+            return (PRIMS[name].c, PRIMS[name].z, PRIMS[name].to_c.format(v))
+        if kind == "raw":
+            # C trusts the pointer: the function is one for `unsafe`
+            self.raw = True
+            return ("cptr", "cptr", v)
+        if kind == "pointer":
+            # C trusts the pointer the handle holds: the function is one for `unsafe`
+            self.raw = True
+            t = self.zs(name)
+            if null:
+                p = self.tmp("p")
+                pre += ["let %s =" % p, "  match %s with" % v, "  | Some zo -> zo.Ptr", "  | None -> Glue.none ()"]
+                return ("cptr", "option<%s>" % t, p)
+            return ("cptr", t, "%s.Ptr" % v)
+        if kind == "gerror":
+            p = self.tmp("e")
+            pre.append("let %s = Glue.errorNew %s" % (p, v))
+            if not owned:
+                post.append("Glue.errorFree %s" % p)
+            return ("cptr", "Glue.Error", p)
+        if kind == "bytearray":
+            p = self.tmp("b")
+            pre.append("let %s = Glue.byteArray %s" % (p, v))
+            if not owned:
+                post.append("Glue.byteArrayFree %s" % p)
+            return ("cptr", "array<u8>", p)
+        if kind == "list" and name[0] == "text":
+            p = self.tmp("l")
+            single = "true" if name[2] else "false"
+            pre.append("let %s = Glue.glist (Glue.mapList Glue.dup %s) %s" % (p, v, single))
+            if not owned:
+                post.append("Glue.freeGlistAll %s %s" % (p, single))
+            return ("cptr", "list<string>", p)
+        if kind in ("list", "ptrarray"):
+            ekind, efull = name[0], name[1]
+            if ekind == "text":
+                raise Skip("a GPtrArray of strings as a parameter")
+            if ekind == "raw":
+                self.raw = True
+                t, items = "cptr", v
+            else:
+                t = self.zs(efull)
+                if ekind == "pointer":
+                    self.raw = True
+                    each = "zo.Ptr"
+                else:
+                    each = "Glue.obj zo.Id %s" % self.gt(efull)
+                items = "(Glue.mapList (fun (zo: %s) -> %s) %s)" % (t, each, v)
+            if kind == "ptrarray":
+                p = self.tmp("pa")
+                pre.append("let %s = Glue.ptrArray %s" % (p, items))
+                if not owned:
+                    post.append("Glue.ptrArrayFree %s" % p)
+                return ("cptr", "list<%s>" % t, p)
+            single = name[2]
+            p = self.tmp("l")
+            pre.append("let %s = Glue.glist %s %s" % (p, items, "true" if single else "false"))
+            if not owned:
+                post.append("Glue.freeGlist %s %s" % (p, "true" if single else "false"))
+            return ("cptr", "list<%s>" % t, p)
+        if kind == "closure":
+            # a Z# function as a GClosure: inside it, Glue's argInt and the others read what
+            # it's called with
+            return ("cptr", "(unit -> unit)", "(Glue.closure %s)" % v)
+        if kind == "text":
+            if null:
+                p = self.tmp("s")
+                pre.append("let %s = Glue.dupOption %s" % (p, v))
+                if not owned:
+                    post.append("Glue.free %s" % p)
+                return ("cptr", "option<string>", p)
+            if owned:
+                return ("cptr", "string", "(Glue.dup %s)" % v)
+            return ("cstr", "string", v)
+        if kind == "enum":
+            return ("i32", self.zs(name), "(i32 %s.Int)" % v)
+        if kind == "flags":
+            return ("u32", self.zs(name), "(u32 %s.Int)" % v)
+        if kind in ("class", "iface", "boxed", "counted", "plain"):
+            t, gt = self.zs(name), self.gt(name)
+            if owned and kind == "plain":
+                raise Skip("a plain record the function takes over")
+            ns = name.split(".", 1)[0]
+            give = {"class": "Glue.give (%s)", "iface": "Glue.give (%s)",
+                    "boxed": "Glue.giveBoxed (%%s) %s" % gt,
+                    "counted": "%szgtk_give_%s (%%s)" % (self.mod(ns), self.cname(name))}[kind] if owned else "%s"
+            if null:
+                p = self.tmp("p")
+                pre += ["let %s =" % p, "  match %s with" % v,
+                        "  | Some zo -> %s" % (give % ("Glue.obj zo.Id %s" % gt)),
+                        "  | None -> Glue.none ()"]
+                return ("cptr", "option<%s>" % t, p)
+            return ("cptr", t, "(%s)" % (give % ("Glue.obj %s.Id %s" % (v, gt))))
+        if kind == "strv":
+            p = self.tmp("v")
+            pre.append("let %s = Glue.strv %s" % (p, v))
+            if not owned:
+                post.append("Glue.freeStrv %s" % p)
+            return ("cptr", "list<string>", p)
+        if kind == "array":
+            ekind, ename = name["ekind"], name["ename"]
+            p = self.tmp("a")
+            if ekind in ("boxed", "plain"):
+                if owned:
+                    raise Skip("an array of records the function takes over")
+                t, gt, ens = self.zs(ename), self.gt(ename), ename.split(".", 1)[0]
+                each = "Glue.mapList (fun (zo: %s) -> Glue.obj zo.Id %s) %s" % (t, gt, v)
+                if name.get("inline"):
+                    z, make = "list<%s>" % t, "Glue.records (%s) (%szgtk_sizeof_%s ())" % (each, self.mod(ens), self.cname(ename))
+                else:
+                    z, make = "list<%s>" % t, "Glue.ptrs (%s)" % each
+            elif ekind == "raw":
+                self.raw = True
+                z, make = "list<cptr>", "Glue.ptrs %s" % v
+            elif ekind == "pointer":
+                self.raw = True
+                t = self.zs(ename)
+                z, make = "list<%s>" % t, "Glue.ptrs (Glue.mapList (fun (zo: %s) -> zo.Ptr) %s)" % (t, v)
+            elif ekind == "counted":
+                if el.get("transfer-ownership") == "full":
+                    raise Skip("an array of counted values the function takes over")
+                t, gt = self.zs(ename), self.gt(ename)
+                z, make = "list<%s>" % t, "Glue.ptrs (Glue.mapList (fun (zo: %s) -> Glue.obj zo.Id %s) %s)" % (t, gt, v)
+            elif ekind in ("class", "iface"):
+                t, gt = self.zs(ename), self.gt(ename)
+                each = "Glue.give (Glue.obj zo.Id %s)" % gt if el.get("transfer-ownership") == "full" else "Glue.obj zo.Id %s" % gt
+                z, make = "list<%s>" % t, "Glue.ptrs (Glue.mapList (fun (zo: %s) -> %s) %s)" % (t, each, v)
+            elif ekind in ("enum", "flags"):
+                t = self.zs(ename)
+                z, make = "list<%s>" % t, "Glue.ints (Glue.mapList (fun (ze: %s) -> ze.Int) %s) 4" % (t, v)
+            else:
+                c = PRIMS[ename].c
+                if PRIMS[ename].z == "usize":
+                    z, make = "list<usize>", "Glue.ints (Glue.mapList (fun (zt: usize) -> int zt) %s) 8" % v
+                elif PRIMS[ename].z == "bool":
+                    z, make = "list<bool>", "Glue.ints (Glue.mapList (fun (zb: bool) -> if zb then 1 else 0) %s) 4" % v
+                elif c == "u8":
+                    z, make = "array<u8>", "Glue.bytes %s" % v
+                elif PRIMS[ename].z == "float":
+                    z, make = "list<float>", "Glue.floats %s %d" % (v, SIZES[c][0])
+                else:
+                    z, make = "list<int>", "Glue.ints %s %d" % (v, SIZES[c][0])
+            pre.append("let %s = %s" % (p, make))
+            if not owned:
+                post.append("Glue.free %s" % p)
+            return ("cptr", z, p)
+        raise Skip("a parameter of a kind this can't take")
+
+    # ---- callbacks
+
+    def callback(self, full):
+        """A callback type's shape: its arguments, its user data's place and its result."""
+        el = self.gir.types[full].el
+        if flag(el, "throws") or el.get(C + "type") is None:
+            raise Skip("a callback this can't call")
+        ps = el.find(CORE + "parameters")
+        params = [] if ps is None else list(ps)
+        data = [i for i, p in enumerate(params) if p.get("closure") is not None]
+        if not data:
+            data = [i for i, p in enumerate(params) if p.get("name") in ("user_data", "data")
+                    and p.find(CORE + "type") is not None and p.find(CORE + "type").get("name") == "gpointer"]
+        if not data:
+            raise Skip("a callback with no user data")
+        return (params, data[-1], el.find(CORE + "return-value"))
+
+    def handler(self, params, skip, ret, call, first):
+        """The lines of a closure that reads a handler's arguments, calls `call` with them and
+        sets its result; and the Z# type of the function called. `first`: the first argument's
+        index."""
+        types, lines, names = [], [], []
+        used = set()
+        outs = []
+        for i, p in enumerate(params):
+            if i == skip:
+                continue
+            kind, name = self.classify(p)
+            v = local(p.get("name") or "arg")
+            while v in used or v in ("handler", "self", call):
+                v += "_"
+            used.add(v)
+            at = i + first
+            if p.get("direction", "in") == "out":
+                # a number the handler gives back through a pointer: part of its result
+                full_out = p.get("transfer-ownership", "none") == "full"
+                if kind == "prim":
+                    setter = {"i32": "setI32", "u32": "setI32", "i64": "setI64", "u64": "setI64", "usize": "setI64",
+                              "f32": "setF32", "f64": "setF64"}.get(PRIMS[name].c)
+                    if setter is None:
+                        raise Skip("a handler with an out parameter that is a small integer")
+                    value = {"bool": "(if %s then 1 else 0)", "usize": "(int %s)"}.get(PRIMS[name].z, "%s") % v
+                    outs.append((v, PRIMS[name].z, "Glue.%s %d %s" % (setter, at, value)))
+                elif kind in ("enum", "flags"):
+                    outs.append((v, self.zs(name), "Glue.setI32 %d %s.Int" % (at, v)))
+                elif kind == "text":
+                    outs.append((v, "string", "Glue.setPointer %d (%s %s)" % (at, "Glue.dup" if full_out else "Glue.intern", v)))
+                elif kind in ("class", "iface") and not flag(p, "caller-allocates"):
+                    ptr = "Glue.obj %s.Id %s" % (v, self.gt(name))
+                    outs.append((v, self.zs(name), "Glue.setPointer %d (%s)" % (at, "Glue.give (%s)" % ptr if full_out else ptr)))
+                elif kind in ("boxed", "plain") and self.gir.sized(name) and flag(p, "caller-allocates"):
+                    ens = name.split(".", 1)[0]
+                    size = "(%szgtk_sizeof_%s ())" % (self.mod(ens), self.cname(name))
+                    outs.append((v, self.zs(name), "Glue.setRecord %d (Glue.obj %s.Id %s) %s" % (at, v, self.gt(name), size)))
+                else:
+                    raise Skip("a handler with an out parameter that is an array or a record of no size")
+                continue
+            if p.get("direction", "in") == "inout" and kind == "prim" and PRIMS[name].c in ("i32", "u32"):
+                # a number at a pointer: the handler is given it, and gives what it is to be
+                types.append(PRIMS[name].z)
+                lines.append("let %s = %s" % (v, "(Glue.getI32 %d <> 0)" % at if PRIMS[name].z == "bool" else "Glue.getI32 %d" % at))
+                names.append(v)
+                back = v + "After"
+                value = "(if %s then 1 else 0)" % back if PRIMS[name].z == "bool" else back
+                outs.append((back, PRIMS[name].z, "Glue.setI32 %d %s" % (at, value)))
+                continue
+            if p.get("direction", "in") != "in":
+                raise Skip("a handler with an in-out parameter")
+            if kind in ("raw", "callback"):
+                # a pointer, or C's function pointer, as C gave it
+                z, read = "cptr", "Glue.argPointer %d" % at
+            elif kind in ("pointer", "gerror", "ptrarray", "bytearray"):
+                borrowed = ET.Element("x", {"transfer-ownership": "none"})
+                if nullable(p):
+                    borrowed.set("nullable", "1")
+                z, read = self.of_c(kind, name, borrowed, "Glue.argPointer %d" % at, lines)
+            elif kind in ("strv", "array", "list"):
+                borrowed = ET.Element("x", {"transfer-ownership": "none"})
+                if kind != "list" and name["length"] is not None:
+                    name["n"] = "(Glue.argInt %d)" % (name["length"] + first)
+                z, read = self.of_c(kind, name, borrowed, "Glue.argPointer %d" % at, lines)
+            elif kind == "prim":
+                z, read = PRIMS[name].z, PRIMS[name].arg.format(at)
+            elif kind in ("text", "enum", "flags", "class", "iface", "boxed", "counted", "plain"):
+                # a handler's argument is GTK's own: a string or an object it keeps
+                borrowed = ET.Element("x", {"transfer-ownership": "none"})
+                if nullable(p):
+                    borrowed.set("nullable", "1")
+                src = "Glue.argInt %d" % at if kind in ("enum", "flags") else "Glue.argPointer %d" % at
+                z, read = self.of_c(kind, name, borrowed, src, lines)
+            else:
+                raise Skip("a handler with an argument of a kind this can't give")
+            types.append(z)
+            lines.append("let %s = %s" % (v, read))
+            names.append(v)
+        applied = "%s %s" % (call, " ".join(names) if names else "()")
+        kind, name = self.classify(ret)
+        if outs:
+            # the function gives its result and the numbers together
+            parts = ([] if kind == "none" else ["zres"]) + [v for v, _, _ in outs]
+            lines.append("let %s = %s" % (parts[0] if len(parts) == 1 else "(%s)" % ", ".join(parts), applied))
+            lines += [setter for _, _, setter in outs]
+            applied = "zres"
+        result = lambda rz: rz if not outs else "(%s)" % " * ".join(([] if rz == "unit" else [rz]) + [z for _, z, _ in outs]) if len(outs) + (rz != "unit") > 1 else outs[0][1]
+        if kind == "none":
+            rz = "unit"
+            if not outs:
+                lines.append(applied)
+            elif lines[-1].startswith("Glue.set") is False:
+                lines.append("()")
+        elif kind == "raw":
+            self.raw = True
+            rz = "cptr"
+            lines.append("Glue.returnPointer (%s)" % applied)
+        elif kind == "pointer":
+            self.raw = True
+            rz = self.zs(name)
+            lines.append("Glue.returnPointer (%s).Ptr" % applied)
+        elif kind == "prim":
+            rz = PRIMS[name].z
+            lines.append(PRIMS[name].ret.format(applied))
+        elif kind in ("enum", "flags"):
+            rz = self.zs(name)
+            lines.append("Glue.returnInt (%s).Int" % applied)
+        elif kind == "text":
+            # C's own to free, or one that is never freed: the same text is the same string
+            keep = "Glue.dup" if ret.get("transfer-ownership") == "full" else "Glue.intern"
+            if nullable(ret):
+                rz = "option<string>"
+                lines += ["match %s with" % applied, "| Some zs -> Glue.returnPointer (%s zs)" % keep, "| None -> Glue.returnPointer (Glue.none ())"]
+            else:
+                rz = "string"
+                lines.append("Glue.returnPointer (%s (%s))" % (keep, applied))
+        elif kind == "list" and name[0] in ("class", "iface") and ret.get("transfer-ownership", "none") != "none":
+            t, gt = self.zs(name[1]), self.gt(name[1])
+            each = "Glue.give (Glue.obj zo.Id %s)" % gt if ret.get("transfer-ownership") == "full" else "Glue.obj zo.Id %s" % gt
+            rz = "list<%s>" % t
+            lines.append("Glue.returnPointer (Glue.glist (Glue.mapList (fun (zo: %s) -> %s) (%s)) %s)" % (t, each, applied, "true" if name[2] else "false"))
+        elif kind == "strv" and name["zt"] and ret.get("transfer-ownership") == "full":
+            rz = "list<string>"
+            lines.append("Glue.returnPointer (Glue.strv (%s))" % applied)
+        elif kind in ("class", "iface", "boxed", "counted"):
+            rz, gt, ns = self.zs(name), self.gt(name), name.split(".", 1)[0]
+            give = "%s"
+            if ret.get("transfer-ownership") == "full":
+                give = {"boxed": "Glue.giveBoxed (%%s) %s" % gt, "counted": "%szgtk_give_%s (%%s)" % (self.mod(ns), self.cname(name))}.get(kind, "Glue.give (%s)")
+            if nullable(ret):
+                lines += ["match %s with" % applied, "| Some zo -> Glue.returnPointer (%s)" % (give % ("Glue.obj zo.Id %s" % gt)), "| None -> Glue.returnPointer (Glue.none ())"]
+                rz = "option<%s>" % rz
+            else:
+                lines.append("Glue.returnPointer (%s)" % (give % ("Glue.obj (%s).Id %s" % (applied, gt))))
+        else:
+            raise Skip("a handler with a result of a kind this can't take")
+        return (lines, " -> ".join((types or ["unit"]) + [result(rz)]))
+
+    def trampoline(self, full):
+        """The C for a callback type: a function GTK calls, which runs the closure in its user
+        data, and the same giving the closure up after one call."""
+        params, data, ret = self.callback(full)
+
+        def ctype(el):
+            t = el.find(CORE + "type")
+            t = t if t is not None else el.find(CORE + "array")
+            return None if t is None else t.get(C + "type")
+
+        sig, sets = [], []
+        for i, p in enumerate(params):
+            ct = ctype(p)
+            if ct is None:
+                raise Skip("a callback with a parameter C has no type for")
+            sig.append("%s a%d" % (ct, i))
+            if i == data:
+                continue
+            kind, name = self.classify(p)
+            member = PRIMS[name].member if kind == "prim" else "i" if kind in ("enum", "flags") else "p"
+            if p.get("direction", "in") != "in":
+                member = "p"
+            cast = {"i": "(gint64)", "d": "(double)", "p": "(void *)"}[member]
+            sets.append("c.args[%d].%s = %sa%d;" % (i, member, cast, i))
+        rkind, rname = self.classify(ret)
+        rct = "void" if rkind == "none" else ctype(ret)
+        if rct is None:
+            raise Skip("a callback with a result C has no type for")
+        member = None if rkind == "none" else PRIMS[rname].member if rkind == "prim" else "i" if rkind in ("enum", "flags") else "p"
+        # checked before any C is written: the same reasons leave the Z# side out
+        self.handler(params, data, ret, "f", 0)
+        name = self.cname(full)
+        for suffix, after in (("", ""), ("_once", " zgtk_drop(a%d);" % data)):
+            self.c.append("static %s tramp_%s%s(%s) {" % (rct, name, suffix, ", ".join(sig)))
+            self.c.append("    ZCall c; memset(&c, 0, sizeof c); c.n = %d;" % len(params))
+            self.c += ["    " + s for s in sets]
+            self.c.append("    zgtk_dispatch(a%d, &c);%s" % (data, after))
+            if member:
+                self.c.append("    return (%s)c.ret.%s;" % (rct, member))
+            self.c.append("}")
+            self.c.append("void *zgtk_tramp_%s%s(void) { return tramp_%s%s; }" % (name, suffix, name, suffix))
+
+    # ---- a function
+
+    def function(self, el, owner, names, indent="  ", prefix="", cname=None, fname=None):
+        """A constructor, a method or a function, as an extern and its wrapper. `owner`: the
+        full name of the type it belongs to, or None."""
+        made = cname is not None  # a function of the generated C's, not the library's
+        cname = cname or el.get(C + "identifier")
+        if cname is None:
+            raise Skip("no C function")
+        if el.get("moved-to") or el.get("shadowed-by"):
+            raise Alias("another name of a function that is given")
+        if not made and self.exported is not None and cname not in self.exported:
+            raise Skip("not in the library")
+        if cname in self.seen:
+            raise Skip("given by a module before this one")
+        raw = el.get("name")
+        ctor = el.tag == CORE + "constructor"
+        # an object's `destroy` (a window's) leaves it valid; a boxed value's frees it
+        destroys_object = raw == "destroy" and owner and self.gir.kind(owner) in ("class", "iface")
+        # what the handles' table does itself: a program that does it too answers for the count
+        counts = raw in UNSAFE and not ctor and not destroys_object
+        # `idle_add_full` is what a binding calls `idle_add`
+        raw = el.get("shadows") or raw
+        name = "create" + pascal(raw[3:]) if raw == "new" or raw.startswith("new_") else camel(raw)
+        if prefix:
+            name = camel(prefix) + name[:1].upper() + name[1:]
+        name = fname or name
+        if name in names:
+            raise Skip("a second function of the same name")
+        self.temp = 0
+        self.raw = counts
+        ps = el.find(CORE + "parameters")
+        params = [] if ps is None else [p for p in ps if p.tag != CORE + "instance-parameter"]
+        if any(p.find(CORE + "varargs") is not None for p in params):
+            return self.variadic(el, cname, params, ps, names, indent)
+        inst = None if ps is None else ps.find(CORE + "instance-parameter")
+        ext, pub, args, pre, post, outs = [], [], [], [], [], []
+        if inst is not None:
+            if owner is None:
+                raise Skip("a method of no type")
+            ext.append("cptr")
+            pub.append("(self: %s)" % self.zs(owner))
+            if self.gir.kind(owner) == "pointer":
+                self.raw = True
+                args.append("self.Ptr")
+            else:
+                args.append("(Glue.obj self.Id %s)" % self.gt(owner))
+        used = set()
+        plan = []
+        for i, p in enumerate(params):
+            pname = local(p.get("name") or "arg")
+            while pname in used:
+                pname += "_"
+            used.add(pname)
+            plan.append((i, p, pname))
+        # the places a callback's user data and destroy notify take, and an array's length
+        fixed = {}
+        for i, p, pname in plan:
+            arr = p.find(CORE + "array")
+            if arr is not None and arr.get("length") is not None and p.get("direction", "in") == "in":
+                fixed[int(arr.get("length"))] = ("length", i)
+        # an array C gives says its length in an out parameter, which is read and not given
+        ret = el.find(CORE + "return-value")
+        rkind, rname = self.classify(ret)
+        outlen, slot = {}, 0
+        # a buffer the caller makes room for, as long as an in parameter says: its place, and
+        # the parameter's
+        buffers = {}
+        for i, p, _ in plan:
+            arr = p.find(CORE + "array")
+            if (arr is not None and p.get("direction") == "out" and flag(p, "caller-allocates") and arr.get("length") is not None
+                    and int(arr.get("length")) < len(plan) and plan[int(arr.get("length"))][1].get("direction", "in") == "in"):
+                buffers[i] = int(arr.get("length"))
+        given = [(rkind, rname)] + [self.classify(p) for i, p, _ in plan if p.get("direction") == "out" and p.find(CORE + "array") is not None and i not in buffers]
+        for kind, shape in given:
+            if kind in ("array", "strv") and shape["length"] is not None and shape["length"] not in outlen:
+                at = shape["length"]
+                if at >= len(plan) or plan[at][1].get("direction") != "out":
+                    raise Skip("an array whose length isn't an out parameter")
+                lkind, lname = self.classify(plan[at][1])
+                if lkind != "prim" or PRIMS[lname].out is None or PRIMS[lname].z != "int":
+                    raise Skip("an array whose length isn't a number")
+                outlen[at] = (slot, PRIMS[lname].out.format(slot))
+                slot += 1
+        for kind, shape in given:
+            if kind in ("array", "strv") and shape["length"] is not None:
+                shape["n"] = outlen[shape["length"]][1]
+        callbacks = {}
+        destroys = {int(p.get("destroy")) for _, p, _ in plan if p.get("destroy") is not None}
+        for i, p, pname in plan:
+            t = p.find(CORE + "type")
+            if i in destroys or t is None or not t.get("name") or t.get("name") in PRIMS or t.get("name") in TEXT:
+                continue
+            full = self.full(t.get("name"))
+            if self.gir.types.get(full, NOTHING).kind != "callback":
+                continue
+            if not self.available(full) or p.get("closure") is None:
+                continue
+            scope = p.get("scope", "call")
+            cb = self.tmp("cb")
+            self.within = full.split(".", 1)[0]
+            try:
+                cparams, cdata, cret = self.callback(full)
+                lines, ftype = self.handler(cparams, cdata, cret, pname, 0)
+            except Skip:
+                continue
+            finally:
+                self.within = None
+            pre.append("let %s =" % cb)
+            pre.append("  Glue.hold (fun () ->")
+            pre += ["    " + l for l in lines[:-1]] + ["    " + lines[-1] + ")"]
+            ns = full.split(".", 1)[0]
+            tramp = "(%szgtk_tramp_%s%s ())" % (self.mod(ns), self.cname(full), "_once" if scope == "async" else "")
+            callbacks[i] = (tramp, ftype)
+            fixed[int(p.get("closure"))] = ("data", cb)
+            if p.get("destroy") is not None:
+                fixed[int(p.get("destroy"))] = ("destroy", None)
+            if scope == "call":
+                post.append("Glue.drop %s" % cb)
+        primed = []  # what is put in an in-out parameter's slot once the call's frame is there
+        for i, p, pname in plan:
+            if i in outlen:
+                ext.append("cptr")
+                args.append("(Glue.out %d)" % outlen[i][0])
+                continue
+            if i in callbacks:
+                tramp, ftype = callbacks[i]
+                ext.append("cptr")
+                pub.append("(%s: %s)" % (pname, ftype))
+                args.append(tramp)
+                continue
+            if i in fixed:
+                what, v = fixed[i]
+                if what == "data":
+                    ext.append("cptr")
+                    args.append(v)
+                elif what == "destroy":
+                    ext.append("cptr")
+                    args.append("(Glue.dropFn ())")
+                else:
+                    kind, pn = self.classify(p)
+                    if kind != "prim" or p.get("direction", "in") != "in":
+                        raise Skip("an array whose length isn't a number")
+                    akind, ashape = self.classify(plan[v][1])
+                    bytes_ = akind == "array" and ashape["ekind"] == "prim" and PRIMS[ashape["ename"]].c == "u8"
+                    ext.append(PRIMS[pn].c)
+                    args.append(PRIMS[pn].to_c.format("(Glue.%s %s)" % ("countBytes" if bytes_ else "count", plan[v][2])))
+                continue
+            direction = p.get("direction", "in")
+            t = p.find(CORE + "type")
+            tn = None if t is None else t.get("name")
+            if tn and tn not in PRIMS and tn not in TEXT and tn not in RAW and self.gir.types.get(self.full(tn), NOTHING).kind == "callback":
+                # C's function pointer and nothing to carry a closure: the caller's own to give
+                if direction != "in":
+                    raise Skip("a function pointer as an out parameter")
+                self.raw = True
+                ext.append("cptr")
+                pub.append("(%s: cptr)" % pname)
+                args.append(pname)
+                continue
+            kind, tname = self.classify(p)
+            if direction == "inout" and kind in ("boxed", "plain", "pointer"):
+                # a record the function changes where it is: the handle's own
+                direction = "in"
+                p = ET.Element(p.tag, dict(p.attrib, **{"transfer-ownership": "none"}))
+            if direction == "out" and flag(p, "caller-allocates") and kind == "array" and tname.get("inline") \
+                    and (tname["fixed"] is not None or i in buffers):
+                # room for records side by side, which the function fills in
+                ens = tname["ename"].split(".", 1)[0]
+                size = "(%szgtk_sizeof_%s ())" % (self.mod(ens), self.cname(tname["ename"]))
+                n = str(tname["fixed"]) if tname["fixed"] is not None else plan[buffers[i]][2]
+                buf = self.tmp("buf")
+                pre.append("let %s = Glue.roomFor (%s) %s" % (buf, n, size))
+                ext.append("cptr")
+                args.append(buf)
+                ghost = ET.Element("x", {"transfer-ownership": "container"})
+                lets = []
+                z, e = self.of_c("array", dict(tname, n=n, zt=False), ghost, buf, lets)
+                outs.append((z, e, lets))
+                continue
+            if direction == "out" and flag(p, "caller-allocates") and kind == "array" and tname["ekind"] == "prim" \
+                    and PRIMS[tname["ename"]].z != "usize" and (tname["fixed"] is not None or i in buffers):
+                # room for numbers the function fills in: as many as the array's size, or as
+                # the parameter that says how many
+                c = PRIMS[tname["ename"]].c
+                size = SIZES[c][0]
+                n = str(tname["fixed"]) if tname["fixed"] is not None else plan[buffers[i]][2]
+                buf = self.tmp("buf")
+                pre.append("let %s = Glue.room (%s) %d" % (buf, n, size))
+                ext.append("cptr")
+                args.append(buf)
+                shape = dict(tname, n=n, zt=False)
+                ghost = ET.Element("x", {"transfer-ownership": "full"})
+                z, e = self.of_c("array", shape, ghost, buf, [])
+                outs.append((z, e, []))
+                continue
+            if direction == "inout":
+                # a number that goes in and comes back: given, and part of the result
+                setter = {"f32": "outSetF32", "f64": "outSetF64"}.get(PRIMS[tname].c, "outSetInt") if kind == "prim" else None
+                if setter is None or PRIMS[tname].out is None or slot >= 8:
+                    raise Skip("an in-out parameter that isn't a number")
+                value = {"bool": "(if %s then 1 else 0)"}.get(PRIMS[tname].z, "%s") % pname
+                primed.append("Glue.%s %d %s" % (setter, slot, value))
+                ext.append("cptr")
+                pub.append("(%s: %s)" % (pname, PRIMS[tname].z))
+                args.append("(Glue.out %d)" % slot)
+                outs.append((PRIMS[tname].z, PRIMS[tname].out.format(slot), []))
+                slot += 1
+                continue
+            if kind in ("none", "callback"):
+                raise Skip("a parameter of no type")
+            if kind in ("array", "strv") and direction == "out" and tname["length"] is not None and i not in buffers:
+                tname["n"] = outlen[tname["length"]][1]
+            if direction == "out":
+                ext.append("cptr")
+                if kind in ("boxed", "plain") and flag(p, "caller-allocates"):
+                    if not self.gir.sized(tname):
+                        raise Skip("a record of a size C doesn't tell, to fill in")
+                    ns = tname.split(".", 1)[0]
+                    v = self.tmp("o")
+                    gt = self.gt(tname)
+                    pre.append("let %s = Glue.%s (%szgtk_sizeof_%s ()) %s" % (v, "allocPlain" if kind == "plain" else "alloc", self.mod(ns), self.cname(tname), gt))
+                    args.append("(Glue.obj %s %s)" % (v, gt))
+                    outs.append((self.zs(tname), "%s %s" % (self.zs(tname), v), []))
+                    continue
+                if slot >= 8:
+                    raise Skip("more than eight out parameters")
+                if flag(p, "caller-allocates"):
+                    raise Skip("an out parameter the caller makes room for")
+                args.append("(Glue.out %d)" % slot)
+                lets = []
+                if kind == "prim":
+                    if PRIMS[tname].out is None:
+                        raise Skip("a small integer or a GType as an out parameter")
+                    outs.append((PRIMS[tname].z, PRIMS[tname].out.format(slot), lets))
+                elif kind == "enum":
+                    outs.append((self.zs(tname), "%s (Glue.outI32 %d)" % (self.zs(tname), slot), lets))
+                elif kind == "flags":
+                    outs.append((self.zs(tname), "%s (Glue.outU32 %d)" % (self.zs(tname), slot), lets))
+                elif kind == "closure":
+                    raise Skip("a closure as an out parameter")
+                else:
+                    z, e = self.of_c(kind, tname, p, "Glue.outPtr %d" % slot, lets)
+                    outs.append((z, e, lets))
+                slot += 1
+                continue
+            c, z, e = self.to_c(kind, tname, p, pname, pre, post)
+            ext.append(c)
+            pub.append("(%s: %s)" % (pname, z))
+            args.append(e)
+        throws = flag(el, "throws")
+        if throws:
+            ext.append("cptr")
+            args.append("(Glue.err ())")
+        after = []
+        if rkind == "none":
+            rc, rz, rexpr = "unit", None, None
+        elif ctor and owner and rkind == "pointer" and self.gir.kind(owner) == "pointer":
+            rc, rz = "cptr", self.zs(owner)
+            rexpr = "%s (zr)" % rz
+        elif ctor and owner and rkind in ("class", "iface", "boxed", "counted", "plain") and self.gir.kind(owner) != "pointer":
+            # C's constructors say they make a GtkWidget: it is the class's own object
+            rc, rz = "cptr", self.zs(owner)
+            own = ret.get("transfer-ownership", "none") == "full"
+            rexpr = "%s (%s)" % (rz, self.handle(self.gir.kind(owner), owner, "zr", own))
+        else:
+            rc = PRIMS[rname].c if rkind == "prim" else self.c_of(rkind)
+            rz, rexpr = self.of_c(rkind, rname, ret, "zr", after)
+        values = ([(rz, rexpr)] if rz else []) + [(z, e) for z, e, _ in outs]
+        for _, _, lets in outs:
+            after += lets
+        ztype = "unit" if not values else values[0][0] if len(values) == 1 else "(%s)" % " * ".join(v[0] for v in values)
+        value = "()" if not values else values[0][1] if len(values) == 1 else "(%s)" % ", ".join(v[1] for v in values)
+        framed = throws or slot > 0
+        call = "%s %s" % (cname, " ".join(args or ["()"]))
+        body = list(pre)
+        if framed:
+            body.append("Glue.outBegin ()")
+            body += primed
+        body.append(call if rkind == "none" else "let zr = %s" % call)
+        if throws:
+            # the error is read before the frame ends, and a failed call's result isn't looked at
+            body.append("match Glue.takeError () with")
+            body.append("| Some ze ->")
+            body += ["  Glue.outEnd ()"] + ["  " + l for l in post] + ["  Error ze"]
+            body.append("| None ->")
+            inner = after + ["let zv = %s" % value, "Glue.outEnd ()"] + post + ["Ok zv"]
+            body += ["  " + l for l in inner]
+            ztype = "result<%s, Glue.Error>" % ztype
+        else:
+            body += after
+            if framed or post:
+                if values:
+                    body.append("let zv = %s" % value)
+                if framed:
+                    body.append("Glue.outEnd ()")
+                body += post
+                if values:
+                    body.append("zv")
+            elif values:
+                body.append(value)
+        if len(body) == 2 and body[0].startswith("let zr = ") and body[1].count("zr") == 1:
+            body = [body[1].replace("zr", "(%s)" % body[0][9:])]
+        names.add(name)
+        self.given += 1
+        self.emit("%sextern %s : %s -> %s" % (indent, cname, " -> ".join(ext or ["unit"]), rc))
+        self.emit()
+        self.emit("%s/// %s" % (indent, doc(el, "`%s`." % cname)))
+        if self.raw:
+            # it trusts a pointer it's given
+            self.emit("%s[<Unsafe>]" % indent)
+        self.emit("%slet %s %s : %s =" % (indent, public(name), " ".join(pub or ["()"]), ztype))
+        for line in body:
+            self.emit("%s  %s" % (indent, line))
+        self.emit()
+
+    def variadic(self, el, cname, params, ps, names, indent):
+        """A C function of variable arguments, as C has it: an extern for `unsafe` code, which
+        answers for what it passes. Objects are their pointers (`Glue.obj`)."""
+        if cname in names:
+            raise Skip("a second function of the same name")
+
+        def ctype(x):
+            t = x.find(CORE + "type")
+            name = None if t is None else t.get("name")
+            if name == "none":
+                return "unit"
+            if name in PRIMS:
+                return PRIMS[name].c
+            if name in TEXT and "**" not in (t.get(C + "type") or ""):
+                return "cstr"
+            return "cptr"
+
+        ext = ["cptr"] if ps.find(CORE + "instance-parameter") is not None else []
+        ext += [ctype(p) for p in params if p.find(CORE + "varargs") is None]
+        ret = ctype(el.find(CORE + "return-value"))
+        if ret == "cstr":
+            ret = "cptr"
+        names.add(cname)
+        self.given += 1
+        self.emit("%s/// %s C's own function, of variable arguments: called as C calls it, by code that" % (indent, doc(el, "`%s`." % cname)))
+        self.emit("%s/// answers for what it passes." % indent)
+        self.emit("%sextern %s : %s -> ... -> %s" % (indent, cname, " -> ".join(ext), ret) if ext else "%sextern %s : ... -> %s" % (indent, cname, ret))
+        self.emit()
+
+    def signal(self, el, owner, names):
+        """`onName self handler`: the handler takes the signal's arguments."""
+        name = "on" + pascal(el.get("name"))
+        if name in names:
+            raise Skip("a second function of the same name")
+        self.temp = 0
+        ps = el.find(CORE + "parameters")
+        lines, ftype = self.handler([] if ps is None else list(ps), -1, el.find(CORE + "return-value"), "handler", 1)
+        names.add(name)
+        self.given += 1
+        obj = "(Glue.obj self.Id %s)" % self.gt(owner)
+        self.emit("  /// %s" % doc(el, "The `%s` signal." % el.get("name")))
+        self.emit("  let %s (self: %s) (handler: %s) : unit =" % (name, self.zs(owner), ftype))
+        if lines == ["handler ()"]:
+            self.emit('    Glue.connect %s "%s" handler' % (obj, el.get("name")))
+        else:
+            self.emit('    Glue.connect %s "%s" (fun () ->' % (obj, el.get("name")))
+            for line in lines[:-1]:
+                self.emit("      " + line)
+            self.emit("      %s)" % lines[-1])
+        self.emit()
+
+    def prop(self, el, owner, names):
+        """A property: `onNotifyX`, and `getX`/`setX` where no method is the property's own."""
+        pname = el.get("name")
+        obj = "(Glue.obj self.Id %s)" % self.gt(owner)
+        t = self.zs(owner)
+        fn = "onNotify" + pascal(pname)
+        if fn not in names:
+            names.add(fn)
+            self.given += 1
+            self.emit("  /// Calls `handler` when the `%s` property changes." % pname)
+            self.emit("  let %s (self: %s) (handler: unit -> unit) : unit =" % (fn, t))
+            self.emit('    Glue.connect %s "notify::%s" handler' % (obj, pname))
+            self.emit()
+        try:
+            kind, name = self.classify(el)
+        except Skip:
+            return
+        getz = None
+        if kind == "prim" and PRIMS[name].z == "usize":
+            return
+        if kind == "prim":
+            z = PRIMS[name].z
+            get = {"bool": '(Glue.getInt %s "%s" <> 0)', "float": 'Glue.getFloat %s "%s"'}.get(z, 'Glue.getInt %s "%s"') % (obj, pname)
+            put = {"bool": 'Glue.setInt %s "%s" (if value then 1 else 0)', "float": 'Glue.setFloat %s "%s" value'}.get(z, 'Glue.setInt %s "%s" value') % (obj, pname)
+        elif kind == "text":
+            z, put = "string", 'Glue.setText %s "%s" value' % (obj, pname)
+            getz, get = "option<string>", 'Glue.getText %s "%s"' % (obj, pname)
+        elif kind in ("enum", "flags"):
+            z = self.zs(name)
+            get = '%s (Glue.getInt %s "%s")' % (z, obj, pname)
+            put = 'Glue.setInt %s "%s" value.Int' % (obj, pname)
+        elif kind in ("class", "iface"):
+            z, get = self.zs(name), None
+            getz = "option<%s>" % z
+            put = 'Glue.setObject %s "%s" (Glue.obj value.Id %s)' % (obj, pname, self.gt(name))
+        else:
+            return
+        fn = "get" + pascal(pname)
+        if el.get("readable", "1") == "1" and el.get("getter") is None and fn not in names:
+            names.add(fn)
+            self.given += 1
+            self.emit("  /// The `%s` property." % pname)
+            if get is None:
+                self.emit("  let %s (self: %s) : %s =" % (fn, t, getz))
+                self.emit('    let zid = Glue.getObject %s "%s"' % (obj, pname))
+                self.emit("    if zid = 0 then None else Some (%s zid)" % z)
+            else:
+                self.emit("  let %s (self: %s) : %s = %s" % (fn, t, getz or z, get))
+            self.emit()
+        fn = "set" + pascal(pname)
+        if flag(el, "writable") and not flag(el, "construct-only") and el.get("setter") is None and fn not in names:
+            names.add(fn)
+            self.given += 1
+            self.emit("  /// Sets the `%s` property." % pname)
+            self.emit("  let %s (self: %s) (value: %s) : unit = %s" % (fn, t, z, put))
+            self.emit()
+
+    def vfuncs(self, el, full, names):
+        """A class's or an interface's virtual methods, for a type made with `Glue.subclass`:
+        `overrideX` gives the type its own, and `parentX` calls the one it took the place of."""
+        g = self.gir
+        struct = g.types.get(g.name + "." + (el.get(GLIB + "type-struct") or "-"))
+        if struct is None or struct.ctype is None or full in SEALED:
+            return
+        slots = {f.get("name") for f in struct.el.findall(CORE + "field")}
+        iface = g.kind(full) == "iface"
+        cn, t = self.cname(full), self.zs(full)
+
+        def ctype(p):
+            x = p.find(CORE + "type")
+            x = x if x is not None else p.find(CORE + "array")
+            return None if x is None else x.get(C + "type")
+
+        for vm in el.findall(CORE + "virtual-method"):
+            name = vm.get("name")
+            ps = vm.find(CORE + "parameters")
+            if name not in slots or flag(vm, "throws") or ps is None or ps.find(CORE + "instance-parameter") is None:
+                continue
+            params = list(ps)
+            ret = vm.find(CORE + "return-value")
+            fn = "override" + pascal(name)
+            if fn in names:
+                continue
+            mark, cmark = len(self.out), len(self.c)
+            try:
+                self.temp = 0
+                lines, ftype = self.handler(params, -1, ret, "handler", 0)
+                sig, sets = [], []
+                for i, p in enumerate(params):
+                    ct = ctype(p)
+                    if ct is None:
+                        raise Skip("a virtual method with a parameter C has no type for")
+                    sig.append("%s a%d" % (ct, i))
+                    kind, kname = self.classify(p)
+                    member = PRIMS[kname].member if kind == "prim" else "i" if kind in ("enum", "flags") else "p"
+                    if p.get("direction", "in") != "in":
+                        member = "p"
+                    sets.append("c.args[%d].%s = %sa%d;" % (i, member, {"i": "(gint64)", "d": "(double)", "p": "(void *)"}[member], i))
+                rkind, rname = self.classify(ret)
+                rct = "void" if rkind == "none" else ctype(ret)
+                if rct is None:
+                    raise Skip("a virtual method with a result C has no type for")
+                member = None if rkind == "none" else PRIMS[rname].member if rkind == "prim" else "i" if rkind in ("enum", "flags") else "p"
+            except Skip as why:
+                del self.out[mark:]
+                del self.c[cmark:]
+                self.skipped["a virtual method: " + str(why)] += 1
+                if os.environ.get("ZGIR_WHY"):
+                    print("gir: %s.%s (virtual): %s" % (full, name, why), file=sys.stderr)
+                continue
+            key = "%s.%s" % (cn, name)
+            klass = "g_type_class_ref(type)"
+            if iface:
+                klass = "g_type_interface_peek(g_type_class_ref(type), %s())" % g.types[full].gtype
+            self.c.append("static %s vf_%s_%s(%s) {" % (rct, cn, name, ", ".join(sig)))
+            self.c.append("    ZCall c; memset(&c, 0, sizeof c); c.n = %d;" % len(params))
+            self.c += ["    " + x for x in sets]
+            self.c.append('    void *f = zgtk_vfunc_find(a0, "%s");' % key)
+            self.c.append("    if (f) zgtk_dispatch(f, &c);")
+            if member:
+                self.c.append("    return (%s)c.ret.%s;" % (rct, member))
+            self.c.append("}")
+            self.c.append("void zgtk_override_%s_%s(gsize type, void *closure) {" % (cn, name))
+            self.c.append("    %s *k = %s;" % (struct.ctype, klass))
+            self.c.append('    if (k) { zgtk_vfunc_set(type, "%s", closure); k->%s = (gpointer)vf_%s_%s; }' % (key, name, cn, name))
+            self.c.append("}")
+            names.add(fn)
+            self.given += 1
+            self.emit("  extern zgtk_override_%s_%s : usize -> cptr -> unit" % (cn, name))
+            self.emit()
+            self.emit("  /// Gives a type made with `Glue.subclass` its own `%s`: %s" % (name, doc(vm, "a virtual method.")))
+            self.emit("  let %s (gtype: usize) (handler: %s) : unit =" % (fn, ftype))
+            self.emit("    let zcb =")
+            self.emit("      Glue.hold (fun () ->")
+            for line in lines[:-1]:
+                self.emit("        " + line)
+            self.emit("        %s)" % lines[-1])
+            self.emit("    zgtk_override_%s_%s gtype zcb" % (cn, name))
+            self.emit()
+            # the one it took the place of: its parent type's
+            mark, cmark = len(self.out), len(self.c)
+            try:
+                self.function(vm, full, names, cname="zgtk_parent_%s_%s" % (cn, name), fname="parent" + pascal(name))
+            except Skip:
+                del self.out[mark:]
+                del self.c[cmark:]
+                continue
+            call = "k->%s(%s)" % (name, ", ".join("a%d" % i for i in range(len(params))))
+            self.c.append("%s zgtk_parent_%s_%s(%s) {" % (rct, cn, name, ", ".join(sig)))
+            self.c.append('    %s *k = zgtk_vfunc_parent(a0, "%s", %s);' % (struct.ctype, key, "%s()" % g.types[full].gtype if iface else "0"))
+            if rct == "void":
+                self.c.append("    if (k && k->%s) %s;" % (name, call))
+            else:
+                self.c.append("    return k && k->%s ? %s : (%s)0;" % (name, call, rct))
+            self.c.append("}")
+
+    def fields(self, el, full, names):
+        """A record's fields: `getX`, `setX`, and `create` for one to fill in."""
+        if not self.gir.sized(full):
+            return
+        ctype, cn, t, gt = self.gir.types[full].ctype, self.cname(full), self.zs(full), self.gt(full)
+        self.c.append("gsize zgtk_sizeof_%s(void) { return sizeof(%s); }" % (cn, ctype))
+        if "create" not in names:
+            names.add("create")
+            self.given += 1
+            self.emit("  /// A new one, every field zero.")
+            alloc = "allocPlain" if self.gir.kind(full) == "plain" else "alloc"
+            self.emit("  let create () : %s = %s (Glue.%s (zgtk_sizeof_%s ()) %s)" % (t, t, alloc, cn, gt))
+            self.emit()
+        for f in el.findall(CORE + "field"):
+            if flag(f, "private") or f.get("bits") or f.get("readable") == "0":
+                continue
+            try:
+                kind, name = self.classify(f)
+            except Skip:
+                continue
+            fname = f.get("name")
+            # a pointer to numbers says it's a number
+            ft = f.find(CORE + "type")
+            if ft is None or "*" in (ft.get(C + "type") or "*"):
+                continue
+            if kind == "prim" and PRIMS[name].z != "usize":
+                member, z = PRIMS[name].member, PRIMS[name].z
+            elif kind in ("enum", "flags"):
+                member, z = "i", self.zs(name)
+            elif kind in ("boxed", "plain") and self.gir.sized(name):
+                # a record inside the record: read as a copy, set from one
+                ft, fgt, fct = self.zs(name), self.gt(name), self.gir.types[name].ctype
+                at, put = "zgtk_at_%s_%s" % (cn, fname), "zgtk_put_%s_%s" % (cn, fname)
+                ptr = "(Glue.obj self.Id %s)" % gt
+                fn = "get" + pascal(fname)
+                if fn not in names:
+                    names.add(fn)
+                    self.given += 1
+                    self.c.append("void *%s(void *p) { return &((%s *)p)->%s; }" % (at, ctype, fname))
+                    self.emit("  extern %s : cptr -> cptr" % at)
+                    self.emit()
+                    self.emit("  /// A copy of the `%s` field." % fname)
+                    self.emit("  let %s (self: %s) : %s = %s (%s)" % (fn, t, ft, ft, self.handle(kind, name, "%s %s" % (at, ptr), False)))
+                    self.emit()
+                fn = "set" + pascal(fname)
+                if fn not in names and flag(f, "writable"):
+                    names.add(fn)
+                    self.given += 1
+                    self.c.append("void %s(void *p, void *v) { ((%s *)p)->%s = *(%s *)v; }" % (put, ctype, fname, fct))
+                    self.emit("  extern %s : cptr -> cptr -> unit" % put)
+                    self.emit()
+                    self.emit("  /// Sets the `%s` field, to a copy of a record." % fname)
+                    self.emit("  let %s (self: %s) (value: %s) : unit = %s %s (Glue.obj value.Id %s)" % (fn, t, ft, put, ptr, fgt))
+                    self.emit()
+                continue
+            else:
+                continue
+            ct = "double" if member == "d" else "gint64"
+            ext = "f64" if member == "d" else "int"
+            getter, setter = "zgtk_get_%s_%s" % (cn, fname), "zgtk_set_%s_%s" % (cn, fname)
+            ptr = "(Glue.obj self.Id %s)" % gt
+            fn = "get" + pascal(fname)
+            if fn not in names:
+                names.add(fn)
+                self.given += 1
+                self.c.append("%s %s(void *p) { return (%s)((%s *)p)->%s; }" % (ct, getter, ct, ctype, fname))
+                read = "%s %s" % (getter, ptr)
+                value = {"bool": "(%s <> 0)" % read, "int": read, "float": read}.get(z, "%s (%s)" % (z, read))
+                self.emit("  extern %s : cptr -> %s" % (getter, ext))
+                self.emit()
+                self.emit("  /// The `%s` field." % fname)
+                self.emit("  let %s (self: %s) : %s = %s" % (fn, t, z, value))
+                self.emit()
+            fn = "set" + pascal(fname)
+            if fn not in names and flag(f, "writable"):
+                names.add(fn)
+                self.given += 1
+                self.c.append("void %s(void *p, %s v) { ((%s *)p)->%s = v; }" % (setter, ct, ctype, fname))
+                value = {"bool": "(if value then 1 else 0)", "int": "value", "float": "value"}.get(z, "value.Int")
+                self.emit("  extern %s : cptr -> %s -> unit" % (setter, ext))
+                self.emit()
+                self.emit("  /// Sets the `%s` field." % fname)
+                self.emit("  let %s (self: %s) (value: %s) : unit = %s %s %s" % (fn, t, z, setter, ptr, value))
+                self.emit()
+
+    def attempt(self, make, *args):
+        mark, cmark = len(self.out), len(self.c)
+        try:
+            make(*args)
+        except Skip as why:
+            del self.out[mark:]
+            del self.c[cmark:]
+            if isinstance(why, Alias):
+                return
+            self.skipped[str(why)] += 1
+            if os.environ.get("ZGIR_WHY"):
+                el = args[0]
+                print("gir: %s: %s" % (el.get(C + "identifier") or el.get("name"), why), file=sys.stderr)
+
+    # ---- the module
+
+    def ancestors(self, full):
+        """Every class above and every interface of a type, nearest first, that the module names."""
+        seen, out, at = set(), [], full
+        while at:
+            for up in [at] + self.gir.implements.get(at, []):
+                if up != full and up not in seen and self.available(up) and self.gir.kind(up) in ("class", "iface"):
+                    seen.add(up)
+                    out.append(up)
+            at = self.gir.parents.get(at)
+        root = "GObject.Object"
+        if self.gir.kind(full) in ("class", "iface") and root not in seen and root != full and self.available(root):
+            out.append(root)
+        return out
+
+    def upcasts(self, full):
+        """(a member's name, the type) for every ancestor and interface of a type: the type's
+        own name, with its namespace before it where a nearer one has the name."""
+        taken, out = {full.split(".", 1)[1], "Id", "Int"}, []
+        for up in self.ancestors(full):
+            ns, short = up.split(".", 1)
+            name = short if short not in taken else ns + short
+            if name in taken:
+                continue
+            taken.add(name)
+            out.append((name, up))
+        return out
+
+    def run(self, source):
+        g = self.gir
+
+        def mine(kinds):
+            return [(g.name + "." + e.get("name"), e) for e in g.ns
+                    if e.get("name") and e.tag != CORE + "alias"
+                    and g.kind(g.name + "." + e.get("name")) in kinds
+                    and self.available(g.name + "." + e.get("name"))]
+
+        enums, objects = mine(("enum", "flags")), mine(("class", "iface", "boxed", "counted", "plain", "pointer"))
+        # a type after its ancestors and interfaces, whose types its members name
+        placed, order = set(), []
+
+        def place(full, e):
+            if full in placed:
+                return
+            placed.add(full)
+            for up in self.ancestors(full):
+                if up.split(".", 1)[0] == g.name:
+                    place(up, g.types[up].el)
+            order.append((full, e))
+
+        known = dict(objects)
+        for full, e in objects:
+            place(full, e)
+        objects = [(full, e) for full, e in order if full in known]
+        callbacks = mine(("callback",))
+        self.c += ["// Generated by zs-provider-gir from %s. Do not edit." % source, '#include "zgtk.h"', "#include <string.h>"]
+        self.c += ["#include <%s>" % i for i in g.includes + HEADERS.get(g.name, [])]
+        self.emit("// provided by gir %d from %s" % (VERSION, source))
+        for path in g.inputs:
+            self.emit("// input: %s" % path)
+        self.emit("// %s %s. A class, an interface or a boxed record is a handle of its own type; see Glue"
+                  % (g.name, g.ns.get("version")))
+        self.emit("// for how long a handle is good and what happens to one that isn't.")
+        self.emit()
+        # what later declarations name: the types' GTypes, and the C made beside this module
+        for full, e in objects:
+            if g.kind(full) == "pointer":
+                continue
+            if g.kind(full) == "counted":
+                cn = self.cname(full)
+                gtype, ref, unref = COUNTED.get(full) or (
+                    "%s()" % g.types[full].gtype, e.get(GLIB + "ref-func"), e.get(GLIB + "unref-func"))
+                self.c.append("gsize zgtk_type_%s(void) { return %s; }" % (cn, gtype))
+                self.c.append("gint64 zgtk_wrap_%s(void *p, int full) { return zgtk_wrap_counted(p, %s, (void *(*)(void *))%s, (void (*)(void *))%s, full); }"
+                              % (cn, gtype, ref, unref))
+                self.c.append("void *zgtk_give_%s(void *p) { return p ? %s(p) : NULL; }" % (cn, ref))
+                self.emit("extern zgtk_type_%s : unit -> usize" % cn)
+                self.emit("extern zgtk_wrap_%s : cptr -> i32 -> int" % cn)
+                self.emit("extern zgtk_give_%s : cptr -> cptr" % cn)
+            elif g.kind(full) == "plain":
+                # no GType: a tag of its own tells its handles from other records'
+                self.c.append("gsize zgtk_tag_%s(void) { static char tag; return (gsize)&tag; }" % self.cname(full))
+                self.emit("extern zgtk_tag_%s : unit -> usize" % self.cname(full))
+            else:
+                self.emit("extern %s : unit -> usize" % g.types[full].gtype)
+            if g.kind(full) in ("boxed", "plain") and g.sized(full):
+                self.emit("extern zgtk_sizeof_%s : unit -> usize" % self.cname(full))
+        for full, e in callbacks:
+            mark = len(self.c)
+            try:
+                self.trampoline(full)
+            except Skip:
+                del self.c[mark:]
+                continue
+            self.emit("extern zgtk_tramp_%s : unit -> cptr" % self.cname(full))
+            self.emit("extern zgtk_tramp_%s_once : unit -> cptr" % self.cname(full))
+        self.emit()
+        for full, e in enums:
+            name = e.get("name")
+            self.emit("/// %s" % doc(e, "`%s`." % e.get(C + "type")))
+            self.emit("type %s =" % name)
+            self.emit("  | %s of int" % name)
+            self.emit()
+            self.emit("  /// C's value.")
+            self.emit("  member x.Int =")
+            self.emit("    match x with")
+            self.emit("    | %s v -> v" % name)
+            self.emit()
+        for full, e in objects:
+            name = e.get("name")
+            self.emit("/// %s" % doc(e, "`%s`." % g.types[full].ctype))
+            self.emit("type %s =" % name)
+            if g.kind(full) == "pointer":
+                # no handle keeps it: the pointer is good for as long as C says it is
+                self.emit("  | %s of cptr" % name)
+                self.emit()
+                self.emit("  /// C's pointer, which functions marked `[<Unsafe>]` trust.")
+                self.emit("  member x.Ptr =")
+                self.emit("    match x with")
+                self.emit("    | %s p -> p" % name)
+                self.emit()
+                continue
+            self.emit("  | %s of int" % name)
+            self.emit()
+            self.emit("  /// The handle's number: Glue's functions take it.")
+            self.emit("  member x.Id =")
+            self.emit("    match x with")
+            self.emit("    | %s v -> v" % name)
+            self.emit()
+            for member, up in self.upcasts(full):
+                self.emit("  /// The same object as its %s." % ("interface" if g.kind(up) == "iface" else "ancestor"))
+                self.emit("  member x.%s = %s x.Id" % (member, self.zs(up)))
+                self.emit()
+        for full, e in enums:
+            name, names = e.get("name"), set()
+            self.emit("module %s =" % name)
+            for m in e.findall(CORE + "member"):
+                mname = camel(m.get("name"))
+                if mname in names:
+                    continue
+                names.add(mname)
+                self.emit("  /// %s" % doc(m, "`%s`." % m.get(C + "identifier")))
+                self.emit("  let %s = %s %s" % (public(mname), name, m.get("value")))
+                self.emit()
+            if not names:
+                self.out.pop()
+        root = "GObject.Object"
+        for full, e in objects:
+            name, names, kind = e.get("name"), set(), g.kind(full)
+            self.emit("module %s =" % name)
+            for up in self.ancestors(full):
+                ns, short = up.split(".", 1)
+                fn = "to" + (short if ns == g.name else ns + short)
+                if fn in names:
+                    continue
+                names.add(fn)
+                self.emit("  /// The same object as its %s." % ("interface" if g.kind(up) == "iface" else "ancestor"))
+                self.emit("  let %s (self: %s) : %s = %s self.Id" % (fn, name, self.zs(up), self.zs(up)))
+                self.emit()
+            if kind in ("class", "iface") and full != root and self.available(root):
+                names.add("cast")
+                self.emit("  /// The object as this type, if it is one.")
+                self.emit("  let cast (object: %s) : option<%s> =" % (self.zs(root), name))
+                self.emit("    if Glue.isA (Glue.obj object.Id (usize 0)) %s then Some (%s object.Id) else None" % (self.gt(full), name))
+                self.emit()
+            for tag in ("constructor", "method", "function"):
+                for f in e.findall(CORE + tag):
+                    self.attempt(self.function, f, full, names)
+            if kind in ("class", "iface"):
+                for s in e.findall(GLIB + "signal"):
+                    self.attempt(self.signal, s, full, names)
+                for p in e.findall(CORE + "property"):
+                    self.attempt(self.prop, p, full, names)
+                self.vfuncs(e, full, names)
+            if kind in ("boxed", "plain"):
+                self.fields(e, full, names)
+            if not names:
+                self.out.pop()
+        names = set()
+        for k in g.ns.findall(CORE + "constant"):
+            t = k.find(CORE + "type")
+            name = camel(k.get("name").lower())
+            if t is None or name in names:
+                continue
+            value = k.get("value")
+            if t.get("name") in TEXT:
+                lit = '"%s"' % value.replace("\\", "\\\\").replace('"', '\\"').replace("{", "{{").replace("}", "}}")
+                if any(ord(ch) < 32 for ch in value):
+                    continue
+            elif t.get("name") in PRIMS and PRIMS[t.get("name")].z == "int" and re.fullmatch(r"-?\d+", value) and abs(int(value)) < 2 ** 62:
+                lit = value if not value.startswith("-") else "(%s)" % value
+            else:
+                continue
+            names.add(name)
+            self.emit("/// %s" % doc(k, "`%s`." % k.get(C + "type")))
+            self.emit("let %s = %s" % (public(name), lit))
+            self.emit()
+        for f in g.ns.findall(CORE + "function"):
+            self.attempt(self.function, f, None, names, "")
+        while self.out and not self.out[-1]:
+            self.out.pop()
+        return "\n".join(self.out) + "\n"
+
+
+def main(argv):
+    opts = {"dir": "/usr/share/gir-1.0", "only": "", "foreign": "", "modules": "", "prefix": "", "c": "", "extra": "", "seen": ""}
+    if len(argv) < 2 or argv[1].startswith("--"):
+        sys.exit("usage: zs-provider-gir <Namespace-version.gir> [%s]" % " ".join("--%s=" % k for k in opts))
+    for a in argv[2:]:
+        key, _, value = a[2:].partition("=")
+        if not a.startswith("--") or key not in opts:
+            sys.exit("gir: unknown option '%s' (%s)" % (a, ", ".join(opts)))
+        opts[key] = value
+    split = lambda s: set(x for x in s.split(",") if x)
+    modules = dict(m.split("=", 1) for m in split(opts["modules"]))
+    gen = Gen(Gir(argv[1], opts["dir"]), split(opts["only"]), split(opts["foreign"]), modules)
+    if opts["seen"] and os.path.exists(opts["seen"]):
+        gen.seen = set(open(opts["seen"]).read().split())
+    text = gen.run(os.path.basename(argv[1]))
+    if opts["seen"]:
+        with open(opts["seen"], "a") as f:
+            f.write("\n".join(re.findall(r"(?m)^\s*extern (\S+) :", text)) + "\n")
+    if opts["extra"]:
+        # what the .gir doesn't describe, written by hand for the module's types
+        text += "\n" + open(opts["extra"]).read()
+    if opts["prefix"]:
+        for ns in {"Glue"} | {modules.get(f.split(".")[0], f.split(".")[0]) for f in gen.foreign}:
+            # in code, not in comments
+            text = re.sub(r"(?m)^(?!\s*//)(.*)$", lambda m: re.sub(
+                r"(?<![\w.`])%s\.(?=[A-Za-z])" % ns, opts["prefix"] + ns + ".", m.group(1)), text)
+    sys.stdout.write(text)
+    if opts["c"]:
+        with open(opts["c"], "w") as f:
+            f.write("\n".join(gen.c) + "\n")
+    print("gir: %s: %d functions, signals and properties given" % (gen.gir.name, gen.given), file=sys.stderr)
+    for why, n in gen.skipped.most_common():
+        print("gir:   %d left out: %s" % (n, why), file=sys.stderr)
+
+
+if __name__ == "__main__":
+    main(sys.argv)

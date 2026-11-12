@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Builds an example in the container and runs it here, where the display is (the host needs
+# GTK 4's libraries): ./run [example] (default counter; `signals` is the other).
+set -euo pipefail
+cd "$(dirname "$0")"
+example=examples/${1:-counter}
+./dev sh -c "cd $example && zs build"
+name=$(sed -n 's/^name = "\(.*\)"/\1/p' "$example/zs.toml")
+exec "$example/build/$name"

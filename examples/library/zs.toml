@@ -1,0 +1,5 @@
+[package]
+name = "library"
+
+[dependencies]
+gtk = { path = "../../gtk" }
