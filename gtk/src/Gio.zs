@@ -6936,6 +6936,15 @@ module AppInfo =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `launchUrisAsync` and `launchUrisFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let launchUrisTask (self: AppInfo) (uris: list<string>) (context: option<AppLaunchContext>) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      launchUrisAsync self uris context cancellable (fun _ zres ->
+        let zr = launchUrisFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Removes a supported type from an application, if possible.
   let removeSupportsType (self: AppInfo) (contentType: string) : result<bool, Glue.Error> =
     Internal.Raw.outBegin ()
@@ -7057,6 +7066,15 @@ module AppInfo =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `getDefaultForTypeAsync` and `getDefaultForTypeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let getDefaultForTypeTask (contentType: string) (mustSupportUris: bool) (cancellable: option<Cancellable>) : Threading.Task<result<AppInfo, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      getDefaultForTypeAsync contentType mustSupportUris cancellable (fun _ zres ->
+        let zr = getDefaultForTypeFinish zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Gets the default application for handling URIs with the given URI scheme.
   let getDefaultForUriScheme (uriScheme: string) : option<AppInfo> =
     let zr = Internal.GioC.g_app_info_get_default_for_uri_scheme uriScheme
@@ -7089,6 +7107,15 @@ module AppInfo =
       let zv = AppInfo (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `getDefaultForUriSchemeAsync` and `getDefaultForUriSchemeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let getDefaultForUriSchemeTask (uriScheme: string) (cancellable: option<Cancellable>) : Threading.Task<result<AppInfo, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      getDefaultForUriSchemeAsync uriScheme cancellable (fun _ zres ->
+        let zr = getDefaultForUriSchemeFinish zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Gets a list of fallback [iface@Gio.AppInfo]s for a given content type, i.e.
   let getFallbackForType (contentType: string) : list<AppInfo> =
@@ -7145,6 +7172,15 @@ module AppInfo =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `launchDefaultForUriAsync` and `launchDefaultForUriFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let launchDefaultForUriTask (uri: string) (context: option<AppLaunchContext>) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      launchDefaultForUriAsync uri context cancellable (fun _ zres ->
+        let zr = launchDefaultForUriFinish zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Removes all changes to the type associations done by [method@Gio.AppInfo.set_as_default_for_type], [method@Gio.AppInfo.set_as_default_for_extension], [method@Gio.AppInfo.add_supports_type] or [method@Gio.AppInfo.remove_supports_type].
   let resetTypeAssociations (contentType: string) : unit =
@@ -8229,6 +8265,15 @@ module AsyncInitable =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `initAsync` and `initFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let initTask (self: AsyncInitable) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      initAsync self ioPriority cancellable (fun _ zres ->
+        let zr = initFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Finishes the async construction for the various g_async_initable_new calls, returning the created object or %NULL on error.
   let createFinish (self: AsyncInitable) (res: AsyncResult) : result<GObject.Object, Glue.Error> =
     Internal.Raw.outBegin ()
@@ -8531,6 +8576,15 @@ module InputStream =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `closeAsync` and `closeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let closeTask (self: InputStream) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      closeAsync self ioPriority cancellable (fun _ zres ->
+        let zr = closeFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Checks if an input stream has pending actions.
   let hasPending (self: InputStream) : bool =
     (((Internal.GioC.g_input_stream_has_pending (Internal.Raw.obj self.Id (Internal.GioC.g_input_stream_get_type ())))) <> i32 0)
@@ -8664,6 +8718,15 @@ module InputStream =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `readBytesAsync` and `readBytesFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let readBytesTask (self: InputStream) (count: int) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<GLib.Bytes, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      readBytesAsync self count ioPriority cancellable (fun _ zres ->
+        let zr = readBytesFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Finishes an asynchronous stream read operation.
   let readFinish (self: InputStream) (result: AsyncResult) : result<int, Glue.Error> =
     Internal.Raw.outBegin ()
@@ -8733,6 +8796,15 @@ module InputStream =
       let zv = (int (zr))
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `skipAsync` and `skipFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let skipTask (self: InputStream) (count: int) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<int, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      skipAsync self count ioPriority cancellable (fun _ zres ->
+        let zr = skipFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `close_async`: Requests an asynchronous closes of the stream, releasing resources related to it.
   let overrideCloseAsync (gtype: usize) (handler: InputStream -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
@@ -8926,6 +8998,15 @@ module BufferedInputStream =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `fillAsync` and `fillFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let fillTask (self: BufferedInputStream) (count: int) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<int, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      fillAsync self count ioPriority cancellable (fun _ zres ->
+        let zr = fillFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Gets the size of the available data within the stream.
   let getAvailable (self: BufferedInputStream) : int =
     (int ((Internal.GioC.g_buffered_input_stream_get_available (Internal.Raw.obj self.Id (Internal.GioC.g_buffered_input_stream_get_type ())))))
@@ -9062,6 +9143,15 @@ module OutputStream =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `closeAsync` and `closeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let closeTask (self: OutputStream) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      closeAsync self ioPriority cancellable (fun _ zres ->
+        let zr = closeFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Forces a write of all user-space buffered data for the given @stream.
   let flush (self: OutputStream) (cancellable: option<Cancellable>) : result<bool, Glue.Error> =
     let zp1 =
@@ -9105,6 +9195,15 @@ module OutputStream =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `flushAsync` and `flushFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let flushTask (self: OutputStream) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      flushAsync self ioPriority cancellable (fun _ zres ->
+        let zr = flushFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Checks if an output stream has pending actions.
   let hasPending (self: OutputStream) : bool =
@@ -9174,6 +9273,15 @@ module OutputStream =
       let zv = (int (zr))
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `spliceAsync` and `spliceFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let spliceTask (self: OutputStream) (source: InputStream) (flags: OutputStreamSpliceFlags) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<int, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      spliceAsync self source flags ioPriority cancellable (fun _ zres ->
+        let zr = spliceFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// This is a utility function around g_output_stream_write_all().
   [<Unsafe>]
@@ -9259,6 +9367,15 @@ module OutputStream =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `writeAllAsync` and `writeAllFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let writeAllTask (self: OutputStream) (buffer: array<u8>) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<(bool * int), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      writeAllAsync self buffer ioPriority cancellable (fun _ zres ->
+        let zr = writeAllFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Request an asynchronous write of @count bytes from @buffer into the stream.
   let writeAsync (self: OutputStream) (buffer: array<u8>) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
     let zcb2 =
@@ -9319,6 +9436,15 @@ module OutputStream =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `writeBytesAsync` and `writeBytesFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let writeBytesTask (self: OutputStream) (bytes: GLib.Bytes) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<int, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      writeBytesAsync self bytes ioPriority cancellable (fun _ zres ->
+        let zr = writeBytesFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Finishes a stream write operation.
   let writeFinish (self: OutputStream) (result: AsyncResult) : result<int, Glue.Error> =
     Internal.Raw.outBegin ()
@@ -9331,6 +9457,15 @@ module OutputStream =
       let zv = (int (zr))
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `writeAsync` and `writeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let writeTask (self: OutputStream) (buffer: array<u8>) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<int, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      writeAsync self buffer ioPriority cancellable (fun _ zres ->
+        let zr = writeFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Tries to write the bytes contained in the @n_vectors @vectors into the stream.
   let writev (self: OutputStream) (vectors: list<OutputVector>) (cancellable: option<Cancellable>) : result<(bool * int), Glue.Error> =
@@ -9401,6 +9536,15 @@ module OutputStream =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `writevAllAsync` and `writevAllFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let writevAllTask (self: OutputStream) (vectors: list<OutputVector>) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<(bool * int), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      writevAllAsync self vectors ioPriority cancellable (fun _ zres ->
+        let zr = writevAllFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Request an asynchronous write of the bytes contained in @n_vectors @vectors into the stream.
   let writevAsync (self: OutputStream) (vectors: list<OutputVector>) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
     let zcb2 =
@@ -9429,6 +9573,15 @@ module OutputStream =
       let zv = (((zr) <> i32 0), Internal.Raw.outI64 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `writevAsync` and `writevFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let writevTask (self: OutputStream) (vectors: list<OutputVector>) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<(bool * int), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      writevAsync self vectors ioPriority cancellable (fun _ zres ->
+        let zr = writevFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `close_async`: Requests an asynchronous close of the stream, releasing resources related to it.
   let overrideCloseAsync (gtype: usize) (handler: OutputStream -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
@@ -9837,6 +9990,15 @@ module LoadableIcon =
       let zv = (InputStream (Internal.Raw.wrap (zr) true), Internal.Raw.takeTextOption (Internal.Raw.outPtr 0))
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `loadAsync` and `loadFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let loadTask (self: LoadableIcon) (size: int) (cancellable: option<Cancellable>) : Threading.Task<result<(InputStream * option<string>), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      loadAsync self size cancellable (fun _ zres ->
+        let zr = loadFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `load_async`: Loads an icon asynchronously.
   let overrideLoadAsync (gtype: usize) (handler: LoadableIcon -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
@@ -10836,6 +10998,15 @@ module DBusConnection =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `call` and `callFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let callTask (self: DBusConnection) (busName: option<string>) (objectPath: string) (interfaceName: string) (methodName: string) (parameters: option<GLib.Variant>) (replyType: option<GLib.VariantType>) (flags: DBusCallFlags) (timeoutMsec: int) (cancellable: option<Cancellable>) : Threading.Task<result<GLib.Variant, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      call self busName objectPath interfaceName methodName parameters replyType flags timeoutMsec cancellable (fun _ zres ->
+        let zr = callFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Synchronously invokes the @method_name method on the @interface_name D-Bus interface on the remote object at @object_path owned by @bus_name.
   let callSync (self: DBusConnection) (busName: option<string>) (objectPath: string) (interfaceName: string) (methodName: string) (parameters: option<GLib.Variant>) (replyType: option<GLib.VariantType>) (flags: DBusCallFlags) (timeoutMsec: int) (cancellable: option<Cancellable>) : result<GLib.Variant, Glue.Error> =
     let zs1 = Internal.Raw.dupOption busName
@@ -10906,6 +11077,15 @@ module DBusConnection =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `callWithUnixFdList` and `callWithUnixFdListFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let callWithUnixFdListTask (self: DBusConnection) (busName: option<string>) (objectPath: string) (interfaceName: string) (methodName: string) (parameters: option<GLib.Variant>) (replyType: option<GLib.VariantType>) (flags: DBusCallFlags) (timeoutMsec: int) (fdList: option<UnixFDList>) (cancellable: option<Cancellable>) : Threading.Task<result<(GLib.Variant * option<UnixFDList>), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      callWithUnixFdList self busName objectPath interfaceName methodName parameters replyType flags timeoutMsec fdList cancellable (fun _ zres ->
+        let zr = callWithUnixFdListFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Like g_dbus_connection_call_sync() but also takes and returns #GUnixFDList objects.
   let callWithUnixFdListSync (self: DBusConnection) (busName: option<string>) (objectPath: string) (interfaceName: string) (methodName: string) (parameters: option<GLib.Variant>) (replyType: option<GLib.VariantType>) (flags: DBusCallFlags) (timeoutMsec: int) (fdList: option<UnixFDList>) (cancellable: option<Cancellable>) : result<(GLib.Variant * option<UnixFDList>), Glue.Error> =
     let zs1 = Internal.Raw.dupOption busName
@@ -10965,6 +11145,15 @@ module DBusConnection =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `close` and `closeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let closeTask (self: DBusConnection) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      close self cancellable (fun _ zres ->
+        let zr = closeFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Synchronously closes @connection.
   let closeSync (self: DBusConnection) (cancellable: option<Cancellable>) : result<bool, Glue.Error> =
@@ -11055,6 +11244,15 @@ module DBusConnection =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `flush` and `flushFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let flushTask (self: DBusConnection) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      flush self cancellable (fun _ zres ->
+        let zr = flushFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Synchronously flushes @connection.
   let flushSync (self: DBusConnection) (cancellable: option<Cancellable>) : result<bool, Glue.Error> =
@@ -11289,6 +11487,15 @@ module DBusConnection =
     Internal.GioC.g_dbus_connection_new (Internal.Raw.obj stream.Id (Internal.GioC.g_io_stream_get_type ())) zs3 (u32 flags.Int) zp4 zp5 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
     Internal.Raw.free zs3
 
+  /// `create` and `createFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let createTask (stream: IOStream) (guid: option<string>) (flags: DBusConnectionFlags) (observer: option<DBusAuthObserver>) (cancellable: option<Cancellable>) : Threading.Task<result<DBusConnection, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      create stream guid flags observer cancellable (fun _ zres ->
+        let zr = createFinish zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Asynchronously connects and sets up a D-Bus client connection for exchanging D-Bus messages with an endpoint specified by @address which must be in the [D-Bus address format](https://dbus.freedesktop.org/doc/dbus-specification.html#addresse
   let createForAddress (address: string) (flags: DBusConnectionFlags) (observer: option<DBusAuthObserver>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
     let zcb1 =
@@ -11306,6 +11513,15 @@ module DBusConnection =
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
       | None -> Internal.Raw.none ()
     Internal.GioC.g_dbus_connection_new_for_address address (u32 flags.Int) zp3 zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+
+  /// `createForAddress` and `createForAddressFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let createForAddressTask (address: string) (flags: DBusConnectionFlags) (observer: option<DBusAuthObserver>) (cancellable: option<Cancellable>) : Threading.Task<result<DBusConnection, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      createForAddress address flags observer cancellable (fun _ zres ->
+        let zr = createForAddressFinish zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Emitted when the connection is closed.
   let onClosed (self: DBusConnection) (handler: bool -> option<Glue.Error> -> unit) : unit =
@@ -13192,6 +13408,15 @@ module DBusProxy =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `call` and `callFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let callTask (self: DBusProxy) (methodName: string) (parameters: option<GLib.Variant>) (flags: DBusCallFlags) (timeoutMsec: int) (cancellable: option<Cancellable>) : Threading.Task<result<GLib.Variant, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      call self methodName parameters flags timeoutMsec cancellable (fun _ zres ->
+        let zr = callFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Synchronously invokes the @method_name method on @proxy.
   let callSync (self: DBusProxy) (methodName: string) (parameters: option<GLib.Variant>) (flags: DBusCallFlags) (timeoutMsec: int) (cancellable: option<Cancellable>) : result<GLib.Variant, Glue.Error> =
     let zp1 =
@@ -13248,6 +13473,15 @@ module DBusProxy =
       let zv = (GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (zr) (i32 1)), (if zid1 = 0 then None else Some (UnixFDList zid1)))
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `callWithUnixFdList` and `callWithUnixFdListFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let callWithUnixFdListTask (self: DBusProxy) (methodName: string) (parameters: option<GLib.Variant>) (flags: DBusCallFlags) (timeoutMsec: int) (fdList: option<UnixFDList>) (cancellable: option<Cancellable>) : Threading.Task<result<(GLib.Variant * option<UnixFDList>), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      callWithUnixFdList self methodName parameters flags timeoutMsec fdList cancellable (fun _ zres ->
+        let zr = callWithUnixFdListFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Like g_dbus_proxy_call_sync() but also takes and returns #GUnixFDList objects.
   let callWithUnixFdListSync (self: DBusProxy) (methodName: string) (parameters: option<GLib.Variant>) (flags: DBusCallFlags) (timeoutMsec: int) (fdList: option<UnixFDList>) (cancellable: option<Cancellable>) : result<(GLib.Variant * option<UnixFDList>), Glue.Error> =
@@ -13359,6 +13593,15 @@ module DBusProxy =
     Internal.GioC.g_dbus_proxy_new (Internal.Raw.obj connection.Id (Internal.GioC.g_dbus_connection_get_type ())) (u32 flags.Int) zp3 zs4 objectPath interfaceName zp5 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
     Internal.Raw.free zs4
 
+  /// `create` and `createFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let createTask (connection: DBusConnection) (flags: DBusProxyFlags) (info: option<DBusInterfaceInfo>) (name: option<string>) (objectPath: string) (interfaceName: string) (cancellable: option<Cancellable>) : Threading.Task<result<DBusProxy, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      create connection flags info name objectPath interfaceName cancellable (fun _ zres ->
+        let zr = createFinish zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Like g_dbus_proxy_new() but takes a #GBusType instead of a #GDBusConnection.
   let createForBus (busType: BusType) (flags: DBusProxyFlags) (info: option<DBusInterfaceInfo>) (name: string) (objectPath: string) (interfaceName: string) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
     let zcb1 =
@@ -13376,6 +13619,15 @@ module DBusProxy =
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
       | None -> Internal.Raw.none ()
     Internal.GioC.g_dbus_proxy_new_for_bus (i32 busType.Int) (u32 flags.Int) zp3 name objectPath interfaceName zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+
+  /// `createForBus` and `createForBusFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let createForBusTask (busType: BusType) (flags: DBusProxyFlags) (info: option<DBusInterfaceInfo>) (name: string) (objectPath: string) (interfaceName: string) (cancellable: option<Cancellable>) : Threading.Task<result<DBusProxy, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      createForBus busType flags info name objectPath interfaceName cancellable (fun _ zres ->
+        let zr = createForBusFinish zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Emitted when one or more D-Bus properties on @proxy changes.
   let onGPropertiesChanged (self: DBusProxy) (handler: GLib.Variant -> list<string> -> unit) : unit =
@@ -13757,6 +14009,15 @@ module DataInputStream =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `readLineAsync` and `readLineFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let readLineTask (self: DataInputStream) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<(array<u8> * int), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      readLineAsync self ioPriority cancellable (fun _ zres ->
+        let zr = readLineFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Finish an asynchronous call started by g_data_input_stream_read_line_async().
   let readLineFinishUtf8 (self: DataInputStream) (result: AsyncResult) : result<(option<string> * int), Glue.Error> =
     Internal.Raw.outBegin ()
@@ -13882,6 +14143,15 @@ module DataInputStream =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `readUntilAsync` and `readUntilFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let readUntilTask (self: DataInputStream) (stopChars: string) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<(string * int), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      readUntilAsync self stopChars ioPriority cancellable (fun _ zres ->
+        let zr = readUntilFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Reads a string from the data input stream, up to the first occurrence of any of the stop characters.
   let readUpto (self: DataInputStream) (stopChars: string) (stopCharsLen: int) (cancellable: option<Cancellable>) : result<(string * int), Glue.Error> =
     let zp1 =
@@ -13925,6 +14195,15 @@ module DataInputStream =
       let zv = (Internal.Raw.takeText (zr), Internal.Raw.outI64 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `readUptoAsync` and `readUptoFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let readUptoTask (self: DataInputStream) (stopChars: string) (stopCharsLen: int) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<(string * int), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      readUptoAsync self stopChars stopCharsLen ioPriority cancellable (fun _ zres ->
+        let zr = readUptoFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// This function sets the byte order for the given @stream.
   let setByteOrder (self: DataInputStream) (order: DataStreamByteOrder) : unit =
@@ -14375,6 +14654,15 @@ module Drive =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `eject` and `ejectFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let ejectTask (self: Drive) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      eject self flags cancellable (fun _ zres ->
+        let zr = ejectFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Ejects a drive.
   let ejectWithOperation (self: Drive) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
     let zcb1 =
@@ -14405,6 +14693,15 @@ module Drive =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `ejectWithOperation` and `ejectWithOperationFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let ejectWithOperationTask (self: Drive) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      ejectWithOperation self flags mountOperation cancellable (fun _ zres ->
+        let zr = ejectWithOperationFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Gets the kinds of identifiers that @drive has.
   let enumerateIdentifiers (self: Drive) : list<string> =
@@ -14485,6 +14782,15 @@ module Drive =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `pollForMedia` and `pollForMediaFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let pollForMediaTask (self: Drive) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      pollForMedia self cancellable (fun _ zres ->
+        let zr = pollForMediaFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Asynchronously starts a drive.
   let start (self: Drive) (flags: DriveStartFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
     let zcb1 =
@@ -14516,6 +14822,15 @@ module Drive =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `start` and `startFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let startTask (self: Drive) (flags: DriveStartFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      start self flags mountOperation cancellable (fun _ zres ->
+        let zr = startFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Asynchronously stops a drive.
   let stop (self: Drive) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
     let zcb1 =
@@ -14546,6 +14861,15 @@ module Drive =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `stop` and `stopFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let stopTask (self: Drive) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      stop self flags mountOperation cancellable (fun _ zres ->
+        let zr = stopFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Emitted when the drive's state has changed.
   let onChanged (self: Drive) (handler: unit -> unit) : unit =
@@ -15099,6 +15423,15 @@ module DtlsConnection =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `closeAsync` and `closeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let closeTask (self: DtlsConnection) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      closeAsync self ioPriority cancellable (fun _ zres ->
+        let zr = closeFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Used by #GDtlsConnection implementations to emit the #GDtlsConnection::accept-certificate signal.
   let emitAcceptCertificate (self: DtlsConnection) (peerCert: TlsCertificate) (errors: TlsCertificateFlags) : bool =
     (((Internal.GioC.g_dtls_connection_emit_accept_certificate (Internal.Raw.obj self.Id (Internal.GioC.g_dtls_connection_get_type ())) (Internal.Raw.obj peerCert.Id (Internal.GioC.g_tls_certificate_get_type ())) (u32 errors.Int))) <> i32 0)
@@ -15209,6 +15542,15 @@ module DtlsConnection =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `handshakeAsync` and `handshakeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let handshakeTask (self: DtlsConnection) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      handshakeAsync self ioPriority cancellable (fun _ zres ->
+        let zr = handshakeFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Sets the list of application-layer protocols to advertise that the caller is willing to speak on this connection.
   let setAdvertisedProtocols (self: DtlsConnection) (protocols: list<string>) : unit =
     let zv1 = Internal.Raw.strv protocols
@@ -15286,6 +15628,15 @@ module DtlsConnection =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `shutdownAsync` and `shutdownFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let shutdownTask (self: DtlsConnection) (shutdownRead: bool) (shutdownWrite: bool) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      shutdownAsync self shutdownRead shutdownWrite ioPriority cancellable (fun _ zres ->
+        let zr = shutdownFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Emitted during the TLS handshake after the peer certificate has been received.
   let onAcceptCertificate (self: DtlsConnection) (handler: TlsCertificate -> TlsCertificateFlags -> bool) : unit =
@@ -15625,6 +15976,15 @@ module File =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `appendToAsync` and `appendToFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let appendToTask (self: File) (flags: FileCreateFlags) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<FileOutputStream, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      appendToAsync self flags ioPriority cancellable (fun _ zres ->
+        let zr = appendToFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Prepares the file attribute query string for copying to @file.
   let buildAttributeListForCopy (self: File) (flags: FileCopyFlags) (cancellable: option<Cancellable>) : result<string, Glue.Error> =
     let zp1 =
@@ -15748,6 +16108,15 @@ module File =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `createAsync` and `createFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let createTask (self: File) (flags: FileCreateFlags) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<FileOutputStream, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      createAsync self flags ioPriority cancellable (fun _ zres ->
+        let zr = createFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Creates a new file and returns a stream for reading and writing to it.
   let createReadwrite (self: File) (flags: FileCreateFlags) (cancellable: option<Cancellable>) : result<FileIOStream, Glue.Error> =
     let zp1 =
@@ -15791,6 +16160,15 @@ module File =
       let zv = FileIOStream (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `createReadwriteAsync` and `createReadwriteFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let createReadwriteTask (self: File) (flags: FileCreateFlags) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<FileIOStream, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      createReadwriteAsync self flags ioPriority cancellable (fun _ zres ->
+        let zr = createReadwriteFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Deletes a file.
   let delete (self: File) (cancellable: option<Cancellable>) : result<bool, Glue.Error> =
@@ -15836,6 +16214,15 @@ module File =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `deleteAsync` and `deleteFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let deleteTask (self: File) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      deleteAsync self ioPriority cancellable (fun _ zres ->
+        let zr = deleteFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Duplicates a #GFile handle.
   let dup (self: File) : File =
     File (Internal.Raw.wrap ((Internal.GioC.g_file_dup (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())))) true)
@@ -15867,6 +16254,15 @@ module File =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `ejectMountable` and `ejectMountableFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let ejectMountableTask (self: File) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      ejectMountable self flags cancellable (fun _ zres ->
+        let zr = ejectMountableFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Starts an asynchronous eject on a mountable.
   let ejectMountableWithOperation (self: File) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
     let zcb1 =
@@ -15897,6 +16293,15 @@ module File =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `ejectMountableWithOperation` and `ejectMountableWithOperationFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let ejectMountableWithOperationTask (self: File) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      ejectMountableWithOperation self flags mountOperation cancellable (fun _ zres ->
+        let zr = ejectMountableWithOperationFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Gets the requested information about the files in a directory.
   let enumerateChildren (self: File) (attributes: string) (flags: FileQueryInfoFlags) (cancellable: option<Cancellable>) : result<FileEnumerator, Glue.Error> =
@@ -15941,6 +16346,15 @@ module File =
       let zv = FileEnumerator (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `enumerateChildrenAsync` and `enumerateChildrenFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let enumerateChildrenTask (self: File) (attributes: string) (flags: FileQueryInfoFlags) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<FileEnumerator, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      enumerateChildrenAsync self attributes flags ioPriority cancellable (fun _ zres ->
+        let zr = enumerateChildrenFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Checks if the two given #GFiles refer to the same file.
   let equal (self: File) (file2: File) : bool =
@@ -15989,6 +16403,15 @@ module File =
       let zv = Mount (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `findEnclosingMountAsync` and `findEnclosingMountFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let findEnclosingMountTask (self: File) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<Mount, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      findEnclosingMountAsync self ioPriority cancellable (fun _ zres ->
+        let zr = findEnclosingMountFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Gets the base name (the last component of the path) for a given #GFile.
   let getBasename (self: File) : option<string> =
@@ -16106,6 +16529,15 @@ module File =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `loadBytesAsync` and `loadBytesFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let loadBytesTask (self: File) (cancellable: option<Cancellable>) : Threading.Task<result<(GLib.Bytes * option<string>), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      loadBytesAsync self cancellable (fun _ zres ->
+        let zr = loadBytesFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Loads the content of the file into memory.
   let loadContents (self: File) (cancellable: option<Cancellable>) : result<(bool * array<u8> * option<string>), Glue.Error> =
     let zp1 =
@@ -16149,6 +16581,15 @@ module File =
       let zv = (((zr) <> i32 0), Internal.Raw.bytesOf (Internal.Raw.outPtr 1) (Internal.Raw.outI64 0) true, Internal.Raw.takeTextOption (Internal.Raw.outPtr 2))
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `loadContentsAsync` and `loadContentsFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let loadContentsTask (self: File) (cancellable: option<Cancellable>) : Threading.Task<result<(bool * array<u8> * option<string>), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      loadContentsAsync self cancellable (fun _ zres ->
+        let zr = loadContentsFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Reads the partial contents of a file.
   [<Unsafe>]
@@ -16222,6 +16663,15 @@ module File =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `makeDirectoryAsync` and `makeDirectoryFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let makeDirectoryTask (self: File) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      makeDirectoryAsync self ioPriority cancellable (fun _ zres ->
+        let zr = makeDirectoryFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Creates a directory and any parent directories that may not exist similar to 'mkdir -p'.
   let makeDirectoryWithParents (self: File) (cancellable: option<Cancellable>) : result<bool, Glue.Error> =
     let zp1 =
@@ -16282,6 +16732,15 @@ module File =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `makeSymbolicLinkAsync` and `makeSymbolicLinkFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let makeSymbolicLinkTask (self: File) (symlinkValue: string) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      makeSymbolicLinkAsync self symlinkValue ioPriority cancellable (fun _ zres ->
+        let zr = makeSymbolicLinkFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Recursively measures the disk usage of @file.
   let measureDiskUsage (self: File) (flags: FileMeasureFlags) (cancellable: option<Cancellable>) (progressCallback: bool -> int -> int -> int -> unit) : result<(bool * int * int * int), Glue.Error> =
@@ -16426,6 +16885,15 @@ module File =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `mountEnclosingVolume` and `mountEnclosingVolumeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let mountEnclosingVolumeTask (self: File) (flags: MountMountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      mountEnclosingVolume self flags mountOperation cancellable (fun _ zres ->
+        let zr = mountEnclosingVolumeFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Mounts a file of type G_FILE_TYPE_MOUNTABLE.
   let mountMountable (self: File) (flags: MountMountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
     let zcb1 =
@@ -16456,6 +16924,15 @@ module File =
       let zv = File (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `mountMountable` and `mountMountableFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let mountMountableTask (self: File) (flags: MountMountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) : Threading.Task<result<File, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      mountMountable self flags mountOperation cancellable (fun _ zres ->
+        let zr = mountMountableFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Tries to move the file or directory @source to the location specified by @destination.
   let move (self: File) (destination: File) (flags: FileCopyFlags) (cancellable: option<Cancellable>) (progressCallback: int -> int -> unit) : result<bool, Glue.Error> =
@@ -16546,6 +17023,15 @@ module File =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `openReadwriteAsync` and `openReadwriteFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let openReadwriteTask (self: File) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<FileIOStream, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      openReadwriteAsync self ioPriority cancellable (fun _ zres ->
+        let zr = openReadwriteFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Exactly like g_file_get_path(), but caches the result via g_object_set_qdata_full().
   let peekPath (self: File) : option<string> =
     Internal.Raw.textOption ((Internal.GioC.g_file_peek_path (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ()))))
@@ -16576,6 +17062,15 @@ module File =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `pollMountable` and `pollMountableFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let pollMountableTask (self: File) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      pollMountable self cancellable (fun _ zres ->
+        let zr = pollMountableFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Returns the #GAppInfo that is registered as the default application to handle the file specified by @file.
   let queryDefaultHandler (self: File) (cancellable: option<Cancellable>) : result<AppInfo, Glue.Error> =
@@ -16620,6 +17115,15 @@ module File =
       let zv = AppInfo (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `queryDefaultHandlerAsync` and `queryDefaultHandlerFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let queryDefaultHandlerTask (self: File) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<AppInfo, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      queryDefaultHandlerAsync self ioPriority cancellable (fun _ zres ->
+        let zr = queryDefaultHandlerFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Utility function to check if a particular file exists.
   let queryExists (self: File) (cancellable: option<Cancellable>) : bool =
@@ -16683,6 +17187,15 @@ module File =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `queryFilesystemInfoAsync` and `queryFilesystemInfoFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let queryFilesystemInfoTask (self: File) (attributes: string) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<FileInfo, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      queryFilesystemInfoAsync self attributes ioPriority cancellable (fun _ zres ->
+        let zr = queryFilesystemInfoFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Gets the requested information about specified @file.
   let queryInfo (self: File) (attributes: string) (flags: FileQueryInfoFlags) (cancellable: option<Cancellable>) : result<FileInfo, Glue.Error> =
     let zp1 =
@@ -16726,6 +17239,15 @@ module File =
       let zv = FileInfo (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `queryInfoAsync` and `queryInfoFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let queryInfoTask (self: File) (attributes: string) (flags: FileQueryInfoFlags) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<FileInfo, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      queryInfoAsync self attributes flags ioPriority cancellable (fun _ zres ->
+        let zr = queryInfoFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Obtain the list of settable attributes for the file.
   let querySettableAttributes (self: File) (cancellable: option<Cancellable>) : result<FileAttributeInfoList, Glue.Error> =
@@ -16804,6 +17326,15 @@ module File =
       let zv = FileInputStream (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `readAsync` and `readFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let readTask (self: File) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<FileInputStream, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      readAsync self ioPriority cancellable (fun _ zres ->
+        let zr = readFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Returns an output stream for overwriting the file, possibly creating a backup copy of the file first.
   let replace (self: File) (etag: option<string>) (makeBackup: bool) (flags: FileCreateFlags) (cancellable: option<Cancellable>) : result<FileOutputStream, Glue.Error> =
@@ -16911,6 +17442,15 @@ module File =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `replaceContentsAsync` and `replaceContentsFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let replaceContentsTask (self: File) (contents: array<u8>) (etag: option<string>) (makeBackup: bool) (flags: FileCreateFlags) (cancellable: option<Cancellable>) : Threading.Task<result<(bool * option<string>), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      replaceContentsAsync self contents etag makeBackup flags cancellable (fun _ zres ->
+        let zr = replaceContentsFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Finishes an asynchronous file replace operation started with g_file_replace_async().
   let replaceFinish (self: File) (res: AsyncResult) : result<FileOutputStream, Glue.Error> =
     Internal.Raw.outBegin ()
@@ -16923,6 +17463,15 @@ module File =
       let zv = FileOutputStream (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `replaceAsync` and `replaceFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let replaceTask (self: File) (etag: option<string>) (makeBackup: bool) (flags: FileCreateFlags) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<FileOutputStream, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      replaceAsync self etag makeBackup flags ioPriority cancellable (fun _ zres ->
+        let zr = replaceFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Returns an output stream for overwriting the file in readwrite mode, possibly creating a backup copy of the file first.
   let replaceReadwrite (self: File) (etag: option<string>) (makeBackup: bool) (flags: FileCreateFlags) (cancellable: option<Cancellable>) : result<FileIOStream, Glue.Error> =
@@ -16972,6 +17521,15 @@ module File =
       let zv = FileIOStream (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `replaceReadwriteAsync` and `replaceReadwriteFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let replaceReadwriteTask (self: File) (etag: option<string>) (makeBackup: bool) (flags: FileCreateFlags) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<FileIOStream, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      replaceReadwriteAsync self etag makeBackup flags ioPriority cancellable (fun _ zres ->
+        let zr = replaceReadwriteFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Resolves a relative path for @file to an absolute path.
   let resolveRelativePath (self: File) (relativePath: string) : File =
@@ -17124,6 +17682,15 @@ module File =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `setAttributesAsync` and `setAttributesFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let setAttributesTask (self: File) (info: FileInfo) (flags: FileQueryInfoFlags) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<(bool * FileInfo), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      setAttributesAsync self info flags ioPriority cancellable (fun _ zres ->
+        let zr = setAttributesFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Tries to set all attributes in the #GFileInfo on the target values, not stopping on the first error.
   let setAttributesFromInfo (self: File) (info: FileInfo) (flags: FileQueryInfoFlags) (cancellable: option<Cancellable>) : result<bool, Glue.Error> =
     let zp1 =
@@ -17185,6 +17752,15 @@ module File =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `setDisplayNameAsync` and `setDisplayNameFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let setDisplayNameTask (self: File) (displayName: string) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<File, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      setDisplayNameAsync self displayName ioPriority cancellable (fun _ zres ->
+        let zr = setDisplayNameFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Starts a file of type %G_FILE_TYPE_MOUNTABLE.
   let startMountable (self: File) (flags: DriveStartFlags) (startOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
     let zcb1 =
@@ -17216,6 +17792,15 @@ module File =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `startMountable` and `startMountableFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let startMountableTask (self: File) (flags: DriveStartFlags) (startOperation: option<MountOperation>) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      startMountable self flags startOperation cancellable (fun _ zres ->
+        let zr = startMountableFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Stops a file of type %G_FILE_TYPE_MOUNTABLE.
   let stopMountable (self: File) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
     let zcb1 =
@@ -17246,6 +17831,15 @@ module File =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `stopMountable` and `stopMountableFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let stopMountableTask (self: File) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      stopMountable self flags mountOperation cancellable (fun _ zres ->
+        let zr = stopMountableFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Checks if @file supports thread-default main contexts (see [method@GLib.MainContext.push_thread_default]) If this returns %FALSE, you cannot perform asynchronous operations on @file in a thread that has a thread-default context.
   let supportsThreadContexts (self: File) : bool =
@@ -17295,6 +17889,15 @@ module File =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `trashAsync` and `trashFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let trashTask (self: File) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      trashAsync self ioPriority cancellable (fun _ zres ->
+        let zr = trashFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Deprecated. Unmounts a file of type G_FILE_TYPE_MOUNTABLE.
   let unmountMountable (self: File) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
     let zcb1 =
@@ -17321,6 +17924,15 @@ module File =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `unmountMountable` and `unmountMountableFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let unmountMountableTask (self: File) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      unmountMountable self flags cancellable (fun _ zres ->
+        let zr = unmountMountableFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Unmounts a file of type %G_FILE_TYPE_MOUNTABLE.
   let unmountMountableWithOperation (self: File) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -17352,6 +17964,15 @@ module File =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `unmountMountableWithOperation` and `unmountMountableWithOperationFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let unmountMountableWithOperationTask (self: File) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      unmountMountableWithOperation self flags mountOperation cancellable (fun _ zres ->
+        let zr = unmountMountableWithOperationFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Constructs a #GFile from a vector of elements using the correct separator for filenames.
   let createBuildFilenamev (args: list<string>) : File =
@@ -17438,6 +18059,15 @@ module File =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `createTmpDirAsync` and `createTmpDirFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let createTmpDirTask (tmpl: option<string>) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<File, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      createTmpDirAsync tmpl ioPriority cancellable (fun _ zres ->
+        let zr = createTmpDirFinish zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Finishes a temporary file creation started by g_file_new_tmp_async().
   let createTmpFinish (result: AsyncResult) : result<(File * FileIOStream), Glue.Error> =
     Internal.Raw.outBegin ()
@@ -17450,6 +18080,15 @@ module File =
       let zv = (File (Internal.Raw.wrap (zr) true), FileIOStream (Internal.Raw.wrap (Internal.Raw.outPtr 0) true))
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `createTmpAsync` and `createTmpFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let createTmpTask (tmpl: option<string>) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<(File * FileIOStream), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      createTmpAsync tmpl ioPriority cancellable (fun _ zres ->
+        let zr = createTmpFinish zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Constructs a #GFile with the given @parse_name (i.e.
   let parseName (parseName: string) : File =
@@ -18687,6 +19326,15 @@ module FileEnumerator =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `closeAsync` and `closeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let closeTask (self: FileEnumerator) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      closeAsync self ioPriority cancellable (fun _ zres ->
+        let zr = closeFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Return a new #GFile which refers to the file named by @info in the source directory of @enumerator.
   let getChild (self: FileEnumerator) (info: FileInfo) : File =
     File (Internal.Raw.wrap ((Internal.GioC.g_file_enumerator_get_child (Internal.Raw.obj self.Id (Internal.GioC.g_file_enumerator_get_type ())) (Internal.Raw.obj info.Id (Internal.GioC.g_file_info_get_type ())))) true)
@@ -18766,6 +19414,15 @@ module FileEnumerator =
       let zv = Internal.Raw.mapList (fun zp -> FileInfo (Internal.Raw.wrap (zp) true)) (Internal.Raw.pointers (zr) false true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `nextFilesAsync` and `nextFilesFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let nextFilesTask (self: FileEnumerator) (numFiles: int) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<list<FileInfo>, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      nextFilesAsync self numFiles ioPriority cancellable (fun _ zres ->
+        let zr = nextFilesFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Sets the file enumerator as having pending operations.
   let setPending (self: FileEnumerator) (pending: bool) : unit =
@@ -18889,6 +19546,15 @@ module IOStream =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `closeAsync` and `closeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let closeTask (self: IOStream) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      closeAsync self ioPriority cancellable (fun _ zres ->
+        let zr = closeFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Gets the input stream for this object.
   let getInputStream (self: IOStream) : InputStream =
     InputStream (Internal.Raw.wrap ((Internal.GioC.g_io_stream_get_input_stream (Internal.Raw.obj self.Id (Internal.GioC.g_io_stream_get_type ())))) false)
@@ -18944,6 +19610,15 @@ module IOStream =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `spliceAsync` and `spliceFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let spliceTask (self: IOStream) (stream2: IOStream) (flags: IOStreamSpliceFlags) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      spliceAsync self stream2 flags ioPriority cancellable (fun _ zres ->
+        let zr = spliceFinish zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Calls `handler` when the `closed` property changes.
   let onNotifyClosed (self: IOStream) (handler: unit -> unit) : unit =
@@ -19072,6 +19747,15 @@ module FileIOStream =
       let zv = FileInfo (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `queryInfoAsync` and `queryInfoFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let queryInfoTask (self: FileIOStream) (attributes: string) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<FileInfo, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      queryInfoAsync self attributes ioPriority cancellable (fun _ zres ->
+        let zr = queryInfoFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `can_seek`: a virtual method.
   let overrideCanSeek (gtype: usize) (handler: FileIOStream -> bool) : unit =
@@ -19563,6 +20247,15 @@ module FileInputStream =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `queryInfoAsync` and `queryInfoFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let queryInfoTask (self: FileInputStream) (attributes: string) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<FileInfo, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      queryInfoAsync self attributes ioPriority cancellable (fun _ zres ->
+        let zr = queryInfoFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Gives a type made with `Glue.subclass` its own `can_seek`: a virtual method.
   let overrideCanSeek (gtype: usize) (handler: FileInputStream -> bool) : unit =
     let zcb =
@@ -19757,6 +20450,15 @@ module FileOutputStream =
       let zv = FileInfo (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `queryInfoAsync` and `queryInfoFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let queryInfoTask (self: FileOutputStream) (attributes: string) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<FileInfo, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      queryInfoAsync self attributes ioPriority cancellable (fun _ zres ->
+        let zr = queryInfoFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `can_seek`: a virtual method.
   let overrideCanSeek (gtype: usize) (handler: FileOutputStream -> bool) : unit =
@@ -21326,6 +22028,15 @@ module Mount =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `eject` and `ejectFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let ejectTask (self: Mount) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      eject self flags cancellable (fun _ zres ->
+        let zr = ejectFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Ejects a mount.
   let ejectWithOperation (self: Mount) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
     let zcb1 =
@@ -21356,6 +22067,15 @@ module Mount =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `ejectWithOperation` and `ejectWithOperationFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let ejectWithOperationTask (self: Mount) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      ejectWithOperation self flags mountOperation cancellable (fun _ zres ->
+        let zr = ejectWithOperationFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Gets the default location of @mount.
   let getDefaultLocation (self: Mount) : File =
@@ -21424,6 +22144,15 @@ module Mount =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `guessContentType` and `guessContentTypeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let guessContentTypeTask (self: Mount) (forceRescan: bool) (cancellable: option<Cancellable>) : Threading.Task<result<list<string>, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      guessContentType self forceRescan cancellable (fun _ zres ->
+        let zr = guessContentTypeFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Tries to guess the type of content stored on @mount.
   let guessContentTypeSync (self: Mount) (forceRescan: bool) (cancellable: option<Cancellable>) : result<list<string>, Glue.Error> =
     let zp1 =
@@ -21476,6 +22205,15 @@ module Mount =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `remount` and `remountFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let remountTask (self: Mount) (flags: MountMountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      remount self flags mountOperation cancellable (fun _ zres ->
+        let zr = remountFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Increments the shadow count on @mount.
   let shadow (self: Mount) : unit =
     Internal.GioC.g_mount_shadow (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ()))
@@ -21507,6 +22245,15 @@ module Mount =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `unmount` and `unmountFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let unmountTask (self: Mount) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      unmount self flags cancellable (fun _ zres ->
+        let zr = unmountFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Unmounts a mount.
   let unmountWithOperation (self: Mount) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
     let zcb1 =
@@ -21537,6 +22284,15 @@ module Mount =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `unmountWithOperation` and `unmountWithOperationFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let unmountWithOperationTask (self: Mount) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      unmountWithOperation self flags mountOperation cancellable (fun _ zres ->
+        let zr = unmountWithOperationFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Decrements the shadow count on @mount.
   let unshadow (self: Mount) : unit =
@@ -22682,6 +23438,15 @@ module NetworkMonitor =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `canReachAsync` and `canReachFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let canReachTask (self: NetworkMonitor) (connectable: SocketConnectable) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      canReachAsync self connectable cancellable (fun _ zres ->
+        let zr = canReachFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Gets a more detailed networking state than g_network_monitor_get_network_available().
   let getConnectivity (self: NetworkMonitor) : NetworkConnectivity =
     NetworkConnectivity (int ((Internal.GioC.g_network_monitor_get_connectivity (Internal.Raw.obj self.Id (Internal.GioC.g_network_monitor_get_type ())))))
@@ -22970,6 +23735,15 @@ module Permission =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `acquireAsync` and `acquireFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let acquireTask (self: Permission) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      acquireAsync self cancellable (fun _ zres ->
+        let zr = acquireFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Gets the value of the 'allowed' property.
   let getAllowed (self: Permission) : bool =
     (((Internal.GioC.g_permission_get_allowed (Internal.Raw.obj self.Id (Internal.GioC.g_permission_get_type ())))) <> i32 0)
@@ -23029,6 +23803,15 @@ module Permission =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `releaseAsync` and `releaseFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let releaseTask (self: Permission) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      releaseAsync self cancellable (fun _ zres ->
+        let zr = releaseFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Calls `handler` when the `allowed` property changes.
   let onNotifyAllowed (self: Permission) (handler: unit -> unit) : unit =
@@ -23231,6 +24014,15 @@ module Proxy =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `connectAsync` and `connectFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let connectTask (self: Proxy) (connection: IOStream) (proxyAddress: ProxyAddress) (cancellable: option<Cancellable>) : Threading.Task<result<IOStream, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      connectAsync self connection proxyAddress cancellable (fun _ zres ->
+        let zr = connectFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Some proxy protocols expect to be passed a hostname, which they will resolve to an IP address themselves.
   let supportsHostname (self: Proxy) : bool =
     (((Internal.GioC.g_proxy_supports_hostname (Internal.Raw.obj self.Id (Internal.GioC.g_proxy_get_type ())))) <> i32 0)
@@ -23424,6 +24216,15 @@ module SocketAddressEnumerator =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `nextAsync` and `nextFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let nextTask (self: SocketAddressEnumerator) (cancellable: option<Cancellable>) : Threading.Task<result<option<SocketAddress>, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      nextAsync self cancellable (fun _ zres ->
+        let zr = nextFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Gives a type made with `Glue.subclass` its own `next_async`: Asynchronously retrieves the next #GSocketAddress from @enumerator and then calls @callback, which must call g_socket_address_enumerator_next_finish() to get the result.
   let overrideNextAsync (gtype: usize) (handler: SocketAddressEnumerator -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
@@ -23558,6 +24359,15 @@ module ProxyResolver =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `lookupAsync` and `lookupFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let lookupTask (self: ProxyResolver) (uri: string) (cancellable: option<Cancellable>) : Threading.Task<result<list<string>, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      lookupAsync self uri cancellable (fun _ zres ->
+        let zr = lookupFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Gets the default #GProxyResolver for the system.
   let getDefault () : ProxyResolver =
     ProxyResolver (Internal.Raw.wrap ((Internal.GioC.g_proxy_resolver_get_default ())) false)
@@ -23660,6 +24470,15 @@ module Resolver =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `lookupByAddressAsync` and `lookupByAddressFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let lookupByAddressTask (self: Resolver) (address: InetAddress) (cancellable: option<Cancellable>) : Threading.Task<result<string, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      lookupByAddressAsync self address cancellable (fun _ zres ->
+        let zr = lookupByAddressFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Synchronously resolves @hostname to determine its associated IP address(es).
   let lookupByName (self: Resolver) (hostname: string) (cancellable: option<Cancellable>) : result<list<InetAddress>, Glue.Error> =
     let zp1 =
@@ -23703,6 +24522,15 @@ module Resolver =
       let zv = Internal.Raw.mapList (fun zp -> InetAddress (Internal.Raw.wrap (zp) true)) (Internal.Raw.pointers (zr) false true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `lookupByNameAsync` and `lookupByNameFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let lookupByNameTask (self: Resolver) (hostname: string) (cancellable: option<Cancellable>) : Threading.Task<result<list<InetAddress>, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      lookupByNameAsync self hostname cancellable (fun _ zres ->
+        let zr = lookupByNameFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// This differs from g_resolver_lookup_by_name() in that you can modify the lookup behavior with @flags.
   let lookupByNameWithFlags (self: Resolver) (hostname: string) (flags: ResolverNameLookupFlags) (cancellable: option<Cancellable>) : result<list<InetAddress>, Glue.Error> =
@@ -23748,6 +24576,15 @@ module Resolver =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `lookupByNameWithFlagsAsync` and `lookupByNameWithFlagsFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let lookupByNameWithFlagsTask (self: Resolver) (hostname: string) (flags: ResolverNameLookupFlags) (cancellable: option<Cancellable>) : Threading.Task<result<list<InetAddress>, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      lookupByNameWithFlagsAsync self hostname flags cancellable (fun _ zres ->
+        let zr = lookupByNameWithFlagsFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Synchronously performs a DNS record lookup for the given @rrname and returns a list of records as #GVariant tuples.
   let lookupRecords (self: Resolver) (rrname: string) (recordType: ResolverRecordType) (cancellable: option<Cancellable>) : result<list<GLib.Variant>, Glue.Error> =
     let zp1 =
@@ -23792,6 +24629,15 @@ module Resolver =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `lookupRecordsAsync` and `lookupRecordsFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let lookupRecordsTask (self: Resolver) (rrname: string) (recordType: ResolverRecordType) (cancellable: option<Cancellable>) : Threading.Task<result<list<GLib.Variant>, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      lookupRecordsAsync self rrname recordType cancellable (fun _ zres ->
+        let zr = lookupRecordsFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Synchronously performs a DNS SRV lookup for the given @service and @protocol in the given @domain and returns an array of #GSrvTarget.
   let lookupService (self: Resolver) (service: string) (protocol: string) (domain: string) (cancellable: option<Cancellable>) : result<list<SrvTarget>, Glue.Error> =
     let zp1 =
@@ -23835,6 +24681,15 @@ module Resolver =
       let zv = Internal.Raw.mapList (fun zp -> SrvTarget (Internal.Raw.wrapBoxed (zp) (Internal.GioC.g_srv_target_get_type ()) true)) (Internal.Raw.pointers (zr) false true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `lookupServiceAsync` and `lookupServiceFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let lookupServiceTask (self: Resolver) (service: string) (protocol: string) (domain: string) (cancellable: option<Cancellable>) : Threading.Task<result<list<SrvTarget>, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      lookupServiceAsync self service protocol domain cancellable (fun _ zres ->
+        let zr = lookupServiceFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Sets @resolver to be the application's default resolver (reffing @resolver, and unreffing the previous default resolver, if any).
   let setDefault (self: Resolver) : unit =
@@ -25869,6 +26724,15 @@ module SocketClient =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `connectAsync` and `connectFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let connectTask (self: SocketClient) (connectable: SocketConnectable) (cancellable: option<Cancellable>) : Threading.Task<result<SocketConnection, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      connectAsync self connectable cancellable (fun _ zres ->
+        let zr = connectFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// This is a helper function for g_socket_client_connect().
   let connectToHost (self: SocketClient) (hostAndPort: string) (defaultPort: int) (cancellable: option<Cancellable>) : result<SocketConnection, Glue.Error> =
     let zp1 =
@@ -25912,6 +26776,15 @@ module SocketClient =
       let zv = SocketConnection (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `connectToHostAsync` and `connectToHostFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let connectToHostTask (self: SocketClient) (hostAndPort: string) (defaultPort: int) (cancellable: option<Cancellable>) : Threading.Task<result<SocketConnection, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      connectToHostAsync self hostAndPort defaultPort cancellable (fun _ zres ->
+        let zr = connectToHostFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Attempts to create a TCP connection to a service.
   let connectToService (self: SocketClient) (domain: string) (service: string) (cancellable: option<Cancellable>) : result<SocketConnection, Glue.Error> =
@@ -25957,6 +26830,15 @@ module SocketClient =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `connectToServiceAsync` and `connectToServiceFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let connectToServiceTask (self: SocketClient) (domain: string) (service: string) (cancellable: option<Cancellable>) : Threading.Task<result<SocketConnection, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      connectToServiceAsync self domain service cancellable (fun _ zres ->
+        let zr = connectToServiceFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// This is a helper function for g_socket_client_connect().
   let connectToUri (self: SocketClient) (uri: string) (defaultPort: int) (cancellable: option<Cancellable>) : result<SocketConnection, Glue.Error> =
     let zp1 =
@@ -26000,6 +26882,15 @@ module SocketClient =
       let zv = SocketConnection (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `connectToUriAsync` and `connectToUriFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let connectToUriTask (self: SocketClient) (uri: string) (defaultPort: int) (cancellable: option<Cancellable>) : Threading.Task<result<SocketConnection, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      connectToUriAsync self uri defaultPort cancellable (fun _ zres ->
+        let zr = connectToUriFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Gets the proxy enable state; see g_socket_client_set_enable_proxy()
   let getEnableProxy (self: SocketClient) : bool =
@@ -26207,6 +27098,15 @@ module SocketConnection =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `connectAsync` and `connectFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let connectTask (self: SocketConnection) (address: SocketAddress) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      connectAsync self address cancellable (fun _ zres ->
+        let zr = connectFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Try to get the local address of a socket connection.
   let getLocalAddress (self: SocketConnection) : result<SocketAddress, Glue.Error> =
     Internal.Raw.outBegin ()
@@ -26314,6 +27214,15 @@ module SocketListener =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `acceptAsync` and `acceptFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let acceptTask (self: SocketListener) (cancellable: option<Cancellable>) : Threading.Task<result<(SocketConnection * option<GObject.Object>), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      acceptAsync self cancellable (fun _ zres ->
+        let zr = acceptFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Blocks waiting for a client to connect to any of the sockets added to the listener.
   let acceptSocket (self: SocketListener) (cancellable: option<Cancellable>) : result<(Socket * option<GObject.Object>), Glue.Error> =
     let zp2 =
@@ -26359,6 +27268,15 @@ module SocketListener =
       let zv = (Socket (Internal.Raw.wrap (zr) true), (if zid1 = 0 then None else Some (GObject.Object zid1)))
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `acceptSocketAsync` and `acceptSocketFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let acceptSocketTask (self: SocketListener) (cancellable: option<Cancellable>) : Threading.Task<result<(Socket * option<GObject.Object>), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      acceptSocketAsync self cancellable (fun _ zres ->
+        let zr = acceptSocketFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Creates a socket of type @type and protocol @protocol, binds it to @address and adds it to the set of sockets we're accepting sockets from.
   let addAddress (self: SocketListener) (address: SocketAddress) (type_: SocketType) (protocol: SocketProtocol) (sourceObject: option<GObject.Object>) : result<(bool * option<SocketAddress>), Glue.Error> =
@@ -26686,6 +27604,15 @@ module Subprocess =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `communicateAsync` and `communicateFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let communicateTask (self: Subprocess) (stdinBuf: option<GLib.Bytes>) (cancellable: option<Cancellable>) : Threading.Task<result<(bool * option<GLib.Bytes> * option<GLib.Bytes>), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      communicateAsync self stdinBuf cancellable (fun _ zres ->
+        let zr = communicateFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Like g_subprocess_communicate(), but validates the output of the process as UTF-8, and returns it as a regular NUL terminated string.
   let communicateUtf8 (self: Subprocess) (stdinBuf: option<string>) (cancellable: option<Cancellable>) : result<(bool * option<string> * option<string>), Glue.Error> =
     let zs1 = Internal.Raw.dupOption stdinBuf
@@ -26734,6 +27661,15 @@ module Subprocess =
       let zv = (((zr) <> i32 0), Internal.Raw.takeTextOption (Internal.Raw.outPtr 0), Internal.Raw.takeTextOption (Internal.Raw.outPtr 1))
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `communicateUtf8Async` and `communicateUtf8Finish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let communicateUtf8Task (self: Subprocess) (stdinBuf: option<string>) (cancellable: option<Cancellable>) : Threading.Task<result<(bool * option<string> * option<string>), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      communicateUtf8Async self stdinBuf cancellable (fun _ zres ->
+        let zr = communicateUtf8Finish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Use an operating-system specific method to attempt an immediate, forceful termination of the process.
   let forceExit (self: Subprocess) : unit =
@@ -26864,6 +27800,15 @@ module Subprocess =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `waitCheckAsync` and `waitCheckFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let waitCheckTask (self: Subprocess) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      waitCheckAsync self cancellable (fun _ zres ->
+        let zr = waitCheckFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Collects the result of a previous call to g_subprocess_wait_async().
   let waitFinish (self: Subprocess) (result: AsyncResult) : result<bool, Glue.Error> =
     Internal.Raw.outBegin ()
@@ -26876,6 +27821,15 @@ module Subprocess =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `waitAsync` and `waitFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let waitTask (self: Subprocess) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      waitAsync self cancellable (fun _ zres ->
+        let zr = waitFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Calls `handler` when the `argv` property changes.
   let onNotifyArgv (self: Subprocess) (handler: unit -> unit) : unit =
@@ -28039,6 +28993,15 @@ module TlsConnection =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `handshakeAsync` and `handshakeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let handshakeTask (self: TlsConnection) (ioPriority: int) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      handshakeAsync self ioPriority cancellable (fun _ zres ->
+        let zr = handshakeFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Sets the list of application-layer protocols to advertise that the caller is willing to speak on this connection.
   let setAdvertisedProtocols (self: TlsConnection) (protocols: list<string>) : unit =
     let zv1 = Internal.Raw.strv protocols
@@ -28264,6 +29227,15 @@ module TlsDatabase =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `lookupCertificateForHandleAsync` and `lookupCertificateForHandleFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let lookupCertificateForHandleTask (self: TlsDatabase) (handle_: string) (interaction: option<TlsInteraction>) (flags: TlsDatabaseLookupFlags) (cancellable: option<Cancellable>) : Threading.Task<result<TlsCertificate, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      lookupCertificateForHandleAsync self handle_ interaction flags cancellable (fun _ zres ->
+        let zr = lookupCertificateForHandleFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Look up the issuer of @certificate in the database.
   let lookupCertificateIssuer (self: TlsDatabase) (certificate: TlsCertificate) (interaction: option<TlsInteraction>) (flags: TlsDatabaseLookupFlags) (cancellable: option<Cancellable>) : result<TlsCertificate, Glue.Error> =
     let zp1 =
@@ -28315,6 +29287,15 @@ module TlsDatabase =
       let zv = TlsCertificate (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `lookupCertificateIssuerAsync` and `lookupCertificateIssuerFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let lookupCertificateIssuerTask (self: TlsDatabase) (certificate: TlsCertificate) (interaction: option<TlsInteraction>) (flags: TlsDatabaseLookupFlags) (cancellable: option<Cancellable>) : Threading.Task<result<TlsCertificate, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      lookupCertificateIssuerAsync self certificate interaction flags cancellable (fun _ zres ->
+        let zr = lookupCertificateIssuerFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Look up certificates issued by this issuer in the database.
   let lookupCertificatesIssuedBy (self: TlsDatabase) (issuerRawDn: array<u8>) (interaction: option<TlsInteraction>) (flags: TlsDatabaseLookupFlags) (cancellable: option<Cancellable>) : result<list<TlsCertificate>, Glue.Error> =
@@ -28372,6 +29353,15 @@ module TlsDatabase =
       let zv = Internal.Raw.mapList (fun zp -> TlsCertificate (Internal.Raw.wrap (zp) true)) (Internal.Raw.pointers (zr) false true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `lookupCertificatesIssuedByAsync` and `lookupCertificatesIssuedByFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let lookupCertificatesIssuedByTask (self: TlsDatabase) (issuerRawDn: array<u8>) (interaction: option<TlsInteraction>) (flags: TlsDatabaseLookupFlags) (cancellable: option<Cancellable>) : Threading.Task<result<list<TlsCertificate>, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      lookupCertificatesIssuedByAsync self issuerRawDn interaction flags cancellable (fun _ zres ->
+        let zr = lookupCertificatesIssuedByFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Determines the validity of a certificate chain, outside the context of a TLS session.
   let verifyChain (self: TlsDatabase) (chain: TlsCertificate) (purpose: string) (identity: option<SocketConnectable>) (interaction: option<TlsInteraction>) (flags: TlsDatabaseVerifyFlags) (cancellable: option<Cancellable>) : result<TlsCertificateFlags, Glue.Error> =
@@ -28432,6 +29422,15 @@ module TlsDatabase =
       let zv = TlsCertificateFlags (int (zr))
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `verifyChainAsync` and `verifyChainFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let verifyChainTask (self: TlsDatabase) (chain: TlsCertificate) (purpose: string) (identity: option<SocketConnectable>) (interaction: option<TlsInteraction>) (flags: TlsDatabaseVerifyFlags) (cancellable: option<Cancellable>) : Threading.Task<result<TlsCertificateFlags, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      verifyChainAsync self chain purpose identity interaction flags cancellable (fun _ zres ->
+        let zr = verifyChainFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `create_certificate_handle`: Create a handle string for the certificate.
   let overrideCreateCertificateHandle (gtype: usize) (handler: TlsDatabase -> TlsCertificate -> option<string>) : unit =
@@ -28682,6 +29681,15 @@ module TlsInteraction =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `askPasswordAsync` and `askPasswordFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let askPasswordTask (self: TlsInteraction) (password: TlsPassword) (cancellable: option<Cancellable>) : Threading.Task<result<TlsInteractionResult, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      askPasswordAsync self password cancellable (fun _ zres ->
+        let zr = askPasswordFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Invoke the interaction to ask the user for a password.
   let invokeAskPassword (self: TlsInteraction) (password: TlsPassword) (cancellable: option<Cancellable>) : result<TlsInteractionResult, Glue.Error> =
     let zp1 =
@@ -28759,6 +29767,15 @@ module TlsInteraction =
       let zv = TlsInteractionResult (int (zr))
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `requestCertificateAsync` and `requestCertificateFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let requestCertificateTask (self: TlsInteraction) (connection: TlsConnection) (flags: TlsCertificateRequestFlags) (cancellable: option<Cancellable>) : Threading.Task<result<TlsInteractionResult, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      requestCertificateAsync self connection flags cancellable (fun _ zres ->
+        let zr = requestCertificateFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `ask_password_async`: Run asynchronous interaction to ask the user for a password.
   let overrideAskPasswordAsync (gtype: usize) (handler: TlsInteraction -> TlsPassword -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
@@ -29034,6 +30051,15 @@ module UnixConnection =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `receiveCredentialsAsync` and `receiveCredentialsFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let receiveCredentialsTask (self: UnixConnection) (cancellable: option<Cancellable>) : Threading.Task<result<Credentials, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      receiveCredentialsAsync self cancellable (fun _ zres ->
+        let zr = receiveCredentialsFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Receives a file descriptor from the sending end of the connection.
   let receiveFd (self: UnixConnection) (cancellable: option<Cancellable>) : result<int, Glue.Error> =
     let zp1 =
@@ -29094,6 +30120,15 @@ module UnixConnection =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `sendCredentialsAsync` and `sendCredentialsFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let sendCredentialsTask (self: UnixConnection) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      sendCredentialsAsync self cancellable (fun _ zres ->
+        let zr = sendCredentialsFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Passes a file descriptor to the receiving side of the connection.
   let sendFd (self: UnixConnection) (fd: int) (cancellable: option<Cancellable>) : result<bool, Glue.Error> =
@@ -29540,6 +30575,15 @@ module Volume =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `eject` and `ejectFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let ejectTask (self: Volume) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      eject self flags cancellable (fun _ zres ->
+        let zr = ejectFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Ejects a volume.
   let ejectWithOperation (self: Volume) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
     let zcb1 =
@@ -29570,6 +30614,15 @@ module Volume =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `ejectWithOperation` and `ejectWithOperationFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let ejectWithOperationTask (self: Volume) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      ejectWithOperation self flags mountOperation cancellable (fun _ zres ->
+        let zr = ejectWithOperationFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Gets the kinds of [identifiers](#volume-identifiers) that @volume has.
   let enumerateIdentifiers (self: Volume) : list<string> =
@@ -29647,6 +30700,15 @@ module Volume =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `mount` and `mountFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let mountTask (self: Volume) (flags: MountMountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      mount self flags mountOperation cancellable (fun _ zres ->
+        let zr = mountFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Returns whether the volume should be automatically mounted.
   let shouldAutomount (self: Volume) : bool =
@@ -30457,6 +31519,15 @@ let busGetFinish (res: AsyncResult) : result<DBusConnection, Glue.Error> =
     Internal.Raw.outEnd ()
     Ok zv
 
+/// `busGet` and `busGetFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+/// result is the task's to go on with.
+let busGetTask (busType: BusType) (cancellable: option<Cancellable>) : Threading.Task<result<DBusConnection, Glue.Error>> =
+  Internal.Raw.await (fun zk ->
+    busGet busType cancellable (fun _ zres ->
+      let zr = busGetFinish zres
+      Internal.Raw.outlive ()
+      zk zr))
+
 /// Synchronously connects to the message bus specified by @bus_type.
 let busGetSync (busType: BusType) (cancellable: option<Cancellable>) : result<DBusConnection, Glue.Error> =
   let zp1 =
@@ -30619,6 +31690,15 @@ let dbusAddressGetStreamFinish (res: AsyncResult) : result<(IOStream * option<st
     let zv = (IOStream (Internal.Raw.wrap (zr) true), Internal.Raw.takeTextOption (Internal.Raw.outPtr 0))
     Internal.Raw.outEnd ()
     Ok zv
+
+/// `dbusAddressGetStream` and `dbusAddressGetStreamFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+/// result is the task's to go on with.
+let dbusAddressGetStreamTask (address: string) (cancellable: option<Cancellable>) : Threading.Task<result<(IOStream * option<string>), Glue.Error>> =
+  Internal.Raw.await (fun zk ->
+    dbusAddressGetStream address cancellable (fun _ zres ->
+      let zr = dbusAddressGetStreamFinish zres
+      Internal.Raw.outlive ()
+      zk zr))
 
 /// Synchronously connects to an endpoint specified by @address and sets up the connection so it is in a state to run the client-side of the D-Bus authentication conversation.
 let dbusAddressGetStreamSync (address: string) (cancellable: option<Cancellable>) : result<(IOStream * option<string>), Glue.Error> =

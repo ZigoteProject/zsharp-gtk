@@ -5142,6 +5142,15 @@ module AlertDialog =
   let chooseFinish (self: AlertDialog) (result: Gio.AsyncResult) : string =
     Internal.Raw.text ((Internal.AdwC.adw_alert_dialog_choose_finish (Internal.Raw.obj self.Id (Internal.AdwC.adw_alert_dialog_get_type ())) (Internal.Raw.obj result.Id (Internal.GioC.g_async_result_get_type ()))))
 
+  /// `choose` and `chooseFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let chooseTask (self: AlertDialog) (parent: option<Gtk4.Widget>) (cancellable: option<Gio.Cancellable>) : Threading.Task<string> =
+    Internal.Raw.await (fun zk ->
+      choose self parent cancellable (fun _ zres ->
+        let zr = chooseFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Gets the body text of @self.
   let getBody (self: AlertDialog) : string =
     Internal.Raw.text ((Internal.AdwC.adw_alert_dialog_get_body (Internal.Raw.obj self.Id (Internal.AdwC.adw_alert_dialog_get_type ()))))
@@ -8420,6 +8429,15 @@ module MessageDialog =
   /// Deprecated. Finishes the [method@MessageDialog.choose] call and returns the response ID.
   let chooseFinish (self: MessageDialog) (result: Gio.AsyncResult) : string =
     Internal.Raw.text ((Internal.AdwC.adw_message_dialog_choose_finish (Internal.Raw.obj self.Id (Internal.AdwC.adw_message_dialog_get_type ())) (Internal.Raw.obj result.Id (Internal.GioC.g_async_result_get_type ()))))
+
+  /// `choose` and `chooseFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let chooseTask (self: MessageDialog) (cancellable: option<Gio.Cancellable>) : Threading.Task<string> =
+    Internal.Raw.await (fun zk ->
+      choose self cancellable (fun _ zres ->
+        let zr = chooseFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Deprecated. Gets the body text of @self.
   let getBody (self: MessageDialog) : string =

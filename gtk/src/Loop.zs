@@ -39,18 +39,7 @@ let start (t: Task<unit>) : unit =
 
 /// A task that waits for something of GLib's or Gio's that calls back: `register` is given the
 /// function to call with the result.
-let wait (register: ('a -> unit) -> unit) : Task<'a> =
-  let result = ref None
-  let begin (go: unit -> unit) : unit =
-    register (fun x ->
-      result.Value <- Some x
-      go ())
-  task {
-    do! Task.fromCallback begin (fun () -> ())
-    match result.Value with
-    | Some x -> return x
-    | None -> return panic "Loop.wait: called back with no result"
-  }
+let wait (register: ('a -> unit) -> unit) : Task<'a> = Internal.Raw.await register
 
 let rec private drive (go: unit -> bool) (fd: int) : Task<unit> =
   task {

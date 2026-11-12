@@ -2416,6 +2416,15 @@ module Clipboard =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `readAsync` and `readFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let readTask (self: Clipboard) (mimeTypes: list<string>) (ioPriority: int) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<(option<Gio.InputStream> * option<string>), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      readAsync self mimeTypes ioPriority cancellable (fun _ zres ->
+        let zr = readFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Asynchronously request the @clipboard contents converted to a string.
   let readTextAsync (self: Clipboard) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
@@ -2442,6 +2451,15 @@ module Clipboard =
       let zv = Internal.Raw.takeTextOption (zr)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `readTextAsync` and `readTextFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let readTextTask (self: Clipboard) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<option<string>, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      readTextAsync self cancellable (fun _ zres ->
+        let zr = readTextFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Asynchronously request the @clipboard contents converted to a `GdkPixbuf`.
   let readTextureAsync (self: Clipboard) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
@@ -2471,6 +2489,15 @@ module Clipboard =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `readTextureAsync` and `readTextureFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let readTextureTask (self: Clipboard) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<option<Texture>, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      readTextureAsync self cancellable (fun _ zres ->
+        let zr = readTextureFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Asynchronously request the @clipboard contents converted to the given @type.
   let readValueAsync (self: Clipboard) (type_: usize) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
@@ -2497,6 +2524,15 @@ module Clipboard =
       let zv = GObject.Value (Internal.Raw.wrapBoxed (zr) (Internal.GObjectC.g_value_get_type ()) false)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `readValueAsync` and `readValueFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let readValueTask (self: Clipboard) (type_: usize) (ioPriority: int) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<GObject.Value, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      readValueAsync self type_ ioPriority cancellable (fun _ zres ->
+        let zr = readValueFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Sets a new content provider on @clipboard.
   let setContent (self: Clipboard) (provider: option<ContentProvider>) : bool =
@@ -2550,6 +2586,15 @@ module Clipboard =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `storeAsync` and `storeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let storeTask (self: Clipboard) (ioPriority: int) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      storeAsync self ioPriority cancellable (fun _ zres ->
+        let zr = storeFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Emitted when the clipboard changes ownership.
   let onChanged (self: Clipboard) (handler: unit -> unit) : unit =
@@ -2900,6 +2945,15 @@ module ContentProvider =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `writeMimeTypeAsync` and `writeMimeTypeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let writeMimeTypeTask (self: ContentProvider) (mimeType: string) (stream: Gio.OutputStream) (ioPriority: int) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      writeMimeTypeAsync self mimeType stream ioPriority cancellable (fun _ zres ->
+        let zr = writeMimeTypeFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Emitted whenever the content provided by this provider has changed.
   let onContentChanged (self: ContentProvider) (handler: unit -> unit) : unit =
@@ -4431,6 +4485,15 @@ module Drop =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `readAsync` and `readFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let readTask (self: Drop) (mimeTypes: list<string>) (ioPriority: int) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<(option<Gio.InputStream> * string), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      readAsync self mimeTypes ioPriority cancellable (fun _ zres ->
+        let zr = readFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Asynchronously request the drag operation's contents converted to the given @type.
   let readValueAsync (self: Drop) (type_: usize) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
@@ -4457,6 +4520,15 @@ module Drop =
       let zv = GObject.Value (Internal.Raw.wrapBoxed (zr) (Internal.GObjectC.g_value_get_type ()) false)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `readValueAsync` and `readValueFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let readValueTask (self: Drop) (type_: usize) (ioPriority: int) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<GObject.Value, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      readValueAsync self type_ ioPriority cancellable (fun _ zres ->
+        let zr = readValueFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Selects all actions that are potentially supported by the destination.
   let status (self: Drop) (actions: DragAction) (preferred: DragAction) : unit =
@@ -12873,6 +12945,15 @@ let contentDeserializeFinish (result: Gio.AsyncResult) : result<(bool * GObject.
     Internal.Raw.outEnd ()
     Ok zv
 
+/// `contentDeserializeAsync` and `contentDeserializeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+/// result is the task's to go on with.
+let contentDeserializeTask (stream: Gio.InputStream) (mimeType: string) (type_: usize) (ioPriority: int) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<(bool * GObject.Value), Glue.Error>> =
+  Internal.Raw.await (fun zk ->
+    contentDeserializeAsync stream mimeType type_ ioPriority cancellable (fun _ zres ->
+      let zr = contentDeserializeFinish zres
+      Internal.Raw.outlive ()
+      zk zr))
+
 /// Registers a function to deserialize object of a given type.
 [<Unsafe>]
 let contentRegisterDeserializer (mimeType: string) (type_: usize) (deserialize: cptr) (data: cptr) (notify: cptr) : unit =
@@ -12909,6 +12990,15 @@ let contentSerializeFinish (result: Gio.AsyncResult) : result<bool, Glue.Error> 
     let zv = ((zr) <> i32 0)
     Internal.Raw.outEnd ()
     Ok zv
+
+/// `contentSerializeAsync` and `contentSerializeFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+/// result is the task's to go on with.
+let contentSerializeTask (stream: Gio.OutputStream) (mimeType: string) (value: GObject.Value) (ioPriority: int) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+  Internal.Raw.await (fun zk ->
+    contentSerializeAsync stream mimeType value ioPriority cancellable (fun _ zres ->
+      let zr = contentSerializeFinish zres
+      Internal.Raw.outlive ()
+      zk zr))
 
 /// Returns the relative angle from @event1 to @event2.
 let eventsGetAngle (event1: Event) (event2: Event) : (bool * float) =

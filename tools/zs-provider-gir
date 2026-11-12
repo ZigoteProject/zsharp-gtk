@@ -1981,6 +1981,67 @@ class Gen:
         return "\n".join(self.out) + "\n"
 
 
+def tasks(text):
+    """Beside each pair `xAsync` (whose last parameter is GIO's callback) and `xFinish`, `xTask`:
+    the two as a task, for `let!`. Written from the two functions' own lines."""
+    lines = text.split("\n")
+    head = re.compile(r"^( *)let (\w+) ((?:\([^()]*(?:\([^()]*\)[^()]*)*\) ?)+): (.*) =$")
+    param = re.compile(r"\((\w+): ((?:[^()]|\([^()]*\))*)\)")
+    found, module = {}, ""
+    for i, line in enumerate(lines):
+        m = re.match(r"^( *)module (\w+) =", line)
+        if m:
+            module = m.group(2) if m.group(1) == "" else module + "." + m.group(2)
+        m = head.match(line)
+        if not m:
+            continue
+        j = i - 1
+        while j >= 0 and lines[j].lstrip().startswith("///"):
+            j -= 1
+        if lines[j].strip() == "[<Unsafe>]":
+            continue
+        end = i + 1
+        while end < len(lines) and (not lines[end].strip() or len(lines[end]) - len(lines[end].lstrip()) > len(m.group(1))):
+            end += 1
+        while not lines[end - 1].strip():
+            end -= 1
+        ps, name = param.findall(m.group(3)), m.group(2)
+        if name.endswith("Finish"):
+            base, kind = name[:-6], "Finish"
+        elif ps and re.fullmatch(r"option<(GObject\.)?Object> -> (Gio\.)?AsyncResult -> unit", ps[-1][1]):
+            base, kind = re.sub(r"(Async|_)$", "", name), "Async"
+        else:
+            continue
+        found[(module, m.group(1), base, kind)] = (ps, m.group(4), end, name)
+    adds = []
+    for (module, indent, name, kind), (ps, aret, aend, aname) in found.items():
+        fin = found.get((module, indent, name, "Finish"))
+        if kind != "Async" or not fin or aret != "unit":
+            continue
+        fps, rtype, fend, fname = fin
+        ps = ps[:-1]
+        if any("->" in t for _, t in ps) or not fps or not re.fullmatch(r"(Gio\.)?AsyncResult", fps[-1][1]) or len(fps) > 2:
+            continue
+        if len(fps) == 2 and (fps[0][0] != "self" or not ps or ps[0] != fps[0]):
+            continue
+        if re.search(r"(?m)^%slet %sTask " % (indent, name), text):
+            continue
+        sig = " ".join("(%s: %s)" % p for p in ps) or "()"
+        call = " ".join(n for n, _ in ps)
+        adds.append((max(aend, fend), [
+            "",
+            "%s/// `%s` and `%s` as a task, for `let!` under `Loop.run` or an `App.run`: the" % (indent, aname, fname),
+            "%s/// result is the task's to go on with." % indent,
+            "%slet %sTask %s : Threading.Task<%s> =" % (indent, name, sig, rtype),
+            "%s  Internal.Raw.await (fun zk ->" % indent,
+            "%s    %s %s(fun _ zres ->" % (indent, aname, call + " " if call else ""),
+            "%s      let zr = %s %szres" % (indent, fname, "self " if len(fps) == 2 else ""),
+            "%s      Internal.Raw.outlive ()" % indent,
+            "%s      zk zr))" % indent]))
+    for at, new in sorted(adds, reverse=True):
+        lines[at:at] = new
+    return "\n".join(lines)
+
 def main(argv):
     opts = {"dir": "/usr/share/gir-1.0", "only": "", "foreign": "", "modules": "", "prefix": "", "c": "", "extra": "", "seen": "", "ui": "", "tree": "Gtk", "report": "", "cmod": "", "extra-c": ""}
     if len(argv) < 2 or argv[1].startswith("--"):
@@ -1998,6 +2059,7 @@ def main(argv):
     if opts["seen"] and os.path.exists(opts["seen"]):
         gen.seen = set(open(opts["seen"]).read().split())
     text = gen.run(os.path.basename(argv[1]))
+    text = tasks(text)
     cdecl = sorted(set(gen.cext))
     if opts["extra-c"]:
         cdecl += [l for l in open(opts["extra-c"]).read().split("\n") if l.startswith("extern ")]

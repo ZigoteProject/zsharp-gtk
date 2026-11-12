@@ -15686,6 +15686,15 @@ module AlertDialog =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `choose` and `chooseFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let chooseTask (self: AlertDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<int, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      choose self parent cancellable (fun _ zres ->
+        let zr = chooseFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Returns the button labels for the alert.
   let getButtons (self: AlertDialog) : list<string> =
     Internal.Raw.strvList ((Internal.Gtk4C.gtk_alert_dialog_get_buttons (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_alert_dialog_get_type ())))) 0
@@ -21874,6 +21883,15 @@ module ColorDialog =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `chooseRgba` and `chooseRgbaFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let chooseRgbaTask (self: ColorDialog) (parent: option<Window>) (initialColor: option<Gdk.RGBA>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<Gdk.RGBA, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      chooseRgba self parent initialColor cancellable (fun _ zres ->
+        let zr = chooseRgbaFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Returns whether the color chooser dialog blocks interaction with the parent window while it is presented.
   let getModal (self: ColorDialog) : bool =
     (((Internal.Gtk4C.gtk_color_dialog_get_modal (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_color_dialog_get_type ())))) <> i32 0)
@@ -27772,6 +27790,15 @@ module FileDialog =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `open_` and `openFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let openTask (self: FileDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<Gio.File, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      open_ self parent cancellable (fun _ zres ->
+        let zr = openFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Presents a file chooser dialog to the user.
   let openMultiple (self: FileDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
@@ -27802,6 +27829,15 @@ module FileDialog =
       let zv = Gio.ListModel (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `openMultiple` and `openMultipleFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let openMultipleTask (self: FileDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<Gio.ListModel, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      openMultiple self parent cancellable (fun _ zres ->
+        let zr = openMultipleFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Presents a file chooser dialog to the user.
   let openMultipleTextFiles (self: FileDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
@@ -27834,6 +27870,15 @@ module FileDialog =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `openMultipleTextFiles` and `openMultipleTextFilesFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let openMultipleTextFilesTask (self: FileDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<(Gio.ListModel * string), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      openMultipleTextFiles self parent cancellable (fun _ zres ->
+        let zr = openMultipleTextFilesFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Initiates a file selection operation by presenting a file chooser dialog to the user.
   let openTextFile (self: FileDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
@@ -27864,6 +27909,15 @@ module FileDialog =
       let zv = (Gio.File (Internal.Raw.wrap (zr) true), Internal.Raw.text (Internal.Raw.outPtr 0))
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `openTextFile` and `openTextFileFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let openTextFileTask (self: FileDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<(Gio.File * string), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      openTextFile self parent cancellable (fun _ zres ->
+        let zr = openTextFileFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Presents a file chooser dialog to the user.
   let save (self: FileDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
@@ -27896,6 +27950,15 @@ module FileDialog =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `save` and `saveFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let saveTask (self: FileDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<Gio.File, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      save self parent cancellable (fun _ zres ->
+        let zr = saveFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Initiates a file save operation by presenting a file chooser dialog to the user.
   let saveTextFile (self: FileDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
@@ -27926,6 +27989,15 @@ module FileDialog =
       let zv = (Gio.File (Internal.Raw.wrap (zr) true), Internal.Raw.text (Internal.Raw.outPtr 0), Internal.Raw.text (Internal.Raw.outPtr 1))
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `saveTextFile` and `saveTextFileFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let saveTextFileTask (self: FileDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<(Gio.File * string * string), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      saveTextFile self parent cancellable (fun _ zres ->
+        let zr = saveTextFileFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Presents a file chooser dialog to the user.
   let selectFolder (self: FileDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
@@ -27958,6 +28030,15 @@ module FileDialog =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `selectFolder` and `selectFolderFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let selectFolderTask (self: FileDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<Gio.File, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      selectFolder self parent cancellable (fun _ zres ->
+        let zr = selectFolderFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Presents a file chooser dialog to the user.
   let selectMultipleFolders (self: FileDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
@@ -27988,6 +28069,15 @@ module FileDialog =
       let zv = Gio.ListModel (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `selectMultipleFolders` and `selectMultipleFoldersFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let selectMultipleFoldersTask (self: FileDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<Gio.ListModel, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      selectMultipleFolders self parent cancellable (fun _ zres ->
+        let zr = selectMultipleFoldersFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Sets the label shown on the file chooser's accept button.
   let setAcceptLabel (self: FileDialog) (acceptLabel: option<string>) : unit =
@@ -28219,6 +28309,15 @@ module FileLauncher =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `launch` and `launchFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let launchTask (self: FileLauncher) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      launch self parent cancellable (fun _ zres ->
+        let zr = launchFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Launches a file manager to show the file in its parent directory.
   let openContainingFolder (self: FileLauncher) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
@@ -28249,6 +28348,15 @@ module FileLauncher =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `openContainingFolder` and `openContainingFolderFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let openContainingFolderTask (self: FileLauncher) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      openContainingFolder self parent cancellable (fun _ zres ->
+        let zr = openContainingFolderFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Sets whether to always ask the user which app to use.
   let setAlwaysAsk (self: FileLauncher) (alwaysAsk: bool) : unit =
@@ -29442,6 +29550,15 @@ module FontDialog =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `chooseFace` and `chooseFaceFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let chooseFaceTask (self: FontDialog) (parent: option<Window>) (initialValue: option<Pango.FontFace>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<Pango.FontFace, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      chooseFace self parent initialValue cancellable (fun _ zres ->
+        let zr = chooseFaceFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Presents a font chooser dialog to the user.
   let chooseFamily (self: FontDialog) (parent: option<Window>) (initialValue: option<Pango.FontFamily>) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
     let zcb1 =
@@ -29476,6 +29593,15 @@ module FontDialog =
       let zv = Pango.FontFamily (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `chooseFamily` and `chooseFamilyFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let chooseFamilyTask (self: FontDialog) (parent: option<Window>) (initialValue: option<Pango.FontFamily>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<Pango.FontFamily, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      chooseFamily self parent initialValue cancellable (fun _ zres ->
+        let zr = chooseFamilyFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Presents a font chooser dialog to the user.
   let chooseFont (self: FontDialog) (parent: option<Window>) (initialValue: option<Pango.FontDescription>) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
@@ -29534,6 +29660,15 @@ module FontDialog =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `chooseFontAndFeatures` and `chooseFontAndFeaturesFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let chooseFontAndFeaturesTask (self: FontDialog) (parent: option<Window>) (initialValue: option<Pango.FontDescription>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<(bool * Pango.FontDescription * string * Pango.Language), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      chooseFontAndFeatures self parent initialValue cancellable (fun _ zres ->
+        let zr = chooseFontAndFeaturesFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Finishes the [method@Gtk.FontDialog.choose_font] call.
   let chooseFontFinish (self: FontDialog) (result: Gio.AsyncResult) : result<Pango.FontDescription, Glue.Error> =
     Internal.Raw.outBegin ()
@@ -29546,6 +29681,15 @@ module FontDialog =
       let zv = Pango.FontDescription (Internal.Raw.wrapBoxed (zr) (Internal.PangoC.pango_font_description_get_type ()) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `chooseFont` and `chooseFontFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let chooseFontTask (self: FontDialog) (parent: option<Window>) (initialValue: option<Pango.FontDescription>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<Pango.FontDescription, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      chooseFont self parent initialValue cancellable (fun _ zres ->
+        let zr = chooseFontFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Returns the filter that decides which fonts to display in the font chooser dialog.
   let getFilter (self: FontDialog) : option<Filter> =
@@ -38509,6 +38653,15 @@ module PrintDialog =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `printFile` and `printFileFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let printFileTask (self: PrintDialog) (parent: option<Window>) (setup: option<PrintSetup>) (file: Gio.File) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      printFile self parent setup file cancellable (fun _ zres ->
+        let zr = printFileFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Finishes the [method@Gtk.PrintDialog.print] call and returns the results.
   let printFinish (self: PrintDialog) (result: Gio.AsyncResult) : result<Gio.OutputStream, Glue.Error> =
     Internal.Raw.outBegin ()
@@ -38521,6 +38674,15 @@ module PrintDialog =
       let zv = Gio.OutputStream (Internal.Raw.wrap (zr) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `print` and `printFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let printTask (self: PrintDialog) (parent: option<Window>) (setup: option<PrintSetup>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<Gio.OutputStream, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      print self parent setup cancellable (fun _ zres ->
+        let zr = printFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Sets the label that will be shown on the accept button of the print dialog shown for [method@Gtk.PrintDialog.setup].
   let setAcceptLabel (self: PrintDialog) (acceptLabel: string) : unit =
@@ -38572,6 +38734,15 @@ module PrintDialog =
       let zv = PrintSetup (Internal.Raw.wrapBoxed (zr) (Internal.Gtk4C.gtk_print_setup_get_type ()) true)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `setup` and `setupFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let setupTask (self: PrintDialog) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<PrintSetup, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      setup self parent cancellable (fun _ zres ->
+        let zr = setupFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Calls `handler` when the `accept-label` property changes.
   let onNotifyAcceptLabel (self: PrintDialog) (handler: unit -> unit) : unit =
@@ -50588,6 +50759,15 @@ module UriLauncher =
       let zv = ((zr) <> i32 0)
       Internal.Raw.outEnd ()
       Ok zv
+
+  /// `launch` and `launchFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let launchTask (self: UriLauncher) (parent: option<Window>) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<bool, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      launch self parent cancellable (fun _ zres ->
+        let zr = launchFinish self zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Sets the uri that will be opened.
   let setUri (self: UriLauncher) (uri: option<string>) : unit =

@@ -476,4 +476,37 @@ let tests =
         expect (poked.Value, Glue.getInt w.Id "lit") "([Some hello], 1)"
       Glue.drain ()
       Glue.dropOverrides ())
+    test "an asynchronous call and its finish are a task, whose result is good across its waits" (fun () ->
+      Gtk4.init ()
+      let finished = ref false
+      let seen = ref (0, false, "")
+      let file = Gio.File.createForPath $"{GLib.getTmpDir ()}/zsharp-gtk-task-test"
+      Loop.runWhile (fun () -> not finished.Value) (fun () ->
+        Loop.start (
+          task {
+            let words = Array.ofList [ u8 104; u8 105; u8 33 ]
+            let! _ =
+              Gio.File.replaceContentsTask file words None false Gio.FileCreateFlags.none None
+            let! opened = Gio.File.readTask file 0 None
+            do! Task.sleep 5
+            let! loaded = Gio.File.loadContentsTask file None
+            let text =
+              match loaded with
+              | Ok (_, bytes, _) -> Array.length bytes
+              | Error _ -> -1
+            // the stream came from a callback that returned two waits ago
+            let alive =
+              Result.map (fun (s: Gio.FileInputStream) -> Glue.alive s.Id) opened
+              |> Result.defaultValue false
+            let! missing = Gio.File.loadContentsTask (Gio.File.createForPath "/no/such/file") None
+            let why =
+              match missing with
+              | Ok _ -> "loaded"
+              | Error e -> e.domain
+            seen.Value <- (text, alive, why)
+            let! _ = Gio.File.deleteTask file 0 None
+            finished.Value <- true
+          }
+        ))
+      expect seen.Value "(3, true, g-io-error-quark)")
   ]

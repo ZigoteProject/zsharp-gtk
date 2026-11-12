@@ -89,6 +89,9 @@ Gtk4.Button.onClicked button (fun () -> Gtk4.ListBox.append list row.Widget)
   `Glue.addProperty` and `Glue.addSignal` give it properties and signals that bind and notify
   as GTK's do; `Glue.setTemplate` builds its widgets from a GtkBuilder template.
 - **Deprecated functions and types** are there, their documentation saying so.
+- **An asynchronous call is a task too:** beside each `xAsync` and `xFinish` is `xTask`, for
+  `let!` in a `task { }` under `Loop.run` or an `App.run` (`Gio.File.loadContentsTask`,
+  `Gtk4.FileDialog.openTask`, `Adw.AlertDialog.chooseTask`).
 - **Beside gtk-rs,** by C function: [gtk/PARITY.md](gtk/PARITY.md). Of 10,834 exported
   functions gtk-rs calls 9,128 and 9,801 are safe here.
 - **A widget type of a program's own** says its CSS name, layout manager, role, actions and

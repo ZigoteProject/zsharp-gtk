@@ -29,6 +29,7 @@ extern zgtk_keep : int -> unit
 extern zgtk_unkeep : int -> unit
 extern zgtk_drain : unit -> unit
 extern zgtk_pool_mark : unit -> int
+extern zgtk_pool_pass : unit -> unit
 extern zgtk_class_css_name : usize -> cstr -> unit
 extern zgtk_class_layout : usize -> usize -> unit
 extern zgtk_class_role : usize -> i32 -> unit
@@ -705,3 +706,22 @@ module Class =
 
   /// A shortcut every widget of the type has.
   let shortcut (gtype: usize) (shortcut: cptr) : unit = zgtk_class_shortcut gtype shortcut
+
+/// Lets what the running handler has made so far outlive it, as what a task makes does: for a
+/// result a task goes on with.
+let outlive () : unit = zgtk_pool_pass ()
+
+/// A task that waits for something of GLib's or Gio's that calls back (`Loop.wait`): `register`
+/// is given the function to call with the result.
+let await (register: ('a -> unit) -> unit) : Task<'a> =
+  let result = ref None
+  let begin (go: unit -> unit) : unit =
+    register (fun x ->
+      result.Value <- Some x
+      go ())
+  task {
+    do! Task.fromCallback begin (fun () -> ())
+    match result.Value with
+    | Some x -> return x
+    | None -> return panic "Loop.wait: called back with no result"
+  }

@@ -760,6 +760,15 @@ module Pixbuf =
       Internal.Raw.outEnd ()
       Ok zv
 
+  /// `getFileInfoAsync` and `getFileInfoFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let getFileInfoTask (filename: string) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<(option<PixbufFormat> * int * int), Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      getFileInfoAsync filename cancellable (fun _ zres ->
+        let zr = getFileInfoFinish zres
+        Internal.Raw.outlive ()
+        zk zr))
+
   /// Obtains the available information about the image formats supported by GdkPixbuf.
   let getFormats () : list<PixbufFormat> =
     Internal.Raw.mapList (fun zp -> PixbufFormat (Internal.Raw.wrapBoxed (zp) (Internal.GdkPixbufC.gdk_pixbuf_format_get_type ()) false)) (Internal.Raw.pointers ((Internal.GdkPixbufC.gdk_pixbuf_get_formats ())) true true)
@@ -790,6 +799,15 @@ module Pixbuf =
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
       | None -> Internal.Raw.none ()
     Internal.GdkPixbufC.gdk_pixbuf_new_from_stream_async (Internal.Raw.obj stream.Id (Internal.GioC.g_input_stream_get_type ())) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+
+  /// `createFromStreamAsync` and `createFromStreamFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let createFromStreamTask (stream: Gio.InputStream) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<Pixbuf, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      createFromStreamAsync stream cancellable (fun _ zres ->
+        let zr = createFromStreamFinish zres
+        Internal.Raw.outlive ()
+        zk zr))
 
   /// Creates a new pixbuf by asynchronously loading an image from an input stream.
   let createFromStreamAtScaleAsync (stream: Gio.InputStream) (width: int) (height: int) (preserveAspectRatio: bool) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
@@ -969,6 +987,15 @@ module PixbufAnimation =
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
       | None -> Internal.Raw.none ()
     Internal.GdkPixbufC.gdk_pixbuf_animation_new_from_stream_async (Internal.Raw.obj stream.Id (Internal.GioC.g_input_stream_get_type ())) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+
+  /// `createFromStreamAsync` and `createFromStreamFinish` as a task, for `let!` under `Loop.run` or an `App.run`: the
+  /// result is the task's to go on with.
+  let createFromStreamTask (stream: Gio.InputStream) (cancellable: option<Gio.Cancellable>) : Threading.Task<result<PixbufAnimation, Glue.Error>> =
+    Internal.Raw.await (fun zk ->
+      createFromStreamAsync stream cancellable (fun _ zres ->
+        let zr = createFromStreamFinish zres
+        Internal.Raw.outlive ()
+        zk zr))
 
 module PixbufAnimationIter =
   /// The same object as its ancestor.

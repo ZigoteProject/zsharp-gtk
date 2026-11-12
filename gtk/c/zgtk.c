@@ -216,6 +216,10 @@ void zgtk_drain_since(int64_t mark) {
     if (mark >= 0 && (guint)mark >= frame) drain_from((guint)mark);
 }
 
+// Lets what the running handler has made so far outlive it, as if made outside any handler: for
+// a result a task goes on with after the callback that brought it returns.
+void zgtk_pool_pass(void) { frame = pool ? pool->len : 0; }
+
 // Gives up what was made since the running handler began; outside any, all the pool holds.
 void zgtk_drain(void) { drain_from(frame); }
 
