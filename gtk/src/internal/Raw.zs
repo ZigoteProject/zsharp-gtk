@@ -29,6 +29,16 @@ extern zgtk_keep : int -> unit
 extern zgtk_unkeep : int -> unit
 extern zgtk_drain : unit -> unit
 extern zgtk_pool_mark : unit -> int
+extern zgtk_class_css_name : usize -> cstr -> unit
+extern zgtk_class_layout : usize -> usize -> unit
+extern zgtk_class_role : usize -> i32 -> unit
+extern zgtk_class_activate_signal : usize -> cstr -> unit
+extern zgtk_class_action : usize -> cstr -> cstr -> cptr -> i32
+extern zgtk_class_property_action : usize -> cstr -> cstr -> unit
+extern zgtk_class_shortcut : usize -> cptr -> unit
+extern zgtk_construct_only : usize -> cstr -> i32
+extern zgtk_make_begin : usize -> unit
+extern zgtk_make_end : unit -> cptr
 extern zgtk_drain_since : int -> unit
 extern zgtk_lend : cptr -> cptr
 extern zgtk_lend_boxed : cptr -> usize -> cptr
@@ -658,3 +668,40 @@ let poolMark () : int = zgtk_pool_mark ()
 
 /// Gives up what was made outside any handler since a mark.
 let drainSince (mark: int) : unit = zgtk_drain_since mark
+
+/// Whether a property of a type can only be given when an object of it is made.
+let constructOnly (gtype: usize) (name: string) : bool = zgtk_construct_only gtype name <> i32 0
+
+/// A new object of a type with properties given at its making: `give` sets them with `setInt`
+/// and the others on the pointer it's handed, which is no object's yet.
+let createWith (gtype: usize) (give: cptr -> unit) : int =
+  zgtk_make_begin gtype
+  give (zgtk_null ())
+  wrap (zgtk_make_end ()) true
+
+/// GTK's `gtk_widget_class_` functions for a widget type made with `subclass`, by the type.
+module Class =
+  /// The name the type's widgets have in CSS.
+  let cssName (gtype: usize) (name: string) : unit = zgtk_class_css_name gtype name
+
+  /// The type of layout manager each of the type's widgets is made with.
+  let layout (gtype: usize) (layoutType: usize) : unit = zgtk_class_layout gtype layoutType
+
+  /// The role the type's widgets have for assistive technology.
+  let role (gtype: usize) (role: int) : unit = zgtk_class_role gtype (i32 role)
+
+  /// The signal of the type that activating one of its widgets emits.
+  let activateSignal (gtype: usize) (signal: string) : unit =
+    zgtk_class_activate_signal gtype signal
+
+  /// An action of every widget of the type; `parameter`: its GVariant type, empty for none. The
+  /// closure reads the widget at argument 0 and the parameter at 1.
+  let action (gtype: usize) (name: string) (parameter: string) (closure: cptr) : bool =
+    zgtk_class_action gtype name parameter closure <> i32 0
+
+  /// An action that sets, or toggles, a property of the type's widgets.
+  let propertyAction (gtype: usize) (action: string) (property: string) : unit =
+    zgtk_class_property_action gtype action property
+
+  /// A shortcut every widget of the type has.
+  let shortcut (gtype: usize) (shortcut: cptr) : unit = zgtk_class_shortcut gtype shortcut

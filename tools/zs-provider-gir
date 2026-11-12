@@ -1708,8 +1708,9 @@ class Gen:
                           "  let make (props: list<%s.Prop<'msg>>) (children: list<%s.Widget<'msg>>) : %s.Widget<'msg> =" % (tree, tree, tree),
                           "    %s.Element (%s, props, children)" % (tree, self.gt(full)), ""]
             for p in e.findall(CORE + "property"):
-                if not flag(p, "writable") or flag(p, "construct-only"):
+                if not flag(p, "writable"):
                     continue
+                fixed = flag(p, "construct-only")
                 fn = camel(p.get("name"))
                 try:
                     kind, tname = self.classify(p)
@@ -1728,14 +1729,14 @@ class Gen:
                     case, arg, value = "PropText", "(value: string)", "value"
                 elif kind in ("enum", "flags"):
                     case, arg, value = "PropInt", "(value: %s)" % self.zs(tname), "value.Int"
-                elif kind in ("class", "iface") and widget(tname):
+                elif kind in ("class", "iface") and widget(tname) and not fixed:
                     case, arg, value = "PropWidget", "(value: %s.Widget<'msg>)" % tree, "value"
                 elif kind in ("class", "iface"):
                     case, arg, value = "PropObject", "(value: %s)" % self.zs(tname), "value.Id"
                 else:
                     continue
                 names.add(fn)
-                lines += ["  /// %s" % doc(p, "The `%s` property." % pn),
+                lines += ["  /// %s%s" % (doc(p, "The `%s` property." % pn), " Given when the widget is made, and fixed after: `Keyed` remakes it." if fixed else ""),
                           "  let %s %s : %s.Prop<'msg> = %s.%s (\"%s\", %s)" % (public(fn), arg, tree, tree, case, pn, value), ""]
             for sig in e.findall(GLIB + "signal"):
                 fn = "on" + pascal(sig.get("name"))
@@ -1751,15 +1752,26 @@ class Gen:
                 if not ftype.endswith("unit"):
                     # a signal that asks for something back through its arguments: not an event
                     continue
-                names.add(fn)
                 lines.append("  /// %s" % doc(sig, "The `%s` signal." % sig.get("name")))
-                if not params:
-                    lines.append("  let %s (msg: 'msg) : %s.Prop<'msg> = %s.PropSignal (\"%s\", fun () -> msg)" % (fn, tree, tree, sig.get("name")))
-                else:
-                    ftype = ftype[:ftype.rindex("unit")] + "'msg"
-                    lines.append("  let %s (f: %s) : %s.Prop<'msg> =" % (fn, ftype, tree))
-                    lines.append("    %s.PropSignal (\"%s\", fun () ->" % (tree, sig.get("name")))
-                    lines += ["      " + l for l in body[:-1]] + ["      %s)" % body[-1]]
+                sdoc = doc(sig, "The `%s` signal." % sig.get("name"))
+                rv = sig.find(CORE + "return-value/" + CORE + "type")
+                stops = rv is not None and rv.get("name") == "gboolean" and fn + "Stop" not in names
+                for stop in ([False, True] if stops else [False]):
+                    sname = fn + ("Stop" if stop else "")
+                    names.add(sname)
+                    if stop:
+                        # the signal asks whether it was handled: this one answers yes
+                        lines += ["", "  /// %s Answers that it was handled: GTK does nothing more of its own." % sdoc]
+                    inner = ["msg"] if not params else body
+                    if stop:
+                        inner = inner[:-1] + ["let zmsg = %s" % inner[-1], "Internal.Raw.returnBool true", "zmsg"]
+                    arg = "(msg: 'msg)" if not params else "(f: %s)" % (ftype[:ftype.rindex("unit")] + "'msg")
+                    if len(inner) == 1:
+                        lines.append("  let %s %s : %s.Prop<'msg> = %s.PropSignal (\"%s\", fun () -> %s)" % (sname, arg, tree, tree, sig.get("name"), inner[0]))
+                    else:
+                        lines.append("  let %s %s : %s.Prop<'msg> =" % (sname, arg, tree))
+                        lines.append("    %s.PropSignal (\"%s\", fun () ->" % (tree, sig.get("name")))
+                        lines += ["      " + l for l in inner[:-1]] + ["      %s)" % inner[-1]]
                 lines.append("")
             if lines:
                 count += 1

@@ -89,6 +89,11 @@ Gtk4.Button.onClicked button (fun () -> Gtk4.ListBox.append list row.Widget)
   `Glue.addProperty` and `Glue.addSignal` give it properties and signals that bind and notify
   as GTK's do; `Glue.setTemplate` builds its widgets from a GtkBuilder template.
 - **Deprecated functions and types** are there, their documentation saying so.
+- **Beside gtk-rs,** by C function: [gtk/PARITY.md](gtk/PARITY.md). Of 10,834 exported
+  functions gtk-rs calls 9,128 and 9,801 are safe here.
+- **A widget type of a program's own** says its CSS name, layout manager, role, actions and
+  shortcuts with `WidgetClass`, and takes a property that is fixed at the making
+  (`Ui.Widget.cssName`) or answers a signal (`Ui.Window.onCloseRequestStop`) in the tree.
 - **How much of the libraries is there** is counted in [gtk/COVERAGE.md](gtk/COVERAGE.md),
   which `./generate` writes: every type, signal, property and virtual method, and every
   function but C's functions of variable arguments (`g_object_set`, `g_strdup_printf`), which

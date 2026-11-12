@@ -448,4 +448,32 @@ let tests =
           }
         ))
       expect (during.Value, List.length (List.filter Glue.alive ids.Value)) "((true, 20), 0)")
+    test "a widget type of a program's own says its CSS name, its layout, its role and its actions" (fun () ->
+      Gtk4.init ()
+      let tile = Glue.subclass (Gtk4.Widget.gtype ()) "ZsTile"
+      let poked = ref []
+      WidgetClass.setCssName tile "tile"
+      WidgetClass.setLayoutManager tile (Gtk4.BinLayout.gtype ())
+      WidgetClass.setAccessibleRole tile Gtk4.AccessibleRole.button
+      Glue.addProperty tile "lit" (GObject.typeFromName "gboolean")
+      WidgetClass.installPropertyAction tile "tile.light" "lit"
+      let said =
+        WidgetClass.installAction tile "tile.say" (Some "s") (fun _ word ->
+          poked.Value <- Option.map (fun (v: GLib.Variant) -> fst (GLib.Variant.getString v)) word :: poked.Value)
+      // a parameter type that is none, and a type that is no widget's, are refused
+      let refused =
+        (WidgetClass.installAction tile "tile.bad" (Some "not a type") (fun _ _ -> ()),
+          WidgetClass.installAction (GObject.Object.gtype ()) "x.y" None (fun _ _ -> ()))
+      match Gtk4.Widget.cast (GObject.Object (Glue.create tile)) with
+      | None -> expect "no widget" "a widget"
+      | Some w ->
+        let layout =
+          Option.map (fun (l: Gtk4.LayoutManager) -> Glue.isA l.Id (Gtk4.BinLayout.gtype ())) (Gtk4.Widget.getLayoutManager w)
+        Gtk4.Widget.activateAction w "tile.say" (Some (GLib.Variant.createString "hello"))
+        |> ignore
+        Gtk4.Widget.activateAction w "tile.light" None |> ignore
+        expect (Gtk4.Widget.getCssName w, layout, said, refused) "(tile, Some true, true, (false, false))"
+        expect (poked.Value, Glue.getInt w.Id "lit") "([Some hello], 1)"
+      Glue.drain ()
+      Glue.dropOverrides ())
   ]

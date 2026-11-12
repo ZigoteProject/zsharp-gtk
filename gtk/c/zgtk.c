@@ -513,6 +513,78 @@ void zgtk_bind_template_child(gsize type, const char *name) {
     gtk_widget_class_bind_template_child_full(g_type_class_ref(type), name, FALSE, 0);
 }
 
+// ---- what a widget type made here says of its class: GTK's gtk_widget_class_ functions, by type
+
+static GtkWidgetClass *widget_class(gsize type) {
+    return type && g_type_is_a(type, GTK_TYPE_WIDGET) ? g_type_class_ref(type) : NULL;
+}
+
+void zgtk_class_css_name(gsize type, const char *name) {
+    GtkWidgetClass *k = widget_class(type);
+    if (k) gtk_widget_class_set_css_name(k, name);
+}
+
+void zgtk_class_layout(gsize type, gsize layout) {
+    GtkWidgetClass *k = widget_class(type);
+    if (k && layout && g_type_is_a(layout, GTK_TYPE_LAYOUT_MANAGER) && !G_TYPE_IS_ABSTRACT(layout))
+        gtk_widget_class_set_layout_manager_type(k, layout);
+}
+
+void zgtk_class_role(gsize type, int role) {
+    GtkWidgetClass *k = widget_class(type);
+    GEnumClass *roles = g_type_class_ref(GTK_TYPE_ACCESSIBLE_ROLE);
+    if (k && g_enum_get_value(roles, role)) gtk_widget_class_set_accessible_role(k, role);
+    g_type_class_unref(roles);
+}
+
+void zgtk_class_activate_signal(gsize type, const char *signal) {
+    GtkWidgetClass *k = widget_class(type);
+    if (k && g_signal_lookup(signal, type)) gtk_widget_class_set_activate_signal_from_name(k, signal);
+}
+
+static void class_action(GtkWidget *widget, const char *name, GVariant *parameter) {
+    char *key = g_strconcat("action:", name, NULL);
+    void *f = zgtk_vfunc_find(widget, key);
+    g_free(key);
+    ZCall c;
+    memset(&c, 0, sizeof c);
+    c.n = 2;
+    c.args[0].p = widget;
+    c.args[1].p = parameter;
+    if (f) zgtk_dispatch(f, &c);
+}
+
+// An action every widget of the type has (`win.close`'s kind): `parameter` is its GVariant type,
+// empty for none. 0 for a type that is no widget's or a parameter type that is none.
+int zgtk_class_action(gsize type, const char *name, const char *parameter, void *closure) {
+    GtkWidgetClass *k = widget_class(type);
+    if (parameter && !*parameter) parameter = NULL;
+    if (!k || (parameter && !g_variant_type_string_is_valid(parameter))) {
+        zs_release(closure);
+        return 0;
+    }
+    char *key = g_strconcat("action:", name, NULL);
+    zgtk_vfunc_set(type, key, closure);
+    g_free(key);
+    gtk_widget_class_install_action(k, name, parameter, class_action);
+    return 1;
+}
+
+void zgtk_class_property_action(gsize type, const char *action, const char *property) {
+    GtkWidgetClass *k = widget_class(type);
+    GParamSpec *spec = k ? g_object_class_find_property(G_OBJECT_CLASS(k), property) : NULL;
+    if (!spec || (spec->flags & (G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY)) != (G_PARAM_READABLE | G_PARAM_WRITABLE)) return;
+    GType t = G_PARAM_SPEC_VALUE_TYPE(spec);
+    // the types GTK makes an action's state of
+    if (t == G_TYPE_BOOLEAN || t == G_TYPE_INT || t == G_TYPE_UINT || t == G_TYPE_DOUBLE || t == G_TYPE_FLOAT || t == G_TYPE_STRING || G_TYPE_IS_ENUM(t))
+        gtk_widget_class_install_property_action(k, action, property);
+}
+
+void zgtk_class_shortcut(gsize type, void *shortcut) {
+    GtkWidgetClass *k = widget_class(type);
+    if (k && shortcut) gtk_widget_class_add_shortcut(k, shortcut);
+}
+
 // Says a type made here has an interface, whose methods it then gives.
 void zgtk_implement(gsize type, gsize iface) {
     if (!type || !G_TYPE_IS_INTERFACE(iface) || g_type_is_a(type, iface)) return;
@@ -725,11 +797,65 @@ void zgtk_byte_array_unref(void *a) { if (a) g_byte_array_unref(a); }
 
 // ---- properties, by name
 
+// an object being made (zgtk_make_begin … zgtk_make_end): the setters, given no object, keep
+// their values for it, which is how a property that can only be given at construction is
+static GObjectClass *making;
+static GPtrArray *made_names;
+static GArray *made_values;
+
 static gboolean prop(void *obj, const char *name, GValue *v) {
-    GParamSpec *spec = obj ? g_object_class_find_property(G_OBJECT_GET_CLASS(obj), name) : NULL;
+    GObjectClass *class = obj ? G_OBJECT_GET_CLASS(obj) : making;
+    GParamSpec *spec = class ? g_object_class_find_property(class, name) : NULL;
     if (!spec) return FALSE;
     g_value_init(v, G_PARAM_SPEC_VALUE_TYPE(spec));
     return TRUE;
+}
+
+static void put(void *obj, const char *name, GValue *v) {
+    if (obj) {
+        g_object_set_property(obj, name, v);
+        return;
+    }
+    GValue copy = G_VALUE_INIT;
+    g_value_init(&copy, G_VALUE_TYPE(v));
+    g_value_copy(v, &copy);
+    // the class's own name for it, which lasts
+    g_ptr_array_add(made_names, (gpointer)g_object_class_find_property(making, name)->name);
+    g_array_append_val(made_values, copy);
+}
+
+// Whether a property of a type can only be given when an object is made.
+int zgtk_construct_only(gsize type, const char *name) {
+    if (!type || !G_TYPE_IS_OBJECT(type)) return 0;
+    GObjectClass *class = g_type_class_ref(type);
+    GParamSpec *spec = g_object_class_find_property(class, name);
+    int r = spec && (spec->flags & G_PARAM_CONSTRUCT_ONLY) != 0;
+    g_type_class_unref(class);
+    return r;
+}
+
+void zgtk_make_begin(gsize type) {
+    if (making) g_type_class_unref(making);
+    making = type && G_TYPE_IS_OBJECT(type) ? g_type_class_ref(type) : NULL;
+    if (!made_names) {
+        made_names = g_ptr_array_new();
+        made_values = g_array_new(FALSE, TRUE, sizeof(GValue));
+        g_array_set_clear_func(made_values, (GDestroyNotify)g_value_unset);
+    }
+    g_ptr_array_set_size(made_names, 0);
+    g_array_set_size(made_values, 0);
+}
+
+// The object of zgtk_make_begin's type with the properties the setters were given since.
+void *zgtk_make_end(void) {
+    if (!making) return NULL;
+    void *obj = g_object_new_with_properties(G_OBJECT_CLASS_TYPE(making), made_names->len, (const char **)made_names->pdata,
+                                             (const GValue *)made_values->data);
+    g_ptr_array_set_size(made_names, 0);
+    g_array_set_size(made_values, 0);
+    g_type_class_unref(making);
+    making = NULL;
+    return obj;
 }
 
 int64_t zgtk_get_int(void *obj, const char *name) {
@@ -801,7 +927,7 @@ void zgtk_set_int(void *obj, const char *name, int64_t x) {
     case G_TYPE_FLAGS: g_value_set_flags(&v, (guint)x); break;
     default: g_value_unset(&v); return;
     }
-    g_object_set_property(obj, name, &v);
+    put(obj, name, &v);
     g_value_unset(&v);
 }
 
@@ -814,7 +940,7 @@ void zgtk_set_double(void *obj, const char *name, double x) {
         g_value_unset(&v);
         return;
     }
-    g_object_set_property(obj, name, &v);
+    put(obj, name, &v);
     g_value_unset(&v);
 }
 
@@ -823,7 +949,7 @@ void zgtk_set_string(void *obj, const char *name, const char *s) {
     if (!prop(obj, name, &v)) return;
     if (G_VALUE_HOLDS_STRING(&v)) {
         g_value_set_string(&v, s);
-        g_object_set_property(obj, name, &v);
+        put(obj, name, &v);
     }
     g_value_unset(&v);
 }
@@ -833,7 +959,7 @@ void zgtk_set_object(void *obj, const char *name, void *o) {
     if (!prop(obj, name, &v)) return;
     if (G_VALUE_HOLDS_OBJECT(&v) && (!o || g_type_check_instance_is_a(o, G_VALUE_TYPE(&v)))) {
         g_value_set_object(&v, o);
-        g_object_set_property(obj, name, &v);
+        put(obj, name, &v);
     }
     g_value_unset(&v);
 }

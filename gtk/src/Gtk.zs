@@ -1267,7 +1267,20 @@ and private tabsOf (send: 'msg -> unit) (shown: string) (tabs: list<Tab<'msg>>) 
 // tree's, signals connected once and given each tree's function, children added as GtkBuilder
 // adds them.
 and private element (send: 'msg -> unit) (gtype: usize) (props: list<Prop<'msg>>) (children: list<Widget<'msg>>) : Live<'msg> =
-  let id = Internal.Raw.create gtype
+  // what can only be given when the widget is made is given then, and stays as it was given
+  let atMaking (at: cptr) (p: Prop<'msg>) : unit =
+    match p with
+    | PropBool (name, v) when Internal.Raw.constructOnly gtype name ->
+      Internal.Raw.setInt at name (if v then 1 else 0)
+    | PropInt (name, v) when Internal.Raw.constructOnly gtype name -> Internal.Raw.setInt at name v
+    | PropFloat (name, v) when Internal.Raw.constructOnly gtype name ->
+      Internal.Raw.setFloat at name v
+    | PropText (name, v) when Internal.Raw.constructOnly gtype name ->
+      Internal.Raw.setText at name v
+    | PropObject (name, object) when Internal.Raw.constructOnly gtype name ->
+      Internal.Raw.setObject at name (Internal.Raw.obj object (usize 0))
+    | _ -> ()
+  let id = Internal.Raw.createWith gtype (fun at -> List.iter (atMaking at) props)
   let w =
     match Gtk4.Widget.cast (GObject.Object id) with
     | Some w -> w
@@ -1278,7 +1291,7 @@ and private element (send: 'msg -> unit) (gtype: usize) (props: list<Prop<'msg>>
   let inside: ref<list<string * Live<'msg>>> = ref []
   let setValue (name: string) (text: string) (set: unit -> unit) : unit =
     if not (List.exists (fun (n, t) -> n = name && t = text) shown.Value) then
-      set ()
+      if not (Internal.Raw.constructOnly gtype name) then set ()
       shown.Value <- (name, text) :: List.filter (fun (n, _) -> n <> name) shown.Value
   let setProp (p: Prop<'msg>) : unit =
     match p with

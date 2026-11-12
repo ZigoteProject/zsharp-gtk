@@ -67,6 +67,14 @@ module AboutDialog =
       let uri = Internal.Raw.text (Internal.Raw.argPointer 1)
       f uri)
 
+  /// Emitted every time a URL is activated. Answers that it was handled: GTK does nothing more of its own.
+  let onActivateLinkStop (f: string -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("activate-link", fun () ->
+      let uri = Internal.Raw.text (Internal.Raw.argPointer 1)
+      let zmsg = f uri
+      Internal.Raw.returnBool true
+      zmsg)
+
 module ActionBar =
   /// Presents contextual actions.
   let make (props: list<Gtk.Prop<'msg>>) (children: list<Gtk.Widget<'msg>>) : Gtk.Widget<'msg> =
@@ -108,6 +116,9 @@ module AppChooserDialog =
   /// Deprecated. Note that `GtkAppChooserDialog` does not have any interesting methods of its own.
   let make (props: list<Gtk.Prop<'msg>>) (children: list<Gtk.Widget<'msg>>) : Gtk.Widget<'msg> =
     Gtk.Element ((Internal.Gtk4C.gtk_app_chooser_dialog_get_type ()), props, children)
+
+  /// The GFile used by the `GtkAppChooserDialog`. Given when the widget is made, and fixed after: `Keyed` remakes it.
+  let gfile (value: Gio.File) : Gtk.Prop<'msg> = Gtk.PropObject ("gfile", value.Id)
 
   /// The text to show at the top of the dialog.
   let heading (value: string) : Gtk.Prop<'msg> = Gtk.PropText ("heading", value)
@@ -179,6 +190,9 @@ module Assistant =
   /// Deprecated. Each step consists of one or more pages.
   let make (props: list<Gtk.Prop<'msg>>) (children: list<Gtk.Widget<'msg>>) : Gtk.Widget<'msg> =
     Gtk.Element ((Internal.Gtk4C.gtk_assistant_get_type ()), props, children)
+
+  /// Deprecated. %TRUE if the assistant uses a `GtkHeaderBar` for action buttons instead of the action-area. Given when the widget is made, and fixed after: `Keyed` remakes it.
+  let useHeaderBar (value: int) : Gtk.Prop<'msg> = Gtk.PropInt ("use-header-bar", value)
 
   /// Deprecated. Emitted when the apply button is clicked.
   let onApply (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("apply", fun () -> msg)
@@ -286,6 +300,12 @@ module CellView =
   /// Deprecated. A widget displaying a single row of a GtkTreeModel
   let make (props: list<Gtk.Prop<'msg>>) (children: list<Gtk.Widget<'msg>>) : Gtk.Widget<'msg> =
     Gtk.Element ((Internal.Gtk4C.gtk_cell_view_get_type ()), props, children)
+
+  /// The `GtkCellArea` rendering cells Given when the widget is made, and fixed after: `Keyed` remakes it.
+  let cellArea (value: Gtk4.CellArea) : Gtk.Prop<'msg> = Gtk.PropObject ("cell-area", value.Id)
+
+  /// The `GtkCellAreaContext` used to compute the geometry of the cell view. Given when the widget is made, and fixed after: `Keyed` remakes it.
+  let cellAreaContext (value: Gtk4.CellAreaContext) : Gtk.Prop<'msg> = Gtk.PropObject ("cell-area-context", value.Id)
 
   /// Whether all cells should be draw as sensitive for this view regardless of the actual cell properties (used to make menus with submenus appear sensitive when the items in submenus might be insensitive).
   let drawSensitive (value: bool) : Gtk.Prop<'msg> = Gtk.PropBool ("draw-sensitive", value)
@@ -450,6 +470,9 @@ module ComboBox =
   /// The model column to associate with strings from the entry.
   let entryTextColumn (value: int) : Gtk.Prop<'msg> = Gtk.PropInt ("entry-text-column", value)
 
+  /// Whether the combo box has an entry. Given when the widget is made, and fixed after: `Keyed` remakes it.
+  let hasEntry (value: bool) : Gtk.Prop<'msg> = Gtk.PropBool ("has-entry", value)
+
   /// The `has-frame` property controls whether a frame is drawn around the entry.
   let hasFrame (value: bool) : Gtk.Prop<'msg> = Gtk.PropBool ("has-frame", value)
 
@@ -483,6 +506,13 @@ module ComboBox =
   /// Emitted to popdown the combo box list.
   let onPopdown (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("popdown", fun () -> msg)
 
+  /// Emitted to popdown the combo box list. Answers that it was handled: GTK does nothing more of its own.
+  let onPopdownStop (msg: 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("popdown", fun () ->
+      let zmsg = msg
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Emitted to popup the combo box list.
   let onPopup (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("popup", fun () -> msg)
 
@@ -495,6 +525,9 @@ module Dialog =
   /// Deprecated. Dialogs are a convenient way to prompt the user for a small amount of input.
   let make (props: list<Gtk.Prop<'msg>>) (children: list<Gtk.Widget<'msg>>) : Gtk.Widget<'msg> =
     Gtk.Element ((Internal.Gtk4C.gtk_dialog_get_type ()), props, children)
+
+  /// Deprecated. %TRUE if the dialog uses a headerbar for action buttons instead of the action-area. Given when the widget is made, and fixed after: `Keyed` remakes it.
+  let useHeaderBar (value: int) : Gtk.Prop<'msg> = Gtk.PropInt ("use-header-bar", value)
 
   /// Deprecated. Emitted when the user uses a keybinding to close the dialog.
   let onClose (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("close", fun () -> msg)
@@ -843,6 +876,17 @@ module FlowBox =
       let modify = (Internal.Raw.argInt 4 <> 0)
       f step count extend modify)
 
+  /// Emitted when the user initiates a cursor movement. Answers that it was handled: GTK does nothing more of its own.
+  let onMoveCursorStop (f: Gtk4.MovementStep -> int -> bool -> bool -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("move-cursor", fun () ->
+      let step = Gtk4.MovementStep (int (Internal.Raw.argInt 1))
+      let count = Internal.Raw.argInt 2
+      let extend = (Internal.Raw.argInt 3 <> 0)
+      let modify = (Internal.Raw.argInt 4 <> 0)
+      let zmsg = f step count extend modify
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Emitted to select all children of the box, if the selection mode permits it.
   let onSelectAll (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("select-all", fun () -> msg)
 
@@ -968,6 +1012,14 @@ module GLArea =
       let context = Gdk.GLContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
       f context)
 
+  /// Emitted every time the contents of the `GtkGLArea` should be redrawn. Answers that it was handled: GTK does nothing more of its own.
+  let onRenderStop (f: Gdk.GLContext -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("render", fun () ->
+      let context = Gdk.GLContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
+      let zmsg = f context
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Emitted once when the widget is realized, and then each time the widget is changed while realized.
   let onResize (f: int -> int -> 'msg) : Gtk.Prop<'msg> =
     Gtk.PropSignal ("resize", fun () ->
@@ -1066,6 +1118,9 @@ module IconView =
   /// The activate-on-single-click property specifies whether the "item-activated" signal will be emitted after a single click.
   let activateOnSingleClick (value: bool) : Gtk.Prop<'msg> = Gtk.PropBool ("activate-on-single-click", value)
 
+  /// The `GtkCellArea` used to layout cell renderers for this view. Given when the widget is made, and fixed after: `Keyed` remakes it.
+  let cellArea (value: Gtk4.CellArea) : Gtk.Prop<'msg> = Gtk.PropObject ("cell-area", value.Id)
+
   /// The column-spacing property specifies the space which is inserted between the columns of the icon view.
   let columnSpacing (value: int) : Gtk.Prop<'msg> = Gtk.PropInt ("column-spacing", value)
 
@@ -1114,6 +1169,13 @@ module IconView =
   /// A [keybinding signal][class@Gtk.SignalAction] which gets emitted when the user activates the currently focused item.
   let onActivateCursorItem (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("activate-cursor-item", fun () -> msg)
 
+  /// A [keybinding signal][class@Gtk.SignalAction] which gets emitted when the user activates the currently focused item. Answers that it was handled: GTK does nothing more of its own.
+  let onActivateCursorItemStop (msg: 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("activate-cursor-item", fun () ->
+      let zmsg = msg
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// The ::item-activated signal is emitted when the method gtk_icon_view_item_activated() is called, when the user double clicks an item with the "activate-on-single-click" property set to %FALSE, or when the user single clicks an item when the
   let onItemActivated (f: Gtk4.TreePath -> 'msg) : Gtk.Prop<'msg> =
     Gtk.PropSignal ("item-activated", fun () ->
@@ -1128,6 +1190,17 @@ module IconView =
       let extend = (Internal.Raw.argInt 3 <> 0)
       let modify = (Internal.Raw.argInt 4 <> 0)
       f step count extend modify)
+
+  /// The ::move-cursor signal is a [keybinding signal][class@Gtk.SignalAction] which gets emitted when the user initiates a cursor movement. Answers that it was handled: GTK does nothing more of its own.
+  let onMoveCursorStop (f: Gtk4.MovementStep -> int -> bool -> bool -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("move-cursor", fun () ->
+      let step = Gtk4.MovementStep (int (Internal.Raw.argInt 1))
+      let count = Internal.Raw.argInt 2
+      let extend = (Internal.Raw.argInt 3 <> 0)
+      let modify = (Internal.Raw.argInt 4 <> 0)
+      let zmsg = f step count extend modify
+      Internal.Raw.returnBool true
+      zmsg)
 
   /// A [keybinding signal][class@Gtk.SignalAction] which gets emitted when the user selects all items.
   let onSelectAll (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("select-all", fun () -> msg)
@@ -1296,6 +1369,14 @@ module Label =
       let uri = Internal.Raw.text (Internal.Raw.argPointer 1)
       f uri)
 
+  /// Gets emitted to activate a URI. Answers that it was handled: GTK does nothing more of its own.
+  let onActivateLinkStop (f: string -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("activate-link", fun () ->
+      let uri = Internal.Raw.text (Internal.Raw.argPointer 1)
+      let zmsg = f uri
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Gets emitted to copy the selection to the clipboard.
   let onCopyClipboard (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("copy-clipboard", fun () -> msg)
 
@@ -1346,6 +1427,13 @@ module LinkButton =
 
   /// Emitted each time the `GtkLinkButton` is clicked.
   let onActivateLink (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("activate-link", fun () -> msg)
+
+  /// Emitted each time the `GtkLinkButton` is clicked. Answers that it was handled: GTK does nothing more of its own.
+  let onActivateLinkStop (msg: 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("activate-link", fun () ->
+      let zmsg = msg
+      Internal.Raw.returnBool true
+      zmsg)
 
 module ListBase =
   /// The orientation of the list.
@@ -1537,6 +1625,9 @@ module MessageDialog =
   let make (props: list<Gtk.Prop<'msg>>) (children: list<Gtk.Widget<'msg>>) : Gtk.Widget<'msg> =
     Gtk.Element ((Internal.Gtk4C.gtk_message_dialog_get_type ()), props, children)
 
+  /// Set of buttons to display on the dialog. Given when the widget is made, and fixed after: `Keyed` remakes it.
+  let buttons (value: Gtk4.ButtonsType) : Gtk.Prop<'msg> = Gtk.PropInt ("buttons", value.Int)
+
   /// The type of the message.
   let messageType (value: Gtk4.MessageType) : Gtk.Prop<'msg> = Gtk.PropInt ("message-type", value.Int)
 
@@ -1584,6 +1675,14 @@ module Notebook =
       let page = Internal.Raw.argInt 1
       f page)
 
+  /// Emitted when the current page should be changed. Answers that it was handled: GTK does nothing more of its own.
+  let onChangeCurrentPageStop (f: int -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("change-current-page", fun () ->
+      let page = Internal.Raw.argInt 1
+      let zmsg = f page
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// The ::create-window signal is emitted when a detachable tab is dropped on the root window.
   let onCreateWindow (f: Gtk4.Widget -> 'msg) : Gtk.Prop<'msg> =
     Gtk.PropSignal ("create-window", fun () ->
@@ -1595,6 +1694,14 @@ module Notebook =
     Gtk.PropSignal ("focus-tab", fun () ->
       let tab = Gtk4.NotebookTab (int (Internal.Raw.argInt 1))
       f tab)
+
+  /// Emitted when a tab should be focused. Answers that it was handled: GTK does nothing more of its own.
+  let onFocusTabStop (f: Gtk4.NotebookTab -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("focus-tab", fun () ->
+      let tab = Gtk4.NotebookTab (int (Internal.Raw.argInt 1))
+      let zmsg = f tab
+      Internal.Raw.returnBool true
+      zmsg)
 
   /// Emitted when focus was moved out.
   let onMoveFocusOut (f: Gtk4.DirectionType -> 'msg) : Gtk.Prop<'msg> =
@@ -1630,11 +1737,28 @@ module Notebook =
       let moveToLast = (Internal.Raw.argInt 2 <> 0)
       f direction moveToLast)
 
+  /// Emitted when the tab should be reordered. Answers that it was handled: GTK does nothing more of its own.
+  let onReorderTabStop (f: Gtk4.DirectionType -> bool -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("reorder-tab", fun () ->
+      let direction = Gtk4.DirectionType (int (Internal.Raw.argInt 1))
+      let moveToLast = (Internal.Raw.argInt 2 <> 0)
+      let zmsg = f direction moveToLast
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Emitted when a page should be selected.
   let onSelectPage (f: bool -> 'msg) : Gtk.Prop<'msg> =
     Gtk.PropSignal ("select-page", fun () ->
       let moveFocus = (Internal.Raw.argInt 1 <> 0)
       f moveFocus)
+
+  /// Emitted when a page should be selected. Answers that it was handled: GTK does nothing more of its own.
+  let onSelectPageStop (f: bool -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("select-page", fun () ->
+      let moveFocus = (Internal.Raw.argInt 1 <> 0)
+      let zmsg = f moveFocus
+      Internal.Raw.returnBool true
+      zmsg)
 
   /// Emitted when the user or a function changes the current page.
   let onSwitchPage (f: Gtk4.Widget -> int -> 'msg) : Gtk.Prop<'msg> =
@@ -1691,8 +1815,22 @@ module Paned =
   /// Emitted to accept the current position of the handle when moving it using key bindings.
   let onAcceptPosition (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("accept-position", fun () -> msg)
 
+  /// Emitted to accept the current position of the handle when moving it using key bindings. Answers that it was handled: GTK does nothing more of its own.
+  let onAcceptPositionStop (msg: 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("accept-position", fun () ->
+      let zmsg = msg
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Emitted to cancel moving the position of the handle using key bindings.
   let onCancelPosition (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("cancel-position", fun () -> msg)
+
+  /// Emitted to cancel moving the position of the handle using key bindings. Answers that it was handled: GTK does nothing more of its own.
+  let onCancelPositionStop (msg: 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("cancel-position", fun () ->
+      let zmsg = msg
+      Internal.Raw.returnBool true
+      zmsg)
 
   /// Emitted to cycle the focus between the children of the paned.
   let onCycleChildFocus (f: bool -> 'msg) : Gtk.Prop<'msg> =
@@ -1700,11 +1838,27 @@ module Paned =
       let reversed = (Internal.Raw.argInt 1 <> 0)
       f reversed)
 
+  /// Emitted to cycle the focus between the children of the paned. Answers that it was handled: GTK does nothing more of its own.
+  let onCycleChildFocusStop (f: bool -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("cycle-child-focus", fun () ->
+      let reversed = (Internal.Raw.argInt 1 <> 0)
+      let zmsg = f reversed
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Emitted to cycle whether the paned should grab focus to allow the user to change position of the handle by using key bindings.
   let onCycleHandleFocus (f: bool -> 'msg) : Gtk.Prop<'msg> =
     Gtk.PropSignal ("cycle-handle-focus", fun () ->
       let reversed = (Internal.Raw.argInt 1 <> 0)
       f reversed)
+
+  /// Emitted to cycle whether the paned should grab focus to allow the user to change position of the handle by using key bindings. Answers that it was handled: GTK does nothing more of its own.
+  let onCycleHandleFocusStop (f: bool -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("cycle-handle-focus", fun () ->
+      let reversed = (Internal.Raw.argInt 1 <> 0)
+      let zmsg = f reversed
+      Internal.Raw.returnBool true
+      zmsg)
 
   /// Emitted to move the handle with key bindings.
   let onMoveHandle (f: Gtk4.ScrollType -> 'msg) : Gtk.Prop<'msg> =
@@ -1712,8 +1866,23 @@ module Paned =
       let scrollType = Gtk4.ScrollType (int (Internal.Raw.argInt 1))
       f scrollType)
 
+  /// Emitted to move the handle with key bindings. Answers that it was handled: GTK does nothing more of its own.
+  let onMoveHandleStop (f: Gtk4.ScrollType -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("move-handle", fun () ->
+      let scrollType = Gtk4.ScrollType (int (Internal.Raw.argInt 1))
+      let zmsg = f scrollType
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Emitted to accept the current position of the handle and then move focus to the next widget in the focus chain.
   let onToggleHandleFocus (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("toggle-handle-focus", fun () -> msg)
+
+  /// Emitted to accept the current position of the handle and then move focus to the next widget in the focus chain. Answers that it was handled: GTK does nothing more of its own.
+  let onToggleHandleFocusStop (msg: 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("toggle-handle-focus", fun () ->
+      let zmsg = msg
+      Internal.Raw.returnBool true
+      zmsg)
 
 module PasswordEntry =
   /// A single-line text entry widget for entering passwords and other secrets.
@@ -1917,6 +2086,15 @@ module Range =
       let value = Internal.Raw.argFloat 2
       f scroll value)
 
+  /// Emitted when a scroll action is performed on a range. Answers that it was handled: GTK does nothing more of its own.
+  let onChangeValueStop (f: Gtk4.ScrollType -> float -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("change-value", fun () ->
+      let scroll = Gtk4.ScrollType (int (Internal.Raw.argInt 1))
+      let value = Internal.Raw.argFloat 2
+      let zmsg = f scroll value
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Virtual function that moves the slider.
   let onMoveSlider (f: Gtk4.ScrollType -> 'msg) : Gtk.Prop<'msg> =
     Gtk.PropSignal ("move-slider", fun () ->
@@ -2069,6 +2247,15 @@ module ScrolledWindow =
       let horizontal = (Internal.Raw.argInt 2 <> 0)
       f scroll horizontal)
 
+  /// Emitted when a keybinding that scrolls is pressed. Answers that it was handled: GTK does nothing more of its own.
+  let onScrollChildStop (f: Gtk4.ScrollType -> bool -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("scroll-child", fun () ->
+      let scroll = Gtk4.ScrollType (int (Internal.Raw.argInt 1))
+      let horizontal = (Internal.Raw.argInt 2 <> 0)
+      let zmsg = f scroll horizontal
+      Internal.Raw.returnBool true
+      zmsg)
+
 module SearchBar =
   /// Reveals a search entry when search is started.
   let make (props: list<Gtk.Prop<'msg>>) (children: list<Gtk.Widget<'msg>>) : Gtk.Widget<'msg> =
@@ -2183,6 +2370,14 @@ module ShortcutsSection =
       let offset = Internal.Raw.argInt 1
       f offset)
 
+  /// Deprecated. Emitted when we change the current page. Answers that it was handled: GTK does nothing more of its own.
+  let onChangeCurrentPageStop (f: int -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("change-current-page", fun () ->
+      let offset = Internal.Raw.argInt 1
+      let zmsg = f offset
+      Internal.Raw.returnBool true
+      zmsg)
+
 module ShortcutsShortcut =
   /// Deprecated. A `GtkShortcutsShortcut` represents a single keyboard shortcut or gesture with a short text.
   let make (props: list<Gtk.Prop<'msg>>) (children: list<Gtk.Widget<'msg>>) : Gtk.Widget<'msg> =
@@ -2282,6 +2477,13 @@ module SpinButton =
   /// Emitted to tweak the formatting of the value for display.
   let onOutput (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("output", fun () -> msg)
 
+  /// Emitted to tweak the formatting of the value for display. Answers that it was handled: GTK does nothing more of its own.
+  let onOutputStop (msg: 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("output", fun () ->
+      let zmsg = msg
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Emitted when the value is changed.
   let onValueChanged (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("value-changed", fun () -> msg)
 
@@ -2376,6 +2578,14 @@ module Switch =
     Gtk.PropSignal ("state-set", fun () ->
       let state = (Internal.Raw.argInt 1 <> 0)
       f state)
+
+  /// Emitted to change the underlying state. Answers that it was handled: GTK does nothing more of its own.
+  let onStateSetStop (f: bool -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("state-set", fun () ->
+      let state = (Internal.Raw.argInt 1 <> 0)
+      let zmsg = f state
+      Internal.Raw.returnBool true
+      zmsg)
 
 module Text =
   /// A single-line text entry.
@@ -2565,6 +2775,17 @@ module TextView =
       let end = Gtk4.TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 4) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
       f granularity location start end)
 
+  /// Emitted when the selection needs to be extended at @location. Answers that it was handled: GTK does nothing more of its own.
+  let onExtendSelectionStop (f: Gtk4.TextExtendSelection -> Gtk4.TextIter -> Gtk4.TextIter -> Gtk4.TextIter -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("extend-selection", fun () ->
+      let granularity = Gtk4.TextExtendSelection (int (Internal.Raw.argInt 1))
+      let location = Gtk4.TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
+      let start = Gtk4.TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
+      let end = Gtk4.TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 4) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
+      let zmsg = f granularity location start end
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Gets emitted when the user initiates the insertion of a fixed string at the cursor.
   let onInsertAtCursor (f: string -> 'msg) : Gtk.Prop<'msg> =
     Gtk.PropSignal ("insert-at-cursor", fun () ->
@@ -2717,6 +2938,16 @@ module TreeView =
       let p1 = (Internal.Raw.argInt 3 <> 0)
       f object p0 p1)
 
+  /// The `expand-collapse-cursor-row` signal. Answers that it was handled: GTK does nothing more of its own.
+  let onExpandCollapseCursorRowStop (f: bool -> bool -> bool -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("expand-collapse-cursor-row", fun () ->
+      let object = (Internal.Raw.argInt 1 <> 0)
+      let p0 = (Internal.Raw.argInt 2 <> 0)
+      let p1 = (Internal.Raw.argInt 3 <> 0)
+      let zmsg = f object p0 p1
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// The `GtkTreeView`::move-cursor signal is a [keybinding signal][class@Gtk.SignalAction] which gets emitted when the user presses one of the cursor keys.
   let onMoveCursor (f: Gtk4.MovementStep -> int -> bool -> bool -> 'msg) : Gtk.Prop<'msg> =
     Gtk.PropSignal ("move-cursor", fun () ->
@@ -2725,6 +2956,17 @@ module TreeView =
       let extend = (Internal.Raw.argInt 3 <> 0)
       let modify = (Internal.Raw.argInt 4 <> 0)
       f step direction extend modify)
+
+  /// The `GtkTreeView`::move-cursor signal is a [keybinding signal][class@Gtk.SignalAction] which gets emitted when the user presses one of the cursor keys. Answers that it was handled: GTK does nothing more of its own.
+  let onMoveCursorStop (f: Gtk4.MovementStep -> int -> bool -> bool -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("move-cursor", fun () ->
+      let step = Gtk4.MovementStep (int (Internal.Raw.argInt 1))
+      let direction = Internal.Raw.argInt 2
+      let extend = (Internal.Raw.argInt 3 <> 0)
+      let modify = (Internal.Raw.argInt 4 <> 0)
+      let zmsg = f step direction extend modify
+      Internal.Raw.returnBool true
+      zmsg)
 
   /// The "row-activated" signal is emitted when the method [method@Gtk.TreeView.row_activated] is called.
   let onRowActivated (f: Gtk4.TreePath -> option<Gtk4.TreeViewColumn> -> 'msg) : Gtk.Prop<'msg> =
@@ -2751,8 +2993,22 @@ module TreeView =
   /// The `select-all` signal.
   let onSelectAll (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("select-all", fun () -> msg)
 
+  /// The `select-all` signal. Answers that it was handled: GTK does nothing more of its own.
+  let onSelectAllStop (msg: 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("select-all", fun () ->
+      let zmsg = msg
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// The `select-cursor-parent` signal.
   let onSelectCursorParent (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("select-cursor-parent", fun () -> msg)
+
+  /// The `select-cursor-parent` signal. Answers that it was handled: GTK does nothing more of its own.
+  let onSelectCursorParentStop (msg: 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("select-cursor-parent", fun () ->
+      let zmsg = msg
+      Internal.Raw.returnBool true
+      zmsg)
 
   /// The `select-cursor-row` signal.
   let onSelectCursorRow (f: bool -> 'msg) : Gtk.Prop<'msg> =
@@ -2760,8 +3016,23 @@ module TreeView =
       let object = (Internal.Raw.argInt 1 <> 0)
       f object)
 
+  /// The `select-cursor-row` signal. Answers that it was handled: GTK does nothing more of its own.
+  let onSelectCursorRowStop (f: bool -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("select-cursor-row", fun () ->
+      let object = (Internal.Raw.argInt 1 <> 0)
+      let zmsg = f object
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// The `start-interactive-search` signal.
   let onStartInteractiveSearch (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("start-interactive-search", fun () -> msg)
+
+  /// The `start-interactive-search` signal. Answers that it was handled: GTK does nothing more of its own.
+  let onStartInteractiveSearchStop (msg: 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("start-interactive-search", fun () ->
+      let zmsg = msg
+      Internal.Raw.returnBool true
+      zmsg)
 
   /// The given row is about to be collapsed (hide its children nodes).
   let onTestCollapseRow (f: Gtk4.TreeIter -> Gtk4.TreePath -> 'msg) : Gtk.Prop<'msg> =
@@ -2770,6 +3041,15 @@ module TreeView =
       let path = Gtk4.TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
       f iter path)
 
+  /// The given row is about to be collapsed (hide its children nodes). Answers that it was handled: GTK does nothing more of its own.
+  let onTestCollapseRowStop (f: Gtk4.TreeIter -> Gtk4.TreePath -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("test-collapse-row", fun () ->
+      let iter = Gtk4.TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
+      let path = Gtk4.TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
+      let zmsg = f iter path
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// The given row is about to be expanded (show its children nodes).
   let onTestExpandRow (f: Gtk4.TreeIter -> Gtk4.TreePath -> 'msg) : Gtk.Prop<'msg> =
     Gtk.PropSignal ("test-expand-row", fun () ->
@@ -2777,11 +3057,34 @@ module TreeView =
       let path = Gtk4.TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
       f iter path)
 
+  /// The given row is about to be expanded (show its children nodes). Answers that it was handled: GTK does nothing more of its own.
+  let onTestExpandRowStop (f: Gtk4.TreeIter -> Gtk4.TreePath -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("test-expand-row", fun () ->
+      let iter = Gtk4.TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
+      let path = Gtk4.TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
+      let zmsg = f iter path
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// The `toggle-cursor-row` signal.
   let onToggleCursorRow (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("toggle-cursor-row", fun () -> msg)
 
+  /// The `toggle-cursor-row` signal. Answers that it was handled: GTK does nothing more of its own.
+  let onToggleCursorRowStop (msg: 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("toggle-cursor-row", fun () ->
+      let zmsg = msg
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// The `unselect-all` signal.
   let onUnselectAll (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("unselect-all", fun () -> msg)
+
+  /// The `unselect-all` signal. Answers that it was handled: GTK does nothing more of its own.
+  let onUnselectAllStop (msg: 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("unselect-all", fun () ->
+      let zmsg = msg
+      Internal.Raw.returnBool true
+      zmsg)
 
 module Video =
   /// Shows a `GtkMediaStream` with media controls.
@@ -2828,6 +3131,9 @@ module Widget =
 
   /// Whether the widget can receive pointer events.
   let canTarget (value: bool) : Gtk.Prop<'msg> = Gtk.PropBool ("can-target", value)
+
+  /// The name of this widget in the CSS tree. Given when the widget is made, and fixed after: `Keyed` remakes it.
+  let cssName (value: string) : Gtk.Prop<'msg> = Gtk.PropText ("css-name", value)
 
   /// The cursor used by @widget.
   let cursor (value: Gdk.Cursor) : Gtk.Prop<'msg> = Gtk.PropObject ("cursor", value.Id)
@@ -2925,6 +3231,14 @@ module Widget =
       let direction = Gtk4.DirectionType (int (Internal.Raw.argInt 1))
       f direction)
 
+  /// Emitted if keyboard navigation fails. Answers that it was handled: GTK does nothing more of its own.
+  let onKeynavFailedStop (f: Gtk4.DirectionType -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("keynav-failed", fun () ->
+      let direction = Gtk4.DirectionType (int (Internal.Raw.argInt 1))
+      let zmsg = f direction
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Emitted when @widget is going to be mapped.
   let onMap (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("map", fun () -> msg)
 
@@ -2933,6 +3247,14 @@ module Widget =
     Gtk.PropSignal ("mnemonic-activate", fun () ->
       let groupCycling = (Internal.Raw.argInt 1 <> 0)
       f groupCycling)
+
+  /// Emitted when a widget is activated via a mnemonic. Answers that it was handled: GTK does nothing more of its own.
+  let onMnemonicActivateStop (f: bool -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("mnemonic-activate", fun () ->
+      let groupCycling = (Internal.Raw.argInt 1 <> 0)
+      let zmsg = f groupCycling
+      Internal.Raw.returnBool true
+      zmsg)
 
   /// Emitted when the focus is moved.
   let onMoveFocus (f: Gtk4.DirectionType -> 'msg) : Gtk.Prop<'msg> =
@@ -2948,6 +3270,17 @@ module Widget =
       let keyboardMode = (Internal.Raw.argInt 3 <> 0)
       let tooltip = Gtk4.Tooltip (Internal.Raw.wrap (Internal.Raw.argPointer 4) false)
       f x y keyboardMode tooltip)
+
+  /// Emitted when the widget’s tooltip is about to be shown. Answers that it was handled: GTK does nothing more of its own.
+  let onQueryTooltipStop (f: int -> int -> bool -> Gtk4.Tooltip -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("query-tooltip", fun () ->
+      let x = Internal.Raw.argInt 1
+      let y = Internal.Raw.argInt 2
+      let keyboardMode = (Internal.Raw.argInt 3 <> 0)
+      let tooltip = Gtk4.Tooltip (Internal.Raw.wrap (Internal.Raw.argPointer 4) false)
+      let zmsg = f x y keyboardMode tooltip
+      Internal.Raw.returnBool true
+      zmsg)
 
   /// Emitted when @widget is associated with a `GdkSurface`.
   let onRealize (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("realize", fun () -> msg)
@@ -3053,11 +3386,26 @@ module Window =
   /// Emitted when the user clicks on the close button of the window.
   let onCloseRequest (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("close-request", fun () -> msg)
 
+  /// Emitted when the user clicks on the close button of the window. Answers that it was handled: GTK does nothing more of its own.
+  let onCloseRequestStop (msg: 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("close-request", fun () ->
+      let zmsg = msg
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Emitted when the user enables or disables interactive debugging.
   let onEnableDebugging (f: bool -> 'msg) : Gtk.Prop<'msg> =
     Gtk.PropSignal ("enable-debugging", fun () ->
       let toggle = (Internal.Raw.argInt 1 <> 0)
       f toggle)
+
+  /// Emitted when the user enables or disables interactive debugging. Answers that it was handled: GTK does nothing more of its own.
+  let onEnableDebuggingStop (f: bool -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("enable-debugging", fun () ->
+      let toggle = (Internal.Raw.argInt 1 <> 0)
+      let zmsg = f toggle
+      Internal.Raw.returnBool true
+      zmsg)
 
   /// Deprecated. Emitted when the set of accelerators or mnemonics that are associated with the window changes.
   let onKeysChanged (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("keys-changed", fun () -> msg)

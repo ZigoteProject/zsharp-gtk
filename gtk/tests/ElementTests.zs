@@ -52,4 +52,32 @@ let tests =
       on.Set true
       expect (Test.labels p) "[state true]"
       Test.close p)
+    test "a property for the making only is given then and stays, and a signal can be answered" (fun () ->
+      let on = signal false
+      let states = signal 0
+      let rec names (w: Gtk4.Widget) : list<string> =
+        let rec siblings (c: option<Gtk4.Widget>) : list<string> =
+          match c with
+          | Some c -> List.append (names c) (siblings (Gtk4.Widget.getNextSibling c))
+          | None -> []
+        Gtk4.Widget.getCssName w :: siblings (Gtk4.Widget.getFirstChild w)
+      let mine () =
+        List.collect names (Gtk4.Window.listToplevels ())
+        |> List.filter (fun n -> n = "mine" || n = "other")
+      let p =
+        Test.startSignals (fun () ->
+          let counted = PropSignal ("notify::state", fun () () -> states.Update(fun n -> n + 1))
+          // the first answers that it handled the change, so GTK leaves its state as it was
+          let held =
+            Ui.Switch.make [ Ui.Switch.onStateSetStop (fun _ () -> ())
+              counted
+              Ui.Switch.active on.Value ] []
+          let free = Ui.Switch.make [ counted; Ui.Switch.active on.Value ] []
+          let box =
+            Ui.Box.make [ Ui.Widget.cssName (if on.Value then "other" else "mine") ] [ held; free ]
+          window "making" box)
+      let before = mine ()
+      on.Set true
+      expect (before, mine (), states.Value) "([mine], [mine], 1)"
+      Test.close p)
   ]

@@ -23,6 +23,9 @@ module AboutDialog =
   let make (props: list<Gtk.Prop<'msg>>) (children: list<Gtk.Widget<'msg>>) : Gtk.Widget<'msg> =
     Gtk.Element ((Internal.AdwC.adw_about_dialog_get_type ()), props, children)
 
+  /// The path to the Appstream metadata resource. Given when the widget is made, and fixed after: `Keyed` remakes it.
+  let appdataResourcePath (value: string) : Gtk.Prop<'msg> = Gtk.PropText ("appdata-resource-path", value)
+
   /// The name of the application icon.
   let applicationIcon (value: string) : Gtk.Prop<'msg> = Gtk.PropText ("application-icon", value)
 
@@ -76,6 +79,14 @@ module AboutDialog =
     Gtk.PropSignal ("activate-link", fun () ->
       let uri = Internal.Raw.text (Internal.Raw.argPointer 1)
       f uri)
+
+  /// Emitted when a URL is activated. Answers that it was handled: GTK does nothing more of its own.
+  let onActivateLinkStop (f: string -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("activate-link", fun () ->
+      let uri = Internal.Raw.text (Internal.Raw.argPointer 1)
+      let zmsg = f uri
+      Internal.Raw.returnBool true
+      zmsg)
 
 module AboutWindow =
   /// Deprecated. A window showing information about the application.
@@ -135,6 +146,14 @@ module AboutWindow =
     Gtk.PropSignal ("activate-link", fun () ->
       let uri = Internal.Raw.text (Internal.Raw.argPointer 1)
       f uri)
+
+  /// Deprecated. Emitted when a URL is activated. Answers that it was handled: GTK does nothing more of its own.
+  let onActivateLinkStop (f: string -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("activate-link", fun () ->
+      let uri = Internal.Raw.text (Internal.Raw.argPointer 1)
+      let zmsg = f uri
+      Internal.Raw.returnBool true
+      zmsg)
 
 module ActionRow =
   /// A [class@Gtk.ListBoxRow] used to present actions.
@@ -632,6 +651,9 @@ module LayoutSlot =
   let make (props: list<Gtk.Prop<'msg>>) (children: list<Gtk.Widget<'msg>>) : Gtk.Widget<'msg> =
     Gtk.Element ((Internal.AdwC.adw_layout_slot_get_type ()), props, children)
 
+  /// The slot ID. Given when the widget is made, and fixed after: `Keyed` remakes it.
+  let id_ (value: string) : Gtk.Prop<'msg> = Gtk.PropText ("id", value)
+
 module Leaflet =
   /// Deprecated. An adaptive container acting like a box or a stack.
   let make (props: list<Gtk.Prop<'msg>>) (children: list<Gtk.Widget<'msg>>) : Gtk.Widget<'msg> =
@@ -990,6 +1012,16 @@ module Sidebar =
       let preferredAction = Gdk.DragAction (int (Internal.Raw.argInt 3))
       f index value preferredAction)
 
+  /// Emitted when content is dropped onto the item at @index. Answers that it was handled: GTK does nothing more of its own.
+  let onDropStop (f: int -> GObject.Value -> Gdk.DragAction -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("drop", fun () ->
+      let index = Internal.Raw.argInt 1
+      let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GObjectC.g_value_get_type ()) false)
+      let preferredAction = Gdk.DragAction (int (Internal.Raw.argInt 3))
+      let zmsg = f index value preferredAction
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Emitted when the pointer enters the item at @index.
   let onDropEnter (f: int -> 'msg) : Gtk.Prop<'msg> =
     Gtk.PropSignal ("drop-enter", fun () ->
@@ -1041,6 +1073,13 @@ module SpinRow =
 
   /// Emitted to tweak the formatting of the value for display.
   let onOutput (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("output", fun () -> msg)
+
+  /// Emitted to tweak the formatting of the value for display. Answers that it was handled: GTK does nothing more of its own.
+  let onOutputStop (msg: 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("output", fun () ->
+      let zmsg = msg
+      Internal.Raw.returnBool true
+      zmsg)
 
   /// Emitted right after the spinbutton wraps.
   let onWrapped (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("wrapped", fun () -> msg)
@@ -1178,6 +1217,15 @@ module TabBar =
       let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GObjectC.g_value_get_type ()) false)
       f page value)
 
+  /// Emitted when content is dropped onto a tab. Answers that it was handled: GTK does nothing more of its own.
+  let onExtraDragDropStop (f: Adw.TabPage -> GObject.Value -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("extra-drag-drop", fun () ->
+      let page = Adw.TabPage (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
+      let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GObjectC.g_value_get_type ()) false)
+      let zmsg = f page value
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Emitted when the dropped content is preloaded.
   let onExtraDragValue (f: Adw.TabPage -> option<GObject.Value> -> 'msg) : Gtk.Prop<'msg> =
     Gtk.PropSignal ("extra-drag-value", fun () ->
@@ -1245,6 +1293,15 @@ module TabOverview =
       let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GObjectC.g_value_get_type ()) false)
       f page value)
 
+  /// Emitted when content is dropped onto a tab. Answers that it was handled: GTK does nothing more of its own.
+  let onExtraDragDropStop (f: Adw.TabPage -> GObject.Value -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("extra-drag-drop", fun () ->
+      let page = Adw.TabPage (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
+      let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GObjectC.g_value_get_type ()) false)
+      let zmsg = f page value
+      Internal.Raw.returnBool true
+      zmsg)
+
   /// Emitted when the dropped content is preloaded.
   let onExtraDragValue (f: Adw.TabPage -> option<GObject.Value> -> 'msg) : Gtk.Prop<'msg> =
     Gtk.PropSignal ("extra-drag-value", fun () ->
@@ -1275,6 +1332,14 @@ module TabView =
     Gtk.PropSignal ("close-page", fun () ->
       let page = Adw.TabPage (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
       f page)
+
+  /// Emitted after [method@TabView.close_page] has been called for @page. Answers that it was handled: GTK does nothing more of its own.
+  let onClosePageStop (f: Adw.TabPage -> 'msg) : Gtk.Prop<'msg> =
+    Gtk.PropSignal ("close-page", fun () ->
+      let page = Adw.TabPage (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
+      let zmsg = f page
+      Internal.Raw.returnBool true
+      zmsg)
 
   /// Emitted when a tab should be transferred into a new window.
   let onCreateWindow (msg: 'msg) : Gtk.Prop<'msg> = Gtk.PropSignal ("create-window", fun () -> msg)
