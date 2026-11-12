@@ -1707,8 +1707,10 @@ class Gen:
                 lines += ["  /// %s" % doc(e, "`%s`." % g.types[full].ctype),
                           "  let make (props: list<%s.Prop<'msg>>) (children: list<%s.Widget<'msg>>) : %s.Widget<'msg> =" % (tree, tree, tree),
                           "    %s.Element (%s, props, children)" % (tree, self.gt(full)), ""]
+            signals = {"on" + pascal(sig.get("name")) for sig in e.findall(GLIB + "signal")}
             for p in e.findall(CORE + "property"):
-                if not flag(p, "writable"):
+                writable, readable = flag(p, "writable"), p.get("readable") != "0"
+                if not writable and not readable:
                     continue
                 fixed = flag(p, "construct-only")
                 fn = camel(p.get("name"))
@@ -1719,6 +1721,24 @@ class Gen:
                 if fn in names:
                     continue
                 pn = p.get("name")
+                # the property's value, read from the object a notify signal is of
+                at = "(Internal.Raw.argPointer 0) \"%s\"" % pn
+                read = None
+                if kind == "prim":
+                    z = PRIMS[tname].z
+                    read = (z, {"bool": "Internal.Raw.getInt %s <> 0", "float": "Internal.Raw.getFloat %s"}.get(z, "Internal.Raw.getInt %s") % at) if z in ("bool", "float", "int") else None
+                elif kind == "text":
+                    read = ("string", "Option.defaultValue \"\" (Internal.Raw.getText %s)" % at)
+                elif kind in ("enum", "flags"):
+                    read = (self.zs(tname), "%s (Internal.Raw.getInt %s)" % (self.zs(tname), at))
+                changed = "on" + pascal(pn) + "Changed"
+                if read and readable and changed not in names and changed not in signals:
+                    names.add(changed)
+                    lines += ["  /// The message when the `%s` property changes, whoever changed it, with its new value." % pn,
+                              "  let %s (f: %s -> 'msg) : %s.Prop<'msg> =" % (changed, read[0], tree),
+                              "    %s.PropSignal (\"notify::%s\", fun () -> f (%s))" % (tree, pn, read[1]), ""]
+                if not writable:
+                    continue
                 if kind == "prim":
                     z = PRIMS[tname].z
                     if z == "usize":

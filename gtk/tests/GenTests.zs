@@ -509,4 +509,25 @@ let tests =
           }
         ))
       expect seen.Value "(3, true, g-io-error-quark)")
+    test "a type of a program's own in one value, and the same type when defined again" (fun () ->
+      Gtk4.init ()
+      let rung = ref 0
+      let parts =
+        [ Subclass.PropertyAction ("bell.mute", "muted")
+          Subclass.CssName "bell"
+          Subclass.Layout (Gtk4.BinLayout.gtype ())
+          Subclass.Property ("muted", Subclass.boolean ())
+          Subclass.Signal ("rung", [])
+          Subclass.Action ("bell.ring", None, fun w _ -> Glue.emit w.Id "rung") ]
+      let bell = Subclass.define (Gtk4.Widget.gtype ()) "ZsBell" parts
+      let again = Subclass.define (Gtk4.Widget.gtype ()) "ZsBell" parts
+      match Gtk4.Widget.cast (GObject.Object (Glue.create bell)) with
+      | None -> expect "no widget" "a widget"
+      | Some w ->
+        Glue.connect w.Id "rung" (fun () -> rung.Value <- rung.Value + 1)
+        Gtk4.Widget.activateAction w "bell.ring" None |> ignore
+        Gtk4.Widget.activateAction w "bell.mute" None |> ignore
+        expect (Gtk4.Widget.getCssName w, rung.Value, Glue.getInt w.Id "muted", again = bell) "(bell, 1, 1, true)"
+      Glue.drain ()
+      Glue.dropOverrides ())
   ]

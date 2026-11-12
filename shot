@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # A picture of an example's window without a display: built and run in the container on Xvfb,
 # whose frame buffer becomes build/<example>.png. ./shot [example [arguments…]] (default
-# counter).
+# counter). SHOT_SIZE sets the screen (640x640).
 set -euo pipefail
 cd "$(dirname "$0")"
 example=${1:-counter}
@@ -12,7 +12,7 @@ mkdir -p build
   (cd examples/$example && zs build >/dev/null)
   name=\$(sed -n 's/^name = \"\\(.*\\)\"/\\1/p' examples/$example/zs.toml)
   d=\$(mktemp -d)
-  Xvfb :97 -screen 0 640x640x24 -fbdir \$d >/dev/null 2>&1 & x=\$!
+  Xvfb :97 -screen 0 ${SHOT_SIZE:-640x640}x24 -fbdir \$d >/dev/null 2>&1 & x=\$!
   sleep 1
   DISPLAY=:97 GSK_RENDERER=cairo GDK_DISABLE=gl,vulkan GTK_A11Y=none timeout 4 examples/$example/build/\$name $args >/dev/null 2>&1 &
   sleep 3

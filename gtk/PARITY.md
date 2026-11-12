@@ -41,7 +41,7 @@ How to read it:
 - **What the table doesn't count:** signals, properties and virtual methods (all given, in
   COVERAGE.md), and what gtk-rs has that no C function is: its builders for every type, its
   `derive` macros for a subclass's properties and template children, and years of use. Here
-  a subclass is `Glue.subclass` with `overrideX` functions, an asynchronous call and its
+  a subclass is `Subclass.define` with a list of what it says, and `overrideX` functions, an asynchronous call and its
   finish are also a task (`let! text = Gio.File.loadContentsTask file None`, 155 of them),
   `Ui.X.make [ … ]` is a type's builder, and the declarative layer (`Gtk`, `Ui`,
   `AdwUi`) is what gtk-rs leaves to Relm4.

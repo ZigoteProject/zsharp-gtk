@@ -103,9 +103,17 @@ int64_t zgtk_wrap(void *obj, int full) {
         g_object_weak_ref(obj, gone, GUINT_TO_POINTER(i));
     }
     if (full) {
-        // a floating reference stays floating for a parent to take: a widget is its parent's
-        if (g_object_is_floating(obj)) return id_of(i);
-        if (entries[i].owned) g_object_unref(obj);
+        // a floating reference stays floating for a parent to take: a widget is its parent's.
+        // One no parent has taken by the drain is dropped there (owned 2)
+        if (g_object_is_floating(obj)) {
+            if (!entries[i].owned) {
+                own(i);
+                entries[i].owned = 2;
+            }
+            return id_of(i);
+        }
+        if (entries[i].owned == 1) g_object_unref(obj);
+        else if (entries[i].owned == 2) entries[i].owned = 1; // already in the pool
         else own(i);
     }
     return id_of(i);
@@ -201,6 +209,16 @@ static void drain_from(guint start) {
             uint32_t i = mine[k];
             Entry *e = &entries[i];
             if (e->kind == FREE || !e->owned) continue;
+            if (e->owned == 2) {
+                // made floating: a parent's by now, or nobody's
+                e->owned = 0;
+                if (e->kind == OBJECT && g_object_is_floating(e->ptr)) {
+                    void *unclaimed = e->ptr;
+                    g_object_ref_sink(unclaimed);
+                    g_object_unref(unclaimed);
+                }
+                continue;
+            }
             e->owned = 0;
             if (e->kind != OBJECT && e->kept) continue; // kept: the value stays, with its handle
             give_up(i);

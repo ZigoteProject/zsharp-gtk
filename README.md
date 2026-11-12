@@ -40,6 +40,8 @@ let main () = App.run "org.example.Counter" 0 update view
   makes only the rows on screen.
 - **Around any widget:** `Margin`, `Styled` (style classes), `With` (expand, align, size,
   tooltip, disabled, hidden, spacing), `Keyed`.
+- **A property's change is a message:** `Ui.Calendar.onDayChanged DueDay`, for every property
+  an element can be read (`onXChanged`), with its new value.
 - **Every widget GTK and libadwaita have** is there too, through `Ui` and `AdwUi`, written
   from the libraries' descriptions: `Ui.Calendar.make [ Ui.Calendar.showHeading true;
   Ui.Calendar.onDaySelected Picked ] []`, with a function for each property and each signal
@@ -94,6 +96,8 @@ Gtk4.Button.onClicked button (fun () -> Gtk4.ListBox.append list row.Widget)
   `Gtk4.FileDialog.openTask`, `Adw.AlertDialog.chooseTask`).
 - **Beside gtk-rs,** by C function: [gtk/PARITY.md](gtk/PARITY.md). Of 10,834 exported
   functions gtk-rs calls 9,128 and 9,801 are safe here.
+- **A type of a program's own in one value:** `Subclass.define parent name [ CssName …;
+  Property …; Signal …; Template …; Action … ]`.
 - **A widget type of a program's own** says its CSS name, layout manager, role, actions and
   shortcuts with `WidgetClass`, and takes a property that is fixed at the making
   (`Ui.Widget.cssName`) or answers a signal (`Ui.Window.onCloseRequestStop`) in the tree.
@@ -139,6 +143,12 @@ Gtk4.Button.onClicked button (fun () -> Gtk4.ListBox.append list row.Widget)
 Examples: `counter`, `signals` (the counter on signals), `settings`, `notes` (pages, an alert,
 a toast), `library` (a sidebar, tabs, an about dialog), `gallery` (every widget, with commands
 and a drawing), `plain` (the libraries used directly).
+
+`trellis` is a whole application: a planner with projects in a sidebar, five views (a list,
+a board, charts drawn with cairo, a focus timer, a long log), a task's page with a calendar,
+sheets, an alert, a banner to undo, toasts, shortcuts, a style sheet that follows the accent
+chosen, and an export through a file dialog and a task. `SHOT_SIZE=1040x720 ./shot trellis
+Board` is its picture.
 
 `./dev` runs in its own image (`zsharp-gtk-dev`: `zsharp-dev` plus GTK 4, libadwaita and Xvfb),
 built on first use, with the compiler from the Z# checkout beside this one (`ZSHARP`, default
