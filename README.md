@@ -101,9 +101,12 @@ Gtk4.Button.onClicked button (fun () -> Gtk4.ListBox.append list row.Widget)
   of its own here (a `va_list`, an in-out string, an array with no length), it is C's
   pointer, a `cptr`, and the function is `[<Unsafe>]`. The few functions a description lists
   and its library doesn't have are not there, as there is nothing to call.
+  About one function in twenty is `[<Unsafe>]`, nearly all of them GLib's own containers and
+  GObject's type system; of GTK's 8,200 and Adwaita's 2,500, 70 are.
   `ZGIR_WHY=1 tools/zs-provider-gir <file.gir>` says what was passed over, and why.
-- **Off Linux** the loop waits through a thread and a pipe where Linux has epoll; `./test`
-  runs the libraries' tests both ways.
+- **For GNOME on Linux.** That is where it is built and tested. The loop has a second way of
+  waiting, through a thread and a pipe, for a system with no epoll, which `./test` runs the
+  libraries' tests on too; nothing has been built on another system.
 - **A program's own names** (`Toggle`, `Search`) that are also the library's are the
   program's, in its main file as anywhere: with a compiler older than the fix for that
   (`tests/open_own.zs` in the Z# checkout), such a main file keeps its messages and views in

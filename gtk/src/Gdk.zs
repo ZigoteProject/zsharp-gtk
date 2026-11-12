@@ -14,6 +14,9 @@
 // for how long a handle is good and what happens to one that isn't.
 
 extern gdk_app_launch_context_get_type : unit -> usize
+extern zgtk_type_Gdk_ButtonEvent : unit -> usize
+extern zgtk_wrap_Gdk_ButtonEvent : cptr -> i32 -> int
+extern zgtk_give_Gdk_ButtonEvent : cptr -> cptr
 extern gdk_draw_context_get_type : unit -> usize
 extern gdk_cairo_context_get_type : unit -> usize
 extern gdk_cicp_params_get_type : unit -> usize
@@ -24,7 +27,16 @@ extern gdk_content_formats_get_type : unit -> usize
 extern gdk_content_formats_builder_get_type : unit -> usize
 extern gdk_content_provider_get_type : unit -> usize
 extern gdk_content_serializer_get_type : unit -> usize
+extern zgtk_type_Gdk_CrossingEvent : unit -> usize
+extern zgtk_wrap_Gdk_CrossingEvent : cptr -> i32 -> int
+extern zgtk_give_Gdk_CrossingEvent : cptr -> cptr
 extern gdk_cursor_get_type : unit -> usize
+extern zgtk_type_Gdk_DNDEvent : unit -> usize
+extern zgtk_wrap_Gdk_DNDEvent : cptr -> i32 -> int
+extern zgtk_give_Gdk_DNDEvent : cptr -> cptr
+extern zgtk_type_Gdk_DeleteEvent : unit -> usize
+extern zgtk_wrap_Gdk_DeleteEvent : cptr -> i32 -> int
+extern zgtk_give_Gdk_DeleteEvent : cptr -> cptr
 extern gdk_device_get_type : unit -> usize
 extern gdk_device_pad_get_type : unit -> usize
 extern gdk_device_tool_get_type : unit -> usize
@@ -44,22 +56,43 @@ extern zgtk_wrap_Gdk_Event : cptr -> i32 -> int
 extern zgtk_give_Gdk_Event : cptr -> cptr
 extern gdk_event_sequence_get_type : unit -> usize
 extern gdk_file_list_get_type : unit -> usize
+extern zgtk_type_Gdk_FocusEvent : unit -> usize
+extern zgtk_wrap_Gdk_FocusEvent : cptr -> i32 -> int
+extern zgtk_give_Gdk_FocusEvent : cptr -> cptr
 extern gdk_frame_clock_get_type : unit -> usize
 extern gdk_frame_timings_get_type : unit -> usize
 extern gdk_gl_context_get_type : unit -> usize
 extern gdk_gl_texture_get_type : unit -> usize
 extern gdk_gl_texture_builder_get_type : unit -> usize
+extern zgtk_type_Gdk_GrabBrokenEvent : unit -> usize
+extern zgtk_wrap_Gdk_GrabBrokenEvent : cptr -> i32 -> int
+extern zgtk_give_Gdk_GrabBrokenEvent : cptr -> cptr
+extern zgtk_type_Gdk_KeyEvent : unit -> usize
+extern zgtk_wrap_Gdk_KeyEvent : cptr -> i32 -> int
+extern zgtk_give_Gdk_KeyEvent : cptr -> cptr
 extern zgtk_tag_Gdk_KeymapKey : unit -> usize
 extern zgtk_sizeof_Gdk_KeymapKey : unit -> usize
 extern gdk_memory_texture_get_type : unit -> usize
 extern gdk_memory_texture_builder_get_type : unit -> usize
 extern gdk_monitor_get_type : unit -> usize
+extern zgtk_type_Gdk_MotionEvent : unit -> usize
+extern zgtk_wrap_Gdk_MotionEvent : cptr -> i32 -> int
+extern zgtk_give_Gdk_MotionEvent : cptr -> cptr
+extern zgtk_type_Gdk_PadEvent : unit -> usize
+extern zgtk_wrap_Gdk_PadEvent : cptr -> i32 -> int
+extern zgtk_give_Gdk_PadEvent : cptr -> cptr
 extern gdk_popup_get_type : unit -> usize
 extern gdk_popup_layout_get_type : unit -> usize
+extern zgtk_type_Gdk_ProximityEvent : unit -> usize
+extern zgtk_wrap_Gdk_ProximityEvent : cptr -> i32 -> int
+extern zgtk_give_Gdk_ProximityEvent : cptr -> cptr
 extern gdk_rgba_get_type : unit -> usize
 extern zgtk_sizeof_Gdk_RGBA : unit -> usize
 extern gdk_rectangle_get_type : unit -> usize
 extern zgtk_sizeof_Gdk_Rectangle : unit -> usize
+extern zgtk_type_Gdk_ScrollEvent : unit -> usize
+extern zgtk_wrap_Gdk_ScrollEvent : cptr -> i32 -> int
+extern zgtk_give_Gdk_ScrollEvent : cptr -> cptr
 extern gdk_seat_get_type : unit -> usize
 extern gdk_snapshot_get_type : unit -> usize
 extern gdk_surface_get_type : unit -> usize
@@ -69,6 +102,12 @@ extern zgtk_sizeof_Gdk_TimeCoord : unit -> usize
 extern gdk_toplevel_get_type : unit -> usize
 extern gdk_toplevel_layout_get_type : unit -> usize
 extern gdk_toplevel_size_get_type : unit -> usize
+extern zgtk_type_Gdk_TouchEvent : unit -> usize
+extern zgtk_wrap_Gdk_TouchEvent : cptr -> i32 -> int
+extern zgtk_give_Gdk_TouchEvent : cptr -> cptr
+extern zgtk_type_Gdk_TouchpadEvent : unit -> usize
+extern zgtk_wrap_Gdk_TouchpadEvent : cptr -> i32 -> int
+extern zgtk_give_Gdk_TouchpadEvent : cptr -> cptr
 extern gdk_vulkan_context_get_type : unit -> usize
 extern zgtk_tramp_Gdk_CursorGetTextureCallback : unit -> cptr
 extern zgtk_tramp_Gdk_CursorGetTextureCallback_once : unit -> cptr
@@ -405,12 +444,12 @@ type AppLaunchContext =
 
 /// An event related to a button on a pointer device.
 type ButtonEvent =
-  | ButtonEvent of cptr
+  | ButtonEvent of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | ButtonEvent p -> p
+    | ButtonEvent v -> v
 
 /// Base class for objects implementing different rendering methods.
 type DrawContext =
@@ -552,12 +591,12 @@ type ContentSerializer =
 
 /// An event caused by a pointing device moving between surfaces.
 type CrossingEvent =
-  | CrossingEvent of cptr
+  | CrossingEvent of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | CrossingEvent p -> p
+    | CrossingEvent v -> v
 
 /// Used to create and destroy cursors.
 type Cursor =
@@ -573,21 +612,21 @@ type Cursor =
 
 /// An event related to drag and drop operations.
 type DNDEvent =
-  | DNDEvent of cptr
+  | DNDEvent of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | DNDEvent p -> p
+    | DNDEvent v -> v
 
 /// An event related to closing a top-level surface.
 type DeleteEvent =
-  | DeleteEvent of cptr
+  | DeleteEvent of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | DeleteEvent p -> p
+    | DeleteEvent v -> v
 
 /// Represents an input device, such as a keyboard, mouse or touchpad.
 type Device =
@@ -837,12 +876,12 @@ type FileList =
 
 /// An event related to a keyboard focus change.
 type FocusEvent =
-  | FocusEvent of cptr
+  | FocusEvent of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | FocusEvent p -> p
+    | FocusEvent v -> v
 
 /// Tells the application when to update and repaint a surface.
 type FrameClock =
@@ -954,21 +993,21 @@ type GLTextureClass =
 
 /// An event related to a broken windowing system grab.
 type GrabBrokenEvent =
-  | GrabBrokenEvent of cptr
+  | GrabBrokenEvent of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | GrabBrokenEvent p -> p
+    | GrabBrokenEvent v -> v
 
 /// An event related to a key-based device.
 type KeyEvent =
-  | KeyEvent of cptr
+  | KeyEvent of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | KeyEvent p -> p
+    | KeyEvent v -> v
 
 /// Represents a hardware key that can be mapped to a keyval.
 type KeymapKey =
@@ -1056,21 +1095,21 @@ type MonitorClass =
 
 /// An event related to a pointer or touch device motion.
 type MotionEvent =
-  | MotionEvent of cptr
+  | MotionEvent of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | MotionEvent p -> p
+    | MotionEvent v -> v
 
 /// An event related to a pad-based device.
 type PadEvent =
-  | PadEvent of cptr
+  | PadEvent of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | PadEvent p -> p
+    | PadEvent v -> v
 
 /// The list of functions that can be implemented for the `GdkPaintable` interface.
 type PaintableInterface =
@@ -1113,12 +1152,12 @@ type PopupLayout =
 
 /// An event related to the proximity of a tool to a device.
 type ProximityEvent =
-  | ProximityEvent of cptr
+  | ProximityEvent of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | ProximityEvent p -> p
+    | ProximityEvent v -> v
 
 /// Represents a color, in a way that is compatible with cairo’s notion of color.
 type RGBA =
@@ -1140,12 +1179,12 @@ type Rectangle =
 
 /// An event related to a scrolling motion.
 type ScrollEvent =
-  | ScrollEvent of cptr
+  | ScrollEvent of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | ScrollEvent p -> p
+    | ScrollEvent v -> v
 
 /// Represents a collection of input devices that belong to a user.
 type Seat =
@@ -1269,21 +1308,21 @@ type ToplevelSize =
 
 /// An event related to a touch-based device.
 type TouchEvent =
-  | TouchEvent of cptr
+  | TouchEvent of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | TouchEvent p -> p
+    | TouchEvent v -> v
 
 /// An event related to a gesture on a touchpad device.
 type TouchpadEvent =
-  | TouchpadEvent of cptr
+  | TouchpadEvent of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | TouchpadEvent p -> p
+    | TouchpadEvent v -> v
 
 /// Deprecated. Represents the platform-specific Vulkan draw context.
 type VulkanContext =
@@ -2275,9 +2314,8 @@ module ButtonEvent =
   extern gdk_button_event_get_button : cptr -> u32
 
   /// Extract the button number from a button event.
-  [<Unsafe>]
   let getButton (self: ButtonEvent) : int =
-    (int ((gdk_button_event_get_button self.Ptr)))
+    (int ((gdk_button_event_get_button (Glue.obj self.Id (zgtk_type_Gdk_ButtonEvent ())))))
 
 module DrawContext =
   /// The same object as its ancestor.
@@ -3347,23 +3385,20 @@ module CrossingEvent =
   extern gdk_crossing_event_get_detail : cptr -> i32
 
   /// Extracts the notify detail from a crossing event.
-  [<Unsafe>]
   let getDetail (self: CrossingEvent) : NotifyType =
-    NotifyType (int ((gdk_crossing_event_get_detail self.Ptr)))
+    NotifyType (int ((gdk_crossing_event_get_detail (Glue.obj self.Id (zgtk_type_Gdk_CrossingEvent ())))))
 
   extern gdk_crossing_event_get_focus : cptr -> i32
 
   /// Checks if the @event surface is the focus surface.
-  [<Unsafe>]
   let getFocus (self: CrossingEvent) : bool =
-    (((gdk_crossing_event_get_focus self.Ptr)) <> i32 0)
+    (((gdk_crossing_event_get_focus (Glue.obj self.Id (zgtk_type_Gdk_CrossingEvent ())))) <> i32 0)
 
   extern gdk_crossing_event_get_mode : cptr -> i32
 
   /// Extracts the crossing mode from a crossing event.
-  [<Unsafe>]
   let getMode (self: CrossingEvent) : CrossingMode =
-    CrossingMode (int ((gdk_crossing_event_get_mode self.Ptr)))
+    CrossingMode (int ((gdk_crossing_event_get_mode (Glue.obj self.Id (zgtk_type_Gdk_CrossingEvent ())))))
 
 module Cursor =
   /// The same object as its ancestor.
@@ -3477,9 +3512,8 @@ module DNDEvent =
   extern gdk_dnd_event_get_drop : cptr -> cptr
 
   /// Gets the `GdkDrop` object from a DND event.
-  [<Unsafe>]
   let getDrop (self: DNDEvent) : option<Drop> =
-    let zr = gdk_dnd_event_get_drop self.Ptr
+    let zr = gdk_dnd_event_get_drop (Glue.obj self.Id (zgtk_type_Gdk_DNDEvent ()))
     let zid1 = Glue.wrap (zr) false
     (if zid1 = 0 then None else Some (Drop zid1))
 
@@ -5214,9 +5248,8 @@ module FocusEvent =
   extern gdk_focus_event_get_in : cptr -> i32
 
   /// Extracts whether this event is about focus entering or leaving the surface.
-  [<Unsafe>]
   let getIn (self: FocusEvent) : bool =
-    (((gdk_focus_event_get_in self.Ptr)) <> i32 0)
+    (((gdk_focus_event_get_in (Glue.obj self.Id (zgtk_type_Gdk_FocusEvent ())))) <> i32 0)
 
 module FrameClock =
   /// The same object as its ancestor.
@@ -5784,60 +5817,52 @@ module GrabBrokenEvent =
   extern gdk_grab_broken_event_get_grab_surface : cptr -> cptr
 
   /// Extracts the grab surface from a grab broken event.
-  [<Unsafe>]
   let getGrabSurface (self: GrabBrokenEvent) : Surface =
-    Surface (Glue.wrap ((gdk_grab_broken_event_get_grab_surface self.Ptr)) false)
+    Surface (Glue.wrap ((gdk_grab_broken_event_get_grab_surface (Glue.obj self.Id (zgtk_type_Gdk_GrabBrokenEvent ())))) false)
 
   extern gdk_grab_broken_event_get_implicit : cptr -> i32
 
   /// Checks whether the grab broken event is for an implicit grab.
-  [<Unsafe>]
   let getImplicit (self: GrabBrokenEvent) : bool =
-    (((gdk_grab_broken_event_get_implicit self.Ptr)) <> i32 0)
+    (((gdk_grab_broken_event_get_implicit (Glue.obj self.Id (zgtk_type_Gdk_GrabBrokenEvent ())))) <> i32 0)
 
 module KeyEvent =
   extern gdk_key_event_get_consumed_modifiers : cptr -> u32
 
   /// Extracts the consumed modifiers from a key event.
-  [<Unsafe>]
   let getConsumedModifiers (self: KeyEvent) : ModifierType =
-    ModifierType (int ((gdk_key_event_get_consumed_modifiers self.Ptr)))
+    ModifierType (int ((gdk_key_event_get_consumed_modifiers (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())))))
 
   extern gdk_key_event_get_keycode : cptr -> u32
 
   /// Extracts the keycode from a key event.
-  [<Unsafe>]
   let getKeycode (self: KeyEvent) : int =
-    (int ((gdk_key_event_get_keycode self.Ptr)))
+    (int ((gdk_key_event_get_keycode (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())))))
 
   extern gdk_key_event_get_keyval : cptr -> u32
 
   /// Extracts the keyval from a key event.
-  [<Unsafe>]
   let getKeyval (self: KeyEvent) : int =
-    (int ((gdk_key_event_get_keyval self.Ptr)))
+    (int ((gdk_key_event_get_keyval (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())))))
 
   extern gdk_key_event_get_layout : cptr -> u32
 
   /// Extracts the layout from a key event.
-  [<Unsafe>]
   let getLayout (self: KeyEvent) : int =
-    (int ((gdk_key_event_get_layout self.Ptr)))
+    (int ((gdk_key_event_get_layout (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())))))
 
   extern gdk_key_event_get_level : cptr -> u32
 
   /// Extracts the shift level from a key event.
-  [<Unsafe>]
   let getLevel (self: KeyEvent) : int =
-    (int ((gdk_key_event_get_level self.Ptr)))
+    (int ((gdk_key_event_get_level (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())))))
 
   extern gdk_key_event_get_match : cptr -> cptr -> cptr -> i32
 
   /// Gets a keyval and modifier combination that will match the event.
-  [<Unsafe>]
   let getMatch (self: KeyEvent) : (bool * int * ModifierType) =
     Glue.outBegin ()
-    let zr = gdk_key_event_get_match self.Ptr (Glue.out 0) (Glue.out 1)
+    let zr = gdk_key_event_get_match (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())) (Glue.out 0) (Glue.out 1)
     let zv = (((zr) <> i32 0), Glue.outU32 0, ModifierType (Glue.outU32 1))
     Glue.outEnd ()
     zv
@@ -5845,16 +5870,14 @@ module KeyEvent =
   extern gdk_key_event_is_modifier : cptr -> i32
 
   /// Extracts whether the key event is for a modifier key.
-  [<Unsafe>]
   let isModifier (self: KeyEvent) : bool =
-    (((gdk_key_event_is_modifier self.Ptr)) <> i32 0)
+    (((gdk_key_event_is_modifier (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())))) <> i32 0)
 
   extern gdk_key_event_matches : cptr -> u32 -> u32 -> i32
 
   /// Matches a key event against a keyval and modifiers.
-  [<Unsafe>]
   let matches (self: KeyEvent) (keyval: int) (modifiers: ModifierType) : KeyMatch =
-    KeyMatch (int ((gdk_key_event_matches self.Ptr (u32 keyval) (u32 modifiers.Int))))
+    KeyMatch (int ((gdk_key_event_matches (Glue.obj self.Id (zgtk_type_Gdk_KeyEvent ())) (u32 keyval) (u32 modifiers.Int))))
 
 module KeymapKey =
   /// A new one, every field zero.
@@ -6254,10 +6277,9 @@ module PadEvent =
   extern gdk_pad_event_get_axis_value : cptr -> cptr -> cptr -> unit
 
   /// Extracts the information from a pad strip or ring event.
-  [<Unsafe>]
   let getAxisValue (self: PadEvent) : (int * float) =
     Glue.outBegin ()
-    gdk_pad_event_get_axis_value self.Ptr (Glue.out 0) (Glue.out 1)
+    gdk_pad_event_get_axis_value (Glue.obj self.Id (zgtk_type_Gdk_PadEvent ())) (Glue.out 0) (Glue.out 1)
     let zv = (Glue.outU32 0, Glue.outF64 1)
     Glue.outEnd ()
     zv
@@ -6265,17 +6287,15 @@ module PadEvent =
   extern gdk_pad_event_get_button : cptr -> u32
 
   /// Extracts information about the pressed button from a pad event.
-  [<Unsafe>]
   let getButton (self: PadEvent) : int =
-    (int ((gdk_pad_event_get_button self.Ptr)))
+    (int ((gdk_pad_event_get_button (Glue.obj self.Id (zgtk_type_Gdk_PadEvent ())))))
 
   extern gdk_pad_event_get_group_mode : cptr -> cptr -> cptr -> unit
 
   /// Extracts group and mode information from a pad event.
-  [<Unsafe>]
   let getGroupMode (self: PadEvent) : (int * int) =
     Glue.outBegin ()
-    gdk_pad_event_get_group_mode self.Ptr (Glue.out 0) (Glue.out 1)
+    gdk_pad_event_get_group_mode (Glue.obj self.Id (zgtk_type_Gdk_PadEvent ())) (Glue.out 0) (Glue.out 1)
     let zv = (Glue.outU32 0, Glue.outU32 1)
     Glue.outEnd ()
     zv
@@ -6628,10 +6648,9 @@ module ScrollEvent =
   extern gdk_scroll_event_get_deltas : cptr -> cptr -> cptr -> unit
 
   /// Extracts the scroll deltas of a scroll event.
-  [<Unsafe>]
   let getDeltas (self: ScrollEvent) : (float * float) =
     Glue.outBegin ()
-    gdk_scroll_event_get_deltas self.Ptr (Glue.out 0) (Glue.out 1)
+    gdk_scroll_event_get_deltas (Glue.obj self.Id (zgtk_type_Gdk_ScrollEvent ())) (Glue.out 0) (Glue.out 1)
     let zv = (Glue.outF64 0, Glue.outF64 1)
     Glue.outEnd ()
     zv
@@ -6639,30 +6658,26 @@ module ScrollEvent =
   extern gdk_scroll_event_get_direction : cptr -> i32
 
   /// Extracts the direction of a scroll event.
-  [<Unsafe>]
   let getDirection (self: ScrollEvent) : ScrollDirection =
-    ScrollDirection (int ((gdk_scroll_event_get_direction self.Ptr)))
+    ScrollDirection (int ((gdk_scroll_event_get_direction (Glue.obj self.Id (zgtk_type_Gdk_ScrollEvent ())))))
 
   extern gdk_scroll_event_get_relative_direction : cptr -> i32
 
   /// Extracts the scroll direction relative to the physical motion.
-  [<Unsafe>]
   let getRelativeDirection (self: ScrollEvent) : ScrollRelativeDirection =
-    ScrollRelativeDirection (int ((gdk_scroll_event_get_relative_direction self.Ptr)))
+    ScrollRelativeDirection (int ((gdk_scroll_event_get_relative_direction (Glue.obj self.Id (zgtk_type_Gdk_ScrollEvent ())))))
 
   extern gdk_scroll_event_get_unit : cptr -> i32
 
   /// Extracts the scroll delta unit of a scroll event.
-  [<Unsafe>]
   let getUnit (self: ScrollEvent) : ScrollUnit =
-    ScrollUnit (int ((gdk_scroll_event_get_unit self.Ptr)))
+    ScrollUnit (int ((gdk_scroll_event_get_unit (Glue.obj self.Id (zgtk_type_Gdk_ScrollEvent ())))))
 
   extern gdk_scroll_event_is_stop : cptr -> i32
 
   /// Check whether a scroll event is a stop scroll event.
-  [<Unsafe>]
   let isStop (self: ScrollEvent) : bool =
-    (((gdk_scroll_event_is_stop self.Ptr)) <> i32 0)
+    (((gdk_scroll_event_is_stop (Glue.obj self.Id (zgtk_type_Gdk_ScrollEvent ())))) <> i32 0)
 
 module Seat =
   /// The same object as its ancestor.
@@ -7487,18 +7502,16 @@ module TouchEvent =
   extern gdk_touch_event_get_emulating_pointer : cptr -> i32
 
   /// Extracts whether a touch event is emulating a pointer event.
-  [<Unsafe>]
   let getEmulatingPointer (self: TouchEvent) : bool =
-    (((gdk_touch_event_get_emulating_pointer self.Ptr)) <> i32 0)
+    (((gdk_touch_event_get_emulating_pointer (Glue.obj self.Id (zgtk_type_Gdk_TouchEvent ())))) <> i32 0)
 
 module TouchpadEvent =
   extern gdk_touchpad_event_get_deltas : cptr -> cptr -> cptr -> unit
 
   /// Extracts delta information from a touchpad event.
-  [<Unsafe>]
   let getDeltas (self: TouchpadEvent) : (float * float) =
     Glue.outBegin ()
-    gdk_touchpad_event_get_deltas self.Ptr (Glue.out 0) (Glue.out 1)
+    gdk_touchpad_event_get_deltas (Glue.obj self.Id (zgtk_type_Gdk_TouchpadEvent ())) (Glue.out 0) (Glue.out 1)
     let zv = (Glue.outF64 0, Glue.outF64 1)
     Glue.outEnd ()
     zv
@@ -7506,30 +7519,26 @@ module TouchpadEvent =
   extern gdk_touchpad_event_get_gesture_phase : cptr -> i32
 
   /// Extracts the touchpad gesture phase from a touchpad event.
-  [<Unsafe>]
   let getGesturePhase (self: TouchpadEvent) : TouchpadGesturePhase =
-    TouchpadGesturePhase (int ((gdk_touchpad_event_get_gesture_phase self.Ptr)))
+    TouchpadGesturePhase (int ((gdk_touchpad_event_get_gesture_phase (Glue.obj self.Id (zgtk_type_Gdk_TouchpadEvent ())))))
 
   extern gdk_touchpad_event_get_n_fingers : cptr -> u32
 
   /// Extracts the number of fingers from a touchpad event.
-  [<Unsafe>]
   let getNFingers (self: TouchpadEvent) : int =
-    (int ((gdk_touchpad_event_get_n_fingers self.Ptr)))
+    (int ((gdk_touchpad_event_get_n_fingers (Glue.obj self.Id (zgtk_type_Gdk_TouchpadEvent ())))))
 
   extern gdk_touchpad_event_get_pinch_angle_delta : cptr -> f64
 
   /// Extracts the angle delta from a touchpad pinch event.
-  [<Unsafe>]
   let getPinchAngleDelta (self: TouchpadEvent) : float =
-    ((gdk_touchpad_event_get_pinch_angle_delta self.Ptr))
+    ((gdk_touchpad_event_get_pinch_angle_delta (Glue.obj self.Id (zgtk_type_Gdk_TouchpadEvent ()))))
 
   extern gdk_touchpad_event_get_pinch_scale : cptr -> f64
 
   /// Extracts the scale from a touchpad pinch event.
-  [<Unsafe>]
   let getPinchScale (self: TouchpadEvent) : float =
-    ((gdk_touchpad_event_get_pinch_scale self.Ptr))
+    ((gdk_touchpad_event_get_pinch_scale (Glue.obj self.Id (zgtk_type_Gdk_TouchpadEvent ()))))
 
 module VulkanContext =
   /// The same object as its ancestor.

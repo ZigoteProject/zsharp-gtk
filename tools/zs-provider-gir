@@ -248,6 +248,17 @@ class Gir:
             full = self.parents.get(full)
         return False
 
+    def refs(self, full):
+        """(ref, unref) of a counted class: its own, or those of the class it is made from."""
+        seen = set()
+        while full and full not in seen and full in self.types:
+            el = self.types[full].el
+            if el.get(GLIB + "ref-func") and el.get(GLIB + "unref-func"):
+                return (el.get(GLIB + "ref-func"), el.get(GLIB + "unref-func"))
+            seen.add(full)
+            full = self.parents.get(full)
+        return None
+
     def kind(self, full):
         """class, counted, iface, enum, flags, boxed, plain, callback, or None for what has no
         handle."""
@@ -262,7 +273,7 @@ class Gir:
         if info.kind == "class":
             if self.is_object(full):
                 return "class" if info.gtype else None
-            if el.get(GLIB + "ref-func") and el.get(GLIB + "unref-func") and info.gtype and info.gtype != "intern":
+            if self.refs(full) and info.gtype and info.gtype != "intern":
                 return "counted"
             return "pointer" if info.ctype else None
         if info.kind == "iface":
@@ -1693,8 +1704,7 @@ class Gen:
                 continue
             if g.kind(full) == "counted":
                 cn = self.cname(full)
-                gtype, ref, unref = COUNTED.get(full) or (
-                    "%s()" % g.types[full].gtype, e.get(GLIB + "ref-func"), e.get(GLIB + "unref-func"))
+                gtype, ref, unref = COUNTED.get(full) or (("%s()" % g.types[full].gtype,) + g.refs(full))
                 self.c.append("gsize zgtk_type_%s(void) { return %s; }" % (cn, gtype))
                 self.c.append("gint64 zgtk_wrap_%s(void *p, int full) { return zgtk_wrap_counted(p, %s, (void *(*)(void *))%s, (void (*)(void *))%s, full); }"
                               % (cn, gtype, ref, unref))

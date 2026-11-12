@@ -15,33 +15,138 @@
 // Gsk 4.0. A class, an interface or a boxed record is a handle of its own type; see Glue
 // for how long a handle is good and what happens to one that isn't.
 
+extern zgtk_type_Gsk_BlendNode : unit -> usize
+extern zgtk_wrap_Gsk_BlendNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_BlendNode : cptr -> cptr
+extern zgtk_type_Gsk_BlurNode : unit -> usize
+extern zgtk_wrap_Gsk_BlurNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_BlurNode : cptr -> cptr
+extern zgtk_type_Gsk_BorderNode : unit -> usize
+extern zgtk_wrap_Gsk_BorderNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_BorderNode : cptr -> cptr
 extern gsk_renderer_get_type : unit -> usize
 extern gsk_broadway_renderer_get_type : unit -> usize
+extern zgtk_type_Gsk_CairoNode : unit -> usize
+extern zgtk_wrap_Gsk_CairoNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_CairoNode : cptr -> cptr
 extern gsk_cairo_renderer_get_type : unit -> usize
+extern zgtk_type_Gsk_ClipNode : unit -> usize
+extern zgtk_wrap_Gsk_ClipNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_ClipNode : cptr -> cptr
+extern zgtk_type_Gsk_ColorMatrixNode : unit -> usize
+extern zgtk_wrap_Gsk_ColorMatrixNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_ColorMatrixNode : cptr -> cptr
+extern zgtk_type_Gsk_ColorNode : unit -> usize
+extern zgtk_wrap_Gsk_ColorNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_ColorNode : cptr -> cptr
 extern zgtk_tag_Gsk_ColorStop : unit -> usize
 extern zgtk_sizeof_Gsk_ColorStop : unit -> usize
 extern gsk_component_transfer_get_type : unit -> usize
+extern zgtk_type_Gsk_ComponentTransferNode : unit -> usize
+extern zgtk_wrap_Gsk_ComponentTransferNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_ComponentTransferNode : cptr -> cptr
+extern zgtk_type_Gsk_CompositeNode : unit -> usize
+extern zgtk_wrap_Gsk_CompositeNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_CompositeNode : cptr -> cptr
+extern zgtk_type_Gsk_ConicGradientNode : unit -> usize
+extern zgtk_wrap_Gsk_ConicGradientNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_ConicGradientNode : cptr -> cptr
+extern zgtk_type_Gsk_ContainerNode : unit -> usize
+extern zgtk_wrap_Gsk_ContainerNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_ContainerNode : cptr -> cptr
+extern zgtk_type_Gsk_CopyNode : unit -> usize
+extern zgtk_wrap_Gsk_CopyNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_CopyNode : cptr -> cptr
+extern zgtk_type_Gsk_CrossFadeNode : unit -> usize
+extern zgtk_wrap_Gsk_CrossFadeNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_CrossFadeNode : cptr -> cptr
+extern zgtk_type_Gsk_DebugNode : unit -> usize
+extern zgtk_wrap_Gsk_DebugNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_DebugNode : cptr -> cptr
+extern zgtk_type_Gsk_FillNode : unit -> usize
+extern zgtk_wrap_Gsk_FillNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_FillNode : cptr -> cptr
 extern gsk_gl_renderer_get_type : unit -> usize
 extern gsk_gl_shader_get_type : unit -> usize
+extern zgtk_type_Gsk_GLShaderNode : unit -> usize
+extern zgtk_wrap_Gsk_GLShaderNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_GLShaderNode : cptr -> cptr
+extern zgtk_type_Gsk_InsetShadowNode : unit -> usize
+extern zgtk_wrap_Gsk_InsetShadowNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_InsetShadowNode : cptr -> cptr
+extern zgtk_type_Gsk_IsolationNode : unit -> usize
+extern zgtk_wrap_Gsk_IsolationNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_IsolationNode : cptr -> cptr
+extern zgtk_type_Gsk_LinearGradientNode : unit -> usize
+extern zgtk_wrap_Gsk_LinearGradientNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_LinearGradientNode : cptr -> cptr
+extern zgtk_type_Gsk_MaskNode : unit -> usize
+extern zgtk_wrap_Gsk_MaskNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_MaskNode : cptr -> cptr
 extern gsk_ngl_renderer_get_type : unit -> usize
+extern zgtk_type_Gsk_OpacityNode : unit -> usize
+extern zgtk_wrap_Gsk_OpacityNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_OpacityNode : cptr -> cptr
+extern zgtk_type_Gsk_OutsetShadowNode : unit -> usize
+extern zgtk_wrap_Gsk_OutsetShadowNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_OutsetShadowNode : cptr -> cptr
 extern zgtk_tag_Gsk_ParseLocation : unit -> usize
 extern zgtk_sizeof_Gsk_ParseLocation : unit -> usize
+extern zgtk_type_Gsk_PasteNode : unit -> usize
+extern zgtk_wrap_Gsk_PasteNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_PasteNode : cptr -> cptr
 extern gsk_path_get_type : unit -> usize
 extern gsk_path_builder_get_type : unit -> usize
 extern gsk_path_measure_get_type : unit -> usize
 extern gsk_path_point_get_type : unit -> usize
 extern zgtk_sizeof_Gsk_PathPoint : unit -> usize
+extern zgtk_type_Gsk_RadialGradientNode : unit -> usize
+extern zgtk_wrap_Gsk_RadialGradientNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_RadialGradientNode : cptr -> cptr
 extern zgtk_type_Gsk_RenderNode : unit -> usize
 extern zgtk_wrap_Gsk_RenderNode : cptr -> i32 -> int
 extern zgtk_give_Gsk_RenderNode : cptr -> cptr
 extern gsk_render_replay_get_type : unit -> usize
+extern zgtk_type_Gsk_RepeatNode : unit -> usize
+extern zgtk_wrap_Gsk_RepeatNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_RepeatNode : cptr -> cptr
+extern zgtk_type_Gsk_RepeatingLinearGradientNode : unit -> usize
+extern zgtk_wrap_Gsk_RepeatingLinearGradientNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_RepeatingLinearGradientNode : cptr -> cptr
+extern zgtk_type_Gsk_RepeatingRadialGradientNode : unit -> usize
+extern zgtk_wrap_Gsk_RepeatingRadialGradientNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_RepeatingRadialGradientNode : cptr -> cptr
+extern zgtk_type_Gsk_RoundedClipNode : unit -> usize
+extern zgtk_wrap_Gsk_RoundedClipNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_RoundedClipNode : cptr -> cptr
 extern zgtk_tag_Gsk_RoundedRect : unit -> usize
 extern zgtk_sizeof_Gsk_RoundedRect : unit -> usize
 extern gsk_shader_args_builder_get_type : unit -> usize
 extern zgtk_tag_Gsk_Shadow : unit -> usize
 extern zgtk_sizeof_Gsk_Shadow : unit -> usize
+extern zgtk_type_Gsk_ShadowNode : unit -> usize
+extern zgtk_wrap_Gsk_ShadowNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_ShadowNode : cptr -> cptr
 extern gsk_stroke_get_type : unit -> usize
+extern zgtk_type_Gsk_StrokeNode : unit -> usize
+extern zgtk_wrap_Gsk_StrokeNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_StrokeNode : cptr -> cptr
+extern zgtk_type_Gsk_SubsurfaceNode : unit -> usize
+extern zgtk_wrap_Gsk_SubsurfaceNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_SubsurfaceNode : cptr -> cptr
+extern zgtk_type_Gsk_TextNode : unit -> usize
+extern zgtk_wrap_Gsk_TextNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_TextNode : cptr -> cptr
+extern zgtk_type_Gsk_TextureNode : unit -> usize
+extern zgtk_wrap_Gsk_TextureNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_TextureNode : cptr -> cptr
+extern zgtk_type_Gsk_TextureScaleNode : unit -> usize
+extern zgtk_wrap_Gsk_TextureScaleNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_TextureScaleNode : cptr -> cptr
 extern gsk_transform_get_type : unit -> usize
+extern zgtk_type_Gsk_TransformNode : unit -> usize
+extern zgtk_wrap_Gsk_TransformNode : cptr -> i32 -> int
+extern zgtk_give_Gsk_TransformNode : cptr -> cptr
 extern gsk_vulkan_renderer_get_type : unit -> usize
 extern zgtk_tramp_Gsk_ParseErrorFunc : unit -> cptr
 extern zgtk_tramp_Gsk_ParseErrorFunc_once : unit -> cptr
@@ -211,30 +316,30 @@ type TransformCategory =
 
 /// A render node applying a blending function between its two child nodes.
 type BlendNode =
-  | BlendNode of cptr
+  | BlendNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | BlendNode p -> p
+    | BlendNode v -> v
 
 /// A render node applying a blur effect to its single child.
 type BlurNode =
-  | BlurNode of cptr
+  | BlurNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | BlurNode p -> p
+    | BlurNode v -> v
 
 /// A render node for a border.
 type BorderNode =
-  | BorderNode of cptr
+  | BorderNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | BorderNode p -> p
+    | BorderNode v -> v
 
 /// Renders a scene graph defined via a tree of [class@Gsk.RenderNode] instances.
 type Renderer =
@@ -274,12 +379,12 @@ type BroadwayRendererClass =
 
 /// A render node for a Cairo surface.
 type CairoNode =
-  | CairoNode of cptr
+  | CairoNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | CairoNode p -> p
+    | CairoNode v -> v
 
 /// Renders a GSK rendernode tree with cairo.
 type CairoRenderer =
@@ -307,30 +412,30 @@ type CairoRendererClass =
 
 /// A render node applying a rectangular clip to its single child node.
 type ClipNode =
-  | ClipNode of cptr
+  | ClipNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | ClipNode p -> p
+    | ClipNode v -> v
 
 /// A render node controlling the color matrix of its single child node.
 type ColorMatrixNode =
-  | ColorMatrixNode of cptr
+  | ColorMatrixNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | ColorMatrixNode p -> p
+    | ColorMatrixNode v -> v
 
 /// A render node for a solid color.
 type ColorNode =
-  | ColorNode of cptr
+  | ColorNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | ColorNode p -> p
+    | ColorNode v -> v
 
 /// A color stop in a gradient node.
 type ColorStop =
@@ -352,75 +457,75 @@ type ComponentTransfer =
 
 /// A render node for applying a `GskComponentTransfer` for each color component of the child node.
 type ComponentTransferNode =
-  | ComponentTransferNode of cptr
+  | ComponentTransferNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | ComponentTransferNode p -> p
+    | ComponentTransferNode v -> v
 
 /// A render node that uses Porter/Duff compositing operators to combine its child with the background.
 type CompositeNode =
-  | CompositeNode of cptr
+  | CompositeNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | CompositeNode p -> p
+    | CompositeNode v -> v
 
 /// A render node for a conic gradient.
 type ConicGradientNode =
-  | ConicGradientNode of cptr
+  | ConicGradientNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | ConicGradientNode p -> p
+    | ConicGradientNode v -> v
 
 /// A render node that can contain other render nodes.
 type ContainerNode =
-  | ContainerNode of cptr
+  | ContainerNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | ContainerNode p -> p
+    | ContainerNode v -> v
 
 /// A render node that copies the current state of the rendering canvas so a [class@Gsk.PasteNode] can draw it.
 type CopyNode =
-  | CopyNode of cptr
+  | CopyNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | CopyNode p -> p
+    | CopyNode v -> v
 
 /// A render node cross fading between two child nodes.
 type CrossFadeNode =
-  | CrossFadeNode of cptr
+  | CrossFadeNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | CrossFadeNode p -> p
+    | CrossFadeNode v -> v
 
 /// A render node that emits a debugging message when drawing its child node.
 type DebugNode =
-  | DebugNode of cptr
+  | DebugNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | DebugNode p -> p
+    | DebugNode v -> v
 
 /// A render node filling the area given by [struct@Gsk.Path] and [enum@Gsk.FillRule] with the child node.
 type FillNode =
-  | FillNode of cptr
+  | FillNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | FillNode p -> p
+    | FillNode v -> v
 
 /// Renders a GSK rendernode tree with OpenGL.
 type GLRenderer =
@@ -469,48 +574,48 @@ type GLShaderClass =
 
 /// A render node using a GL shader when drawing its children nodes.
 type GLShaderNode =
-  | GLShaderNode of cptr
+  | GLShaderNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | GLShaderNode p -> p
+    | GLShaderNode v -> v
 
 /// A render node for an inset shadow.
 type InsetShadowNode =
-  | InsetShadowNode of cptr
+  | InsetShadowNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | InsetShadowNode p -> p
+    | InsetShadowNode v -> v
 
 /// A render node that isolates its child from surrounding rendernodes.
 type IsolationNode =
-  | IsolationNode of cptr
+  | IsolationNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | IsolationNode p -> p
+    | IsolationNode v -> v
 
 /// A render node for a linear gradient.
 type LinearGradientNode =
-  | LinearGradientNode of cptr
+  | LinearGradientNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | LinearGradientNode p -> p
+    | LinearGradientNode v -> v
 
 /// A render node masking one child node with another.
 type MaskNode =
-  | MaskNode of cptr
+  | MaskNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | MaskNode p -> p
+    | MaskNode v -> v
 
 /// A GL based renderer.
 type NglRenderer =
@@ -529,21 +634,21 @@ type NglRenderer =
 
 /// A render node controlling the opacity of its single child node.
 type OpacityNode =
-  | OpacityNode of cptr
+  | OpacityNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | OpacityNode p -> p
+    | OpacityNode v -> v
 
 /// A render node for an outset shadow.
 type OutsetShadowNode =
-  | OutsetShadowNode of cptr
+  | OutsetShadowNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | OutsetShadowNode p -> p
+    | OutsetShadowNode v -> v
 
 /// A location in a parse buffer.
 type ParseLocation =
@@ -556,12 +661,12 @@ type ParseLocation =
 
 /// A render node for a paste.
 type PasteNode =
-  | PasteNode of cptr
+  | PasteNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | PasteNode p -> p
+    | PasteNode v -> v
 
 /// Describes lines and curves that are more complex than simple rectangles.
 type Path =
@@ -601,12 +706,12 @@ type PathPoint =
 
 /// A render node for a radial gradient.
 type RadialGradientNode =
-  | RadialGradientNode of cptr
+  | RadialGradientNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | RadialGradientNode p -> p
+    | RadialGradientNode v -> v
 
 /// The basic block in a scene graph to be rendered using [class@Gsk.Renderer].
 type RenderNode =
@@ -637,39 +742,39 @@ type RendererClass =
 
 /// A render node repeating its single child node.
 type RepeatNode =
-  | RepeatNode of cptr
+  | RepeatNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | RepeatNode p -> p
+    | RepeatNode v -> v
 
 /// A render node for a repeating linear gradient.
 type RepeatingLinearGradientNode =
-  | RepeatingLinearGradientNode of cptr
+  | RepeatingLinearGradientNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | RepeatingLinearGradientNode p -> p
+    | RepeatingLinearGradientNode v -> v
 
 /// A render node for a repeating radial gradient.
 type RepeatingRadialGradientNode =
-  | RepeatingRadialGradientNode of cptr
+  | RepeatingRadialGradientNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | RepeatingRadialGradientNode p -> p
+    | RepeatingRadialGradientNode v -> v
 
 /// A render node applying a rounded rectangle clip to its single child.
 type RoundedClipNode =
-  | RoundedClipNode of cptr
+  | RoundedClipNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | RoundedClipNode p -> p
+    | RoundedClipNode v -> v
 
 /// A rectangular region with rounded corners.
 type RoundedRect =
@@ -700,12 +805,12 @@ type Shadow =
 
 /// A render node drawing one or more shadows behind its single child node.
 type ShadowNode =
-  | ShadowNode of cptr
+  | ShadowNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | ShadowNode p -> p
+    | ShadowNode v -> v
 
 /// Collects the parameters that are needed when stroking a path.
 type Stroke =
@@ -718,48 +823,48 @@ type Stroke =
 
 /// A render node that will fill the area determined by stroking the the given [struct@Gsk.Path] using the [struct@Gsk.Stroke] attributes.
 type StrokeNode =
-  | StrokeNode of cptr
+  | StrokeNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | StrokeNode p -> p
+    | StrokeNode v -> v
 
 /// A render node that potentially diverts a part of the scene graph to a subsurface.
 type SubsurfaceNode =
-  | SubsurfaceNode of cptr
+  | SubsurfaceNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | SubsurfaceNode p -> p
+    | SubsurfaceNode v -> v
 
 /// A render node drawing a set of glyphs.
 type TextNode =
-  | TextNode of cptr
+  | TextNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | TextNode p -> p
+    | TextNode v -> v
 
 /// A render node for a `GdkTexture`.
 type TextureNode =
-  | TextureNode of cptr
+  | TextureNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | TextureNode p -> p
+    | TextureNode v -> v
 
 /// A render node for a `GdkTexture`, with control over scaling.
 type TextureScaleNode =
-  | TextureScaleNode of cptr
+  | TextureScaleNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | TextureScaleNode p -> p
+    | TextureScaleNode v -> v
 
 /// Describes a 3D transform.
 type Transform =
@@ -772,12 +877,12 @@ type Transform =
 
 /// A render node applying a `GskTransform` to its single child node.
 type TransformNode =
-  | TransformNode of cptr
+  | TransformNode of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | TransformNode p -> p
+    | TransformNode v -> v
 
 /// Renders a GSK rendernode tree with Vulkan.
 type VulkanRenderer =
@@ -1200,49 +1305,44 @@ module BlendNode =
 
   /// Creates a `GskRenderNode` that will use @blend_mode to blend the @top node onto the @bottom node.
   let create (bottom: RenderNode) (top: RenderNode) (blendMode: BlendMode) : BlendNode =
-    BlendNode ((gsk_blend_node_new (Glue.obj bottom.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj top.Id (zgtk_type_Gsk_RenderNode ())) (i32 blendMode.Int)))
+    BlendNode (zgtk_wrap_Gsk_BlendNode ((gsk_blend_node_new (Glue.obj bottom.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj top.Id (zgtk_type_Gsk_RenderNode ())) (i32 blendMode.Int))) (i32 1))
 
   extern gsk_blend_node_get_blend_mode : cptr -> i32
 
   /// Retrieves the blend mode used by @node.
-  [<Unsafe>]
   let getBlendMode (self: BlendNode) : BlendMode =
-    BlendMode (int ((gsk_blend_node_get_blend_mode self.Ptr)))
+    BlendMode (int ((gsk_blend_node_get_blend_mode (Glue.obj self.Id (zgtk_type_Gsk_BlendNode ())))))
 
   extern gsk_blend_node_get_bottom_child : cptr -> cptr
 
   /// Retrieves the bottom `GskRenderNode` child of the @node.
-  [<Unsafe>]
   let getBottomChild (self: BlendNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_blend_node_get_bottom_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_blend_node_get_bottom_child (Glue.obj self.Id (zgtk_type_Gsk_BlendNode ())))) (i32 0))
 
   extern gsk_blend_node_get_top_child : cptr -> cptr
 
   /// Retrieves the top `GskRenderNode` child of the @node.
-  [<Unsafe>]
   let getTopChild (self: BlendNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_blend_node_get_top_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_blend_node_get_top_child (Glue.obj self.Id (zgtk_type_Gsk_BlendNode ())))) (i32 0))
 
 module BlurNode =
   extern gsk_blur_node_new : cptr -> f32 -> cptr
 
   /// Creates a render node that blurs the child.
   let create (child: RenderNode) (radius: float) : BlurNode =
-    BlurNode ((gsk_blur_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (f32 radius)))
+    BlurNode (zgtk_wrap_Gsk_BlurNode ((gsk_blur_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (f32 radius))) (i32 1))
 
   extern gsk_blur_node_get_child : cptr -> cptr
 
   /// Retrieves the child `GskRenderNode` of the blur @node.
-  [<Unsafe>]
   let getChild (self: BlurNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_blur_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_blur_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_BlurNode ())))) (i32 0))
 
   extern gsk_blur_node_get_radius : cptr -> f32
 
   /// Retrieves the blur radius of the @node.
-  [<Unsafe>]
   let getRadius (self: BlurNode) : float =
-    (float ((gsk_blur_node_get_radius self.Ptr)))
+    (float ((gsk_blur_node_get_radius (Glue.obj self.Id (zgtk_type_Gsk_BlurNode ())))))
 
 module BorderNode =
   extern gsk_border_node_new : cptr -> cptr -> cptr -> cptr
@@ -1252,7 +1352,7 @@ module BorderNode =
     let za1 = Glue.floats borderWidth 4
     let za2 = Glue.records (Glue.mapList (fun (zo: Gdk.RGBA) -> Glue.obj zo.Id (Gdk.gdk_rgba_get_type ())) borderColor) (Gdk.zgtk_sizeof_Gdk_RGBA ())
     let zr = gsk_border_node_new (Glue.obj outline.Id (zgtk_tag_Gsk_RoundedRect ())) za1 za2
-    let zv = BorderNode (zr)
+    let zv = BorderNode (zgtk_wrap_Gsk_BorderNode (zr) (i32 1))
     Glue.free za1
     Glue.free za2
     zv
@@ -1260,25 +1360,22 @@ module BorderNode =
   extern gsk_border_node_get_colors : cptr -> cptr
 
   /// Retrieves the colors of the border.
-  [<Unsafe>]
   let getColors (self: BorderNode) : list<Gdk.RGBA> =
-    let zr = gsk_border_node_get_colors self.Ptr
+    let zr = gsk_border_node_get_colors (Glue.obj self.Id (zgtk_type_Gsk_BorderNode ()))
     let zrs1 = Glue.mapList (fun zp -> Gdk.RGBA (Glue.wrapBoxed (zp) (Gdk.gdk_rgba_get_type ()) false)) (Glue.recordsOf (zr) (4) (Gdk.zgtk_sizeof_Gdk_RGBA ()))
     zrs1
 
   extern gsk_border_node_get_outline : cptr -> cptr
 
   /// Retrieves the outline of the border.
-  [<Unsafe>]
   let getOutline (self: BorderNode) : RoundedRect =
-    RoundedRect (Glue.copyPlain ((gsk_border_node_get_outline self.Ptr)) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
+    RoundedRect (Glue.copyPlain ((gsk_border_node_get_outline (Glue.obj self.Id (zgtk_type_Gsk_BorderNode ())))) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
 
   extern gsk_border_node_get_widths : cptr -> cptr
 
   /// Retrieves the stroke widths of the border.
-  [<Unsafe>]
   let getWidths (self: BorderNode) : list<float> =
-    Glue.floatsOf ((gsk_border_node_get_widths self.Ptr)) (4) 4 false
+    Glue.floatsOf ((gsk_border_node_get_widths (Glue.obj self.Id (zgtk_type_Gsk_BorderNode ())))) (4) 4 false
 
 module Renderer =
   /// The same object as its ancestor.
@@ -1399,21 +1496,19 @@ module CairoNode =
 
   /// Creates a `GskRenderNode` that will render a cairo surface into the area given by @bounds.
   let create (bounds: Graphene.Rect) : CairoNode =
-    CairoNode ((gsk_cairo_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ()))))
+    CairoNode (zgtk_wrap_Gsk_CairoNode ((gsk_cairo_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())))) (i32 1))
 
   extern gsk_cairo_node_get_draw_context : cptr -> cptr
 
   /// Creates a Cairo context for drawing using the surface associated to the render node.
-  [<Unsafe>]
   let getDrawContext (self: CairoNode) : Cairo.Context =
-    Cairo.Context (Glue.wrapBoxed ((gsk_cairo_node_get_draw_context self.Ptr)) (Cairo.cairo_gobject_context_get_type ()) true)
+    Cairo.Context (Glue.wrapBoxed ((gsk_cairo_node_get_draw_context (Glue.obj self.Id (zgtk_type_Gsk_CairoNode ())))) (Cairo.cairo_gobject_context_get_type ()) true)
 
   extern gsk_cairo_node_get_surface : cptr -> cptr
 
   /// Retrieves the Cairo surface used by the render node.
-  [<Unsafe>]
   let getSurface (self: CairoNode) : Cairo.Surface =
-    Cairo.Surface (Glue.wrapBoxed ((gsk_cairo_node_get_surface self.Ptr)) (Cairo.cairo_gobject_surface_get_type ()) false)
+    Cairo.Surface (Glue.wrapBoxed ((gsk_cairo_node_get_surface (Glue.obj self.Id (zgtk_type_Gsk_CairoNode ())))) (Cairo.cairo_gobject_surface_get_type ()) false)
 
 module CairoRenderer =
   /// The same object as its ancestor.
@@ -1437,63 +1532,57 @@ module ClipNode =
 
   /// Creates a `GskRenderNode` that will clip the @child to the area given by @clip.
   let create (child: RenderNode) (clip: Graphene.Rect) : ClipNode =
-    ClipNode ((gsk_clip_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj clip.Id (Graphene.graphene_rect_get_type ()))))
+    ClipNode (zgtk_wrap_Gsk_ClipNode ((gsk_clip_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj clip.Id (Graphene.graphene_rect_get_type ())))) (i32 1))
 
   extern gsk_clip_node_get_child : cptr -> cptr
 
   /// Gets the child node that is getting clipped by the given @node.
-  [<Unsafe>]
   let getChild (self: ClipNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_clip_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_clip_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_ClipNode ())))) (i32 0))
 
   extern gsk_clip_node_get_clip : cptr -> cptr
 
   /// Retrieves the clip rectangle for @node.
-  [<Unsafe>]
   let getClip (self: ClipNode) : Graphene.Rect =
-    Graphene.Rect (Glue.wrapBoxed ((gsk_clip_node_get_clip self.Ptr)) (Graphene.graphene_rect_get_type ()) false)
+    Graphene.Rect (Glue.wrapBoxed ((gsk_clip_node_get_clip (Glue.obj self.Id (zgtk_type_Gsk_ClipNode ())))) (Graphene.graphene_rect_get_type ()) false)
 
 module ColorMatrixNode =
   extern gsk_color_matrix_node_new : cptr -> cptr -> cptr -> cptr
 
   /// Creates a `GskRenderNode` that will drawn the @child with @color_matrix.
   let create (child: RenderNode) (colorMatrix: Graphene.Matrix) (colorOffset: Graphene.Vec4) : ColorMatrixNode =
-    ColorMatrixNode ((gsk_color_matrix_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj colorMatrix.Id (Graphene.graphene_matrix_get_type ())) (Glue.obj colorOffset.Id (Graphene.graphene_vec4_get_type ()))))
+    ColorMatrixNode (zgtk_wrap_Gsk_ColorMatrixNode ((gsk_color_matrix_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj colorMatrix.Id (Graphene.graphene_matrix_get_type ())) (Glue.obj colorOffset.Id (Graphene.graphene_vec4_get_type ())))) (i32 1))
 
   extern gsk_color_matrix_node_get_child : cptr -> cptr
 
   /// Gets the child node that is getting its colors modified by the given @node.
-  [<Unsafe>]
   let getChild (self: ColorMatrixNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_color_matrix_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_color_matrix_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_ColorMatrixNode ())))) (i32 0))
 
   extern gsk_color_matrix_node_get_color_matrix : cptr -> cptr
 
   /// Retrieves the color matrix used by the @node.
-  [<Unsafe>]
   let getColorMatrix (self: ColorMatrixNode) : Graphene.Matrix =
-    Graphene.Matrix (Glue.wrapBoxed ((gsk_color_matrix_node_get_color_matrix self.Ptr)) (Graphene.graphene_matrix_get_type ()) false)
+    Graphene.Matrix (Glue.wrapBoxed ((gsk_color_matrix_node_get_color_matrix (Glue.obj self.Id (zgtk_type_Gsk_ColorMatrixNode ())))) (Graphene.graphene_matrix_get_type ()) false)
 
   extern gsk_color_matrix_node_get_color_offset : cptr -> cptr
 
   /// Retrieves the color offset used by the @node.
-  [<Unsafe>]
   let getColorOffset (self: ColorMatrixNode) : Graphene.Vec4 =
-    Graphene.Vec4 (Glue.wrapBoxed ((gsk_color_matrix_node_get_color_offset self.Ptr)) (Graphene.graphene_vec4_get_type ()) false)
+    Graphene.Vec4 (Glue.wrapBoxed ((gsk_color_matrix_node_get_color_offset (Glue.obj self.Id (zgtk_type_Gsk_ColorMatrixNode ())))) (Graphene.graphene_vec4_get_type ()) false)
 
 module ColorNode =
   extern gsk_color_node_new : cptr -> cptr -> cptr
 
   /// Creates a `GskRenderNode` that will render the color specified by @rgba into the area given by @bounds.
   let create (rgba: Gdk.RGBA) (bounds: Graphene.Rect) : ColorNode =
-    ColorNode ((gsk_color_node_new (Glue.obj rgba.Id (Gdk.gdk_rgba_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ()))))
+    ColorNode (zgtk_wrap_Gsk_ColorNode ((gsk_color_node_new (Glue.obj rgba.Id (Gdk.gdk_rgba_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())))) (i32 1))
 
   extern gsk_color_node_get_color : cptr -> cptr
 
   /// Retrieves the color of the given @node.
-  [<Unsafe>]
   let getColor (self: ColorNode) : Gdk.RGBA =
-    Gdk.RGBA (Glue.wrapBoxed ((gsk_color_node_get_color self.Ptr)) (Gdk.gdk_rgba_get_type ()) false)
+    Gdk.RGBA (Glue.wrapBoxed ((gsk_color_node_get_color (Glue.obj self.Id (zgtk_type_Gsk_ColorNode ())))) (Gdk.gdk_rgba_get_type ()) false)
 
 module ColorStop =
   /// A new one, every field zero.
@@ -1589,49 +1678,44 @@ module ComponentTransferNode =
 
   /// Creates a render node that will apply component transfers to a child node.
   let create (child: RenderNode) (r: ComponentTransfer) (g: ComponentTransfer) (b: ComponentTransfer) (a: ComponentTransfer) : ComponentTransferNode =
-    ComponentTransferNode ((gsk_component_transfer_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj r.Id (gsk_component_transfer_get_type ())) (Glue.obj g.Id (gsk_component_transfer_get_type ())) (Glue.obj b.Id (gsk_component_transfer_get_type ())) (Glue.obj a.Id (gsk_component_transfer_get_type ()))))
+    ComponentTransferNode (zgtk_wrap_Gsk_ComponentTransferNode ((gsk_component_transfer_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj r.Id (gsk_component_transfer_get_type ())) (Glue.obj g.Id (gsk_component_transfer_get_type ())) (Glue.obj b.Id (gsk_component_transfer_get_type ())) (Glue.obj a.Id (gsk_component_transfer_get_type ())))) (i32 1))
 
   extern gsk_component_transfer_node_get_child : cptr -> cptr
 
   /// Gets the child node that is getting drawn by the given @node.
-  [<Unsafe>]
   let getChild (self: ComponentTransferNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_component_transfer_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_component_transfer_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_ComponentTransferNode ())))) (i32 0))
 
   extern gsk_component_transfer_node_get_transfer : cptr -> i32 -> cptr
 
   /// Gets the component transfer for one of the components.
-  [<Unsafe>]
   let getTransfer (self: ComponentTransferNode) (component: Gdk.ColorChannel) : ComponentTransfer =
-    ComponentTransfer (Glue.wrapBoxed ((gsk_component_transfer_node_get_transfer self.Ptr (i32 component.Int))) (gsk_component_transfer_get_type ()) false)
+    ComponentTransfer (Glue.wrapBoxed ((gsk_component_transfer_node_get_transfer (Glue.obj self.Id (zgtk_type_Gsk_ComponentTransferNode ())) (i32 component.Int))) (gsk_component_transfer_get_type ()) false)
 
 module CompositeNode =
   extern gsk_composite_node_new : cptr -> cptr -> i32 -> cptr
 
   /// Creates a `GskRenderNode` that will composite the child onto the background with the given operator wherever the mask is set.
   let create (child: RenderNode) (mask: RenderNode) (op: PorterDuff) : CompositeNode =
-    CompositeNode ((gsk_composite_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj mask.Id (zgtk_type_Gsk_RenderNode ())) (i32 op.Int)))
+    CompositeNode (zgtk_wrap_Gsk_CompositeNode ((gsk_composite_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj mask.Id (zgtk_type_Gsk_RenderNode ())) (i32 op.Int))) (i32 1))
 
   extern gsk_composite_node_get_child : cptr -> cptr
 
   /// Gets the child node that is getting composited by the given @node.
-  [<Unsafe>]
   let getChild (self: CompositeNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_composite_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_composite_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_CompositeNode ())))) (i32 0))
 
   extern gsk_composite_node_get_mask : cptr -> cptr
 
   /// Gets the mask node that describes the region where the compositing applies.
-  [<Unsafe>]
   let getMask (self: CompositeNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_composite_node_get_mask self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_composite_node_get_mask (Glue.obj self.Id (zgtk_type_Gsk_CompositeNode ())))) (i32 0))
 
   extern gsk_composite_node_get_operator : cptr -> i32
 
   /// Gets the compositing operator used by this node.
-  [<Unsafe>]
   let getOperator (self: CompositeNode) : PorterDuff =
-    PorterDuff (int ((gsk_composite_node_get_operator self.Ptr)))
+    PorterDuff (int ((gsk_composite_node_get_operator (Glue.obj self.Id (zgtk_type_Gsk_CompositeNode ())))))
 
 module ConicGradientNode =
   extern gsk_conic_gradient_node_new : cptr -> cptr -> f32 -> cptr -> usize -> cptr
@@ -1640,31 +1724,28 @@ module ConicGradientNode =
   let create (bounds: Graphene.Rect) (center: Graphene.Point) (rotation: float) (colorStops: list<ColorStop>) : ConicGradientNode =
     let za2 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
     let zr = gsk_conic_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 rotation) za2 (usize (Glue.count colorStops))
-    let zv = ConicGradientNode (zr)
+    let zv = ConicGradientNode (zgtk_wrap_Gsk_ConicGradientNode (zr) (i32 1))
     Glue.free za2
     zv
 
   extern gsk_conic_gradient_node_get_angle : cptr -> f32
 
   /// Retrieves the angle for the gradient in radians, normalized in [0, 2 * PI].
-  [<Unsafe>]
   let getAngle (self: ConicGradientNode) : float =
-    (float ((gsk_conic_gradient_node_get_angle self.Ptr)))
+    (float ((gsk_conic_gradient_node_get_angle (Glue.obj self.Id (zgtk_type_Gsk_ConicGradientNode ())))))
 
   extern gsk_conic_gradient_node_get_center : cptr -> cptr
 
   /// Retrieves the center pointer for the gradient.
-  [<Unsafe>]
   let getCenter (self: ConicGradientNode) : Graphene.Point =
-    Graphene.Point (Glue.wrapBoxed ((gsk_conic_gradient_node_get_center self.Ptr)) (Graphene.graphene_point_get_type ()) false)
+    Graphene.Point (Glue.wrapBoxed ((gsk_conic_gradient_node_get_center (Glue.obj self.Id (zgtk_type_Gsk_ConicGradientNode ())))) (Graphene.graphene_point_get_type ()) false)
 
   extern gsk_conic_gradient_node_get_color_stops : cptr -> cptr -> cptr
 
   /// Retrieves the color stops in the gradient.
-  [<Unsafe>]
   let getColorStops (self: ConicGradientNode) : list<ColorStop> =
     Glue.outBegin ()
-    let zr = gsk_conic_gradient_node_get_color_stops self.Ptr (Glue.out 0)
+    let zr = gsk_conic_gradient_node_get_color_stops (Glue.obj self.Id (zgtk_type_Gsk_ConicGradientNode ())) (Glue.out 0)
     let zrs1 = Glue.mapList (fun zp -> ColorStop (Glue.copyPlain (zp) (zgtk_sizeof_Gsk_ColorStop ()) (zgtk_tag_Gsk_ColorStop ()))) (Glue.recordsOf (zr) (Glue.outI64 0) (zgtk_sizeof_Gsk_ColorStop ()))
     let zv = zrs1
     Glue.outEnd ()
@@ -1673,16 +1754,14 @@ module ConicGradientNode =
   extern gsk_conic_gradient_node_get_n_color_stops : cptr -> usize
 
   /// Retrieves the number of color stops in the gradient.
-  [<Unsafe>]
   let getNColorStops (self: ConicGradientNode) : int =
-    (int ((gsk_conic_gradient_node_get_n_color_stops self.Ptr)))
+    (int ((gsk_conic_gradient_node_get_n_color_stops (Glue.obj self.Id (zgtk_type_Gsk_ConicGradientNode ())))))
 
   extern gsk_conic_gradient_node_get_rotation : cptr -> f32
 
   /// Retrieves the rotation for the gradient in degrees.
-  [<Unsafe>]
   let getRotation (self: ConicGradientNode) : float =
-    (float ((gsk_conic_gradient_node_get_rotation self.Ptr)))
+    (float ((gsk_conic_gradient_node_get_rotation (Glue.obj self.Id (zgtk_type_Gsk_ConicGradientNode ())))))
 
 module ContainerNode =
   extern gsk_container_node_new : cptr -> u32 -> cptr
@@ -1691,114 +1770,103 @@ module ContainerNode =
   let create (children: list<RenderNode>) : ContainerNode =
     let za2 = Glue.ptrs (Glue.mapList (fun (zo: RenderNode) -> Glue.obj zo.Id (zgtk_type_Gsk_RenderNode ())) children)
     let zr = gsk_container_node_new za2 (u32 (Glue.count children))
-    let zv = ContainerNode (zr)
+    let zv = ContainerNode (zgtk_wrap_Gsk_ContainerNode (zr) (i32 1))
     Glue.free za2
     zv
 
   extern gsk_container_node_get_child : cptr -> u32 -> cptr
 
   /// Gets one of the children of @container.
-  [<Unsafe>]
   let getChild (self: ContainerNode) (idx: int) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_container_node_get_child self.Ptr (u32 idx))) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_container_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_ContainerNode ())) (u32 idx))) (i32 0))
 
   extern gsk_container_node_get_n_children : cptr -> u32
 
   /// Retrieves the number of direct children of @node.
-  [<Unsafe>]
   let getNChildren (self: ContainerNode) : int =
-    (int ((gsk_container_node_get_n_children self.Ptr)))
+    (int ((gsk_container_node_get_n_children (Glue.obj self.Id (zgtk_type_Gsk_ContainerNode ())))))
 
 module CopyNode =
   extern gsk_copy_node_new : cptr -> cptr
 
   /// Creates a `GskRenderNode` that copies the current rendering canvas for playback by paste nodes that are part of the child.
   let create (child: RenderNode) : CopyNode =
-    CopyNode ((gsk_copy_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ()))))
+    CopyNode (zgtk_wrap_Gsk_CopyNode ((gsk_copy_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())))) (i32 1))
 
   extern gsk_copy_node_get_child : cptr -> cptr
 
   /// Gets the child node that is getting drawn by the given @node.
-  [<Unsafe>]
   let getChild (self: CopyNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_copy_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_copy_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_CopyNode ())))) (i32 0))
 
 module CrossFadeNode =
   extern gsk_cross_fade_node_new : cptr -> cptr -> f32 -> cptr
 
   /// Creates a `GskRenderNode` that will do a cross-fade between @start and @end.
   let create (start: RenderNode) (end: RenderNode) (progress: float) : CrossFadeNode =
-    CrossFadeNode ((gsk_cross_fade_node_new (Glue.obj start.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj end.Id (zgtk_type_Gsk_RenderNode ())) (f32 progress)))
+    CrossFadeNode (zgtk_wrap_Gsk_CrossFadeNode ((gsk_cross_fade_node_new (Glue.obj start.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj end.Id (zgtk_type_Gsk_RenderNode ())) (f32 progress))) (i32 1))
 
   extern gsk_cross_fade_node_get_end_child : cptr -> cptr
 
   /// Retrieves the child `GskRenderNode` at the end of the cross-fade.
-  [<Unsafe>]
   let getEndChild (self: CrossFadeNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_cross_fade_node_get_end_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_cross_fade_node_get_end_child (Glue.obj self.Id (zgtk_type_Gsk_CrossFadeNode ())))) (i32 0))
 
   extern gsk_cross_fade_node_get_progress : cptr -> f32
 
   /// Retrieves the progress value of the cross fade.
-  [<Unsafe>]
   let getProgress (self: CrossFadeNode) : float =
-    (float ((gsk_cross_fade_node_get_progress self.Ptr)))
+    (float ((gsk_cross_fade_node_get_progress (Glue.obj self.Id (zgtk_type_Gsk_CrossFadeNode ())))))
 
   extern gsk_cross_fade_node_get_start_child : cptr -> cptr
 
   /// Retrieves the child `GskRenderNode` at the beginning of the cross-fade.
-  [<Unsafe>]
   let getStartChild (self: CrossFadeNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_cross_fade_node_get_start_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_cross_fade_node_get_start_child (Glue.obj self.Id (zgtk_type_Gsk_CrossFadeNode ())))) (i32 0))
 
 module DebugNode =
   extern gsk_debug_node_new : cptr -> cptr -> cptr
 
   /// Creates a `GskRenderNode` that will add debug information about the given @child.
   let create (child: RenderNode) (message: string) : DebugNode =
-    DebugNode ((gsk_debug_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.dup message)))
+    DebugNode (zgtk_wrap_Gsk_DebugNode ((gsk_debug_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.dup message))) (i32 1))
 
   extern gsk_debug_node_get_child : cptr -> cptr
 
   /// Gets the child node that is getting drawn by the given @node.
-  [<Unsafe>]
   let getChild (self: DebugNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_debug_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_debug_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_DebugNode ())))) (i32 0))
 
   extern gsk_debug_node_get_message : cptr -> cptr
 
   /// Gets the debug message that was set on this node
-  [<Unsafe>]
   let getMessage (self: DebugNode) : string =
-    Glue.text ((gsk_debug_node_get_message self.Ptr))
+    Glue.text ((gsk_debug_node_get_message (Glue.obj self.Id (zgtk_type_Gsk_DebugNode ()))))
 
 module FillNode =
   extern gsk_fill_node_new : cptr -> cptr -> i32 -> cptr
 
   /// Creates a `GskRenderNode` that will fill the @child in the area given by @path and @fill_rule.
   let create (child: RenderNode) (path: Path) (fillRule: FillRule) : FillNode =
-    FillNode ((gsk_fill_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj path.Id (gsk_path_get_type ())) (i32 fillRule.Int)))
+    FillNode (zgtk_wrap_Gsk_FillNode ((gsk_fill_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj path.Id (gsk_path_get_type ())) (i32 fillRule.Int))) (i32 0))
 
   extern gsk_fill_node_get_child : cptr -> cptr
 
   /// Gets the child node that is getting drawn by the given @node.
-  [<Unsafe>]
   let getChild (self: FillNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_fill_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_fill_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_FillNode ())))) (i32 0))
 
   extern gsk_fill_node_get_fill_rule : cptr -> i32
 
   /// Retrieves the fill rule used to determine how the path is filled.
-  [<Unsafe>]
   let getFillRule (self: FillNode) : FillRule =
-    FillRule (int ((gsk_fill_node_get_fill_rule self.Ptr)))
+    FillRule (int ((gsk_fill_node_get_fill_rule (Glue.obj self.Id (zgtk_type_Gsk_FillNode ())))))
 
   extern gsk_fill_node_get_path : cptr -> cptr
 
   /// Retrieves the path used to describe the area filled with the contents of the @node.
-  [<Unsafe>]
   let getPath (self: FillNode) : Path =
-    Path (Glue.wrapBoxed ((gsk_fill_node_get_path self.Ptr)) (gsk_path_get_type ()) false)
+    Path (Glue.wrapBoxed ((gsk_fill_node_get_path (Glue.obj self.Id (zgtk_type_Gsk_FillNode ())))) (gsk_path_get_type ()) false)
 
 module GLRenderer =
   /// The same object as its ancestor.
@@ -1974,107 +2042,95 @@ module GLShaderNode =
   let create (shader: GLShader) (bounds: Graphene.Rect) (args: GLib.Bytes) (children: list<RenderNode>) : GLShaderNode =
     let za2 = Glue.ptrs (Glue.mapList (fun (zo: RenderNode) -> Glue.obj zo.Id (zgtk_type_Gsk_RenderNode ())) children)
     let zr = gsk_gl_shader_node_new (Glue.obj shader.Id (gsk_gl_shader_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj args.Id (GLib.g_bytes_get_type ())) za2 (u32 (Glue.count children))
-    let zv = GLShaderNode (zr)
+    let zv = GLShaderNode (zgtk_wrap_Gsk_GLShaderNode (zr) (i32 1))
     Glue.free za2
     zv
 
   extern gsk_gl_shader_node_get_args : cptr -> cptr
 
   /// Deprecated. Gets args for the node.
-  [<Unsafe>]
   let getArgs (self: GLShaderNode) : GLib.Bytes =
-    GLib.Bytes (Glue.wrapBoxed ((gsk_gl_shader_node_get_args self.Ptr)) (GLib.g_bytes_get_type ()) false)
+    GLib.Bytes (Glue.wrapBoxed ((gsk_gl_shader_node_get_args (Glue.obj self.Id (zgtk_type_Gsk_GLShaderNode ())))) (GLib.g_bytes_get_type ()) false)
 
   extern gsk_gl_shader_node_get_child : cptr -> u32 -> cptr
 
   /// Deprecated. Gets one of the children.
-  [<Unsafe>]
   let getChild (self: GLShaderNode) (idx: int) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_gl_shader_node_get_child self.Ptr (u32 idx))) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_gl_shader_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_GLShaderNode ())) (u32 idx))) (i32 0))
 
   extern gsk_gl_shader_node_get_n_children : cptr -> u32
 
   /// Deprecated. Returns the number of children
-  [<Unsafe>]
   let getNChildren (self: GLShaderNode) : int =
-    (int ((gsk_gl_shader_node_get_n_children self.Ptr)))
+    (int ((gsk_gl_shader_node_get_n_children (Glue.obj self.Id (zgtk_type_Gsk_GLShaderNode ())))))
 
   extern gsk_gl_shader_node_get_shader : cptr -> cptr
 
   /// Gets shader code for the node.
-  [<Unsafe>]
   let getShader (self: GLShaderNode) : GLShader =
-    GLShader (Glue.wrap ((gsk_gl_shader_node_get_shader self.Ptr)) false)
+    GLShader (Glue.wrap ((gsk_gl_shader_node_get_shader (Glue.obj self.Id (zgtk_type_Gsk_GLShaderNode ())))) false)
 
 module InsetShadowNode =
   extern gsk_inset_shadow_node_new : cptr -> cptr -> f32 -> f32 -> f32 -> f32 -> cptr
 
   /// Creates a `GskRenderNode` that will render an inset shadow into the box given by @outline.
   let create (outline: RoundedRect) (color: Gdk.RGBA) (dx: float) (dy: float) (spread: float) (blurRadius: float) : InsetShadowNode =
-    InsetShadowNode ((gsk_inset_shadow_node_new (Glue.obj outline.Id (zgtk_tag_Gsk_RoundedRect ())) (Glue.obj color.Id (Gdk.gdk_rgba_get_type ())) (f32 dx) (f32 dy) (f32 spread) (f32 blurRadius)))
+    InsetShadowNode (zgtk_wrap_Gsk_InsetShadowNode ((gsk_inset_shadow_node_new (Glue.obj outline.Id (zgtk_tag_Gsk_RoundedRect ())) (Glue.obj color.Id (Gdk.gdk_rgba_get_type ())) (f32 dx) (f32 dy) (f32 spread) (f32 blurRadius))) (i32 1))
 
   extern gsk_inset_shadow_node_get_blur_radius : cptr -> f32
 
   /// Retrieves the blur radius to apply to the shadow.
-  [<Unsafe>]
   let getBlurRadius (self: InsetShadowNode) : float =
-    (float ((gsk_inset_shadow_node_get_blur_radius self.Ptr)))
+    (float ((gsk_inset_shadow_node_get_blur_radius (Glue.obj self.Id (zgtk_type_Gsk_InsetShadowNode ())))))
 
   extern gsk_inset_shadow_node_get_color : cptr -> cptr
 
   /// Retrieves the color of the inset shadow.
-  [<Unsafe>]
   let getColor (self: InsetShadowNode) : Gdk.RGBA =
-    Gdk.RGBA (Glue.wrapBoxed ((gsk_inset_shadow_node_get_color self.Ptr)) (Gdk.gdk_rgba_get_type ()) false)
+    Gdk.RGBA (Glue.wrapBoxed ((gsk_inset_shadow_node_get_color (Glue.obj self.Id (zgtk_type_Gsk_InsetShadowNode ())))) (Gdk.gdk_rgba_get_type ()) false)
 
   extern gsk_inset_shadow_node_get_dx : cptr -> f32
 
   /// Retrieves the horizontal offset of the inset shadow.
-  [<Unsafe>]
   let getDx (self: InsetShadowNode) : float =
-    (float ((gsk_inset_shadow_node_get_dx self.Ptr)))
+    (float ((gsk_inset_shadow_node_get_dx (Glue.obj self.Id (zgtk_type_Gsk_InsetShadowNode ())))))
 
   extern gsk_inset_shadow_node_get_dy : cptr -> f32
 
   /// Retrieves the vertical offset of the inset shadow.
-  [<Unsafe>]
   let getDy (self: InsetShadowNode) : float =
-    (float ((gsk_inset_shadow_node_get_dy self.Ptr)))
+    (float ((gsk_inset_shadow_node_get_dy (Glue.obj self.Id (zgtk_type_Gsk_InsetShadowNode ())))))
 
   extern gsk_inset_shadow_node_get_outline : cptr -> cptr
 
   /// Retrieves the outline rectangle of the inset shadow.
-  [<Unsafe>]
   let getOutline (self: InsetShadowNode) : RoundedRect =
-    RoundedRect (Glue.copyPlain ((gsk_inset_shadow_node_get_outline self.Ptr)) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
+    RoundedRect (Glue.copyPlain ((gsk_inset_shadow_node_get_outline (Glue.obj self.Id (zgtk_type_Gsk_InsetShadowNode ())))) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
 
   extern gsk_inset_shadow_node_get_spread : cptr -> f32
 
   /// Retrieves how much the shadow spreads inwards.
-  [<Unsafe>]
   let getSpread (self: InsetShadowNode) : float =
-    (float ((gsk_inset_shadow_node_get_spread self.Ptr)))
+    (float ((gsk_inset_shadow_node_get_spread (Glue.obj self.Id (zgtk_type_Gsk_InsetShadowNode ())))))
 
 module IsolationNode =
   extern gsk_isolation_node_new : cptr -> u32 -> cptr
 
   /// Creates a `GskRenderNode` that isolates the drawing operations of the child from surrounding ones.
   let create (child: RenderNode) (isolations: Isolation) : IsolationNode =
-    IsolationNode ((gsk_isolation_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (u32 isolations.Int)))
+    IsolationNode (zgtk_wrap_Gsk_IsolationNode ((gsk_isolation_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (u32 isolations.Int))) (i32 1))
 
   extern gsk_isolation_node_get_child : cptr -> cptr
 
   /// Gets the child node that is getting drawn by the given @node.
-  [<Unsafe>]
   let getChild (self: IsolationNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_isolation_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_isolation_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_IsolationNode ())))) (i32 0))
 
   extern gsk_isolation_node_get_isolations : cptr -> u32
 
   /// Gets the isolation features that are enforced by this node.
-  [<Unsafe>]
   let getIsolations (self: IsolationNode) : Isolation =
-    Isolation (int ((gsk_isolation_node_get_isolations self.Ptr)))
+    Isolation (int ((gsk_isolation_node_get_isolations (Glue.obj self.Id (zgtk_type_Gsk_IsolationNode ())))))
 
 module LinearGradientNode =
   extern gsk_linear_gradient_node_new : cptr -> cptr -> cptr -> cptr -> usize -> cptr
@@ -2083,17 +2139,16 @@ module LinearGradientNode =
   let create (bounds: Graphene.Rect) (start: Graphene.Point) (end: Graphene.Point) (colorStops: list<ColorStop>) : LinearGradientNode =
     let za2 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
     let zr = gsk_linear_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj start.Id (Graphene.graphene_point_get_type ())) (Glue.obj end.Id (Graphene.graphene_point_get_type ())) za2 (usize (Glue.count colorStops))
-    let zv = LinearGradientNode (zr)
+    let zv = LinearGradientNode (zgtk_wrap_Gsk_LinearGradientNode (zr) (i32 1))
     Glue.free za2
     zv
 
   extern gsk_linear_gradient_node_get_color_stops : cptr -> cptr -> cptr
 
   /// Retrieves the color stops in the gradient.
-  [<Unsafe>]
   let getColorStops (self: LinearGradientNode) : list<ColorStop> =
     Glue.outBegin ()
-    let zr = gsk_linear_gradient_node_get_color_stops self.Ptr (Glue.out 0)
+    let zr = gsk_linear_gradient_node_get_color_stops (Glue.obj self.Id (zgtk_type_Gsk_LinearGradientNode ())) (Glue.out 0)
     let zrs1 = Glue.mapList (fun zp -> ColorStop (Glue.copyPlain (zp) (zgtk_sizeof_Gsk_ColorStop ()) (zgtk_tag_Gsk_ColorStop ()))) (Glue.recordsOf (zr) (Glue.outI64 0) (zgtk_sizeof_Gsk_ColorStop ()))
     let zv = zrs1
     Glue.outEnd ()
@@ -2102,51 +2157,45 @@ module LinearGradientNode =
   extern gsk_linear_gradient_node_get_end : cptr -> cptr
 
   /// Retrieves the final point of the linear gradient.
-  [<Unsafe>]
   let getEnd (self: LinearGradientNode) : Graphene.Point =
-    Graphene.Point (Glue.wrapBoxed ((gsk_linear_gradient_node_get_end self.Ptr)) (Graphene.graphene_point_get_type ()) false)
+    Graphene.Point (Glue.wrapBoxed ((gsk_linear_gradient_node_get_end (Glue.obj self.Id (zgtk_type_Gsk_LinearGradientNode ())))) (Graphene.graphene_point_get_type ()) false)
 
   extern gsk_linear_gradient_node_get_n_color_stops : cptr -> usize
 
   /// Retrieves the number of color stops in the gradient.
-  [<Unsafe>]
   let getNColorStops (self: LinearGradientNode) : int =
-    (int ((gsk_linear_gradient_node_get_n_color_stops self.Ptr)))
+    (int ((gsk_linear_gradient_node_get_n_color_stops (Glue.obj self.Id (zgtk_type_Gsk_LinearGradientNode ())))))
 
   extern gsk_linear_gradient_node_get_start : cptr -> cptr
 
   /// Retrieves the initial point of the linear gradient.
-  [<Unsafe>]
   let getStart (self: LinearGradientNode) : Graphene.Point =
-    Graphene.Point (Glue.wrapBoxed ((gsk_linear_gradient_node_get_start self.Ptr)) (Graphene.graphene_point_get_type ()) false)
+    Graphene.Point (Glue.wrapBoxed ((gsk_linear_gradient_node_get_start (Glue.obj self.Id (zgtk_type_Gsk_LinearGradientNode ())))) (Graphene.graphene_point_get_type ()) false)
 
 module MaskNode =
   extern gsk_mask_node_new : cptr -> cptr -> i32 -> cptr
 
   /// Creates a `GskRenderNode` that will mask a given node by another.
   let create (source: RenderNode) (mask: RenderNode) (maskMode: MaskMode) : MaskNode =
-    MaskNode ((gsk_mask_node_new (Glue.obj source.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj mask.Id (zgtk_type_Gsk_RenderNode ())) (i32 maskMode.Int)))
+    MaskNode (zgtk_wrap_Gsk_MaskNode ((gsk_mask_node_new (Glue.obj source.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj mask.Id (zgtk_type_Gsk_RenderNode ())) (i32 maskMode.Int))) (i32 1))
 
   extern gsk_mask_node_get_mask : cptr -> cptr
 
   /// Retrieves the mask `GskRenderNode` child of the @node.
-  [<Unsafe>]
   let getMask (self: MaskNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_mask_node_get_mask self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_mask_node_get_mask (Glue.obj self.Id (zgtk_type_Gsk_MaskNode ())))) (i32 0))
 
   extern gsk_mask_node_get_mask_mode : cptr -> i32
 
   /// Retrieves the mask mode used by @node.
-  [<Unsafe>]
   let getMaskMode (self: MaskNode) : MaskMode =
-    MaskMode (int ((gsk_mask_node_get_mask_mode self.Ptr)))
+    MaskMode (int ((gsk_mask_node_get_mask_mode (Glue.obj self.Id (zgtk_type_Gsk_MaskNode ())))))
 
   extern gsk_mask_node_get_source : cptr -> cptr
 
   /// Retrieves the source `GskRenderNode` child of the @node.
-  [<Unsafe>]
   let getSource (self: MaskNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_mask_node_get_source self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_mask_node_get_source (Glue.obj self.Id (zgtk_type_Gsk_MaskNode ())))) (i32 0))
 
 module NglRenderer =
   /// The same object as its ancestor.
@@ -2170,70 +2219,62 @@ module OpacityNode =
 
   /// Creates a `GskRenderNode` that will drawn the @child with reduced @opacity.
   let create (child: RenderNode) (opacity: float) : OpacityNode =
-    OpacityNode ((gsk_opacity_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (f32 opacity)))
+    OpacityNode (zgtk_wrap_Gsk_OpacityNode ((gsk_opacity_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (f32 opacity))) (i32 1))
 
   extern gsk_opacity_node_get_child : cptr -> cptr
 
   /// Gets the child node that is getting opacityed by the given @node.
-  [<Unsafe>]
   let getChild (self: OpacityNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_opacity_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_opacity_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_OpacityNode ())))) (i32 0))
 
   extern gsk_opacity_node_get_opacity : cptr -> f32
 
   /// Gets the transparency factor for an opacity node.
-  [<Unsafe>]
   let getOpacity (self: OpacityNode) : float =
-    (float ((gsk_opacity_node_get_opacity self.Ptr)))
+    (float ((gsk_opacity_node_get_opacity (Glue.obj self.Id (zgtk_type_Gsk_OpacityNode ())))))
 
 module OutsetShadowNode =
   extern gsk_outset_shadow_node_new : cptr -> cptr -> f32 -> f32 -> f32 -> f32 -> cptr
 
   /// Creates a `GskRenderNode` that will render an outset shadow around the box given by @outline.
   let create (outline: RoundedRect) (color: Gdk.RGBA) (dx: float) (dy: float) (spread: float) (blurRadius: float) : OutsetShadowNode =
-    OutsetShadowNode ((gsk_outset_shadow_node_new (Glue.obj outline.Id (zgtk_tag_Gsk_RoundedRect ())) (Glue.obj color.Id (Gdk.gdk_rgba_get_type ())) (f32 dx) (f32 dy) (f32 spread) (f32 blurRadius)))
+    OutsetShadowNode (zgtk_wrap_Gsk_OutsetShadowNode ((gsk_outset_shadow_node_new (Glue.obj outline.Id (zgtk_tag_Gsk_RoundedRect ())) (Glue.obj color.Id (Gdk.gdk_rgba_get_type ())) (f32 dx) (f32 dy) (f32 spread) (f32 blurRadius))) (i32 1))
 
   extern gsk_outset_shadow_node_get_blur_radius : cptr -> f32
 
   /// Retrieves the blur radius of the shadow.
-  [<Unsafe>]
   let getBlurRadius (self: OutsetShadowNode) : float =
-    (float ((gsk_outset_shadow_node_get_blur_radius self.Ptr)))
+    (float ((gsk_outset_shadow_node_get_blur_radius (Glue.obj self.Id (zgtk_type_Gsk_OutsetShadowNode ())))))
 
   extern gsk_outset_shadow_node_get_color : cptr -> cptr
 
   /// Retrieves the color of the outset shadow.
-  [<Unsafe>]
   let getColor (self: OutsetShadowNode) : Gdk.RGBA =
-    Gdk.RGBA (Glue.wrapBoxed ((gsk_outset_shadow_node_get_color self.Ptr)) (Gdk.gdk_rgba_get_type ()) false)
+    Gdk.RGBA (Glue.wrapBoxed ((gsk_outset_shadow_node_get_color (Glue.obj self.Id (zgtk_type_Gsk_OutsetShadowNode ())))) (Gdk.gdk_rgba_get_type ()) false)
 
   extern gsk_outset_shadow_node_get_dx : cptr -> f32
 
   /// Retrieves the horizontal offset of the outset shadow.
-  [<Unsafe>]
   let getDx (self: OutsetShadowNode) : float =
-    (float ((gsk_outset_shadow_node_get_dx self.Ptr)))
+    (float ((gsk_outset_shadow_node_get_dx (Glue.obj self.Id (zgtk_type_Gsk_OutsetShadowNode ())))))
 
   extern gsk_outset_shadow_node_get_dy : cptr -> f32
 
   /// Retrieves the vertical offset of the outset shadow.
-  [<Unsafe>]
   let getDy (self: OutsetShadowNode) : float =
-    (float ((gsk_outset_shadow_node_get_dy self.Ptr)))
+    (float ((gsk_outset_shadow_node_get_dy (Glue.obj self.Id (zgtk_type_Gsk_OutsetShadowNode ())))))
 
   extern gsk_outset_shadow_node_get_outline : cptr -> cptr
 
   /// Retrieves the outline rectangle of the outset shadow.
-  [<Unsafe>]
   let getOutline (self: OutsetShadowNode) : RoundedRect =
-    RoundedRect (Glue.copyPlain ((gsk_outset_shadow_node_get_outline self.Ptr)) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
+    RoundedRect (Glue.copyPlain ((gsk_outset_shadow_node_get_outline (Glue.obj self.Id (zgtk_type_Gsk_OutsetShadowNode ())))) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
 
   extern gsk_outset_shadow_node_get_spread : cptr -> f32
 
   /// Retrieves how much the shadow spreads outwards.
-  [<Unsafe>]
   let getSpread (self: OutsetShadowNode) : float =
-    (float ((gsk_outset_shadow_node_get_spread self.Ptr)))
+    (float ((gsk_outset_shadow_node_get_spread (Glue.obj self.Id (zgtk_type_Gsk_OutsetShadowNode ())))))
 
 module ParseLocation =
   /// A new one, every field zero.
@@ -2294,14 +2335,13 @@ module PasteNode =
 
   /// Creates a `GskRenderNode` that will paste copied contents.
   let create (bounds: Graphene.Rect) (depth: int) : PasteNode =
-    PasteNode ((gsk_paste_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (usize depth)))
+    PasteNode (zgtk_wrap_Gsk_PasteNode ((gsk_paste_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (usize depth))) (i32 1))
 
   extern gsk_paste_node_get_depth : cptr -> usize
 
   /// Retrieves the index of the copy that should be pasted.
-  [<Unsafe>]
   let getDepth (self: PasteNode) : int =
-    (int ((gsk_paste_node_get_depth self.Ptr)))
+    (int ((gsk_paste_node_get_depth (Glue.obj self.Id (zgtk_type_Gsk_PasteNode ())))))
 
 module Path =
   extern gsk_path_equal : cptr -> cptr -> i32
@@ -2784,24 +2824,22 @@ module RadialGradientNode =
   let create (bounds: Graphene.Rect) (center: Graphene.Point) (hradius: float) (vradius: float) (start: float) (end: float) (colorStops: list<ColorStop>) : RadialGradientNode =
     let za2 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
     let zr = gsk_radial_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 hradius) (f32 vradius) (f32 start) (f32 end) za2 (usize (Glue.count colorStops))
-    let zv = RadialGradientNode (zr)
+    let zv = RadialGradientNode (zgtk_wrap_Gsk_RadialGradientNode (zr) (i32 1))
     Glue.free za2
     zv
 
   extern gsk_radial_gradient_node_get_center : cptr -> cptr
 
   /// Retrieves the center pointer for the gradient.
-  [<Unsafe>]
   let getCenter (self: RadialGradientNode) : Graphene.Point =
-    Graphene.Point (Glue.wrapBoxed ((gsk_radial_gradient_node_get_center self.Ptr)) (Graphene.graphene_point_get_type ()) false)
+    Graphene.Point (Glue.wrapBoxed ((gsk_radial_gradient_node_get_center (Glue.obj self.Id (zgtk_type_Gsk_RadialGradientNode ())))) (Graphene.graphene_point_get_type ()) false)
 
   extern gsk_radial_gradient_node_get_color_stops : cptr -> cptr -> cptr
 
   /// Retrieves the color stops in the gradient.
-  [<Unsafe>]
   let getColorStops (self: RadialGradientNode) : list<ColorStop> =
     Glue.outBegin ()
-    let zr = gsk_radial_gradient_node_get_color_stops self.Ptr (Glue.out 0)
+    let zr = gsk_radial_gradient_node_get_color_stops (Glue.obj self.Id (zgtk_type_Gsk_RadialGradientNode ())) (Glue.out 0)
     let zrs1 = Glue.mapList (fun zp -> ColorStop (Glue.copyPlain (zp) (zgtk_sizeof_Gsk_ColorStop ()) (zgtk_tag_Gsk_ColorStop ()))) (Glue.recordsOf (zr) (Glue.outI64 0) (zgtk_sizeof_Gsk_ColorStop ()))
     let zv = zrs1
     Glue.outEnd ()
@@ -2810,37 +2848,32 @@ module RadialGradientNode =
   extern gsk_radial_gradient_node_get_end : cptr -> f32
 
   /// Retrieves the end value for the gradient.
-  [<Unsafe>]
   let getEnd (self: RadialGradientNode) : float =
-    (float ((gsk_radial_gradient_node_get_end self.Ptr)))
+    (float ((gsk_radial_gradient_node_get_end (Glue.obj self.Id (zgtk_type_Gsk_RadialGradientNode ())))))
 
   extern gsk_radial_gradient_node_get_hradius : cptr -> f32
 
   /// Retrieves the horizontal radius for the gradient.
-  [<Unsafe>]
   let getHradius (self: RadialGradientNode) : float =
-    (float ((gsk_radial_gradient_node_get_hradius self.Ptr)))
+    (float ((gsk_radial_gradient_node_get_hradius (Glue.obj self.Id (zgtk_type_Gsk_RadialGradientNode ())))))
 
   extern gsk_radial_gradient_node_get_n_color_stops : cptr -> usize
 
   /// Retrieves the number of color stops in the gradient.
-  [<Unsafe>]
   let getNColorStops (self: RadialGradientNode) : int =
-    (int ((gsk_radial_gradient_node_get_n_color_stops self.Ptr)))
+    (int ((gsk_radial_gradient_node_get_n_color_stops (Glue.obj self.Id (zgtk_type_Gsk_RadialGradientNode ())))))
 
   extern gsk_radial_gradient_node_get_start : cptr -> f32
 
   /// Retrieves the start value for the gradient.
-  [<Unsafe>]
   let getStart (self: RadialGradientNode) : float =
-    (float ((gsk_radial_gradient_node_get_start self.Ptr)))
+    (float ((gsk_radial_gradient_node_get_start (Glue.obj self.Id (zgtk_type_Gsk_RadialGradientNode ())))))
 
   extern gsk_radial_gradient_node_get_vradius : cptr -> f32
 
   /// Retrieves the vertical radius for the gradient.
-  [<Unsafe>]
   let getVradius (self: RadialGradientNode) : float =
-    (float ((gsk_radial_gradient_node_get_vradius self.Ptr)))
+    (float ((gsk_radial_gradient_node_get_vradius (Glue.obj self.Id (zgtk_type_Gsk_RadialGradientNode ())))))
 
 module RenderNode =
   extern gsk_render_node_draw : cptr -> cptr -> unit
@@ -3019,21 +3052,19 @@ module RepeatNode =
       | Some zo -> Glue.obj zo.Id (Graphene.graphene_rect_get_type ())
       | None -> Glue.none ()
     let zr = gsk_repeat_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) zp1
-    RepeatNode (zr)
+    RepeatNode (zgtk_wrap_Gsk_RepeatNode (zr) (i32 1))
 
   extern gsk_repeat_node_get_child : cptr -> cptr
 
   /// Retrieves the child of @node.
-  [<Unsafe>]
   let getChild (self: RepeatNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_repeat_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_repeat_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_RepeatNode ())))) (i32 0))
 
   extern gsk_repeat_node_get_child_bounds : cptr -> cptr
 
   /// Retrieves the bounding rectangle of the child of @node.
-  [<Unsafe>]
   let getChildBounds (self: RepeatNode) : Graphene.Rect =
-    Graphene.Rect (Glue.wrapBoxed ((gsk_repeat_node_get_child_bounds self.Ptr)) (Graphene.graphene_rect_get_type ()) false)
+    Graphene.Rect (Glue.wrapBoxed ((gsk_repeat_node_get_child_bounds (Glue.obj self.Id (zgtk_type_Gsk_RepeatNode ())))) (Graphene.graphene_rect_get_type ()) false)
 
 module RepeatingLinearGradientNode =
   extern gsk_repeating_linear_gradient_node_new : cptr -> cptr -> cptr -> cptr -> usize -> cptr
@@ -3042,7 +3073,7 @@ module RepeatingLinearGradientNode =
   let create (bounds: Graphene.Rect) (start: Graphene.Point) (end: Graphene.Point) (colorStops: list<ColorStop>) : RepeatingLinearGradientNode =
     let za2 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
     let zr = gsk_repeating_linear_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj start.Id (Graphene.graphene_point_get_type ())) (Glue.obj end.Id (Graphene.graphene_point_get_type ())) za2 (usize (Glue.count colorStops))
-    let zv = RepeatingLinearGradientNode (zr)
+    let zv = RepeatingLinearGradientNode (zgtk_wrap_Gsk_RepeatingLinearGradientNode (zr) (i32 1))
     Glue.free za2
     zv
 
@@ -3053,7 +3084,7 @@ module RepeatingRadialGradientNode =
   let create (bounds: Graphene.Rect) (center: Graphene.Point) (hradius: float) (vradius: float) (start: float) (end: float) (colorStops: list<ColorStop>) : RepeatingRadialGradientNode =
     let za2 = Glue.records (Glue.mapList (fun (zo: ColorStop) -> Glue.obj zo.Id (zgtk_tag_Gsk_ColorStop ())) colorStops) (zgtk_sizeof_Gsk_ColorStop ())
     let zr = gsk_repeating_radial_gradient_node_new (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (Glue.obj center.Id (Graphene.graphene_point_get_type ())) (f32 hradius) (f32 vradius) (f32 start) (f32 end) za2 (usize (Glue.count colorStops))
-    let zv = RepeatingRadialGradientNode (zr)
+    let zv = RepeatingRadialGradientNode (zgtk_wrap_Gsk_RepeatingRadialGradientNode (zr) (i32 1))
     Glue.free za2
     zv
 
@@ -3062,21 +3093,19 @@ module RoundedClipNode =
 
   /// Creates a `GskRenderNode` that will clip the @child to the area given by @clip.
   let create (child: RenderNode) (clip: RoundedRect) : RoundedClipNode =
-    RoundedClipNode ((gsk_rounded_clip_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj clip.Id (zgtk_tag_Gsk_RoundedRect ()))))
+    RoundedClipNode (zgtk_wrap_Gsk_RoundedClipNode ((gsk_rounded_clip_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj clip.Id (zgtk_tag_Gsk_RoundedRect ())))) (i32 1))
 
   extern gsk_rounded_clip_node_get_child : cptr -> cptr
 
   /// Gets the child node that is getting clipped by the given @node.
-  [<Unsafe>]
   let getChild (self: RoundedClipNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_rounded_clip_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_rounded_clip_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_RoundedClipNode ())))) (i32 0))
 
   extern gsk_rounded_clip_node_get_clip : cptr -> cptr
 
   /// Retrieves the rounded rectangle used to clip the contents of the @node.
-  [<Unsafe>]
   let getClip (self: RoundedClipNode) : RoundedRect =
-    RoundedRect (Glue.copyPlain ((gsk_rounded_clip_node_get_clip self.Ptr)) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
+    RoundedRect (Glue.copyPlain ((gsk_rounded_clip_node_get_clip (Glue.obj self.Id (zgtk_type_Gsk_RoundedClipNode ())))) (zgtk_sizeof_Gsk_RoundedRect ()) (zgtk_tag_Gsk_RoundedRect ()))
 
 module RoundedRect =
   extern gsk_rounded_rect_contains_point : cptr -> cptr -> i32
@@ -3283,30 +3312,27 @@ module ShadowNode =
   let create (child: RenderNode) (shadows: list<Shadow>) : ShadowNode =
     let za2 = Glue.records (Glue.mapList (fun (zo: Shadow) -> Glue.obj zo.Id (zgtk_tag_Gsk_Shadow ())) shadows) (zgtk_sizeof_Gsk_Shadow ())
     let zr = gsk_shadow_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) za2 (usize (Glue.count shadows))
-    let zv = ShadowNode (zr)
+    let zv = ShadowNode (zgtk_wrap_Gsk_ShadowNode (zr) (i32 1))
     Glue.free za2
     zv
 
   extern gsk_shadow_node_get_child : cptr -> cptr
 
   /// Retrieves the child `GskRenderNode` of the shadow @node.
-  [<Unsafe>]
   let getChild (self: ShadowNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_shadow_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_shadow_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_ShadowNode ())))) (i32 0))
 
   extern gsk_shadow_node_get_n_shadows : cptr -> usize
 
   /// Retrieves the number of shadows in the @node.
-  [<Unsafe>]
   let getNShadows (self: ShadowNode) : int =
-    (int ((gsk_shadow_node_get_n_shadows self.Ptr)))
+    (int ((gsk_shadow_node_get_n_shadows (Glue.obj self.Id (zgtk_type_Gsk_ShadowNode ())))))
 
   extern gsk_shadow_node_get_shadow : cptr -> usize -> cptr
 
   /// Retrieves the shadow data at the given index @i.
-  [<Unsafe>]
   let getShadow (self: ShadowNode) (i: int) : Shadow =
-    Shadow (Glue.copyPlain ((gsk_shadow_node_get_shadow self.Ptr (usize i))) (zgtk_sizeof_Gsk_Shadow ()) (zgtk_tag_Gsk_Shadow ()))
+    Shadow (Glue.copyPlain ((gsk_shadow_node_get_shadow (Glue.obj self.Id (zgtk_type_Gsk_ShadowNode ())) (usize i))) (zgtk_sizeof_Gsk_Shadow ()) (zgtk_tag_Gsk_Shadow ()))
 
 module Stroke =
   extern gsk_stroke_new : f32 -> cptr
@@ -3424,28 +3450,25 @@ module StrokeNode =
 
   /// Creates a #GskRenderNode that will fill the outline generated by stroking the given @path using the attributes defined in @stroke.
   let create (child: RenderNode) (path: Path) (stroke: Stroke) : StrokeNode =
-    StrokeNode ((gsk_stroke_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj path.Id (gsk_path_get_type ())) (Glue.obj stroke.Id (gsk_stroke_get_type ()))))
+    StrokeNode (zgtk_wrap_Gsk_StrokeNode ((gsk_stroke_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) (Glue.obj path.Id (gsk_path_get_type ())) (Glue.obj stroke.Id (gsk_stroke_get_type ())))) (i32 0))
 
   extern gsk_stroke_node_get_child : cptr -> cptr
 
   /// Gets the child node that is getting drawn by the given @node.
-  [<Unsafe>]
   let getChild (self: StrokeNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_stroke_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_stroke_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_StrokeNode ())))) (i32 0))
 
   extern gsk_stroke_node_get_path : cptr -> cptr
 
   /// Retrieves the path that will be stroked with the contents of the @node.
-  [<Unsafe>]
   let getPath (self: StrokeNode) : Path =
-    Path (Glue.wrapBoxed ((gsk_stroke_node_get_path self.Ptr)) (gsk_path_get_type ()) false)
+    Path (Glue.wrapBoxed ((gsk_stroke_node_get_path (Glue.obj self.Id (zgtk_type_Gsk_StrokeNode ())))) (gsk_path_get_type ()) false)
 
   extern gsk_stroke_node_get_stroke : cptr -> cptr
 
   /// Retrieves the stroke attributes used in this @node.
-  [<Unsafe>]
   let getStroke (self: StrokeNode) : Stroke =
-    Stroke (Glue.wrapBoxed ((gsk_stroke_node_get_stroke self.Ptr)) (gsk_stroke_get_type ()) false)
+    Stroke (Glue.wrapBoxed ((gsk_stroke_node_get_stroke (Glue.obj self.Id (zgtk_type_Gsk_StrokeNode ())))) (gsk_stroke_get_type ()) false)
 
 module SubsurfaceNode =
   extern gsk_subsurface_node_new : cptr -> cptr -> cptr
@@ -3453,50 +3476,45 @@ module SubsurfaceNode =
   /// Creates a `GskRenderNode` that will possibly divert the child node to a subsurface.
   [<Unsafe>]
   let create (child: RenderNode) (subsurface: cptr) : SubsurfaceNode =
-    SubsurfaceNode ((gsk_subsurface_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) subsurface))
+    SubsurfaceNode (zgtk_wrap_Gsk_SubsurfaceNode ((gsk_subsurface_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) subsurface)) (i32 1))
 
   extern gsk_subsurface_node_get_child : cptr -> cptr
 
   /// Gets the child node that is getting drawn by the given @node.
-  [<Unsafe>]
   let getChild (self: SubsurfaceNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_subsurface_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_subsurface_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_SubsurfaceNode ())))) (i32 0))
 
   extern gsk_subsurface_node_get_subsurface : cptr -> cptr
 
   /// Gets the subsurface that was set on this node
-  [<Unsafe>]
   let getSubsurface (node: DebugNode) : cptr =
-    ((gsk_subsurface_node_get_subsurface node.Ptr))
+    ((gsk_subsurface_node_get_subsurface (Glue.obj node.Id (zgtk_type_Gsk_DebugNode ()))))
 
 module TextNode =
   extern gsk_text_node_new : cptr -> cptr -> cptr -> cptr -> cptr
 
   /// Creates a render node that renders the given glyphs.
   let create (font: Pango.Font) (glyphs: Pango.GlyphString) (color: Gdk.RGBA) (offset: Graphene.Point) : TextNode =
-    TextNode ((gsk_text_node_new (Glue.obj font.Id (Pango.pango_font_get_type ())) (Glue.obj glyphs.Id (Pango.pango_glyph_string_get_type ())) (Glue.obj color.Id (Gdk.gdk_rgba_get_type ())) (Glue.obj offset.Id (Graphene.graphene_point_get_type ()))))
+    TextNode (zgtk_wrap_Gsk_TextNode ((gsk_text_node_new (Glue.obj font.Id (Pango.pango_font_get_type ())) (Glue.obj glyphs.Id (Pango.pango_glyph_string_get_type ())) (Glue.obj color.Id (Gdk.gdk_rgba_get_type ())) (Glue.obj offset.Id (Graphene.graphene_point_get_type ())))) (i32 1))
 
   extern gsk_text_node_get_color : cptr -> cptr
 
   /// Retrieves the color used by the text @node.
-  [<Unsafe>]
   let getColor (self: TextNode) : Gdk.RGBA =
-    Gdk.RGBA (Glue.wrapBoxed ((gsk_text_node_get_color self.Ptr)) (Gdk.gdk_rgba_get_type ()) false)
+    Gdk.RGBA (Glue.wrapBoxed ((gsk_text_node_get_color (Glue.obj self.Id (zgtk_type_Gsk_TextNode ())))) (Gdk.gdk_rgba_get_type ()) false)
 
   extern gsk_text_node_get_font : cptr -> cptr
 
   /// Returns the font used by the text @node.
-  [<Unsafe>]
   let getFont (self: TextNode) : Pango.Font =
-    Pango.Font (Glue.wrap ((gsk_text_node_get_font self.Ptr)) false)
+    Pango.Font (Glue.wrap ((gsk_text_node_get_font (Glue.obj self.Id (zgtk_type_Gsk_TextNode ())))) false)
 
   extern gsk_text_node_get_glyphs : cptr -> cptr -> cptr
 
   /// Retrieves the glyph information in the @node.
-  [<Unsafe>]
   let getGlyphs (self: TextNode) : list<Pango.GlyphInfo> =
     Glue.outBegin ()
-    let zr = gsk_text_node_get_glyphs self.Ptr (Glue.out 0)
+    let zr = gsk_text_node_get_glyphs (Glue.obj self.Id (zgtk_type_Gsk_TextNode ())) (Glue.out 0)
     let zrs1 = Glue.mapList (fun zp -> Pango.GlyphInfo (Glue.copyPlain (zp) (Pango.zgtk_sizeof_Pango_GlyphInfo ()) (Pango.zgtk_tag_Pango_GlyphInfo ()))) (Glue.recordsOf (zr) (Glue.outU32 0) (Pango.zgtk_sizeof_Pango_GlyphInfo ()))
     let zv = zrs1
     Glue.outEnd ()
@@ -3505,58 +3523,52 @@ module TextNode =
   extern gsk_text_node_get_num_glyphs : cptr -> u32
 
   /// Retrieves the number of glyphs in the text node.
-  [<Unsafe>]
   let getNumGlyphs (self: TextNode) : int =
-    (int ((gsk_text_node_get_num_glyphs self.Ptr)))
+    (int ((gsk_text_node_get_num_glyphs (Glue.obj self.Id (zgtk_type_Gsk_TextNode ())))))
 
   extern gsk_text_node_get_offset : cptr -> cptr
 
   /// Retrieves the offset applied to the text.
-  [<Unsafe>]
   let getOffset (self: TextNode) : Graphene.Point =
-    Graphene.Point (Glue.wrapBoxed ((gsk_text_node_get_offset self.Ptr)) (Graphene.graphene_point_get_type ()) false)
+    Graphene.Point (Glue.wrapBoxed ((gsk_text_node_get_offset (Glue.obj self.Id (zgtk_type_Gsk_TextNode ())))) (Graphene.graphene_point_get_type ()) false)
 
   extern gsk_text_node_has_color_glyphs : cptr -> i32
 
   /// Checks whether the text @node has color glyphs.
-  [<Unsafe>]
   let hasColorGlyphs (self: TextNode) : bool =
-    (((gsk_text_node_has_color_glyphs self.Ptr)) <> i32 0)
+    (((gsk_text_node_has_color_glyphs (Glue.obj self.Id (zgtk_type_Gsk_TextNode ())))) <> i32 0)
 
 module TextureNode =
   extern gsk_texture_node_new : cptr -> cptr -> cptr
 
   /// Creates a `GskRenderNode` that will render the given @texture into the area given by @bounds.
   let create (texture: Gdk.Texture) (bounds: Graphene.Rect) : TextureNode =
-    TextureNode ((gsk_texture_node_new (Glue.obj texture.Id (Gdk.gdk_texture_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ()))))
+    TextureNode (zgtk_wrap_Gsk_TextureNode ((gsk_texture_node_new (Glue.obj texture.Id (Gdk.gdk_texture_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())))) (i32 1))
 
   extern gsk_texture_node_get_texture : cptr -> cptr
 
   /// Retrieves the `GdkTexture` used when creating this `GskRenderNode`.
-  [<Unsafe>]
   let getTexture (self: TextureNode) : Gdk.Texture =
-    Gdk.Texture (Glue.wrap ((gsk_texture_node_get_texture self.Ptr)) false)
+    Gdk.Texture (Glue.wrap ((gsk_texture_node_get_texture (Glue.obj self.Id (zgtk_type_Gsk_TextureNode ())))) false)
 
 module TextureScaleNode =
   extern gsk_texture_scale_node_new : cptr -> cptr -> i32 -> cptr
 
   /// Creates a node that scales the texture to the size given by the bounds using the filter and then places it at the bounds' position.
   let create (texture: Gdk.Texture) (bounds: Graphene.Rect) (filter: ScalingFilter) : TextureScaleNode =
-    TextureScaleNode ((gsk_texture_scale_node_new (Glue.obj texture.Id (Gdk.gdk_texture_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (i32 filter.Int)))
+    TextureScaleNode (zgtk_wrap_Gsk_TextureScaleNode ((gsk_texture_scale_node_new (Glue.obj texture.Id (Gdk.gdk_texture_get_type ())) (Glue.obj bounds.Id (Graphene.graphene_rect_get_type ())) (i32 filter.Int))) (i32 1))
 
   extern gsk_texture_scale_node_get_filter : cptr -> i32
 
   /// Retrieves the `GskScalingFilter` used when creating this `GskRenderNode`.
-  [<Unsafe>]
   let getFilter (self: TextureScaleNode) : ScalingFilter =
-    ScalingFilter (int ((gsk_texture_scale_node_get_filter self.Ptr)))
+    ScalingFilter (int ((gsk_texture_scale_node_get_filter (Glue.obj self.Id (zgtk_type_Gsk_TextureScaleNode ())))))
 
   extern gsk_texture_scale_node_get_texture : cptr -> cptr
 
   /// Retrieves the `GdkTexture` used when creating this `GskRenderNode`.
-  [<Unsafe>]
   let getTexture (self: TextureScaleNode) : Gdk.Texture =
-    Gdk.Texture (Glue.wrap ((gsk_texture_scale_node_get_texture self.Ptr)) false)
+    Gdk.Texture (Glue.wrap ((gsk_texture_scale_node_get_texture (Glue.obj self.Id (zgtk_type_Gsk_TextureScaleNode ())))) false)
 
 module Transform =
   extern gsk_transform_new : unit -> cptr
@@ -3790,21 +3802,19 @@ module TransformNode =
       | Some zo -> Glue.obj zo.Id (gsk_transform_get_type ())
       | None -> Glue.none ()
     let zr = gsk_transform_node_new (Glue.obj child.Id (zgtk_type_Gsk_RenderNode ())) zp1
-    TransformNode (zr)
+    TransformNode (zgtk_wrap_Gsk_TransformNode (zr) (i32 1))
 
   extern gsk_transform_node_get_child : cptr -> cptr
 
   /// Gets the child node that is getting transformed by the given @node.
-  [<Unsafe>]
   let getChild (self: TransformNode) : RenderNode =
-    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_transform_node_get_child self.Ptr)) (i32 0))
+    RenderNode (zgtk_wrap_Gsk_RenderNode ((gsk_transform_node_get_child (Glue.obj self.Id (zgtk_type_Gsk_TransformNode ())))) (i32 0))
 
   extern gsk_transform_node_get_transform : cptr -> cptr
 
   /// Retrieves the `GskTransform` used by the @node.
-  [<Unsafe>]
   let getTransform (self: TransformNode) : Transform =
-    Transform (Glue.wrapBoxed ((gsk_transform_node_get_transform self.Ptr)) (gsk_transform_get_type ()) false)
+    Transform (Glue.wrapBoxed ((gsk_transform_node_get_transform (Glue.obj self.Id (zgtk_type_Gsk_TransformNode ())))) (gsk_transform_get_type ()) false)
 
 module VulkanRenderer =
   /// The same object as its ancestor.

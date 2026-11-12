@@ -5,15 +5,36 @@
 #include <gtk/gtkunixprint.h>
 gsize zgtk_tag_Gtk_AccessibleTextRange(void) { static char tag; return (gsize)&tag; }
 gsize zgtk_tag_Gtk_BuildableParser(void) { static char tag; return (gsize)&tag; }
+gsize zgtk_type_Gtk_CClosureExpression(void) { return gtk_cclosure_expression_get_type(); }
+gint64 zgtk_wrap_Gtk_CClosureExpression(void *p, int full) { return zgtk_wrap_counted(p, gtk_cclosure_expression_get_type(), (void *(*)(void *))gtk_expression_ref, (void (*)(void *))gtk_expression_unref, full); }
+void *zgtk_give_Gtk_CClosureExpression(void *p) { return p ? gtk_expression_ref(p) : NULL; }
+gsize zgtk_type_Gtk_ClosureExpression(void) { return gtk_closure_expression_get_type(); }
+gint64 zgtk_wrap_Gtk_ClosureExpression(void *p, int full) { return zgtk_wrap_counted(p, gtk_closure_expression_get_type(), (void *(*)(void *))gtk_expression_ref, (void (*)(void *))gtk_expression_unref, full); }
+void *zgtk_give_Gtk_ClosureExpression(void *p) { return p ? gtk_expression_ref(p) : NULL; }
+gsize zgtk_type_Gtk_ConstantExpression(void) { return gtk_constant_expression_get_type(); }
+gint64 zgtk_wrap_Gtk_ConstantExpression(void *p, int full) { return zgtk_wrap_counted(p, gtk_constant_expression_get_type(), (void *(*)(void *))gtk_expression_ref, (void (*)(void *))gtk_expression_unref, full); }
+void *zgtk_give_Gtk_ConstantExpression(void *p) { return p ? gtk_expression_ref(p) : NULL; }
 gsize zgtk_tag_Gtk_CssLocation(void) { static char tag; return (gsize)&tag; }
 gsize zgtk_type_Gtk_Expression(void) { return gtk_expression_get_type(); }
 gint64 zgtk_wrap_Gtk_Expression(void *p, int full) { return zgtk_wrap_counted(p, gtk_expression_get_type(), (void *(*)(void *))gtk_expression_ref, (void (*)(void *))gtk_expression_unref, full); }
 void *zgtk_give_Gtk_Expression(void *p) { return p ? gtk_expression_ref(p) : NULL; }
+gsize zgtk_type_Gtk_ObjectExpression(void) { return gtk_object_expression_get_type(); }
+gint64 zgtk_wrap_Gtk_ObjectExpression(void *p, int full) { return zgtk_wrap_counted(p, gtk_object_expression_get_type(), (void *(*)(void *))gtk_expression_ref, (void (*)(void *))gtk_expression_unref, full); }
+void *zgtk_give_Gtk_ObjectExpression(void *p) { return p ? gtk_expression_ref(p) : NULL; }
 gsize zgtk_tag_Gtk_PadActionEntry(void) { static char tag; return (gsize)&tag; }
 gsize zgtk_tag_Gtk_PageRange(void) { static char tag; return (gsize)&tag; }
+gsize zgtk_type_Gtk_ParamSpecExpression(void) { return gtk_param_expression_get_type(); }
+gint64 zgtk_wrap_Gtk_ParamSpecExpression(void *p, int full) { return zgtk_wrap_counted(p, gtk_param_expression_get_type(), (void *(*)(void *))g_param_spec_ref_sink, (void (*)(void *))g_param_spec_unref, full); }
+void *zgtk_give_Gtk_ParamSpecExpression(void *p) { return p ? g_param_spec_ref_sink(p) : NULL; }
+gsize zgtk_type_Gtk_PropertyExpression(void) { return gtk_property_expression_get_type(); }
+gint64 zgtk_wrap_Gtk_PropertyExpression(void *p, int full) { return zgtk_wrap_counted(p, gtk_property_expression_get_type(), (void *(*)(void *))gtk_expression_ref, (void (*)(void *))gtk_expression_unref, full); }
+void *zgtk_give_Gtk_PropertyExpression(void *p) { return p ? gtk_expression_ref(p) : NULL; }
 gsize zgtk_tag_Gtk_RecentData(void) { static char tag; return (gsize)&tag; }
 gsize zgtk_tag_Gtk_RequestedSize(void) { static char tag; return (gsize)&tag; }
 gsize zgtk_tag_Gtk_SvgLocation(void) { static char tag; return (gsize)&tag; }
+gsize zgtk_type_Gtk_TryExpression(void) { return gtk_try_expression_get_type(); }
+gint64 zgtk_wrap_Gtk_TryExpression(void *p, int full) { return zgtk_wrap_counted(p, gtk_try_expression_get_type(), (void *(*)(void *))gtk_expression_ref, (void (*)(void *))gtk_expression_unref, full); }
+void *zgtk_give_Gtk_TryExpression(void *p) { return p ? gtk_expression_ref(p) : NULL; }
 static int tramp_Gtk_AssistantPageFunc(int a0, gpointer a1) {
     ZCall c; memset(&c, 0, sizeof c); c.n = 2;
     c.args[0].i = (gint64)a0;

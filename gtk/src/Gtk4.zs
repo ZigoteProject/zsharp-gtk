@@ -74,6 +74,9 @@ extern gtk_builder_cscope_get_type : unit -> usize
 extern gtk_list_item_factory_get_type : unit -> usize
 extern gtk_builder_list_item_factory_get_type : unit -> usize
 extern gtk_button_get_type : unit -> usize
+extern zgtk_type_Gtk_CClosureExpression : unit -> usize
+extern zgtk_wrap_Gtk_CClosureExpression : cptr -> i32 -> int
+extern zgtk_give_Gtk_CClosureExpression : cptr -> cptr
 extern gtk_calendar_get_type : unit -> usize
 extern gtk_callback_action_get_type : unit -> usize
 extern gtk_cell_layout_get_type : unit -> usize
@@ -94,6 +97,9 @@ extern gtk_cell_view_get_type : unit -> usize
 extern gtk_center_box_get_type : unit -> usize
 extern gtk_center_layout_get_type : unit -> usize
 extern gtk_check_button_get_type : unit -> usize
+extern zgtk_type_Gtk_ClosureExpression : unit -> usize
+extern zgtk_wrap_Gtk_ClosureExpression : cptr -> i32 -> int
+extern zgtk_give_Gtk_ClosureExpression : cptr -> cptr
 extern gtk_color_chooser_get_type : unit -> usize
 extern gtk_color_button_get_type : unit -> usize
 extern gtk_color_chooser_dialog_get_type : unit -> usize
@@ -110,6 +116,9 @@ extern gtk_sorter_get_type : unit -> usize
 extern gtk_column_view_sorter_get_type : unit -> usize
 extern gtk_combo_box_get_type : unit -> usize
 extern gtk_combo_box_text_get_type : unit -> usize
+extern zgtk_type_Gtk_ConstantExpression : unit -> usize
+extern zgtk_wrap_Gtk_ConstantExpression : cptr -> i32 -> int
+extern zgtk_give_Gtk_ConstantExpression : cptr -> cptr
 extern gtk_constraint_get_type : unit -> usize
 extern gtk_constraint_guide_get_type : unit -> usize
 extern gtk_constraint_layout_get_type : unit -> usize
@@ -234,6 +243,9 @@ extern gtk_notebook_get_type : unit -> usize
 extern gtk_notebook_page_get_type : unit -> usize
 extern gtk_nothing_action_get_type : unit -> usize
 extern gtk_numeric_sorter_get_type : unit -> usize
+extern zgtk_type_Gtk_ObjectExpression : unit -> usize
+extern zgtk_wrap_Gtk_ObjectExpression : cptr -> i32 -> int
+extern zgtk_give_Gtk_ObjectExpression : cptr -> cptr
 extern gtk_overlay_get_type : unit -> usize
 extern gtk_overlay_layout_get_type : unit -> usize
 extern gtk_overlay_layout_child_get_type : unit -> usize
@@ -246,6 +258,9 @@ extern gtk_page_setup_get_type : unit -> usize
 extern gtk_page_setup_unix_dialog_get_type : unit -> usize
 extern gtk_paned_get_type : unit -> usize
 extern gtk_paper_size_get_type : unit -> usize
+extern zgtk_type_Gtk_ParamSpecExpression : unit -> usize
+extern zgtk_wrap_Gtk_ParamSpecExpression : cptr -> i32 -> int
+extern zgtk_give_Gtk_ParamSpecExpression : cptr -> cptr
 extern gtk_password_entry_get_type : unit -> usize
 extern gtk_password_entry_buffer_get_type : unit -> usize
 extern gtk_picture_get_type : unit -> usize
@@ -262,6 +277,9 @@ extern gtk_print_setup_get_type : unit -> usize
 extern gtk_print_unix_dialog_get_type : unit -> usize
 extern gtk_printer_get_type : unit -> usize
 extern gtk_progress_bar_get_type : unit -> usize
+extern zgtk_type_Gtk_PropertyExpression : unit -> usize
+extern zgtk_wrap_Gtk_PropertyExpression : cptr -> i32 -> int
+extern zgtk_give_Gtk_PropertyExpression : cptr -> cptr
 extern gtk_range_get_type : unit -> usize
 extern zgtk_tag_Gtk_RecentData : unit -> usize
 extern zgtk_sizeof_Gtk_RecentData : unit -> usize
@@ -337,6 +355,9 @@ extern gtk_tree_selection_get_type : unit -> usize
 extern gtk_tree_store_get_type : unit -> usize
 extern gtk_tree_view_get_type : unit -> usize
 extern gtk_tree_view_column_get_type : unit -> usize
+extern zgtk_type_Gtk_TryExpression : unit -> usize
+extern zgtk_wrap_Gtk_TryExpression : cptr -> i32 -> int
+extern zgtk_give_Gtk_TryExpression : cptr -> cptr
 extern gtk_uri_launcher_get_type : unit -> usize
 extern gtk_video_get_type : unit -> usize
 extern gtk_viewport_get_type : unit -> usize
@@ -2843,12 +2864,12 @@ type ButtonPrivate =
 
 /// A variant of `GtkClosureExpression` using a C closure.
 type CClosureExpression =
-  | CClosureExpression of cptr
+  | CClosureExpression of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | CClosureExpression p -> p
+    | CClosureExpression v -> v
 
 /// Displays a Gregorian calendar, one month at a time.
 type Calendar =
@@ -3374,12 +3395,12 @@ type CheckButtonClass =
 
 /// An expression using a custom `GClosure` to compute the value from its parameters.
 type ClosureExpression =
-  | ClosureExpression of cptr
+  | ClosureExpression of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | ClosureExpression p -> p
+    | ClosureExpression v -> v
 
 /// Deprecated. Depending on the situation, colors may be allowed to have alpha (translucency).
 type ColorChooser =
@@ -3809,12 +3830,12 @@ type ComboBoxText =
 
 /// A constant value in a `GtkExpression`.
 type ConstantExpression =
-  | ConstantExpression of cptr
+  | ConstantExpression of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | ConstantExpression p -> p
+    | ConstantExpression v -> v
 
 /// Describes a constraint between attributes of two widgets, expressed as a linear equation.
 type Constraint =
@@ -7175,12 +7196,12 @@ type NumericSorterClass =
 
 /// A `GObject` value in a `GtkExpression`.
 type ObjectExpression =
-  | ObjectExpression of cptr
+  | ObjectExpression of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | ObjectExpression p -> p
+    | ObjectExpression v -> v
 
 /// `GtkOrientableIface`.
 type OrientableIface =
@@ -7406,12 +7427,12 @@ type PaperSize =
 
 /// A `GParamSpec` for properties holding a `GtkExpression`.
 type ParamSpecExpression =
-  | ParamSpecExpression of cptr
+  | ParamSpecExpression of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | ParamSpecExpression p -> p
+    | ParamSpecExpression v -> v
 
 /// A single-line text entry widget for entering passwords and other secrets.
 type PasswordEntry =
@@ -7838,12 +7859,12 @@ type ProgressBar =
 
 /// A `GObject` property value in a `GtkExpression`.
 type PropertyExpression =
-  | PropertyExpression of cptr
+  | PropertyExpression of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | PropertyExpression p -> p
+    | PropertyExpression v -> v
 
 /// Base class for widgets which visualize an adjustment.
 type Range =
@@ -9761,12 +9782,12 @@ type TreeViewColumn =
 
 /// A `GtkExpression` that tries to evaluate each of its expressions until it succeeds.
 type TryExpression =
-  | TryExpression of cptr
+  | TryExpression of int
 
-  /// C's pointer, which functions marked `[<Unsafe>]` trust.
-  member x.Ptr =
+  /// The handle's number: Glue's functions take it.
+  member x.Id =
     match x with
-    | TryExpression p -> p
+    | TryExpression v -> v
 
 /// Asynchronous API to open a uri with an application.
 type UriLauncher =
@@ -20126,7 +20147,7 @@ module CClosureExpression =
   /// Creates a `GtkExpression` that calls `callback_func` when it is evaluated.
   [<Unsafe>]
   let create (valueType: usize) (marshal: cptr) (nParams: int) (params: cptr) (callbackFunc: cptr) (userData: cptr) (userDestroy: cptr) : CClosureExpression =
-    CClosureExpression ((gtk_cclosure_expression_new valueType marshal (u32 nParams) params callbackFunc userData userDestroy))
+    CClosureExpression (zgtk_wrap_Gtk_CClosureExpression ((gtk_cclosure_expression_new valueType marshal (u32 nParams) params callbackFunc userData userDestroy)) (i32 1))
 
 module Calendar =
   /// The same object as its interface.
@@ -23891,7 +23912,7 @@ module ClosureExpression =
   /// Creates a `GtkExpression` that calls `closure` when it is evaluated.
   [<Unsafe>]
   let create (valueType: usize) (closure: (unit -> unit)) (nParams: int) (params: cptr) : ClosureExpression =
-    ClosureExpression ((gtk_closure_expression_new valueType (Glue.closure closure) (u32 nParams) params))
+    ClosureExpression (zgtk_wrap_Gtk_ClosureExpression ((gtk_closure_expression_new valueType (Glue.closure closure) (u32 nParams) params)) (i32 1))
 
 module ColorChooser =
   /// The same object as its ancestor.
@@ -25912,14 +25933,13 @@ module ConstantExpression =
 
   /// Creates an expression that always evaluates to the given `value`.
   let createForValue (value: GObject.Value) : ConstantExpression =
-    ConstantExpression ((gtk_constant_expression_new_for_value (Glue.obj value.Id (GObject.g_value_get_type ()))))
+    ConstantExpression (zgtk_wrap_Gtk_ConstantExpression ((gtk_constant_expression_new_for_value (Glue.obj value.Id (GObject.g_value_get_type ())))) (i32 1))
 
   extern gtk_constant_expression_get_value : cptr -> cptr
 
   /// Gets the value that a constant expression evaluates to.
-  [<Unsafe>]
   let getValue (self: ConstantExpression) : GObject.Value =
-    GObject.Value (Glue.wrapBoxed ((gtk_constant_expression_get_value self.Ptr)) (GObject.g_value_get_type ()) false)
+    GObject.Value (Glue.wrapBoxed ((gtk_constant_expression_get_value (Glue.obj self.Id (zgtk_type_Gtk_ConstantExpression ())))) (GObject.g_value_get_type ()) false)
 
 module Constraint =
   /// The same object as its ancestor.
@@ -42313,14 +42333,13 @@ module ObjectExpression =
 
   /// Creates an expression evaluating to the given `object` with a weak reference.
   let create (object: GObject.Object) : ObjectExpression =
-    ObjectExpression ((gtk_object_expression_new (Glue.obj object.Id (GObject.g_object_get_type ()))))
+    ObjectExpression (zgtk_wrap_Gtk_ObjectExpression ((gtk_object_expression_new (Glue.obj object.Id (GObject.g_object_get_type ())))) (i32 1))
 
   extern gtk_object_expression_get_object : cptr -> cptr
 
   /// Gets the object that the expression evaluates to.
-  [<Unsafe>]
   let getObject (self: ObjectExpression) : option<GObject.Object> =
-    let zr = gtk_object_expression_get_object self.Ptr
+    let zr = gtk_object_expression_get_object (Glue.obj self.Id (zgtk_type_Gtk_ObjectExpression ()))
     let zid1 = Glue.wrap (zr) false
     (if zid1 = 0 then None else Some (GObject.Object zid1))
 
@@ -46315,7 +46334,7 @@ module PropertyExpression =
       | Some zo -> zgtk_give_Gtk_Expression (Glue.obj zo.Id (zgtk_type_Gtk_Expression ()))
       | None -> Glue.none ()
     let zr = gtk_property_expression_new thisType zp1 propertyName
-    PropertyExpression (zr)
+    PropertyExpression (zgtk_wrap_Gtk_PropertyExpression (zr) (i32 1))
 
   extern gtk_property_expression_new_for_pspec : cptr -> cptr -> cptr
 
@@ -46326,23 +46345,21 @@ module PropertyExpression =
       | Some zo -> zgtk_give_Gtk_Expression (Glue.obj zo.Id (zgtk_type_Gtk_Expression ()))
       | None -> Glue.none ()
     let zr = gtk_property_expression_new_for_pspec zp1 (Glue.obj pspec.Id (GObject.zgtk_type_GObject_ParamSpec ()))
-    PropertyExpression (zr)
+    PropertyExpression (zgtk_wrap_Gtk_PropertyExpression (zr) (i32 1))
 
   extern gtk_property_expression_get_expression : cptr -> cptr
 
   /// Gets the expression specifying the object of a property expression.
-  [<Unsafe>]
   let getExpression (self: PropertyExpression) : option<Expression> =
-    let zr = gtk_property_expression_get_expression self.Ptr
+    let zr = gtk_property_expression_get_expression (Glue.obj self.Id (zgtk_type_Gtk_PropertyExpression ()))
     let zid1 = zgtk_wrap_Gtk_Expression (zr) (i32 0)
     (if zid1 = 0 then None else Some (Expression zid1))
 
   extern gtk_property_expression_get_pspec : cptr -> cptr
 
   /// Gets the `GParamSpec` specifying the property of a property expression.
-  [<Unsafe>]
   let getPspec (self: PropertyExpression) : GObject.ParamSpec =
-    GObject.ParamSpec (GObject.zgtk_wrap_GObject_ParamSpec ((gtk_property_expression_get_pspec self.Ptr)) (i32 0))
+    GObject.ParamSpec (GObject.zgtk_wrap_GObject_ParamSpec ((gtk_property_expression_get_pspec (Glue.obj self.Id (zgtk_type_Gtk_PropertyExpression ())))) (i32 0))
 
 module Range =
   /// The same object as its interface.
@@ -58682,7 +58699,7 @@ module TryExpression =
   /// Creates a `GtkExpression` with an array of expressions.
   [<Unsafe>]
   let create (nExpressions: int) (expressions: cptr) : TryExpression =
-    TryExpression ((gtk_try_expression_new (u32 nExpressions) expressions))
+    TryExpression (zgtk_wrap_Gtk_TryExpression ((gtk_try_expression_new (u32 nExpressions) expressions)) (i32 1))
 
 module UriLauncher =
   /// The same object as its ancestor.
