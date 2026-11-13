@@ -1,6 +1,0 @@
-[package]
-name = "signals-counter"
-
-[dependencies]
-gtk = { path = "../../gtk" }
-signals = { path = "../../signals" }

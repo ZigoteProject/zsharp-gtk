@@ -25,7 +25,7 @@ says how the language differs from F#.
 | `gtk/tests/`, `gtk/e2e/` | the package's tests; the program `tests/e2e.sh` clicks and types in |
 | `signals/` | the signals package and its tests |
 | `tools/` | the generator (`zs-provider-gir`, `generate.sh`, `extra/` for cairo), `docs.sh`, `parity.py`, `xwd2png.py`, `some.py` |
-| `examples/` | whole programs, each a project that depends on `gtk` by path |
+| `examples/` | `counter` (a model, messages, a view, in one file) and `trellis` (a whole application on signals, a folder a feature), each a project that depends on `gtk` by path |
 | `docs/` | the guide's pages and the contributor pages ([index](docs/README.md)) |
 | `dev`, `Containerfile` | the development container and its launcher |
 | `test`, `generate`, `run`, `shot`, `release` | the commands, below |
@@ -41,8 +41,8 @@ Everything runs in the dev container (podman), through `./dev`. Don't build on t
 ./dev sh -c 'cd gtk && xvfb-run -a zs test --strict tests/TreeTests.zs'   # one file of gtk's
 ./dev tools/docs.sh docs/tree.md                                   # one document's programs
 ./generate            # write the generated modules again
-./run gallery         # build an example in the container, run it on the host's display
-./shot gallery        # its picture without a display: build/gallery.png
+./run trellis         # build an example in the container, run it on the host's display
+./shot trellis        # its picture without a display: build/trellis.png
 ./dev                 # a shell in the container
 ```
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Builds an example in the container and runs it here, where the display is (the host needs
-# GTK 4's libraries): ./run [example] (default counter; `signals` is the other).
+# GTK 4's libraries): ./run [example] (default counter; `trellis` is the other).
 set -euo pipefail
 cd "$(dirname "$0")"
 example=examples/${1:-counter}

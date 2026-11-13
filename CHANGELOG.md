@@ -67,7 +67,8 @@ hands.
 - `./test`, `./generate`, `./run`, `./shot`, `./release`, in a container.
 - [docs/](docs/README.md): getting started, the tree of values, the libraries themselves,
   signals, testing a program; their programs are type-checked by `./test`.
-- Eight examples, `trellis` a whole application.
+- Two examples: `counter`, a model and its messages in one file, and `trellis`, a whole
+  application on signals, a folder a feature.
 
 ### Known limits
 

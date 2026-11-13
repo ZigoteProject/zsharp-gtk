@@ -3,3 +3,4 @@ name = "trellis"
 
 [dependencies]
 gtk = { path = "../../gtk" }
+signals = { path = "../../signals" }

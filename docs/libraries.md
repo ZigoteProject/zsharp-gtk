@@ -30,8 +30,6 @@ let main () =
   Loop.run app.GtkApplication
 ```
 
-[examples/plain](../examples/plain/src/main.zs) is a longer program in this way.
-
 ## From C's names to these
 
 | In C | Here |

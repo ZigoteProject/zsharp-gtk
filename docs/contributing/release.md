@@ -47,7 +47,7 @@ git -C ../zsharp describe --tags
    version, when the changelog has no section for the version, or when the tag exists. Then it
    runs `./test` and writes `dist/zsharp-gtk-<version>.tar.gz` (the commit's tree, by
    `git archive`) with its SHA-256 beside it. It doesn't tag and doesn't push.
-5. **Look at it once by hand.** `./run gallery` and `./run trellis` on a real display: `./test`
+5. **Look at it once by hand.** `./run counter` and `./run trellis` on a real display: `./test`
    draws with cairo on Xvfb, and no check sees a window under a compositor with a graphics
    card.
 6. **Try it as a user would:** in an empty directory, unpack the archive, make a project with

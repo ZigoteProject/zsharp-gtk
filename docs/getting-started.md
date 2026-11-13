@@ -82,8 +82,8 @@ cd hello && zs run
 - [The libraries themselves](libraries.md): GTK called directly, as from C.
 - [Signals](signals.md): state in signals instead of a model.
 - [Testing a program](testing.md): clicking and typing in a view from `zs test`.
-- The programs in [examples/](../examples): `counter`, `signals`, `settings`, `notes`,
-  `library`, `gallery`, `plain`, and `trellis`, a whole application.
+- The programs in [examples/](../examples): `counter`, a model and its messages in one
+  file, and `trellis`, a whole application on signals, a folder a feature.
 
 ## When a build fails
 

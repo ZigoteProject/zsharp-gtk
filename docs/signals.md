@@ -73,3 +73,18 @@ let main () =
 
 Anything may set the signals: a timer, a task, another window's handler. The view stops with
 its window.
+
+## A whole program on signals
+
+[examples/trellis](../examples/trellis/src/main.zs) is one, a folder a feature. Its pattern:
+
+- **A store** is a module of signals, the computeds that follow from them, and the actions
+  that change them (`Tasks/TaskStore.zs`). An action that takes nothing more is a
+  `unit -> unit`, which is what a widget's event wants: `Button ("Add", TaskStore.addDraft)`.
+  One that takes a value takes it first: `Search (query.Value, TaskStore.search)`.
+- **A view** is a function that reads signals and gives a widget. Views are put together
+  from smaller ones, and from modifiers that take a view and give a view
+  (`Design/Modifiers.zs`): `Label "Done" |> styled [ "heading" ] |> alignStart |> expand`.
+- **`batch`** around an action that sets several signals shows the window once.
+- **What takes time** is started by an action and sets signals when it has something to say:
+  a timer (`Focus/Timer.zs`), a file written by a task (`Export/Exporter.zs`).

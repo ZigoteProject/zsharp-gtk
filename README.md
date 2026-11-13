@@ -170,21 +170,25 @@ Gtk4.Button.onClicked button (fun () -> Gtk4.ListBox.append list row.Widget)
 ```sh
 ./test             # the generated modules are current, both packages' tests, a window
                    # clicked and typed in (xdotool on Xvfb), the documents' programs, the examples
-./run gallery      # an example, built in the container and run here (the host needs GTK 4)
-./shot gallery     # its picture without a display: build/gallery.png, from Xvfb
+./run trellis      # an example, built in the container and run here (the host needs GTK 4)
+./shot trellis     # its picture without a display: build/trellis.png, from Xvfb
 ./generate         # the generated modules again, after a change to the generator or the image
 ./dev zs check …   # anything else, in the container
 ```
 
-Examples: `counter`, `signals` (the counter on signals), `settings`, `notes` (pages, an alert,
-a toast), `library` (a sidebar, tabs, an about dialog), `gallery` (every widget, with commands
-and a drawing), `plain` (the libraries used directly).
+Two examples, the two ways to write a program:
 
-`trellis` is a whole application: a planner with projects in a sidebar, five views (a list,
-a board, charts drawn with cairo, a focus timer, a long log), a task's page with a calendar,
-sheets, an alert, a banner to undo, toasts, shortcuts, a style sheet that follows the accent
-chosen, and an export through a file dialog and a task. `SHOT_SIZE=1040x720 ./shot trellis
-Board` is its picture.
+- **`counter`** is the smallest: a model, the messages that change it, and the window for a
+  model, in one file.
+- **`trellis`** is a whole application on signals: a planner with projects in a sidebar, five
+  views (a list, a board, charts drawn with cairo, a focus timer, a long log), a task's page
+  with a calendar, sheets, an alert, a banner to undo, toasts, shortcuts, a style sheet that
+  follows the accent chosen, and an export through a file dialog and a task. Its code is a
+  folder a feature (`Tasks/`, `Board/`, `Stats/`, `Focus/`…): each keeps its state in
+  signals, changes it with actions, and shows it with views built from small parts and
+  modifiers (`Label "Done" |> styled [ "heading" ] |> expand`).
+  [Its main file](examples/trellis/src/main.zs) is the map. `SHOT_SIZE=1040x720 ./shot
+  trellis Board` is its picture.
 
 `./dev` runs in its own image (`zsharp-gtk-dev`: `zsharp-dev` plus GTK 4, libadwaita and Xvfb),
 built on first use, with the compiler from the Z# checkout beside this one (`ZSHARP`, default
