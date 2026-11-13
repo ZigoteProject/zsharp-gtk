@@ -342,7 +342,8 @@ let tasks (m: Model) : Widget<Msg> =
   let part (title: string) (keep: Item -> bool) : list<Widget<Msg>> =
     match List.filter keep all with
     | [] -> []
-    | some -> [ Group ($"{title} · {List.length some}", List.map (itemRow m) some) ]
+    | some ->
+      [ Keyed ($"group-{title}", Group ($"{title} · {List.length some}", List.map (itemRow m) some)) ]
   let groups =
     List.concat [ part "Overdue" (fun i -> i.stage < 2 && i.due < m.today)
       part "Today" (fun i -> i.stage < 2 && i.due = m.today)
@@ -365,7 +366,7 @@ let tasks (m: Model) : Widget<Msg> =
         [ With ([ Halign Center ],
             Styled ([ "pill"; "suggested-action" ], Button ("New task", Show NewItem))) ])
     else
-      Scroll (Margin (18, Clamp (Column (find :: groups))))
+      Scroll (Margin (18, Clamp (Column (Keyed ("find", find) :: groups))))
   Column [ undo; With ([ Vexpand true ], body) ]
 
 let board (m: Model) : Widget<Msg> =
@@ -380,14 +381,15 @@ let board (m: Model) : Widget<Msg> =
         step "go-previous-symbolic" (i.stage - 1)
         step "go-next-symbolic" (i.stage + 1) ]
     let title = With ([ Halign Start; Wrap ], Styled ([ "heading" ], Label i.title))
-    Keyed ($"card-{i.id}", Styled ([ "card"; "task-card"; "appear" ], Column [ title; foot ]))
+    Keyed ($"card-{i.id}", Styled ([ "card"; "task-card" ], Column [ title; foot ]))
   let column (stage: int) : Widget<Msg> =
     let mine = List.filter (fun (i: Item) -> i.stage = stage) (shown m)
     let head =
       Row [ With ([ Hexpand true; Halign Start ],
           Styled ([ "title-4" ], Label (List.item stage stages)))
         Styled ([ "tag"; "tag-count" ], Label $"{List.length mine}") ]
-    With ([ Hexpand true; Valign Start ], Styled ([ "lane" ], Column (head :: List.map card mine)))
+    With ([ Hexpand true; Valign Start ],
+      Styled ([ "lane" ], Column (Keyed ("head", head) :: List.map card mine)))
   Scroll (Margin (18, With ([ Spacing 12 ], Row (List.map column [ 0; 1; 2 ]))))
 
 // a ring: how much of something is done, drawn round its number
@@ -409,14 +411,16 @@ let ring (m: Model) (fraction: float) : Cairo.Context -> int -> int -> unit =
           fraction))
       Cairo.Context.stroke cr
 
-// bars: one for each of the next seven days, as tall as the hours due that day
-let week (m: Model) : Cairo.Context -> int -> int -> unit =
-  let (r, g, b) = accentOf m
+// the hours due on each of the next seven days
+let weekLoads (m: Model) : list<float> =
   let load (day: int) : float =
     List.filter (fun (i: Item) -> i.stage < 2 && i.due = day) (inProject m)
     |> List.sumBy (fun (i: Item) -> i.hours)
-  let loads = List.map (fun n -> load (m.today + n)) [ 0; 1; 2; 3; 4; 5; 6 ]
-  let most = List.fold (fun a x -> if x > a then x else a) 1.0 loads
+  List.map (fun n -> load (m.today + n)) [ 0; 1; 2; 3; 4; 5; 6 ]
+
+// the chart for these hours, with `most` at the top: both move to their values
+let week (m: Model) (most: float) (loads: list<float>) : Cairo.Context -> int -> int -> unit =
+  let (r, g, b) = accentOf m
   fun cr width height ->
     let slot = float width / 7.0
     let floor = float height - 22.0
@@ -474,9 +478,12 @@ let insights (m: Model) : Widget<Msg> =
     With ([ Spacing 18 ],
       Row [ Styled ([ "card"; "tile" ], done_)
         With ([ Hexpand true ], Styled ([ "card"; "tile" ], side)) ])
+  let loads = weekLoads m
+  let most = List.fold (fun a x -> if x > a then x else a) 1.0 loads
+  let bars (now: list<float>) : Widget<Msg> = Canvas (week m (List.head now) (List.tail now))
   let chart =
     Column [ With ([ Halign Start ], Styled ([ "heading" ], Label "Hours due, the next seven days"))
-      With ([ Size (-1, 150) ], Canvas (week m)) ]
+      With ([ Size (-1, 150) ], AnimatedAll (most :: loads, bars)) ]
   Scroll (Margin (18,
       Clamp (With ([ Spacing 18 ], Column [ tiles; top; Styled ([ "card"; "tile" ], chart) ]))))
 
