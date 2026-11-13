@@ -11092,7 +11092,7 @@ module SpringAnimation =
 
   /// Creates a new `AdwSpringAnimation` on @widget.
   let create (widget: Gtk4.Widget) (from: float) (to: float) (springParams: SpringParams) (target: AnimationTarget) : SpringAnimation =
-    SpringAnimation (Internal.Raw.wrap ((Internal.AdwC.adw_spring_animation_new (Internal.Raw.obj widget.Id (Internal.Gtk4C.gtk_widget_get_type ())) from to (Internal.Raw.giveBoxed (Internal.Raw.obj springParams.Id (Internal.AdwC.adw_spring_params_get_type ())) (Internal.AdwC.adw_spring_params_get_type ())) (Internal.Raw.give (Internal.Raw.obj target.Id (Internal.AdwC.adw_animation_target_get_type ()))))) false)
+    SpringAnimation (Internal.Raw.wrap ((Internal.AdwC.adw_spring_animation_new (Internal.Raw.obj widget.Id (Internal.Gtk4C.gtk_widget_get_type ())) from to (Internal.Raw.giveBoxed (Internal.Raw.obj springParams.Id (Internal.AdwC.adw_spring_params_get_type ())) (Internal.AdwC.adw_spring_params_get_type ())) (Internal.Raw.give (Internal.Raw.obj target.Id (Internal.AdwC.adw_animation_target_get_type ()))))) true)
 
   /// Calculates the value @self will have at @time.
   let calculateValue (self: SpringAnimation) (time: int) : float =
@@ -12776,7 +12776,7 @@ module TimedAnimation =
 
   /// Creates a new `AdwTimedAnimation` on @widget to animate @target from @from to @to.
   let create (widget: Gtk4.Widget) (from: float) (to: float) (duration: int) (target: AnimationTarget) : TimedAnimation =
-    TimedAnimation (Internal.Raw.wrap ((Internal.AdwC.adw_timed_animation_new (Internal.Raw.obj widget.Id (Internal.Gtk4C.gtk_widget_get_type ())) from to (u32 duration) (Internal.Raw.give (Internal.Raw.obj target.Id (Internal.AdwC.adw_animation_target_get_type ()))))) false)
+    TimedAnimation (Internal.Raw.wrap ((Internal.AdwC.adw_timed_animation_new (Internal.Raw.obj widget.Id (Internal.Gtk4C.gtk_widget_get_type ())) from to (u32 duration) (Internal.Raw.give (Internal.Raw.obj target.Id (Internal.AdwC.adw_animation_target_get_type ()))))) true)
 
   /// Gets whether @self changes direction on every iteration.
   let getAlternate (self: TimedAnimation) : bool =

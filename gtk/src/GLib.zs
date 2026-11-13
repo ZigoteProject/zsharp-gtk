@@ -13592,10 +13592,8 @@ let idleAddOnce (function_: unit -> unit) : int =
   let zcb1 =
     Internal.Raw.hold (fun () ->
       function_ ())
-  let zr = Internal.GLibC.g_idle_add_once (Internal.GLibC.zgtk_tramp_GLib_SourceOnceFunc ()) zcb1
-  let zv = (int (zr))
-  Internal.Raw.drop zcb1
-  zv
+  let zr = Internal.GLibC.g_idle_add_once (Internal.GLibC.zgtk_tramp_GLib_SourceOnceFunc_once ()) zcb1
+  (int (zr))
 
 /// Removes the idle function with the given data.
 [<Unsafe>]
@@ -15005,10 +15003,8 @@ let timeoutAddOnce (interval: int) (function_: unit -> unit) : int =
   let zcb1 =
     Internal.Raw.hold (fun () ->
       function_ ())
-  let zr = Internal.GLibC.g_timeout_add_once (u32 interval) (Internal.GLibC.zgtk_tramp_GLib_SourceOnceFunc ()) zcb1
-  let zv = (int (zr))
-  Internal.Raw.drop zcb1
-  zv
+  let zr = Internal.GLibC.g_timeout_add_once (u32 interval) (Internal.GLibC.zgtk_tramp_GLib_SourceOnceFunc_once ()) zcb1
+  (int (zr))
 
 /// Sets a function to be called at regular intervals, with @priority.
 let timeoutAddSeconds (priority: int) (interval: int) (function_: unit -> bool) : int =
@@ -15023,10 +15019,8 @@ let timeoutAddSecondsOnce (interval: int) (function_: unit -> unit) : int =
   let zcb1 =
     Internal.Raw.hold (fun () ->
       function_ ())
-  let zr = Internal.GLibC.g_timeout_add_seconds_once (u32 interval) (Internal.GLibC.zgtk_tramp_GLib_SourceOnceFunc ()) zcb1
-  let zv = (int (zr))
-  Internal.Raw.drop zcb1
-  zv
+  let zr = Internal.GLibC.g_timeout_add_seconds_once (u32 interval) (Internal.GLibC.zgtk_tramp_GLib_SourceOnceFunc_once ()) zcb1
+  (int (zr))
 
 /// Creates a new timeout source.
 let timeoutSourceNew (interval: int) : Source =

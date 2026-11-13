@@ -40,6 +40,13 @@ let main () = App.run "org.example.Counter" 0 update view
   makes only the rows on screen.
 - **Around any widget:** `Margin`, `Styled` (style classes), `With` (expand, align, size,
   tooltip, disabled, hidden, spacing), `Keyed`.
+- **Motion:** `Animated (x, draw)` is a number that moves to what it's set to as a spring
+  does, with the widget drawn from where it is at each step (a ring that fills, a count that
+  runs up); a `Progress` settles the same way, one of `Tabs`' views fades into the next, a
+  status page and anything `Styled ([ "appear" ], …)` fade in where they're made, and what a
+  `Revealer` reveals takes the keys.
+- **`PressRow`** is a row pressed as a whole, with widgets at its end; a `MenuButton` or a
+  `Toggle` named as an icon (`open-menu-symbolic`) shows the icon.
 - **A property's change is a message:** `Ui.Calendar.onDayChanged DueDay`, for every property
   an element can be read (`onXChanged`), with its new value.
 - **Every widget GTK and libadwaita have** is there too, through `Ui` and `AdwUi`, written

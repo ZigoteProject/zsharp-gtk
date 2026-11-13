@@ -530,4 +530,12 @@ let tests =
         expect (Gtk4.Widget.getCssName w, rung.Value, Glue.getInt w.Id "muted", again = bell) "(bell, 1, 1, true)"
       Glue.drain ()
       Glue.dropOverrides ())
+    test "a function GLib calls once, later, is still there when it does" (fun () ->
+      Gtk4.init ()
+      let said = ref []
+      Loop.runWhile (fun () -> List.length said.Value < 2) (fun () ->
+        let words = [ "after"; "a"; "while" ]
+        GLib.timeoutAddOnce 20 (fun () -> said.Value <- String.concat words :: said.Value) |> ignore
+        GLib.idleAddOnce (fun () -> said.Value <- "idle" :: said.Value) |> ignore)
+      expect (List.rev said.Value) "[idle; afterawhile]")
   ]

@@ -1110,6 +1110,10 @@ class Gen:
             if not self.available(full) or p.get("closure") is None:
                 continue
             scope = p.get("scope", "call")
+            # a function GLib calls once, later: its description gives it no scope, which would
+            # mean it's done with when the call returns
+            if full == "GLib.SourceOnceFunc":
+                scope = "async"
             cb = self.tmp("cb")
             self.within = full.split(".", 1)[0]
             try:
@@ -2001,6 +2005,8 @@ class Gen:
         return "\n".join(self.out) + "\n"
 
 
+OWNED = {"adw_timed_animation_new", "adw_spring_animation_new"}
+
 def tasks(text):
     """Beside each pair `xAsync` (whose last parameter is GIO's callback) and `xFinish`, `xTask`:
     the two as a task, for `let!`. Written from the two functions' own lines."""
@@ -2074,6 +2080,11 @@ def main(argv):
     split = lambda s: set(x for x in s.split(",") if x)
     modules = dict(m.split("=", 1) for m in split(opts["modules"]))
     gen = Gen(Gir(argv[1], opts["dir"]), split(opts["only"]), split(opts["foreign"]), modules)
+    # what a description says is lent and the library's own text says is the caller's: "it's
+    # safe to create an animation, start it and immediately unref it"
+    for el in gen.gir.ns.iter():
+        if el.get(C + "identifier") in OWNED:
+            el.find(CORE + "return-value").set("transfer-ownership", "full")
     if opts["extra"]:
         gen.handwritten = set(re.findall(r"(?m)^module (\w+) =", open(opts["extra"]).read()))
     if opts["seen"] and os.path.exists(opts["seen"]):

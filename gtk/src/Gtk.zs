@@ -128,6 +128,10 @@ type Widget<'msg> =
   | Group of string * list<Widget<'msg>>
   /// A row of a group with a title and a subtitle.
   | ActionRow of string * string
+  /// A row that is pressed as a whole, with widgets at its end: its title, its subtitle, the
+  /// widgets, and the message when it's chosen. It lights under the pointer, as a row that
+  /// only holds a button doesn't.
+  | PressRow of string * string * list<Widget<'msg>> * 'msg
   /// A row that leads somewhere: its title, its subtitle, and the message when it's chosen.
   | NavRow of string * string * 'msg
   /// A row with widgets at its end: its title, its subtitle and the widgets.
@@ -160,6 +164,11 @@ type Widget<'msg> =
   /// A widget made with the libraries themselves (`Gtk4`, `Adw`): its key, and the function
   /// that makes it, called once for as long as the key stays the same.
   | Native of string * (unit -> Gtk4.Widget)
+  /// A number in motion: it moves to what it's set to as a spring does, keeping the speed it
+  /// has when it's set again on the way, and the widget is drawn from where it is at each
+  /// step: a ring that fills (`Animated (done, fun x -> Canvas (ring x))`), a count that runs
+  /// up. In a window that isn't shown it's there at once.
+  | Animated of float * (float -> Widget<'msg>)
   /// A long list that scrolls: how many rows it has, and the function that gives a row's
   /// widget from its index. Only the rows on screen are made, so a hundred thousand cost what
   /// twenty do.
@@ -452,6 +461,42 @@ let private plainTitle (row: Adw.PreferencesRow) (title: string) =
   Adw.PreferencesRow.setUseMarkup row false
   Adw.PreferencesRow.setTitle row title
 
+// A number that settles on what it's set to as a spring does, keeping the speed it has when its
+// target changes on the way: `show` is given each step, and what this gives sets the target.
+// An animation that was replaced says nothing more (its turn has passed).
+let private settling (w: Gtk4.Widget) (first: float) (show: float -> unit) : float -> unit =
+  let at = ref first
+  let goal = ref first
+  let turn = ref 0
+  let running: ref<option<Adw.SpringAnimation>> = ref None
+  let stop () : float =
+    turn.Value <- turn.Value + 1
+    match running.Value with
+    | Some old ->
+      let speed = Adw.SpringAnimation.getVelocity old
+      Adw.Animation.skip (Adw.SpringAnimation.toAnimation old)
+      Internal.Raw.unkeep old.Id
+      running.Value <- None
+      speed
+    | None -> 0.0
+  Gtk4.Widget.onDestroy w (fun () -> stop () |> ignore)
+  fun target ->
+    if target <> goal.Value then
+      goal.Value <- target
+      let speed = stop ()
+      let mine = turn.Value
+      let step =
+        Adw.CallbackAnimationTarget.create (fun x ->
+          if turn.Value = mine then
+            at.Value <- x
+            show x)
+      let spring =
+        Adw.SpringAnimation.create w at.Value target (Adw.SpringParams.create 1.0 1.0 170.0) (Adw.CallbackAnimationTarget.toAnimationTarget step)
+      Adw.SpringAnimation.setInitialVelocity spring speed
+      Internal.Raw.keep spring.Id
+      running.Value <- Some spring
+      Adw.Animation.play (Adw.SpringAnimation.toAnimation spring)
+
 // ---- the widgets with nothing inside them
 
 let private label (text: string) : Live<'msg> =
@@ -496,10 +541,12 @@ let private spinner () : Live<'msg> =
 let private progress (fraction: float) : Live<'msg> =
   let w = Gtk4.ProgressBar.create ()
   Gtk4.ProgressBar.setFraction w fraction
+  // a value settling, so it reads as the number moving
+  let settle = settling (Gtk4.ProgressBar.toWidget w) fraction (Gtk4.ProgressBar.setFraction w)
   let apply (next: Widget<'msg>) : bool =
     match next with
     | Progress fraction ->
-      Gtk4.ProgressBar.setFraction w fraction
+      settle fraction
       true
     | _ -> false
   leaf (Gtk4.ProgressBar.toWidget w) apply noProbes
@@ -554,14 +601,20 @@ let private iconButton (send: 'msg -> unit) (name: string) (msg: 'msg) : Live<'m
   leaf (Gtk4.Button.toWidget w) apply probes
 
 let private toggle (send: 'msg -> unit) (text: string) (on: bool) (changed: bool -> 'msg) : Live<'msg> =
-  let w = Gtk4.ToggleButton.createWithLabel text
+  let w = Gtk4.ToggleButton.create ()
+  let name (text: string) : unit =
+    if String.endsWith "-symbolic" text then
+      Gtk4.Button.setIconName (Gtk4.ToggleButton.toButton w) text
+    else
+      Gtk4.Button.setLabel (Gtk4.ToggleButton.toButton w) text
+  name text
   Gtk4.ToggleButton.setActive w on
   let slot = ref changed
   Gtk4.ToggleButton.onToggled w (fun () -> send (slot.Value (Gtk4.ToggleButton.getActive w)))
   let apply (next: Widget<'msg>) : bool =
     match next with
     | Toggle (text, on, changed) ->
-      Gtk4.Button.setLabel (Gtk4.ToggleButton.toButton w) text
+      name text
       slot.Value <- changed
       if Gtk4.ToggleButton.getActive w <> on then Gtk4.ToggleButton.setActive w on
       true
@@ -1015,18 +1068,32 @@ let rec private build (send: 'msg -> unit) (widget: Widget<'msg>) : Live<'msg> =
     single send (Gtk4.Revealer.toWidget w) (Gtk4.Revealer.setChild w) inner (fun next ->
       match next with
       | Revealer (shown, inner) ->
+        let opening = shown && not (Gtk4.Revealer.getRevealChild w)
         Gtk4.Revealer.setRevealChild w shown
+        // what was asked for is where the keys go: a search field that slides in is typed in,
+        // once it's on the screen to take them
+        if opening && Loop.running () then
+          GLib.timeoutAddOnce 60 (fun () ->
+            if Internal.Raw.alive w.Id && Gtk4.Revealer.getRevealChild w then
+              Gtk4.Widget.childFocus (Gtk4.Revealer.toWidget w) Gtk4.DirectionType.tabForward
+              |> ignore)
+          |> ignore
         Some inner
       | _ -> None)
   | MenuButton (text, inner) ->
     let w = Gtk4.MenuButton.create ()
     let popover = Gtk4.Popover.create ()
-    Gtk4.MenuButton.setLabel w text
+    let name (text: string) : unit =
+      if String.endsWith "-symbolic" text then
+        Gtk4.MenuButton.setIconName w text
+      else
+        Gtk4.MenuButton.setLabel w text
+    name text
     Gtk4.MenuButton.setPopover w (Some popover)
     single send (Gtk4.MenuButton.toWidget w) (Gtk4.Popover.setChild popover) inner (fun next ->
       match next with
       | MenuButton (text, inner) ->
-        Gtk4.MenuButton.setLabel w text
+        name text
         Some inner
       | _ -> None)
   | Group (title, rows) ->
@@ -1055,6 +1122,56 @@ let rec private build (send: 'msg -> unit) (widget: Widget<'msg>) : Live<'msg> =
           Some suffixes
         | _ -> None)
     { live with probes = fun () -> [ ProbeTitle (Adw.PreferencesRow.getTitle row) ] }
+  | PressRow (title, subtitle, suffixes, msg) ->
+    let w = Adw.ActionRow.create ()
+    let row = Adw.ActionRow.toPreferencesRow w
+    plainTitle row title
+    Adw.ActionRow.setSubtitle w subtitle
+    Gtk4.ListBoxRow.setActivatable (Adw.ActionRow.toGtkListBoxRow w) true
+    let pressed = ref msg
+    Adw.ActionRow.onActivated w (fun () -> send pressed.Value)
+    let slot = { append = Adw.ActionRow.addSuffix w; remove = Adw.ActionRow.remove w; swap = None }
+    let live =
+      many send (Adw.ActionRow.toGtkWidget w) slot suffixes (fun next ->
+        match next with
+        | PressRow (title, subtitle, suffixes, msg) ->
+          Adw.PreferencesRow.setTitle row title
+          Adw.ActionRow.setSubtitle w subtitle
+          pressed.Value <- msg
+          Some suffixes
+        | _ -> None)
+    let probes () =
+      let title = Adw.PreferencesRow.getTitle row
+      [ ProbeTitle title; ProbePress (title, fun () -> emit w.Id "activated") ]
+    { live with probes = probes }
+  | Animated (first, body) ->
+    let bin = Adw.Bin.create ()
+    let draw = ref body
+    let at = ref first
+    let child = ref (build send (body first))
+    Adw.Bin.setChild bin (Some child.Value.native)
+    let show (x: float) : unit =
+      at.Value <- x
+      let next = draw.Value x
+      if not (child.Value.apply next) then
+        let fresh = build send next
+        Adw.Bin.setChild bin (Some fresh.native)
+        child.Value <- fresh
+    let settle = settling (Adw.Bin.toGtkWidget bin) first show
+    let apply (next: Widget<'msg>) : bool =
+      match next with
+      | Animated (target, body) ->
+        draw.Value <- body
+        // what it draws may have changed with the model, where it stands
+        show at.Value
+        settle target
+        true
+      | _ -> false
+    { native = Adw.Bin.toGtkWidget bin
+      apply = apply
+      kids = (fun () -> [ child.Value ])
+      probes = noProbes
+      hoisted = None }
   | ExpanderRow (title, subtitle, rows) ->
     let w = Adw.ExpanderRow.create ()
     let row = Adw.ExpanderRow.toPreferencesRow w
@@ -1223,6 +1340,8 @@ and private tabsOf (send: 'msg -> unit) (shown: string) (tabs: list<Tab<'msg>>) 
       let live = build send (tabBody t)
       Adw.ViewStack.addTitledWithIcon stack live.native (Some title) title iconName |> ignore
       live) tabs
+  // one view fades into the next
+  Adw.ViewStack.setEnableTransitions stack true
   Adw.ViewStack.setVisibleChildName stack shown
   let slot = ref select
   // after the views are in: adding the first one shows it, which is no pick of the user's
@@ -1782,15 +1901,21 @@ let private syncSide (send: 'msg -> unit) (shell: Shell<'msg>) (wanted: option<S
   | _ -> ()
 
 // Makes the application's style sheet the tree's.
-let private syncStyle (frame: Host) (shell: Shell<'msg>) (css: string) : unit =
+// The package's own style, under an application's: `appear`, for `Styled` to name on what should
+// fade in where it's made (a card, a tile), and a status page that does.
+let private baseStyle =
+  "@keyframes zs-appear { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; } }
+.appear, statuspage > scrolledwindow > viewport > box { animation: zs-appear 240ms ease-out; }
+"
+
+let private syncStyle (frame: Host) (shell: Shell<'msg>) (asked: string) : unit =
+  let css = baseStyle + asked
   if css <> shell.styled.Value then
     let display = Gtk4.Widget.getDisplay frame.window.Widget
     Option.iter (fun (old: Gtk4.CssProvider) ->
       Gtk4.StyleContext.removeProviderForDisplay display old.StyleProvider) shell.style.Value
     shell.styled.Value <- css
-    if css = "" then
-      shell.style.Value <- None
-    else
+    if css <> "" then
       let provider = Gtk4.CssProvider.create ()
       Gtk4.CssProvider.loadFromString provider css
       Gtk4.StyleContext.addProviderForDisplay display provider.StyleProvider Gtk4.styleProviderPriorityApplication

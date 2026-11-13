@@ -80,4 +80,16 @@ let tests =
       on.Set true
       expect (before, mine (), states.Value) "([mine], [mine], 1)"
       Test.close p)
+    test "a row pressed as a whole sends its message, and a number in motion ends where it's set" (fun () ->
+      let n = signal 0
+      let p =
+        Test.startSignals (fun () ->
+          let press () = n.Update(fun x -> x + 1)
+          let row = PressRow ("Count", $"{n.Value}", [ Icon "go-next-symbolic" ], press)
+          let shown = Animated (float n.Value, fun x -> Label $"at {x:F0}")
+          window "motion" (Column [ Group ("", [ row ]); shown; Progress (float n.Value / 2.0) ]))
+      Test.click "Count" p
+      Test.click "Count" p
+      expect (n.Value, Test.labels p) "(2, [at 2])"
+      Test.close p)
   ]
