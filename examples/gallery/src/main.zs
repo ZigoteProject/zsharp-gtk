@@ -6,6 +6,8 @@ open Gtk
 type Model =
   { view: string
     name: string
+    secret: string
+    query: string
     volume: float
     count: float
     colour: int
@@ -19,6 +21,8 @@ type Model =
 type Msg =
   | Viewed of string
   | Named of string
+  | Secret of string
+  | Asked of string
   | Volume of float
   | Counted of float
   | Coloured of int
@@ -35,6 +39,8 @@ let update (msg: Msg) (m: Model) : Model * list<Cmd<Msg>> =
   match msg with
   | Viewed view -> ({ m with view = view }, [])
   | Named name -> ({ m with name = name }, [])
+  | Secret secret -> ({ m with secret = secret }, [])
+  | Asked query -> ({ m with query = query }, [])
   | Volume volume -> ({ m with volume = volume }, [])
   | Counted count -> ({ m with count = count }, [])
   | Coloured colour -> ({ m with colour = colour }, [])
@@ -59,8 +65,8 @@ let controls (m: Model) : Widget<Msg> =
     ]
   let fields =
     Row [ With ([ Hexpand true ], Entry (m.name, Named))
-      Search ("", Named)
-      Password ("secret", Named) ]
+      Search (m.query, Asked)
+      Password (m.secret, Secret) ]
   let numbers =
     Row [ Slider (m.volume, 0.0, 10.0, Volume)
       Spin (m.count, 0.0, 100.0, 1.0, Counted)
@@ -91,7 +97,7 @@ let rows (m: Model) : Widget<Msg> =
       [ Avatar (m.name, 32); With ([ Valign Center ], Button ("Greet", Clicked)) ])
   let profile =
     Group ("Profile",
-      [ EntryRow ("Name", m.name, Named); PasswordRow ("Password", "", Named); person ])
+      [ EntryRow ("Name", m.name, Named); PasswordRow ("Password", m.secret, Secret); person ])
   let choices = [
     SwitchRow ("Switched on", m.on, Switched)
     SpinRow ("Count", m.count, 0.0, 100.0, 1.0, Counted)
@@ -148,6 +154,8 @@ let main () =
   let start =
     { view = first
       name = "Ada"
+      secret = ""
+      query = ""
       volume = 4.0
       count = 30.0
       colour = 0

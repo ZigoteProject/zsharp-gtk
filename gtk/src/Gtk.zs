@@ -109,6 +109,10 @@ type Widget<'msg> =
   | Revealer of bool * Widget<'msg>
   /// A button that opens a popover: its label, and what the popover shows.
   | MenuButton of string * Widget<'msg>
+  /// GNOME's search bar: whether it's shown, what it holds (a `Search` field, with anything
+  /// beside it), and the message for the state the user gives it. It slides in with the keys
+  /// going to its field; Escape closes it, and typing anywhere in the window opens it.
+  | SearchBar of bool * Widget<'msg> * (bool -> 'msg)
   /// Views to switch between: the title of the one shown, the views, and the message for the
   /// one the user picks. As a page's whole content its switcher stands in the header bar,
   /// anywhere else over the views.
@@ -451,16 +455,24 @@ let private setAttr (w: Gtk4.Widget) (on: bool) (a: Attr) : unit =
   | Wrap ->
     Option.iter (fun label -> Gtk4.Label.setWrap label on) (Gtk4.Label.cast (Gtk4.Widget.toGObjectObject w))
 
+// Whether the tree is giving a field its text. GTK sets a text by taking the old one out and
+// putting the new one in, and says so twice: neither is an edit of the user's to send.
+let private settingText = ref false
+
 // A text field showing `text`, each edit sent through the function the slot holds.
 let private bindText (send: 'msg -> unit) (editable: Gtk4.Editable) (text: string) (changed: string -> 'msg) =
   Gtk4.Editable.setText editable text
   let slot = ref changed
-  Gtk4.Editable.onChanged editable (fun () -> send (slot.Value (Gtk4.Editable.getText editable)))
+  Gtk4.Editable.onChanged editable (fun () ->
+    if not settingText.Value then send (slot.Value (Gtk4.Editable.getText editable)))
   slot
 
 // only when it differs: setting the same text would still move the cursor to the start
 let private syncText (editable: Gtk4.Editable) (text: string) =
-  if Gtk4.Editable.getText editable <> text then Gtk4.Editable.setText editable text
+  if Gtk4.Editable.getText editable <> text then
+    settingText.Value <- true
+    Gtk4.Editable.setText editable text
+    settingText.Value <- false
 
 // a row's title is the text given, not markup
 let private plainTitle (row: Adw.PreferencesRow) (title: string) =
@@ -714,12 +726,22 @@ let private search (send: 'msg -> unit) (text: string) (changed: string -> 'msg)
   let editable = Gtk4.SearchEntry.toEditable w
   Gtk4.Editable.setText editable text
   let slot = ref changed
-  Gtk4.SearchEntry.onSearchChanged w (fun () -> send (slot.Value (Gtk4.Editable.getText editable)))
+  // what the tree last said. The field tells of an edit only once the user pauses, and a tree
+  // made meanwhile still has the old text: the field is given the tree's text when that
+  // changes, not whenever the two differ, or every key typed would be taken back
+  let said = ref text
+  Gtk4.SearchEntry.onSearchChanged w (fun () ->
+    if not settingText.Value then
+      send (slot.Value (Gtk4.Editable.getText editable))
+      // a model that didn't take the edit is still what the field shows
+      if Internal.Raw.alive w.Id then syncText editable said.Value)
   let apply (next: Widget<'msg>) : bool =
     match next with
     | Search (text, changed) ->
       slot.Value <- changed
-      syncText editable text
+      if text <> said.Value then
+        said.Value <- text
+        syncText editable text
       true
     | _ -> false
   let probes () =
@@ -1002,6 +1024,20 @@ let private tabBody (t: Tab<'msg>) : Widget<'msg> =
 
 let private applies (live: Live<'msg>) (w: Widget<'msg>) : bool = live.apply w
 
+// the search field in a widget or under it, for a search bar to send the window's keys to
+let rec private findSearchEntry (w: Gtk4.Widget) : option<Gtk4.SearchEntry> =
+  match Gtk4.SearchEntry.cast (Gtk4.Widget.toGObjectObject w) with
+  | Some entry -> Some entry
+  | None ->
+    let rec among (c: option<Gtk4.Widget>) : option<Gtk4.SearchEntry> =
+      match c with
+      | None -> None
+      | Some child ->
+        match findSearchEntry child with
+        | Some entry -> Some entry
+        | None -> among (Gtk4.Widget.getNextSibling child)
+    among (Gtk4.Widget.getFirstChild w)
+
 // ---- the widgets with widgets inside them
 
 let rec private build (send: 'msg -> unit) (widget: Widget<'msg>) : Live<'msg> =
@@ -1098,6 +1134,79 @@ let rec private build (send: 'msg -> unit) (widget: Widget<'msg>) : Live<'msg> =
           |> ignore
         Some inner
       | _ -> None)
+  | SearchBar (shown, inner, changed) ->
+    let w = Gtk4.SearchBar.create ()
+    let bar = Gtk4.SearchBar.toWidget w
+    let slot = ref changed
+    // what the tree last said: a state of GTK's that differs from it is the user's doing, and
+    // the bar is given the tree's state when that changes, not whenever the two differ. A bar
+    // that closes empties its field first, which tells the model so and makes a tree before
+    // the bar has said it closed: that tree's "shown" is old news, not an order to open
+    let asked = ref shown
+    let connected = ref 0
+    let connect () : unit =
+      match Option.bind findSearchEntry (Gtk4.SearchBar.getChild w) with
+      | Some entry when entry.Id <> connected.Value ->
+        connected.Value <- entry.Id
+        Gtk4.SearchBar.connectEntry w (Gtk4.SearchEntry.toEditable entry)
+      | _ -> ()
+    let live =
+      single send bar (Gtk4.SearchBar.setChild w) inner (fun next ->
+        match next with
+        | SearchBar (_, inner, _) -> Some inner
+        | _ -> None)
+    connect ()
+    // the keys go to the field of a bar that opens, if it's the one on the screen: every bar
+    // asks for them as it opens, one in a view that isn't shown too, and the last to ask has
+    // them. Once the tree is in its place the bar on screen asks again, without selecting
+    // what its field holds, which the next key would replace
+    let focus () : unit =
+      if Loop.running () then
+        GLib.idleAddOnce (fun () ->
+          if Internal.Raw.alive w.Id && Gtk4.SearchBar.getSearchMode w && Gtk4.Widget.getMapped bar then
+            let entry = Option.bind findSearchEntry (Gtk4.SearchBar.getChild w)
+            let inner =
+              Option.bind (fun (e: Gtk4.SearchEntry) ->
+                Gtk4.Widget.getFirstChild (Gtk4.SearchEntry.toWidget e)) entry
+            let rec text (c: option<Gtk4.Widget>) : option<Gtk4.Text> =
+              match c with
+              | None -> None
+              | Some child ->
+                match Gtk4.Text.cast (Gtk4.Widget.toGObjectObject child) with
+                | Some t -> Some t
+                | None -> text (Gtk4.Widget.getNextSibling child)
+            Option.iter (fun t -> Gtk4.Text.grabFocusWithoutSelecting t |> ignore) (text inner))
+        |> ignore
+    Gtk4.SearchBar.setSearchMode w shown
+    if shown then focus ()
+    Gtk4.SearchBar.onNotifySearchModeEnabled w (fun () ->
+      let now = Gtk4.SearchBar.getSearchMode w
+      if now <> asked.Value then
+        send (slot.Value now)
+        // a model that didn't take the change is still what the bar shows
+        if Internal.Raw.alive w.Id && Gtk4.SearchBar.getSearchMode w <> asked.Value then
+          Gtk4.SearchBar.setSearchMode w asked.Value)
+    // the window's keys start a search while the bar is where the user is looking
+    Gtk4.Widget.onMap bar (fun () ->
+      let window =
+        Option.bind (fun root -> Gtk4.Widget.cast (Gtk4.Root.toGObjectObject root)) (Gtk4.Widget.getRoot bar)
+      Gtk4.SearchBar.setKeyCaptureWidget w window)
+    Gtk4.Widget.onUnmap bar (fun () -> Gtk4.SearchBar.setKeyCaptureWidget w None)
+    let apply (next: Widget<'msg>) : bool =
+      match next with
+      | SearchBar (shown, _, changed) ->
+        if live.apply next then
+          slot.Value <- changed
+          connect ()
+          if shown <> asked.Value then
+            asked.Value <- shown
+            if Gtk4.SearchBar.getSearchMode w <> shown then Gtk4.SearchBar.setSearchMode w shown
+            if shown then focus ()
+          true
+        else
+          false
+      | _ -> false
+    { live with apply = apply; probes = (fun () -> [ ProbeFlip (Gtk4.SearchBar.setSearchMode w) ]) }
   | MenuButton (text, inner) ->
     let w = Gtk4.MenuButton.create ()
     let popover = Gtk4.Popover.create ()
@@ -2375,7 +2484,8 @@ module Test =
       | _ -> None)
     |> List.iter (fun set -> set text)
 
-  /// Turns every switch, check box and toggle on or off, as the user would.
+  /// Turns every switch, check box and toggle on or off, and opens or closes every search
+  /// bar, as the user would.
   let toggle (on: bool) (p: Program<'model, 'msg>) : unit =
     p
     |> pick (fun probe ->

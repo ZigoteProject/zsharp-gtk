@@ -217,7 +217,10 @@ let update (msg: Msg) (m: Model) : Model * list<Cmd<Msg>> =
   | Projects -> ({ m with reading = false }, [])
   | Viewed view -> ({ m with view = view }, [])
   | Query text -> ({ m with query = text }, [])
-  | Searching on -> ({ m with searching = on; query = (if on then m.query else "") }, [])
+  | Searching on ->
+    // the views that list tasks have the search bar: from another, a search opens the list
+    let view = if on && m.view <> "Board" then "Tasks" else m.view
+    ({ m with searching = on; view = view; query = (if on then m.query else "") }, [])
   | Filtered n -> ({ m with filter = n }, [])
   | Opened id ->
     match List.tryFind (fun (i: Item) -> i.id = id) m.items with
@@ -337,6 +340,14 @@ let itemRow (m: Model) (i: Item) : Widget<Msg> =
       [ With ([ Valign Center ], due); pill i.priority; done_ ],
       Opened i.id))
 
+// GNOME's search bar, over a view that lists tasks: there whatever the search finds, so a
+// query that matches nothing can still be changed
+let find (m: Model) : Widget<Msg> =
+  SearchBar (m.searching,
+    Row [ With ([ Size (320, -1) ], Search (m.query, Query))
+      DropDown (filters, m.filter, Filtered) ],
+    Searching)
+
 let tasks (m: Model) : Widget<Msg> =
   let all = shown m
   let part (title: string) (keep: Item -> bool) : list<Widget<Msg>> =
@@ -349,10 +360,6 @@ let tasks (m: Model) : Widget<Msg> =
       part "Today" (fun i -> i.stage < 2 && i.due = m.today)
       part "Upcoming" (fun i -> i.stage < 2 && i.due > m.today)
       part "Done" (fun i -> i.stage = 2) ]
-  let find =
-    Revealer (m.searching,
-      Row [ With ([ Hexpand true ], Search (m.query, Query))
-        DropDown (filters, m.filter, Filtered) ])
   let undo =
     AdwUi.Banner.make [ AdwUi.Banner.title "Task deleted"
       AdwUi.Banner.buttonLabel "Undo"
@@ -366,8 +373,8 @@ let tasks (m: Model) : Widget<Msg> =
         [ With ([ Halign Center ],
             Styled ([ "pill"; "suggested-action" ], Button ("New task", Show NewItem))) ])
     else
-      Scroll (Margin (18, Clamp (Column (Keyed ("find", find) :: groups))))
-  Column [ undo; With ([ Vexpand true ], body) ]
+      Scroll (Margin (18, Clamp (Column groups)))
+  Column [ find m; undo; With ([ Vexpand true ], body) ]
 
 let board (m: Model) : Widget<Msg> =
   let card (i: Item) : Widget<Msg> =
@@ -390,7 +397,8 @@ let board (m: Model) : Widget<Msg> =
         Styled ([ "tag"; "tag-count" ], Label $"{List.length mine}") ]
     With ([ Hexpand true; Valign Start ],
       Styled ([ "lane" ], Column (Keyed ("head", head) :: List.map card mine)))
-  Scroll (Margin (18, With ([ Spacing 12 ], Row (List.map column [ 0; 1; 2 ]))))
+  let lanes = Scroll (Margin (18, With ([ Spacing 12 ], Row (List.map column [ 0; 1; 2 ]))))
+  Column [ find m; With ([ Vexpand true ], lanes) ]
 
 // a ring: how much of something is done, drawn round its number
 let ring (m: Model) (fraction: float) : Cairo.Context -> int -> int -> unit =
