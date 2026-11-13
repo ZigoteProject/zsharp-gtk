@@ -330,11 +330,12 @@ let itemRow (m: Model) (i: Item) : Widget<Msg> =
   let done_ =
     With ([ Valign Center ],
       Check ("", i.stage = 2, fun on -> Staged (i.id, (if on then 2 else 0))))
-  let go =
-    With ([ Valign Center ], Styled ([ "flat" ], IconButton ("go-next-symbolic", Opened i.id)))
   let under = if m.project < 0 then projectOf m i.project else List.item i.stage stages
   Keyed ($"item-{i.id}",
-    SuffixRow (i.title, under, [ With ([ Valign Center ], due); pill i.priority; done_; go ]))
+    PressRow (i.title,
+      under,
+      [ With ([ Valign Center ], due); pill i.priority; done_ ],
+      Opened i.id))
 
 let tasks (m: Model) : Widget<Msg> =
   let all = shown m
@@ -379,7 +380,7 @@ let board (m: Model) : Widget<Msg> =
         step "go-previous-symbolic" (i.stage - 1)
         step "go-next-symbolic" (i.stage + 1) ]
     let title = With ([ Halign Start; Wrap ], Styled ([ "heading" ], Label i.title))
-    Keyed ($"card-{i.id}", Styled ([ "card"; "task-card" ], Column [ title; foot ]))
+    Keyed ($"card-{i.id}", Styled ([ "card"; "task-card"; "appear" ], Column [ title; foot ]))
   let column (stage: int) : Widget<Msg> =
     let mine = List.filter (fun (i: Item) -> i.stage = stage) (shown m)
     let head =
@@ -443,7 +444,7 @@ let insights (m: Model) : Widget<Msg> =
   let tile (number: string) (caption: string) : Widget<Msg> =
     let text =
       Column [ Styled ([ "title-1" ], Label number); Styled ([ "dim-label" ], Label caption) ]
-    With ([ Hexpand true ], Styled ([ "card"; "tile" ], text))
+    With ([ Hexpand true ], Styled ([ "card"; "tile"; "appear" ], text))
   let tiles =
     With ([ Spacing 12 ],
       Row [ tile $"{total - finished}" "open"
@@ -451,15 +452,17 @@ let insights (m: Model) : Widget<Msg> =
         tile $"{List.sumBy (fun (i: Item) -> if i.stage < 2 then i.hours else 0.0) mine:F0} h" "to go"
         tile $"{m.sessions}" "focus sessions" ])
   let done_ =
-    Column [ With ([ Size (150, 150); Halign Center ], Canvas (ring m fraction))
-      Styled ([ "title-2" ], Label $"{fraction * 100.0:F0}%")
+    Column [ With ([ Size (150, 150); Halign Center ],
+        Animated (fraction, fun x -> Canvas (ring m x)))
+      Animated (fraction * 100.0, fun x -> Styled ([ "title-2" ], Label $"{x:F0}%"))
       Styled ([ "dim-label" ], Label $"{finished} of {total} done") ]
   let level (name: string) (n: int) : Widget<Msg> =
-    let bar =
-      Ui.LevelBar.make [ Ui.LevelBar.maxValue (float (if total = 0 then 1 else total))
-        Ui.LevelBar.value (float n)
-        Ui.Widget.hexpand true
+    let most = float (if total = 0 then 1 else total)
+    let draw (x: float) : Widget<Msg> =
+      Ui.LevelBar.make [ Ui.LevelBar.maxValue most
+        Ui.LevelBar.value x
         Ui.Widget.valign Gtk4.Align.center ] []
+    let bar = With ([ Hexpand true ], Animated (float n, draw))
     Row [ With ([ Size (70, -1); Halign Start ], Label name)
       bar
       With ([ Size (24, -1) ], Label $"{n}") ]
@@ -496,7 +499,7 @@ let focus (m: Model) : Widget<Msg> =
   StatusPage ("",
     clock,
     on,
-    [ With ([ Size (220, 220); Halign Center ], Canvas (ring m fraction))
+    [ With ([ Size (220, 220); Halign Center ], Animated (fraction, fun x -> Canvas (ring m x)))
       With ([ Halign Center; Spacing 12 ],
         Row [ start; Styled ([ "pill" ], Button ("Reset", Reset)) ])
       Clamp (Group ("", [ SpinRow ("Minutes", m.minutes, 1.0, 90.0, 1.0, Minutes) ])) ])
@@ -601,8 +604,8 @@ let view (m: Model) : Window<Msg> =
   let entry (id: int) (name: string) (icon: string) : Widget<Msg> =
     let mark = if id = m.project then [ "accent" ] else []
     Keyed ($"project-{id}",
-      SuffixRow (name, $"{count id} open", [ Styled (mark, Icon icon); With ([ Valign Center ],
-            Styled ([ "flat" ], IconButton ("go-next-symbolic", Picked id))) ]))
+      PressRow (name, $"{count id} open", [ Styled (mark, Icon icon) ], Picked id))
+  let spent = if m.minutes < 1.0 then 0.0 else 1.0 - float m.left / (m.minutes * 60.0)
   let late = List.length (List.filter (fun (i: Item) -> i.stage < 2 && i.due < m.today) m.items)
   let side =
     Column [ Group ("", [ entry -1 "All tasks" "view-list-symbolic" ])
@@ -610,9 +613,9 @@ let view (m: Model) : Window<Msg> =
       Group ("Today",
         [ ActionRow (dateText m.today, (if late = 0 then "Nothing is late" else $"{late} late"))
           SuffixRow ("Focus", $"{m.sessions} sessions", [ With ([ Size (28, 28); Valign Center ],
-                Canvas (ring m (if m.running then 0.6 else 0.0))) ]) ]) ]
+                Animated (spent, fun x -> Canvas (ring m x))) ]) ]) ]
   let menu =
-    MenuButton ("Menu",
+    MenuButton ("open-menu-symbolic",
       Margin (6,
         Column [ Styled ([ "flat" ], Button ("Export…", Export))
           Styled ([ "flat" ], Button ("Preferences", Show Preferences))
@@ -645,7 +648,8 @@ let view (m: Model) : Window<Msg> =
     headerStart = [ With ([ Tooltip "New task (Ctrl+N)" ],
         IconButton ("list-add-symbolic", Show NewItem)) ]
     headerEnd = [ menu
-      With ([ Tooltip "Search (Ctrl+F)" ], Toggle ("Search", m.searching, Searching)) ]
+      With ([ Tooltip "Search (Ctrl+F)" ],
+        Toggle ("system-search-symbolic", m.searching, Searching)) ]
     sidebar = Some { sidebar "Trellis" Projects (Scroll (Margin (12, side))) with showContent = m.reading }
     pages = List.map (detail m) (Option.toList opened)
     dialog = over
