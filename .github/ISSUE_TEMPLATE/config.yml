@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a vulnerability
+    url: https://github.com/ZigoteProject/zsharp-gtk/security/advisories/new
+    about: Privately, never as a public issue. SECURITY.md says what counts.
+  - name: A defect in the compiler or Z#'s library
+    url: https://github.com/ZigoteProject/zsharp/issues
+    about: Z#'s own repository.

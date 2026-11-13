@@ -1,0 +1,3 @@
+an effect that changes what it reads: Cycle detected
+a computed that changes a signal: Computed cannot have side-effects
+a computed that reads itself: Cycle detected

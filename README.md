@@ -1,6 +1,6 @@
 # GTK 4, libadwaita and signals for Z#
 
-Two packages for [Z#](../zsharp), for writing GNOME applications.
+Two packages for [Z#](https://github.com/ZigoteProject/zsharp), for writing GNOME applications.
 
 - **`gtk/`**: GTK 4 and libadwaita, two ways that mix.
   - **The libraries themselves**, as modules to call directly: `Gtk4`, `Adw`, `Gio`, `Gdk`,
@@ -11,9 +11,35 @@ Two packages for [Z#](../zsharp), for writing GNOME applications.
     model, and the widgets on screen are changed only where the tree differs.
 - **`signals/`**: reactive state after @preact/signals-core, which the tree can run on.
 
+## Status
+
+**0.1.0, the first release.** Pre-1.0: a release may change names, and
+[CHANGELOG.md](CHANGELOG.md) says what to rewrite.
+
+- **Linux only.** Built and tested on Linux x86-64 (Fedora 44, in a container) with GTK 4.22,
+  libadwaita 1.9 and GLib 2.88. Nothing has been built on another system or architecture.
+- **The system's libraries must be no older than those,** as the modules have a function for
+  everything those versions export.
+- **Z# 0.7.1 or later.**
+- **Tested by `./test`,** with a leak check, on an Xvfb display. No program built on the
+  packages has been in users' hands yet.
+
+## Use
+
+Check the repository out at a release's tag beside your project and name the packages by path
+([Getting started](docs/getting-started.md)):
+
+```toml
+[dependencies]
+gtk = { path = "../zsharp-gtk/gtk" }
+```
+
+**Documentation:** [docs/](docs/README.md) has a page for the tree of values, the libraries
+themselves, signals and testing a program. The sections below are the short form.
+
 ## The tree of values
 
-```fsharp
+```zsharp
 open Gtk
 
 type Msg = | Add of int | Reset
@@ -34,7 +60,7 @@ let main () = App.run "org.example.Counter" 0 update view
   `Separator`), buttons (`Button`, `IconButton`, `Toggle`, `Check`, `Switch`, `Link`,
   `MenuButton`), fields (`Entry`, `Password`, `Search`, `TextArea`, `Spin`, `Slider`,
   `DropDown`), containers (`Row`, `Column`, `Grid`, `Scroll`, `Clamp`, `Frame`, `Expander`,
-  `Revealer`, `Tabs`), Adwaita's groups and rows (`Group`, `ActionRow`, `NavRow`, `SuffixRow`,
+  `Revealer`, `SearchBar`, `Tabs`), Adwaita's groups and rows (`Group`, `ActionRow`, `NavRow`, `SuffixRow`,
   `ButtonRow`, `SwitchRow`, `EntryRow`, `PasswordRow`, `SpinRow`, `ComboRow`, `ExpanderRow`),
   `StatusPage`, `Banner`, `Canvas` (drawn with cairo), and `Lazy`, a list of any length that
   makes only the rows on screen.
@@ -121,7 +147,7 @@ Gtk4.Button.onClicked button (fun () -> Gtk4.ListBox.append list row.Widget)
   structure) is a type of its own over a pointer; a function that takes one is `[<Unsafe>]`,
   called inside `unsafe`, as it trusts what it's given. So are `ref`, `unref` and `free`: the
   handles count for themselves. About one function in twenty is, nearly all of them GLib's
-  own containers and GObject's type system; of GTK's 8,200 and Adwaita's 2,500, 70 are.
+  own containers and GObject's type system; of GTK's 8,200 and Adwaita's 2,500, about 70 are.
 - **The pointers are the package's own.** C's functions are declared in `gtk/src/internal/`,
   with the functions that turn a handle into a pointer, where a program that depends on the
   package can't name them (`tests/sealed.sh` tries). `Glue` is what a program has: `keep`,
@@ -143,7 +169,7 @@ Gtk4.Button.onClicked button (fun () -> Gtk4.ListBox.append list row.Widget)
 
 ```sh
 ./test             # the generated modules are current, both packages' tests, a window
-                   # clicked and typed in (xdotool on Xvfb), the examples
+                   # clicked and typed in (xdotool on Xvfb), the documents' programs, the examples
 ./run gallery      # an example, built in the container and run here (the host needs GTK 4)
 ./shot gallery     # its picture without a display: build/gallery.png, from Xvfb
 ./generate         # the generated modules again, after a change to the generator or the image
@@ -170,3 +196,20 @@ declarations in `gtk/src/internal/`, `gtk/COVERAGE.md` and `gtk/c/gen/` are writ
 They are never edited by hand: `./generate` writes them, and `./test` fails when they are not
 what it would write. cairo's functions, which its description leaves out, are in
 `tools/extra/cairo.zs`.
+
+## Contributing
+
+[CONTRIBUTING.md](CONTRIBUTING.md) says how to send a change, [AGENTS.md](AGENTS.md) has the
+map, the commands and the rules, and [SECURITY.md](SECURITY.md) how to report a vulnerability.
+A release is cut by hand: [docs/contributing/release.md](docs/contributing/release.md).
+
+## License
+
+[MIT](LICENSE). [NOTICE.md](NOTICE.md) has the detail:
+
+- **The documentation comments in the generated modules** are the libraries' own, taken from
+  their `.gir` files, and stay under the libraries' licenses (LGPL-2.1-or-later for most).
+  They aren't part of a program built with the package.
+- **`signals`** follows the design of @preact/signals-core (MIT).
+- **A program built with `gtk`** links the system's GTK 4, libadwaita and the libraries under
+  them, which are LGPL. None of them is shipped here.

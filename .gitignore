@@ -1,2 +1,5 @@
 build/
+dist/
 .zs-cache/
+__pycache__/
+.claude/

@@ -3,4 +3,5 @@
 # when something they read really changed.
 [package]
 name = "signals"
+version = "0.1.0"
 main = "src/Signals.zs"

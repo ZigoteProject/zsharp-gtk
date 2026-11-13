@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # In the container: the generated modules and their C are what the generator writes, both
-# packages' tests pass with the leak check (gtk's on an Xvfb display), and the examples build.
+# packages' tests pass with the leak check (gtk's on an Xvfb display), the documents' programs
+# check, and the examples build.
 set -euo pipefail
 cd "$(dirname "$0")"
 ./dev sh -c 'set -e
@@ -10,11 +11,17 @@ cd "$(dirname "$0")"
     diff -q "$d/$f" "gtk/$f" >/dev/null || { echo "gtk/$f is stale: run ./generate"; exit 1; }
   done
   (cd signals && ZS_LEAKCHECK=1 timeout 300 zs test --strict)
+  # what the graph refuses ends in a panic that says why
+  (cd signals && timeout 300 tests/panics.sh | diff - tests/panics.expected && echo "ok   panics: a cycle and a computed that writes are refused by name")
   (cd gtk && GSK_RENDERER=cairo GDK_DISABLE=gl,vulkan GTK_A11Y=none ZS_LEAKCHECK=1 timeout 600 xvfb-run -a zs test --strict)
   # the other way the loop waits, which is the only one off Linux
   (cd gtk && ZGTK_LOOP_THREAD=1 GSK_RENDERER=cairo GDK_DISABLE=gl,vulkan GTK_A11Y=none ZS_LEAKCHECK=1 timeout 600 xvfb-run -a zs test --strict tests/GenTests.zs)
   # a window clicked and typed in through the display, as a user would
   (cd gtk && timeout 120 tests/e2e.sh | diff - tests/e2e.expected && echo "ok   e2e: clicks, keys and a shortcut reach update")
+  # a handle that is no good is a panic, not a pointer for C
+  (cd gtk && timeout 600 xvfb-run -a tests/panics.sh | diff - tests/panics.expected && echo "ok   panics: a handle that is made up, gone or of another type is refused by name")
   # a program that depends on the package reaches no pointer of it
   (cd gtk && timeout 600 tests/sealed.sh | diff - tests/sealed.expected && echo "ok   sealed: a dependent program is refused the pointers and C functions")
+  # the programs in the README and docs/ check against the packages
+  timeout 900 tools/docs.sh
   for e in examples/*/; do (cd "$e" && timeout 300 zs build --strict); done'

@@ -1,0 +1,20 @@
+# Text is checked out with LF everywhere: the tests compare output byte for byte
+* text=auto eol=lf
+# written by ./generate, never by hand: left out of diffs and language counts
+gtk/src/Adw.zs linguist-generated
+gtk/src/AdwUi.zs linguist-generated
+gtk/src/Cairo.zs linguist-generated
+gtk/src/GLib.zs linguist-generated
+gtk/src/GObject.zs linguist-generated
+gtk/src/Gdk.zs linguist-generated
+gtk/src/GdkPixbuf.zs linguist-generated
+gtk/src/Gio.zs linguist-generated
+gtk/src/Graphene.zs linguist-generated
+gtk/src/Gsk.zs linguist-generated
+gtk/src/Gtk4.zs linguist-generated
+gtk/src/Pango.zs linguist-generated
+gtk/src/PangoCairo.zs linguist-generated
+gtk/src/Ui.zs linguist-generated
+gtk/src/internal/*C.zs linguist-generated
+gtk/c/gen/** linguist-generated
+gtk/COVERAGE.md linguist-generated

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Checks that the commit checked out is ready to be the release <version>, runs ./test, and
+# writes dist/zsharp-gtk-<version>.tar.gz with its SHA-256: ./release 0.1.0. It doesn't tag and
+# doesn't push; docs/contributing/release.md has the steps around it.
+set -euo pipefail
+cd "$(dirname "$0")"
+v=${1:?usage: ./release <version>, as 0.1.0}
+fail() { echo "release: $*" >&2; exit 1; }
+[[ $v =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || fail "'$v' isn't a version like 0.1.0"
+[ -z "$(git status --porcelain)" ] || fail "git holds changes that aren't committed"
+for m in gtk signals; do
+  grep -qx "version = \"$v\"" "$m/zs.toml" || fail "$m/zs.toml doesn't say version = \"$v\""
+done
+grep -q "^## $v (20[0-9][0-9]-[0-9][0-9]-[0-9][0-9])$" CHANGELOG.md || fail "CHANGELOG.md has no section '## $v (<date>)'"
+! git rev-parse -q --verify "refs/tags/v$v" >/dev/null || fail "the tag v$v exists"
+./test
+[ -z "$(git status --porcelain)" ] || fail "./test left changes in the tree"
+mkdir -p dist
+archive=zsharp-gtk-$v.tar.gz
+git archive --format=tar.gz --prefix="zsharp-gtk-$v/" -o "dist/$archive" HEAD
+(cd dist && sha256sum "$archive" > "$archive.sha256")
+echo "dist/$archive is $(git rev-parse --short HEAD), tested. Next: docs/contributing/release.md, step 5."

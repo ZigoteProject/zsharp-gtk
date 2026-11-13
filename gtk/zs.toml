@@ -6,6 +6,7 @@
 # - src/Glue.zs and c/zgtk.c: what those are made of.
 [package]
 name = "gtk"
+version = "0.1.0"
 main = "src/Gtk.zs"
 
 [dependencies]
