@@ -1,0 +1,8 @@
+a made-up handle: panic
+a record's handle where an object's is taken: panic
+a handle of another type: panic
+a handle whose object has gone: panic
+a made-up type, asked of an object: panic
+a made-up type, to make an object of: panic
+a made-up type, given to a library function: panic
+a made-up type, to make a type from: panic

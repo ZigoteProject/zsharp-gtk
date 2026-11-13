@@ -74,7 +74,18 @@ for _name, _c, _out in (("time_t", "i64", "Internal.Raw.outI64 {}"), ("gintptr",
                         ("gid_t", "u32", "Internal.Raw.outU32 {}"), ("pid_t", "i32", "Internal.Raw.outI32 {}"),
                         ("gunichar2", "u16", None)):
     PRIMS[_name] = _int(_c, _out)
-PRIMS["GType"] = P("usize", "usize", "{}", "{}", None, "(usize (Internal.Raw.argInt {}))", "Internal.Raw.returnInt (int ({}))", "i")
+# a type a program gives is checked to be one before C has it: GLib reads a type as an address
+PRIMS["GType"] = P("usize", "usize", "(Internal.Raw.gtype {})", "{}", None, "(usize (Internal.Raw.argInt {}))",
+                   "Internal.Raw.returnInt (int (Internal.Raw.gtype ({})))", "i")
+# A number given beside a string that says how much of it to read, or where in it: by its name
+# in C, whether it counts characters (not bytes), and what a negative one is (1: itself, which
+# means the whole string to the function; 2: the start). It is kept inside the string.
+WITHIN = {"len": (False, 1), "length": (False, 1), "text_len": (False, 1), "haystack_len": (False, 1),
+          "item_length": (False, 1), "new_text_length": (False, 1), "max_len": (False, 1), "max": (False, 1),
+          "stop_chars_len": (False, 1), "str_len": (False, 1), "n_chars": (True, 1), "n_initial_chars": (True, 1),
+          "end_pos": (True, 1),
+          "start_pos": (True, 2), "offset": (True, 2), "split_index": (False, 2), "start_index": (False, 2),
+          "msgidoffset": (False, 2)}
 # an array's element: its size in bytes and whether it has a sign
 SIZES = {"i8": (1, True), "u8": (1, False), "i16": (2, True), "u16": (2, False), "i32": (4, True),
          "u32": (4, False), "i64": (8, True), "u64": (8, False), "usize": (8, False), "f32": (4, True),
@@ -736,7 +747,9 @@ class Gen:
                 z, make = "list<%s>" % t, "Internal.Raw.ints (Internal.Raw.mapList (fun (ze: %s) -> ze.Int) %s) 4" % (t, v)
             else:
                 c = PRIMS[ename].c
-                if PRIMS[ename].z == "usize":
+                if ename == "GType":
+                    z, make = "list<usize>", "Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) %s) 8" % v
+                elif PRIMS[ename].z == "usize":
                     z, make = "list<usize>", "Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) %s) 8" % v
                 elif PRIMS[ename].z == "bool":
                     z, make = "list<bool>", "Internal.Raw.ints (Internal.Raw.mapList (fun (zb: bool) -> if zb then 1 else 0) %s) 4" % v
@@ -1135,7 +1148,10 @@ class Gen:
             if scope == "call":
                 post.append("Internal.Raw.drop %s" % cb)
         primed = []  # what is put in an in-out parameter's slot once the call's frame is there
+        near = None  # the string the parameter before was, or was a place in or a length of
+        start = "0"  # the place in it the parameter before gave, which a length after it is from
         for i, p, pname in plan:
+            beside, near = near, None
             if i in outlen:
                 ext.append("cptr")
                 args.append("(Internal.Raw.out %d)" % outlen[i][0])
@@ -1263,7 +1279,26 @@ class Gen:
                         outs.append((z, e, lets))
                     slot += 1
                     continue
-                c, z, e = self.to_c(kind, tname, p, pname, pre, post)
+                given = pname
+                ctype = "" if t is None else t.get(C + "type", "")
+                if kind == "text" and ctype and "const" not in ctype and p.get("transfer-ownership", "none") == "none":
+                    # a string that isn't const is room C writes in, as long as C is told or
+                    # thinks: the caller's own to answer for
+                    self.raw = True
+                elif kind == "text":
+                    start = "0"
+                    near = pname if not (flag(p, "nullable") or flag(p, "allow-none")) else '(Option.defaultValue "" %s)' % pname
+                elif kind == "array" and tname["length"] is None and tname["fixed"] is None and not tname["zt"]:
+                    # an array whose length C is told some other way, or not at all
+                    self.raw = True
+                elif kind == "prim" and beside and p.get("name") in WITHIN and PRIMS[tname].c in SIZES and PRIMS[tname].z == "int":
+                    chars, negative = WITHIN[p.get("name")]
+                    if negative == 1 and not SIZES[PRIMS[tname].c][1]:
+                        negative = 0  # no sign: nothing means "all of it" but all of it
+                    frm = "0" if negative == 2 or p.get("name") == "end_pos" else start
+                    given = "(Internal.Raw.within %s %s %s %s %d)" % (beside, frm, pname, "true" if chars else "false", negative)
+                    near, start = beside, given if negative == 2 else "0"
+                c, z, e = self.to_c(kind, tname, p, given, pre, post)
                 ext.append(c)
                 pub.append("(%s: %s)" % (pname, z))
                 args.append(e)
@@ -1538,7 +1573,7 @@ class Gen:
             for line in lines[:-1]:
                 self.emit("        " + line)
             self.emit("        %s)" % lines[-1])
-            self.emit("    %szgtk_override_%s_%s gtype zcb" % (self.cmod(g.name), cn, name))
+            self.emit("    %szgtk_override_%s_%s (Internal.Raw.gtype gtype) zcb" % (self.cmod(g.name), cn, name))
             self.emit()
             # the one it took the place of: its parent type's
             mark, cmark = len(self.out), len(self.c)

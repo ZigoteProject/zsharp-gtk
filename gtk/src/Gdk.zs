@@ -2510,7 +2510,7 @@ module Clipboard =
       match cancellable with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
       | None -> Internal.Raw.none ()
-    Internal.GdkC.gdk_clipboard_read_value_async (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) type_ (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+    Internal.GdkC.gdk_clipboard_read_value_async (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) (Internal.Raw.gtype type_) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Finishes an asynchronous clipboard read.
   let readValueFinish (self: Clipboard) (result: Gio.AsyncResult) : result<GObject.Value, Glue.Error> =
@@ -2554,7 +2554,7 @@ module Clipboard =
   /// Sets the clipboard to contain the value collected from the given @args.
   [<Unsafe>]
   let setValist (self: Clipboard) (type_: usize) (args: cptr) : unit =
-    Internal.GdkC.gdk_clipboard_set_valist (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) type_ args
+    Internal.GdkC.gdk_clipboard_set_valist (Internal.Raw.obj self.Id (Internal.GdkC.gdk_clipboard_get_type ())) (Internal.Raw.gtype type_) args
 
   /// Sets the @clipboard to contain the given @value.
   let set (self: Clipboard) (value: GObject.Value) : unit =
@@ -2744,11 +2744,11 @@ module ContentFormats =
 
   /// Creates a new `GdkContentFormats` for a given `GType`.
   let createForGtype (type_: usize) : ContentFormats =
-    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_formats_new_for_gtype type_)) (Internal.GdkC.gdk_content_formats_get_type ()) true)
+    ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_content_formats_new_for_gtype (Internal.Raw.gtype type_))) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Checks if a given `GType` is part of the given @formats.
   let containGtype (self: ContentFormats) (type_: usize) : bool =
-    (((Internal.GdkC.gdk_content_formats_contain_gtype (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())) type_)) <> i32 0)
+    (((Internal.GdkC.gdk_content_formats_contain_gtype (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_get_type ())) (Internal.Raw.gtype type_))) <> i32 0)
 
   /// Checks if a given mime type is part of the given @formats.
   let containMimeType (self: ContentFormats) (mimeType: string) : bool =
@@ -2844,7 +2844,7 @@ module ContentFormatsBuilder =
 
   /// Appends @type to @builder if it has not already been added.
   let addGtype (self: ContentFormatsBuilder) (type_: usize) : unit =
-    Internal.GdkC.gdk_content_formats_builder_add_gtype (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_builder_get_type ())) type_
+    Internal.GdkC.gdk_content_formats_builder_add_gtype (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_formats_builder_get_type ())) (Internal.Raw.gtype type_)
 
   /// Appends @mime_type to @builder if it has not already been added.
   let addMimeType (self: ContentFormatsBuilder) (mimeType: string) : unit =
@@ -2974,7 +2974,7 @@ module ContentProvider =
         let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let clipboard = Clipboard (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler provider clipboard)
-    Internal.GdkC.zgtk_override_Gdk_ContentProvider_attach_clipboard gtype zcb
+    Internal.GdkC.zgtk_override_Gdk_ContentProvider_attach_clipboard (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gdk_ContentProvider_attach_clipboard`.
   let parentAttachClipboard (self: ContentProvider) (clipboard: Clipboard) : unit =
@@ -2986,7 +2986,7 @@ module ContentProvider =
       Internal.Raw.hold (fun () ->
         let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler provider)
-    Internal.GdkC.zgtk_override_Gdk_ContentProvider_content_changed gtype zcb
+    Internal.GdkC.zgtk_override_Gdk_ContentProvider_content_changed (Internal.Raw.gtype gtype) zcb
 
   /// Emits the ::content-changed signal.
   let parentContentChanged (self: ContentProvider) : unit =
@@ -2999,7 +2999,7 @@ module ContentProvider =
         let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let clipboard = Clipboard (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler provider clipboard)
-    Internal.GdkC.zgtk_override_Gdk_ContentProvider_detach_clipboard gtype zcb
+    Internal.GdkC.zgtk_override_Gdk_ContentProvider_detach_clipboard (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gdk_ContentProvider_detach_clipboard`.
   let parentDetachClipboard (self: ContentProvider) (clipboard: Clipboard) : unit =
@@ -3011,7 +3011,7 @@ module ContentProvider =
       Internal.Raw.hold (fun () ->
         let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler provider).Id (Internal.GdkC.gdk_content_formats_get_type ())) (Internal.GdkC.gdk_content_formats_get_type ())))
-    Internal.GdkC.zgtk_override_Gdk_ContentProvider_ref_formats gtype zcb
+    Internal.GdkC.zgtk_override_Gdk_ContentProvider_ref_formats (Internal.Raw.gtype gtype) zcb
 
   /// Gets the formats that the provider can provide its current contents in.
   let parentRefFormats (self: ContentProvider) : ContentFormats =
@@ -3023,7 +3023,7 @@ module ContentProvider =
       Internal.Raw.hold (fun () ->
         let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler provider).Id (Internal.GdkC.gdk_content_formats_get_type ())) (Internal.GdkC.gdk_content_formats_get_type ())))
-    Internal.GdkC.zgtk_override_Gdk_ContentProvider_ref_storable_formats gtype zcb
+    Internal.GdkC.zgtk_override_Gdk_ContentProvider_ref_storable_formats (Internal.Raw.gtype gtype) zcb
 
   /// Gets the formats that the provider suggests other applications to store the data in.
   let parentRefStorableFormats (self: ContentProvider) : ContentFormats =
@@ -3042,7 +3042,7 @@ module ContentProvider =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler provider mimeType stream ioPriority cancellable callback userData)
-    Internal.GdkC.zgtk_override_Gdk_ContentProvider_write_mime_type_async gtype zcb
+    Internal.GdkC.zgtk_override_Gdk_ContentProvider_write_mime_type_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously writes the contents of @provider to @stream in the given @mime_type.
   let parentWriteMimeTypeAsync (self: ContentProvider) (mimeType: string) (stream: Gio.OutputStream) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
@@ -3877,7 +3877,7 @@ module Paintable =
       Internal.Raw.hold (fun () ->
         let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler paintable).Id (Internal.GdkC.gdk_paintable_get_type ()))))
-    Internal.GdkC.zgtk_override_Gdk_Paintable_get_current_image gtype zcb
+    Internal.GdkC.zgtk_override_Gdk_Paintable_get_current_image (Internal.Raw.gtype gtype) zcb
 
   /// Gets an immutable paintable for the current contents displayed by @paintable.
   let parentGetCurrentImage (self: Paintable) : Paintable =
@@ -3889,7 +3889,7 @@ module Paintable =
       Internal.Raw.hold (fun () ->
         let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler paintable).Int)
-    Internal.GdkC.zgtk_override_Gdk_Paintable_get_flags gtype zcb
+    Internal.GdkC.zgtk_override_Gdk_Paintable_get_flags (Internal.Raw.gtype gtype) zcb
 
   /// Get flags for the paintable.
   let parentGetFlags (self: Paintable) : PaintableFlags =
@@ -3901,7 +3901,7 @@ module Paintable =
       Internal.Raw.hold (fun () ->
         let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnFloat (handler paintable))
-    Internal.GdkC.zgtk_override_Gdk_Paintable_get_intrinsic_aspect_ratio gtype zcb
+    Internal.GdkC.zgtk_override_Gdk_Paintable_get_intrinsic_aspect_ratio (Internal.Raw.gtype gtype) zcb
 
   /// Gets the preferred aspect ratio the @paintable would like to be displayed at.
   let parentGetIntrinsicAspectRatio (self: Paintable) : float =
@@ -3913,7 +3913,7 @@ module Paintable =
       Internal.Raw.hold (fun () ->
         let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler paintable))
-    Internal.GdkC.zgtk_override_Gdk_Paintable_get_intrinsic_height gtype zcb
+    Internal.GdkC.zgtk_override_Gdk_Paintable_get_intrinsic_height (Internal.Raw.gtype gtype) zcb
 
   /// Gets the preferred height the @paintable would like to be displayed at.
   let parentGetIntrinsicHeight (self: Paintable) : int =
@@ -3925,7 +3925,7 @@ module Paintable =
       Internal.Raw.hold (fun () ->
         let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler paintable))
-    Internal.GdkC.zgtk_override_Gdk_Paintable_get_intrinsic_width gtype zcb
+    Internal.GdkC.zgtk_override_Gdk_Paintable_get_intrinsic_width (Internal.Raw.gtype gtype) zcb
 
   /// Gets the preferred width the @paintable would like to be displayed at.
   let parentGetIntrinsicWidth (self: Paintable) : int =
@@ -3940,7 +3940,7 @@ module Paintable =
         let width = Internal.Raw.argFloat 2
         let height = Internal.Raw.argFloat 3
         handler paintable snapshot width height)
-    Internal.GdkC.zgtk_override_Gdk_Paintable_snapshot gtype zcb
+    Internal.GdkC.zgtk_override_Gdk_Paintable_snapshot (Internal.Raw.gtype gtype) zcb
 
   /// Snapshots the given paintable with the given @width and @height.
   let parentSnapshot (self: Paintable) (snapshot: Snapshot) (width: float) (height: float) : unit =
@@ -4014,6 +4014,7 @@ module Texture =
     Texture (Internal.Raw.wrap ((Internal.GdkC.gdk_texture_new_from_resource resourcePath)) true)
 
   /// Downloads the @texture into local memory.
+  [<Unsafe>]
   let download (self: Texture) (data: array<u8>) (stride: int) : unit =
     let za1 = Internal.Raw.bytes data
     Internal.GdkC.gdk_texture_download (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_get_type ())) za1 (usize stride)
@@ -4506,7 +4507,7 @@ module Drop =
       match cancellable with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
       | None -> Internal.Raw.none ()
-    Internal.GdkC.gdk_drop_read_value_async (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())) type_ (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+    Internal.GdkC.gdk_drop_read_value_async (Internal.Raw.obj self.Id (Internal.GdkC.gdk_drop_get_type ())) (Internal.Raw.gtype type_) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Finishes an async drop read.
   let readValueFinish (self: Drop) (result: Gio.AsyncResult) : result<GObject.Value, Glue.Error> =
@@ -6163,6 +6164,7 @@ module TextureDownloader =
     (GLib.Bytes (Internal.Raw.wrapBoxed (zr) (Internal.GLibC.g_bytes_get_type ()) true), Internal.Raw.intsOf (zbuf1) (4) 8 false true, Internal.Raw.intsOf (zbuf2) (4) 8 false true)
 
   /// Downloads the @texture into local memory.
+  [<Unsafe>]
   let downloadInto (self: TextureDownloader) (data: array<u8>) (stride: int) : unit =
     let za1 = Internal.Raw.bytes data
     Internal.GdkC.gdk_texture_downloader_download_into (Internal.Raw.obj self.Id (Internal.GdkC.gdk_texture_downloader_get_type ())) za1 (usize stride)
@@ -12929,7 +12931,7 @@ let contentDeserializeAsync (stream: Gio.InputStream) (mimeType: string) (type_:
     match cancellable with
     | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
     | None -> Internal.Raw.none ()
-  Internal.GdkC.gdk_content_deserialize_async (Internal.Raw.obj stream.Id (Internal.GioC.g_input_stream_get_type ())) mimeType type_ (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+  Internal.GdkC.gdk_content_deserialize_async (Internal.Raw.obj stream.Id (Internal.GioC.g_input_stream_get_type ())) mimeType (Internal.Raw.gtype type_) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
 /// Finishes a content deserialization operation.
 let contentDeserializeFinish (result: Gio.AsyncResult) : result<(bool * GObject.Value), Glue.Error> =
@@ -12957,12 +12959,12 @@ let contentDeserializeTask (stream: Gio.InputStream) (mimeType: string) (type_: 
 /// Registers a function to deserialize object of a given type.
 [<Unsafe>]
 let contentRegisterDeserializer (mimeType: string) (type_: usize) (deserialize: cptr) (data: cptr) (notify: cptr) : unit =
-  Internal.GdkC.gdk_content_register_deserializer mimeType type_ deserialize data notify
+  Internal.GdkC.gdk_content_register_deserializer mimeType (Internal.Raw.gtype type_) deserialize data notify
 
 /// Registers a function to serialize objects of a given type.
 [<Unsafe>]
 let contentRegisterSerializer (type_: usize) (mimeType: string) (serialize: cptr) (data: cptr) (notify: cptr) : unit =
-  Internal.GdkC.gdk_content_register_serializer type_ mimeType serialize data notify
+  Internal.GdkC.gdk_content_register_serializer (Internal.Raw.gtype type_) mimeType serialize data notify
 
 /// Serialize content and write it to the given output stream, asynchronously.
 let contentSerializeAsync (stream: Gio.OutputStream) (mimeType: string) (value: GObject.Value) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
@@ -13069,6 +13071,7 @@ let pangoLayoutGetClipRegion (layout: Pango.Layout) (xOrigin: int) (yOrigin: int
   Cairo.Region (Internal.Raw.wrapBoxed ((Internal.GdkC.gdk_pango_layout_get_clip_region (Internal.Raw.obj layout.Id (Internal.PangoC.pango_layout_get_type ())) (i32 xOrigin) (i32 yOrigin) (i32 indexRanges) (i32 nRanges))) (Internal.CairoC.cairo_gobject_region_get_type ()) true)
 
 /// Obtains a clip region which contains the areas where the given ranges of text would be drawn.
+[<Unsafe>]
 let pangoLayoutLineGetClipRegion (line: Pango.LayoutLine) (xOrigin: int) (yOrigin: int) (indexRanges: list<int>) (nRanges: int) : Cairo.Region =
   let za1 = Internal.Raw.ints indexRanges 4
   let zr = Internal.GdkC.gdk_pango_layout_line_get_clip_region (Internal.Raw.obj line.Id (Internal.PangoC.pango_layout_line_get_type ())) (i32 xOrigin) (i32 yOrigin) za1 (i32 nRanges)

@@ -827,13 +827,13 @@ module Object =
   /// Creates a new instance of a #GObject subtype and sets its properties.
   [<Unsafe>]
   let createValist (objectType: usize) (firstPropertyName: string) (varArgs: cptr) : Object =
-    Object (Internal.Raw.wrap ((Internal.GObjectC.g_object_new_valist objectType firstPropertyName varArgs)) true)
+    Object (Internal.Raw.wrap ((Internal.GObjectC.g_object_new_valist (Internal.Raw.gtype objectType) firstPropertyName varArgs)) true)
 
   /// Creates a new instance of a #GObject subtype and sets its properties using the provided arrays.
   let createWithProperties (objectType: usize) (names: list<string>) (values: list<Value>) : Object =
     let zv2 = Internal.Raw.strv names
     let za3 = Internal.Raw.records (Internal.Raw.mapList (fun (zo: Value) -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())) values) (Internal.GObjectC.zgtk_sizeof_GObject_Value ())
-    let zr = Internal.GObjectC.g_object_new_with_properties objectType (u32 (Internal.Raw.count values)) zv2 za3
+    let zr = Internal.GObjectC.g_object_new_with_properties (Internal.Raw.gtype objectType) (u32 (Internal.Raw.count values)) zv2 za3
     let zv = Object (Internal.Raw.wrap (zr) true)
     Internal.Raw.freeStrv zv2
     Internal.Raw.free za3
@@ -842,7 +842,7 @@ module Object =
   /// Deprecated. Creates a new instance of a #GObject subtype and sets its properties.
   let newv (objectType: usize) (parameters: list<Parameter>) : Object =
     let za2 = Internal.Raw.records (Internal.Raw.mapList (fun (zo: Parameter) -> Internal.Raw.obj zo.Id (Internal.GObjectC.zgtk_tag_GObject_Parameter ())) parameters) (Internal.GObjectC.zgtk_sizeof_GObject_Parameter ())
-    let zr = Internal.GObjectC.g_object_newv objectType (u32 (Internal.Raw.count parameters)) za2
+    let zr = Internal.GObjectC.g_object_newv (Internal.Raw.gtype objectType) (u32 (Internal.Raw.count parameters)) za2
     let zv = Object (Internal.Raw.wrap (zr) true)
     Internal.Raw.free za2
     zv
@@ -1100,7 +1100,7 @@ module Object =
       Internal.Raw.hold (fun () ->
         let object = Object (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler object)
-    Internal.GObjectC.zgtk_override_GObject_Object_constructed gtype zcb
+    Internal.GObjectC.zgtk_override_GObject_Object_constructed (Internal.Raw.gtype gtype) zcb
 
   /// the @constructed function is called by g_object_new() as the final step of the object creation process.
   let parentConstructed (self: Object) : unit =
@@ -1114,7 +1114,7 @@ module Object =
         let nPspecs = Internal.Raw.argInt 1
         let pspecs = ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (Internal.Raw.argPointer 2) (i32 0))
         handler object nPspecs pspecs)
-    Internal.GObjectC.zgtk_override_GObject_Object_dispatch_properties_changed gtype zcb
+    Internal.GObjectC.zgtk_override_GObject_Object_dispatch_properties_changed (Internal.Raw.gtype gtype) zcb
 
   /// emits property change notification for a bunch of properties.
   let parentDispatchPropertiesChanged (self: Object) (nPspecs: int) (pspecs: ParamSpec) : unit =
@@ -1126,7 +1126,7 @@ module Object =
       Internal.Raw.hold (fun () ->
         let object = Object (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler object)
-    Internal.GObjectC.zgtk_override_GObject_Object_dispose gtype zcb
+    Internal.GObjectC.zgtk_override_GObject_Object_dispose (Internal.Raw.gtype gtype) zcb
 
   /// the @dispose function is supposed to drop all references to other objects, but keep the instance otherwise intact, so that client method invocations still work.
   let parentDispose (self: Object) : unit =
@@ -1138,7 +1138,7 @@ module Object =
       Internal.Raw.hold (fun () ->
         let object = Object (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler object)
-    Internal.GObjectC.zgtk_override_GObject_Object_finalize gtype zcb
+    Internal.GObjectC.zgtk_override_GObject_Object_finalize (Internal.Raw.gtype gtype) zcb
 
   /// instance finalization function, should finish the finalization of the instance begun in @dispose and chain up to the @finalize method of the parent class.
   let parentFinalize (self: Object) : unit =
@@ -1153,7 +1153,7 @@ module Object =
         let value = Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GObjectC.g_value_get_type ()) false)
         let pspec = ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (Internal.Raw.argPointer 3) (i32 0))
         handler object propertyId value pspec)
-    Internal.GObjectC.zgtk_override_GObject_Object_get_property gtype zcb
+    Internal.GObjectC.zgtk_override_GObject_Object_get_property (Internal.Raw.gtype gtype) zcb
 
   /// the generic getter for all properties of this type.
   let parentGetProperty (self: Object) (propertyId: int) (value: Value) (pspec: ParamSpec) : unit =
@@ -1166,7 +1166,7 @@ module Object =
         let object = Object (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let pspec = ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (Internal.Raw.argPointer 1) (i32 0))
         handler object pspec)
-    Internal.GObjectC.zgtk_override_GObject_Object_notify gtype zcb
+    Internal.GObjectC.zgtk_override_GObject_Object_notify (Internal.Raw.gtype gtype) zcb
 
   /// Emits a "notify" signal for the property @property_name on @object.
   let parentNotify (self: Object) (pspec: ParamSpec) : unit =
@@ -1181,7 +1181,7 @@ module Object =
         let value = Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GObjectC.g_value_get_type ()) false)
         let pspec = ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (Internal.Raw.argPointer 3) (i32 0))
         handler object propertyId value pspec)
-    Internal.GObjectC.zgtk_override_GObject_Object_set_property gtype zcb
+    Internal.GObjectC.zgtk_override_GObject_Object_set_property (Internal.Raw.gtype gtype) zcb
 
   /// the generic setter for all properties of this type.
   let parentSetProperty (self: Object) (propertyId: int) (value: Value) (pspec: ParamSpec) : unit =
@@ -1320,7 +1320,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_BOOLEAN__BOXED_BOXEDv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1336,7 +1336,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_BOOLEAN__FLAGSv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1352,7 +1352,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_STRING__OBJECT_POINTERv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1368,7 +1368,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__BOOLEANv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1384,7 +1384,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__BOXEDv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1400,7 +1400,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__CHARv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1416,7 +1416,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__DOUBLEv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1432,7 +1432,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__ENUMv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1448,7 +1448,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__FLAGSv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1464,7 +1464,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__FLOATv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1480,7 +1480,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__INTv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1496,7 +1496,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__LONGv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1512,7 +1512,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__OBJECTv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1528,7 +1528,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__PARAMv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1544,7 +1544,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__POINTERv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1560,7 +1560,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__STRINGv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1576,7 +1576,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__UCHARv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1597,7 +1597,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__UINT_POINTERv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1608,7 +1608,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__UINTv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1624,7 +1624,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__ULONGv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1640,7 +1640,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__VARIANTv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1656,7 +1656,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_VOID__VOIDv (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) args marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -1672,7 +1672,7 @@ module CClosure =
       match returnValue with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())
       | None -> Internal.Raw.none ()
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
     Internal.GObjectC.g_cclosure_marshal_generic_va (Internal.Raw.closure closure) zp2 (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) argsList marshalData (i32 (Internal.Raw.count paramTypes)) za3
     Internal.Raw.free za3
 
@@ -2001,7 +2001,7 @@ module ParamSpec =
   let internal (paramType: usize) (name: string) (nick: option<string>) (blurb: option<string>) (flags: ParamFlags) : ParamSpec =
     let zs1 = Internal.Raw.dupOption nick
     let zs2 = Internal.Raw.dupOption blurb
-    let zr = Internal.GObjectC.g_param_spec_internal paramType name zs1 zs2 (u32 flags.Int)
+    let zr = Internal.GObjectC.g_param_spec_internal (Internal.Raw.gtype paramType) name zs1 zs2 (u32 flags.Int)
     let zv = ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (zr) (i32 0))
     Internal.Raw.free zs1
     Internal.Raw.free zs2
@@ -2021,13 +2021,13 @@ module ParamSpecPool =
   /// Inserts a #GParamSpec in the pool.
   [<Unsafe>]
   let insert (self: ParamSpecPool) (pspec: ParamSpec) (ownerType: usize) : unit =
-    Internal.GObjectC.g_param_spec_pool_insert self.Ptr (Internal.Raw.obj pspec.Id (Internal.GObjectC.zgtk_type_GObject_ParamSpec ())) ownerType
+    Internal.GObjectC.g_param_spec_pool_insert self.Ptr (Internal.Raw.obj pspec.Id (Internal.GObjectC.zgtk_type_GObject_ParamSpec ())) (Internal.Raw.gtype ownerType)
 
   /// Gets an array of all #GParamSpecs owned by @owner_type in the pool.
   [<Unsafe>]
   let list (self: ParamSpecPool) (ownerType: usize) : list<ParamSpec> =
     Internal.Raw.outBegin ()
-    let zr = Internal.GObjectC.g_param_spec_pool_list self.Ptr ownerType (Internal.Raw.out 0)
+    let zr = Internal.GObjectC.g_param_spec_pool_list self.Ptr (Internal.Raw.gtype ownerType) (Internal.Raw.out 0)
     let zv = Internal.Raw.mapList (fun zp -> ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (zp) (i32 0))) (Internal.Raw.ptrsOf (zr) (Internal.Raw.outU32 0) true)
     Internal.Raw.outEnd ()
     zv
@@ -2035,12 +2035,12 @@ module ParamSpecPool =
   /// Gets an #GList of all #GParamSpecs owned by @owner_type in the pool.
   [<Unsafe>]
   let listOwned (self: ParamSpecPool) (ownerType: usize) : list<ParamSpec> =
-    Internal.Raw.mapList (fun zp -> ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (zp) (i32 0))) (Internal.Raw.pointers ((Internal.GObjectC.g_param_spec_pool_list_owned self.Ptr ownerType)) false true)
+    Internal.Raw.mapList (fun zp -> ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (zp) (i32 0))) (Internal.Raw.pointers ((Internal.GObjectC.g_param_spec_pool_list_owned self.Ptr (Internal.Raw.gtype ownerType))) false true)
 
   /// Looks up a #GParamSpec in the pool.
   [<Unsafe>]
   let lookup (self: ParamSpecPool) (paramName: string) (ownerType: usize) (walkAncestors: bool) : option<ParamSpec> =
-    let zr = Internal.GObjectC.g_param_spec_pool_lookup self.Ptr paramName ownerType (if walkAncestors then i32 1 else i32 0)
+    let zr = Internal.GObjectC.g_param_spec_pool_lookup self.Ptr paramName (Internal.Raw.gtype ownerType) (if walkAncestors then i32 1 else i32 0)
     let zid1 = Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (zr) (i32 0)
     (if zid1 = 0 then None else Some (ParamSpec zid1))
 
@@ -2098,7 +2098,7 @@ module SignalGroup =
 
   /// Creates a new #GSignalGroup for target instances of @target_type.
   let create (targetType: usize) : SignalGroup =
-    SignalGroup (Internal.Raw.wrap ((Internal.GObjectC.g_signal_group_new targetType)) true)
+    SignalGroup (Internal.Raw.wrap ((Internal.GObjectC.g_signal_group_new (Internal.Raw.gtype targetType))) true)
 
   /// Blocks all signal handlers managed by @self so they will not be called during any signal emissions.
   let block (self: SignalGroup) : unit =
@@ -2238,7 +2238,7 @@ module TypeClass =
 
   /// `g_type_class_get_private`.
   let getPrivate (self: TypeClass) (privateType: usize) : cptr =
-    ((Internal.GObjectC.g_type_class_get_private (Internal.Raw.obj self.Id (Internal.GObjectC.zgtk_tag_GObject_TypeClass ())) privateType))
+    ((Internal.GObjectC.g_type_class_get_private (Internal.Raw.obj self.Id (Internal.GObjectC.zgtk_tag_GObject_TypeClass ())) (Internal.Raw.gtype privateType)))
 
   /// Retrieves the class structure of the immediate parent type of the class passed in.
   let peekParent (self: TypeClass) : TypeClass =
@@ -2260,24 +2260,24 @@ module TypeClass =
 
   /// Retrieves the type class of the given @type.
   let get (type_: usize) : TypeClass =
-    TypeClass (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_class_get type_)) (Internal.GObjectC.zgtk_sizeof_GObject_TypeClass ()) (Internal.GObjectC.zgtk_tag_GObject_TypeClass ()))
+    TypeClass (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_class_get (Internal.Raw.gtype type_))) (Internal.GObjectC.zgtk_sizeof_GObject_TypeClass ()) (Internal.GObjectC.zgtk_tag_GObject_TypeClass ()))
 
   /// Retrieves the class for a give type.
   let peek (type_: usize) : option<TypeClass> =
-    let zr = Internal.GObjectC.g_type_class_peek type_
+    let zr = Internal.GObjectC.g_type_class_peek (Internal.Raw.gtype type_)
     let zid1 = Internal.Raw.copyPlain (zr) (Internal.GObjectC.zgtk_sizeof_GObject_TypeClass ()) (Internal.GObjectC.zgtk_tag_GObject_TypeClass ())
     (if zid1 = 0 then None else Some (TypeClass zid1))
 
   /// A more efficient version of g_type_class_peek() which works only for static types.
   let peekStatic (type_: usize) : option<TypeClass> =
-    let zr = Internal.GObjectC.g_type_class_peek_static type_
+    let zr = Internal.GObjectC.g_type_class_peek_static (Internal.Raw.gtype type_)
     let zid1 = Internal.Raw.copyPlain (zr) (Internal.GObjectC.zgtk_sizeof_GObject_TypeClass ()) (Internal.GObjectC.zgtk_tag_GObject_TypeClass ())
     (if zid1 = 0 then None else Some (TypeClass zid1))
 
   /// Deprecated. Increments the reference count of the class structure belonging to @type.
   [<Unsafe>]
   let ref_ (type_: usize) : TypeClass =
-    TypeClass (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_class_ref type_)) (Internal.GObjectC.zgtk_sizeof_GObject_TypeClass ()) (Internal.GObjectC.zgtk_tag_GObject_TypeClass ()))
+    TypeClass (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_class_ref (Internal.Raw.gtype type_))) (Internal.GObjectC.zgtk_sizeof_GObject_TypeClass ()) (Internal.GObjectC.zgtk_tag_GObject_TypeClass ()))
 
   /// A new one, every field zero.
   let create () : TypeClass = TypeClass (Internal.Raw.allocPlain (Internal.GObjectC.zgtk_sizeof_GObject_TypeClass ()) (Internal.GObjectC.zgtk_tag_GObject_TypeClass ()))
@@ -2326,7 +2326,7 @@ module TypeInstance =
 
   /// `g_type_instance_get_private`.
   let getPrivate (self: TypeInstance) (privateType: usize) : cptr =
-    ((Internal.GObjectC.g_type_instance_get_private (Internal.Raw.obj self.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) privateType))
+    ((Internal.GObjectC.g_type_instance_get_private (Internal.Raw.obj self.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) (Internal.Raw.gtype privateType)))
 
   /// A new one, every field zero.
   let create () : TypeInstance = TypeInstance (Internal.Raw.allocPlain (Internal.GObjectC.zgtk_sizeof_GObject_TypeInstance ()) (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ()))
@@ -2343,26 +2343,26 @@ module TypeInterface =
 
   /// Adds @prerequisite_type to the list of prerequisites of @interface_type.
   let addPrerequisite (interfaceType: usize) (prerequisiteType: usize) : unit =
-    Internal.GObjectC.g_type_interface_add_prerequisite interfaceType prerequisiteType
+    Internal.GObjectC.g_type_interface_add_prerequisite (Internal.Raw.gtype interfaceType) (Internal.Raw.gtype prerequisiteType)
 
   /// Returns the #GTypePlugin structure for the dynamic interface @interface_type which has been added to @instance_type, or %NULL if @interface_type has not been added to @instance_type or does not have a #GTypePlugin structure.
   let getPlugin (instanceType: usize) (interfaceType: usize) : TypePlugin =
-    TypePlugin (Internal.Raw.wrap ((Internal.GObjectC.g_type_interface_get_plugin instanceType interfaceType)) false)
+    TypePlugin (Internal.Raw.wrap ((Internal.GObjectC.g_type_interface_get_plugin (Internal.Raw.gtype instanceType) (Internal.Raw.gtype interfaceType))) false)
 
   /// Returns the most specific instantiatable prerequisite of an interface type.
   let instantiatablePrerequisite (interfaceType: usize) : usize =
-    ((Internal.GObjectC.g_type_interface_instantiatable_prerequisite interfaceType))
+    ((Internal.GObjectC.g_type_interface_instantiatable_prerequisite (Internal.Raw.gtype interfaceType)))
 
   /// Returns the #GTypeInterface structure of an interface to which the passed in class conforms.
   let peek (instanceClass: TypeClass) (ifaceType: usize) : option<TypeInterface> =
-    let zr = Internal.GObjectC.g_type_interface_peek (Internal.Raw.obj instanceClass.Id (Internal.GObjectC.zgtk_tag_GObject_TypeClass ())) ifaceType
+    let zr = Internal.GObjectC.g_type_interface_peek (Internal.Raw.obj instanceClass.Id (Internal.GObjectC.zgtk_tag_GObject_TypeClass ())) (Internal.Raw.gtype ifaceType)
     let zid1 = Internal.Raw.copyPlain (zr) (Internal.GObjectC.zgtk_sizeof_GObject_TypeInterface ()) (Internal.GObjectC.zgtk_tag_GObject_TypeInterface ())
     (if zid1 = 0 then None else Some (TypeInterface zid1))
 
   /// Returns the prerequisites of an interfaces type.
   let prerequisites (interfaceType: usize) : list<usize> =
     Internal.Raw.outBegin ()
-    let zr = Internal.GObjectC.g_type_interface_prerequisites interfaceType (Internal.Raw.out 0)
+    let zr = Internal.GObjectC.g_type_interface_prerequisites (Internal.Raw.gtype interfaceType) (Internal.Raw.out 0)
     let zv = Internal.Raw.mapList (fun zi -> usize zi) (Internal.Raw.intsOf (zr) (Internal.Raw.outU32 0) 8 false true)
     Internal.Raw.outEnd ()
     zv
@@ -2383,11 +2383,11 @@ module TypePlugin =
 
   /// Calls the @complete_interface_info function from the #GTypePluginClass of @plugin.
   let completeInterfaceInfo (self: TypePlugin) (instanceType: usize) (interfaceType: usize) (info: InterfaceInfo) : unit =
-    Internal.GObjectC.g_type_plugin_complete_interface_info (Internal.Raw.obj self.Id (Internal.GObjectC.g_type_plugin_get_type ())) instanceType interfaceType (Internal.Raw.obj info.Id (Internal.GObjectC.zgtk_tag_GObject_InterfaceInfo ()))
+    Internal.GObjectC.g_type_plugin_complete_interface_info (Internal.Raw.obj self.Id (Internal.GObjectC.g_type_plugin_get_type ())) (Internal.Raw.gtype instanceType) (Internal.Raw.gtype interfaceType) (Internal.Raw.obj info.Id (Internal.GObjectC.zgtk_tag_GObject_InterfaceInfo ()))
 
   /// Calls the @complete_type_info function from the #GTypePluginClass of @plugin.
   let completeTypeInfo (self: TypePlugin) (gType: usize) (info: TypeInfo) (valueTable: TypeValueTable) : unit =
-    Internal.GObjectC.g_type_plugin_complete_type_info (Internal.Raw.obj self.Id (Internal.GObjectC.g_type_plugin_get_type ())) gType (Internal.Raw.obj info.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInfo ())) (Internal.Raw.obj valueTable.Id (Internal.GObjectC.zgtk_tag_GObject_TypeValueTable ()))
+    Internal.GObjectC.g_type_plugin_complete_type_info (Internal.Raw.obj self.Id (Internal.GObjectC.g_type_plugin_get_type ())) (Internal.Raw.gtype gType) (Internal.Raw.obj info.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInfo ())) (Internal.Raw.obj valueTable.Id (Internal.GObjectC.zgtk_tag_GObject_TypeValueTable ()))
 
   /// Calls the @unuse_plugin function from the #GTypePluginClass of @plugin.
   let unuse (self: TypePlugin) : unit =
@@ -2413,7 +2413,7 @@ module TypeModule =
 
   /// Registers an additional interface for a type, whose interface lives in the given type plugin.
   let addInterface (self: TypeModule) (instanceType: usize) (interfaceType: usize) (interfaceInfo: InterfaceInfo) : unit =
-    Internal.GObjectC.g_type_module_add_interface (Internal.Raw.obj self.Id (Internal.GObjectC.g_type_module_get_type ())) instanceType interfaceType (Internal.Raw.obj interfaceInfo.Id (Internal.GObjectC.zgtk_tag_GObject_InterfaceInfo ()))
+    Internal.GObjectC.g_type_module_add_interface (Internal.Raw.obj self.Id (Internal.GObjectC.g_type_module_get_type ())) (Internal.Raw.gtype instanceType) (Internal.Raw.gtype interfaceType) (Internal.Raw.obj interfaceInfo.Id (Internal.GObjectC.zgtk_tag_GObject_InterfaceInfo ()))
 
   /// Looks up or registers an enumeration that is implemented with a particular type plugin.
   let registerEnum (self: TypeModule) (name: string) (constStaticValues: list<EnumValue>) : usize =
@@ -2433,7 +2433,7 @@ module TypeModule =
 
   /// Looks up or registers a type that is implemented with a particular type plugin.
   let registerType (self: TypeModule) (parentType: usize) (typeName: string) (typeInfo: TypeInfo) (flags: TypeFlags) : usize =
-    ((Internal.GObjectC.g_type_module_register_type (Internal.Raw.obj self.Id (Internal.GObjectC.g_type_module_get_type ())) parentType typeName (Internal.Raw.obj typeInfo.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInfo ())) (u32 flags.Int)))
+    ((Internal.GObjectC.g_type_module_register_type (Internal.Raw.obj self.Id (Internal.GObjectC.g_type_module_get_type ())) (Internal.Raw.gtype parentType) typeName (Internal.Raw.obj typeInfo.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInfo ())) (u32 flags.Int)))
 
   /// Sets the name for a #GTypeModule
   let setName (self: TypeModule) (name: string) : unit =
@@ -2453,7 +2453,7 @@ module TypeModule =
       Internal.Raw.hold (fun () ->
         let module_ = TypeModule (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler module_))
-    Internal.GObjectC.zgtk_override_GObject_TypeModule_load gtype zcb
+    Internal.GObjectC.zgtk_override_GObject_TypeModule_load (Internal.Raw.gtype gtype) zcb
 
   /// loads the module and registers one or more types using g_type_module_register_type().
   let parentLoad (self: TypeModule) : bool =
@@ -2465,7 +2465,7 @@ module TypeModule =
       Internal.Raw.hold (fun () ->
         let module_ = TypeModule (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler module_)
-    Internal.GObjectC.zgtk_override_GObject_TypeModule_unload gtype zcb
+    Internal.GObjectC.zgtk_override_GObject_TypeModule_unload (Internal.Raw.gtype gtype) zcb
 
   /// unloads the module
   let parentUnload (self: TypeModule) : unit =
@@ -2503,7 +2503,7 @@ module TypeValueTable =
 
   /// Returns the location of the #GTypeValueTable associated with @type.
   let peek (type_: usize) : option<TypeValueTable> =
-    let zr = Internal.GObjectC.g_type_value_table_peek type_
+    let zr = Internal.GObjectC.g_type_value_table_peek (Internal.Raw.gtype type_)
     let zid1 = Internal.Raw.copyPlain (zr) (Internal.GObjectC.zgtk_sizeof_GObject_TypeValueTable ()) (Internal.GObjectC.zgtk_tag_GObject_TypeValueTable ())
     (if zid1 = 0 then None else Some (TypeValueTable zid1))
 
@@ -2636,7 +2636,7 @@ module Value =
 
   /// Initializes @value to store values of the given @type, and sets its value to the initial value for @type.
   let init (self: Value) (gType: usize) : Value =
-    Value (Internal.Raw.wrapBoxed ((Internal.GObjectC.g_value_init (Internal.Raw.obj self.Id (Internal.GObjectC.g_value_get_type ())) gType)) (Internal.GObjectC.g_value_get_type ()) false)
+    Value (Internal.Raw.wrapBoxed ((Internal.GObjectC.g_value_init (Internal.Raw.obj self.Id (Internal.GObjectC.g_value_get_type ())) (Internal.Raw.gtype gType))) (Internal.GObjectC.g_value_get_type ()) false)
 
   /// Initializes and sets @value from an instantiatable type.
   let initFromInstance (self: Value) (instance: TypeInstance) : unit =
@@ -2686,7 +2686,7 @@ module Value =
 
   /// Set the contents of a %G_TYPE_GTYPE #GValue to @v_gtype.
   let setGtype (self: Value) (vGtype: usize) : unit =
-    Internal.GObjectC.g_value_set_gtype (Internal.Raw.obj self.Id (Internal.GObjectC.g_value_get_type ())) vGtype
+    Internal.GObjectC.g_value_set_gtype (Internal.Raw.obj self.Id (Internal.GObjectC.g_value_get_type ())) (Internal.Raw.gtype vGtype)
 
   /// Sets @value from an instantiatable type.
   [<Unsafe>]
@@ -2767,6 +2767,7 @@ module Value =
     Internal.Raw.free zs1
 
   /// Deprecated. This is an internal function introduced mainly for C marshallers.
+  [<Unsafe>]
   let setStringTakeOwnership (self: Value) (vString: option<string>) : unit =
     let zs1 = Internal.Raw.dupOption vString
     Internal.GObjectC.g_value_set_string_take_ownership (Internal.Raw.obj self.Id (Internal.GObjectC.g_value_get_type ())) zs1
@@ -2842,15 +2843,15 @@ module Value =
   /// Registers a value transformation function for use in [method@GObject.Value.transform].
   [<Unsafe>]
   let registerTransformFunc (srcType: usize) (destType: usize) (transformFunc: cptr) : unit =
-    Internal.GObjectC.g_value_register_transform_func srcType destType transformFunc
+    Internal.GObjectC.g_value_register_transform_func (Internal.Raw.gtype srcType) (Internal.Raw.gtype destType) transformFunc
 
   /// Checks whether a [method@GObject.Value.copy] is able to copy values of type @src_type into values of type @dest_type.
   let typeCompatible (srcType: usize) (destType: usize) : bool =
-    (((Internal.GObjectC.g_value_type_compatible srcType destType)) <> i32 0)
+    (((Internal.GObjectC.g_value_type_compatible (Internal.Raw.gtype srcType) (Internal.Raw.gtype destType))) <> i32 0)
 
   /// Checks whether [method@GObject.Value.transform] is able to transform values of type @src_type into values of type @dest_type.
   let typeTransformable (srcType: usize) (destType: usize) : bool =
-    (((Internal.GObjectC.g_value_type_transformable srcType destType)) <> i32 0)
+    (((Internal.GObjectC.g_value_type_transformable (Internal.Raw.gtype srcType) (Internal.Raw.gtype destType))) <> i32 0)
 
   /// A new one, every field zero.
   let create () : Value = Value (Internal.Raw.alloc (Internal.GObjectC.zgtk_sizeof_GObject_Value ()) (Internal.GObjectC.g_value_get_type ()))
@@ -3005,12 +3006,12 @@ let valueNocopyContents = 134217728
 /// Provide a copy of a boxed structure @src_boxed which is of type @boxed_type.
 [<Unsafe>]
 let boxedCopy (boxedType: usize) (srcBoxed: cptr) : cptr =
-  ((Internal.GObjectC.g_boxed_copy boxedType srcBoxed))
+  ((Internal.GObjectC.g_boxed_copy (Internal.Raw.gtype boxedType) srcBoxed))
 
 /// Free the boxed structure @boxed which is of type @boxed_type.
 [<Unsafe>]
 let boxedFree (boxedType: usize) (boxed: cptr) : unit =
-  Internal.GObjectC.g_boxed_free boxedType boxed
+  Internal.GObjectC.g_boxed_free (Internal.Raw.gtype boxedType) boxed
 
 /// This function creates a new %G_TYPE_BOXED derived type id for a new boxed type with name @name.
 [<Unsafe>]
@@ -3029,7 +3030,7 @@ let clearSignalHandler (handlerIdPtr: int) (instance: Object) : unit =
 let enumCompleteTypeInfo (gEnumType: usize) (constValues: list<EnumValue>) : TypeInfo =
   let za1 = Internal.Raw.records (Internal.Raw.mapList (fun (zo: EnumValue) -> Internal.Raw.obj zo.Id (Internal.GObjectC.zgtk_tag_GObject_EnumValue ())) constValues) (Internal.GObjectC.zgtk_sizeof_GObject_EnumValue ())
   Internal.Raw.outBegin ()
-  Internal.GObjectC.g_enum_complete_type_info gEnumType (Internal.Raw.out 0) za1
+  Internal.GObjectC.g_enum_complete_type_info (Internal.Raw.gtype gEnumType) (Internal.Raw.out 0) za1
   let zv = TypeInfo (Internal.Raw.wrapPlain (Internal.Raw.outPtr 0) (Internal.GObjectC.zgtk_tag_GObject_TypeInfo ()))
   Internal.Raw.outEnd ()
   Internal.Raw.free za1
@@ -3063,13 +3064,13 @@ let enumRegisterStatic (name: string) (constStaticValues: list<EnumValue>) : usi
 
 /// Pretty-prints @value in the form of the enum’s name.
 let enumToString (gEnumType: usize) (value: int) : string =
-  Internal.Raw.takeText ((Internal.GObjectC.g_enum_to_string gEnumType (i32 value)))
+  Internal.Raw.takeText ((Internal.GObjectC.g_enum_to_string (Internal.Raw.gtype gEnumType) (i32 value)))
 
 /// This function is meant to be called from the complete_type_info() function of a #GTypePlugin implementation, see the example for g_enum_complete_type_info() above.
 let flagsCompleteTypeInfo (gFlagsType: usize) (constValues: list<FlagsValue>) : TypeInfo =
   let za1 = Internal.Raw.records (Internal.Raw.mapList (fun (zo: FlagsValue) -> Internal.Raw.obj zo.Id (Internal.GObjectC.zgtk_tag_GObject_FlagsValue ())) constValues) (Internal.GObjectC.zgtk_sizeof_GObject_FlagsValue ())
   Internal.Raw.outBegin ()
-  Internal.GObjectC.g_flags_complete_type_info gFlagsType (Internal.Raw.out 0) za1
+  Internal.GObjectC.g_flags_complete_type_info (Internal.Raw.gtype gFlagsType) (Internal.Raw.out 0) za1
   let zv = TypeInfo (Internal.Raw.wrapPlain (Internal.Raw.outPtr 0) (Internal.GObjectC.zgtk_tag_GObject_TypeInfo ()))
   Internal.Raw.outEnd ()
   Internal.Raw.free za1
@@ -3103,7 +3104,7 @@ let flagsRegisterStatic (name: string) (constStaticValues: list<FlagsValue>) : u
 
 /// Pretty-prints @value in the form of the flag names separated by ` | ` and sorted.
 let flagsToString (flagsType: usize) (value: int) : string =
-  Internal.Raw.takeText ((Internal.GObjectC.g_flags_to_string flagsType (u32 value)))
+  Internal.Raw.takeText ((Internal.GObjectC.g_flags_to_string (Internal.Raw.gtype flagsType) (u32 value)))
 
 /// `g_gtype_get_type`.
 let gtypeGetType () : usize =
@@ -3123,7 +3124,7 @@ let paramSpecBoolean (name: string) (nick: option<string>) (blurb: option<string
 let paramSpecBoxed (name: string) (nick: option<string>) (blurb: option<string>) (boxedType: usize) (flags: ParamFlags) : ParamSpec =
   let zs1 = Internal.Raw.dupOption nick
   let zs2 = Internal.Raw.dupOption blurb
-  let zr = Internal.GObjectC.g_param_spec_boxed name zs1 zs2 boxedType (u32 flags.Int)
+  let zr = Internal.GObjectC.g_param_spec_boxed name zs1 zs2 (Internal.Raw.gtype boxedType) (u32 flags.Int)
   let zv = ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (zr) (i32 1))
   Internal.Raw.free zs1
   Internal.Raw.free zs2
@@ -3153,7 +3154,7 @@ let paramSpecDouble (name: string) (nick: option<string>) (blurb: option<string>
 let paramSpecEnum (name: string) (nick: option<string>) (blurb: option<string>) (enumType: usize) (defaultValue: int) (flags: ParamFlags) : ParamSpec =
   let zs1 = Internal.Raw.dupOption nick
   let zs2 = Internal.Raw.dupOption blurb
-  let zr = Internal.GObjectC.g_param_spec_enum name zs1 zs2 enumType (i32 defaultValue) (u32 flags.Int)
+  let zr = Internal.GObjectC.g_param_spec_enum name zs1 zs2 (Internal.Raw.gtype enumType) (i32 defaultValue) (u32 flags.Int)
   let zv = ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (zr) (i32 1))
   Internal.Raw.free zs1
   Internal.Raw.free zs2
@@ -3163,7 +3164,7 @@ let paramSpecEnum (name: string) (nick: option<string>) (blurb: option<string>) 
 let paramSpecFlags (name: string) (nick: option<string>) (blurb: option<string>) (flagsType: usize) (defaultValue: int) (flags: ParamFlags) : ParamSpec =
   let zs1 = Internal.Raw.dupOption nick
   let zs2 = Internal.Raw.dupOption blurb
-  let zr = Internal.GObjectC.g_param_spec_flags name zs1 zs2 flagsType (u32 defaultValue) (u32 flags.Int)
+  let zr = Internal.GObjectC.g_param_spec_flags name zs1 zs2 (Internal.Raw.gtype flagsType) (u32 defaultValue) (u32 flags.Int)
   let zv = ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (zr) (i32 1))
   Internal.Raw.free zs1
   Internal.Raw.free zs2
@@ -3183,7 +3184,7 @@ let paramSpecFloat (name: string) (nick: option<string>) (blurb: option<string>)
 let paramSpecGtype (name: string) (nick: option<string>) (blurb: option<string>) (isAType: usize) (flags: ParamFlags) : ParamSpec =
   let zs1 = Internal.Raw.dupOption nick
   let zs2 = Internal.Raw.dupOption blurb
-  let zr = Internal.GObjectC.g_param_spec_gtype name zs1 zs2 isAType (u32 flags.Int)
+  let zr = Internal.GObjectC.g_param_spec_gtype name zs1 zs2 (Internal.Raw.gtype isAType) (u32 flags.Int)
   let zv = ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (zr) (i32 1))
   Internal.Raw.free zs1
   Internal.Raw.free zs2
@@ -3223,7 +3224,7 @@ let paramSpecLong (name: string) (nick: option<string>) (blurb: option<string>) 
 let paramSpecObject (name: string) (nick: option<string>) (blurb: option<string>) (objectType: usize) (flags: ParamFlags) : ParamSpec =
   let zs1 = Internal.Raw.dupOption nick
   let zs2 = Internal.Raw.dupOption blurb
-  let zr = Internal.GObjectC.g_param_spec_object name zs1 zs2 objectType (u32 flags.Int)
+  let zr = Internal.GObjectC.g_param_spec_object name zs1 zs2 (Internal.Raw.gtype objectType) (u32 flags.Int)
   let zv = ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (zr) (i32 1))
   Internal.Raw.free zs1
   Internal.Raw.free zs2
@@ -3237,7 +3238,7 @@ let paramSpecOverride (name: string) (overridden: ParamSpec) : ParamSpec =
 let paramSpecParam (name: string) (nick: option<string>) (blurb: option<string>) (paramType: usize) (flags: ParamFlags) : ParamSpec =
   let zs1 = Internal.Raw.dupOption nick
   let zs2 = Internal.Raw.dupOption blurb
-  let zr = Internal.GObjectC.g_param_spec_param name zs1 zs2 paramType (u32 flags.Int)
+  let zr = Internal.GObjectC.g_param_spec_param name zs1 zs2 (Internal.Raw.gtype paramType) (u32 flags.Int)
   let zv = ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (zr) (i32 1))
   Internal.Raw.free zs1
   Internal.Raw.free zs2
@@ -3394,6 +3395,7 @@ let signalAddEmissionHook (signalId: int) (detail: int) (hookFunc: SignalInvocat
   (int (zr))
 
 /// Calls the original class closure of a signal.
+[<Unsafe>]
 let signalChainFromOverridden (instanceAndParams: list<Value>) (returnValue: Value) : unit =
   let za1 = Internal.Raw.records (Internal.Raw.mapList (fun (zo: Value) -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())) instanceAndParams) (Internal.GObjectC.zgtk_sizeof_GObject_Value ())
   Internal.GObjectC.g_signal_chain_from_overridden za1 (Internal.Raw.obj returnValue.Id (Internal.GObjectC.g_value_get_type ()))
@@ -3428,6 +3430,7 @@ let signalEmitValist (instance: TypeInstance) (signalId: int) (detail: int) (var
   Internal.GObjectC.g_signal_emit_valist (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) (u32 signalId) (u32 detail) varArgs
 
 /// Emits a signal.
+[<Unsafe>]
 let signalEmitv (instanceAndParams: list<Value>) (signalId: int) (detail: int) (returnValue: Value) : unit =
   let za1 = Internal.Raw.records (Internal.Raw.mapList (fun (zo: Value) -> Internal.Raw.obj zo.Id (Internal.GObjectC.g_value_get_type ())) instanceAndParams) (Internal.GObjectC.zgtk_sizeof_GObject_Value ())
   Internal.GObjectC.g_signal_emitv za1 (u32 signalId) (u32 detail) (Internal.Raw.obj returnValue.Id (Internal.GObjectC.g_value_get_type ()))
@@ -3490,14 +3493,14 @@ let signalIsValidName (name: string) : bool =
 /// Lists the signals by id that a certain instance or interface type created.
 let signalListIds (itype: usize) : list<int> =
   Internal.Raw.outBegin ()
-  let zr = Internal.GObjectC.g_signal_list_ids itype (Internal.Raw.out 0)
+  let zr = Internal.GObjectC.g_signal_list_ids (Internal.Raw.gtype itype) (Internal.Raw.out 0)
   let zv = Internal.Raw.intsOf (zr) (Internal.Raw.outU32 0) 4 false true
   Internal.Raw.outEnd ()
   zv
 
 /// Given the name of the signal and the type of object it connects to, gets the signal's identifying integer.
 let signalLookup (name: string) (itype: usize) : int =
-  (int ((Internal.GObjectC.g_signal_lookup name itype)))
+  (int ((Internal.GObjectC.g_signal_lookup name (Internal.Raw.gtype itype))))
 
 /// Given the signal's identifier, finds its name.
 let signalName (signalId: int) : option<string> =
@@ -3512,7 +3515,7 @@ let signalNewValist (signalName: string) (itype: usize) (signalFlags: SignalFlag
       let returnAccu = Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GObjectC.g_value_get_type ()) false)
       let handlerReturn = Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GObjectC.g_value_get_type ()) false)
       Internal.Raw.returnBool (accumulator ihint returnAccu handlerReturn))
-  let zr = Internal.GObjectC.g_signal_new_valist signalName itype (u32 signalFlags.Int) (Internal.Raw.closure classClosure) (Internal.GObjectC.zgtk_tramp_GObject_SignalAccumulator ()) zcb1 cMarshaller returnType (u32 nParams) args
+  let zr = Internal.GObjectC.g_signal_new_valist signalName (Internal.Raw.gtype itype) (u32 signalFlags.Int) (Internal.Raw.closure classClosure) (Internal.GObjectC.zgtk_tramp_GObject_SignalAccumulator ()) zcb1 cMarshaller (Internal.Raw.gtype returnType) (u32 nParams) args
   (int (zr))
 
 /// Creates a new signal.
@@ -3524,25 +3527,25 @@ let signalNewv (signalName: string) (itype: usize) (signalFlags: SignalFlags) (c
       let returnAccu = Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GObjectC.g_value_get_type ()) false)
       let handlerReturn = Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GObjectC.g_value_get_type ()) false)
       Internal.Raw.returnBool (accumulator ihint returnAccu handlerReturn))
-  let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) paramTypes) 8
-  let zr = Internal.GObjectC.g_signal_newv signalName itype (u32 signalFlags.Int) (Internal.Raw.closure classClosure) (Internal.GObjectC.zgtk_tramp_GObject_SignalAccumulator ()) zcb2 cMarshaller returnType (u32 (Internal.Raw.count paramTypes)) za3
+  let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) paramTypes) 8
+  let zr = Internal.GObjectC.g_signal_newv signalName (Internal.Raw.gtype itype) (u32 signalFlags.Int) (Internal.Raw.closure classClosure) (Internal.GObjectC.zgtk_tramp_GObject_SignalAccumulator ()) zcb2 cMarshaller (Internal.Raw.gtype returnType) (u32 (Internal.Raw.count paramTypes)) za3
   let zv = (int (zr))
   Internal.Raw.free za3
   zv
 
 /// Overrides the class closure (i.e.
 let signalOverrideClassClosure (signalId: int) (instanceType: usize) (classClosure: (unit -> unit)) : unit =
-  Internal.GObjectC.g_signal_override_class_closure (u32 signalId) instanceType (Internal.Raw.closure classClosure)
+  Internal.GObjectC.g_signal_override_class_closure (u32 signalId) (Internal.Raw.gtype instanceType) (Internal.Raw.closure classClosure)
 
 /// Overrides the class closure (i.e.
 [<Unsafe>]
 let signalOverrideClassHandler (signalName: string) (instanceType: usize) (classHandler: cptr) : unit =
-  Internal.GObjectC.g_signal_override_class_handler signalName instanceType classHandler
+  Internal.GObjectC.g_signal_override_class_handler signalName (Internal.Raw.gtype instanceType) classHandler
 
 /// Internal function to parse a signal name into its @signal_id and @detail quark.
 let signalParseName (detailedSignal: string) (itype: usize) (forceDetailQuark: bool) : (bool * int * int) =
   Internal.Raw.outBegin ()
-  let zr = Internal.GObjectC.g_signal_parse_name detailedSignal itype (Internal.Raw.out 0) (Internal.Raw.out 1) (if forceDetailQuark then i32 1 else i32 0)
+  let zr = Internal.GObjectC.g_signal_parse_name detailedSignal (Internal.Raw.gtype itype) (Internal.Raw.out 0) (Internal.Raw.out 1) (if forceDetailQuark then i32 1 else i32 0)
   let zv = (((zr) <> i32 0), Internal.Raw.outU32 0, Internal.Raw.outU32 1)
   Internal.Raw.outEnd ()
   zv
@@ -3560,7 +3563,7 @@ let signalRemoveEmissionHook (signalId: int) (hookId: int) : unit =
 /// Change the #GSignalCVaMarshaller used for a given signal.
 [<Unsafe>]
 let signalSetVaMarshaller (signalId: int) (instanceType: usize) (vaMarshaller: cptr) : unit =
-  Internal.GObjectC.g_signal_set_va_marshaller (u32 signalId) instanceType vaMarshaller
+  Internal.GObjectC.g_signal_set_va_marshaller (u32 signalId) (Internal.Raw.gtype instanceType) vaMarshaller
 
 /// Stops a signal's current emission.
 let signalStopEmission (instance: Object) (signalId: int) (detail: int) : unit =
@@ -3572,7 +3575,7 @@ let signalStopEmissionByName (instance: Object) (detailedSignal: string) : unit 
 
 /// Creates a new closure which invokes the function found at the offset @struct_offset in the class structure of the interface or classed type identified by @itype.
 let signalTypeCclosureNew (itype: usize) (structOffset: int) : cptr =
-  ((Internal.GObjectC.g_signal_type_cclosure_new itype (u32 structOffset)))
+  ((Internal.GObjectC.g_signal_type_cclosure_new (Internal.Raw.gtype itype) (u32 structOffset)))
 
 /// Return a newly allocated string, which describes the contents of a #GValue.
 let strdupValueContents (value: Value) : string =
@@ -3585,11 +3588,11 @@ let typeAddClassCacheFunc (cacheData: cptr) (cacheFunc: cptr) : unit =
 
 /// Registers a private class structure for a classed type; when the class is allocated, the private structures for the class and all of its parent types are allocated sequentially in the same memory block as the public structures, and are zero
 let typeAddClassPrivate (classType: usize) (privateSize: int) : unit =
-  Internal.GObjectC.g_type_add_class_private classType (usize privateSize)
+  Internal.GObjectC.g_type_add_class_private (Internal.Raw.gtype classType) (usize privateSize)
 
 /// `g_type_add_instance_private`.
 let typeAddInstancePrivate (classType: usize) (privateSize: int) : int =
-  (int ((Internal.GObjectC.g_type_add_instance_private classType (usize privateSize))))
+  (int ((Internal.GObjectC.g_type_add_instance_private (Internal.Raw.gtype classType) (usize privateSize))))
 
 /// Adds a function to be called after an interface vtable is initialized for any class (i.e.
 [<Unsafe>]
@@ -3598,19 +3601,19 @@ let typeAddInterfaceCheck (checkData: cptr) (checkFunc: cptr) : unit =
 
 /// Adds @interface_type to the dynamic @instance_type.
 let typeAddInterfaceDynamic (instanceType: usize) (interfaceType: usize) (plugin: TypePlugin) : unit =
-  Internal.GObjectC.g_type_add_interface_dynamic instanceType interfaceType (Internal.Raw.obj plugin.Id (Internal.GObjectC.g_type_plugin_get_type ()))
+  Internal.GObjectC.g_type_add_interface_dynamic (Internal.Raw.gtype instanceType) (Internal.Raw.gtype interfaceType) (Internal.Raw.obj plugin.Id (Internal.GObjectC.g_type_plugin_get_type ()))
 
 /// Adds @interface_type to the static @instance_type.
 let typeAddInterfaceStatic (instanceType: usize) (interfaceType: usize) (info: InterfaceInfo) : unit =
-  Internal.GObjectC.g_type_add_interface_static instanceType interfaceType (Internal.Raw.obj info.Id (Internal.GObjectC.zgtk_tag_GObject_InterfaceInfo ()))
+  Internal.GObjectC.g_type_add_interface_static (Internal.Raw.gtype instanceType) (Internal.Raw.gtype interfaceType) (Internal.Raw.obj info.Id (Internal.GObjectC.zgtk_tag_GObject_InterfaceInfo ()))
 
 /// `g_type_check_class_cast`.
 let typeCheckClassCast (gClass: TypeClass) (isAType: usize) : TypeClass =
-  TypeClass (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_check_class_cast (Internal.Raw.obj gClass.Id (Internal.GObjectC.zgtk_tag_GObject_TypeClass ())) isAType)) (Internal.GObjectC.zgtk_sizeof_GObject_TypeClass ()) (Internal.GObjectC.zgtk_tag_GObject_TypeClass ()))
+  TypeClass (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_check_class_cast (Internal.Raw.obj gClass.Id (Internal.GObjectC.zgtk_tag_GObject_TypeClass ())) (Internal.Raw.gtype isAType))) (Internal.GObjectC.zgtk_sizeof_GObject_TypeClass ()) (Internal.GObjectC.zgtk_tag_GObject_TypeClass ()))
 
 /// `g_type_check_class_is_a`.
 let typeCheckClassIsA (gClass: TypeClass) (isAType: usize) : bool =
-  (((Internal.GObjectC.g_type_check_class_is_a (Internal.Raw.obj gClass.Id (Internal.GObjectC.zgtk_tag_GObject_TypeClass ())) isAType)) <> i32 0)
+  (((Internal.GObjectC.g_type_check_class_is_a (Internal.Raw.obj gClass.Id (Internal.GObjectC.zgtk_tag_GObject_TypeClass ())) (Internal.Raw.gtype isAType))) <> i32 0)
 
 /// Private helper function to aid implementation of the G_TYPE_CHECK_INSTANCE() macro.
 let typeCheckInstance (instance: TypeInstance) : bool =
@@ -3618,19 +3621,19 @@ let typeCheckInstance (instance: TypeInstance) : bool =
 
 /// `g_type_check_instance_cast`.
 let typeCheckInstanceCast (instance: TypeInstance) (ifaceType: usize) : TypeInstance =
-  TypeInstance (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_check_instance_cast (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) ifaceType)) (Internal.GObjectC.zgtk_sizeof_GObject_TypeInstance ()) (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ()))
+  TypeInstance (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_check_instance_cast (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) (Internal.Raw.gtype ifaceType))) (Internal.GObjectC.zgtk_sizeof_GObject_TypeInstance ()) (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ()))
 
 /// `g_type_check_instance_is_a`.
 let typeCheckInstanceIsA (instance: TypeInstance) (ifaceType: usize) : bool =
-  (((Internal.GObjectC.g_type_check_instance_is_a (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) ifaceType)) <> i32 0)
+  (((Internal.GObjectC.g_type_check_instance_is_a (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) (Internal.Raw.gtype ifaceType))) <> i32 0)
 
 /// `g_type_check_instance_is_fundamentally_a`.
 let typeCheckInstanceIsFundamentallyA (instance: TypeInstance) (fundamentalType: usize) : bool =
-  (((Internal.GObjectC.g_type_check_instance_is_fundamentally_a (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) fundamentalType)) <> i32 0)
+  (((Internal.GObjectC.g_type_check_instance_is_fundamentally_a (Internal.Raw.obj instance.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ())) (Internal.Raw.gtype fundamentalType))) <> i32 0)
 
 /// `g_type_check_is_value_type`.
 let typeCheckIsValueType (type_: usize) : bool =
-  (((Internal.GObjectC.g_type_check_is_value_type type_)) <> i32 0)
+  (((Internal.GObjectC.g_type_check_is_value_type (Internal.Raw.gtype type_))) <> i32 0)
 
 /// `g_type_check_value`.
 let typeCheckValue (value: Value) : bool =
@@ -3638,31 +3641,31 @@ let typeCheckValue (value: Value) : bool =
 
 /// `g_type_check_value_holds`.
 let typeCheckValueHolds (value: Value) (type_: usize) : bool =
-  (((Internal.GObjectC.g_type_check_value_holds (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())) type_)) <> i32 0)
+  (((Internal.GObjectC.g_type_check_value_holds (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())) (Internal.Raw.gtype type_))) <> i32 0)
 
 /// Return a newly allocated and 0-terminated array of type IDs, listing the child types of @type.
 let typeChildren (type_: usize) : list<usize> =
   Internal.Raw.outBegin ()
-  let zr = Internal.GObjectC.g_type_children type_ (Internal.Raw.out 0)
+  let zr = Internal.GObjectC.g_type_children (Internal.Raw.gtype type_) (Internal.Raw.out 0)
   let zv = Internal.Raw.mapList (fun zi -> usize zi) (Internal.Raw.intsOf (zr) (Internal.Raw.outU32 0) 8 false true)
   Internal.Raw.outEnd ()
   zv
 
 /// Creates and initializes an instance of @type if @type is valid and can be instantiated.
 let typeCreateInstance (type_: usize) : TypeInstance =
-  TypeInstance (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_create_instance type_)) (Internal.GObjectC.zgtk_sizeof_GObject_TypeInstance ()) (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ()))
+  TypeInstance (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_create_instance (Internal.Raw.gtype type_))) (Internal.GObjectC.zgtk_sizeof_GObject_TypeInstance ()) (Internal.GObjectC.zgtk_tag_GObject_TypeInstance ()))
 
 /// Returns the default interface vtable for the given @g_type.
 let typeDefaultInterfaceGet (gType: usize) : TypeInterface =
-  TypeInterface (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_default_interface_get gType)) (Internal.GObjectC.zgtk_sizeof_GObject_TypeInterface ()) (Internal.GObjectC.zgtk_tag_GObject_TypeInterface ()))
+  TypeInterface (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_default_interface_get (Internal.Raw.gtype gType))) (Internal.GObjectC.zgtk_sizeof_GObject_TypeInterface ()) (Internal.GObjectC.zgtk_tag_GObject_TypeInterface ()))
 
 /// If the interface type @g_type is currently in use, returns its default interface vtable.
 let typeDefaultInterfacePeek (gType: usize) : TypeInterface =
-  TypeInterface (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_default_interface_peek gType)) (Internal.GObjectC.zgtk_sizeof_GObject_TypeInterface ()) (Internal.GObjectC.zgtk_tag_GObject_TypeInterface ()))
+  TypeInterface (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_default_interface_peek (Internal.Raw.gtype gType))) (Internal.GObjectC.zgtk_sizeof_GObject_TypeInterface ()) (Internal.GObjectC.zgtk_tag_GObject_TypeInterface ()))
 
 /// Deprecated. Increments the reference count for the interface type @g_type, and returns the default interface vtable for the type.
 let typeDefaultInterfaceRef (gType: usize) : TypeInterface =
-  TypeInterface (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_default_interface_ref gType)) (Internal.GObjectC.zgtk_sizeof_GObject_TypeInterface ()) (Internal.GObjectC.zgtk_tag_GObject_TypeInterface ()))
+  TypeInterface (Internal.Raw.copyPlain ((Internal.GObjectC.g_type_default_interface_ref (Internal.Raw.gtype gType))) (Internal.GObjectC.zgtk_sizeof_GObject_TypeInterface ()) (Internal.GObjectC.zgtk_tag_GObject_TypeInterface ()))
 
 /// Deprecated. Decrements the reference count for the type corresponding to the interface default vtable @g_iface.
 let typeDefaultInterfaceUnref (gIface: TypeInterface) : unit =
@@ -3670,11 +3673,11 @@ let typeDefaultInterfaceUnref (gIface: TypeInterface) : unit =
 
 /// Returns the length of the ancestry of the passed in type.
 let typeDepth (type_: usize) : int =
-  (int ((Internal.GObjectC.g_type_depth type_)))
+  (int ((Internal.GObjectC.g_type_depth (Internal.Raw.gtype type_))))
 
 /// Ensures that the indicated @type has been registered with the type system, and its _class_init() method has been run.
 let typeEnsure (type_: usize) : unit =
-  Internal.GObjectC.g_type_ensure type_
+  Internal.GObjectC.g_type_ensure (Internal.Raw.gtype type_)
 
 /// Frees an instance of a type, returning it to the instance pool for the type, if there is one.
 let typeFreeInstance (instance: TypeInstance) : unit =
@@ -3686,7 +3689,7 @@ let typeFromName (name: string) : usize =
 
 /// Internal function, used to extract the fundamental type ID portion.
 let typeFundamental (typeId: usize) : usize =
-  ((Internal.GObjectC.g_type_fundamental typeId))
+  ((Internal.GObjectC.g_type_fundamental (Internal.Raw.gtype typeId)))
 
 /// Returns the next free fundamental type id which can be used to register a new fundamental type with g_type_register_fundamental().
 let typeFundamentalNext () : usize =
@@ -3694,15 +3697,15 @@ let typeFundamentalNext () : usize =
 
 /// Returns the number of instances allocated of the particular type; this is only available if GLib is built with debugging support and the `instance-count` debug flag is set (by setting the `GOBJECT_DEBUG` variable to include `instance-count`
 let typeGetInstanceCount (type_: usize) : int =
-  (int ((Internal.GObjectC.g_type_get_instance_count type_)))
+  (int ((Internal.GObjectC.g_type_get_instance_count (Internal.Raw.gtype type_))))
 
 /// Returns the #GTypePlugin structure for @type.
 let typeGetPlugin (type_: usize) : TypePlugin =
-  TypePlugin (Internal.Raw.wrap ((Internal.GObjectC.g_type_get_plugin type_)) false)
+  TypePlugin (Internal.Raw.wrap ((Internal.GObjectC.g_type_get_plugin (Internal.Raw.gtype type_))) false)
 
 /// Obtains data which has previously been attached to @type with g_type_set_qdata().
 let typeGetQdata (type_: usize) (quark: int) : cptr =
-  ((Internal.GObjectC.g_type_get_qdata type_ (u32 quark)))
+  ((Internal.GObjectC.g_type_get_qdata (Internal.Raw.gtype type_) (u32 quark)))
 
 /// Returns an opaque serial number that represents the state of the set of registered types.
 let typeGetTypeRegistrationSerial () : int =
@@ -3719,18 +3722,18 @@ let typeInitWithDebugFlags (debugFlags: TypeDebugFlags) : unit =
 /// Return a newly allocated and 0-terminated array of type IDs, listing the interface types that @type conforms to.
 let typeInterfaces (type_: usize) : list<usize> =
   Internal.Raw.outBegin ()
-  let zr = Internal.GObjectC.g_type_interfaces type_ (Internal.Raw.out 0)
+  let zr = Internal.GObjectC.g_type_interfaces (Internal.Raw.gtype type_) (Internal.Raw.out 0)
   let zv = Internal.Raw.mapList (fun zi -> usize zi) (Internal.Raw.intsOf (zr) (Internal.Raw.outU32 0) 8 false true)
   Internal.Raw.outEnd ()
   zv
 
 /// If @is_a_type is a derivable type, check whether @type is a descendant of @is_a_type.
 let typeIsA (type_: usize) (isAType: usize) : bool =
-  (((Internal.GObjectC.g_type_is_a type_ isAType)) <> i32 0)
+  (((Internal.GObjectC.g_type_is_a (Internal.Raw.gtype type_) (Internal.Raw.gtype isAType))) <> i32 0)
 
 /// Get the unique name that is assigned to a type ID.
 let typeName (type_: usize) : option<string> =
-  Internal.Raw.textOption ((Internal.GObjectC.g_type_name type_))
+  Internal.Raw.textOption ((Internal.GObjectC.g_type_name (Internal.Raw.gtype type_)))
 
 /// `g_type_name_from_class`.
 let typeNameFromClass (gClass: TypeClass) : string =
@@ -3742,38 +3745,38 @@ let typeNameFromInstance (instance: TypeInstance) : string =
 
 /// Given a @leaf_type and a @root_type which is contained in its ancestry, return the type that @root_type is the immediate parent of.
 let typeNextBase (leafType: usize) (rootType: usize) : usize =
-  ((Internal.GObjectC.g_type_next_base leafType rootType))
+  ((Internal.GObjectC.g_type_next_base (Internal.Raw.gtype leafType) (Internal.Raw.gtype rootType)))
 
 /// Return the direct parent type of the passed in type.
 let typeParent (type_: usize) : usize =
-  ((Internal.GObjectC.g_type_parent type_))
+  ((Internal.GObjectC.g_type_parent (Internal.Raw.gtype type_)))
 
 /// Get the corresponding quark of the type IDs name.
 let typeQname (type_: usize) : int =
-  (int ((Internal.GObjectC.g_type_qname type_)))
+  (int ((Internal.GObjectC.g_type_qname (Internal.Raw.gtype type_))))
 
 /// Queries the type system for information about a specific type.
 let typeQuery (type_: usize) : TypeQuery =
   let zo1 = Internal.Raw.allocPlain (Internal.GObjectC.zgtk_sizeof_GObject_TypeQuery ()) (Internal.GObjectC.zgtk_tag_GObject_TypeQuery ())
-  Internal.GObjectC.g_type_query type_ (Internal.Raw.obj zo1 (Internal.GObjectC.zgtk_tag_GObject_TypeQuery ()))
+  Internal.GObjectC.g_type_query (Internal.Raw.gtype type_) (Internal.Raw.obj zo1 (Internal.GObjectC.zgtk_tag_GObject_TypeQuery ()))
   TypeQuery zo1
 
 /// Registers @type_name as the name of a new dynamic type derived from @parent_type.
 let typeRegisterDynamic (parentType: usize) (typeName: string) (plugin: TypePlugin) (flags: TypeFlags) : usize =
-  ((Internal.GObjectC.g_type_register_dynamic parentType typeName (Internal.Raw.obj plugin.Id (Internal.GObjectC.g_type_plugin_get_type ())) (u32 flags.Int)))
+  ((Internal.GObjectC.g_type_register_dynamic (Internal.Raw.gtype parentType) typeName (Internal.Raw.obj plugin.Id (Internal.GObjectC.g_type_plugin_get_type ())) (u32 flags.Int)))
 
 /// Registers @type_id as the predefined identifier and @type_name as the name of a fundamental type.
 let typeRegisterFundamental (typeId: usize) (typeName: string) (info: TypeInfo) (finfo: TypeFundamentalInfo) (flags: TypeFlags) : usize =
-  ((Internal.GObjectC.g_type_register_fundamental typeId typeName (Internal.Raw.obj info.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInfo ())) (Internal.Raw.obj finfo.Id (Internal.GObjectC.zgtk_tag_GObject_TypeFundamentalInfo ())) (u32 flags.Int)))
+  ((Internal.GObjectC.g_type_register_fundamental (Internal.Raw.gtype typeId) typeName (Internal.Raw.obj info.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInfo ())) (Internal.Raw.obj finfo.Id (Internal.GObjectC.zgtk_tag_GObject_TypeFundamentalInfo ())) (u32 flags.Int)))
 
 /// Registers @type_name as the name of a new static type derived from @parent_type.
 let typeRegisterStatic (parentType: usize) (typeName: string) (info: TypeInfo) (flags: TypeFlags) : usize =
-  ((Internal.GObjectC.g_type_register_static parentType typeName (Internal.Raw.obj info.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInfo ())) (u32 flags.Int)))
+  ((Internal.GObjectC.g_type_register_static (Internal.Raw.gtype parentType) typeName (Internal.Raw.obj info.Id (Internal.GObjectC.zgtk_tag_GObject_TypeInfo ())) (u32 flags.Int)))
 
 /// Registers @type_name as the name of a new static type derived from @parent_type.
 [<Unsafe>]
 let typeRegisterStaticSimple (parentType: usize) (typeName: string) (classSize: int) (classInit: cptr) (instanceSize: int) (instanceInit: cptr) (flags: TypeFlags) : usize =
-  ((Internal.GObjectC.g_type_register_static_simple parentType typeName (u32 classSize) classInit (u32 instanceSize) instanceInit (u32 flags.Int)))
+  ((Internal.GObjectC.g_type_register_static_simple (Internal.Raw.gtype parentType) typeName (u32 classSize) classInit (u32 instanceSize) instanceInit (u32 flags.Int)))
 
 /// Removes a previously installed #GTypeClassCacheFunc.
 [<Unsafe>]
@@ -3788,8 +3791,8 @@ let typeRemoveInterfaceCheck (checkData: cptr) (checkFunc: cptr) : unit =
 /// Attaches arbitrary data to a type.
 [<Unsafe>]
 let typeSetQdata (type_: usize) (quark: int) (data: cptr) : unit =
-  Internal.GObjectC.g_type_set_qdata type_ (u32 quark) data
+  Internal.GObjectC.g_type_set_qdata (Internal.Raw.gtype type_) (u32 quark) data
 
 /// `g_type_test_flags`.
 let typeTestFlags (type_: usize) (flags: int) : bool =
-  (((Internal.GObjectC.g_type_test_flags type_ (u32 flags))) <> i32 0)
+  (((Internal.GObjectC.g_type_test_flags (Internal.Raw.gtype type_) (u32 flags))) <> i32 0)

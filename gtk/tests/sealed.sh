@@ -19,4 +19,6 @@ try "a C function, through the module it was in" 'Gtk4.gtk_button_new () |> igno
 try "a C function, through the module that declares it" 'Gtk.Internal.Gtk4C.gtk_button_new () |> ignore'
 try "a C function of variable arguments" 'Gtk.Internal.GLibC.g_strdup_printf "%%d" (i32 1) |> ignore'
 try "an unsafe function, outside unsafe" 'GObject.Object.unref (Gtk4.Label.create None).Object'
+try "a picture from bytes and a size given apart, outside unsafe" 'GdkPixbuf.Pixbuf.createFromData (Array.ofList [ u8 1 ]) GdkPixbuf.Colorspace.rgb false 8 4000 4000 12000 (fun _ -> ()) |> ignore'
+try "a string C writes in, outside unsafe" 'GLib.strlcpy "ab" "longer than that" 100 |> ignore'
 try "the public functions" 'Gtk4.Label.getLabel (Gtk4.Label.create (Some "x")) |> ignore'

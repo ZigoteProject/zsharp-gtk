@@ -419,6 +419,44 @@ void zgtk_drop(void *closure) {
 
 void *zgtk_drop_fn(void) { return zgtk_drop; }
 
+// ---- a type or a length a program gave, before GLib trusts it
+
+// Whether a number is a type GLib has. A type above the fundamental ones is the address of
+// GLib's record of it, which GLib reads without asking: one a program made up must not reach
+// it. The types GLib has are the fundamental ones and whatever is made from them, so every one
+// is found by walking down from those; the walk is done again only for a number not seen yet.
+static GHashTable *known_types;
+
+static void know(GType t) {
+    if (!g_hash_table_add(known_types, GSIZE_TO_POINTER(t))) return;
+    guint n = 0;
+    GType *children = g_type_children(t, &n);
+    for (guint i = 0; i < n; i++) know(children[i]);
+    g_free(children);
+}
+
+int zgtk_type_known(gsize type) {
+    if (type <= G_TYPE_FUNDAMENTAL_MAX) return 1; // looked up in a table, not read as an address
+    if (!known_types) known_types = g_hash_table_new(NULL, NULL);
+    if (g_hash_table_contains(known_types, GSIZE_TO_POINTER(type))) return 1;
+    g_hash_table_remove_all(known_types);
+    for (GType f = 0; f <= G_TYPE_FUNDAMENTAL_MAX; f += (GType)1 << G_TYPE_FUNDAMENTAL_SHIFT)
+        if (g_type_name(f)) know(f);
+    return g_hash_table_contains(known_types, GSIZE_TO_POINTER(type));
+}
+
+// A length or a place in a string that a program gave beside the string, kept inside it: C
+// reads as far as it's told. `chars`: counted in characters, not bytes. A negative number
+// stays as it is (`negative` 1: it means the whole string to the function), or is the whole
+// length (0), or the start (2). `from`: where in the string the length is counted from, for a
+// function that is given a place and then a length.
+int64_t zgtk_within(const char *s, int64_t from, int64_t n, int chars, int negative) {
+    int64_t all = !s ? 0 : chars ? (int64_t)g_utf8_strlen(s, -1) : (int64_t)strlen(s);
+    all = from <= 0 ? all : from >= all ? 0 : all - from;
+    if (n < 0) return negative == 1 ? n : negative == 2 ? 0 : all;
+    return n > all ? all : n;
+}
+
 // ---- types made at run time, and their virtual methods
 
 // A type of `name` made from `parent`, with its class and its instances the parent's size: what
@@ -500,23 +538,50 @@ void zgtk_add_signal(gsize type, const char *name, void *arg_types, int64_t n) {
 
 gsize zgtk_value_type(void) { return G_TYPE_VALUE; }
 
-// Emits a signal with arguments, each a GValue.
-void zgtk_emit_values(void *object, const char *signal, void *values, int64_t n) {
+// Emits a signal with arguments, each a GValue, if they are the ones the signal takes: their
+// number and their types are checked against the signal's own, as g_signal_emitv trusts both.
+// A signal of another shape, or of a name the object hasn't, is a warning and nothing more.
+static void emit_checked(void *object, const char *signal, const GValue *const *values, guint n) {
     guint id = 0;
     GQuark detail = 0;
-    if (!object || !g_signal_parse_name(signal, G_OBJECT_TYPE(object), &id, &detail, FALSE)) return;
+    if (!object || !G_IS_OBJECT(object)) return;
+    if (!g_signal_parse_name(signal, G_OBJECT_TYPE(object), &id, &detail, FALSE)) {
+        g_warning("zgtk: %s has no signal '%s'", G_OBJECT_TYPE_NAME(object), signal);
+        return;
+    }
+    GSignalQuery q;
+    g_signal_query(id, &q);
+    gboolean fits = q.n_params == n;
+    for (guint i = 0; fits && i < n; i++)
+        fits = values[i] && G_IS_VALUE(values[i]) &&
+               g_type_is_a(G_VALUE_TYPE(values[i]), q.param_types[i] & ~G_SIGNAL_TYPE_STATIC_SCOPE);
+    if (!fits) {
+        g_warning("zgtk: the signal '%s' of %s takes %u argument(s) of its own types: not emitted with the %u given",
+                  signal, G_OBJECT_TYPE_NAME(object), q.n_params, n);
+        return;
+    }
     GValue *args = g_new0(GValue, (gsize)n + 1);
     g_value_init(&args[0], G_OBJECT_TYPE(object));
     g_value_set_object(&args[0], object);
-    for (int64_t i = 0; i < n; i++) {
-        const GValue *v = ((GValue **)values)[i];
-        g_value_init(&args[i + 1], G_VALUE_TYPE(v));
-        g_value_copy(v, &args[i + 1]);
+    for (guint i = 0; i < n; i++) {
+        g_value_init(&args[i + 1], G_VALUE_TYPE(values[i]));
+        g_value_copy(values[i], &args[i + 1]);
     }
-    g_signal_emitv(args, id, detail, NULL);
-    for (int64_t i = 0; i <= n; i++) g_value_unset(&args[i]);
+    // a signal that gives a result is given somewhere to put it
+    GType result = q.return_type & ~G_SIGNAL_TYPE_STATIC_SCOPE;
+    GValue ret = G_VALUE_INIT;
+    if (result != G_TYPE_NONE) g_value_init(&ret, result);
+    g_signal_emitv(args, id, detail, result != G_TYPE_NONE ? &ret : NULL);
+    if (result != G_TYPE_NONE) g_value_unset(&ret);
+    for (guint i = 0; i <= n; i++) g_value_unset(&args[i]);
     g_free(args);
 }
+
+void zgtk_emit_values(void *object, const char *signal, void *values, int64_t n) {
+    if (n >= 0 && n <= 64) emit_checked(object, signal, values, (guint)n);
+}
+
+gsize zgtk_object_type(void) { return G_TYPE_OBJECT; }
 
 // Gives a widget type made here a template: GtkBuilder's XML, whose <template class> is the
 // type's name. Before any widget of it is made.
@@ -1158,12 +1223,15 @@ void zgtk_remove_child(void *parent, void *child) {
 
 // ---- what takes a NULL, variable arguments or a record
 
-void zgtk_emit(void *object, const char *signal) {
-    if (object) g_signal_emit_by_name(object, signal);
-}
+void zgtk_emit(void *object, const char *signal) { emit_checked(object, signal, NULL, 0); }
 
 void zgtk_emit_string(void *object, const char *signal, const char *argument) {
-    if (object) g_signal_emit_by_name(object, signal, argument);
+    GValue v = G_VALUE_INIT;
+    const GValue *values[1] = {&v};
+    g_value_init(&v, G_TYPE_STRING);
+    g_value_set_string(&v, argument);
+    emit_checked(object, signal, values, 1);
+    g_value_unset(&v);
 }
 
 // Runs an application to its end, holding it meanwhile.

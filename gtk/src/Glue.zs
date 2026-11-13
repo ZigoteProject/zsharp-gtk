@@ -30,8 +30,9 @@ let error (parts: string * int * string) : Error =
 /// `error` of what may be there.
 let errorOption (parts: option<string * int * string>) : option<Error> = Option.map error parts
 
-// a handle's pointer, of any type: panics for a handle whose object has gone
-let private any (id: int) : cptr = Internal.Raw.obj id (usize 0)
+// the pointer of a handle that is an object's, of any class: panics for a handle whose object
+// has gone, and for one of a record or a counted value, which has no properties or signals
+let private any (id: int) : cptr = Internal.Raw.obj id (Internal.Raw.objectType ())
 
 /// Whether a handle's object is still there.
 let alive (id: int) : bool = Internal.Raw.alive id
@@ -48,7 +49,7 @@ let unkeep (id: int) : unit = Internal.Raw.unkeep id
 let drain () : unit = Internal.Raw.drain ()
 
 /// Whether a handle's object is of a type (a class's `gtype ()`), or of one made from it.
-let isA (id: int) (gtype: usize) : bool = Internal.Raw.isA (any id) gtype
+let isA (id: int) (gtype: usize) : bool = Internal.Raw.isA (any id) (Internal.Raw.gtype gtype)
 
 /// Connects a handler to a signal of an object, by the signal's name (`notify::label` for a
 /// property's changes). GTK keeps the function until the object goes. Inside it, `argInt` and
@@ -64,14 +65,16 @@ let connectId (id: int) (signal: string) (after: bool) (handler: unit -> unit) :
 /// Takes a handler off its signal.
 let disconnect (id: int) (handler: int) : unit = Internal.Raw.disconnect (any id) handler
 
-/// Emits a signal that takes no arguments.
+/// Emits a signal that takes no arguments. One that takes any, or that the object hasn't, is
+/// a warning and isn't emitted.
 let emit (id: int) (signal: string) : unit = Internal.Raw.emit (any id) signal
 
-/// Emits a signal that takes a string.
+/// Emits a signal that takes a string, and nothing else.
 let emitText (id: int) (signal: string) (argument: string) : unit =
   Internal.Raw.emitText (any id) signal argument
 
-/// Emits a signal with arguments, each a `GObject.Value`'s handle.
+/// Emits a signal with arguments, each a `GObject.Value`'s handle. They must be as many as
+/// the signal takes and of its types, or it's a warning and isn't emitted.
 let emitValues (id: int) (signal: string) (values: list<int>) : unit =
   let gvalue = Internal.Raw.valueType ()
   Internal.Raw.emitValues (any id) signal (List.map (fun v -> Internal.Raw.obj v gvalue) values)

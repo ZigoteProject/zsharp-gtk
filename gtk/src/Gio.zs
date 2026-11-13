@@ -6253,7 +6253,7 @@ module Action =
         let zid1 = Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 1) (i32 0)
         let parameter = (if zid1 = 0 then None else Some (GLib.Variant zid1))
         handler action parameter)
-    Internal.GioC.zgtk_override_Gio_Action_activate gtype zcb
+    Internal.GioC.zgtk_override_Gio_Action_activate (Internal.Raw.gtype gtype) zcb
 
   /// Activates the action.
   let parentActivate (self: Action) (parameter: option<GLib.Variant>) : unit =
@@ -6270,7 +6270,7 @@ module Action =
         let action = Action (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let value = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 1) (i32 0))
         handler action value)
-    Internal.GioC.zgtk_override_Gio_Action_change_state gtype zcb
+    Internal.GioC.zgtk_override_Gio_Action_change_state (Internal.Raw.gtype gtype) zcb
 
   /// Request for the state of @action to be changed to @value.
   let parentChangeState (self: Action) (value: GLib.Variant) : unit =
@@ -6282,7 +6282,7 @@ module Action =
       Internal.Raw.hold (fun () ->
         let action = Action (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler action))
-    Internal.GioC.zgtk_override_Gio_Action_get_enabled gtype zcb
+    Internal.GioC.zgtk_override_Gio_Action_get_enabled (Internal.Raw.gtype gtype) zcb
 
   /// Checks if @action is currently enabled.
   let parentGetEnabled (self: Action) : bool =
@@ -6294,7 +6294,7 @@ module Action =
       Internal.Raw.hold (fun () ->
         let action = Action (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler action)))
-    Internal.GioC.zgtk_override_Gio_Action_get_name gtype zcb
+    Internal.GioC.zgtk_override_Gio_Action_get_name (Internal.Raw.gtype gtype) zcb
 
   /// Queries the name of @action.
   let parentGetName (self: Action) : string =
@@ -6308,7 +6308,7 @@ module Action =
         match handler action with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lendBoxed (Internal.Raw.obj zo.Id (Internal.GLibC.g_variant_type_get_gtype ())) (Internal.GLibC.g_variant_type_get_gtype ()))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Action_get_parameter_type gtype zcb
+    Internal.GioC.zgtk_override_Gio_Action_get_parameter_type (Internal.Raw.gtype gtype) zcb
 
   /// Queries the type of the parameter that must be given when activating @action.
   let parentGetParameterType (self: Action) : option<GLib.VariantType> =
@@ -6324,7 +6324,7 @@ module Action =
         match handler action with
         | Some zo -> Internal.Raw.returnPointer (Internal.GLibC.zgtk_give_GLib_Variant (Internal.Raw.obj zo.Id (Internal.GLibC.zgtk_type_GLib_Variant ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Action_get_state gtype zcb
+    Internal.GioC.zgtk_override_Gio_Action_get_state (Internal.Raw.gtype gtype) zcb
 
   /// Queries the current state of @action.
   let parentGetState (self: Action) : option<GLib.Variant> =
@@ -6340,7 +6340,7 @@ module Action =
         match handler action with
         | Some zo -> Internal.Raw.returnPointer (Internal.GLibC.zgtk_give_GLib_Variant (Internal.Raw.obj zo.Id (Internal.GLibC.zgtk_type_GLib_Variant ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Action_get_state_hint gtype zcb
+    Internal.GioC.zgtk_override_Gio_Action_get_state_hint (Internal.Raw.gtype gtype) zcb
 
   /// Requests a hint about the valid range of values for the state of @action.
   let parentGetStateHint (self: Action) : option<GLib.Variant> =
@@ -6356,7 +6356,7 @@ module Action =
         match handler action with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lendBoxed (Internal.Raw.obj zo.Id (Internal.GLibC.g_variant_type_get_gtype ())) (Internal.GLibC.g_variant_type_get_gtype ()))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Action_get_state_type gtype zcb
+    Internal.GioC.zgtk_override_Gio_Action_get_state_type (Internal.Raw.gtype gtype) zcb
 
   /// Queries the type of the state of @action.
   let parentGetStateType (self: Action) : option<GLib.VariantType> =
@@ -6491,7 +6491,7 @@ module ActionGroup =
         let actionGroup = ActionGroup (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler actionGroup actionName)
-    Internal.GioC.zgtk_override_Gio_ActionGroup_action_added gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionGroup_action_added (Internal.Raw.gtype gtype) zcb
 
   /// Emits the [signal@Gio.ActionGroup::action-added] signal on @action_group.
   let parentActionAdded (self: ActionGroup) (actionName: string) : unit =
@@ -6505,7 +6505,7 @@ module ActionGroup =
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         let enabled = (Internal.Raw.argInt 2 <> 0)
         handler actionGroup actionName enabled)
-    Internal.GioC.zgtk_override_Gio_ActionGroup_action_enabled_changed gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionGroup_action_enabled_changed (Internal.Raw.gtype gtype) zcb
 
   /// Emits the [signal@Gio.ActionGroup::action-enabled-changed] signal on @action_group.
   let parentActionEnabledChanged (self: ActionGroup) (actionName: string) (enabled: bool) : unit =
@@ -6518,7 +6518,7 @@ module ActionGroup =
         let actionGroup = ActionGroup (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler actionGroup actionName)
-    Internal.GioC.zgtk_override_Gio_ActionGroup_action_removed gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionGroup_action_removed (Internal.Raw.gtype gtype) zcb
 
   /// Emits the [signal@Gio.ActionGroup::action-removed] signal on @action_group.
   let parentActionRemoved (self: ActionGroup) (actionName: string) : unit =
@@ -6532,7 +6532,7 @@ module ActionGroup =
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         let state = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 2) (i32 0))
         handler actionGroup actionName state)
-    Internal.GioC.zgtk_override_Gio_ActionGroup_action_state_changed gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionGroup_action_state_changed (Internal.Raw.gtype gtype) zcb
 
   /// Emits the [signal@Gio.ActionGroup::action-state-changed] signal on @action_group.
   let parentActionStateChanged (self: ActionGroup) (actionName: string) (state: GLib.Variant) : unit =
@@ -6547,7 +6547,7 @@ module ActionGroup =
         let zid1 = Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 2) (i32 0)
         let parameter = (if zid1 = 0 then None else Some (GLib.Variant zid1))
         handler actionGroup actionName parameter)
-    Internal.GioC.zgtk_override_Gio_ActionGroup_activate_action gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionGroup_activate_action (Internal.Raw.gtype gtype) zcb
 
   /// Activate the named action within @action_group.
   let parentActivateAction (self: ActionGroup) (actionName: string) (parameter: option<GLib.Variant>) : unit =
@@ -6565,7 +6565,7 @@ module ActionGroup =
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         let value = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 2) (i32 0))
         handler actionGroup actionName value)
-    Internal.GioC.zgtk_override_Gio_ActionGroup_change_action_state gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionGroup_change_action_state (Internal.Raw.gtype gtype) zcb
 
   /// Request for the state of the named action within @action_group to be changed to @value.
   let parentChangeActionState (self: ActionGroup) (actionName: string) (value: GLib.Variant) : unit =
@@ -6578,7 +6578,7 @@ module ActionGroup =
         let actionGroup = ActionGroup (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnBool (handler actionGroup actionName))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_enabled gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_enabled (Internal.Raw.gtype gtype) zcb
 
   /// Checks if the named action within @action_group is currently enabled.
   let parentGetActionEnabled (self: ActionGroup) (actionName: string) : bool =
@@ -6593,7 +6593,7 @@ module ActionGroup =
         match handler actionGroup actionName with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lendBoxed (Internal.Raw.obj zo.Id (Internal.GLibC.g_variant_type_get_gtype ())) (Internal.GLibC.g_variant_type_get_gtype ()))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_parameter_type gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_parameter_type (Internal.Raw.gtype gtype) zcb
 
   /// Queries the type of the parameter that must be given when activating the named action within @action_group.
   let parentGetActionParameterType (self: ActionGroup) (actionName: string) : option<GLib.VariantType> =
@@ -6610,7 +6610,7 @@ module ActionGroup =
         match handler actionGroup actionName with
         | Some zo -> Internal.Raw.returnPointer (Internal.GLibC.zgtk_give_GLib_Variant (Internal.Raw.obj zo.Id (Internal.GLibC.zgtk_type_GLib_Variant ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_state gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_state (Internal.Raw.gtype gtype) zcb
 
   /// Queries the current state of the named action within @action_group.
   let parentGetActionState (self: ActionGroup) (actionName: string) : option<GLib.Variant> =
@@ -6627,7 +6627,7 @@ module ActionGroup =
         match handler actionGroup actionName with
         | Some zo -> Internal.Raw.returnPointer (Internal.GLibC.zgtk_give_GLib_Variant (Internal.Raw.obj zo.Id (Internal.GLibC.zgtk_type_GLib_Variant ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_state_hint gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_state_hint (Internal.Raw.gtype gtype) zcb
 
   /// Requests a hint about the valid range of values for the state of the named action within @action_group.
   let parentGetActionStateHint (self: ActionGroup) (actionName: string) : option<GLib.Variant> =
@@ -6644,7 +6644,7 @@ module ActionGroup =
         match handler actionGroup actionName with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lendBoxed (Internal.Raw.obj zo.Id (Internal.GLibC.g_variant_type_get_gtype ())) (Internal.GLibC.g_variant_type_get_gtype ()))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_state_type gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_state_type (Internal.Raw.gtype gtype) zcb
 
   /// Queries the type of the state of the named action within @action_group.
   let parentGetActionStateType (self: ActionGroup) (actionName: string) : option<GLib.VariantType> =
@@ -6659,7 +6659,7 @@ module ActionGroup =
         let actionGroup = ActionGroup (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnBool (handler actionGroup actionName))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_has_action gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionGroup_has_action (Internal.Raw.gtype gtype) zcb
 
   /// Checks if the named action exists within @action_group.
   let parentHasAction (self: ActionGroup) (actionName: string) : bool =
@@ -6671,7 +6671,7 @@ module ActionGroup =
       Internal.Raw.hold (fun () ->
         let actionGroup = ActionGroup (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.strv (handler actionGroup)))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_list_actions gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionGroup_list_actions (Internal.Raw.gtype gtype) zcb
 
   /// Lists the actions contained within @action_group.
   let parentListActions (self: ActionGroup) : list<string> =
@@ -6690,7 +6690,7 @@ module ActionGroup =
         let (zres, enabled) = handler actionGroup actionName parameterType stateType stateHint state
         Internal.Raw.setI32 2 (if enabled then 1 else 0)
         Internal.Raw.returnBool (zres))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_query_action gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionGroup_query_action (Internal.Raw.gtype gtype) zcb
 
   /// Queries all aspects of the named action within an @action_group.
   let parentQueryAction (self: ActionGroup) (actionName: string) : (bool * bool * option<GLib.VariantType> * option<GLib.VariantType> * option<GLib.Variant> * option<GLib.Variant>) =
@@ -6749,7 +6749,7 @@ module ActionMap =
         let actionMap = ActionMap (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let action = Action (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler actionMap action)
-    Internal.GioC.zgtk_override_Gio_ActionMap_add_action gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionMap_add_action (Internal.Raw.gtype gtype) zcb
 
   /// Adds an action to the @action_map.
   let parentAddAction (self: ActionMap) (action: Action) : unit =
@@ -6764,7 +6764,7 @@ module ActionMap =
         match handler actionMap actionName with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.GioC.g_action_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_ActionMap_lookup_action gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionMap_lookup_action (Internal.Raw.gtype gtype) zcb
 
   /// Looks up the action with the name @action_name in @action_map.
   let parentLookupAction (self: ActionMap) (actionName: string) : option<Action> =
@@ -6779,7 +6779,7 @@ module ActionMap =
         let actionMap = ActionMap (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler actionMap actionName)
-    Internal.GioC.zgtk_override_Gio_ActionMap_remove_action gtype zcb
+    Internal.GioC.zgtk_override_Gio_ActionMap_remove_action (Internal.Raw.gtype gtype) zcb
 
   /// Removes the named action from the action map.
   let parentRemoveAction (self: ActionMap) (actionName: string) : unit =
@@ -7192,7 +7192,7 @@ module AppInfo =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler appinfo))
-    Internal.GioC.zgtk_override_Gio_AppInfo_can_delete gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_can_delete (Internal.Raw.gtype gtype) zcb
 
   /// Obtains the information whether the [iface@Gio.AppInfo] can be deleted.
   let parentCanDelete (self: AppInfo) : bool =
@@ -7204,7 +7204,7 @@ module AppInfo =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler appinfo))
-    Internal.GioC.zgtk_override_Gio_AppInfo_can_remove_supports_type gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_can_remove_supports_type (Internal.Raw.gtype gtype) zcb
 
   /// Checks if a supported content type can be removed from an application.
   let parentCanRemoveSupportsType (self: AppInfo) : bool =
@@ -7216,7 +7216,7 @@ module AppInfo =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler appinfo))
-    Internal.GioC.zgtk_override_Gio_AppInfo_do_delete gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_do_delete (Internal.Raw.gtype gtype) zcb
 
   /// Tries to delete a [iface@Gio.AppInfo].
   let parentDoDelete (self: AppInfo) : bool =
@@ -7228,7 +7228,7 @@ module AppInfo =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler appinfo).Id (Internal.GioC.g_app_info_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_AppInfo_dup gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_dup (Internal.Raw.gtype gtype) zcb
 
   /// Creates a duplicate of a [iface@Gio.AppInfo].
   let parentDup (self: AppInfo) : AppInfo =
@@ -7241,7 +7241,7 @@ module AppInfo =
         let appinfo1 = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let appinfo2 = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnBool (handler appinfo1 appinfo2))
-    Internal.GioC.zgtk_override_Gio_AppInfo_equal gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_equal (Internal.Raw.gtype gtype) zcb
 
   /// Checks if two [iface@Gio.AppInfo]s are equal.
   let parentEqual (self: AppInfo) (appinfo2: AppInfo) : bool =
@@ -7255,7 +7255,7 @@ module AppInfo =
         match handler appinfo with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_commandline gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_get_commandline (Internal.Raw.gtype gtype) zcb
 
   /// Gets the commandline with which the application will be started.
   let parentGetCommandline (self: AppInfo) : option<string> =
@@ -7269,7 +7269,7 @@ module AppInfo =
         match handler appinfo with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_description gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_get_description (Internal.Raw.gtype gtype) zcb
 
   /// Gets a human-readable description of an installed application.
   let parentGetDescription (self: AppInfo) : option<string> =
@@ -7281,7 +7281,7 @@ module AppInfo =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler appinfo)))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_display_name gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_get_display_name (Internal.Raw.gtype gtype) zcb
 
   /// Gets the display name of the application.
   let parentGetDisplayName (self: AppInfo) : string =
@@ -7293,7 +7293,7 @@ module AppInfo =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler appinfo)))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_executable gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_get_executable (Internal.Raw.gtype gtype) zcb
 
   /// Gets the executable’s name for the installed application.
   let parentGetExecutable (self: AppInfo) : string =
@@ -7307,7 +7307,7 @@ module AppInfo =
         match handler appinfo with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.GioC.g_icon_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_icon gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_get_icon (Internal.Raw.gtype gtype) zcb
 
   /// Gets the icon for the application.
   let parentGetIcon (self: AppInfo) : option<Icon> =
@@ -7323,7 +7323,7 @@ module AppInfo =
         match handler appinfo with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_id gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_get_id (Internal.Raw.gtype gtype) zcb
 
   /// Gets the ID of an application.
   let parentGetId (self: AppInfo) : option<string> =
@@ -7335,7 +7335,7 @@ module AppInfo =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler appinfo)))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_name gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_get_name (Internal.Raw.gtype gtype) zcb
 
   /// Gets the installed name of the application.
   let parentGetName (self: AppInfo) : string =
@@ -7347,7 +7347,7 @@ module AppInfo =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (handler appinfo))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_supported_types gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_get_supported_types (Internal.Raw.gtype gtype) zcb
 
   /// Retrieves the list of content types that @app_info claims to support.
   let parentGetSupportedTypes (self: AppInfo) : list<string> =
@@ -7366,7 +7366,7 @@ module AppInfo =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler appinfo uris context cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_AppInfo_launch_uris_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_launch_uris_async (Internal.Raw.gtype gtype) zcb
 
   /// Async version of [method@Gio.AppInfo.launch_uris].
   let parentLaunchUrisAsync (self: AppInfo) (uris: list<string>) (context: option<AppLaunchContext>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -7394,7 +7394,7 @@ module AppInfo =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler appinfo))
-    Internal.GioC.zgtk_override_Gio_AppInfo_should_show gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_should_show (Internal.Raw.gtype gtype) zcb
 
   /// Checks if the application info should be shown in menus that list available applications.
   let parentShouldShow (self: AppInfo) : bool =
@@ -7406,7 +7406,7 @@ module AppInfo =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler appinfo))
-    Internal.GioC.zgtk_override_Gio_AppInfo_supports_files gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_supports_files (Internal.Raw.gtype gtype) zcb
 
   /// Checks if the application accepts files as arguments.
   let parentSupportsFiles (self: AppInfo) : bool =
@@ -7418,7 +7418,7 @@ module AppInfo =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler appinfo))
-    Internal.GioC.zgtk_override_Gio_AppInfo_supports_uris gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppInfo_supports_uris (Internal.Raw.gtype gtype) zcb
 
   /// Checks if the application supports reading files and directories from URIs.
   let parentSupportsUris (self: AppInfo) : bool =
@@ -7525,7 +7525,7 @@ module AppLaunchContext =
         match handler context info files with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_AppLaunchContext_get_display gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppLaunchContext_get_display (Internal.Raw.gtype gtype) zcb
 
   /// Gets the display string for the @context.
   let parentGetDisplay (self: AppLaunchContext) (info: AppInfo) (files: list<File>) : option<string> =
@@ -7546,7 +7546,7 @@ module AppLaunchContext =
         match handler context info files with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_AppLaunchContext_get_startup_notify_id gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppLaunchContext_get_startup_notify_id (Internal.Raw.gtype gtype) zcb
 
   /// Initiates startup notification for the application and returns the `XDG_ACTIVATION_TOKEN` or `DESKTOP_STARTUP_ID` for the launched operation, if supported.
   let parentGetStartupNotifyId (self: AppLaunchContext) (info: option<AppInfo>) (files: list<File>) : option<string> =
@@ -7567,7 +7567,7 @@ module AppLaunchContext =
         let context = AppLaunchContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let startupNotifyId = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler context startupNotifyId)
-    Internal.GioC.zgtk_override_Gio_AppLaunchContext_launch_failed gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppLaunchContext_launch_failed (Internal.Raw.gtype gtype) zcb
 
   /// Called when an application has failed to launch, so that it can cancel the application startup notification started in [method@Gio.AppLaunchContext.get_startup_notify_id].
   let parentLaunchFailed (self: AppLaunchContext) (startupNotifyId: string) : unit =
@@ -7581,7 +7581,7 @@ module AppLaunchContext =
         let info = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let platformData = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 2) (i32 0))
         handler context info platformData)
-    Internal.GioC.zgtk_override_Gio_AppLaunchContext_launch_started gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppLaunchContext_launch_started (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_AppLaunchContext_launch_started`.
   let parentLaunchStarted (self: AppLaunchContext) (info: AppInfo) (platformData: GLib.Variant) : unit =
@@ -7595,7 +7595,7 @@ module AppLaunchContext =
         let info = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let platformData = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 2) (i32 0))
         handler context info platformData)
-    Internal.GioC.zgtk_override_Gio_AppLaunchContext_launched gtype zcb
+    Internal.GioC.zgtk_override_Gio_AppLaunchContext_launched (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_AppLaunchContext_launched`.
   let parentLaunched (self: AppLaunchContext) (info: AppInfo) (platformData: GLib.Variant) : unit =
@@ -7900,7 +7900,7 @@ module Application =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler application)
-    Internal.GioC.zgtk_override_Gio_Application_activate gtype zcb
+    Internal.GioC.zgtk_override_Gio_Application_activate (Internal.Raw.gtype gtype) zcb
 
   /// Activates the application.
   let parentActivate (self: Application) : unit =
@@ -7913,7 +7913,7 @@ module Application =
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let builder = GLib.VariantBuilder (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GLibC.g_variant_builder_get_type ()) false)
         handler application builder)
-    Internal.GioC.zgtk_override_Gio_Application_add_platform_data gtype zcb
+    Internal.GioC.zgtk_override_Gio_Application_add_platform_data (Internal.Raw.gtype gtype) zcb
 
   /// invoked (locally) to add 'platform data' to be sent to the primary instance when activating, opening or invoking actions.
   let parentAddPlatformData (self: Application) (builder: GLib.VariantBuilder) : unit =
@@ -7926,7 +7926,7 @@ module Application =
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let platformData = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 1) (i32 0))
         handler application platformData)
-    Internal.GioC.zgtk_override_Gio_Application_after_emit gtype zcb
+    Internal.GioC.zgtk_override_Gio_Application_after_emit (Internal.Raw.gtype gtype) zcb
 
   /// invoked on the primary instance after 'activate', 'open', 'command-line' or any action invocation, gets the 'platform data' from the calling instance.
   let parentAfterEmit (self: Application) (platformData: GLib.Variant) : unit =
@@ -7939,7 +7939,7 @@ module Application =
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let platformData = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 1) (i32 0))
         handler application platformData)
-    Internal.GioC.zgtk_override_Gio_Application_before_emit gtype zcb
+    Internal.GioC.zgtk_override_Gio_Application_before_emit (Internal.Raw.gtype gtype) zcb
 
   /// invoked on the primary instance before 'activate', 'open', 'command-line' or any action invocation, gets the 'platform data' from the calling instance.
   let parentBeforeEmit (self: Application) (platformData: GLib.Variant) : unit =
@@ -7952,7 +7952,7 @@ module Application =
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let commandLine = ApplicationCommandLine (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnInt (handler application commandLine))
-    Internal.GioC.zgtk_override_Gio_Application_command_line gtype zcb
+    Internal.GioC.zgtk_override_Gio_Application_command_line (Internal.Raw.gtype gtype) zcb
 
   /// invoked on the primary instance when a command-line is not handled locally
   let parentCommandLine (self: Application) (commandLine: ApplicationCommandLine) : int =
@@ -7966,7 +7966,7 @@ module Application =
         let connection = DBusConnection (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let objectPath = Internal.Raw.text (Internal.Raw.argPointer 2)
         handler application connection objectPath)
-    Internal.GioC.zgtk_override_Gio_Application_dbus_unregister gtype zcb
+    Internal.GioC.zgtk_override_Gio_Application_dbus_unregister (Internal.Raw.gtype gtype) zcb
 
   /// invoked locally during unregistration, if the application is using its D-Bus backend.
   let parentDbusUnregister (self: Application) (connection: DBusConnection) (objectPath: string) : unit =
@@ -7979,7 +7979,7 @@ module Application =
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let options = GLib.VariantDict (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GLibC.g_variant_dict_get_type ()) false)
         Internal.Raw.returnInt (handler application options))
-    Internal.GioC.zgtk_override_Gio_Application_handle_local_options gtype zcb
+    Internal.GioC.zgtk_override_Gio_Application_handle_local_options (Internal.Raw.gtype gtype) zcb
 
   /// invoked locally after the parsing of the commandline options has occurred.
   let parentHandleLocalOptions (self: Application) (options: GLib.VariantDict) : int =
@@ -7994,7 +7994,7 @@ module Application =
         let (zres, exitStatus) = handler application arguments
         Internal.Raw.setI32 2 exitStatus
         Internal.Raw.returnBool (zres))
-    Internal.GioC.zgtk_override_Gio_Application_local_command_line gtype zcb
+    Internal.GioC.zgtk_override_Gio_Application_local_command_line (Internal.Raw.gtype gtype) zcb
 
   /// This virtual function is always invoked in the local instance.
   [<Unsafe>]
@@ -8011,7 +8011,7 @@ module Application =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler application))
-    Internal.GioC.zgtk_override_Gio_Application_name_lost gtype zcb
+    Internal.GioC.zgtk_override_Gio_Application_name_lost (Internal.Raw.gtype gtype) zcb
 
   /// invoked when another instance is taking over the name.
   let parentNameLost (self: Application) : bool =
@@ -8026,7 +8026,7 @@ module Application =
         let nFiles = Internal.Raw.argInt 2
         let hint = Internal.Raw.text (Internal.Raw.argPointer 3)
         handler application files nFiles hint)
-    Internal.GioC.zgtk_override_Gio_Application_open gtype zcb
+    Internal.GioC.zgtk_override_Gio_Application_open (Internal.Raw.gtype gtype) zcb
 
   /// Opens the given files.
   let parentOpen (self: Application) (files: list<File>) (hint: string) : unit =
@@ -8040,7 +8040,7 @@ module Application =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler application)
-    Internal.GioC.zgtk_override_Gio_Application_quit_mainloop gtype zcb
+    Internal.GioC.zgtk_override_Gio_Application_quit_mainloop (Internal.Raw.gtype gtype) zcb
 
   /// Used to be invoked on the primary instance when the use count of the application drops to zero (and after any inactivity timeout, if requested).
   let parentQuitMainloop (self: Application) : unit =
@@ -8052,7 +8052,7 @@ module Application =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler application)
-    Internal.GioC.zgtk_override_Gio_Application_run_mainloop gtype zcb
+    Internal.GioC.zgtk_override_Gio_Application_run_mainloop (Internal.Raw.gtype gtype) zcb
 
   /// Used to be invoked on the primary instance from g_application_run() if the use-count is non-zero.
   let parentRunMainloop (self: Application) : unit =
@@ -8064,7 +8064,7 @@ module Application =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler application)
-    Internal.GioC.zgtk_override_Gio_Application_shutdown gtype zcb
+    Internal.GioC.zgtk_override_Gio_Application_shutdown (Internal.Raw.gtype gtype) zcb
 
   /// invoked only on the registered primary instance immediately after the main loop terminates
   let parentShutdown (self: Application) : unit =
@@ -8076,7 +8076,7 @@ module Application =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler application)
-    Internal.GioC.zgtk_override_Gio_Application_startup gtype zcb
+    Internal.GioC.zgtk_override_Gio_Application_startup (Internal.Raw.gtype gtype) zcb
 
   /// invoked on the primary instance immediately after registration
   let parentStartup (self: Application) : unit =
@@ -8179,7 +8179,7 @@ module ApplicationCommandLine =
       Internal.Raw.hold (fun () ->
         let cmdline = ApplicationCommandLine (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler cmdline)
-    Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_done gtype zcb
+    Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_done (Internal.Raw.gtype gtype) zcb
 
   /// Signals that command line processing is completed.
   let parentDone (self: ApplicationCommandLine) : unit =
@@ -8193,7 +8193,7 @@ module ApplicationCommandLine =
         match handler cmdline with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_input_stream_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_get_stdin gtype zcb
+    Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_get_stdin (Internal.Raw.gtype gtype) zcb
 
   /// Gets the stdin of the invoking process.
   let parentGetStdin (self: ApplicationCommandLine) : option<InputStream> =
@@ -8208,7 +8208,7 @@ module ApplicationCommandLine =
         let cmdline = ApplicationCommandLine (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let message = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler cmdline message)
-    Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_print_literal gtype zcb
+    Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_print_literal (Internal.Raw.gtype gtype) zcb
 
   /// Prints a message using the stdout print handler in the invoking process.
   let parentPrintLiteral (self: ApplicationCommandLine) (message: string) : unit =
@@ -8221,7 +8221,7 @@ module ApplicationCommandLine =
         let cmdline = ApplicationCommandLine (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let message = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler cmdline message)
-    Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_printerr_literal gtype zcb
+    Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_printerr_literal (Internal.Raw.gtype gtype) zcb
 
   /// Prints a message using the stderr print handler in the invoking process.
   let parentPrinterrLiteral (self: ApplicationCommandLine) (message: string) : unit =
@@ -8300,7 +8300,7 @@ module AsyncInitable =
       match cancellable with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
       | None -> Internal.Raw.none ()
-    Internal.GioC.g_async_initable_new_valist_async objectType firstPropertyName varArgs (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+    Internal.GioC.g_async_initable_new_valist_async (Internal.Raw.gtype objectType) firstPropertyName varArgs (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Deprecated. Helper function for constructing #GAsyncInitable object.
   let newvAsync (objectType: usize) (nParameters: int) (parameters: GObject.Parameter) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -8314,7 +8314,7 @@ module AsyncInitable =
       match cancellable with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
       | None -> Internal.Raw.none ()
-    Internal.GioC.g_async_initable_newv_async objectType (u32 nParameters) (Internal.Raw.obj parameters.Id (Internal.GObjectC.zgtk_tag_GObject_Parameter ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+    Internal.GioC.g_async_initable_newv_async (Internal.Raw.gtype objectType) (u32 nParameters) (Internal.Raw.obj parameters.Id (Internal.GObjectC.zgtk_tag_GObject_Parameter ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `init_async`: Starts asynchronous initialization of the object implementing the interface.
   let overrideInitAsync (gtype: usize) (handler: AsyncInitable -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
@@ -8327,7 +8327,7 @@ module AsyncInitable =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler initable ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_AsyncInitable_init_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_AsyncInitable_init_async (Internal.Raw.gtype gtype) zcb
 
   /// Starts asynchronous initialization of the object implementing the interface.
   let parentInitAsync (self: AsyncInitable) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -8390,7 +8390,7 @@ module AsyncResult =
         match handler res with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GObjectC.g_object_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_AsyncResult_get_source_object gtype zcb
+    Internal.GioC.zgtk_override_Gio_AsyncResult_get_source_object (Internal.Raw.gtype gtype) zcb
 
   /// Gets the source object from a [iface@Gio.AsyncResult].
   let parentGetSourceObject (self: AsyncResult) : option<GObject.Object> =
@@ -8404,7 +8404,7 @@ module AsyncResult =
       Internal.Raw.hold (fun () ->
         let res = AsyncResult (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (handler res))
-    Internal.GioC.zgtk_override_Gio_AsyncResult_get_user_data gtype zcb
+    Internal.GioC.zgtk_override_Gio_AsyncResult_get_user_data (Internal.Raw.gtype gtype) zcb
 
   /// Gets the user data from a [iface@Gio.AsyncResult].
   let parentGetUserData (self: AsyncResult) : cptr =
@@ -8417,7 +8417,7 @@ module AsyncResult =
         let res = AsyncResult (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let sourceTag = Internal.Raw.argPointer 1
         Internal.Raw.returnBool (handler res sourceTag))
-    Internal.GioC.zgtk_override_Gio_AsyncResult_is_tagged gtype zcb
+    Internal.GioC.zgtk_override_Gio_AsyncResult_is_tagged (Internal.Raw.gtype gtype) zcb
 
   /// Checks if @res has the given @source_tag (generally a function pointer indicating the function @res was created by).
   [<Unsafe>]
@@ -8487,7 +8487,7 @@ module Seekable =
       Internal.Raw.hold (fun () ->
         let seekable = Seekable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler seekable))
-    Internal.GioC.zgtk_override_Gio_Seekable_can_seek gtype zcb
+    Internal.GioC.zgtk_override_Gio_Seekable_can_seek (Internal.Raw.gtype gtype) zcb
 
   /// Tests if the stream supports the #GSeekableIface.
   let parentCanSeek (self: Seekable) : bool =
@@ -8499,7 +8499,7 @@ module Seekable =
       Internal.Raw.hold (fun () ->
         let seekable = Seekable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler seekable))
-    Internal.GioC.zgtk_override_Gio_Seekable_can_truncate gtype zcb
+    Internal.GioC.zgtk_override_Gio_Seekable_can_truncate (Internal.Raw.gtype gtype) zcb
 
   /// Tests if the length of the stream can be adjusted with g_seekable_truncate().
   let parentCanTruncate (self: Seekable) : bool =
@@ -8511,7 +8511,7 @@ module Seekable =
       Internal.Raw.hold (fun () ->
         let seekable = Seekable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler seekable))
-    Internal.GioC.zgtk_override_Gio_Seekable_tell gtype zcb
+    Internal.GioC.zgtk_override_Gio_Seekable_tell (Internal.Raw.gtype gtype) zcb
 
   /// Tells the current position within the stream.
   let parentTell (self: Seekable) : int =
@@ -8817,7 +8817,7 @@ module InputStream =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler stream ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_InputStream_close_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_InputStream_close_async (Internal.Raw.gtype gtype) zcb
 
   /// Requests an asynchronous closes of the stream, releasing resources related to it.
   let parentCloseAsync (self: InputStream) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -8846,7 +8846,7 @@ module InputStream =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler stream buffer count ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_InputStream_read_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_InputStream_read_async (Internal.Raw.gtype gtype) zcb
 
   /// Request an asynchronous read of @count bytes from the stream into the buffer starting at @buffer.
   let parentReadAsync (self: InputStream) (count: int) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : array<u8> =
@@ -8876,7 +8876,7 @@ module InputStream =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler stream count ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_InputStream_skip_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_InputStream_skip_async (Internal.Raw.gtype gtype) zcb
 
   /// Request an asynchronous skip of @count bytes from the stream.
   let parentSkipAsync (self: InputStream) (count: int) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -9068,7 +9068,7 @@ module BufferedInputStream =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler stream count ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_BufferedInputStream_fill_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_BufferedInputStream_fill_async (Internal.Raw.gtype gtype) zcb
 
   /// Reads data into @stream's buffer asynchronously, up to @count size.
   let parentFillAsync (self: BufferedInputStream) (count: int) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -9594,7 +9594,7 @@ module OutputStream =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler stream ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_OutputStream_close_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_OutputStream_close_async (Internal.Raw.gtype gtype) zcb
 
   /// Requests an asynchronous close of the stream, releasing resources related to it.
   let parentCloseAsync (self: OutputStream) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -9621,7 +9621,7 @@ module OutputStream =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler stream ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_OutputStream_flush_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_OutputStream_flush_async (Internal.Raw.gtype gtype) zcb
 
   /// Forces an asynchronous write of all user-space buffered data for the given @stream.
   let parentFlushAsync (self: OutputStream) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -9650,7 +9650,7 @@ module OutputStream =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler stream source flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_OutputStream_splice_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_OutputStream_splice_async (Internal.Raw.gtype gtype) zcb
 
   /// Splices a stream asynchronously.
   let parentSpliceAsync (self: OutputStream) (source: InputStream) (flags: OutputStreamSpliceFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -9679,7 +9679,7 @@ module OutputStream =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler stream buffer count ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_OutputStream_write_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_OutputStream_write_async (Internal.Raw.gtype gtype) zcb
 
   /// Request an asynchronous write of @count bytes from @buffer into the stream.
   let parentWriteAsync (self: OutputStream) (buffer: array<u8>) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -9711,7 +9711,7 @@ module OutputStream =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler stream vectors nVectors ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_OutputStream_writev_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_OutputStream_writev_async (Internal.Raw.gtype gtype) zcb
 
   /// Request an asynchronous write of the bytes contained in @n_vectors @vectors into the stream.
   let parentWritevAsync (self: OutputStream) (vectors: list<OutputVector>) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -9877,7 +9877,7 @@ module Icon =
         let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let icon2 = (if zid2 = 0 then None else Some (Icon zid2))
         Internal.Raw.returnBool (handler icon1 icon2))
-    Internal.GioC.zgtk_override_Gio_Icon_equal gtype zcb
+    Internal.GioC.zgtk_override_Gio_Icon_equal (Internal.Raw.gtype gtype) zcb
 
   /// Checks if two icons are equal.
   let parentEqual (self: Icon) (icon2: option<Icon>) : bool =
@@ -9894,7 +9894,7 @@ module Icon =
       Internal.Raw.hold (fun () ->
         let icon = Icon (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler icon))
-    Internal.GioC.zgtk_override_Gio_Icon_hash gtype zcb
+    Internal.GioC.zgtk_override_Gio_Icon_hash (Internal.Raw.gtype gtype) zcb
 
   /// Gets a hash for an icon.
   let parentHash (self: Icon) : int =
@@ -9908,7 +9908,7 @@ module Icon =
         match handler icon with
         | Some zo -> Internal.Raw.returnPointer (Internal.GLibC.zgtk_give_GLib_Variant (Internal.Raw.obj zo.Id (Internal.GLibC.zgtk_type_GLib_Variant ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Icon_serialize gtype zcb
+    Internal.GioC.zgtk_override_Gio_Icon_serialize (Internal.Raw.gtype gtype) zcb
 
   /// Serializes a #GIcon into a #GVariant.
   let parentSerialize (self: Icon) : option<GLib.Variant> =
@@ -9925,7 +9925,7 @@ module Icon =
         let (zres, outVersion) = handler icon tokens
         Internal.Raw.setI32 2 outVersion
         Internal.Raw.returnBool (zres))
-    Internal.GioC.zgtk_override_Gio_Icon_to_tokens gtype zcb
+    Internal.GioC.zgtk_override_Gio_Icon_to_tokens (Internal.Raw.gtype gtype) zcb
 
   /// Serializes the @icon into string tokens.
   [<Unsafe>]
@@ -10011,7 +10011,7 @@ module LoadableIcon =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler icon size cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_LoadableIcon_load_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_LoadableIcon_load_async (Internal.Raw.gtype gtype) zcb
 
   /// Loads an icon asynchronously.
   let parentLoadAsync (self: LoadableIcon) (size: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -10146,7 +10146,7 @@ module Cancellable =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 0) false
         let cancellable = (if zid1 = 0 then None else Some (Cancellable zid1))
         handler cancellable)
-    Internal.GioC.zgtk_override_Gio_Cancellable_cancelled gtype zcb
+    Internal.GioC.zgtk_override_Gio_Cancellable_cancelled (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_Cancellable_cancelled`.
   let parentCancelled (self: Cancellable) : unit =
@@ -10205,7 +10205,7 @@ module Converter =
       Internal.Raw.hold (fun () ->
         let converter = Converter (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler converter)
-    Internal.GioC.zgtk_override_Gio_Converter_reset gtype zcb
+    Internal.GioC.zgtk_override_Gio_Converter_reset (Internal.Raw.gtype gtype) zcb
 
   /// Resets all internal state in the converter, making it behave as if it was just created.
   let parentReset (self: Converter) : unit =
@@ -10247,7 +10247,7 @@ module Initable =
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
       | None -> Internal.Raw.none ()
     Internal.Raw.outBegin ()
-    let zr = Internal.GioC.g_initable_new_valist objectType firstPropertyName varArgs zp1 (Internal.Raw.err ())
+    let zr = Internal.GioC.g_initable_new_valist (Internal.Raw.gtype objectType) firstPropertyName varArgs zp1 (Internal.Raw.err ())
     match Internal.Raw.takeError () with
     | Some ze ->
       Internal.Raw.outEnd ()
@@ -10265,7 +10265,7 @@ module Initable =
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
       | None -> Internal.Raw.none ()
     Internal.Raw.outBegin ()
-    let zr = Internal.GioC.g_initable_newv objectType (u32 (Internal.Raw.count parameters)) za2 zp3 (Internal.Raw.err ())
+    let zr = Internal.GioC.g_initable_newv (Internal.Raw.gtype objectType) (u32 (Internal.Raw.count parameters)) za2 zp3 (Internal.Raw.err ())
     match Internal.Raw.takeError () with
     | Some ze ->
       Internal.Raw.outEnd ()
@@ -10389,7 +10389,7 @@ module PollableInputStream =
       Internal.Raw.hold (fun () ->
         let stream = PollableInputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_PollableInputStream_can_poll gtype zcb
+    Internal.GioC.zgtk_override_Gio_PollableInputStream_can_poll (Internal.Raw.gtype gtype) zcb
 
   /// Checks if @stream is actually pollable.
   let parentCanPoll (self: PollableInputStream) : bool =
@@ -10403,7 +10403,7 @@ module PollableInputStream =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let cancellable = (if zid1 = 0 then None else Some (Cancellable zid1))
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler stream cancellable).Id (Internal.GLibC.g_source_get_type ())) (Internal.GLibC.g_source_get_type ())))
-    Internal.GioC.zgtk_override_Gio_PollableInputStream_create_source gtype zcb
+    Internal.GioC.zgtk_override_Gio_PollableInputStream_create_source (Internal.Raw.gtype gtype) zcb
 
   /// Creates a #GSource that triggers when @stream can be read, or @cancellable is triggered or an error occurs.
   let parentCreateSource (self: PollableInputStream) (cancellable: option<Cancellable>) : GLib.Source =
@@ -10420,7 +10420,7 @@ module PollableInputStream =
       Internal.Raw.hold (fun () ->
         let stream = PollableInputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_PollableInputStream_is_readable gtype zcb
+    Internal.GioC.zgtk_override_Gio_PollableInputStream_is_readable (Internal.Raw.gtype gtype) zcb
 
   /// Checks if @stream can be read.
   let parentIsReadable (self: PollableInputStream) : bool =
@@ -10532,7 +10532,7 @@ module PollableOutputStream =
       Internal.Raw.hold (fun () ->
         let stream = PollableOutputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_PollableOutputStream_can_poll gtype zcb
+    Internal.GioC.zgtk_override_Gio_PollableOutputStream_can_poll (Internal.Raw.gtype gtype) zcb
 
   /// Checks if @stream is actually pollable.
   let parentCanPoll (self: PollableOutputStream) : bool =
@@ -10546,7 +10546,7 @@ module PollableOutputStream =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let cancellable = (if zid1 = 0 then None else Some (Cancellable zid1))
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler stream cancellable).Id (Internal.GLibC.g_source_get_type ())) (Internal.GLibC.g_source_get_type ())))
-    Internal.GioC.zgtk_override_Gio_PollableOutputStream_create_source gtype zcb
+    Internal.GioC.zgtk_override_Gio_PollableOutputStream_create_source (Internal.Raw.gtype gtype) zcb
 
   /// Creates a #GSource that triggers when @stream can be written, or @cancellable is triggered or an error occurs.
   let parentCreateSource (self: PollableOutputStream) (cancellable: option<Cancellable>) : GLib.Source =
@@ -10563,7 +10563,7 @@ module PollableOutputStream =
       Internal.Raw.hold (fun () ->
         let stream = PollableOutputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_PollableOutputStream_is_writable gtype zcb
+    Internal.GioC.zgtk_override_Gio_PollableOutputStream_is_writable (Internal.Raw.gtype gtype) zcb
 
   /// Checks if @stream can be written.
   let parentIsWritable (self: PollableOutputStream) : bool =
@@ -10714,7 +10714,7 @@ module RemoteActionGroup =
         let parameter = (if zid1 = 0 then None else Some (GLib.Variant zid1))
         let platformData = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 3) (i32 0))
         handler remote actionName parameter platformData)
-    Internal.GioC.zgtk_override_Gio_RemoteActionGroup_activate_action_full gtype zcb
+    Internal.GioC.zgtk_override_Gio_RemoteActionGroup_activate_action_full (Internal.Raw.gtype gtype) zcb
 
   /// Activates the remote action.
   let parentActivateActionFull (self: RemoteActionGroup) (actionName: string) (parameter: option<GLib.Variant>) (platformData: GLib.Variant) : unit =
@@ -10733,7 +10733,7 @@ module RemoteActionGroup =
         let value = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 2) (i32 0))
         let platformData = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 3) (i32 0))
         handler remote actionName value platformData)
-    Internal.GioC.zgtk_override_Gio_RemoteActionGroup_change_action_state_full gtype zcb
+    Internal.GioC.zgtk_override_Gio_RemoteActionGroup_change_action_state_full (Internal.Raw.gtype gtype) zcb
 
   /// Changes the state of a remote action.
   let parentChangeActionStateFull (self: RemoteActionGroup) (actionName: string) (value: GLib.Variant) (platformData: GLib.Variant) : unit =
@@ -11618,7 +11618,7 @@ module DBusInterface =
         match handler interface with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_object_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_DBusInterface_dup_object gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusInterface_dup_object (Internal.Raw.gtype gtype) zcb
 
   /// Gets the #GDBusObject that @interface_ belongs to, if any.
   let parentDupObject (self: DBusInterface) : option<DBusObject> =
@@ -11634,7 +11634,7 @@ module DBusInterface =
         match handler interface with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lendBoxed (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_interface_info_get_type ())) (Internal.GioC.g_dbus_interface_info_get_type ()))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_DBusInterface_get_info gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusInterface_get_info (Internal.Raw.gtype gtype) zcb
 
   /// Gets D-Bus introspection information for the D-Bus interface implemented by @interface_.
   let parentGetInfo (self: DBusInterface) : option<DBusInterfaceInfo> =
@@ -11650,7 +11650,7 @@ module DBusInterface =
         match handler interface with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_object_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_DBusInterface_get_object gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusInterface_get_object (Internal.Raw.gtype gtype) zcb
 
   /// Gets the #GDBusObject that @interface_ belongs to, if any.
   let parentGetObject (self: DBusInterface) : option<DBusObject> =
@@ -11666,7 +11666,7 @@ module DBusInterface =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let object = (if zid1 = 0 then None else Some (DBusObject zid1))
         handler interface object)
-    Internal.GioC.zgtk_override_Gio_DBusInterface_set_object gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusInterface_set_object (Internal.Raw.gtype gtype) zcb
 
   /// Sets the #GDBusObject for @interface_ to @object.
   let parentSetObject (self: DBusInterface) (object: option<DBusObject>) : unit =
@@ -11828,7 +11828,7 @@ module DBusInterfaceSkeleton =
       Internal.Raw.hold (fun () ->
         let interface = DBusInterfaceSkeleton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler interface)
-    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_flush gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_flush (Internal.Raw.gtype gtype) zcb
 
   /// If @interface_ has outstanding changes, request for these changes to be emitted immediately.
   let parentFlush (self: DBusInterfaceSkeleton) : unit =
@@ -11841,7 +11841,7 @@ module DBusInterfaceSkeleton =
         let interface = DBusInterfaceSkeleton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let invocation = DBusMethodInvocation (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnBool (handler interface invocation))
-    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_g_authorize_method gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_g_authorize_method (Internal.Raw.gtype gtype) zcb
 
   /// Signal class handler for the #GDBusInterfaceSkeleton::g-authorize-method signal.
   let parentGAuthorizeMethod (self: DBusInterfaceSkeleton) (invocation: DBusMethodInvocation) : bool =
@@ -11853,7 +11853,7 @@ module DBusInterfaceSkeleton =
       Internal.Raw.hold (fun () ->
         let interface = DBusInterfaceSkeleton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.lendBoxed (Internal.Raw.obj (handler interface).Id (Internal.GioC.g_dbus_interface_info_get_type ())) (Internal.GioC.g_dbus_interface_info_get_type ())))
-    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_get_info gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_get_info (Internal.Raw.gtype gtype) zcb
 
   /// Gets D-Bus introspection information for the D-Bus interface implemented by @interface_.
   let parentGetInfo (self: DBusInterfaceSkeleton) : DBusInterfaceInfo =
@@ -11865,7 +11865,7 @@ module DBusInterfaceSkeleton =
       Internal.Raw.hold (fun () ->
         let interface = DBusInterfaceSkeleton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.GLibC.zgtk_give_GLib_Variant (Internal.Raw.obj (handler interface).Id (Internal.GLibC.zgtk_type_GLib_Variant ()))))
-    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_get_properties gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_get_properties (Internal.Raw.gtype gtype) zcb
 
   /// Gets all D-Bus properties for @interface_.
   let parentGetProperties (self: DBusInterfaceSkeleton) : GLib.Variant =
@@ -11877,7 +11877,7 @@ module DBusInterfaceSkeleton =
       Internal.Raw.hold (fun () ->
         let interface = DBusInterfaceSkeleton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (handler interface))
-    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_get_vtable gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_get_vtable (Internal.Raw.gtype gtype) zcb
 
   /// Gets the interface vtable for the D-Bus interface implemented by @interface_.
   let parentGetVtable (self: DBusInterfaceSkeleton) : DBusInterfaceVTable =
@@ -11893,7 +11893,7 @@ module DBusInterfaceSkeleton =
         let flags = DBusInterfaceSkeletonFlags (int (Internal.Raw.argInt 3))
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 4) false)
         handler interface methodCallFunc invocation flags object)
-    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_method_dispatch gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_method_dispatch (Internal.Raw.gtype gtype) zcb
 
   /// Dispatches a method invocation.
   [<Unsafe>]
@@ -11974,7 +11974,7 @@ module MenuModel =
         match handler model itemIndex attribute expectedType with
         | Some zo -> Internal.Raw.returnPointer (Internal.GLibC.zgtk_give_GLib_Variant (Internal.Raw.obj zo.Id (Internal.GLibC.zgtk_type_GLib_Variant ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_MenuModel_get_item_attribute_value gtype zcb
+    Internal.GioC.zgtk_override_Gio_MenuModel_get_item_attribute_value (Internal.Raw.gtype gtype) zcb
 
   /// Queries the item at position @item_index in @model for the attribute specified by @attribute.
   let parentGetItemAttributeValue (self: MenuModel) (itemIndex: int) (attribute: string) (expectedType: option<GLib.VariantType>) : option<GLib.Variant> =
@@ -11994,7 +11994,7 @@ module MenuModel =
         let itemIndex = Internal.Raw.argInt 1
         let attributes = Internal.Raw.argPointer 2
         handler model itemIndex attributes)
-    Internal.GioC.zgtk_override_Gio_MenuModel_get_item_attributes gtype zcb
+    Internal.GioC.zgtk_override_Gio_MenuModel_get_item_attributes (Internal.Raw.gtype gtype) zcb
 
   /// Gets all the attributes associated with the item in the menu model.
   let parentGetItemAttributes (self: MenuModel) (itemIndex: int) : GLib.HashTable =
@@ -12014,7 +12014,7 @@ module MenuModel =
         match handler model itemIndex link with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_menu_model_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_MenuModel_get_item_link gtype zcb
+    Internal.GioC.zgtk_override_Gio_MenuModel_get_item_link (Internal.Raw.gtype gtype) zcb
 
   /// Queries the item at position @item_index in @model for the link specified by @link.
   let parentGetItemLink (self: MenuModel) (itemIndex: int) (link: string) : option<MenuModel> =
@@ -12030,7 +12030,7 @@ module MenuModel =
         let itemIndex = Internal.Raw.argInt 1
         let links = Internal.Raw.argPointer 2
         handler model itemIndex links)
-    Internal.GioC.zgtk_override_Gio_MenuModel_get_item_links gtype zcb
+    Internal.GioC.zgtk_override_Gio_MenuModel_get_item_links (Internal.Raw.gtype gtype) zcb
 
   /// Gets all the links associated with the item in the menu model.
   let parentGetItemLinks (self: MenuModel) (itemIndex: int) : GLib.HashTable =
@@ -12046,7 +12046,7 @@ module MenuModel =
       Internal.Raw.hold (fun () ->
         let model = MenuModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler model))
-    Internal.GioC.zgtk_override_Gio_MenuModel_get_n_items gtype zcb
+    Internal.GioC.zgtk_override_Gio_MenuModel_get_n_items (Internal.Raw.gtype gtype) zcb
 
   /// Query the number of items in @model.
   let parentGetNItems (self: MenuModel) : int =
@@ -12058,7 +12058,7 @@ module MenuModel =
       Internal.Raw.hold (fun () ->
         let model = MenuModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler model))
-    Internal.GioC.zgtk_override_Gio_MenuModel_is_mutable gtype zcb
+    Internal.GioC.zgtk_override_Gio_MenuModel_is_mutable (Internal.Raw.gtype gtype) zcb
 
   /// Queries if @model is mutable.
   let parentIsMutable (self: MenuModel) : bool =
@@ -12071,7 +12071,7 @@ module MenuModel =
         let model = MenuModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let itemIndex = Internal.Raw.argInt 1
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler model itemIndex).Id (Internal.GioC.g_menu_attribute_iter_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_MenuModel_iterate_item_attributes gtype zcb
+    Internal.GioC.zgtk_override_Gio_MenuModel_iterate_item_attributes (Internal.Raw.gtype gtype) zcb
 
   /// Creates a #GMenuAttributeIter to iterate over the attributes of the item at position @item_index in @model.
   let parentIterateItemAttributes (self: MenuModel) (itemIndex: int) : MenuAttributeIter =
@@ -12084,7 +12084,7 @@ module MenuModel =
         let model = MenuModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let itemIndex = Internal.Raw.argInt 1
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler model itemIndex).Id (Internal.GioC.g_menu_link_iter_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_MenuModel_iterate_item_links gtype zcb
+    Internal.GioC.zgtk_override_Gio_MenuModel_iterate_item_links (Internal.Raw.gtype gtype) zcb
 
   /// Creates a #GMenuLinkIter to iterate over the links of the item at position @item_index in @model.
   let parentIterateItemLinks (self: MenuModel) (itemIndex: int) : MenuLinkIter =
@@ -12621,7 +12621,7 @@ module DBusObject =
         match handler object interfaceName with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_interface_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_DBusObject_get_interface gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObject_get_interface (Internal.Raw.gtype gtype) zcb
 
   /// Gets the D-Bus interface with name @interface_name associated with @object, if any.
   let parentGetInterface (self: DBusObject) (interfaceName: string) : option<DBusInterface> =
@@ -12635,7 +12635,7 @@ module DBusObject =
       Internal.Raw.hold (fun () ->
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.glist (Internal.Raw.mapList (fun (zo: DBusInterface) -> Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_interface_get_type ()))) (handler object)) false))
-    Internal.GioC.zgtk_override_Gio_DBusObject_get_interfaces gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObject_get_interfaces (Internal.Raw.gtype gtype) zcb
 
   /// Gets the D-Bus interfaces associated with @object.
   let parentGetInterfaces (self: DBusObject) : list<DBusInterface> =
@@ -12647,7 +12647,7 @@ module DBusObject =
       Internal.Raw.hold (fun () ->
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler object)))
-    Internal.GioC.zgtk_override_Gio_DBusObject_get_object_path gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObject_get_object_path (Internal.Raw.gtype gtype) zcb
 
   /// Gets the object path for @object.
   let parentGetObjectPath (self: DBusObject) : string =
@@ -12660,7 +12660,7 @@ module DBusObject =
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let interface = DBusInterface (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler object interface)
-    Internal.GioC.zgtk_override_Gio_DBusObject_interface_added gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObject_interface_added (Internal.Raw.gtype gtype) zcb
 
   /// Signal handler for the #GDBusObject::interface-added signal.
   let parentInterfaceAdded (self: DBusObject) (interface: DBusInterface) : unit =
@@ -12673,7 +12673,7 @@ module DBusObject =
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let interface = DBusInterface (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler object interface)
-    Internal.GioC.zgtk_override_Gio_DBusObject_interface_removed gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObject_interface_removed (Internal.Raw.gtype gtype) zcb
 
   /// Signal handler for the #GDBusObject::interface-removed signal.
   let parentInterfaceRemoved (self: DBusObject) (interface: DBusInterface) : unit =
@@ -12746,7 +12746,7 @@ module DBusObjectManager =
         match handler manager objectPath interfaceName with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_interface_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_interface gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_interface (Internal.Raw.gtype gtype) zcb
 
   /// Gets the interface proxy for @interface_name at @object_path, if any.
   let parentGetInterface (self: DBusObjectManager) (objectPath: string) (interfaceName: string) : option<DBusInterface> =
@@ -12763,7 +12763,7 @@ module DBusObjectManager =
         match handler manager objectPath with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_object_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_object gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_object (Internal.Raw.gtype gtype) zcb
 
   /// Gets the #GDBusObject at @object_path, if any.
   let parentGetObject (self: DBusObjectManager) (objectPath: string) : option<DBusObject> =
@@ -12777,7 +12777,7 @@ module DBusObjectManager =
       Internal.Raw.hold (fun () ->
         let manager = DBusObjectManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler manager)))
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_object_path gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_object_path (Internal.Raw.gtype gtype) zcb
 
   /// Gets the object path that @manager is for.
   let parentGetObjectPath (self: DBusObjectManager) : string =
@@ -12789,7 +12789,7 @@ module DBusObjectManager =
       Internal.Raw.hold (fun () ->
         let manager = DBusObjectManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.glist (Internal.Raw.mapList (fun (zo: DBusObject) -> Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_object_get_type ()))) (handler manager)) false))
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_objects gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_objects (Internal.Raw.gtype gtype) zcb
 
   /// Gets all #GDBusObject objects known to @manager.
   let parentGetObjects (self: DBusObjectManager) : list<DBusObject> =
@@ -12803,7 +12803,7 @@ module DBusObjectManager =
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let interface = DBusInterface (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler manager object interface)
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_interface_added gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObjectManager_interface_added (Internal.Raw.gtype gtype) zcb
 
   /// Signal handler for the #GDBusObjectManager::interface-added signal.
   let parentInterfaceAdded (self: DBusObjectManager) (object: DBusObject) (interface: DBusInterface) : unit =
@@ -12817,7 +12817,7 @@ module DBusObjectManager =
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let interface = DBusInterface (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler manager object interface)
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_interface_removed gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObjectManager_interface_removed (Internal.Raw.gtype gtype) zcb
 
   /// Signal handler for the #GDBusObjectManager::interface-removed signal.
   let parentInterfaceRemoved (self: DBusObjectManager) (object: DBusObject) (interface: DBusInterface) : unit =
@@ -12830,7 +12830,7 @@ module DBusObjectManager =
         let manager = DBusObjectManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler manager object)
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_object_added gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObjectManager_object_added (Internal.Raw.gtype gtype) zcb
 
   /// Signal handler for the #GDBusObjectManager::object-added signal.
   let parentObjectAdded (self: DBusObjectManager) (object: DBusObject) : unit =
@@ -12843,7 +12843,7 @@ module DBusObjectManager =
         let manager = DBusObjectManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler manager object)
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_object_removed gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObjectManager_object_removed (Internal.Raw.gtype gtype) zcb
 
   /// Signal handler for the #GDBusObjectManager::object-removed signal.
   let parentObjectRemoved (self: DBusObjectManager) (object: DBusObject) : unit =
@@ -12902,7 +12902,7 @@ module DBusObjectManagerClient =
         let manager = DBusObjectManagerClient (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let objectPath = Internal.Raw.text (Internal.Raw.argPointer 1)
         let interfaceName = Internal.Raw.textOption (Internal.Raw.argPointer 2)
-        Internal.Raw.returnInt (int (getProxyTypeFunc manager objectPath interfaceName)))
+        Internal.Raw.returnInt (int (Internal.Raw.gtype (getProxyTypeFunc manager objectPath interfaceName))))
     let zp2 =
       match cancellable with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
@@ -12925,7 +12925,7 @@ module DBusObjectManagerClient =
         let manager = DBusObjectManagerClient (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let objectPath = Internal.Raw.text (Internal.Raw.argPointer 1)
         let interfaceName = Internal.Raw.textOption (Internal.Raw.argPointer 2)
-        Internal.Raw.returnInt (int (getProxyTypeFunc manager objectPath interfaceName)))
+        Internal.Raw.returnInt (int (Internal.Raw.gtype (getProxyTypeFunc manager objectPath interfaceName))))
     let zs2 = Internal.Raw.dupOption name
     let zp3 =
       match cancellable with
@@ -12967,7 +12967,7 @@ module DBusObjectManagerClient =
         let manager = DBusObjectManagerClient (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let objectPath = Internal.Raw.text (Internal.Raw.argPointer 1)
         let interfaceName = Internal.Raw.textOption (Internal.Raw.argPointer 2)
-        Internal.Raw.returnInt (int (getProxyTypeFunc manager objectPath interfaceName)))
+        Internal.Raw.returnInt (int (Internal.Raw.gtype (getProxyTypeFunc manager objectPath interfaceName))))
     let zcb2 =
       Internal.Raw.hold (fun () ->
         let zid3 = Internal.Raw.wrap (Internal.Raw.argPointer 0) false
@@ -12987,7 +12987,7 @@ module DBusObjectManagerClient =
         let manager = DBusObjectManagerClient (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let objectPath = Internal.Raw.text (Internal.Raw.argPointer 1)
         let interfaceName = Internal.Raw.textOption (Internal.Raw.argPointer 2)
-        Internal.Raw.returnInt (int (getProxyTypeFunc manager objectPath interfaceName)))
+        Internal.Raw.returnInt (int (Internal.Raw.gtype (getProxyTypeFunc manager objectPath interfaceName))))
     let zcb2 =
       Internal.Raw.hold (fun () ->
         let zid3 = Internal.Raw.wrap (Internal.Raw.argPointer 0) false
@@ -13068,7 +13068,7 @@ module DBusObjectManagerClient =
         let changedProperties = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 3) (i32 0))
         let invalidatedProperties = Internal.Raw.text (Internal.Raw.argPointer 4)
         handler manager objectProxy interfaceProxy changedProperties invalidatedProperties)
-    Internal.GioC.zgtk_override_Gio_DBusObjectManagerClient_interface_proxy_properties_changed gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObjectManagerClient_interface_proxy_properties_changed (Internal.Raw.gtype gtype) zcb
 
   /// Signal class handler for the #GDBusObjectManagerClient::interface-proxy-properties-changed signal.
   let parentInterfaceProxyPropertiesChanged (self: DBusObjectManagerClient) (objectProxy: DBusObjectProxy) (interfaceProxy: DBusProxy) (changedProperties: GLib.Variant) (invalidatedProperties: string) : unit =
@@ -13085,7 +13085,7 @@ module DBusObjectManagerClient =
         let signalName = Internal.Raw.text (Internal.Raw.argPointer 4)
         let parameters = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 5) (i32 0))
         handler manager objectProxy interfaceProxy senderName signalName parameters)
-    Internal.GioC.zgtk_override_Gio_DBusObjectManagerClient_interface_proxy_signal gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObjectManagerClient_interface_proxy_signal (Internal.Raw.gtype gtype) zcb
 
   /// Signal class handler for the #GDBusObjectManagerClient::interface-proxy-signal signal.
   let parentInterfaceProxySignal (self: DBusObjectManagerClient) (objectProxy: DBusObjectProxy) (interfaceProxy: DBusProxy) (senderName: string) (signalName: string) (parameters: GLib.Variant) : unit =
@@ -13251,7 +13251,7 @@ module DBusObjectSkeleton =
         let interface = DBusInterfaceSkeleton (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let invocation = DBusMethodInvocation (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         Internal.Raw.returnBool (handler object interface invocation))
-    Internal.GioC.zgtk_override_Gio_DBusObjectSkeleton_authorize_method gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusObjectSkeleton_authorize_method (Internal.Raw.gtype gtype) zcb
 
   /// Signal class handler for the #GDBusObjectSkeleton::authorize-method signal.
   let parentAuthorizeMethod (self: DBusObjectSkeleton) (interface: DBusInterfaceSkeleton) (invocation: DBusMethodInvocation) : bool =
@@ -13714,7 +13714,7 @@ module DBusProxy =
         let changedProperties = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 1) (i32 0))
         let invalidatedProperties = Internal.Raw.text (Internal.Raw.argPointer 2)
         handler proxy changedProperties invalidatedProperties)
-    Internal.GioC.zgtk_override_Gio_DBusProxy_g_properties_changed gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusProxy_g_properties_changed (Internal.Raw.gtype gtype) zcb
 
   /// Signal class handler for the #GDBusProxy::g-properties-changed signal.
   let parentGPropertiesChanged (self: DBusProxy) (changedProperties: GLib.Variant) (invalidatedProperties: string) : unit =
@@ -13729,7 +13729,7 @@ module DBusProxy =
         let signalName = Internal.Raw.text (Internal.Raw.argPointer 2)
         let parameters = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 3) (i32 0))
         handler proxy senderName signalName parameters)
-    Internal.GioC.zgtk_override_Gio_DBusProxy_g_signal gtype zcb
+    Internal.GioC.zgtk_override_Gio_DBusProxy_g_signal (Internal.Raw.gtype gtype) zcb
 
   /// Signal class handler for the #GDBusProxy::g-signal signal.
   let parentGSignal (self: DBusProxy) (senderName: string) (signalName: string) (parameters: GLib.Variant) : unit =
@@ -14159,7 +14159,7 @@ module DataInputStream =
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
       | None -> Internal.Raw.none ()
     Internal.Raw.outBegin ()
-    let zr = Internal.GioC.g_data_input_stream_read_upto (Internal.Raw.obj self.Id (Internal.GioC.g_data_input_stream_get_type ())) stopChars (i64 stopCharsLen) (Internal.Raw.out 0) zp1 (Internal.Raw.err ())
+    let zr = Internal.GioC.g_data_input_stream_read_upto (Internal.Raw.obj self.Id (Internal.GioC.g_data_input_stream_get_type ())) stopChars (i64 (Internal.Raw.within stopChars 0 stopCharsLen false 1)) (Internal.Raw.out 0) zp1 (Internal.Raw.err ())
     match Internal.Raw.takeError () with
     | Some ze ->
       Internal.Raw.outEnd ()
@@ -14181,7 +14181,7 @@ module DataInputStream =
       match cancellable with
       | Some zo -> Internal.Raw.obj zo.Id (Internal.GioC.g_cancellable_get_type ())
       | None -> Internal.Raw.none ()
-    Internal.GioC.g_data_input_stream_read_upto_async (Internal.Raw.obj self.Id (Internal.GioC.g_data_input_stream_get_type ())) stopChars (i64 stopCharsLen) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
+    Internal.GioC.g_data_input_stream_read_upto_async (Internal.Raw.obj self.Id (Internal.GioC.g_data_input_stream_get_type ())) stopChars (i64 (Internal.Raw.within stopChars 0 stopCharsLen false 1)) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Finish an asynchronous call started by g_data_input_stream_read_upto_async().
   let readUptoFinish (self: DataInputStream) (result: AsyncResult) : result<(string * int), Glue.Error> =
@@ -14481,7 +14481,7 @@ module DatagramBased =
         let datagramBased = DatagramBased (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let condition = GLib.IOCondition (int (Internal.Raw.argInt 1))
         Internal.Raw.returnInt (handler datagramBased condition).Int)
-    Internal.GioC.zgtk_override_Gio_DatagramBased_condition_check gtype zcb
+    Internal.GioC.zgtk_override_Gio_DatagramBased_condition_check (Internal.Raw.gtype gtype) zcb
 
   /// Checks on the readiness of @datagram_based to perform operations.
   let parentConditionCheck (self: DatagramBased) (condition: GLib.IOCondition) : GLib.IOCondition =
@@ -14496,7 +14496,7 @@ module DatagramBased =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 2) false
         let cancellable = (if zid1 = 0 then None else Some (Cancellable zid1))
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler datagramBased condition cancellable).Id (Internal.GLibC.g_source_get_type ())) (Internal.GLibC.g_source_get_type ())))
-    Internal.GioC.zgtk_override_Gio_DatagramBased_create_source gtype zcb
+    Internal.GioC.zgtk_override_Gio_DatagramBased_create_source (Internal.Raw.gtype gtype) zcb
 
   /// Creates a #GSource that can be attached to a #GMainContext to monitor for the availability of the specified @condition on the #GDatagramBased.
   let parentCreateSource (self: DatagramBased) (condition: GLib.IOCondition) (cancellable: option<Cancellable>) : GLib.Source =
@@ -14590,7 +14590,7 @@ module DebugControllerDBus =
         let controller = DebugControllerDBus (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let invocation = DBusMethodInvocation (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnBool (handler controller invocation))
-    Internal.GioC.zgtk_override_Gio_DebugControllerDBus_authorize gtype zcb
+    Internal.GioC.zgtk_override_Gio_DebugControllerDBus_authorize (Internal.Raw.gtype gtype) zcb
 
   /// Default handler for the #GDebugControllerDBus::authorize signal.
   let parentAuthorize (self: DebugControllerDBus) (invocation: DBusMethodInvocation) : bool =
@@ -14893,7 +14893,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_can_eject gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_can_eject (Internal.Raw.gtype gtype) zcb
 
   /// Checks if a drive can be ejected.
   let parentCanEject (self: Drive) : bool =
@@ -14905,7 +14905,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_can_poll_for_media gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_can_poll_for_media (Internal.Raw.gtype gtype) zcb
 
   /// Checks if a drive can be polled for media changes.
   let parentCanPollForMedia (self: Drive) : bool =
@@ -14917,7 +14917,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_can_start gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_can_start (Internal.Raw.gtype gtype) zcb
 
   /// Checks if a drive can be started.
   let parentCanStart (self: Drive) : bool =
@@ -14929,7 +14929,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_can_start_degraded gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_can_start_degraded (Internal.Raw.gtype gtype) zcb
 
   /// Checks if a drive can be started degraded.
   let parentCanStartDegraded (self: Drive) : bool =
@@ -14941,7 +14941,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_can_stop gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_can_stop (Internal.Raw.gtype gtype) zcb
 
   /// Checks if a drive can be stopped.
   let parentCanStop (self: Drive) : bool =
@@ -14953,7 +14953,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler drive)
-    Internal.GioC.zgtk_override_Gio_Drive_changed gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_changed (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted when the drive is changed.
   let parentChanged (self: Drive) : unit =
@@ -14965,7 +14965,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler drive)
-    Internal.GioC.zgtk_override_Gio_Drive_disconnected gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_disconnected (Internal.Raw.gtype gtype) zcb
 
   /// The removed signal that is emitted when the #GDrive have been disconnected.
   let parentDisconnected (self: Drive) : unit =
@@ -14982,7 +14982,7 @@ module Drive =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler drive flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Drive_eject gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_eject (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Asynchronously ejects a drive.
   let parentEject (self: Drive) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -15004,7 +15004,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler drive)
-    Internal.GioC.zgtk_override_Gio_Drive_eject_button gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_eject_button (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted when the physical eject button (if any) of a drive have been pressed.
   let parentEjectButton (self: Drive) : unit =
@@ -15023,7 +15023,7 @@ module Drive =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler drive flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Drive_eject_with_operation gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_eject_with_operation (Internal.Raw.gtype gtype) zcb
 
   /// Ejects a drive.
   let parentEjectWithOperation (self: Drive) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -15049,7 +15049,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.strv (handler drive)))
-    Internal.GioC.zgtk_override_Gio_Drive_enumerate_identifiers gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_enumerate_identifiers (Internal.Raw.gtype gtype) zcb
 
   /// Gets the kinds of identifiers that @drive has.
   let parentEnumerateIdentifiers (self: Drive) : list<string> =
@@ -15061,7 +15061,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler drive).Id (Internal.GioC.g_icon_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Drive_get_icon gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_get_icon (Internal.Raw.gtype gtype) zcb
 
   /// Gets the icon for @drive.
   let parentGetIcon (self: Drive) : Icon =
@@ -15076,7 +15076,7 @@ module Drive =
         match handler drive kind with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Drive_get_identifier gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_get_identifier (Internal.Raw.gtype gtype) zcb
 
   /// Gets the identifier of the given kind for @drive.
   let parentGetIdentifier (self: Drive) (kind: string) : option<string> =
@@ -15088,7 +15088,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler drive)))
-    Internal.GioC.zgtk_override_Gio_Drive_get_name gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_get_name (Internal.Raw.gtype gtype) zcb
 
   /// Gets the name of @drive.
   let parentGetName (self: Drive) : string =
@@ -15102,7 +15102,7 @@ module Drive =
         match handler drive with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Drive_get_sort_key gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_get_sort_key (Internal.Raw.gtype gtype) zcb
 
   /// Gets the sort key for @drive, if any.
   let parentGetSortKey (self: Drive) : option<string> =
@@ -15114,7 +15114,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler drive).Int)
-    Internal.GioC.zgtk_override_Gio_Drive_get_start_stop_type gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_get_start_stop_type (Internal.Raw.gtype gtype) zcb
 
   /// Gets a hint about how a drive can be started/stopped.
   let parentGetStartStopType (self: Drive) : DriveStartStopType =
@@ -15126,7 +15126,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler drive).Id (Internal.GioC.g_icon_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Drive_get_symbolic_icon gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_get_symbolic_icon (Internal.Raw.gtype gtype) zcb
 
   /// Gets the icon for @drive.
   let parentGetSymbolicIcon (self: Drive) : Icon =
@@ -15138,7 +15138,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.glist (Internal.Raw.mapList (fun (zo: Volume) -> Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_volume_get_type ()))) (handler drive)) false))
-    Internal.GioC.zgtk_override_Gio_Drive_get_volumes gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_get_volumes (Internal.Raw.gtype gtype) zcb
 
   /// Get a list of mountable volumes for @drive.
   let parentGetVolumes (self: Drive) : list<Volume> =
@@ -15150,7 +15150,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_has_media gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_has_media (Internal.Raw.gtype gtype) zcb
 
   /// Checks if the @drive has media.
   let parentHasMedia (self: Drive) : bool =
@@ -15162,7 +15162,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_has_volumes gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_has_volumes (Internal.Raw.gtype gtype) zcb
 
   /// Check if @drive has any mountable volumes.
   let parentHasVolumes (self: Drive) : bool =
@@ -15174,7 +15174,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_is_media_check_automatic gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_is_media_check_automatic (Internal.Raw.gtype gtype) zcb
 
   /// Checks if @drive is capable of automatically detecting media changes.
   let parentIsMediaCheckAutomatic (self: Drive) : bool =
@@ -15186,7 +15186,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_is_media_removable gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_is_media_removable (Internal.Raw.gtype gtype) zcb
 
   /// Checks if the @drive supports removable media.
   let parentIsMediaRemovable (self: Drive) : bool =
@@ -15198,7 +15198,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_is_removable gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_is_removable (Internal.Raw.gtype gtype) zcb
 
   /// Checks if the #GDrive and/or its media is considered removable by the user.
   let parentIsRemovable (self: Drive) : bool =
@@ -15214,7 +15214,7 @@ module Drive =
         let callback = Internal.Raw.argPointer 2
         let userData = Internal.Raw.argPointer 3
         handler drive cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Drive_poll_for_media gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_poll_for_media (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously polls @drive to see if media has been inserted or removed.
   let parentPollForMedia (self: Drive) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -15243,7 +15243,7 @@ module Drive =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler drive flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Drive_start gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_start (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously starts a drive.
   let parentStart (self: Drive) (flags: DriveStartFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -15276,7 +15276,7 @@ module Drive =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler drive flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Drive_stop gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_stop (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously stops a drive.
   let parentStop (self: Drive) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -15302,7 +15302,7 @@ module Drive =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler drive)
-    Internal.GioC.zgtk_override_Gio_Drive_stop_button gtype zcb
+    Internal.GioC.zgtk_override_Gio_Drive_stop_button (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted when the physical stop button (if any) of a drive have been pressed.
   let parentStopButton (self: Drive) : unit =
@@ -15706,7 +15706,7 @@ module DtlsConnection =
         let peerCert = TlsCertificate (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let errors = TlsCertificateFlags (int (Internal.Raw.argInt 2))
         Internal.Raw.returnBool (handler connection peerCert errors))
-    Internal.GioC.zgtk_override_Gio_DtlsConnection_accept_certificate gtype zcb
+    Internal.GioC.zgtk_override_Gio_DtlsConnection_accept_certificate (Internal.Raw.gtype gtype) zcb
 
   /// Check whether to accept a certificate.
   let parentAcceptCertificate (self: DtlsConnection) (peerCert: TlsCertificate) (errors: TlsCertificateFlags) : bool =
@@ -15720,7 +15720,7 @@ module DtlsConnection =
         match handler conn with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_DtlsConnection_get_negotiated_protocol gtype zcb
+    Internal.GioC.zgtk_override_Gio_DtlsConnection_get_negotiated_protocol (Internal.Raw.gtype gtype) zcb
 
   /// Gets the name of the application-layer protocol negotiated during the handshake.
   let parentGetNegotiatedProtocol (self: DtlsConnection) : option<string> =
@@ -15737,7 +15737,7 @@ module DtlsConnection =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler conn ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_DtlsConnection_handshake_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_DtlsConnection_handshake_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously performs a TLS handshake on @conn.
   let parentHandshakeAsync (self: DtlsConnection) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -15760,7 +15760,7 @@ module DtlsConnection =
         let conn = DtlsConnection (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let protocols = Internal.Raw.strvList (Internal.Raw.argPointer 1) 0
         handler conn protocols)
-    Internal.GioC.zgtk_override_Gio_DtlsConnection_set_advertised_protocols gtype zcb
+    Internal.GioC.zgtk_override_Gio_DtlsConnection_set_advertised_protocols (Internal.Raw.gtype gtype) zcb
 
   /// Sets the list of application-layer protocols to advertise that the caller is willing to speak on this connection.
   let parentSetAdvertisedProtocols (self: DtlsConnection) (protocols: list<string>) : unit =
@@ -15781,7 +15781,7 @@ module DtlsConnection =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler conn shutdownRead shutdownWrite ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_DtlsConnection_shutdown_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_DtlsConnection_shutdown_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously shut down part or all of the DTLS connection.
   let parentShutdownAsync (self: DtlsConnection) (shutdownRead: bool) (shutdownWrite: bool) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18106,7 +18106,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_append_to_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_append_to_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously opens @file for appending.
   let parentAppendToAsync (self: File) (flags: FileCreateFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18137,7 +18137,7 @@ module File =
         let callback = Internal.Raw.argPointer 7
         let userData = Internal.Raw.argPointer 8
         handler source destination flags ioPriority cancellable progressCallback progressCallbackData callback userData)
-    Internal.GioC.zgtk_override_Gio_File_copy_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_copy_async (Internal.Raw.gtype gtype) zcb
 
   /// Copies the file @source to the location specified by @destination asynchronously.
   let parentCopyAsync (self: File) (destination: File) (flags: FileCopyFlags) (ioPriority: int) (cancellable: option<Cancellable>) (progressCallback: int -> int -> unit) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18170,7 +18170,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_create_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_create_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously creates a new file and returns an output stream for writing to it.
   let parentCreateAsync (self: File) (flags: FileCreateFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18198,7 +18198,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_create_readwrite_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_create_readwrite_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously creates a new file and returns a stream for reading and writing to it.
   let parentCreateReadwriteAsync (self: File) (flags: FileCreateFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18225,7 +18225,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_delete_file_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_delete_file_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously delete a file.
   let parentDeleteFileAsync (self: File) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18247,7 +18247,7 @@ module File =
       Internal.Raw.hold (fun () ->
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler file).Id (Internal.GioC.g_file_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_File_dup gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_dup (Internal.Raw.gtype gtype) zcb
 
   /// Duplicates a #GFile handle.
   let parentDup (self: File) : File =
@@ -18264,7 +18264,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_eject_mountable gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_eject_mountable (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Starts an asynchronous eject on a mountable.
   let parentEjectMountable (self: File) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18293,7 +18293,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_eject_mountable_with_operation gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_eject_mountable_with_operation (Internal.Raw.gtype gtype) zcb
 
   /// Starts an asynchronous eject on a mountable.
   let parentEjectMountableWithOperation (self: File) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18326,7 +18326,7 @@ module File =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler file attributes flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_enumerate_children_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_enumerate_children_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously gets the requested information about the files in a directory.
   let parentEnumerateChildrenAsync (self: File) (attributes: string) (flags: FileQueryInfoFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18349,7 +18349,7 @@ module File =
         let file1 = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let file2 = File (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnBool (handler file1 file2))
-    Internal.GioC.zgtk_override_Gio_File_equal gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_equal (Internal.Raw.gtype gtype) zcb
 
   /// Checks if the two given #GFiles refer to the same file.
   let parentEqual (self: File) (file2: File) : bool =
@@ -18366,7 +18366,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_find_enclosing_mount_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_find_enclosing_mount_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously gets the mount for the file.
   let parentFindEnclosingMountAsync (self: File) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18390,7 +18390,7 @@ module File =
         match handler file with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_File_get_basename gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_get_basename (Internal.Raw.gtype gtype) zcb
 
   /// Gets the base name (the last component of the path) for a given #GFile.
   let parentGetBasename (self: File) : option<string> =
@@ -18404,7 +18404,7 @@ module File =
         match handler file with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_file_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_File_get_parent gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_get_parent (Internal.Raw.gtype gtype) zcb
 
   /// Gets the parent directory for the @file.
   let parentGetParent (self: File) : option<File> =
@@ -18418,7 +18418,7 @@ module File =
       Internal.Raw.hold (fun () ->
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler file)))
-    Internal.GioC.zgtk_override_Gio_File_get_parse_name gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_get_parse_name (Internal.Raw.gtype gtype) zcb
 
   /// Gets the parse name of the @file.
   let parentGetParseName (self: File) : string =
@@ -18432,7 +18432,7 @@ module File =
         match handler file with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_File_get_path gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_get_path (Internal.Raw.gtype gtype) zcb
 
   /// Gets the local pathname for #GFile, if one exists.
   let parentGetPath (self: File) : option<string> =
@@ -18447,7 +18447,7 @@ module File =
         match handler parent descendant with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_File_get_relative_path gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_get_relative_path (Internal.Raw.gtype gtype) zcb
 
   /// Gets the path for @descendant relative to @parent.
   let parentGetRelativePath (self: File) (descendant: File) : option<string> =
@@ -18459,7 +18459,7 @@ module File =
       Internal.Raw.hold (fun () ->
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler file)))
-    Internal.GioC.zgtk_override_Gio_File_get_uri gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_get_uri (Internal.Raw.gtype gtype) zcb
 
   /// Gets the URI for the @file.
   let parentGetUri (self: File) : string =
@@ -18473,7 +18473,7 @@ module File =
         match handler file with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_File_get_uri_scheme gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_get_uri_scheme (Internal.Raw.gtype gtype) zcb
 
   /// Gets the URI scheme for a #GFile.
   let parentGetUriScheme (self: File) : option<string> =
@@ -18486,7 +18486,7 @@ module File =
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let uriScheme = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnBool (handler file uriScheme))
-    Internal.GioC.zgtk_override_Gio_File_has_uri_scheme gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_has_uri_scheme (Internal.Raw.gtype gtype) zcb
 
   /// Checks to see if a #GFile has a given URI scheme.
   let parentHasUriScheme (self: File) (uriScheme: string) : bool =
@@ -18498,7 +18498,7 @@ module File =
       Internal.Raw.hold (fun () ->
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler file))
-    Internal.GioC.zgtk_override_Gio_File_hash gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_hash (Internal.Raw.gtype gtype) zcb
 
   /// Creates a hash value for a #GFile.
   let parentHash (self: File) : int =
@@ -18510,7 +18510,7 @@ module File =
       Internal.Raw.hold (fun () ->
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler file))
-    Internal.GioC.zgtk_override_Gio_File_is_native gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_is_native (Internal.Raw.gtype gtype) zcb
 
   /// Checks to see if a file is native to the platform.
   let parentIsNative (self: File) : bool =
@@ -18527,7 +18527,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_make_directory_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_make_directory_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously creates a directory.
   let parentMakeDirectoryAsync (self: File) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18555,7 +18555,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file symlinkValue ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_make_symbolic_link_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_make_symbolic_link_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously creates a symbolic link named @file which contains the string @symlink_value.
   let parentMakeSymbolicLinkAsync (self: File) (symlinkValue: string) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18585,7 +18585,7 @@ module File =
         let callback = Internal.Raw.argPointer 6
         let userData = Internal.Raw.argPointer 7
         handler file flags ioPriority cancellable progressCallback progressData callback userData)
-    Internal.GioC.zgtk_override_Gio_File_measure_disk_usage_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_measure_disk_usage_async (Internal.Raw.gtype gtype) zcb
 
   /// Recursively measures the disk usage of @file.
   let parentMeasureDiskUsageAsync (self: File) (flags: FileMeasureFlags) (ioPriority: int) (cancellable: option<Cancellable>) (progressCallback: bool -> int -> int -> int -> unit) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18622,7 +18622,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler location flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_mount_enclosing_volume gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_mount_enclosing_volume (Internal.Raw.gtype gtype) zcb
 
   /// Starts a @mount_operation, mounting the volume that contains the file @location.
   let parentMountEnclosingVolume (self: File) (flags: MountMountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18655,7 +18655,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_mount_mountable gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_mount_mountable (Internal.Raw.gtype gtype) zcb
 
   /// Mounts a file of type G_FILE_TYPE_MOUNTABLE.
   let parentMountMountable (self: File) (flags: MountMountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18690,7 +18690,7 @@ module File =
         let callback = Internal.Raw.argPointer 7
         let userData = Internal.Raw.argPointer 8
         handler source destination flags ioPriority cancellable progressCallback progressCallbackData callback userData)
-    Internal.GioC.zgtk_override_Gio_File_move_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_move_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously moves a file @source to the location of @destination.
   let parentMoveAsync (self: File) (destination: File) (flags: FileCopyFlags) (ioPriority: int) (cancellable: option<Cancellable>) (progressCallback: int -> int -> unit) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18723,7 +18723,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_open_readwrite_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_open_readwrite_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously opens @file for reading and writing.
   let parentOpenReadwriteAsync (self: File) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18749,7 +18749,7 @@ module File =
         let callback = Internal.Raw.argPointer 2
         let userData = Internal.Raw.argPointer 3
         handler file cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_poll_mountable gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_poll_mountable (Internal.Raw.gtype gtype) zcb
 
   /// Polls a file of type %G_FILE_TYPE_MOUNTABLE.
   let parentPollMountable (self: File) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18772,7 +18772,7 @@ module File =
         let prefix = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnBool (handler prefix file))
-    Internal.GioC.zgtk_override_Gio_File_prefix_matches gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_prefix_matches (Internal.Raw.gtype gtype) zcb
 
   /// Checks whether @file has the prefix specified by @prefix.
   let parentPrefixMatches (self: File) (file: File) : bool =
@@ -18786,7 +18786,7 @@ module File =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let cancellable = (if zid1 = 0 then None else Some (Cancellable zid1))
         Internal.Raw.returnBool (handler file cancellable))
-    Internal.GioC.zgtk_override_Gio_File_query_exists gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_query_exists (Internal.Raw.gtype gtype) zcb
 
   /// Utility function to check if a particular file exists.
   let parentQueryExists (self: File) (cancellable: option<Cancellable>) : bool =
@@ -18809,7 +18809,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file attributes ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_query_filesystem_info_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_query_filesystem_info_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously gets the requested information about the filesystem that the specified @file is on.
   let parentQueryFilesystemInfoAsync (self: File) (attributes: string) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18838,7 +18838,7 @@ module File =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler file attributes flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_query_info_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_query_info_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously gets the requested information about specified @file.
   let parentQueryInfoAsync (self: File) (attributes: string) (flags: FileQueryInfoFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18865,7 +18865,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_read_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_read_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously opens @file for reading.
   let parentReadAsync (self: File) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18895,7 +18895,7 @@ module File =
         let callback = Internal.Raw.argPointer 6
         let userData = Internal.Raw.argPointer 7
         handler file etag makeBackup flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_replace_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_replace_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously overwrites the file, replacing the contents, possibly creating a backup copy of the file first.
   let parentReplaceAsync (self: File) (etag: option<string>) (makeBackup: bool) (flags: FileCreateFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18927,7 +18927,7 @@ module File =
         let callback = Internal.Raw.argPointer 6
         let userData = Internal.Raw.argPointer 7
         handler file etag makeBackup flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_replace_readwrite_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_replace_readwrite_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously overwrites the file in read-write mode, replacing the contents, possibly creating a backup copy of the file first.
   let parentReplaceReadwriteAsync (self: File) (etag: option<string>) (makeBackup: bool) (flags: FileCreateFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18952,7 +18952,7 @@ module File =
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let relativePath = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler file relativePath).Id (Internal.GioC.g_file_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_File_resolve_relative_path gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_resolve_relative_path (Internal.Raw.gtype gtype) zcb
 
   /// Resolves a relative path for @file to an absolute path.
   let parentResolveRelativePath (self: File) (relativePath: string) : File =
@@ -18971,7 +18971,7 @@ module File =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler file info flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_set_attributes_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_set_attributes_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously sets the attributes of @file with @info.
   let parentSetAttributesAsync (self: File) (info: FileInfo) (flags: FileQueryInfoFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18999,7 +18999,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file displayName ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_set_display_name_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_set_display_name_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously sets the display name for a given #GFile.
   let parentSetDisplayNameAsync (self: File) (displayName: string) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19028,7 +19028,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags startOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_start_mountable gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_start_mountable (Internal.Raw.gtype gtype) zcb
 
   /// Starts a file of type %G_FILE_TYPE_MOUNTABLE.
   let parentStartMountable (self: File) (flags: DriveStartFlags) (startOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19061,7 +19061,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_stop_mountable gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_stop_mountable (Internal.Raw.gtype gtype) zcb
 
   /// Stops a file of type %G_FILE_TYPE_MOUNTABLE.
   let parentStopMountable (self: File) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19092,7 +19092,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_trash_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_trash_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously sends @file to the Trash location, if possible.
   let parentTrashAsync (self: File) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19119,7 +19119,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_unmount_mountable gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_unmount_mountable (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Unmounts a file of type G_FILE_TYPE_MOUNTABLE.
   let parentUnmountMountable (self: File) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19148,7 +19148,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_unmount_mountable_with_operation gtype zcb
+    Internal.GioC.zgtk_override_Gio_File_unmount_mountable_with_operation (Internal.Raw.gtype gtype) zcb
 
   /// Unmounts a file of type %G_FILE_TYPE_MOUNTABLE.
   let parentUnmountMountableWithOperation (self: File) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19443,7 +19443,7 @@ module FileEnumerator =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler enumerator ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_FileEnumerator_close_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileEnumerator_close_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously closes the file enumerator.
   let parentCloseAsync (self: FileEnumerator) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19471,7 +19471,7 @@ module FileEnumerator =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler enumerator numFiles ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_FileEnumerator_next_files_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileEnumerator_next_files_async (Internal.Raw.gtype gtype) zcb
 
   /// Request information for a number of files from the enumerator asynchronously.
   let parentNextFilesAsync (self: FileEnumerator) (numFiles: int) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19643,7 +19643,7 @@ module IOStream =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler stream ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_IOStream_close_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_IOStream_close_async (Internal.Raw.gtype gtype) zcb
 
   /// Requests an asynchronous close of the stream, releasing resources related to it.
   let parentCloseAsync (self: IOStream) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19665,7 +19665,7 @@ module IOStream =
       Internal.Raw.hold (fun () ->
         let stream = IOStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler stream).Id (Internal.GioC.g_input_stream_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_IOStream_get_input_stream gtype zcb
+    Internal.GioC.zgtk_override_Gio_IOStream_get_input_stream (Internal.Raw.gtype gtype) zcb
 
   /// Gets the input stream for this object.
   let parentGetInputStream (self: IOStream) : InputStream =
@@ -19677,7 +19677,7 @@ module IOStream =
       Internal.Raw.hold (fun () ->
         let stream = IOStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler stream).Id (Internal.GioC.g_output_stream_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_IOStream_get_output_stream gtype zcb
+    Internal.GioC.zgtk_override_Gio_IOStream_get_output_stream (Internal.Raw.gtype gtype) zcb
 
   /// Gets the output stream for this object.
   let parentGetOutputStream (self: IOStream) : OutputStream =
@@ -19763,7 +19763,7 @@ module FileIOStream =
       Internal.Raw.hold (fun () ->
         let stream = FileIOStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileIOStream_can_seek gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileIOStream_can_seek (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_FileIOStream_can_seek`.
   let parentCanSeek (self: FileIOStream) : bool =
@@ -19775,7 +19775,7 @@ module FileIOStream =
       Internal.Raw.hold (fun () ->
         let stream = FileIOStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileIOStream_can_truncate gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileIOStream_can_truncate (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_FileIOStream_can_truncate`.
   let parentCanTruncate (self: FileIOStream) : bool =
@@ -19789,7 +19789,7 @@ module FileIOStream =
         match handler stream with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_FileIOStream_get_etag gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileIOStream_get_etag (Internal.Raw.gtype gtype) zcb
 
   /// Gets the entity tag for the file when it has been written.
   let parentGetEtag (self: FileIOStream) : option<string> =
@@ -19807,7 +19807,7 @@ module FileIOStream =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler stream attributes ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_FileIOStream_query_info_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileIOStream_query_info_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously queries the @stream for a #GFileInfo.
   let parentQueryInfoAsync (self: FileIOStream) (attributes: string) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19829,7 +19829,7 @@ module FileIOStream =
       Internal.Raw.hold (fun () ->
         let stream = FileIOStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileIOStream_tell gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileIOStream_tell (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_FileIOStream_tell`.
   let parentTell (self: FileIOStream) : int =
@@ -20262,7 +20262,7 @@ module FileInputStream =
       Internal.Raw.hold (fun () ->
         let stream = FileInputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileInputStream_can_seek gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileInputStream_can_seek (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_FileInputStream_can_seek`.
   let parentCanSeek (self: FileInputStream) : bool =
@@ -20280,7 +20280,7 @@ module FileInputStream =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler stream attributes ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_FileInputStream_query_info_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileInputStream_query_info_async (Internal.Raw.gtype gtype) zcb
 
   /// Queries the stream information asynchronously.
   let parentQueryInfoAsync (self: FileInputStream) (attributes: string) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -20302,7 +20302,7 @@ module FileInputStream =
       Internal.Raw.hold (fun () ->
         let stream = FileInputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileInputStream_tell gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileInputStream_tell (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_FileInputStream_tell`.
   let parentTell (self: FileInputStream) : int =
@@ -20365,7 +20365,7 @@ module FileMonitor =
       Internal.Raw.hold (fun () ->
         let monitor = FileMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler monitor))
-    Internal.GioC.zgtk_override_Gio_FileMonitor_cancel gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileMonitor_cancel (Internal.Raw.gtype gtype) zcb
 
   /// Cancels a file monitor.
   let parentCancel (self: FileMonitor) : bool =
@@ -20380,7 +20380,7 @@ module FileMonitor =
         let otherFile = File (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         let eventType = FileMonitorEvent (int (Internal.Raw.argInt 3))
         handler monitor file otherFile eventType)
-    Internal.GioC.zgtk_override_Gio_FileMonitor_changed gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileMonitor_changed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_FileMonitor_changed`.
   let parentChanged (self: FileMonitor) (file: File) (otherFile: File) (eventType: FileMonitorEvent) : unit =
@@ -20466,7 +20466,7 @@ module FileOutputStream =
       Internal.Raw.hold (fun () ->
         let stream = FileOutputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileOutputStream_can_seek gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileOutputStream_can_seek (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_FileOutputStream_can_seek`.
   let parentCanSeek (self: FileOutputStream) : bool =
@@ -20478,7 +20478,7 @@ module FileOutputStream =
       Internal.Raw.hold (fun () ->
         let stream = FileOutputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileOutputStream_can_truncate gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileOutputStream_can_truncate (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_FileOutputStream_can_truncate`.
   let parentCanTruncate (self: FileOutputStream) : bool =
@@ -20492,7 +20492,7 @@ module FileOutputStream =
         match handler stream with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_FileOutputStream_get_etag gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileOutputStream_get_etag (Internal.Raw.gtype gtype) zcb
 
   /// Gets the entity tag for the file when it has been written.
   let parentGetEtag (self: FileOutputStream) : option<string> =
@@ -20510,7 +20510,7 @@ module FileOutputStream =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler stream attributes ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_FileOutputStream_query_info_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileOutputStream_query_info_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously queries the @stream for a #GFileInfo.
   let parentQueryInfoAsync (self: FileOutputStream) (attributes: string) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -20532,7 +20532,7 @@ module FileOutputStream =
       Internal.Raw.hold (fun () ->
         let stream = FileOutputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileOutputStream_tell gtype zcb
+    Internal.GioC.zgtk_override_Gio_FileOutputStream_tell (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_FileOutputStream_tell`.
   let parentTell (self: FileOutputStream) : int =
@@ -20575,7 +20575,7 @@ module FilenameCompleter =
       Internal.Raw.hold (fun () ->
         let filenameCompleter = FilenameCompleter (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler filenameCompleter)
-    Internal.GioC.zgtk_override_Gio_FilenameCompleter_got_completion_data gtype zcb
+    Internal.GioC.zgtk_override_Gio_FilenameCompleter_got_completion_data (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_FilenameCompleter_got_completion_data`.
   let parentGotCompletionData (self: FilenameCompleter) : unit =
@@ -20623,11 +20623,11 @@ module IOExtensionPoint =
   /// Sets the required type for @extension_point to @type.
   [<Unsafe>]
   let setRequiredType (self: IOExtensionPoint) (type_: usize) : unit =
-    Internal.GioC.g_io_extension_point_set_required_type self.Ptr type_
+    Internal.GioC.g_io_extension_point_set_required_type self.Ptr (Internal.Raw.gtype type_)
 
   /// Registers @type as extension for the extension point with name @extension_point_name.
   let implement (extensionPointName: string) (type_: usize) (extensionName: string) (priority: int) : IOExtension =
-    IOExtension ((Internal.GioC.g_io_extension_point_implement extensionPointName type_ extensionName (i32 priority)))
+    IOExtension ((Internal.GioC.g_io_extension_point_implement extensionPointName (Internal.Raw.gtype type_) extensionName (i32 priority)))
 
   /// Looks up an existing extension point.
   let lookup (name: string) : IOExtensionPoint =
@@ -20736,7 +20736,7 @@ module SocketControlMessage =
       Internal.Raw.hold (fun () ->
         let message = SocketControlMessage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler message))
-    Internal.GioC.zgtk_override_Gio_SocketControlMessage_get_level gtype zcb
+    Internal.GioC.zgtk_override_Gio_SocketControlMessage_get_level (Internal.Raw.gtype gtype) zcb
 
   /// Returns the "level" (i.e.
   let parentGetLevel (self: SocketControlMessage) : int =
@@ -20748,7 +20748,7 @@ module SocketControlMessage =
       Internal.Raw.hold (fun () ->
         let message = SocketControlMessage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler message))
-    Internal.GioC.zgtk_override_Gio_SocketControlMessage_get_size gtype zcb
+    Internal.GioC.zgtk_override_Gio_SocketControlMessage_get_size (Internal.Raw.gtype gtype) zcb
 
   /// Returns the space required for the control message, not including headers or alignment.
   let parentGetSize (self: SocketControlMessage) : int =
@@ -20760,7 +20760,7 @@ module SocketControlMessage =
       Internal.Raw.hold (fun () ->
         let message = SocketControlMessage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler message))
-    Internal.GioC.zgtk_override_Gio_SocketControlMessage_get_type gtype zcb
+    Internal.GioC.zgtk_override_Gio_SocketControlMessage_get_type (Internal.Raw.gtype gtype) zcb
 
   /// gets the protocol specific type of the message.
   let parentGetType (self: SocketControlMessage) : int =
@@ -20773,7 +20773,7 @@ module SocketControlMessage =
         let message = SocketControlMessage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let data = Internal.Raw.argPointer 1
         handler message data)
-    Internal.GioC.zgtk_override_Gio_SocketControlMessage_serialize gtype zcb
+    Internal.GioC.zgtk_override_Gio_SocketControlMessage_serialize (Internal.Raw.gtype gtype) zcb
 
   /// Converts the data in the message to bytes placed in the message.
   [<Unsafe>]
@@ -20848,6 +20848,7 @@ module InetAddress =
     InetAddress (Internal.Raw.wrap ((Internal.GioC.g_inet_address_new_any (i32 family.Int))) true)
 
   /// Creates a new #GInetAddress from the given @family and @bytes.
+  [<Unsafe>]
   let createFromBytes (bytes: array<u8>) (family: SocketFamily) : InetAddress =
     let za1 = Internal.Raw.bytes bytes
     let zr = Internal.GioC.g_inet_address_new_from_bytes za1 (i32 family.Int)
@@ -20856,6 +20857,7 @@ module InetAddress =
     zv
 
   /// Creates a new [class@Gio.InetAddress] from the given @family, @bytes and @scope_id.
+  [<Unsafe>]
   let createFromBytesWithIpv6Info (bytes: array<u8>) (family: SocketFamily) (flowinfo: int) (scopeId: int) : InetAddress =
     let za1 = Internal.Raw.bytes bytes
     let zr = Internal.GioC.g_inet_address_new_from_bytes_with_ipv6_info za1 (i32 family.Int) (u32 flowinfo) (u32 scopeId)
@@ -21001,7 +21003,7 @@ module InetAddress =
       Internal.Raw.hold (fun () ->
         let address = InetAddress (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler address))
-    Internal.GioC.zgtk_override_Gio_InetAddress_to_bytes gtype zcb
+    Internal.GioC.zgtk_override_Gio_InetAddress_to_bytes (Internal.Raw.gtype gtype) zcb
 
   /// Gets the raw binary address data from @address.
   let parentToBytes (self: InetAddress) : int =
@@ -21013,7 +21015,7 @@ module InetAddress =
       Internal.Raw.hold (fun () ->
         let address = InetAddress (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler address)))
-    Internal.GioC.zgtk_override_Gio_InetAddress_to_string gtype zcb
+    Internal.GioC.zgtk_override_Gio_InetAddress_to_string (Internal.Raw.gtype gtype) zcb
 
   /// Converts @address to string form.
   let parentToString (self: InetAddress) : string =
@@ -21130,7 +21132,7 @@ module SocketConnectable =
       Internal.Raw.hold (fun () ->
         let connectable = SocketConnectable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler connectable).Id (Internal.GioC.g_socket_address_enumerator_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_SocketConnectable_enumerate gtype zcb
+    Internal.GioC.zgtk_override_Gio_SocketConnectable_enumerate (Internal.Raw.gtype gtype) zcb
 
   /// Creates a #GSocketAddressEnumerator for @connectable.
   let parentEnumerate (self: SocketConnectable) : SocketAddressEnumerator =
@@ -21142,7 +21144,7 @@ module SocketConnectable =
       Internal.Raw.hold (fun () ->
         let connectable = SocketConnectable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler connectable).Id (Internal.GioC.g_socket_address_enumerator_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_SocketConnectable_proxy_enumerate gtype zcb
+    Internal.GioC.zgtk_override_Gio_SocketConnectable_proxy_enumerate (Internal.Raw.gtype gtype) zcb
 
   /// Creates a #GSocketAddressEnumerator for @connectable that will return a #GProxyAddress for each of its addresses that you must connect to via a proxy.
   let parentProxyEnumerate (self: SocketConnectable) : SocketAddressEnumerator =
@@ -21154,7 +21156,7 @@ module SocketConnectable =
       Internal.Raw.hold (fun () ->
         let connectable = SocketConnectable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler connectable)))
-    Internal.GioC.zgtk_override_Gio_SocketConnectable_to_string gtype zcb
+    Internal.GioC.zgtk_override_Gio_SocketConnectable_to_string (Internal.Raw.gtype gtype) zcb
 
   /// Format a #GSocketConnectable as a string.
   let parentToString (self: SocketConnectable) : string =
@@ -21211,7 +21213,7 @@ module SocketAddress =
       Internal.Raw.hold (fun () ->
         let address = SocketAddress (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler address).Int)
-    Internal.GioC.zgtk_override_Gio_SocketAddress_get_family gtype zcb
+    Internal.GioC.zgtk_override_Gio_SocketAddress_get_family (Internal.Raw.gtype gtype) zcb
 
   /// Gets the socket family type of @address.
   let parentGetFamily (self: SocketAddress) : SocketFamily =
@@ -21223,7 +21225,7 @@ module SocketAddress =
       Internal.Raw.hold (fun () ->
         let address = SocketAddress (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler address))
-    Internal.GioC.zgtk_override_Gio_SocketAddress_get_native_size gtype zcb
+    Internal.GioC.zgtk_override_Gio_SocketAddress_get_native_size (Internal.Raw.gtype gtype) zcb
 
   /// Gets the size of @address's native struct sockaddr.
   let parentGetNativeSize (self: SocketAddress) : int =
@@ -21370,7 +21372,7 @@ module ListModel =
         match handler list position with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GObjectC.g_object_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_ListModel_get_item gtype zcb
+    Internal.GioC.zgtk_override_Gio_ListModel_get_item (Internal.Raw.gtype gtype) zcb
 
   /// Get the item at @position.
   let parentGetItem (self: ListModel) (position: int) : option<GObject.Object> =
@@ -21383,8 +21385,8 @@ module ListModel =
     let zcb =
       Internal.Raw.hold (fun () ->
         let list = ListModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
-        Internal.Raw.returnInt (int (handler list)))
-    Internal.GioC.zgtk_override_Gio_ListModel_get_item_type gtype zcb
+        Internal.Raw.returnInt (int (Internal.Raw.gtype (handler list))))
+    Internal.GioC.zgtk_override_Gio_ListModel_get_item_type (Internal.Raw.gtype gtype) zcb
 
   /// Gets the type of the items in @list.
   let parentGetItemType (self: ListModel) : usize =
@@ -21396,7 +21398,7 @@ module ListModel =
       Internal.Raw.hold (fun () ->
         let list = ListModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler list))
-    Internal.GioC.zgtk_override_Gio_ListModel_get_n_items gtype zcb
+    Internal.GioC.zgtk_override_Gio_ListModel_get_n_items (Internal.Raw.gtype gtype) zcb
 
   /// Gets the number of items in @list.
   let parentGetNItems (self: ListModel) : int =
@@ -21418,7 +21420,7 @@ module ListStore =
 
   /// Creates a new #GListStore with items of type @item_type.
   let create (itemType: usize) : ListStore =
-    ListStore (Internal.Raw.wrap ((Internal.GioC.g_list_store_new itemType)) true)
+    ListStore (Internal.Raw.wrap ((Internal.GioC.g_list_store_new (Internal.Raw.gtype itemType))) true)
 
   /// Appends @item to @store.
   let append (self: ListStore) (item: GObject.Object) : unit =
@@ -21587,7 +21589,7 @@ module MemoryMonitor =
         let monitor = MemoryMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let level = MemoryMonitorWarningLevel (int (Internal.Raw.argInt 1))
         handler monitor level)
-    Internal.GioC.zgtk_override_Gio_MemoryMonitor_low_memory_warning gtype zcb
+    Internal.GioC.zgtk_override_Gio_MemoryMonitor_low_memory_warning (Internal.Raw.gtype gtype) zcb
 
   /// the virtual function pointer for the #GMemoryMonitor::low-memory-warning signal.
   let parentLowMemoryWarning (self: MemoryMonitor) (level: MemoryMonitorWarningLevel) : unit =
@@ -21806,7 +21808,7 @@ module MenuAttributeIter =
         let (zres, outName) = handler iter value
         Internal.Raw.setPointer 1 (Internal.Raw.intern outName)
         Internal.Raw.returnBool (zres))
-    Internal.GioC.zgtk_override_Gio_MenuAttributeIter_get_next gtype zcb
+    Internal.GioC.zgtk_override_Gio_MenuAttributeIter_get_next (Internal.Raw.gtype gtype) zcb
 
   /// This function combines g_menu_attribute_iter_next() with g_menu_attribute_iter_get_name() and g_menu_attribute_iter_get_value().
   let parentGetNext (self: MenuAttributeIter) : (bool * option<string> * option<GLib.Variant>) =
@@ -21971,7 +21973,7 @@ module MenuLinkIter =
         Internal.Raw.setPointer 1 (Internal.Raw.intern outLink)
         Internal.Raw.setPointer 2 (Internal.Raw.give (Internal.Raw.obj value.Id (Internal.GioC.g_menu_model_get_type ())))
         Internal.Raw.returnBool (zres))
-    Internal.GioC.zgtk_override_Gio_MenuLinkIter_get_next gtype zcb
+    Internal.GioC.zgtk_override_Gio_MenuLinkIter_get_next (Internal.Raw.gtype gtype) zcb
 
   /// This function combines g_menu_link_iter_next() with g_menu_link_iter_get_name() and g_menu_link_iter_get_value().
   let parentGetNext (self: MenuLinkIter) : (bool * option<string> * option<MenuModel>) =
@@ -22316,7 +22318,7 @@ module Mount =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler mount))
-    Internal.GioC.zgtk_override_Gio_Mount_can_eject gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_can_eject (Internal.Raw.gtype gtype) zcb
 
   /// Checks if @mount can be ejected.
   let parentCanEject (self: Mount) : bool =
@@ -22328,7 +22330,7 @@ module Mount =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler mount))
-    Internal.GioC.zgtk_override_Gio_Mount_can_unmount gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_can_unmount (Internal.Raw.gtype gtype) zcb
 
   /// Checks if @mount can be unmounted.
   let parentCanUnmount (self: Mount) : bool =
@@ -22340,7 +22342,7 @@ module Mount =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler mount)
-    Internal.GioC.zgtk_override_Gio_Mount_changed gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_changed (Internal.Raw.gtype gtype) zcb
 
   /// Changed signal that is emitted when the mount's state has changed.
   let parentChanged (self: Mount) : unit =
@@ -22357,7 +22359,7 @@ module Mount =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler mount flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Mount_eject gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_eject (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Ejects a mount.
   let parentEject (self: Mount) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -22386,7 +22388,7 @@ module Mount =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler mount flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Mount_eject_with_operation gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_eject_with_operation (Internal.Raw.gtype gtype) zcb
 
   /// Ejects a mount.
   let parentEjectWithOperation (self: Mount) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -22412,7 +22414,7 @@ module Mount =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler mount).Id (Internal.GioC.g_file_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Mount_get_default_location gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_get_default_location (Internal.Raw.gtype gtype) zcb
 
   /// Gets the default location of @mount.
   let parentGetDefaultLocation (self: Mount) : File =
@@ -22426,7 +22428,7 @@ module Mount =
         match handler mount with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_drive_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Mount_get_drive gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_get_drive (Internal.Raw.gtype gtype) zcb
 
   /// Gets the drive for the @mount.
   let parentGetDrive (self: Mount) : option<Drive> =
@@ -22440,7 +22442,7 @@ module Mount =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler mount).Id (Internal.GioC.g_icon_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Mount_get_icon gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_get_icon (Internal.Raw.gtype gtype) zcb
 
   /// Gets the icon for @mount.
   let parentGetIcon (self: Mount) : Icon =
@@ -22452,7 +22454,7 @@ module Mount =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler mount)))
-    Internal.GioC.zgtk_override_Gio_Mount_get_name gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_get_name (Internal.Raw.gtype gtype) zcb
 
   /// Gets the name of @mount.
   let parentGetName (self: Mount) : string =
@@ -22464,7 +22466,7 @@ module Mount =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler mount).Id (Internal.GioC.g_file_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Mount_get_root gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_get_root (Internal.Raw.gtype gtype) zcb
 
   /// Gets the root directory on @mount.
   let parentGetRoot (self: Mount) : File =
@@ -22478,7 +22480,7 @@ module Mount =
         match handler mount with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Mount_get_sort_key gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_get_sort_key (Internal.Raw.gtype gtype) zcb
 
   /// Gets the sort key for @mount, if any.
   let parentGetSortKey (self: Mount) : option<string> =
@@ -22490,7 +22492,7 @@ module Mount =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler mount).Id (Internal.GioC.g_icon_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Mount_get_symbolic_icon gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_get_symbolic_icon (Internal.Raw.gtype gtype) zcb
 
   /// Gets the symbolic icon for @mount.
   let parentGetSymbolicIcon (self: Mount) : Icon =
@@ -22504,7 +22506,7 @@ module Mount =
         match handler mount with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Mount_get_uuid gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_get_uuid (Internal.Raw.gtype gtype) zcb
 
   /// Gets the UUID for the @mount.
   let parentGetUuid (self: Mount) : option<string> =
@@ -22518,7 +22520,7 @@ module Mount =
         match handler mount with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_volume_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Mount_get_volume gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_get_volume (Internal.Raw.gtype gtype) zcb
 
   /// Gets the volume for the @mount.
   let parentGetVolume (self: Mount) : option<Volume> =
@@ -22537,7 +22539,7 @@ module Mount =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler mount forceRescan cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Mount_guess_content_type gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_guess_content_type (Internal.Raw.gtype gtype) zcb
 
   /// Tries to guess the type of content stored on @mount.
   let parentGuessContentType (self: Mount) (forceRescan: bool) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -22559,7 +22561,7 @@ module Mount =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler mount)
-    Internal.GioC.zgtk_override_Gio_Mount_pre_unmount gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_pre_unmount (Internal.Raw.gtype gtype) zcb
 
   /// The ::pre-unmount signal that is emitted when the #GMount will soon be emitted.
   let parentPreUnmount (self: Mount) : unit =
@@ -22578,7 +22580,7 @@ module Mount =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler mount flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Mount_remount gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_remount (Internal.Raw.gtype gtype) zcb
 
   /// Remounts a mount.
   let parentRemount (self: Mount) (flags: MountMountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -22609,7 +22611,7 @@ module Mount =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler mount flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Mount_unmount gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_unmount (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Unmounts a mount.
   let parentUnmount (self: Mount) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -22638,7 +22640,7 @@ module Mount =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler mount flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Mount_unmount_with_operation gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_unmount_with_operation (Internal.Raw.gtype gtype) zcb
 
   /// Unmounts a mount.
   let parentUnmountWithOperation (self: Mount) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -22664,7 +22666,7 @@ module Mount =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler mount)
-    Internal.GioC.zgtk_override_Gio_Mount_unmounted gtype zcb
+    Internal.GioC.zgtk_override_Gio_Mount_unmounted (Internal.Raw.gtype gtype) zcb
 
   /// The unmounted signal that is emitted when the #GMount have been unmounted.
   let parentUnmounted (self: Mount) : unit =
@@ -22851,7 +22853,7 @@ module MountOperation =
       Internal.Raw.hold (fun () ->
         let op = MountOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler op)
-    Internal.GioC.zgtk_override_Gio_MountOperation_aborted gtype zcb
+    Internal.GioC.zgtk_override_Gio_MountOperation_aborted (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_MountOperation_aborted`.
   let parentAborted (self: MountOperation) : unit =
@@ -22867,7 +22869,7 @@ module MountOperation =
         let defaultDomain = Internal.Raw.text (Internal.Raw.argPointer 3)
         let flags = AskPasswordFlags (int (Internal.Raw.argInt 4))
         handler op message defaultUser defaultDomain flags)
-    Internal.GioC.zgtk_override_Gio_MountOperation_ask_password gtype zcb
+    Internal.GioC.zgtk_override_Gio_MountOperation_ask_password (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_MountOperation_ask_password`.
   let parentAskPassword (self: MountOperation) (message: string) (defaultUser: string) (defaultDomain: string) (flags: AskPasswordFlags) : unit =
@@ -22881,7 +22883,7 @@ module MountOperation =
         let message = Internal.Raw.text (Internal.Raw.argPointer 1)
         let choices = Internal.Raw.strvList (Internal.Raw.argPointer 2) 0
         handler op message choices)
-    Internal.GioC.zgtk_override_Gio_MountOperation_ask_question gtype zcb
+    Internal.GioC.zgtk_override_Gio_MountOperation_ask_question (Internal.Raw.gtype gtype) zcb
 
   /// Virtual implementation of #GMountOperation::ask-question.
   let parentAskQuestion (self: MountOperation) (message: string) (choices: list<string>) : unit =
@@ -22896,7 +22898,7 @@ module MountOperation =
         let op = MountOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let result = MountOperationResult (int (Internal.Raw.argInt 1))
         handler op result)
-    Internal.GioC.zgtk_override_Gio_MountOperation_reply gtype zcb
+    Internal.GioC.zgtk_override_Gio_MountOperation_reply (Internal.Raw.gtype gtype) zcb
 
   /// Emits the #GMountOperation::reply signal.
   let parentReply (self: MountOperation) (result: MountOperationResult) : unit =
@@ -22911,7 +22913,7 @@ module MountOperation =
         let processes = GLib.Array (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GLibC.g_array_get_type ()) false)
         let choices = Internal.Raw.strvList (Internal.Raw.argPointer 3) 0
         handler op message processes choices)
-    Internal.GioC.zgtk_override_Gio_MountOperation_show_processes gtype zcb
+    Internal.GioC.zgtk_override_Gio_MountOperation_show_processes (Internal.Raw.gtype gtype) zcb
 
   /// Virtual implementation of #GMountOperation::show-processes.
   let parentShowProcesses (self: MountOperation) (message: string) (processes: GLib.Array) (choices: list<string>) : unit =
@@ -22928,7 +22930,7 @@ module MountOperation =
         let timeLeft = Internal.Raw.argInt 2
         let bytesLeft = Internal.Raw.argInt 3
         handler op message timeLeft bytesLeft)
-    Internal.GioC.zgtk_override_Gio_MountOperation_show_unmount_progress gtype zcb
+    Internal.GioC.zgtk_override_Gio_MountOperation_show_unmount_progress (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_MountOperation_show_unmount_progress`.
   let parentShowUnmountProgress (self: MountOperation) (message: string) (timeLeft: int) (bytesLeft: int) : unit =
@@ -23078,7 +23080,7 @@ module VolumeMonitor =
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor drive)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_changed gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_changed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_VolumeMonitor_drive_changed`.
   let parentDriveChanged (self: VolumeMonitor) (drive: Drive) : unit =
@@ -23091,7 +23093,7 @@ module VolumeMonitor =
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor drive)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_connected gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_connected (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_VolumeMonitor_drive_connected`.
   let parentDriveConnected (self: VolumeMonitor) (drive: Drive) : unit =
@@ -23104,7 +23106,7 @@ module VolumeMonitor =
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor drive)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_disconnected gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_disconnected (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_VolumeMonitor_drive_disconnected`.
   let parentDriveDisconnected (self: VolumeMonitor) (drive: Drive) : unit =
@@ -23117,7 +23119,7 @@ module VolumeMonitor =
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor drive)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_eject_button gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_eject_button (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_VolumeMonitor_drive_eject_button`.
   let parentDriveEjectButton (self: VolumeMonitor) (drive: Drive) : unit =
@@ -23130,7 +23132,7 @@ module VolumeMonitor =
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor drive)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_stop_button gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_stop_button (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_VolumeMonitor_drive_stop_button`.
   let parentDriveStopButton (self: VolumeMonitor) (drive: Drive) : unit =
@@ -23142,7 +23144,7 @@ module VolumeMonitor =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.glist (Internal.Raw.mapList (fun (zo: Drive) -> Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_drive_get_type ()))) (handler volumeMonitor)) false))
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_connected_drives gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_connected_drives (Internal.Raw.gtype gtype) zcb
 
   /// Gets a list of drives connected to the system.
   let parentGetConnectedDrives (self: VolumeMonitor) : list<Drive> =
@@ -23157,7 +23159,7 @@ module VolumeMonitor =
         match handler volumeMonitor uuid with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_mount_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_mount_for_uuid gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_mount_for_uuid (Internal.Raw.gtype gtype) zcb
 
   /// Finds a #GMount object by its UUID (see g_mount_get_uuid())
   let parentGetMountForUuid (self: VolumeMonitor) (uuid: string) : option<Mount> =
@@ -23171,7 +23173,7 @@ module VolumeMonitor =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.glist (Internal.Raw.mapList (fun (zo: Mount) -> Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_mount_get_type ()))) (handler volumeMonitor)) false))
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_mounts gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_mounts (Internal.Raw.gtype gtype) zcb
 
   /// Gets a list of the mounts on the system.
   let parentGetMounts (self: VolumeMonitor) : list<Mount> =
@@ -23186,7 +23188,7 @@ module VolumeMonitor =
         match handler volumeMonitor uuid with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_volume_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_volume_for_uuid gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_volume_for_uuid (Internal.Raw.gtype gtype) zcb
 
   /// Finds a #GVolume object by its UUID (see g_volume_get_uuid())
   let parentGetVolumeForUuid (self: VolumeMonitor) (uuid: string) : option<Volume> =
@@ -23200,7 +23202,7 @@ module VolumeMonitor =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.glist (Internal.Raw.mapList (fun (zo: Volume) -> Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_volume_get_type ()))) (handler volumeMonitor)) false))
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_volumes gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_volumes (Internal.Raw.gtype gtype) zcb
 
   /// Gets a list of the volumes on the system.
   let parentGetVolumes (self: VolumeMonitor) : list<Volume> =
@@ -23213,7 +23215,7 @@ module VolumeMonitor =
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor mount)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_added gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_added (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_VolumeMonitor_mount_added`.
   let parentMountAdded (self: VolumeMonitor) (mount: Mount) : unit =
@@ -23226,7 +23228,7 @@ module VolumeMonitor =
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor mount)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_changed gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_changed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_VolumeMonitor_mount_changed`.
   let parentMountChanged (self: VolumeMonitor) (mount: Mount) : unit =
@@ -23239,7 +23241,7 @@ module VolumeMonitor =
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor mount)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_pre_unmount gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_pre_unmount (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_VolumeMonitor_mount_pre_unmount`.
   let parentMountPreUnmount (self: VolumeMonitor) (mount: Mount) : unit =
@@ -23252,7 +23254,7 @@ module VolumeMonitor =
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor mount)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_removed gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_removed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_VolumeMonitor_mount_removed`.
   let parentMountRemoved (self: VolumeMonitor) (mount: Mount) : unit =
@@ -23265,7 +23267,7 @@ module VolumeMonitor =
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor volume)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_volume_added gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_volume_added (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_VolumeMonitor_volume_added`.
   let parentVolumeAdded (self: VolumeMonitor) (volume: Volume) : unit =
@@ -23278,7 +23280,7 @@ module VolumeMonitor =
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor volume)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_volume_changed gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_volume_changed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_VolumeMonitor_volume_changed`.
   let parentVolumeChanged (self: VolumeMonitor) (volume: Volume) : unit =
@@ -23291,7 +23293,7 @@ module VolumeMonitor =
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor volume)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_volume_removed gtype zcb
+    Internal.GioC.zgtk_override_Gio_VolumeMonitor_volume_removed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_VolumeMonitor_volume_removed`.
   let parentVolumeRemoved (self: VolumeMonitor) (volume: Volume) : unit =
@@ -23492,7 +23494,7 @@ module NetworkMonitor =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler monitor connectable cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_NetworkMonitor_can_reach_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_NetworkMonitor_can_reach_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously attempts to determine whether or not the host pointed to by @connectable can be reached, without actually trying to connect to it.
   let parentCanReachAsync (self: NetworkMonitor) (connectable: SocketConnectable) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -23515,7 +23517,7 @@ module NetworkMonitor =
         let monitor = NetworkMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let networkAvailable = (Internal.Raw.argInt 1 <> 0)
         handler monitor networkAvailable)
-    Internal.GioC.zgtk_override_Gio_NetworkMonitor_network_changed gtype zcb
+    Internal.GioC.zgtk_override_Gio_NetworkMonitor_network_changed (Internal.Raw.gtype gtype) zcb
 
   /// the virtual function pointer for the GNetworkMonitor::network-changed signal.
   let parentNetworkChanged (self: NetworkMonitor) (networkAvailable: bool) : unit =
@@ -23835,7 +23837,7 @@ module Permission =
         let callback = Internal.Raw.argPointer 2
         let userData = Internal.Raw.argPointer 3
         handler permission cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Permission_acquire_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_Permission_acquire_async (Internal.Raw.gtype gtype) zcb
 
   /// Attempts to acquire the permission represented by @permission.
   let parentAcquireAsync (self: Permission) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -23861,7 +23863,7 @@ module Permission =
         let callback = Internal.Raw.argPointer 2
         let userData = Internal.Raw.argPointer 3
         handler permission cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Permission_release_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_Permission_release_async (Internal.Raw.gtype gtype) zcb
 
   /// Attempts to release the permission represented by @permission.
   let parentReleaseAsync (self: Permission) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24045,7 +24047,7 @@ module Proxy =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler proxy connection proxyAddress cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Proxy_connect_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_Proxy_connect_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronous version of g_proxy_connect().
   let parentConnectAsync (self: Proxy) (connection: IOStream) (proxyAddress: ProxyAddress) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24067,7 +24069,7 @@ module Proxy =
       Internal.Raw.hold (fun () ->
         let proxy = Proxy (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler proxy))
-    Internal.GioC.zgtk_override_Gio_Proxy_supports_hostname gtype zcb
+    Internal.GioC.zgtk_override_Gio_Proxy_supports_hostname (Internal.Raw.gtype gtype) zcb
 
   /// Some proxy protocols expect to be passed a hostname, which they will resolve to an IP address themselves.
   let parentSupportsHostname (self: Proxy) : bool =
@@ -24235,7 +24237,7 @@ module SocketAddressEnumerator =
         let callback = Internal.Raw.argPointer 2
         let userData = Internal.Raw.argPointer 3
         handler enumerator cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_SocketAddressEnumerator_next_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_SocketAddressEnumerator_next_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously retrieves the next #GSocketAddress from @enumerator and then calls @callback, which must call g_socket_address_enumerator_next_finish() to get the result.
   let parentNextAsync (self: SocketAddressEnumerator) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24378,7 +24380,7 @@ module ProxyResolver =
       Internal.Raw.hold (fun () ->
         let resolver = ProxyResolver (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler resolver))
-    Internal.GioC.zgtk_override_Gio_ProxyResolver_is_supported gtype zcb
+    Internal.GioC.zgtk_override_Gio_ProxyResolver_is_supported (Internal.Raw.gtype gtype) zcb
 
   /// Checks if @resolver can be used on this system.
   let parentIsSupported (self: ProxyResolver) : bool =
@@ -24395,7 +24397,7 @@ module ProxyResolver =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler resolver uri cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_ProxyResolver_lookup_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_ProxyResolver_lookup_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronous lookup of proxy.
   let parentLookupAsync (self: ProxyResolver) (uri: string) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24736,7 +24738,7 @@ module Resolver =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler resolver address cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Resolver_lookup_by_address_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_Resolver_lookup_by_address_async (Internal.Raw.gtype gtype) zcb
 
   /// Begins asynchronously reverse-resolving @address to determine its associated hostname, and eventually calls @callback, which must call g_resolver_lookup_by_address_finish() to get the final result.
   let parentLookupByAddressAsync (self: Resolver) (address: InetAddress) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24763,7 +24765,7 @@ module Resolver =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler resolver hostname cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Resolver_lookup_by_name_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_Resolver_lookup_by_name_async (Internal.Raw.gtype gtype) zcb
 
   /// Begins asynchronously resolving @hostname to determine its associated IP address(es), and eventually calls @callback, which must call g_resolver_lookup_by_name_finish() to get the result.
   let parentLookupByNameAsync (self: Resolver) (hostname: string) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24791,7 +24793,7 @@ module Resolver =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler resolver hostname flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Resolver_lookup_by_name_with_flags_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_Resolver_lookup_by_name_with_flags_async (Internal.Raw.gtype gtype) zcb
 
   /// Begins asynchronously resolving @hostname to determine its associated IP address(es), and eventually calls @callback, which must call g_resolver_lookup_by_name_with_flags_finish() to get the result.
   let parentLookupByNameWithFlagsAsync (self: Resolver) (hostname: string) (flags: ResolverNameLookupFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24819,7 +24821,7 @@ module Resolver =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler resolver rrname recordType cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Resolver_lookup_records_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_Resolver_lookup_records_async (Internal.Raw.gtype gtype) zcb
 
   /// Begins asynchronously performing a DNS lookup for the given @rrname, and eventually calls @callback, which must call g_resolver_lookup_records_finish() to get the final result.
   let parentLookupRecordsAsync (self: Resolver) (rrname: string) (recordType: ResolverRecordType) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24846,7 +24848,7 @@ module Resolver =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler resolver rrname cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Resolver_lookup_service_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_Resolver_lookup_service_async (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_Resolver_lookup_service_async`.
   let parentLookupServiceAsync (self: Resolver) (rrname: string) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24868,7 +24870,7 @@ module Resolver =
       Internal.Raw.hold (fun () ->
         let resolver = Resolver (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler resolver)
-    Internal.GioC.zgtk_override_Gio_Resolver_reload gtype zcb
+    Internal.GioC.zgtk_override_Gio_Resolver_reload (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_Resolver_reload`.
   let parentReload (self: Resolver) : unit =
@@ -25280,7 +25282,7 @@ module Settings =
         let keys = Internal.Raw.argInt 1
         let nKeys = Internal.Raw.argInt 2
         Internal.Raw.returnBool (handler settings keys nKeys))
-    Internal.GioC.zgtk_override_Gio_Settings_change_event gtype zcb
+    Internal.GioC.zgtk_override_Gio_Settings_change_event (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_Settings_change_event`.
   let parentChangeEvent (self: Settings) (keys: int) (nKeys: int) : bool =
@@ -25293,7 +25295,7 @@ module Settings =
         let settings = Settings (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let key = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler settings key)
-    Internal.GioC.zgtk_override_Gio_Settings_changed gtype zcb
+    Internal.GioC.zgtk_override_Gio_Settings_changed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_Settings_changed`.
   let parentChanged (self: Settings) (key: string) : unit =
@@ -25306,7 +25308,7 @@ module Settings =
         let settings = Settings (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let key = Internal.Raw.argInt 1
         Internal.Raw.returnBool (handler settings key))
-    Internal.GioC.zgtk_override_Gio_Settings_writable_change_event gtype zcb
+    Internal.GioC.zgtk_override_Gio_Settings_writable_change_event (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_Settings_writable_change_event`.
   let parentWritableChangeEvent (self: Settings) (key: int) : bool =
@@ -25319,7 +25321,7 @@ module Settings =
         let settings = Settings (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let key = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler settings key)
-    Internal.GioC.zgtk_override_Gio_Settings_writable_changed gtype zcb
+    Internal.GioC.zgtk_override_Gio_Settings_writable_changed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_Settings_writable_changed`.
   let parentWritableChanged (self: Settings) (key: string) : unit =
@@ -27034,7 +27036,7 @@ module SocketClient =
         let connectable = SocketConnectable (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         let connection = IOStream (Internal.Raw.wrap (Internal.Raw.argPointer 3) false)
         handler client event connectable connection)
-    Internal.GioC.zgtk_override_Gio_SocketClient_event gtype zcb
+    Internal.GioC.zgtk_override_Gio_SocketClient_event (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_SocketClient_event`.
   let parentEvent (self: SocketClient) (event: SocketClientEvent) (connectable: SocketConnectable) (connection: IOStream) : unit =
@@ -27147,7 +27149,7 @@ module SocketConnection =
 
   /// Looks up the #GType to be used when creating socket connections on sockets with the specified @family, @type and @protocol.
   let factoryRegisterType (gType: usize) (family: SocketFamily) (type_: SocketType) (protocol: int) : unit =
-    Internal.GioC.g_socket_connection_factory_register_type gType (i32 family.Int) (i32 type_.Int) (i32 protocol)
+    Internal.GioC.g_socket_connection_factory_register_type (Internal.Raw.gtype gType) (i32 family.Int) (i32 type_.Int) (i32 protocol)
 
   /// Calls `handler` when the `socket` property changes.
   let onNotifySocket (self: SocketConnection) (handler: unit -> unit) : unit =
@@ -27378,7 +27380,7 @@ module SocketListener =
       Internal.Raw.hold (fun () ->
         let listener = SocketListener (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler listener)
-    Internal.GioC.zgtk_override_Gio_SocketListener_changed gtype zcb
+    Internal.GioC.zgtk_override_Gio_SocketListener_changed (Internal.Raw.gtype gtype) zcb
 
   /// virtual method called when the set of socket listened to changes
   let parentChanged (self: SocketListener) : unit =
@@ -27392,7 +27394,7 @@ module SocketListener =
         let event = SocketListenerEvent (int (Internal.Raw.argInt 1))
         let socket = Socket (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler listener event socket)
-    Internal.GioC.zgtk_override_Gio_SocketListener_event gtype zcb
+    Internal.GioC.zgtk_override_Gio_SocketListener_event (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_SocketListener_event`.
   let parentEvent (self: SocketListener) (event: SocketListenerEvent) (socket: Socket) : unit =
@@ -27451,7 +27453,7 @@ module SocketService =
         let connection = SocketConnection (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let sourceObject = GObject.Object (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         Internal.Raw.returnBool (handler service connection sourceObject))
-    Internal.GioC.zgtk_override_Gio_SocketService_incoming gtype zcb
+    Internal.GioC.zgtk_override_Gio_SocketService_incoming (Internal.Raw.gtype gtype) zcb
 
   /// signal emitted when new connections are accepted
   let parentIncoming (self: SocketService) (connection: SocketConnection) (sourceObject: GObject.Object) : bool =
@@ -28414,7 +28416,7 @@ module ThreadedSocketService =
         let connection = SocketConnection (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let sourceObject = GObject.Object (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         Internal.Raw.returnBool (handler service connection sourceObject))
-    Internal.GioC.zgtk_override_Gio_ThreadedSocketService_run gtype zcb
+    Internal.GioC.zgtk_override_Gio_ThreadedSocketService_run (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_ThreadedSocketService_run`.
   let parentRun (self: ThreadedSocketService) (connection: SocketConnection) (sourceObject: GObject.Object) : bool =
@@ -28485,7 +28487,7 @@ module TlsBackend =
       Internal.Raw.hold (fun () ->
         let backend = TlsBackend (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler backend).Id (Internal.GioC.g_tls_database_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_TlsBackend_get_default_database gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsBackend_get_default_database (Internal.Raw.gtype gtype) zcb
 
   /// Gets the default #GTlsDatabase used to verify TLS connections.
   let parentGetDefaultDatabase (self: TlsBackend) : TlsDatabase =
@@ -28497,7 +28499,7 @@ module TlsBackend =
       Internal.Raw.hold (fun () ->
         let backend = TlsBackend (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler backend))
-    Internal.GioC.zgtk_override_Gio_TlsBackend_supports_dtls gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsBackend_supports_dtls (Internal.Raw.gtype gtype) zcb
 
   /// Checks if DTLS is supported.
   let parentSupportsDtls (self: TlsBackend) : bool =
@@ -28509,7 +28511,7 @@ module TlsBackend =
       Internal.Raw.hold (fun () ->
         let backend = TlsBackend (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler backend))
-    Internal.GioC.zgtk_override_Gio_TlsBackend_supports_tls gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsBackend_supports_tls (Internal.Raw.gtype gtype) zcb
 
   /// Checks if TLS is supported; if this returns %FALSE for the default #GTlsBackend, it means no "real" TLS backend is available.
   let parentSupportsTls (self: TlsBackend) : bool =
@@ -28568,7 +28570,7 @@ module TlsCertificate =
   /// Creates a #GTlsCertificate from the PEM-encoded data in @data.
   let createFromPem (data: string) (length: int) : result<TlsCertificate, Glue.Error> =
     Internal.Raw.outBegin ()
-    let zr = Internal.GioC.g_tls_certificate_new_from_pem data (i64 length) (Internal.Raw.err ())
+    let zr = Internal.GioC.g_tls_certificate_new_from_pem data (i64 (Internal.Raw.within data 0 length false 1)) (Internal.Raw.err ())
     match Internal.Raw.takeError () with
     | Some ze ->
       Internal.Raw.outEnd ()
@@ -28759,7 +28761,7 @@ module TlsCertificate =
         let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 2) false
         let trustedCa = (if zid2 = 0 then None else Some (TlsCertificate zid2))
         Internal.Raw.returnInt (handler cert identity trustedCa).Int)
-    Internal.GioC.zgtk_override_Gio_TlsCertificate_verify gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsCertificate_verify (Internal.Raw.gtype gtype) zcb
 
   /// This verifies @cert and returns a set of #GTlsCertificateFlags indicating any problems found with it.
   let parentVerify (self: TlsCertificate) (identity: option<SocketConnectable>) (trustedCa: option<TlsCertificate>) : TlsCertificateFlags =
@@ -28859,7 +28861,7 @@ module TlsClientConnection =
         let conn = TlsClientConnection (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let source = TlsClientConnection (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler conn source)
-    Internal.GioC.zgtk_override_Gio_TlsClientConnection_copy_session_state gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsClientConnection_copy_session_state (Internal.Raw.gtype gtype) zcb
 
   /// Possibly copies session state from one connection to another, for use in TLS session resumption.
   let parentCopySessionState (self: TlsClientConnection) (source: TlsClientConnection) : unit =
@@ -29112,7 +29114,7 @@ module TlsConnection =
         let peerCert = TlsCertificate (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let errors = TlsCertificateFlags (int (Internal.Raw.argInt 2))
         Internal.Raw.returnBool (handler connection peerCert errors))
-    Internal.GioC.zgtk_override_Gio_TlsConnection_accept_certificate gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsConnection_accept_certificate (Internal.Raw.gtype gtype) zcb
 
   /// Check whether to accept a certificate.
   let parentAcceptCertificate (self: TlsConnection) (peerCert: TlsCertificate) (errors: TlsCertificateFlags) : bool =
@@ -29126,7 +29128,7 @@ module TlsConnection =
         match handler conn with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_TlsConnection_get_negotiated_protocol gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsConnection_get_negotiated_protocol (Internal.Raw.gtype gtype) zcb
 
   /// Gets the name of the application-layer protocol negotiated during the handshake.
   let parentGetNegotiatedProtocol (self: TlsConnection) : option<string> =
@@ -29143,7 +29145,7 @@ module TlsConnection =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler conn ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_TlsConnection_handshake_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsConnection_handshake_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously performs a TLS handshake on @conn.
   let parentHandshakeAsync (self: TlsConnection) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -29441,7 +29443,7 @@ module TlsDatabase =
         match handler self_ certificate with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_TlsDatabase_create_certificate_handle gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsDatabase_create_certificate_handle (Internal.Raw.gtype gtype) zcb
 
   /// Create a handle string for the certificate.
   let parentCreateCertificateHandle (self: TlsDatabase) (certificate: TlsCertificate) : option<string> =
@@ -29461,7 +29463,7 @@ module TlsDatabase =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler self_ handle_ interaction flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_TlsDatabase_lookup_certificate_for_handle_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsDatabase_lookup_certificate_for_handle_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously look up a certificate by its handle in the database.
   let parentLookupCertificateForHandleAsync (self: TlsDatabase) (handle_: string) (interaction: option<TlsInteraction>) (flags: TlsDatabaseLookupFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -29495,7 +29497,7 @@ module TlsDatabase =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler self_ certificate interaction flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_TlsDatabase_lookup_certificate_issuer_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsDatabase_lookup_certificate_issuer_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously look up the issuer of @certificate in the database.
   let parentLookupCertificateIssuerAsync (self: TlsDatabase) (certificate: TlsCertificate) (interaction: option<TlsInteraction>) (flags: TlsDatabaseLookupFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -29529,7 +29531,7 @@ module TlsDatabase =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler self_ issuerRawDn interaction flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_TlsDatabase_lookup_certificates_issued_by_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsDatabase_lookup_certificates_issued_by_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously look up certificates issued by this issuer in the database.
   let parentLookupCertificatesIssuedByAsync (self: TlsDatabase) (issuerRawDn: array<u8>) (interaction: option<TlsInteraction>) (flags: TlsDatabaseLookupFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -29568,7 +29570,7 @@ module TlsDatabase =
         let callback = Internal.Raw.argPointer 7
         let userData = Internal.Raw.argPointer 8
         handler self_ chain purpose identity interaction flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_TlsDatabase_verify_chain_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsDatabase_verify_chain_async (Internal.Raw.gtype gtype) zcb
 
   /// Asynchronously determines the validity of a certificate chain after looking up and adding any missing certificates to the chain.
   let parentVerifyChainAsync (self: TlsDatabase) (chain: TlsCertificate) (purpose: string) (identity: option<SocketConnectable>) (interaction: option<TlsInteraction>) (flags: TlsDatabaseVerifyFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -29788,7 +29790,7 @@ module TlsInteraction =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler interaction password cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_TlsInteraction_ask_password_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsInteraction_ask_password_async (Internal.Raw.gtype gtype) zcb
 
   /// Run asynchronous interaction to ask the user for a password.
   let parentAskPasswordAsync (self: TlsInteraction) (password: TlsPassword) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -29816,7 +29818,7 @@ module TlsInteraction =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler interaction connection flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_TlsInteraction_request_certificate_async gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsInteraction_request_certificate_async (Internal.Raw.gtype gtype) zcb
 
   /// Run asynchronous interaction to ask the user for a certificate to use with the connection.
   let parentRequestCertificateAsync (self: TlsInteraction) (connection: TlsConnection) (flags: TlsCertificateRequestFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -29910,7 +29912,7 @@ module TlsPassword =
       Internal.Raw.hold (fun () ->
         let password = TlsPassword (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler password)))
-    Internal.GioC.zgtk_override_Gio_TlsPassword_get_default_warning gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsPassword_get_default_warning (Internal.Raw.gtype gtype) zcb
 
   /// virtual method for g_tls_password_get_warning() if no value has been set using g_tls_password_set_warning()
   let parentGetDefaultWarning (self: TlsPassword) : string =
@@ -29924,7 +29926,7 @@ module TlsPassword =
         let (zres, length) = handler password
         Internal.Raw.setI64 1 length
         Internal.Raw.returnPointer (zres))
-    Internal.GioC.zgtk_override_Gio_TlsPassword_get_value gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsPassword_get_value (Internal.Raw.gtype gtype) zcb
 
   /// Get the password value.
   let parentGetValue (self: TlsPassword) : array<u8> =
@@ -29943,7 +29945,7 @@ module TlsPassword =
         let length = Internal.Raw.argInt 2
         let destroy = Internal.Raw.argPointer 3
         handler password value length destroy)
-    Internal.GioC.zgtk_override_Gio_TlsPassword_set_value gtype zcb
+    Internal.GioC.zgtk_override_Gio_TlsPassword_set_value (Internal.Raw.gtype gtype) zcb
 
   /// Provide the value for this password.
   [<Unsafe>]
@@ -30395,7 +30397,7 @@ module Vfs =
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let list = FileAttributeInfoList (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GioC.g_file_attribute_info_list_get_type ()) false)
         handler vfs list)
-    Internal.GioC.zgtk_override_Gio_Vfs_add_writable_namespaces gtype zcb
+    Internal.GioC.zgtk_override_Gio_Vfs_add_writable_namespaces (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_Vfs_add_writable_namespaces`.
   let parentAddWritableNamespaces (self: Vfs) (list: FileAttributeInfoList) : unit =
@@ -30408,7 +30410,7 @@ module Vfs =
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let value = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 1) (i32 0))
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler vfs value).Id (Internal.GioC.g_icon_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Vfs_deserialize_icon gtype zcb
+    Internal.GioC.zgtk_override_Gio_Vfs_deserialize_icon (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_Vfs_deserialize_icon`.
   let parentDeserializeIcon (self: Vfs) (value: GLib.Variant) : Icon =
@@ -30421,7 +30423,7 @@ module Vfs =
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let path = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler vfs path).Id (Internal.GioC.g_file_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Vfs_get_file_for_path gtype zcb
+    Internal.GioC.zgtk_override_Gio_Vfs_get_file_for_path (Internal.Raw.gtype gtype) zcb
 
   /// Gets a #GFile for @path.
   let parentGetFileForPath (self: Vfs) (path: string) : File =
@@ -30434,7 +30436,7 @@ module Vfs =
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let uri = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler vfs uri).Id (Internal.GioC.g_file_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Vfs_get_file_for_uri gtype zcb
+    Internal.GioC.zgtk_override_Gio_Vfs_get_file_for_uri (Internal.Raw.gtype gtype) zcb
 
   /// Gets a #GFile for @uri.
   let parentGetFileForUri (self: Vfs) (uri: string) : File =
@@ -30446,7 +30448,7 @@ module Vfs =
       Internal.Raw.hold (fun () ->
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (handler vfs))
-    Internal.GioC.zgtk_override_Gio_Vfs_get_supported_uri_schemes gtype zcb
+    Internal.GioC.zgtk_override_Gio_Vfs_get_supported_uri_schemes (Internal.Raw.gtype gtype) zcb
 
   /// Gets a list of URI schemes supported by @vfs.
   let parentGetSupportedUriSchemes (self: Vfs) : list<string> =
@@ -30458,7 +30460,7 @@ module Vfs =
       Internal.Raw.hold (fun () ->
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler vfs))
-    Internal.GioC.zgtk_override_Gio_Vfs_is_active gtype zcb
+    Internal.GioC.zgtk_override_Gio_Vfs_is_active (Internal.Raw.gtype gtype) zcb
 
   /// Checks if the VFS is active.
   let parentIsActive (self: Vfs) : bool =
@@ -30478,7 +30480,7 @@ module Vfs =
         let extraData = Internal.Raw.argPointer 6
         let freeExtraData = Internal.Raw.argPointer 7
         handler vfs filename device attributeMatcher info cancellable extraData freeExtraData)
-    Internal.GioC.zgtk_override_Gio_Vfs_local_file_add_info gtype zcb
+    Internal.GioC.zgtk_override_Gio_Vfs_local_file_add_info (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_Vfs_local_file_add_info`.
   [<Unsafe>]
@@ -30497,7 +30499,7 @@ module Vfs =
         let source = Internal.Raw.text (Internal.Raw.argPointer 1)
         let dest = Internal.Raw.text (Internal.Raw.argPointer 2)
         handler vfs source dest)
-    Internal.GioC.zgtk_override_Gio_Vfs_local_file_moved gtype zcb
+    Internal.GioC.zgtk_override_Gio_Vfs_local_file_moved (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_Vfs_local_file_moved`.
   let parentLocalFileMoved (self: Vfs) (source: string) (dest: string) : unit =
@@ -30510,7 +30512,7 @@ module Vfs =
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let filename = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler vfs filename)
-    Internal.GioC.zgtk_override_Gio_Vfs_local_file_removed gtype zcb
+    Internal.GioC.zgtk_override_Gio_Vfs_local_file_removed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gio_Vfs_local_file_removed`.
   let parentLocalFileRemoved (self: Vfs) (filename: string) : unit =
@@ -30523,7 +30525,7 @@ module Vfs =
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let parseName = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler vfs parseName).Id (Internal.GioC.g_file_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Vfs_parse_name gtype zcb
+    Internal.GioC.zgtk_override_Gio_Vfs_parse_name (Internal.Raw.gtype gtype) zcb
 
   /// This operation never fails, but the returned object might not support any I/O operations if the @parse_name cannot be parsed by the #GVfs module.
   let parentParseName (self: Vfs) (parseName: string) : File =
@@ -30728,7 +30730,7 @@ module Volume =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler volume))
-    Internal.GioC.zgtk_override_Gio_Volume_can_eject gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_can_eject (Internal.Raw.gtype gtype) zcb
 
   /// Checks if a volume can be ejected.
   let parentCanEject (self: Volume) : bool =
@@ -30740,7 +30742,7 @@ module Volume =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler volume))
-    Internal.GioC.zgtk_override_Gio_Volume_can_mount gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_can_mount (Internal.Raw.gtype gtype) zcb
 
   /// Checks if a volume can be mounted.
   let parentCanMount (self: Volume) : bool =
@@ -30752,7 +30754,7 @@ module Volume =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler volume)
-    Internal.GioC.zgtk_override_Gio_Volume_changed gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_changed (Internal.Raw.gtype gtype) zcb
 
   /// Changed signal that is emitted when the volume's state has changed.
   let parentChanged (self: Volume) : unit =
@@ -30769,7 +30771,7 @@ module Volume =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler volume flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Volume_eject gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_eject (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Ejects a volume.
   let parentEject (self: Volume) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -30798,7 +30800,7 @@ module Volume =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler volume flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Volume_eject_with_operation gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_eject_with_operation (Internal.Raw.gtype gtype) zcb
 
   /// Ejects a volume.
   let parentEjectWithOperation (self: Volume) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -30824,7 +30826,7 @@ module Volume =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.strv (handler volume)))
-    Internal.GioC.zgtk_override_Gio_Volume_enumerate_identifiers gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_enumerate_identifiers (Internal.Raw.gtype gtype) zcb
 
   /// Gets the kinds of [identifiers](#volume-identifiers) that @volume has.
   let parentEnumerateIdentifiers (self: Volume) : list<string> =
@@ -30838,7 +30840,7 @@ module Volume =
         match handler volume with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_file_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Volume_get_activation_root gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_get_activation_root (Internal.Raw.gtype gtype) zcb
 
   /// Gets the activation root for a #GVolume if it is known ahead of mount time.
   let parentGetActivationRoot (self: Volume) : option<File> =
@@ -30854,7 +30856,7 @@ module Volume =
         match handler volume with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_drive_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Volume_get_drive gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_get_drive (Internal.Raw.gtype gtype) zcb
 
   /// Gets the drive for the @volume.
   let parentGetDrive (self: Volume) : option<Drive> =
@@ -30868,7 +30870,7 @@ module Volume =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler volume).Id (Internal.GioC.g_icon_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Volume_get_icon gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_get_icon (Internal.Raw.gtype gtype) zcb
 
   /// Gets the icon for @volume.
   let parentGetIcon (self: Volume) : Icon =
@@ -30883,7 +30885,7 @@ module Volume =
         match handler volume kind with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Volume_get_identifier gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_get_identifier (Internal.Raw.gtype gtype) zcb
 
   /// Gets the identifier of the given kind for @volume.
   let parentGetIdentifier (self: Volume) (kind: string) : option<string> =
@@ -30897,7 +30899,7 @@ module Volume =
         match handler volume with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_mount_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Volume_get_mount gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_get_mount (Internal.Raw.gtype gtype) zcb
 
   /// Gets the mount for the @volume.
   let parentGetMount (self: Volume) : option<Mount> =
@@ -30911,7 +30913,7 @@ module Volume =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler volume)))
-    Internal.GioC.zgtk_override_Gio_Volume_get_name gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_get_name (Internal.Raw.gtype gtype) zcb
 
   /// Gets the name of @volume.
   let parentGetName (self: Volume) : string =
@@ -30925,7 +30927,7 @@ module Volume =
         match handler volume with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Volume_get_sort_key gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_get_sort_key (Internal.Raw.gtype gtype) zcb
 
   /// Gets the sort key for @volume, if any.
   let parentGetSortKey (self: Volume) : option<string> =
@@ -30937,7 +30939,7 @@ module Volume =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler volume).Id (Internal.GioC.g_icon_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Volume_get_symbolic_icon gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_get_symbolic_icon (Internal.Raw.gtype gtype) zcb
 
   /// Gets the symbolic icon for @volume.
   let parentGetSymbolicIcon (self: Volume) : Icon =
@@ -30951,7 +30953,7 @@ module Volume =
         match handler volume with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Volume_get_uuid gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_get_uuid (Internal.Raw.gtype gtype) zcb
 
   /// Gets the UUID for the @volume.
   let parentGetUuid (self: Volume) : option<string> =
@@ -30970,7 +30972,7 @@ module Volume =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler volume flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Volume_mount_fn gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_mount_fn (Internal.Raw.gtype gtype) zcb
 
   /// Mounts a volume.
   let parentMountFn (self: Volume) (flags: MountMountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -30996,7 +30998,7 @@ module Volume =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler volume)
-    Internal.GioC.zgtk_override_Gio_Volume_removed gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_removed (Internal.Raw.gtype gtype) zcb
 
   /// The removed signal that is emitted when the #GVolume have been removed.
   let parentRemoved (self: Volume) : unit =
@@ -31008,7 +31010,7 @@ module Volume =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler volume))
-    Internal.GioC.zgtk_override_Gio_Volume_should_automount gtype zcb
+    Internal.GioC.zgtk_override_Gio_Volume_should_automount (Internal.Raw.gtype gtype) zcb
 
   /// Returns whether the volume should be automatically mounted.
   let parentShouldAutomount (self: Volume) : bool =

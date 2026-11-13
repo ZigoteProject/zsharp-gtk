@@ -318,6 +318,7 @@ module Pixbuf =
     Pixbuf (Internal.Raw.wrap ((Internal.GdkPixbufC.gdk_pixbuf_new_from_bytes (Internal.Raw.obj data.Id (Internal.GLibC.g_bytes_get_type ())) (i32 colorspace.Int) (if hasAlpha then i32 1 else i32 0) (i32 bitsPerSample) (i32 width) (i32 height) (i32 rowstride))) true)
 
   /// Creates a new #GdkPixbuf out of in-memory image data.
+  [<Unsafe>]
   let createFromData (data: array<u8>) (colorspace: Colorspace) (hasAlpha: bool) (bitsPerSample: int) (width: int) (height: int) (rowstride: int) (destroyFn: cptr -> unit) : Pixbuf =
     let zcb1 =
       Internal.Raw.hold (fun () ->
@@ -1219,7 +1220,7 @@ module PixbufLoader =
       Internal.Raw.hold (fun () ->
         let loader = PixbufLoader (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler loader)
-    Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_area_prepared gtype zcb
+    Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_area_prepared (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_GdkPixbuf_PixbufLoader_area_prepared`.
   let parentAreaPrepared (self: PixbufLoader) : unit =
@@ -1235,7 +1236,7 @@ module PixbufLoader =
         let width = Internal.Raw.argInt 3
         let height = Internal.Raw.argInt 4
         handler loader x y width height)
-    Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_area_updated gtype zcb
+    Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_area_updated (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_GdkPixbuf_PixbufLoader_area_updated`.
   let parentAreaUpdated (self: PixbufLoader) (x: int) (y: int) (width: int) (height: int) : unit =
@@ -1247,7 +1248,7 @@ module PixbufLoader =
       Internal.Raw.hold (fun () ->
         let loader = PixbufLoader (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler loader)
-    Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_closed gtype zcb
+    Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_closed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_GdkPixbuf_PixbufLoader_closed`.
   let parentClosed (self: PixbufLoader) : unit =
@@ -1261,7 +1262,7 @@ module PixbufLoader =
         let width = Internal.Raw.argInt 1
         let height = Internal.Raw.argInt 2
         handler loader width height)
-    Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_size_prepared gtype zcb
+    Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_size_prepared (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_GdkPixbuf_PixbufLoader_size_prepared`.
   let parentSizePrepared (self: PixbufLoader) (width: int) (height: int) : unit =

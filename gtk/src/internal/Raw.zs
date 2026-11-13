@@ -17,6 +17,9 @@ extern zgtk_add_property : usize -> cstr -> usize -> unit
 extern zgtk_add_signal : usize -> cstr -> cptr -> int -> unit
 extern zgtk_emit_values : cptr -> cstr -> cptr -> int -> unit
 extern zgtk_value_type : unit -> usize
+extern zgtk_object_type : unit -> usize
+extern zgtk_type_known : usize -> i32
+extern zgtk_within : cstr -> int -> int -> i32 -> i32 -> int
 extern zgtk_out_set_int : i32 -> int -> unit
 extern zgtk_out_set_f32 : i32 -> f64 -> unit
 extern zgtk_out_set_f64 : i32 -> f64 -> unit
@@ -158,6 +161,20 @@ let obj (id: int) (gtype: usize) : cptr =
   else
     p
 
+/// A type a program gave, if it is one GLib has: panics for a number that is none, which GLib
+/// would read as the address of one.
+let gtype (t: usize) : usize =
+  if zgtk_type_known t <> i32 0 then
+    t
+  else
+    panic "not a GObject type: pass what a `gtype ()`, `Glue.subclass` or `GObject.typeFromName` gave"
+
+/// A length or a place in a string given beside the string, kept inside it, in bytes or
+/// (`chars`) in characters. A negative one stays (`negative` 1), is the whole length (0) or
+/// the start (2). `from`: the place in the string a length is counted from, 0 for its start.
+let within (text: string) (from: int) (n: int) (chars: bool) (negative: int) : int =
+  zgtk_within text from n (if chars then i32 1 else i32 0) (i32 negative)
+
 /// Whether a handle's object is still there.
 let alive (id: int) : bool = zgtk_alive id <> i32 0
 
@@ -187,22 +204,22 @@ let copyPlain (p: cptr) (size: usize) (tag: usize) : int = zgtk_copy_plain p siz
 /// other type has; the same type when asked again. Its virtual methods are given with the
 /// class's `overrideX` functions, and objects of it are made with `create`. 0 for a type that
 /// is no class.
-let subclass (parent: usize) (name: string) : usize = zgtk_subclass parent name
+let subclass (parent: usize) (name: string) : usize = zgtk_subclass (gtype parent) name
 
 /// Says a type made with `subclass` has an interface (`Gio.g_list_model_get_type ()`), whose
 /// methods it gives with the interface's `overrideX` functions: before any object of it is made.
-let implement (gtype: usize) (iface: usize) : unit = zgtk_implement gtype iface
+let implement (t: usize) (iface: usize) : unit = zgtk_implement (gtype t) (gtype iface)
 
 /// A new object of a type, as a handle (0 for a type that makes none): a class's `cast` gives
 /// it its type.
-let create (gtype: usize) : int = wrap (zgtk_new gtype) true
+let create (t: usize) : int = wrap (zgtk_new (gtype t)) true
 
 /// Gives a widget type made with `subclass` a template, GtkBuilder's XML whose `<template
 /// class>` is the type's name: every widget of the type is built from it. Before any is made.
-let setTemplate (gtype: usize) (xml: string) : unit = zgtk_set_template gtype xml
+let setTemplate (t: usize) (xml: string) : unit = zgtk_set_template (gtype t) xml
 
 /// Lets `Gtk4.Widget.getTemplateChild` find the object of this id in the type's template.
-let bindTemplateChild (gtype: usize) (name: string) : unit = zgtk_bind_template_child gtype name
+let bindTemplateChild (t: usize) (name: string) : unit = zgtk_bind_template_child (gtype t) name
 
 /// Lets go of the functions every type made with `subclass` was given, when a program (or a
 /// test) is done with its types: their methods do nothing after it.
@@ -518,14 +535,14 @@ let loopKick () : unit = zgtk_loop_kick ()
 /// Gives a type made with `subclass` a property of a value type (`GObject.typeFromName "gchararray"`,
 /// a class's type): read and set by name (`getText`, `setInt`), notified, bound and named in a
 /// template as GTK's own are. Before any object of the type is made.
-let addProperty (gtype: usize) (name: string) (valueType: usize) : unit =
-  zgtk_add_property gtype name valueType
+let addProperty (t: usize) (name: string) (valueType: usize) : unit =
+  zgtk_add_property (gtype t) name (gtype valueType)
 
 /// Gives a type made with `subclass` a signal with arguments of these types and no result:
 /// connected with `connect`, emitted with `emit` or `emitValues`.
-let addSignal (gtype: usize) (name: string) (argTypes: list<usize>) : unit =
-  let a = ints (List.map (fun (t: usize) -> int t) argTypes) 8
-  zgtk_add_signal gtype name a (List.length argTypes)
+let addSignal (t: usize) (name: string) (argTypes: list<usize>) : unit =
+  let a = ints (List.map (fun (arg: usize) -> int (gtype arg)) argTypes) 8
+  zgtk_add_signal (gtype t) name a (List.length argTypes)
   zgtk_free a
 
 /// Emits a signal with arguments, each the pointer of a `GObject.Value`.
@@ -657,6 +674,9 @@ let removeChild (parent: cptr) (child: cptr) : unit = zgtk_remove_child parent c
 /// GObject's GValue's type.
 let valueType () : usize = zgtk_value_type ()
 
+/// GObject's own type: what a handle must be of for a property or a signal by name.
+let objectType () : usize = zgtk_object_type ()
+
 /// An object C is given only to borrow by a handler that may have just made it: held until the
 /// main loop next turns.
 let lend (p: cptr) : cptr = zgtk_lend p
@@ -671,41 +691,41 @@ let poolMark () : int = zgtk_pool_mark ()
 let drainSince (mark: int) : unit = zgtk_drain_since mark
 
 /// Whether a property of a type can only be given when an object of it is made.
-let constructOnly (gtype: usize) (name: string) : bool = zgtk_construct_only gtype name <> i32 0
+let constructOnly (t: usize) (name: string) : bool = zgtk_construct_only (gtype t) name <> i32 0
 
 /// A new object of a type with properties given at its making: `give` sets them with `setInt`
 /// and the others on the pointer it's handed, which is no object's yet.
-let createWith (gtype: usize) (give: cptr -> unit) : int =
-  zgtk_make_begin gtype
+let createWith (t: usize) (give: cptr -> unit) : int =
+  zgtk_make_begin (gtype t)
   give (zgtk_null ())
   wrap (zgtk_make_end ()) true
 
 /// GTK's `gtk_widget_class_` functions for a widget type made with `subclass`, by the type.
 module Class =
   /// The name the type's widgets have in CSS.
-  let cssName (gtype: usize) (name: string) : unit = zgtk_class_css_name gtype name
+  let cssName (t: usize) (name: string) : unit = zgtk_class_css_name (gtype t) name
 
   /// The type of layout manager each of the type's widgets is made with.
-  let layout (gtype: usize) (layoutType: usize) : unit = zgtk_class_layout gtype layoutType
+  let layout (t: usize) (layoutType: usize) : unit = zgtk_class_layout (gtype t) (gtype layoutType)
 
   /// The role the type's widgets have for assistive technology.
-  let role (gtype: usize) (role: int) : unit = zgtk_class_role gtype (i32 role)
+  let role (t: usize) (role: int) : unit = zgtk_class_role (gtype t) (i32 role)
 
   /// The signal of the type that activating one of its widgets emits.
-  let activateSignal (gtype: usize) (signal: string) : unit =
-    zgtk_class_activate_signal gtype signal
+  let activateSignal (t: usize) (signal: string) : unit =
+    zgtk_class_activate_signal (gtype t) signal
 
   /// An action of every widget of the type; `parameter`: its GVariant type, empty for none. The
   /// closure reads the widget at argument 0 and the parameter at 1.
-  let action (gtype: usize) (name: string) (parameter: string) (closure: cptr) : bool =
-    zgtk_class_action gtype name parameter closure <> i32 0
+  let action (t: usize) (name: string) (parameter: string) (closure: cptr) : bool =
+    zgtk_class_action (gtype t) name parameter closure <> i32 0
 
   /// An action that sets, or toggles, a property of the type's widgets.
-  let propertyAction (gtype: usize) (action: string) (property: string) : unit =
-    zgtk_class_property_action gtype action property
+  let propertyAction (t: usize) (action: string) (property: string) : unit =
+    zgtk_class_property_action (gtype t) action property
 
   /// A shortcut every widget of the type has.
-  let shortcut (gtype: usize) (shortcut: cptr) : unit = zgtk_class_shortcut gtype shortcut
+  let shortcut (t: usize) (shortcut: cptr) : unit = zgtk_class_shortcut (gtype t) shortcut
 
 /// Lets what the running handler has made so far outlive it, as what a task makes does: for a
 /// result a task goes on with.

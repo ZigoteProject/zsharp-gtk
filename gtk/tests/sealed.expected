@@ -4,4 +4,6 @@ a C function, through the module it was in: refused
 a C function, through the module that declares it: refused
 a C function of variable arguments: refused
 an unsafe function, outside unsafe: refused
+a picture from bytes and a size given apart, outside unsafe: refused
+a string C writes in, outside unsafe: refused
 the public functions: built

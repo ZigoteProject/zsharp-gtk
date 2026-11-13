@@ -12364,7 +12364,7 @@ module Accessible =
         match handler self_ with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_accessible_id gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_accessible_id (Internal.Raw.gtype gtype) zcb
 
   /// Retrieves the accessible identifier for the accessible object.
   let parentGetAccessibleId (self: Accessible) : option<string> =
@@ -12378,7 +12378,7 @@ module Accessible =
         match handler self_ with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_accessible_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_accessible_parent gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_accessible_parent (Internal.Raw.gtype gtype) zcb
 
   /// Retrieves the accessible parent for an accessible object.
   let parentGetAccessibleParent (self: Accessible) : option<Accessible> =
@@ -12394,7 +12394,7 @@ module Accessible =
         match handler self_ with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_at_context_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_at_context gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_at_context (Internal.Raw.gtype gtype) zcb
 
   /// Retrieves the implementation for the given accessible object.
   let parentGetAtContext (self: Accessible) : option<ATContext> =
@@ -12413,7 +12413,7 @@ module Accessible =
         Internal.Raw.setI32 3 width
         Internal.Raw.setI32 4 height
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_bounds gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_bounds (Internal.Raw.gtype gtype) zcb
 
   /// Queries the coordinates and dimensions of this accessible
   let parentGetBounds (self: Accessible) : (bool * int * int * int * int) =
@@ -12431,7 +12431,7 @@ module Accessible =
         match handler self_ with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_accessible_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_first_accessible_child gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_first_accessible_child (Internal.Raw.gtype gtype) zcb
 
   /// Retrieves the first accessible child of an accessible object.
   let parentGetFirstAccessibleChild (self: Accessible) : option<Accessible> =
@@ -12447,7 +12447,7 @@ module Accessible =
         match handler self_ with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_accessible_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_next_accessible_sibling gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_next_accessible_sibling (Internal.Raw.gtype gtype) zcb
 
   /// Retrieves the next accessible sibling of an accessible object
   let parentGetNextAccessibleSibling (self: Accessible) : option<Accessible> =
@@ -12462,7 +12462,7 @@ module Accessible =
         let self_ = Accessible (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let state = AccessiblePlatformState (int (Internal.Raw.argInt 1))
         Internal.Raw.returnBool (handler self_ state))
-    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_platform_state gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_platform_state (Internal.Raw.gtype gtype) zcb
 
   /// Queries a platform state, such as focus.
   let parentGetPlatformState (self: Accessible) (state: AccessiblePlatformState) : bool =
@@ -12492,7 +12492,7 @@ module Buildable =
         let child = GObject.Object (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         let type_ = Internal.Raw.textOption (Internal.Raw.argPointer 3)
         handler buildable builder child type_)
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_add_child gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Buildable_add_child (Internal.Raw.gtype gtype) zcb
 
   /// Adds a child to @buildable.
   let parentAddChild (self: Buildable) (builder: Builder) (child: GObject.Object) (type_: option<string>) : unit =
@@ -12508,7 +12508,7 @@ module Buildable =
         let builder = Builder (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let name = Internal.Raw.text (Internal.Raw.argPointer 2)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler buildable builder name).Id (Internal.GObjectC.g_object_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_construct_child gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Buildable_construct_child (Internal.Raw.gtype gtype) zcb
 
   /// Constructs a child of a buildable that has been specified as “constructor” in the UI definition.
   let parentConstructChild (self: Buildable) (builder: Builder) (name: string) : GObject.Object =
@@ -12525,7 +12525,7 @@ module Buildable =
         let tagname = Internal.Raw.text (Internal.Raw.argPointer 3)
         let data = Internal.Raw.argPointer 4
         handler buildable builder child tagname data)
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_custom_finished gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Buildable_custom_finished (Internal.Raw.gtype gtype) zcb
 
   /// Similar to gtk_buildable_parser_finished() but is called once for each custom tag handled by the @buildable.
   [<Unsafe>]
@@ -12547,7 +12547,7 @@ module Buildable =
         let tagname = Internal.Raw.text (Internal.Raw.argPointer 3)
         let data = Internal.Raw.argPointer 4
         handler buildable builder child tagname data)
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_custom_tag_end gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Buildable_custom_tag_end (Internal.Raw.gtype gtype) zcb
 
   /// Called at the end of each custom element handled by the buildable.
   [<Unsafe>]
@@ -12571,7 +12571,7 @@ module Buildable =
         let (zres, parser) = handler buildable builder child tagname data
         Internal.Raw.setRecord 4 (Internal.Raw.obj parser.Id (Internal.Gtk4C.zgtk_tag_Gtk_BuildableParser ())) (Internal.Gtk4C.zgtk_sizeof_Gtk_BuildableParser ())
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_custom_tag_start gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Buildable_custom_tag_start (Internal.Raw.gtype gtype) zcb
 
   /// Called for each unknown element under `<child>`.
   let parentCustomTagStart (self: Buildable) (builder: Builder) (child: option<GObject.Object>) (tagname: string) : (bool * BuildableParser * cptr) =
@@ -12592,7 +12592,7 @@ module Buildable =
       Internal.Raw.hold (fun () ->
         let buildable = Buildable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler buildable)))
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_get_id gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Buildable_get_id (Internal.Raw.gtype gtype) zcb
 
   /// The getter corresponding to @set_id.
   let parentGetId (self: Buildable) : string =
@@ -12606,7 +12606,7 @@ module Buildable =
         let builder = Builder (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let childname = Internal.Raw.text (Internal.Raw.argPointer 2)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler buildable builder childname).Id (Internal.GObjectC.g_object_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_get_internal_child gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Buildable_get_internal_child (Internal.Raw.gtype gtype) zcb
 
   /// Retrieves the internal child called @childname of the @buildable object.
   let parentGetInternalChild (self: Buildable) (builder: Builder) (childname: string) : GObject.Object =
@@ -12619,7 +12619,7 @@ module Buildable =
         let buildable = Buildable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let builder = Builder (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler buildable builder)
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_parser_finished gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Buildable_parser_finished (Internal.Raw.gtype gtype) zcb
 
   /// Called when a builder finishes the parsing of a UI definition.
   let parentParserFinished (self: Buildable) (builder: Builder) : unit =
@@ -12634,7 +12634,7 @@ module Buildable =
         let name = Internal.Raw.text (Internal.Raw.argPointer 2)
         let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.GObjectC.g_value_get_type ()) false)
         handler buildable builder name value)
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_set_buildable_property gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Buildable_set_buildable_property (Internal.Raw.gtype gtype) zcb
 
   /// Sets a property of a buildable object.
   let parentSetBuildableProperty (self: Buildable) (builder: Builder) (name: string) (value: GObject.Value) : unit =
@@ -12647,7 +12647,7 @@ module Buildable =
         let buildable = Buildable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let id = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler buildable id)
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_set_id gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Buildable_set_id (Internal.Raw.gtype gtype) zcb
 
   /// Stores the id attribute given in the `GtkBuilder` UI definition.
   let parentSetId (self: Buildable) (id: string) : unit =
@@ -12756,7 +12756,7 @@ module ShortcutManager =
         let self_ = ShortcutManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let controller = ShortcutController (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler self_ controller)
-    Internal.Gtk4C.zgtk_override_Gtk_ShortcutManager_add_controller gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_ShortcutManager_add_controller (Internal.Raw.gtype gtype) zcb
 
   /// Add a `GtkShortcutController` to be managed.
   let parentAddController (self: ShortcutManager) (controller: ShortcutController) : unit =
@@ -12769,7 +12769,7 @@ module ShortcutManager =
         let self_ = ShortcutManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let controller = ShortcutController (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler self_ controller)
-    Internal.Gtk4C.zgtk_override_Gtk_ShortcutManager_remove_controller gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_ShortcutManager_remove_controller (Internal.Raw.gtype gtype) zcb
 
   /// Remove a `GtkShortcutController` that had previously been added
   let parentRemoveController (self: ShortcutManager) (controller: ShortcutController) : unit =
@@ -12893,7 +12893,7 @@ module Widget =
 
   /// Clears the template children for the widget.
   let disposeTemplate (self: Widget) (widgetType: usize) : unit =
-    Internal.Gtk4C.gtk_widget_dispose_template (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) widgetType
+    Internal.Gtk4C.gtk_widget_dispose_template (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) (Internal.Raw.gtype widgetType)
 
   /// Checks to see if a drag movement has passed the GTK drag threshold.
   let dragCheckThreshold (self: Widget) (startX: int) (startY: int) (currentX: int) (currentY: int) : bool =
@@ -12923,7 +12923,7 @@ module Widget =
 
   /// Gets the first ancestor of the widget with type @widget_type.
   let getAncestor (self: Widget) (widgetType: usize) : option<Widget> =
-    let zr = Internal.Gtk4C.gtk_widget_get_ancestor (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) widgetType
+    let zr = Internal.Gtk4C.gtk_widget_get_ancestor (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) (Internal.Raw.gtype widgetType)
     let zid1 = Internal.Raw.wrap (zr) false
     (if zid1 = 0 then None else Some (Widget zid1))
 
@@ -13172,7 +13172,7 @@ module Widget =
 
   /// Fetches an object build from the template XML for @widget_type in the widget.
   let getTemplateChild (self: Widget) (widgetType: usize) (name: string) : GObject.Object =
-    GObject.Object (Internal.Raw.wrap ((Internal.Gtk4C.gtk_widget_get_template_child (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) widgetType name)) false)
+    GObject.Object (Internal.Raw.wrap ((Internal.Gtk4C.gtk_widget_get_template_child (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) (Internal.Raw.gtype widgetType) name)) false)
 
   /// Gets the contents of the tooltip for the widget.
   let getTooltipMarkup (self: Widget) : option<string> =
@@ -13799,7 +13799,7 @@ module Widget =
         let hexpandP = (Internal.Raw.argInt 1 <> 0)
         let vexpandP = (Internal.Raw.argInt 2 <> 0)
         handler widget hexpandP vexpandP)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_compute_expand gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_compute_expand (Internal.Raw.gtype gtype) zcb
 
   /// Computes whether a container should give this widget extra space when possible.
   let parentComputeExpand (self: Widget) (hexpandP: bool) (vexpandP: bool) : unit =
@@ -13813,7 +13813,7 @@ module Widget =
         let x = Internal.Raw.argFloat 1
         let y = Internal.Raw.argFloat 2
         Internal.Raw.returnBool (handler widget x y))
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_contains gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_contains (Internal.Raw.gtype gtype) zcb
 
   /// Tests if a given point is contained in the widget.
   let parentContains (self: Widget) (x: float) (y: float) : bool =
@@ -13826,7 +13826,7 @@ module Widget =
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let change = CssStyleChange (Internal.Raw.argPointer 1)
         handler widget change)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_css_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_css_changed (Internal.Raw.gtype gtype) zcb
 
   /// Vfunc called when the CSS used by widget was changed.
   [<Unsafe>]
@@ -13840,7 +13840,7 @@ module Widget =
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let previousDirection = TextDirection (int (Internal.Raw.argInt 1))
         handler widget previousDirection)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_direction_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_direction_changed (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted when the text direction of a widget changes.
   let parentDirectionChanged (self: Widget) (previousDirection: TextDirection) : unit =
@@ -13853,7 +13853,7 @@ module Widget =
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let direction = DirectionType (int (Internal.Raw.argInt 1))
         Internal.Raw.returnBool (handler widget direction))
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_focus gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_focus (Internal.Raw.gtype gtype) zcb
 
   /// Vfunc for gtk_widget_child_focus()
   let parentFocus (self: Widget) (direction: DirectionType) : bool =
@@ -13865,7 +13865,7 @@ module Widget =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler widget).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_get_request_mode gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_get_request_mode (Internal.Raw.gtype gtype) zcb
 
   /// Gets whether the widget prefers a height-for-width layout or a width-for-height layout.
   let parentGetRequestMode (self: Widget) : SizeRequestMode =
@@ -13877,7 +13877,7 @@ module Widget =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler widget))
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_grab_focus gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_grab_focus (Internal.Raw.gtype gtype) zcb
 
   /// Causes @widget to have the keyboard focus for the window that it belongs to.
   let parentGrabFocus (self: Widget) : bool =
@@ -13889,7 +13889,7 @@ module Widget =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_hide gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_hide (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Reverses the effects of [method.Gtk.Widget.show].
   let parentHide (self: Widget) : unit =
@@ -13902,7 +13902,7 @@ module Widget =
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let direction = DirectionType (int (Internal.Raw.argInt 1))
         Internal.Raw.returnBool (handler widget direction))
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_keynav_failed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_keynav_failed (Internal.Raw.gtype gtype) zcb
 
   /// Emits the [signal@Gtk.Widget::keynav-failed] signal on the widget.
   let parentKeynavFailed (self: Widget) (direction: DirectionType) : bool =
@@ -13914,7 +13914,7 @@ module Widget =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_map gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_map (Internal.Raw.gtype gtype) zcb
 
   /// Causes a widget to be mapped if it isn’t already.
   let parentMap (self: Widget) : unit =
@@ -13932,7 +13932,7 @@ module Widget =
         Internal.Raw.setI32 4 natural
         Internal.Raw.setI32 5 minimumBaseline
         Internal.Raw.setI32 6 naturalBaseline)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_measure gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_measure (Internal.Raw.gtype gtype) zcb
 
   /// Measures @widget in the orientation @orientation and for the given @for_size.
   let parentMeasure (self: Widget) (orientation: Orientation) (forSize: int) : (int * int * int * int) =
@@ -13949,7 +13949,7 @@ module Widget =
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let groupCycling = (Internal.Raw.argInt 1 <> 0)
         Internal.Raw.returnBool (handler widget groupCycling))
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_mnemonic_activate gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_mnemonic_activate (Internal.Raw.gtype gtype) zcb
 
   /// Emits the [signal@Gtk.Widget::mnemonic-activate] signal.
   let parentMnemonicActivate (self: Widget) (groupCycling: bool) : bool =
@@ -13962,7 +13962,7 @@ module Widget =
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let direction = DirectionType (int (Internal.Raw.argInt 1))
         handler widget direction)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_move_focus gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_move_focus (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted when a change of focus is requested
   let parentMoveFocus (self: Widget) (direction: DirectionType) : unit =
@@ -13978,7 +13978,7 @@ module Widget =
         let keyboardTooltip = (Internal.Raw.argInt 3 <> 0)
         let tooltip = Tooltip (Internal.Raw.wrap (Internal.Raw.argPointer 4) false)
         Internal.Raw.returnBool (handler widget x y keyboardTooltip tooltip))
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_query_tooltip gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_query_tooltip (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted when “has-tooltip” is %TRUE and the hover timeout has expired with the cursor hovering “above” widget; or emitted when widget got focus in keyboard mode.
   let parentQueryTooltip (self: Widget) (x: int) (y: int) (keyboardTooltip: bool) (tooltip: Tooltip) : bool =
@@ -13990,7 +13990,7 @@ module Widget =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_realize gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_realize (Internal.Raw.gtype gtype) zcb
 
   /// Creates the GDK resources associated with a widget.
   let parentRealize (self: Widget) : unit =
@@ -14002,7 +14002,7 @@ module Widget =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_root gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_root (Internal.Raw.gtype gtype) zcb
 
   /// Called when the widget gets added to a `GtkRoot` widget.
   let parentRoot (self: Widget) : unit =
@@ -14016,7 +14016,7 @@ module Widget =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let child = (if zid1 = 0 then None else Some (Widget zid1))
         handler widget child)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_set_focus_child gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_set_focus_child (Internal.Raw.gtype gtype) zcb
 
   /// Set the focus child of the widget.
   let parentSetFocusChild (self: Widget) (child: option<Widget>) : unit =
@@ -14032,7 +14032,7 @@ module Widget =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_show gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_show (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Flags a widget to be displayed.
   let parentShow (self: Widget) : unit =
@@ -14047,7 +14047,7 @@ module Widget =
         let height = Internal.Raw.argInt 2
         let baseline = Internal.Raw.argInt 3
         handler widget width height baseline)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_size_allocate gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_size_allocate (Internal.Raw.gtype gtype) zcb
 
   /// Called to set the allocation, if the widget does not have a layout manager.
   let parentSizeAllocate (self: Widget) (width: int) (height: int) (baseline: int) : unit =
@@ -14060,7 +14060,7 @@ module Widget =
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let snapshot = Snapshot (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler widget snapshot)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_snapshot gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_snapshot (Internal.Raw.gtype gtype) zcb
 
   /// Vfunc called when a new snapshot of the widget has to be taken.
   let parentSnapshot (self: Widget) (snapshot: Snapshot) : unit =
@@ -14073,7 +14073,7 @@ module Widget =
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let previousStateFlags = StateFlags (int (Internal.Raw.argInt 1))
         handler widget previousStateFlags)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_state_flags_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_state_flags_changed (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted when the widget state changes, see gtk_widget_get_state_flags().
   let parentStateFlagsChanged (self: Widget) (previousStateFlags: StateFlags) : unit =
@@ -14086,7 +14086,7 @@ module Widget =
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let settings = SystemSetting (int (Internal.Raw.argInt 1))
         handler widget settings)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_system_setting_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_system_setting_changed (Internal.Raw.gtype gtype) zcb
 
   /// Emitted when a system setting was changed.
   let parentSystemSettingChanged (self: Widget) (settings: SystemSetting) : unit =
@@ -14098,7 +14098,7 @@ module Widget =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_unmap gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_unmap (Internal.Raw.gtype gtype) zcb
 
   /// Causes a widget to be unmapped if it’s currently mapped.
   let parentUnmap (self: Widget) : unit =
@@ -14110,7 +14110,7 @@ module Widget =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_unrealize gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_unrealize (Internal.Raw.gtype gtype) zcb
 
   /// Causes a widget to be unrealized.
   let parentUnrealize (self: Widget) : unit =
@@ -14122,7 +14122,7 @@ module Widget =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_unroot gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Widget_unroot (Internal.Raw.gtype gtype) zcb
 
   /// Called when the widget is about to be removed from its `GtkRoot` widget.
   let parentUnroot (self: Widget) : unit =
@@ -14619,7 +14619,7 @@ module Window =
       Internal.Raw.hold (fun () ->
         let window = Window (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler window)
-    Internal.Gtk4C.zgtk_override_Gtk_Window_activate_default gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Window_activate_default (Internal.Raw.gtype gtype) zcb
 
   /// Activates the default widget for the window.
   let parentActivateDefault (self: Window) : unit =
@@ -14631,7 +14631,7 @@ module Window =
       Internal.Raw.hold (fun () ->
         let window = Window (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler window)
-    Internal.Gtk4C.zgtk_override_Gtk_Window_activate_focus gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Window_activate_focus (Internal.Raw.gtype gtype) zcb
 
   /// Activates the current focused widget within the window.
   let parentActivateFocus (self: Window) : unit =
@@ -14643,7 +14643,7 @@ module Window =
       Internal.Raw.hold (fun () ->
         let window = Window (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler window))
-    Internal.Gtk4C.zgtk_override_Gtk_Window_close_request gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Window_close_request (Internal.Raw.gtype gtype) zcb
 
   /// Class handler for the [signal@Window::close-request] signal.
   let parentCloseRequest (self: Window) : bool =
@@ -14656,7 +14656,7 @@ module Window =
         let window = Window (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let toggle = (Internal.Raw.argInt 1 <> 0)
         Internal.Raw.returnBool (handler window toggle))
-    Internal.Gtk4C.zgtk_override_Gtk_Window_enable_debugging gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Window_enable_debugging (Internal.Raw.gtype gtype) zcb
 
   /// Class handler for the `GtkWindow::enable-debugging` keybinding signal.
   let parentEnableDebugging (self: Window) (toggle: bool) : bool =
@@ -14668,7 +14668,7 @@ module Window =
       Internal.Raw.hold (fun () ->
         let window = Window (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler window)
-    Internal.Gtk4C.zgtk_override_Gtk_Window_keys_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Window_keys_changed (Internal.Raw.gtype gtype) zcb
 
   /// Signal gets emitted when the set of accelerators or mnemonics that are associated with window changes.
   let parentKeysChanged (self: Window) : unit =
@@ -14990,7 +14990,7 @@ module AccessibleHypertext =
         let self_ = AccessibleHypertext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let index = Internal.Raw.argInt 1
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler self_ index).Id (Internal.Gtk4C.gtk_accessible_hyperlink_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleHypertext_get_link gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_AccessibleHypertext_get_link (Internal.Raw.gtype gtype) zcb
 
   /// Retrieve the n-th link in the accessible object.
   let parentGetLink (self: AccessibleHypertext) (index: int) : AccessibleHyperlink =
@@ -15003,7 +15003,7 @@ module AccessibleHypertext =
         let self_ = AccessibleHypertext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let offset = Internal.Raw.argInt 1
         Internal.Raw.returnInt (handler self_ offset))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleHypertext_get_link_at gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_AccessibleHypertext_get_link_at (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_AccessibleHypertext_get_link_at`.
   let parentGetLinkAt (self: AccessibleHypertext) (offset: int) : int =
@@ -15015,7 +15015,7 @@ module AccessibleHypertext =
       Internal.Raw.hold (fun () ->
         let self_ = AccessibleHypertext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler self_))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleHypertext_get_n_links gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_AccessibleHypertext_get_n_links (Internal.Raw.gtype gtype) zcb
 
   /// Retrieve the number of links in the accessible object.
   let parentGetNLinks (self: AccessibleHypertext) : int =
@@ -15063,7 +15063,7 @@ module AccessibleRange =
         let self_ = AccessibleRange (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let value = Internal.Raw.argFloat 1
         Internal.Raw.returnBool (handler self_ value))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleRange_set_current_value gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_AccessibleRange_set_current_value (Internal.Raw.gtype gtype) zcb
 
   /// Sets the current value of the accessible range.
   let parentSetCurrentValue (self: AccessibleRange) (value: float) : bool =
@@ -15104,7 +15104,7 @@ module AccessibleText =
         let (zres, nRanges) = handler self_ offset ranges attributeNames attributeValues
         Internal.Raw.setI64 2 nRanges
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_attributes gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_attributes (Internal.Raw.gtype gtype) zcb
 
   /// Retrieves the text attributes inside the accessible object.
   let parentGetAttributes (self: AccessibleText) (offset: int) : (bool * list<AccessibleTextRange> * list<string> * list<string>) =
@@ -15122,7 +15122,7 @@ module AccessibleText =
       Internal.Raw.hold (fun () ->
         let self_ = AccessibleText (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler self_))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_caret_position gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_caret_position (Internal.Raw.gtype gtype) zcb
 
   /// Retrieves the position of the caret inside the accessible object.
   let parentGetCaretPosition (self: AccessibleText) : int =
@@ -15136,7 +15136,7 @@ module AccessibleText =
         let start = Internal.Raw.argInt 1
         let end = Internal.Raw.argInt 2
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler self_ start end).Id (Internal.GLibC.g_bytes_get_type ())) (Internal.GLibC.g_bytes_get_type ())))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_contents gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_contents (Internal.Raw.gtype gtype) zcb
 
   /// Retrieve the current contents of the accessible object within the given range.
   let parentGetContents (self: AccessibleText) (start: int) (end: int) : GLib.Bytes =
@@ -15153,7 +15153,7 @@ module AccessibleText =
         Internal.Raw.setI32 3 start
         Internal.Raw.setI32 4 end
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (zres).Id (Internal.GLibC.g_bytes_get_type ())) (Internal.GLibC.g_bytes_get_type ())))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_contents_at gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_contents_at (Internal.Raw.gtype gtype) zcb
 
   /// Retrieve the current contents of the accessible object starting from the given offset, and using the given granularity.
   let parentGetContentsAt (self: AccessibleText) (offset: int) (granularity: AccessibleTextGranularity) : (GLib.Bytes * int * int) =
@@ -15171,7 +15171,7 @@ module AccessibleText =
         let attributeNames = Internal.Raw.argPointer 1
         let attributeValues = Internal.Raw.argPointer 2
         handler self_ attributeNames attributeValues)
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_default_attributes gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_default_attributes (Internal.Raw.gtype gtype) zcb
 
   /// Retrieves the default text attributes inside the accessible object.
   let parentGetDefaultAttributes (self: AccessibleText) : (list<string> * list<string>) =
@@ -15190,7 +15190,7 @@ module AccessibleText =
         let end = Internal.Raw.argInt 2
         let extents = Graphene.Rect (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.GrapheneC.graphene_rect_get_type ()) false)
         Internal.Raw.returnBool (handler self_ start end extents))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_extents gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_extents (Internal.Raw.gtype gtype) zcb
 
   /// Obtains the extents of a range of text, in widget coordinates.
   let parentGetExtents (self: AccessibleText) (start: int) (end: int) (extents: Graphene.Rect) : bool =
@@ -15205,7 +15205,7 @@ module AccessibleText =
         let (zres, offset) = handler self_ point
         Internal.Raw.setI32 2 offset
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_offset gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_offset (Internal.Raw.gtype gtype) zcb
 
   /// Gets the text offset at a given point.
   let parentGetOffset (self: AccessibleText) (point: Graphene.Point) : (bool * int) =
@@ -15224,7 +15224,7 @@ module AccessibleText =
         let (zres, nRanges) = handler self_ ranges
         Internal.Raw.setI64 1 nRanges
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_selection gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_selection (Internal.Raw.gtype gtype) zcb
 
   /// Retrieves the selection ranges in the accessible object.
   let parentGetSelection (self: AccessibleText) : (bool * list<AccessibleTextRange>) =
@@ -15243,7 +15243,7 @@ module AccessibleText =
         let self_ = AccessibleText (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let offset = Internal.Raw.argInt 1
         Internal.Raw.returnBool (handler self_ offset))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_set_caret_position gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_set_caret_position (Internal.Raw.gtype gtype) zcb
 
   /// Sets the caret position.
   let parentSetCaretPosition (self: AccessibleText) (offset: int) : bool =
@@ -15257,7 +15257,7 @@ module AccessibleText =
         let i = Internal.Raw.argInt 1
         let range = AccessibleTextRange (Internal.Raw.copyPlain (Internal.Raw.argPointer 2) (Internal.Gtk4C.zgtk_sizeof_Gtk_AccessibleTextRange ()) (Internal.Gtk4C.zgtk_tag_Gtk_AccessibleTextRange ()))
         Internal.Raw.returnBool (handler self_ i range))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_set_selection gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_set_selection (Internal.Raw.gtype gtype) zcb
 
   /// Sets the caret position.
   let parentSetSelection (self: AccessibleText) (i: int) (range: AccessibleTextRange) : bool =
@@ -15405,7 +15405,7 @@ module Actionable =
         match handler actionable with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Actionable_get_action_name gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Actionable_get_action_name (Internal.Raw.gtype gtype) zcb
 
   /// Gets the action name for @actionable.
   let parentGetActionName (self: Actionable) : option<string> =
@@ -15419,7 +15419,7 @@ module Actionable =
         match handler actionable with
         | Some zo -> Internal.Raw.returnPointer (Internal.GLibC.zgtk_lend_GLib_Variant (Internal.Raw.obj zo.Id (Internal.GLibC.zgtk_type_GLib_Variant ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Actionable_get_action_target_value gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Actionable_get_action_target_value (Internal.Raw.gtype gtype) zcb
 
   /// Gets the current target value of @actionable.
   let parentGetActionTargetValue (self: Actionable) : option<GLib.Variant> =
@@ -15434,7 +15434,7 @@ module Actionable =
         let actionable = Actionable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let actionName = Internal.Raw.textOption (Internal.Raw.argPointer 1)
         handler actionable actionName)
-    Internal.Gtk4C.zgtk_override_Gtk_Actionable_set_action_name gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Actionable_set_action_name (Internal.Raw.gtype gtype) zcb
 
   /// Specifies the name of the action with which this widget should be associated.
   let parentSetActionName (self: Actionable) (actionName: option<string>) : unit =
@@ -15450,7 +15450,7 @@ module Actionable =
         let zid1 = Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 1) (i32 0)
         let targetValue = (if zid1 = 0 then None else Some (GLib.Variant zid1))
         handler actionable targetValue)
-    Internal.Gtk4C.zgtk_override_Gtk_Actionable_set_action_target_value gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Actionable_set_action_target_value (Internal.Raw.gtype gtype) zcb
 
   /// Sets the target value of an actionable widget.
   let parentSetActionTargetValue (self: Actionable) (targetValue: option<GLib.Variant>) : unit =
@@ -15626,7 +15626,7 @@ module Adjustment =
       Internal.Raw.hold (fun () ->
         let adjustment = Adjustment (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler adjustment)
-    Internal.Gtk4C.zgtk_override_Gtk_Adjustment_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Adjustment_changed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_Adjustment_changed`.
   let parentChanged (self: Adjustment) : unit =
@@ -15638,7 +15638,7 @@ module Adjustment =
       Internal.Raw.hold (fun () ->
         let adjustment = Adjustment (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler adjustment)
-    Internal.Gtk4C.zgtk_override_Gtk_Adjustment_value_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Adjustment_value_changed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_Adjustment_value_changed`.
   let parentValueChanged (self: Adjustment) : unit =
@@ -15893,7 +15893,7 @@ module Filter =
       Internal.Raw.hold (fun () ->
         let self_ = Filter (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler self_).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_Filter_get_strictness gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Filter_get_strictness (Internal.Raw.gtype gtype) zcb
 
   /// Gets the known strictness of a filter.
   let parentGetStrictness (self: Filter) : FilterMatch =
@@ -15907,7 +15907,7 @@ module Filter =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let item = (if zid1 = 0 then None else Some (GObject.Object zid1))
         Internal.Raw.returnBool (handler self_ item))
-    Internal.Gtk4C.zgtk_override_Gtk_Filter_match gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Filter_match (Internal.Raw.gtype gtype) zcb
 
   /// Checks if the given @item is matched by the filter or not.
   let parentMatch (self: Filter) (item: option<GObject.Object>) : bool =
@@ -16223,7 +16223,7 @@ module Dialog =
       Internal.Raw.hold (fun () ->
         let dialog = Dialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler dialog)
-    Internal.Gtk4C.zgtk_override_Gtk_Dialog_close gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Dialog_close (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted when the user uses a keybinding to close the dialog.
   let parentClose (self: Dialog) : unit =
@@ -16236,7 +16236,7 @@ module Dialog =
         let dialog = Dialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let responseId = Internal.Raw.argInt 1
         handler dialog responseId)
-    Internal.Gtk4C.zgtk_override_Gtk_Dialog_response gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Dialog_response (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Emits the ::response signal with the given response ID.
   let parentResponse (self: Dialog) (responseId: int) : unit =
@@ -16600,7 +16600,7 @@ module Application =
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let window = Window (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler application window)
-    Internal.Gtk4C.zgtk_override_Gtk_Application_window_added gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Application_window_added (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted when a `GtkWindow` is added to application through gtk_application_add_window().
   let parentWindowAdded (self: Application) (window: Window) : unit =
@@ -16613,7 +16613,7 @@ module Application =
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let window = Window (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler application window)
-    Internal.Gtk4C.zgtk_override_Gtk_Application_window_removed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Application_window_removed (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted when a `GtkWindow` is removed from application, either as a side-effect of being destroyed or explicitly through gtk_application_remove_window().
   let parentWindowRemoved (self: Application) (window: Window) : unit =
@@ -17066,7 +17066,7 @@ module LayoutManager =
         let height = Internal.Raw.argInt 3
         let baseline = Internal.Raw.argInt 4
         handler manager widget width height baseline)
-    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_allocate gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_allocate (Internal.Raw.gtype gtype) zcb
 
   /// Assigns the given @width, @height, and @baseline to a @widget, and computes the position and sizes of the children of the @widget using the layout management policy of @manager.
   let parentAllocate (self: LayoutManager) (widget: Widget) (width: int) (height: int) (baseline: int) : unit =
@@ -17080,7 +17080,7 @@ module LayoutManager =
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let forChild = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler manager widget forChild).Id (Internal.Gtk4C.gtk_layout_child_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_create_layout_child gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_create_layout_child (Internal.Raw.gtype gtype) zcb
 
   /// Create a `GtkLayoutChild` instance for the given @for_child widget.
   let parentCreateLayoutChild (self: LayoutManager) (widget: Widget) (forChild: Widget) : LayoutChild =
@@ -17093,7 +17093,7 @@ module LayoutManager =
         let manager = LayoutManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnInt (handler manager widget).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_get_request_mode gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_get_request_mode (Internal.Raw.gtype gtype) zcb
 
   /// a virtual function, used to return the preferred request mode for the layout manager; for instance, "width for height" or "height for width"; see `GtkSizeRequestMode`
   let parentGetRequestMode (self: LayoutManager) (widget: Widget) : SizeRequestMode =
@@ -17112,7 +17112,7 @@ module LayoutManager =
         Internal.Raw.setI32 5 natural
         Internal.Raw.setI32 6 minimumBaseline
         Internal.Raw.setI32 7 naturalBaseline)
-    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_measure gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_measure (Internal.Raw.gtype gtype) zcb
 
   /// Measures the size of the @widget using @manager, for the given @orientation and size.
   let parentMeasure (self: LayoutManager) (widget: Widget) (orientation: Orientation) (forSize: int) : (int * int * int * int) =
@@ -17128,7 +17128,7 @@ module LayoutManager =
       Internal.Raw.hold (fun () ->
         let manager = LayoutManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler manager)
-    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_root gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_root (Internal.Raw.gtype gtype) zcb
 
   /// a virtual function, called when the widget using the layout manager is attached to a `GtkRoot`
   let parentRoot (self: LayoutManager) : unit =
@@ -17140,7 +17140,7 @@ module LayoutManager =
       Internal.Raw.hold (fun () ->
         let manager = LayoutManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler manager)
-    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_unroot gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_unroot (Internal.Raw.gtype gtype) zcb
 
   /// a virtual function, called when the widget using the layout manager is detached from a `GtkRoot`
   let parentUnroot (self: LayoutManager) : unit =
@@ -17779,7 +17779,7 @@ module Builder =
 
   /// Parses the UI definition in @string.
   let createFromString (string: string) (length: int) : Builder =
-    Builder (Internal.Raw.wrap ((Internal.Gtk4C.gtk_builder_new_from_string string (i64 length))) true)
+    Builder (Internal.Raw.wrap ((Internal.Gtk4C.gtk_builder_new_from_string string (i64 (Internal.Raw.within string 0 length false 1)))) true)
 
   /// Parses a file containing a UI definition and merges it with the current contents of @builder.
   let addFromFile (self: Builder) (filename: string) : result<bool, Glue.Error> =
@@ -17810,7 +17810,7 @@ module Builder =
   /// Parses a string containing a UI definition and merges it with the current contents of @builder.
   let addFromString (self: Builder) (buffer: string) (length: int) : result<bool, Glue.Error> =
     Internal.Raw.outBegin ()
-    let zr = Internal.Gtk4C.gtk_builder_add_from_string (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_builder_get_type ())) buffer (i64 length) (Internal.Raw.err ())
+    let zr = Internal.Gtk4C.gtk_builder_add_from_string (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_builder_get_type ())) buffer (i64 (Internal.Raw.within buffer 0 length false 1)) (Internal.Raw.err ())
     match Internal.Raw.takeError () with
     | Some ze ->
       Internal.Raw.outEnd ()
@@ -17856,7 +17856,7 @@ module Builder =
   let addObjectsFromString (self: Builder) (buffer: string) (length: int) (objectIds: list<string>) : result<bool, Glue.Error> =
     let zv1 = Internal.Raw.strv objectIds
     Internal.Raw.outBegin ()
-    let zr = Internal.Gtk4C.gtk_builder_add_objects_from_string (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_builder_get_type ())) buffer (i64 length) zv1 (Internal.Raw.err ())
+    let zr = Internal.Gtk4C.gtk_builder_add_objects_from_string (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_builder_get_type ())) buffer (i64 (Internal.Raw.within buffer 0 length false 1)) zv1 (Internal.Raw.err ())
     match Internal.Raw.takeError () with
     | Some ze ->
       Internal.Raw.outEnd ()
@@ -17892,7 +17892,7 @@ module Builder =
   /// Main private entry point for building composite components from template XML.
   let extendWithTemplate (self: Builder) (object: GObject.Object) (templateType: usize) (buffer: string) (length: int) : result<bool, Glue.Error> =
     Internal.Raw.outBegin ()
-    let zr = Internal.Gtk4C.gtk_builder_extend_with_template (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_builder_get_type ())) (Internal.Raw.obj object.Id (Internal.GObjectC.g_object_get_type ())) templateType buffer (i64 length) (Internal.Raw.err ())
+    let zr = Internal.Gtk4C.gtk_builder_extend_with_template (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_builder_get_type ())) (Internal.Raw.obj object.Id (Internal.GObjectC.g_object_get_type ())) (Internal.Raw.gtype templateType) buffer (i64 (Internal.Raw.within buffer 0 length false 1)) (Internal.Raw.err ())
     match Internal.Raw.takeError () with
     | Some ze ->
       Internal.Raw.outEnd ()
@@ -17970,7 +17970,7 @@ module Builder =
   let valueFromStringType (self: Builder) (type_: usize) (string: string) : result<(bool * GObject.Value), Glue.Error> =
     let zo1 = Internal.Raw.alloc (Internal.GObjectC.zgtk_sizeof_GObject_Value ()) (Internal.GObjectC.g_value_get_type ())
     Internal.Raw.outBegin ()
-    let zr = Internal.Gtk4C.gtk_builder_value_from_string_type (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_builder_get_type ())) type_ string (Internal.Raw.obj zo1 (Internal.GObjectC.g_value_get_type ())) (Internal.Raw.err ())
+    let zr = Internal.Gtk4C.gtk_builder_value_from_string_type (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_builder_get_type ())) (Internal.Raw.gtype type_) string (Internal.Raw.obj zo1 (Internal.GObjectC.g_value_get_type ())) (Internal.Raw.err ())
     match Internal.Raw.takeError () with
     | Some ze ->
       Internal.Raw.outEnd ()
@@ -18010,8 +18010,8 @@ module BuilderScope =
         let self_ = BuilderScope (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let builder = Builder (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let functionName = Internal.Raw.text (Internal.Raw.argPointer 2)
-        Internal.Raw.returnInt (int (handler self_ builder functionName)))
-    Internal.Gtk4C.zgtk_override_Gtk_BuilderScope_get_type_from_function gtype zcb
+        Internal.Raw.returnInt (int (Internal.Raw.gtype (handler self_ builder functionName))))
+    Internal.Gtk4C.zgtk_override_Gtk_BuilderScope_get_type_from_function (Internal.Raw.gtype gtype) zcb
 
   /// Try to lookup a `GType` via the given function name, specified explicitly in a GtkBuilder file, like via the "type-func" attribute in the `<object>` tag.
   let parentGetTypeFromFunction (self: BuilderScope) (builder: Builder) (functionName: string) : usize =
@@ -18024,8 +18024,8 @@ module BuilderScope =
         let self_ = BuilderScope (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let builder = Builder (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let typeName = Internal.Raw.text (Internal.Raw.argPointer 2)
-        Internal.Raw.returnInt (int (handler self_ builder typeName)))
-    Internal.Gtk4C.zgtk_override_Gtk_BuilderScope_get_type_from_name gtype zcb
+        Internal.Raw.returnInt (int (Internal.Raw.gtype (handler self_ builder typeName))))
+    Internal.Gtk4C.zgtk_override_Gtk_BuilderScope_get_type_from_name (Internal.Raw.gtype gtype) zcb
 
   /// Try to lookup a `GType` via the its name.
   let parentGetTypeFromName (self: BuilderScope) (builder: Builder) (typeName: string) : usize =
@@ -18264,7 +18264,7 @@ module Button =
       Internal.Raw.hold (fun () ->
         let button = Button (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler button)
-    Internal.Gtk4C.zgtk_override_Gtk_Button_activate gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Button_activate (Internal.Raw.gtype gtype) zcb
 
   /// Signal that causes the button to animate press then release.
   let parentActivate (self: Button) : unit =
@@ -18276,7 +18276,7 @@ module Button =
       Internal.Raw.hold (fun () ->
         let button = Button (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler button)
-    Internal.Gtk4C.zgtk_override_Gtk_Button_clicked gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Button_clicked (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted when the button has been activated (pressed and released).
   let parentClicked (self: Button) : unit =
@@ -18289,7 +18289,7 @@ module CClosureExpression =
   /// Creates a `GtkExpression` that calls `callback_func` when it is evaluated.
   [<Unsafe>]
   let create (valueType: usize) (marshal: cptr) (nParams: int) (params: cptr) (callbackFunc: cptr) (userData: cptr) (userDestroy: cptr) : CClosureExpression =
-    CClosureExpression (Internal.Gtk4C.zgtk_wrap_Gtk_CClosureExpression ((Internal.Gtk4C.gtk_cclosure_expression_new valueType marshal (u32 nParams) params callbackFunc userData userDestroy)) (i32 1))
+    CClosureExpression (Internal.Gtk4C.zgtk_wrap_Gtk_CClosureExpression ((Internal.Gtk4C.gtk_cclosure_expression_new (Internal.Raw.gtype valueType) marshal (u32 nParams) params callbackFunc userData userDestroy)) (i32 1))
 
 module Calendar =
   /// The same object as its interface.
@@ -18535,7 +18535,7 @@ module CellLayout =
         let attribute = Internal.Raw.text (Internal.Raw.argPointer 2)
         let column = Internal.Raw.argInt 3
         handler cellLayout cell attribute column)
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_add_attribute gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_add_attribute (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Adds an attribute mapping to the list in @cell_layout.
   let parentAddAttribute (self: CellLayout) (cell: CellRenderer) (attribute: string) (column: int) : unit =
@@ -18547,7 +18547,7 @@ module CellLayout =
       Internal.Raw.hold (fun () ->
         let cellLayout = CellLayout (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler cellLayout)
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_clear gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_clear (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Unsets all the mappings on all renderers on @cell_layout and removes all renderers from @cell_layout.
   let parentClear (self: CellLayout) : unit =
@@ -18560,7 +18560,7 @@ module CellLayout =
         let cellLayout = CellLayout (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let cell = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler cellLayout cell)
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_clear_attributes gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_clear_attributes (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Clears all existing attributes previously set with gtk_cell_layout_set_attributes().
   let parentClearAttributes (self: CellLayout) (cell: CellRenderer) : unit =
@@ -18574,7 +18574,7 @@ module CellLayout =
         match handler cellLayout with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_cell_area_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_get_area gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_get_area (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Returns the underlying `GtkCellArea` which might be @cell_layout if called on a `GtkCellArea` or might be %NULL if no `GtkCellArea` is used by @cell_layout.
   let parentGetArea (self: CellLayout) : option<CellArea> =
@@ -18588,7 +18588,7 @@ module CellLayout =
       Internal.Raw.hold (fun () ->
         let cellLayout = CellLayout (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.glist (Internal.Raw.mapList (fun (zo: CellRenderer) -> Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ())) (handler cellLayout)) false))
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_get_cells gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_get_cells (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Returns the cell renderers which have been added to @cell_layout.
   let parentGetCells (self: CellLayout) : list<CellRenderer> =
@@ -18602,7 +18602,7 @@ module CellLayout =
         let cell = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let expand = (Internal.Raw.argInt 2 <> 0)
         handler cellLayout cell expand)
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_pack_end gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_pack_end (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Adds the @cell to the end of @cell_layout.
   let parentPackEnd (self: CellLayout) (cell: CellRenderer) (expand: bool) : unit =
@@ -18616,7 +18616,7 @@ module CellLayout =
         let cell = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let expand = (Internal.Raw.argInt 2 <> 0)
         handler cellLayout cell expand)
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_pack_start gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_pack_start (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Packs the @cell into the beginning of @cell_layout.
   let parentPackStart (self: CellLayout) (cell: CellRenderer) (expand: bool) : unit =
@@ -18630,7 +18630,7 @@ module CellLayout =
         let cell = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let position = Internal.Raw.argInt 2
         handler cellLayout cell position)
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_reorder gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_reorder (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Re-inserts @cell at @position.
   let parentReorder (self: CellLayout) (cell: CellRenderer) (position: int) : unit =
@@ -18646,7 +18646,7 @@ module CellLayout =
         let funcData = Internal.Raw.argPointer 3
         let destroy = Internal.Raw.argPointer 4
         handler cellLayout cell func funcData destroy)
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_set_cell_data_func gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_set_cell_data_func (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Sets the `GtkCellLayout`DataFunc to use for @cell_layout.
   let parentSetCellDataFunc (self: CellLayout) (cell: CellRenderer) (func: CellLayout -> CellRenderer -> TreeModel -> TreeIter -> unit) : unit =
@@ -18950,7 +18950,7 @@ module CellArea =
         let flags = CellRendererState (int (Internal.Raw.argInt 4))
         let editOnly = (Internal.Raw.argInt 5 <> 0)
         Internal.Raw.returnBool (handler area context widget cellArea flags editOnly))
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_activate gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_activate (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Activates @area, usually by activating the currently focused cell, however some subclasses which embed widgets in the area can also activate a widget if it currently has the focus.
   let parentActivate (self: CellArea) (context: CellAreaContext) (widget: Widget) (cellArea: Gdk.Rectangle) (flags: CellRendererState) (editOnly: bool) : bool =
@@ -18963,7 +18963,7 @@ module CellArea =
         let area = CellArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let renderer = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler area renderer)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_add gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_add (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Adds @renderer to @area with the default child cell properties.
   let parentAdd (self: CellArea) (renderer: CellRenderer) : unit =
@@ -18979,7 +18979,7 @@ module CellArea =
         let isExpander = (Internal.Raw.argInt 3 <> 0)
         let isExpanded = (Internal.Raw.argInt 4 <> 0)
         handler area treeModel iter isExpander isExpanded)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_apply_attributes gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_apply_attributes (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Applies any connected attributes to the renderers in @area by pulling the values from @tree_model.
   let parentApplyAttributes (self: CellArea) (treeModel: TreeModel) (iter: TreeIter) (isExpander: bool) (isExpanded: bool) : unit =
@@ -18992,7 +18992,7 @@ module CellArea =
         let area = CellArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let context = CellAreaContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler area context).Id (Internal.Gtk4C.gtk_cell_area_context_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_copy_context gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_copy_context (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. This is sometimes needed for cases where rows need to share alignments in one orientation but may be separately grouped in the opposing orientation.
   let parentCopyContext (self: CellArea) (context: CellAreaContext) : CellAreaContext =
@@ -19004,7 +19004,7 @@ module CellArea =
       Internal.Raw.hold (fun () ->
         let area = CellArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler area).Id (Internal.Gtk4C.gtk_cell_area_context_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_create_context gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_create_context (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Creates a `GtkCellArea`Context to be used with @area for all purposes.
   let parentCreateContext (self: CellArea) : CellAreaContext =
@@ -19021,7 +19021,7 @@ module CellArea =
         let cellArea = Gdk.Rectangle (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 4) (Internal.GdkC.gdk_rectangle_get_type ()) false)
         let flags = CellRendererState (int (Internal.Raw.argInt 5))
         Internal.Raw.returnInt (handler area context widget event cellArea flags))
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_event gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_event (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Delegates event handling to a `GtkCellArea`.
   let parentEvent (self: CellArea) (context: CellAreaContext) (widget: Widget) (event: Gdk.Event) (cellArea: Gdk.Rectangle) (flags: CellRendererState) : int =
@@ -19034,7 +19034,7 @@ module CellArea =
         let area = CellArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let direction = DirectionType (int (Internal.Raw.argInt 1))
         Internal.Raw.returnBool (handler area direction))
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_focus gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_focus (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. This should be called by the @area’s owning layout widget when focus is to be passed to @area, or moved within @area for a given @direction and row data.
   let parentFocus (self: CellArea) (direction: DirectionType) : bool =
@@ -19048,7 +19048,7 @@ module CellArea =
         let callback = Internal.Raw.argPointer 1
         let callbackData = Internal.Raw.argPointer 2
         handler area callback callbackData)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_foreach gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_foreach (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Calls @callback for every `GtkCellRenderer` in @area.
   let parentForeach (self: CellArea) (callback: CellRenderer -> bool) : unit =
@@ -19071,7 +19071,7 @@ module CellArea =
         let callback = Internal.Raw.argPointer 5
         let callbackData = Internal.Raw.argPointer 6
         handler area context widget cellArea backgroundArea callback callbackData)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_foreach_alloc gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_foreach_alloc (Internal.Raw.gtype gtype) zcb
 
   /// Calls @callback for every `GtkCellRenderer` in @area with the allocated rectangle inside @cell_area.
   let parentForeachAlloc (self: CellArea) (context: CellAreaContext) (widget: Widget) (cellArea: Gdk.Rectangle) (backgroundArea: Gdk.Rectangle) (callback: CellRenderer -> Gdk.Rectangle -> Gdk.Rectangle -> bool) : unit =
@@ -19094,7 +19094,7 @@ module CellArea =
         let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.GObjectC.g_value_get_type ()) false)
         let pspec = GObject.ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (Internal.Raw.argPointer 4) (i32 0))
         handler area renderer propertyId value pspec)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_cell_property gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_cell_property (Internal.Raw.gtype gtype) zcb
 
   /// This should be implemented to report the values of child cell properties for a given child `GtkCellRenderer`.
   let parentGetCellProperty (self: CellArea) (renderer: CellRenderer) (propertyId: int) (value: GObject.Value) (pspec: GObject.ParamSpec) : unit =
@@ -19110,7 +19110,7 @@ module CellArea =
         let (minimumHeight, naturalHeight) = handler area context widget
         Internal.Raw.setI32 3 minimumHeight
         Internal.Raw.setI32 4 naturalHeight)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_height gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_height (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Retrieves a cell area’s initial minimum and natural height.
   let parentGetPreferredHeight (self: CellArea) (context: CellAreaContext) (widget: Widget) : (int * int) =
@@ -19131,7 +19131,7 @@ module CellArea =
         let (minimumHeight, naturalHeight) = handler area context widget width
         Internal.Raw.setI32 4 minimumHeight
         Internal.Raw.setI32 5 naturalHeight)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_height_for_width gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_height_for_width (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Retrieves a cell area’s minimum and natural height if it would be given the specified @width.
   let parentGetPreferredHeightForWidth (self: CellArea) (context: CellAreaContext) (widget: Widget) (width: int) : (int * int) =
@@ -19151,7 +19151,7 @@ module CellArea =
         let (minimumWidth, naturalWidth) = handler area context widget
         Internal.Raw.setI32 3 minimumWidth
         Internal.Raw.setI32 4 naturalWidth)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_width gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_width (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Retrieves a cell area’s initial minimum and natural width.
   let parentGetPreferredWidth (self: CellArea) (context: CellAreaContext) (widget: Widget) : (int * int) =
@@ -19172,7 +19172,7 @@ module CellArea =
         let (minimumWidth, naturalWidth) = handler area context widget height
         Internal.Raw.setI32 4 minimumWidth
         Internal.Raw.setI32 5 naturalWidth)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_width_for_height gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_width_for_height (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Retrieves a cell area’s minimum and natural width if it would be given the specified @height.
   let parentGetPreferredWidthForHeight (self: CellArea) (context: CellAreaContext) (widget: Widget) (height: int) : (int * int) =
@@ -19188,7 +19188,7 @@ module CellArea =
       Internal.Raw.hold (fun () ->
         let area = CellArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler area).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_request_mode gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_request_mode (Internal.Raw.gtype gtype) zcb
 
   /// Gets whether the area prefers a height-for-width layout or a width-for-height layout.
   let parentGetRequestMode (self: CellArea) : SizeRequestMode =
@@ -19200,7 +19200,7 @@ module CellArea =
       Internal.Raw.hold (fun () ->
         let area = CellArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler area))
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_is_activatable gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_is_activatable (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Returns whether the area can do anything when activated, after applying new attributes to @area.
   let parentIsActivatable (self: CellArea) : bool =
@@ -19213,7 +19213,7 @@ module CellArea =
         let area = CellArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let renderer = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler area renderer)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_remove gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_remove (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Removes @renderer from @area.
   let parentRemove (self: CellArea) (renderer: CellRenderer) : unit =
@@ -19229,7 +19229,7 @@ module CellArea =
         let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.GObjectC.g_value_get_type ()) false)
         let pspec = GObject.ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (Internal.Raw.argPointer 4) (i32 0))
         handler area renderer propertyId value pspec)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_set_cell_property gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_set_cell_property (Internal.Raw.gtype gtype) zcb
 
   /// This should be implemented to handle changes in child cell properties for a given `GtkCellRenderer` that were previously installed on the `GtkCellAreaClass` with gtk_cell_area_class_install_cell_property().
   let parentSetCellProperty (self: CellArea) (renderer: CellRenderer) (propertyId: int) (value: GObject.Value) (pspec: GObject.ParamSpec) : unit =
@@ -19248,7 +19248,7 @@ module CellArea =
         let flags = CellRendererState (int (Internal.Raw.argInt 6))
         let paintFocus = (Internal.Raw.argInt 7 <> 0)
         handler area context widget snapshot backgroundArea cellArea flags paintFocus)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_snapshot gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellArea_snapshot (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Snapshots @area’s cells according to @area’s layout onto at the given coordinates.
   let parentSnapshot (self: CellArea) (context: CellAreaContext) (widget: Widget) (snapshot: Snapshot) (backgroundArea: Gdk.Rectangle) (cellArea: Gdk.Rectangle) (flags: CellRendererState) (paintFocus: bool) : unit =
@@ -19436,7 +19436,7 @@ module CellAreaContext =
         let width = Internal.Raw.argInt 1
         let height = Internal.Raw.argInt 2
         handler context width height)
-    Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_allocate gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_allocate (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Allocates a width and/or a height for all rows which are to be rendered with @context.
   let parentAllocate (self: CellAreaContext) (width: int) (height: int) : unit =
@@ -19451,7 +19451,7 @@ module CellAreaContext =
         let (minimumHeight, naturalHeight) = handler context width
         Internal.Raw.setI32 2 minimumHeight
         Internal.Raw.setI32 3 naturalHeight)
-    Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_get_preferred_height_for_width gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_get_preferred_height_for_width (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Gets the accumulative preferred height for @width for all rows which have been requested for the same said @width with this context.
   let parentGetPreferredHeightForWidth (self: CellAreaContext) (width: int) : (int * int) =
@@ -19470,7 +19470,7 @@ module CellAreaContext =
         let (minimumWidth, naturalWidth) = handler context height
         Internal.Raw.setI32 2 minimumWidth
         Internal.Raw.setI32 3 naturalWidth)
-    Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_get_preferred_width_for_height gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_get_preferred_width_for_height (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Gets the accumulative preferred width for @height for all rows which have been requested for the same said @height with this context.
   let parentGetPreferredWidthForHeight (self: CellAreaContext) (height: int) : (int * int) =
@@ -19486,7 +19486,7 @@ module CellAreaContext =
       Internal.Raw.hold (fun () ->
         let context = CellAreaContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_reset gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_reset (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Resets any previously cached request and allocation data.
   let parentReset (self: CellAreaContext) : unit =
@@ -19543,7 +19543,7 @@ module CellEditable =
       Internal.Raw.hold (fun () ->
         let cellEditable = CellEditable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler cellEditable)
-    Internal.Gtk4C.zgtk_override_Gtk_CellEditable_editing_done gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellEditable_editing_done (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Emits the `GtkCellEditable::editing-done` signal.
   let parentEditingDone (self: CellEditable) : unit =
@@ -19555,7 +19555,7 @@ module CellEditable =
       Internal.Raw.hold (fun () ->
         let cellEditable = CellEditable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler cellEditable)
-    Internal.Gtk4C.zgtk_override_Gtk_CellEditable_remove_widget gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellEditable_remove_widget (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Emits the `GtkCellEditable::remove-widget` signal.
   let parentRemoveWidget (self: CellEditable) : unit =
@@ -19569,7 +19569,7 @@ module CellEditable =
         let zid1 = Internal.GdkC.zgtk_wrap_Gdk_Event (Internal.Raw.argPointer 1) (i32 0)
         let event = (if zid1 = 0 then None else Some (Gdk.Event zid1))
         handler cellEditable event)
-    Internal.Gtk4C.zgtk_override_Gtk_CellEditable_start_editing gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellEditable_start_editing (Internal.Raw.gtype gtype) zcb
 
   /// Begins editing on a @cell_editable.
   let parentStartEditing (self: CellEditable) (event: option<Gdk.Event>) : unit =
@@ -19882,7 +19882,7 @@ module CellRenderer =
         let cellArea = Gdk.Rectangle (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 5) (Internal.GdkC.gdk_rectangle_get_type ()) false)
         let flags = CellRendererState (int (Internal.Raw.argInt 6))
         Internal.Raw.returnBool (handler cell event widget path backgroundArea cellArea flags))
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_activate gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_activate (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Passes an activate event to the cell renderer for possible processing.
   let parentActivate (self: CellRenderer) (event: Gdk.Event) (widget: Widget) (path: string) (backgroundArea: Gdk.Rectangle) (cellArea: Gdk.Rectangle) (flags: CellRendererState) : bool =
@@ -19894,7 +19894,7 @@ module CellRenderer =
       Internal.Raw.hold (fun () ->
         let cell = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler cell)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_editing_canceled gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_editing_canceled (Internal.Raw.gtype gtype) zcb
 
   /// Signal gets emitted when the user cancels the process of editing a cell.
   let parentEditingCanceled (self: CellRenderer) : unit =
@@ -19908,7 +19908,7 @@ module CellRenderer =
         let editable = CellEditable (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let path = Internal.Raw.text (Internal.Raw.argPointer 2)
         handler cell editable path)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_editing_started gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_editing_started (Internal.Raw.gtype gtype) zcb
 
   /// Signal gets emitted when a cell starts to be edited.
   let parentEditingStarted (self: CellRenderer) (editable: CellEditable) (path: string) : unit =
@@ -19924,7 +19924,7 @@ module CellRenderer =
         let cellArea = Gdk.Rectangle (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.GdkC.gdk_rectangle_get_type ()) false)
         let alignedArea = handler cell widget flags cellArea
         Internal.Raw.setRecord 4 (Internal.Raw.obj alignedArea.Id (Internal.GdkC.gdk_rectangle_get_type ())) (Internal.GdkC.zgtk_sizeof_Gdk_Rectangle ()))
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_aligned_area gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_aligned_area (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Gets the aligned area used by @cell inside @cell_area.
   let parentGetAlignedArea (self: CellRenderer) (widget: Widget) (flags: CellRendererState) (cellArea: Gdk.Rectangle) : Gdk.Rectangle =
@@ -19941,7 +19941,7 @@ module CellRenderer =
         let (minimumSize, naturalSize) = handler cell widget
         Internal.Raw.setI32 2 minimumSize
         Internal.Raw.setI32 3 naturalSize)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_height gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_height (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Retrieves a renderer’s natural size when rendered to @widget.
   let parentGetPreferredHeight (self: CellRenderer) (widget: Widget) : (int * int) =
@@ -19961,7 +19961,7 @@ module CellRenderer =
         let (minimumHeight, naturalHeight) = handler cell widget width
         Internal.Raw.setI32 3 minimumHeight
         Internal.Raw.setI32 4 naturalHeight)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_height_for_width gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_height_for_width (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Retrieves a cell renderers’s minimum and natural height if it were rendered to @widget with the specified @width.
   let parentGetPreferredHeightForWidth (self: CellRenderer) (widget: Widget) (width: int) : (int * int) =
@@ -19980,7 +19980,7 @@ module CellRenderer =
         let (minimumSize, naturalSize) = handler cell widget
         Internal.Raw.setI32 2 minimumSize
         Internal.Raw.setI32 3 naturalSize)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_width gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_width (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Retrieves a renderer’s natural size when rendered to @widget.
   let parentGetPreferredWidth (self: CellRenderer) (widget: Widget) : (int * int) =
@@ -20000,7 +20000,7 @@ module CellRenderer =
         let (minimumWidth, naturalWidth) = handler cell widget height
         Internal.Raw.setI32 3 minimumWidth
         Internal.Raw.setI32 4 naturalWidth)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_width_for_height gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_width_for_height (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Retrieves a cell renderers’s minimum and natural width if it were rendered to @widget with the specified @height.
   let parentGetPreferredWidthForHeight (self: CellRenderer) (widget: Widget) (height: int) : (int * int) =
@@ -20016,7 +20016,7 @@ module CellRenderer =
       Internal.Raw.hold (fun () ->
         let cell = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler cell).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_request_mode gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_request_mode (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Gets whether the cell renderer prefers a height-for-width layout or a width-for-height layout.
   let parentGetRequestMode (self: CellRenderer) : SizeRequestMode =
@@ -20033,7 +20033,7 @@ module CellRenderer =
         let cellArea = Gdk.Rectangle (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 4) (Internal.GdkC.gdk_rectangle_get_type ()) false)
         let flags = CellRendererState (int (Internal.Raw.argInt 5))
         handler cell snapshot widget backgroundArea cellArea flags)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_snapshot gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_snapshot (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Invokes the virtual render function of the `GtkCellRenderer`.
   let parentSnapshot (self: CellRenderer) (snapshot: Snapshot) (widget: Widget) (backgroundArea: Gdk.Rectangle) (cellArea: Gdk.Rectangle) (flags: CellRendererState) : unit =
@@ -20054,7 +20054,7 @@ module CellRenderer =
         match handler cell event widget path backgroundArea cellArea flags with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_cell_editable_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_start_editing gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_start_editing (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Starts editing the contents of this @cell, through a new `GtkCellEditable` widget created by the `GtkCellRenderer`Class.start_editing virtual function.
   let parentStartEditing (self: CellRenderer) (event: option<Gdk.Event>) (widget: Widget) (path: string) (backgroundArea: Gdk.Rectangle) (cellArea: Gdk.Rectangle) (flags: CellRendererState) : option<CellEditable> =
@@ -20533,7 +20533,7 @@ module CellRendererText =
         let path = Internal.Raw.text (Internal.Raw.argPointer 1)
         let newText = Internal.Raw.text (Internal.Raw.argPointer 2)
         handler cellRendererText path newText)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRendererText_edited gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CellRendererText_edited (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_CellRendererText_edited`.
   let parentEdited (self: CellRendererText) (path: string) (newText: string) : unit =
@@ -21509,7 +21509,7 @@ module CheckButton =
       Internal.Raw.hold (fun () ->
         let checkButton = CheckButton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler checkButton)
-    Internal.Gtk4C.zgtk_override_Gtk_CheckButton_activate gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CheckButton_activate (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_CheckButton_activate`.
   let parentActivate (self: CheckButton) : unit =
@@ -21521,7 +21521,7 @@ module CheckButton =
       Internal.Raw.hold (fun () ->
         let checkButton = CheckButton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler checkButton)
-    Internal.Gtk4C.zgtk_override_Gtk_CheckButton_toggled gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_CheckButton_toggled (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_CheckButton_toggled`.
   let parentToggled (self: CheckButton) : unit =
@@ -21534,7 +21534,7 @@ module ClosureExpression =
   /// Creates a `GtkExpression` that calls `closure` when it is evaluated.
   [<Unsafe>]
   let create (valueType: usize) (closure: (unit -> unit)) (nParams: int) (params: cptr) : ClosureExpression =
-    ClosureExpression (Internal.Gtk4C.zgtk_wrap_Gtk_ClosureExpression ((Internal.Gtk4C.gtk_closure_expression_new valueType (Internal.Raw.closure closure) (u32 nParams) params)) (i32 1))
+    ClosureExpression (Internal.Gtk4C.zgtk_wrap_Gtk_ClosureExpression ((Internal.Gtk4C.gtk_closure_expression_new (Internal.Raw.gtype valueType) (Internal.Raw.closure closure) (u32 nParams) params)) (i32 1))
 
 module ColorChooser =
   /// The same object as its ancestor.
@@ -21596,7 +21596,7 @@ module ColorChooser =
         let zrs2 = Internal.Raw.mapList (fun zp -> Gdk.RGBA (Internal.Raw.wrapBoxed (zp) (Internal.GdkC.gdk_rgba_get_type ()) false)) (Internal.Raw.recordsOf (Internal.Raw.argPointer 4) ((Internal.Raw.argInt 2)) (Internal.GdkC.zgtk_sizeof_Gdk_RGBA ()))
         let colors = zrs2
         handler chooser orientation colorsPerLine nColors colors)
-    Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_add_palette gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_add_palette (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Adds a palette to the color chooser.
   let parentAddPalette (self: ColorChooser) (orientation: Orientation) (colorsPerLine: int) (colors: list<Gdk.RGBA>) : unit =
@@ -21611,7 +21611,7 @@ module ColorChooser =
         let chooser = ColorChooser (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let color = Gdk.RGBA (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GdkC.gdk_rgba_get_type ()) false)
         handler chooser color)
-    Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_color_activated gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_color_activated (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_ColorChooser_color_activated`.
   let parentColorActivated (self: ColorChooser) (color: Gdk.RGBA) : unit =
@@ -21624,7 +21624,7 @@ module ColorChooser =
         let chooser = ColorChooser (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let color = handler chooser
         Internal.Raw.setRecord 1 (Internal.Raw.obj color.Id (Internal.GdkC.gdk_rgba_get_type ())) (Internal.GdkC.zgtk_sizeof_Gdk_RGBA ()))
-    Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_get_rgba gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_get_rgba (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Gets the currently-selected color.
   let parentGetRgba (self: ColorChooser) : Gdk.RGBA =
@@ -21639,7 +21639,7 @@ module ColorChooser =
         let chooser = ColorChooser (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let color = Gdk.RGBA (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GdkC.gdk_rgba_get_type ()) false)
         handler chooser color)
-    Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_set_rgba gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_set_rgba (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Sets the color.
   let parentSetRgba (self: ColorChooser) (color: Gdk.RGBA) : unit =
@@ -22078,7 +22078,7 @@ module Scrollable =
         let (zres, border) = handler scrollable
         Internal.Raw.setRecord 1 (Internal.Raw.obj border.Id (Internal.Gtk4C.gtk_border_get_type ())) (Internal.Gtk4C.zgtk_sizeof_Gtk_Border ())
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_Scrollable_get_border gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Scrollable_get_border (Internal.Raw.gtype gtype) zcb
 
   /// Returns the size of a non-scrolling border around the outside of the scrollable.
   let parentGetBorder (self: Scrollable) : (bool * Border) =
@@ -22790,7 +22790,7 @@ module Sorter =
         let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 2) false
         let item2 = (if zid2 = 0 then None else Some (GObject.Object zid2))
         Internal.Raw.returnInt (handler self_ item1 item2).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_Sorter_compare gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Sorter_compare (Internal.Raw.gtype gtype) zcb
 
   /// Compares two given items according to the sort order implemented by the sorter.
   let parentCompare (self: Sorter) (item1: option<GObject.Object>) (item2: option<GObject.Object>) : Ordering =
@@ -22811,7 +22811,7 @@ module Sorter =
       Internal.Raw.hold (fun () ->
         let self_ = Sorter (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler self_).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_Sorter_get_order gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Sorter_get_order (Internal.Raw.gtype gtype) zcb
 
   /// Gets the order that @self conforms to.
   let parentGetOrder (self: Sorter) : SorterOrder =
@@ -23121,7 +23121,7 @@ module ComboBox =
       Internal.Raw.hold (fun () ->
         let comboBox = ComboBox (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler comboBox)
-    Internal.Gtk4C.zgtk_override_Gtk_ComboBox_activate gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_ComboBox_activate (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_ComboBox_activate`.
   let parentActivate (self: ComboBox) : unit =
@@ -23133,7 +23133,7 @@ module ComboBox =
       Internal.Raw.hold (fun () ->
         let comboBox = ComboBox (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler comboBox)
-    Internal.Gtk4C.zgtk_override_Gtk_ComboBox_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_ComboBox_changed (Internal.Raw.gtype gtype) zcb
 
   /// Signal is emitted when the active item is changed.
   let parentChanged (self: ComboBox) : unit =
@@ -23146,7 +23146,7 @@ module ComboBox =
         let comboBox = ComboBox (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let path = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler comboBox path)))
-    Internal.Gtk4C.zgtk_override_Gtk_ComboBox_format_entry_text gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_ComboBox_format_entry_text (Internal.Raw.gtype gtype) zcb
 
   /// Signal which allows you to change how the text displayed in a combo box’s entry is displayed.
   let parentFormatEntryText (self: ComboBox) (path: string) : string =
@@ -23684,7 +23684,7 @@ module CssProvider =
 
   /// Deprecated. Loads @data into @css_provider.
   let loadFromData (self: CssProvider) (data: string) (length: int) : unit =
-    Internal.Gtk4C.gtk_css_provider_load_from_data (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_css_provider_get_type ())) data (i64 length)
+    Internal.Gtk4C.gtk_css_provider_load_from_data (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_css_provider_get_type ())) data (i64 (Internal.Raw.within data 0 length false 1))
 
   /// Loads the data contained in @file into @css_provider.
   let loadFromFile (self: CssProvider) (file: Gio.File) : unit =
@@ -24562,7 +24562,7 @@ module DrawingArea =
         let width = Internal.Raw.argInt 1
         let height = Internal.Raw.argInt 2
         handler area width height)
-    Internal.Gtk4C.zgtk_override_Gtk_DrawingArea_resize gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_DrawingArea_resize (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_DrawingArea_resize`.
   let parentResize (self: DrawingArea) (width: int) (height: int) : unit =
@@ -24845,7 +24845,7 @@ module DropTarget =
 
   /// Creates a new `GtkDropTarget` object.
   let create (type_: usize) (actions: Gdk.DragAction) : DropTarget =
-    DropTarget (Internal.Raw.wrap ((Internal.Gtk4C.gtk_drop_target_new type_ (u32 actions.Int))) true)
+    DropTarget (Internal.Raw.wrap ((Internal.Gtk4C.gtk_drop_target_new (Internal.Raw.gtype type_) (u32 actions.Int))) true)
 
   /// Gets the actions that this drop target supports.
   let getActions (self: DropTarget) : Gdk.DragAction =
@@ -24897,7 +24897,7 @@ module DropTarget =
 
   /// Sets the supported `GType`s for this drop target.
   let setGtypes (self: DropTarget) (types: list<usize>) : unit =
-    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) types) 8
+    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) types) 8
     Internal.Gtk4C.gtk_drop_target_set_gtypes (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_drop_target_get_type ())) za2 (usize (Internal.Raw.count types))
     Internal.Raw.free za2
 
@@ -25135,7 +25135,7 @@ module Editable =
   let insertText (self: Editable) (text: string) (length: int) (position: int) : int =
     Internal.Raw.outBegin ()
     Internal.Raw.outSetInt 0 position
-    Internal.Gtk4C.gtk_editable_insert_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_editable_get_type ())) text (i32 length) (Internal.Raw.out 0)
+    Internal.Gtk4C.gtk_editable_insert_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_editable_get_type ())) text (i32 (Internal.Raw.within text 0 length false 1)) (Internal.Raw.out 0)
     let zv = Internal.Raw.outI32 0
     Internal.Raw.outEnd ()
     zv
@@ -25246,7 +25246,7 @@ module Editable =
       Internal.Raw.hold (fun () ->
         let editable = Editable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler editable)
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Editable_changed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_Editable_changed`.
   let parentChanged (self: Editable) : unit =
@@ -25260,7 +25260,7 @@ module Editable =
         let startPos = Internal.Raw.argInt 1
         let endPos = Internal.Raw.argInt 2
         handler editable startPos endPos)
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_delete_text gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Editable_delete_text (Internal.Raw.gtype gtype) zcb
 
   /// Deletes a sequence of characters.
   let parentDeleteText (self: Editable) (startPos: int) (endPos: int) : unit =
@@ -25274,7 +25274,7 @@ module Editable =
         let startPos = Internal.Raw.argInt 1
         let endPos = Internal.Raw.argInt 2
         handler editable startPos endPos)
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_do_delete_text gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Editable_do_delete_text (Internal.Raw.gtype gtype) zcb
 
   /// Deletes a sequence of characters.
   let parentDoDeleteText (self: Editable) (startPos: int) (endPos: int) : unit =
@@ -25290,13 +25290,13 @@ module Editable =
         let position = Internal.Raw.getI32 3
         let positionAfter = handler editable text length position
         Internal.Raw.setI32 3 positionAfter)
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_do_insert_text gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Editable_do_insert_text (Internal.Raw.gtype gtype) zcb
 
   /// Inserts @length bytes of @text into the contents of the widget, at position @position.
   let parentDoInsertText (self: Editable) (text: string) (length: int) (position: int) : int =
     Internal.Raw.outBegin ()
     Internal.Raw.outSetInt 0 position
-    Internal.Gtk4C.zgtk_parent_Gtk_Editable_do_insert_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_editable_get_type ())) text (i32 length) (Internal.Raw.out 0)
+    Internal.Gtk4C.zgtk_parent_Gtk_Editable_do_insert_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_editable_get_type ())) text (i32 (Internal.Raw.within text 0 length false 1)) (Internal.Raw.out 0)
     let zv = Internal.Raw.outI32 0
     Internal.Raw.outEnd ()
     zv
@@ -25309,7 +25309,7 @@ module Editable =
         match handler editable with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_editable_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_get_delegate gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Editable_get_delegate (Internal.Raw.gtype gtype) zcb
 
   /// Gets the `GtkEditable` that @editable is delegating its implementation to.
   let parentGetDelegate (self: Editable) : option<Editable> =
@@ -25326,7 +25326,7 @@ module Editable =
         Internal.Raw.setI32 1 startPos
         Internal.Raw.setI32 2 endPos
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_get_selection_bounds gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Editable_get_selection_bounds (Internal.Raw.gtype gtype) zcb
 
   /// Retrieves the selection bound of the editable.
   let parentGetSelectionBounds (self: Editable) : (bool * int * int) =
@@ -25342,7 +25342,7 @@ module Editable =
       Internal.Raw.hold (fun () ->
         let editable = Editable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler editable)))
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_get_text gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Editable_get_text (Internal.Raw.gtype gtype) zcb
 
   /// Retrieves the contents of @editable.
   let parentGetText (self: Editable) : string =
@@ -25358,13 +25358,13 @@ module Editable =
         let position = Internal.Raw.getI32 3
         let positionAfter = handler editable text length position
         Internal.Raw.setI32 3 positionAfter)
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_insert_text gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Editable_insert_text (Internal.Raw.gtype gtype) zcb
 
   /// Inserts @length bytes of @text into the contents of the widget, at position @position.
   let parentInsertText (self: Editable) (text: string) (length: int) (position: int) : int =
     Internal.Raw.outBegin ()
     Internal.Raw.outSetInt 0 position
-    Internal.Gtk4C.zgtk_parent_Gtk_Editable_insert_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_editable_get_type ())) text (i32 length) (Internal.Raw.out 0)
+    Internal.Gtk4C.zgtk_parent_Gtk_Editable_insert_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_editable_get_type ())) text (i32 (Internal.Raw.within text 0 length false 1)) (Internal.Raw.out 0)
     let zv = Internal.Raw.outI32 0
     Internal.Raw.outEnd ()
     zv
@@ -25377,7 +25377,7 @@ module Editable =
         let startPos = Internal.Raw.argInt 1
         let endPos = Internal.Raw.argInt 2
         handler editable startPos endPos)
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_set_selection_bounds gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Editable_set_selection_bounds (Internal.Raw.gtype gtype) zcb
 
   /// Selects a region of text.
   let parentSetSelectionBounds (self: Editable) (startPos: int) (endPos: int) : unit =
@@ -25622,7 +25622,7 @@ module Popover =
       Internal.Raw.hold (fun () ->
         let popover = Popover (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler popover)
-    Internal.Gtk4C.zgtk_override_Gtk_Popover_activate_default gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Popover_activate_default (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_Popover_activate_default`.
   let parentActivateDefault (self: Popover) : unit =
@@ -25634,7 +25634,7 @@ module Popover =
       Internal.Raw.hold (fun () ->
         let popover = Popover (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler popover)
-    Internal.Gtk4C.zgtk_override_Gtk_Popover_closed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Popover_closed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_Popover_closed`.
   let parentClosed (self: Popover) : unit =
@@ -26336,7 +26336,7 @@ module Entry =
       Internal.Raw.hold (fun () ->
         let entry = Entry (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler entry)
-    Internal.Gtk4C.zgtk_override_Gtk_Entry_activate gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Entry_activate (Internal.Raw.gtype gtype) zcb
 
   /// Class handler for the `GtkEntry::activate` signal.
   let parentActivate (self: Entry) : unit =
@@ -26356,7 +26356,7 @@ module EntryBuffer =
   /// Create a new `GtkEntryBuffer` object.
   let create (initialChars: option<string>) (nInitialChars: int) : EntryBuffer =
     let zs1 = Internal.Raw.dupOption initialChars
-    let zr = Internal.Gtk4C.gtk_entry_buffer_new zs1 (i32 nInitialChars)
+    let zr = Internal.Gtk4C.gtk_entry_buffer_new zs1 (i32 (Internal.Raw.within (Option.defaultValue "" initialChars) 0 nInitialChars true 1))
     let zv = EntryBuffer (Internal.Raw.wrap (zr) true)
     Internal.Raw.free zs1
     zv
@@ -26371,7 +26371,7 @@ module EntryBuffer =
 
   /// Used when subclassing `GtkEntryBuffer`.
   let emitInsertedText (self: EntryBuffer) (position: int) (chars: string) (nChars: int) : unit =
-    Internal.Gtk4C.gtk_entry_buffer_emit_inserted_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())) (u32 position) chars (u32 nChars)
+    Internal.Gtk4C.gtk_entry_buffer_emit_inserted_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())) (u32 position) chars (u32 (Internal.Raw.within chars 0 nChars true 0))
 
   /// Retrieves the length in bytes of the buffer.
   let getBytes (self: EntryBuffer) : int =
@@ -26391,7 +26391,7 @@ module EntryBuffer =
 
   /// Inserts @n_chars characters of @chars into the contents of the buffer, at position @position.
   let insertText (self: EntryBuffer) (position: int) (chars: string) (nChars: int) : int =
-    (int ((Internal.Gtk4C.gtk_entry_buffer_insert_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())) (u32 position) chars (i32 nChars))))
+    (int ((Internal.Gtk4C.gtk_entry_buffer_insert_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())) (u32 position) chars (i32 (Internal.Raw.within chars 0 nChars true 1)))))
 
   /// Sets the maximum allowed length of the contents of the buffer.
   let setMaxLength (self: EntryBuffer) (maxLength: int) : unit =
@@ -26399,7 +26399,7 @@ module EntryBuffer =
 
   /// Sets the text in the buffer.
   let setText (self: EntryBuffer) (chars: string) (nChars: int) : unit =
-    Internal.Gtk4C.gtk_entry_buffer_set_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())) chars (i32 nChars)
+    Internal.Gtk4C.gtk_entry_buffer_set_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())) chars (i32 (Internal.Raw.within chars 0 nChars true 1))
 
   /// The text is altered in the default handler for this signal.
   let onDeletedText (self: EntryBuffer) (handler: int -> int -> unit) : unit =
@@ -26436,7 +26436,7 @@ module EntryBuffer =
         let position = Internal.Raw.argInt 1
         let nChars = Internal.Raw.argInt 2
         Internal.Raw.returnInt (handler buffer position nChars))
-    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_delete_text gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_delete_text (Internal.Raw.gtype gtype) zcb
 
   /// Deletes a sequence of characters from the buffer.
   let parentDeleteText (self: EntryBuffer) (position: int) (nChars: int) : int =
@@ -26450,7 +26450,7 @@ module EntryBuffer =
         let position = Internal.Raw.argInt 1
         let nChars = Internal.Raw.argInt 2
         handler buffer position nChars)
-    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_deleted_text gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_deleted_text (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_EntryBuffer_deleted_text`.
   let parentDeletedText (self: EntryBuffer) (position: int) (nChars: int) : unit =
@@ -26462,7 +26462,7 @@ module EntryBuffer =
       Internal.Raw.hold (fun () ->
         let buffer = EntryBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler buffer))
-    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_get_length gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_get_length (Internal.Raw.gtype gtype) zcb
 
   /// Retrieves the length in characters of the buffer.
   let parentGetLength (self: EntryBuffer) : int =
@@ -26475,7 +26475,7 @@ module EntryBuffer =
         let buffer = EntryBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let nBytes = Internal.Raw.argInt 1
         Internal.Raw.returnPointer (Internal.Raw.intern (handler buffer nBytes)))
-    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_get_text gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_get_text (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_EntryBuffer_get_text`.
   let parentGetText (self: EntryBuffer) (nBytes: int) : string =
@@ -26490,11 +26490,11 @@ module EntryBuffer =
         let chars = Internal.Raw.text (Internal.Raw.argPointer 2)
         let nChars = Internal.Raw.argInt 3
         Internal.Raw.returnInt (handler buffer position chars nChars))
-    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_insert_text gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_insert_text (Internal.Raw.gtype gtype) zcb
 
   /// Inserts @n_chars characters of @chars into the contents of the buffer, at position @position.
   let parentInsertText (self: EntryBuffer) (position: int) (chars: string) (nChars: int) : int =
-    (int ((Internal.Gtk4C.zgtk_parent_Gtk_EntryBuffer_insert_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())) (u32 position) chars (u32 nChars))))
+    (int ((Internal.Gtk4C.zgtk_parent_Gtk_EntryBuffer_insert_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())) (u32 position) chars (u32 (Internal.Raw.within chars 0 nChars true 0)))))
 
   /// Gives a type made with `Glue.subclass` its own `inserted_text`: a virtual method.
   let overrideInsertedText (gtype: usize) (handler: EntryBuffer -> int -> string -> int -> unit) : unit =
@@ -26505,11 +26505,11 @@ module EntryBuffer =
         let chars = Internal.Raw.text (Internal.Raw.argPointer 2)
         let nChars = Internal.Raw.argInt 3
         handler buffer position chars nChars)
-    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_inserted_text gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_inserted_text (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_EntryBuffer_inserted_text`.
   let parentInsertedText (self: EntryBuffer) (position: int) (chars: string) (nChars: int) : unit =
-    Internal.Gtk4C.zgtk_parent_Gtk_EntryBuffer_inserted_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())) (u32 position) chars (u32 nChars)
+    Internal.Gtk4C.zgtk_parent_Gtk_EntryBuffer_inserted_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())) (u32 position) chars (u32 (Internal.Raw.within chars 0 nChars true 0))
 
 module EntryCompletion =
   /// The same object as its interface.
@@ -27503,7 +27503,7 @@ module NativeDialog =
       Internal.Raw.hold (fun () ->
         let self_ = NativeDialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.Gtk4C.zgtk_override_Gtk_NativeDialog_hide gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_NativeDialog_hide (Internal.Raw.gtype gtype) zcb
 
   /// Hides the dialog if it is visible, aborting any interaction.
   let parentHide (self: NativeDialog) : unit =
@@ -27516,7 +27516,7 @@ module NativeDialog =
         let self_ = NativeDialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let responseId = Internal.Raw.argInt 1
         handler self_ responseId)
-    Internal.Gtk4C.zgtk_override_Gtk_NativeDialog_response gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_NativeDialog_response (Internal.Raw.gtype gtype) zcb
 
   /// class handler for the `GtkNativeDialog::response` signal
   let parentResponse (self: NativeDialog) (responseId: int) : unit =
@@ -27528,7 +27528,7 @@ module NativeDialog =
       Internal.Raw.hold (fun () ->
         let self_ = NativeDialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.Gtk4C.zgtk_override_Gtk_NativeDialog_show gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_NativeDialog_show (Internal.Raw.gtype gtype) zcb
 
   /// Shows the dialog on the display.
   let parentShow (self: NativeDialog) : unit =
@@ -28425,7 +28425,7 @@ module SectionModel =
         let (outStart, outEnd) = handler self_ position
         Internal.Raw.setI32 2 outStart
         Internal.Raw.setI32 3 outEnd)
-    Internal.Gtk4C.zgtk_override_Gtk_SectionModel_get_section gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_SectionModel_get_section (Internal.Raw.gtype gtype) zcb
 
   /// Query the section that covers the given position.
   let parentGetSection (self: SectionModel) (position: int) : (int * int) =
@@ -29054,7 +29054,7 @@ module FlowBoxChild =
       Internal.Raw.hold (fun () ->
         let child = FlowBoxChild (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler child)
-    Internal.Gtk4C.zgtk_override_Gtk_FlowBoxChild_activate gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_FlowBoxChild_activate (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_FlowBoxChild_activate`.
   let parentActivate (self: FlowBoxChild) : unit =
@@ -29205,7 +29205,7 @@ module FontChooser =
         let chooser = FontChooser (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let fontname = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler chooser fontname)
-    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_font_activated gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_font_activated (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_FontChooser_font_activated`.
   let parentFontActivated (self: FontChooser) (fontname: string) : unit =
@@ -29219,7 +29219,7 @@ module FontChooser =
         match handler fontchooser with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.PangoC.pango_font_face_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_face gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_face (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Gets the `PangoFontFace` representing the selected font group details (i.e.
   let parentGetFontFace (self: FontChooser) : option<Pango.FontFace> =
@@ -29235,7 +29235,7 @@ module FontChooser =
         match handler fontchooser with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.PangoC.pango_font_family_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_family gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_family (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Gets the `PangoFontFamily` representing the selected font family.
   let parentGetFontFamily (self: FontChooser) : option<Pango.FontFamily> =
@@ -29251,7 +29251,7 @@ module FontChooser =
         match handler fontchooser with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.PangoC.pango_font_map_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_map gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_map (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Gets the custom font map of this font chooser widget, or %NULL if it does not have one.
   let parentGetFontMap (self: FontChooser) : option<Pango.FontMap> =
@@ -29265,7 +29265,7 @@ module FontChooser =
       Internal.Raw.hold (fun () ->
         let fontchooser = FontChooser (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler fontchooser))
-    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_size gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_size (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. The selected font size.
   let parentGetFontSize (self: FontChooser) : int =
@@ -29280,7 +29280,7 @@ module FontChooser =
         let userData = Internal.Raw.argPointer 2
         let destroy = Internal.Raw.argPointer 3
         handler fontchooser filter userData destroy)
-    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_set_filter_func gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_set_filter_func (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Adds a filter function that decides which fonts to display in the font chooser.
   let parentSetFilterFunc (self: FontChooser) (filter: Pango.FontFamily -> Pango.FontFace -> bool) : unit =
@@ -29299,7 +29299,7 @@ module FontChooser =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let fontmap = (if zid1 = 0 then None else Some (Pango.FontMap zid1))
         handler fontchooser fontmap)
-    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_set_font_map gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_set_font_map (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Sets a custom font map to use for this font chooser widget.
   let parentSetFontMap (self: FontChooser) (fontmap: option<Pango.FontMap>) : unit =
@@ -30003,7 +30003,7 @@ module Frame =
         let frame = Frame (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let allocation = Gdk.Rectangle (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GdkC.gdk_rectangle_get_type ()) false)
         handler frame allocation)
-    Internal.Gtk4C.zgtk_override_Gtk_Frame_compute_child_allocation gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Frame_compute_child_allocation (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_Frame_compute_child_allocation`.
   let parentComputeChildAllocation (self: Frame) (allocation: Gdk.Rectangle) : unit =
@@ -30175,7 +30175,7 @@ module GLArea =
       Internal.Raw.hold (fun () ->
         let area = GLArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler area).Id (Internal.GdkC.gdk_gl_context_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_GLArea_create_context gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_GLArea_create_context (Internal.Raw.gtype gtype) zcb
 
   /// class closure for the `GtkGLArea::create-context` signal
   let parentCreateContext (self: GLArea) : Gdk.GLContext =
@@ -30188,7 +30188,7 @@ module GLArea =
         let area = GLArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let context = Gdk.GLContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnBool (handler area context))
-    Internal.Gtk4C.zgtk_override_Gtk_GLArea_render gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_GLArea_render (Internal.Raw.gtype gtype) zcb
 
   /// class closure for the `GtkGLArea::render` signal
   let parentRender (self: GLArea) (context: Gdk.GLContext) : bool =
@@ -30202,7 +30202,7 @@ module GLArea =
         let width = Internal.Raw.argInt 1
         let height = Internal.Raw.argInt 2
         handler area width height)
-    Internal.Gtk4C.zgtk_override_Gtk_GLArea_resize gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_GLArea_resize (Internal.Raw.gtype gtype) zcb
 
   /// class closeure for the `GtkGLArea::resize` signal
   let parentResize (self: GLArea) (width: int) (height: int) : unit =
@@ -31371,11 +31371,11 @@ module IMContext =
 
   /// Deprecated. Sets surrounding context around the insertion point and preedit string.
   let setSurrounding (self: IMContext) (text: string) (len: int) (cursorIndex: int) : unit =
-    Internal.Gtk4C.gtk_im_context_set_surrounding (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) text (i32 len) (i32 cursorIndex)
+    Internal.Gtk4C.gtk_im_context_set_surrounding (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) text (i32 (Internal.Raw.within text 0 len false 1)) (i32 cursorIndex)
 
   /// Sets surrounding context around the insertion point and preedit string.
   let setSurroundingWithSelection (self: IMContext) (text: string) (len: int) (cursorIndex: int) (anchorIndex: int) : unit =
-    Internal.Gtk4C.gtk_im_context_set_surrounding_with_selection (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) text (i32 len) (i32 cursorIndex) (i32 anchorIndex)
+    Internal.Gtk4C.gtk_im_context_set_surrounding_with_selection (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) text (i32 (Internal.Raw.within text 0 len false 1)) (i32 cursorIndex) (i32 anchorIndex)
 
   /// Sets whether the IM context should use the preedit string to display feedback.
   let setUsePreedit (self: IMContext) (usePreedit: bool) : unit =
@@ -31443,7 +31443,7 @@ module IMContext =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_activate_osk gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_activate_osk (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_IMContext_activate_osk`.
   let parentActivateOsk (self: IMContext) : unit =
@@ -31456,7 +31456,7 @@ module IMContext =
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let event = Gdk.Event (Internal.GdkC.zgtk_wrap_Gdk_Event (Internal.Raw.argPointer 1) (i32 0))
         Internal.Raw.returnBool (handler context event))
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_activate_osk_with_event gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_activate_osk_with_event (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_IMContext_activate_osk_with_event`.
   let parentActivateOskWithEvent (self: IMContext) (event: Gdk.Event) : bool =
@@ -31469,7 +31469,7 @@ module IMContext =
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let str = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler context str)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_commit gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_commit (Internal.Raw.gtype gtype) zcb
 
   /// Default handler of the [signal@Gtk.IMContext::commit] signal.
   let parentCommit (self: IMContext) (str: string) : unit =
@@ -31483,7 +31483,7 @@ module IMContext =
         let offset = Internal.Raw.argInt 1
         let nChars = Internal.Raw.argInt 2
         Internal.Raw.returnBool (handler context offset nChars))
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_delete_surrounding gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_delete_surrounding (Internal.Raw.gtype gtype) zcb
 
   /// Asks the widget that the input context is attached to delete characters around the cursor position by emitting the `::delete_surrounding` signal.
   let parentDeleteSurrounding (self: IMContext) (offset: int) (nChars: int) : bool =
@@ -31496,7 +31496,7 @@ module IMContext =
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let event = Gdk.Event (Internal.GdkC.zgtk_wrap_Gdk_Event (Internal.Raw.argPointer 1) (i32 0))
         Internal.Raw.returnBool (handler context event))
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_filter_keypress gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_filter_keypress (Internal.Raw.gtype gtype) zcb
 
   /// Allow an input method to internally handle key press and release events.
   let parentFilterKeypress (self: IMContext) (event: Gdk.Event) : bool =
@@ -31508,7 +31508,7 @@ module IMContext =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_focus_in gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_focus_in (Internal.Raw.gtype gtype) zcb
 
   /// Notify the input method that the widget to which this input context corresponds has gained focus.
   let parentFocusIn (self: IMContext) : unit =
@@ -31520,7 +31520,7 @@ module IMContext =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_focus_out gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_focus_out (Internal.Raw.gtype gtype) zcb
 
   /// Notify the input method that the widget to which this input context corresponds has lost focus.
   let parentFocusOut (self: IMContext) : unit =
@@ -31535,7 +31535,7 @@ module IMContext =
         let (str, cursorPos) = handler context attrs
         Internal.Raw.setPointer 1 (Internal.Raw.dup str)
         Internal.Raw.setI32 3 cursorPos)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_get_preedit_string gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_get_preedit_string (Internal.Raw.gtype gtype) zcb
 
   /// Retrieve the current preedit string for the input context, and a list of attributes to apply to the string.
   let parentGetPreeditString (self: IMContext) : (string * Pango.AttrList * int) =
@@ -31554,7 +31554,7 @@ module IMContext =
         Internal.Raw.setPointer 1 (Internal.Raw.dup text)
         Internal.Raw.setI32 2 cursorIndex
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_get_surrounding gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_get_surrounding (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Retrieves context around the insertion point.
   let parentGetSurrounding (self: IMContext) : (bool * string * int) =
@@ -31574,7 +31574,7 @@ module IMContext =
         Internal.Raw.setI32 2 cursorIndex
         Internal.Raw.setI32 3 anchorIndex
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_get_surrounding_with_selection gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_get_surrounding_with_selection (Internal.Raw.gtype gtype) zcb
 
   /// Retrieves context around the insertion point.
   let parentGetSurroundingWithSelection (self: IMContext) : (bool * string * int * int) =
@@ -31591,7 +31591,7 @@ module IMContext =
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let str = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnBool (handler context str))
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_invalid_composition gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_invalid_composition (Internal.Raw.gtype gtype) zcb
 
   /// Default handler of the [signal@Gtk.IMContext::invalid-composition] signal.
   let parentInvalidComposition (self: IMContext) (str: string) : bool =
@@ -31603,7 +31603,7 @@ module IMContext =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_preedit_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_preedit_changed (Internal.Raw.gtype gtype) zcb
 
   /// Default handler of the [signal@Gtk.IMContext::preedit-changed] signal.
   let parentPreeditChanged (self: IMContext) : unit =
@@ -31615,7 +31615,7 @@ module IMContext =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_preedit_end gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_preedit_end (Internal.Raw.gtype gtype) zcb
 
   /// Default handler of the [signal@Gtk.IMContext::preedit-end] signal.
   let parentPreeditEnd (self: IMContext) : unit =
@@ -31627,7 +31627,7 @@ module IMContext =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_preedit_start gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_preedit_start (Internal.Raw.gtype gtype) zcb
 
   /// Default handler of the [signal@Gtk.IMContext::preedit-start] signal.
   let parentPreeditStart (self: IMContext) : unit =
@@ -31639,7 +31639,7 @@ module IMContext =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_reset gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_reset (Internal.Raw.gtype gtype) zcb
 
   /// Notify the input method that a change such as a change in cursor position has been made.
   let parentReset (self: IMContext) : unit =
@@ -31651,7 +31651,7 @@ module IMContext =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler context))
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_retrieve_surrounding gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_retrieve_surrounding (Internal.Raw.gtype gtype) zcb
 
   /// Default handler of the [signal@Gtk.IMContext::retrieve-surrounding] signal.
   let parentRetrieveSurrounding (self: IMContext) : bool =
@@ -31665,7 +31665,7 @@ module IMContext =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let widget = (if zid1 = 0 then None else Some (Widget zid1))
         handler context widget)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_client_widget gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_client_widget (Internal.Raw.gtype gtype) zcb
 
   /// Set the client widget for the input context.
   let parentSetClientWidget (self: IMContext) (widget: option<Widget>) : unit =
@@ -31682,7 +31682,7 @@ module IMContext =
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let area = Gdk.Rectangle (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GdkC.gdk_rectangle_get_type ()) false)
         handler context area)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_cursor_location gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_cursor_location (Internal.Raw.gtype gtype) zcb
 
   /// Notify the input method that a change in cursor position has been made.
   let parentSetCursorLocation (self: IMContext) (area: Gdk.Rectangle) : unit =
@@ -31697,11 +31697,11 @@ module IMContext =
         let len = Internal.Raw.argInt 2
         let cursorIndex = Internal.Raw.argInt 3
         handler context text len cursorIndex)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_surrounding gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_surrounding (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Sets surrounding context around the insertion point and preedit string.
   let parentSetSurrounding (self: IMContext) (text: string) (len: int) (cursorIndex: int) : unit =
-    Internal.Gtk4C.zgtk_parent_Gtk_IMContext_set_surrounding (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) text (i32 len) (i32 cursorIndex)
+    Internal.Gtk4C.zgtk_parent_Gtk_IMContext_set_surrounding (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) text (i32 (Internal.Raw.within text 0 len false 1)) (i32 cursorIndex)
 
   /// Gives a type made with `Glue.subclass` its own `set_surrounding_with_selection`: Sets surrounding context around the insertion point and preedit string.
   let overrideSetSurroundingWithSelection (gtype: usize) (handler: IMContext -> string -> int -> int -> int -> unit) : unit =
@@ -31713,11 +31713,11 @@ module IMContext =
         let cursorIndex = Internal.Raw.argInt 3
         let anchorIndex = Internal.Raw.argInt 4
         handler context text len cursorIndex anchorIndex)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_surrounding_with_selection gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_surrounding_with_selection (Internal.Raw.gtype gtype) zcb
 
   /// Sets surrounding context around the insertion point and preedit string.
   let parentSetSurroundingWithSelection (self: IMContext) (text: string) (len: int) (cursorIndex: int) (anchorIndex: int) : unit =
-    Internal.Gtk4C.zgtk_parent_Gtk_IMContext_set_surrounding_with_selection (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) text (i32 len) (i32 cursorIndex) (i32 anchorIndex)
+    Internal.Gtk4C.zgtk_parent_Gtk_IMContext_set_surrounding_with_selection (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) text (i32 (Internal.Raw.within text 0 len false 1)) (i32 cursorIndex) (i32 anchorIndex)
 
   /// Gives a type made with `Glue.subclass` its own `set_use_preedit`: Sets whether the IM context should use the preedit string to display feedback.
   let overrideSetUsePreedit (gtype: usize) (handler: IMContext -> bool -> unit) : unit =
@@ -31726,7 +31726,7 @@ module IMContext =
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let usePreedit = (Internal.Raw.argInt 1 <> 0)
         handler context usePreedit)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_use_preedit gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_use_preedit (Internal.Raw.gtype gtype) zcb
 
   /// Sets whether the IM context should use the preedit string to display feedback.
   let parentSetUsePreedit (self: IMContext) (usePreedit: bool) : unit =
@@ -31755,6 +31755,7 @@ module IMContextSimple =
     Internal.Gtk4C.gtk_im_context_simple_add_compose_file (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_simple_get_type ())) composeFile
 
   /// Deprecated. Adds an additional table to search to the input context.
+  [<Unsafe>]
   let addTable (self: IMContextSimple) (data: list<int>) (maxSeqLen: int) (nSeqs: int) : unit =
     let za1 = Internal.Raw.ints data 2
     Internal.Gtk4C.gtk_im_context_simple_add_table (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_simple_get_type ())) za1 (i32 maxSeqLen) (i32 nSeqs)
@@ -31823,7 +31824,7 @@ module SymbolicPaintable =
         let colors = zrs2
         let nColors = Internal.Raw.argInt 5
         handler paintable snapshot width height colors nColors)
-    Internal.Gtk4C.zgtk_override_Gtk_SymbolicPaintable_snapshot_symbolic gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_SymbolicPaintable_snapshot_symbolic (Internal.Raw.gtype gtype) zcb
 
   /// Snapshots the paintable with the given colors.
   let parentSnapshotSymbolic (self: SymbolicPaintable) (snapshot: Gdk.Snapshot) (width: float) (height: float) (colors: list<Gdk.RGBA>) : unit =
@@ -31844,7 +31845,7 @@ module SymbolicPaintable =
         let nColors = Internal.Raw.argInt 5
         let weight = Internal.Raw.argFloat 6
         handler paintable snapshot width height colors nColors weight)
-    Internal.Gtk4C.zgtk_override_Gtk_SymbolicPaintable_snapshot_with_weight gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_SymbolicPaintable_snapshot_with_weight (Internal.Raw.gtype gtype) zcb
 
   /// Snapshots the paintable with the given colors and weight.
   let parentSnapshotWithWeight (self: SymbolicPaintable) (snapshot: Gdk.Snapshot) (width: float) (height: float) (colors: list<Gdk.RGBA>) (weight: float) : unit =
@@ -33994,7 +33995,7 @@ module ListBoxRow =
       Internal.Raw.hold (fun () ->
         let row = ListBoxRow (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler row)
-    Internal.Gtk4C.zgtk_override_Gtk_ListBoxRow_activate gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_ListBoxRow_activate (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_ListBoxRow_activate`.
   let parentActivate (self: ListBoxRow) : unit =
@@ -34090,7 +34091,7 @@ module TreeDragDest =
         let dest = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GObjectC.g_value_get_type ()) false)
         Internal.Raw.returnBool (handler dragDest dest value))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeDragDest_drag_data_received gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeDragDest_drag_data_received (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Asks the `GtkTreeDragDest` to insert a row before the path @dest, deriving the contents of the row from @value.
   let parentDragDataReceived (self: TreeDragDest) (dest: TreePath) (value: GObject.Value) : bool =
@@ -34104,7 +34105,7 @@ module TreeDragDest =
         let destPath = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GObjectC.g_value_get_type ()) false)
         Internal.Raw.returnBool (handler dragDest destPath value))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeDragDest_row_drop_possible gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeDragDest_row_drop_possible (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Determines whether a drop is possible before the given @dest_path, at the same depth as @dest_path.
   let parentRowDropPossible (self: TreeDragDest) (destPath: TreePath) (value: GObject.Value) : bool =
@@ -34142,7 +34143,7 @@ module TreeDragSource =
         let dragSource = TreeDragSource (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         Internal.Raw.returnBool (handler dragSource path))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeDragSource_drag_data_delete gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeDragSource_drag_data_delete (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Asks the `GtkTreeDragSource` to delete the row at @path, because it was moved somewhere else via drag-and-drop.
   let parentDragDataDelete (self: TreeDragSource) (path: TreePath) : bool =
@@ -34157,7 +34158,7 @@ module TreeDragSource =
         match handler dragSource path with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GdkC.gdk_content_provider_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeDragSource_drag_data_get gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeDragSource_drag_data_get (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Asks the `GtkTreeDragSource` to return a `GdkContentProvider` representing the row at @path.
   let parentDragDataGet (self: TreeDragSource) (path: TreePath) : option<Gdk.ContentProvider> =
@@ -34172,7 +34173,7 @@ module TreeDragSource =
         let dragSource = TreeDragSource (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         Internal.Raw.returnBool (handler dragSource path))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeDragSource_row_draggable gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeDragSource_row_draggable (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Asks the `GtkTreeDragSource` whether a particular row can be used as the source of a DND operation.
   let parentRowDraggable (self: TreeDragSource) (path: TreePath) : bool =
@@ -34380,8 +34381,8 @@ module TreeModel =
       Internal.Raw.hold (fun () ->
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let index = Internal.Raw.argInt 1
-        Internal.Raw.returnInt (int (handler treeModel index)))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_column_type gtype zcb
+        Internal.Raw.returnInt (int (Internal.Raw.gtype (handler treeModel index))))
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_column_type (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Returns the type of the column.
   let parentGetColumnType (self: TreeModel) (index: int) : usize =
@@ -34393,7 +34394,7 @@ module TreeModel =
       Internal.Raw.hold (fun () ->
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler treeModel).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_flags gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_flags (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Returns a set of flags supported by this interface.
   let parentGetFlags (self: TreeModel) : TreeModelFlags =
@@ -34408,7 +34409,7 @@ module TreeModel =
         let (zres, iter) = handler treeModel path
         Internal.Raw.setRecord 1 (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) (Internal.Gtk4C.zgtk_sizeof_Gtk_TreeIter ())
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_iter gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_iter (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Sets @iter to a valid iterator pointing to @path.
   let parentGetIter (self: TreeModel) (path: TreePath) : (bool * TreeIter) =
@@ -34422,7 +34423,7 @@ module TreeModel =
       Internal.Raw.hold (fun () ->
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler treeModel))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_n_columns gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_n_columns (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Returns the number of columns supported by @tree_model.
   let parentGetNColumns (self: TreeModel) : int =
@@ -34435,7 +34436,7 @@ module TreeModel =
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler treeModel iter).Id (Internal.Gtk4C.gtk_tree_path_get_type ())) (Internal.Gtk4C.gtk_tree_path_get_type ())))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_path gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_path (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Returns a newly-created `GtkTreePath` referenced by @iter.
   let parentGetPath (self: TreeModel) (iter: TreeIter) : TreePath =
@@ -34450,7 +34451,7 @@ module TreeModel =
         let column = Internal.Raw.argInt 2
         let value = handler treeModel iter column
         Internal.Raw.setRecord 3 (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())) (Internal.GObjectC.zgtk_sizeof_GObject_Value ()))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_value gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_value (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Initializes and sets @value to that at @column.
   let parentGetValue (self: TreeModel) (iter: TreeIter) (column: int) : GObject.Value =
@@ -34468,7 +34469,7 @@ module TreeModel =
         let (zres, iter) = handler treeModel parent
         Internal.Raw.setRecord 1 (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) (Internal.Gtk4C.zgtk_sizeof_Gtk_TreeIter ())
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_children gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_children (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Sets @iter to point to the first child of @parent.
   let parentIterChildren (self: TreeModel) (parent: option<TreeIter>) : (bool * TreeIter) =
@@ -34487,7 +34488,7 @@ module TreeModel =
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         Internal.Raw.returnBool (handler treeModel iter))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_has_child gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_has_child (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Returns %TRUE if @iter has children, %FALSE otherwise.
   let parentIterHasChild (self: TreeModel) (iter: TreeIter) : bool =
@@ -34501,7 +34502,7 @@ module TreeModel =
         let zid1 = Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false
         let iter = (if zid1 = 0 then None else Some (TreeIter zid1))
         Internal.Raw.returnInt (handler treeModel iter))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_n_children gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_n_children (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Returns the number of children that @iter has.
   let parentIterNChildren (self: TreeModel) (iter: option<TreeIter>) : int =
@@ -34519,7 +34520,7 @@ module TreeModel =
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         Internal.Raw.returnBool (handler treeModel iter))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_next gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_next (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Sets @iter to point to the node following it at the current level.
   let parentIterNext (self: TreeModel) (iter: TreeIter) : bool =
@@ -34536,7 +34537,7 @@ module TreeModel =
         let (zres, iter) = handler treeModel parent n
         Internal.Raw.setRecord 1 (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) (Internal.Gtk4C.zgtk_sizeof_Gtk_TreeIter ())
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_nth_child gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_nth_child (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Sets @iter to be the child of @parent, using the given index.
   let parentIterNthChild (self: TreeModel) (parent: option<TreeIter>) (n: int) : (bool * TreeIter) =
@@ -34557,7 +34558,7 @@ module TreeModel =
         let (zres, iter) = handler treeModel child
         Internal.Raw.setRecord 1 (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) (Internal.Gtk4C.zgtk_sizeof_Gtk_TreeIter ())
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_parent gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_parent (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Sets @iter to be the parent of @child.
   let parentIterParent (self: TreeModel) (child: TreeIter) : (bool * TreeIter) =
@@ -34572,7 +34573,7 @@ module TreeModel =
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         Internal.Raw.returnBool (handler treeModel iter))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_previous gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_previous (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Sets @iter to point to the previous node at the current level.
   let parentIterPrevious (self: TreeModel) (iter: TreeIter) : bool =
@@ -34585,7 +34586,7 @@ module TreeModel =
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         handler treeModel iter)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_ref_node gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_ref_node (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Lets the tree ref the node.
   let parentRefNode (self: TreeModel) (iter: TreeIter) : unit =
@@ -34599,7 +34600,7 @@ module TreeModel =
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         handler treeModel path iter)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_changed (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Emits the ::row-changed signal on @tree_model.
   let parentRowChanged (self: TreeModel) (path: TreePath) (iter: TreeIter) : unit =
@@ -34612,7 +34613,7 @@ module TreeModel =
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         handler treeModel path)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_deleted gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_deleted (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Emits the ::row-deleted signal on @tree_model.
   let parentRowDeleted (self: TreeModel) (path: TreePath) : unit =
@@ -34626,7 +34627,7 @@ module TreeModel =
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         handler treeModel path iter)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_has_child_toggled gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_has_child_toggled (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Emits the ::row-has-child-toggled signal on @tree_model.
   let parentRowHasChildToggled (self: TreeModel) (path: TreePath) (iter: TreeIter) : unit =
@@ -34640,7 +34641,7 @@ module TreeModel =
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         handler treeModel path iter)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_inserted gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_inserted (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Emits the ::row-inserted signal on @tree_model.
   let parentRowInserted (self: TreeModel) (path: TreePath) (iter: TreeIter) : unit =
@@ -34655,7 +34656,7 @@ module TreeModel =
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         let newOrder = Internal.Raw.argInt 3
         handler treeModel path iter newOrder)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_rows_reordered gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_rows_reordered (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Emits the ::rows-reordered signal on @tree_model.
   let parentRowsReordered (self: TreeModel) (path: TreePath) (iter: TreeIter) (newOrder: int) : unit =
@@ -34668,7 +34669,7 @@ module TreeModel =
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         handler treeModel iter)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_unref_node gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_unref_node (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Lets the tree unref the node.
   let parentUnrefNode (self: TreeModel) (iter: TreeIter) : unit =
@@ -34738,7 +34739,7 @@ module TreeSortable =
         Internal.Raw.setI32 1 sortColumnId
         Internal.Raw.setI32 2 order.Int
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_get_sort_column_id gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_get_sort_column_id (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Fills in @sort_column_id and @order with the current sort column and the order.
   let parentGetSortColumnId (self: TreeSortable) : (bool * int * SortType) =
@@ -34754,7 +34755,7 @@ module TreeSortable =
       Internal.Raw.hold (fun () ->
         let sortable = TreeSortable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler sortable))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_has_default_sort_func gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_has_default_sort_func (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Returns %TRUE if the model has a default sort function.
   let parentHasDefaultSortFunc (self: TreeSortable) : bool =
@@ -34769,7 +34770,7 @@ module TreeSortable =
         let userData = Internal.Raw.argPointer 2
         let destroy = Internal.Raw.argPointer 3
         handler sortable sortFunc userData destroy)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_set_default_sort_func gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_set_default_sort_func (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Sets the default comparison function used when sorting to be @sort_func.
   let parentSetDefaultSortFunc (self: TreeSortable) (sortFunc: TreeModel -> TreeIter -> TreeIter -> int) : unit =
@@ -34789,7 +34790,7 @@ module TreeSortable =
         let sortColumnId = Internal.Raw.argInt 1
         let order = SortType (int (Internal.Raw.argInt 2))
         handler sortable sortColumnId order)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_set_sort_column_id gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_set_sort_column_id (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Sets the current sort column to be @sort_column_id.
   let parentSetSortColumnId (self: TreeSortable) (sortColumnId: int) (order: SortType) : unit =
@@ -34805,7 +34806,7 @@ module TreeSortable =
         let userData = Internal.Raw.argPointer 3
         let destroy = Internal.Raw.argPointer 4
         handler sortable sortColumnId sortFunc userData destroy)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_set_sort_func gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_set_sort_func (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Sets the comparison function used when sorting to be @sort_func.
   let parentSetSortFunc (self: TreeSortable) (sortColumnId: int) (sortFunc: TreeModel -> TreeIter -> TreeIter -> int) : unit =
@@ -34823,7 +34824,7 @@ module TreeSortable =
       Internal.Raw.hold (fun () ->
         let sortable = TreeSortable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler sortable)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_sort_column_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_sort_column_changed (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Emits a `GtkTreeSortable::sort-column-changed` signal on @sortable.
   let parentSortColumnChanged (self: TreeSortable) : unit =
@@ -34857,7 +34858,7 @@ module ListStore =
 
   /// Deprecated. Creates a new `GtkListStore`.
   let create (types: list<usize>) : ListStore =
-    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) types) 8
+    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) types) 8
     let zr = Internal.Gtk4C.gtk_list_store_newv (i32 (Internal.Raw.count types)) za2
     let zv = ListStore (Internal.Raw.wrap (zr) true)
     Internal.Raw.free za2
@@ -34948,7 +34949,7 @@ module ListStore =
 
   /// Deprecated. Sets the types of the columns of a list store.
   let setColumnTypes (self: ListStore) (types: list<usize>) : unit =
-    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) types) 8
+    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) types) 8
     Internal.Gtk4C.gtk_list_store_set_column_types (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_list_store_get_type ())) (i32 (Internal.Raw.count types)) za2
     Internal.Raw.free za2
 
@@ -35580,7 +35581,7 @@ module MediaStream =
       Internal.Raw.hold (fun () ->
         let self_ = MediaStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_pause gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_pause (Internal.Raw.gtype gtype) zcb
 
   /// Pauses playback of the stream.
   let parentPause (self: MediaStream) : unit =
@@ -35592,7 +35593,7 @@ module MediaStream =
       Internal.Raw.hold (fun () ->
         let self_ = MediaStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler self_))
-    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_play gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_play (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_MediaStream_play`.
   let parentPlay (self: MediaStream) : bool =
@@ -35605,7 +35606,7 @@ module MediaStream =
         let self_ = MediaStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let surface = Gdk.Surface (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler self_ surface)
-    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_realize gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_realize (Internal.Raw.gtype gtype) zcb
 
   /// Called by users to attach the media stream to a `GdkSurface` they manage.
   let parentRealize (self: MediaStream) (surface: Gdk.Surface) : unit =
@@ -35618,7 +35619,7 @@ module MediaStream =
         let self_ = MediaStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let timestamp = Internal.Raw.argInt 1
         handler self_ timestamp)
-    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_seek gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_seek (Internal.Raw.gtype gtype) zcb
 
   /// Start a seek operation on @self to @timestamp.
   let parentSeek (self: MediaStream) (timestamp: int) : unit =
@@ -35631,7 +35632,7 @@ module MediaStream =
         let self_ = MediaStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let surface = Gdk.Surface (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler self_ surface)
-    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_unrealize gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_unrealize (Internal.Raw.gtype gtype) zcb
 
   /// Undoes a previous call to gtk_media_stream_realize().
   let parentUnrealize (self: MediaStream) (surface: Gdk.Surface) : unit =
@@ -35645,7 +35646,7 @@ module MediaStream =
         let muted = (Internal.Raw.argInt 1 <> 0)
         let volume = Internal.Raw.argFloat 2
         handler self_ muted volume)
-    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_update_audio gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_update_audio (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_MediaStream_update_audio`.
   let parentUpdateAudio (self: MediaStream) (muted: bool) (volume: float) : unit =
@@ -35746,7 +35747,7 @@ module MediaFile =
       Internal.Raw.hold (fun () ->
         let self_ = MediaFile (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.Gtk4C.zgtk_override_Gtk_MediaFile_close gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_MediaFile_close (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_MediaFile_close`.
   let parentClose (self: MediaFile) : unit =
@@ -35758,7 +35759,7 @@ module MediaFile =
       Internal.Raw.hold (fun () ->
         let self_ = MediaFile (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.Gtk4C.zgtk_override_Gtk_MediaFile_open gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_MediaFile_open (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_MediaFile_open`.
   let parentOpen (self: MediaFile) : unit =
@@ -36258,7 +36259,7 @@ module SelectionModel =
         let position = Internal.Raw.argInt 1
         let nItems = Internal.Raw.argInt 2
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler model position nItems).Id (Internal.Gtk4C.gtk_bitset_get_type ())) (Internal.Gtk4C.gtk_bitset_get_type ())))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_get_selection_in_range gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_get_selection_in_range (Internal.Raw.gtype gtype) zcb
 
   /// Gets the set of selected items in a range.
   let parentGetSelectionInRange (self: SelectionModel) (position: int) (nItems: int) : Bitset =
@@ -36271,7 +36272,7 @@ module SelectionModel =
         let model = SelectionModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let position = Internal.Raw.argInt 1
         Internal.Raw.returnBool (handler model position))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_is_selected gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_is_selected (Internal.Raw.gtype gtype) zcb
 
   /// Checks if the given item is selected.
   let parentIsSelected (self: SelectionModel) (position: int) : bool =
@@ -36283,7 +36284,7 @@ module SelectionModel =
       Internal.Raw.hold (fun () ->
         let model = SelectionModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler model))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_select_all gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_select_all (Internal.Raw.gtype gtype) zcb
 
   /// Requests to select all items in the model.
   let parentSelectAll (self: SelectionModel) : bool =
@@ -36297,7 +36298,7 @@ module SelectionModel =
         let position = Internal.Raw.argInt 1
         let unselectRest = (Internal.Raw.argInt 2 <> 0)
         Internal.Raw.returnBool (handler model position unselectRest))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_select_item gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_select_item (Internal.Raw.gtype gtype) zcb
 
   /// Requests to select an item in the model.
   let parentSelectItem (self: SelectionModel) (position: int) (unselectRest: bool) : bool =
@@ -36312,7 +36313,7 @@ module SelectionModel =
         let nItems = Internal.Raw.argInt 2
         let unselectRest = (Internal.Raw.argInt 3 <> 0)
         Internal.Raw.returnBool (handler model position nItems unselectRest))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_select_range gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_select_range (Internal.Raw.gtype gtype) zcb
 
   /// Requests to select a range of items in the model.
   let parentSelectRange (self: SelectionModel) (position: int) (nItems: int) (unselectRest: bool) : bool =
@@ -36326,7 +36327,7 @@ module SelectionModel =
         let selected = Bitset (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_bitset_get_type ()) false)
         let mask = Bitset (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_bitset_get_type ()) false)
         Internal.Raw.returnBool (handler model selected mask))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_set_selection gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_set_selection (Internal.Raw.gtype gtype) zcb
 
   /// Make selection changes.
   let parentSetSelection (self: SelectionModel) (selected: Bitset) (mask: Bitset) : bool =
@@ -36338,7 +36339,7 @@ module SelectionModel =
       Internal.Raw.hold (fun () ->
         let model = SelectionModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler model))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_unselect_all gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_unselect_all (Internal.Raw.gtype gtype) zcb
 
   /// Requests to unselect all items in the model.
   let parentUnselectAll (self: SelectionModel) : bool =
@@ -36351,7 +36352,7 @@ module SelectionModel =
         let model = SelectionModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let position = Internal.Raw.argInt 1
         Internal.Raw.returnBool (handler model position))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_unselect_item gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_unselect_item (Internal.Raw.gtype gtype) zcb
 
   /// Requests to unselect an item in the model.
   let parentUnselectItem (self: SelectionModel) (position: int) : bool =
@@ -36365,7 +36366,7 @@ module SelectionModel =
         let position = Internal.Raw.argInt 1
         let nItems = Internal.Raw.argInt 2
         Internal.Raw.returnBool (handler model position nItems))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_unselect_range gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_unselect_range (Internal.Raw.gtype gtype) zcb
 
   /// Requests to unselect a range of items in the model.
   let parentUnselectRange (self: SelectionModel) (position: int) (nItems: int) : bool =
@@ -39008,7 +39009,7 @@ module PrintOperationPreview =
       Internal.Raw.hold (fun () ->
         let preview = PrintOperationPreview (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler preview)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_end_preview gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_end_preview (Internal.Raw.gtype gtype) zcb
 
   /// Ends a preview.
   let parentEndPreview (self: PrintOperationPreview) : unit =
@@ -39022,7 +39023,7 @@ module PrintOperationPreview =
         let context = PrintContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let pageSetup = PageSetup (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler preview context pageSetup)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_got_page_size gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_got_page_size (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_PrintOperationPreview_got_page_size`.
   let parentGotPageSize (self: PrintOperationPreview) (context: PrintContext) (pageSetup: PageSetup) : unit =
@@ -39035,7 +39036,7 @@ module PrintOperationPreview =
         let preview = PrintOperationPreview (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let pageNr = Internal.Raw.argInt 1
         Internal.Raw.returnBool (handler preview pageNr))
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_is_selected gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_is_selected (Internal.Raw.gtype gtype) zcb
 
   /// Returns whether the given page is included in the set of pages that have been selected for printing.
   let parentIsSelected (self: PrintOperationPreview) (pageNr: int) : bool =
@@ -39048,7 +39049,7 @@ module PrintOperationPreview =
         let preview = PrintOperationPreview (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let context = PrintContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler preview context)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_ready gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_ready (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_PrintOperationPreview_ready`.
   let parentReady (self: PrintOperationPreview) (context: PrintContext) : unit =
@@ -39061,7 +39062,7 @@ module PrintOperationPreview =
         let preview = PrintOperationPreview (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let pageNr = Internal.Raw.argInt 1
         handler preview pageNr)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_render_page gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_render_page (Internal.Raw.gtype gtype) zcb
 
   /// Renders a page to the preview.
   let parentRenderPage (self: PrintOperationPreview) (pageNr: int) : unit =
@@ -39417,7 +39418,7 @@ module PrintOperation =
         let operation = PrintOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let context = PrintContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler operation context)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_begin_print gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_begin_print (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted after the user has finished changing print settings in the dialog, before the actual rendering starts.
   let parentBeginPrint (self: PrintOperation) (context: PrintContext) : unit =
@@ -39429,7 +39430,7 @@ module PrintOperation =
       Internal.Raw.hold (fun () ->
         let operation = PrintOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler operation).Id (Internal.Gtk4C.gtk_widget_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_create_custom_widget gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_create_custom_widget (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted when displaying the print dialog.
   let parentCreateCustomWidget (self: PrintOperation) : Widget =
@@ -39442,7 +39443,7 @@ module PrintOperation =
         let operation = PrintOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler operation widget)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_custom_widget_apply gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_custom_widget_apply (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted right before “begin-print” if you added a custom widget in the “create-custom-widget” handler.
   let parentCustomWidgetApply (self: PrintOperation) (widget: Widget) : unit =
@@ -39455,7 +39456,7 @@ module PrintOperation =
         let operation = PrintOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let result = PrintOperationResult (int (Internal.Raw.argInt 1))
         handler operation result)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_done gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_done (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted when the print operation run has finished doing everything required for printing.
   let parentDone (self: PrintOperation) (result: PrintOperationResult) : unit =
@@ -39469,7 +39470,7 @@ module PrintOperation =
         let context = PrintContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let pageNr = Internal.Raw.argInt 2
         handler operation context pageNr)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_draw_page gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_draw_page (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted for every page that is printed.
   let parentDrawPage (self: PrintOperation) (context: PrintContext) (pageNr: int) : unit =
@@ -39482,7 +39483,7 @@ module PrintOperation =
         let operation = PrintOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let context = PrintContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler operation context)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_end_print gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_end_print (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted after all pages have been rendered.
   let parentEndPrint (self: PrintOperation) (context: PrintContext) : unit =
@@ -39495,7 +39496,7 @@ module PrintOperation =
         let operation = PrintOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let context = PrintContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnBool (handler operation context))
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_paginate gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_paginate (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted after the “begin-print” signal, but before the actual rendering starts.
   let parentPaginate (self: PrintOperation) (context: PrintContext) : bool =
@@ -39510,7 +39511,7 @@ module PrintOperation =
         let context = PrintContext (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         let parent = Window (Internal.Raw.wrap (Internal.Raw.argPointer 3) false)
         Internal.Raw.returnBool (handler operation preview context parent))
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_preview gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_preview (Internal.Raw.gtype gtype) zcb
 
   /// Signal emitted when a preview is requested from the native dialog.
   let parentPreview (self: PrintOperation) (preview: PrintOperationPreview) (context: PrintContext) (parent: Window) : bool =
@@ -39525,7 +39526,7 @@ module PrintOperation =
         let pageNr = Internal.Raw.argInt 2
         let setup = PageSetup (Internal.Raw.wrap (Internal.Raw.argPointer 3) false)
         handler operation context pageNr setup)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_request_page_setup gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_request_page_setup (Internal.Raw.gtype gtype) zcb
 
   /// Emitted once for every page that is printed, to give the application a chance to modify the page setup.
   let parentRequestPageSetup (self: PrintOperation) (context: PrintContext) (pageNr: int) (setup: PageSetup) : unit =
@@ -39537,7 +39538,7 @@ module PrintOperation =
       Internal.Raw.hold (fun () ->
         let operation = PrintOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler operation)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_status_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_status_changed (Internal.Raw.gtype gtype) zcb
 
   /// Emitted at between the various phases of the print operation.
   let parentStatusChanged (self: PrintOperation) : unit =
@@ -39552,7 +39553,7 @@ module PrintOperation =
         let setup = PageSetup (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         let settings = PrintSettings (Internal.Raw.wrap (Internal.Raw.argPointer 3) false)
         handler operation widget setup settings)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_update_custom_widget gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_update_custom_widget (Internal.Raw.gtype gtype) zcb
 
   /// Emitted after change of selected printer.
   let parentUpdateCustomWidget (self: PrintOperation) (widget: Widget) (setup: PageSetup) (settings: PrintSettings) : unit =
@@ -40411,7 +40412,7 @@ module PropertyExpression =
       match expression with
       | Some zo -> Internal.Gtk4C.zgtk_give_Gtk_Expression (Internal.Raw.obj zo.Id (Internal.Gtk4C.zgtk_type_Gtk_Expression ()))
       | None -> Internal.Raw.none ()
-    let zr = Internal.Gtk4C.gtk_property_expression_new thisType zp1 propertyName
+    let zr = Internal.Gtk4C.gtk_property_expression_new (Internal.Raw.gtype thisType) zp1 propertyName
     PropertyExpression (Internal.Gtk4C.zgtk_wrap_Gtk_PropertyExpression (zr) (i32 1))
 
   /// Creates an expression that looks up a property.
@@ -40613,7 +40614,7 @@ module Range =
         let range = Range (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let newValue = Internal.Raw.argFloat 1
         handler range newValue)
-    Internal.Gtk4C.zgtk_override_Gtk_Range_adjust_bounds gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Range_adjust_bounds (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_Range_adjust_bounds`.
   let parentAdjustBounds (self: Range) (newValue: float) : unit =
@@ -40627,7 +40628,7 @@ module Range =
         let scroll = ScrollType (int (Internal.Raw.argInt 1))
         let newValue = Internal.Raw.argFloat 2
         Internal.Raw.returnBool (handler range scroll newValue))
-    Internal.Gtk4C.zgtk_override_Gtk_Range_change_value gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Range_change_value (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_Range_change_value`.
   let parentChangeValue (self: Range) (scroll: ScrollType) (newValue: float) : bool =
@@ -40640,7 +40641,7 @@ module Range =
         let range = Range (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let border = Border (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_border_get_type ()) false)
         handler range border)
-    Internal.Gtk4C.zgtk_override_Gtk_Range_get_range_border gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Range_get_range_border (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_Range_get_range_border`.
   let parentGetRangeBorder (self: Range) (border: Border) : unit =
@@ -40653,7 +40654,7 @@ module Range =
         let range = Range (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let scroll = ScrollType (int (Internal.Raw.argInt 1))
         handler range scroll)
-    Internal.Gtk4C.zgtk_override_Gtk_Range_move_slider gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Range_move_slider (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_Range_move_slider`.
   let parentMoveSlider (self: Range) (scroll: ScrollType) : unit =
@@ -40665,7 +40666,7 @@ module Range =
       Internal.Raw.hold (fun () ->
         let range = Range (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler range)
-    Internal.Gtk4C.zgtk_override_Gtk_Range_value_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Range_value_changed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_Range_value_changed`.
   let parentValueChanged (self: Range) : unit =
@@ -40928,7 +40929,7 @@ module RecentManager =
       Internal.Raw.hold (fun () ->
         let manager = RecentManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler manager)
-    Internal.Gtk4C.zgtk_override_Gtk_RecentManager_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_RecentManager_changed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_RecentManager_changed`.
   let parentChanged (self: RecentManager) : unit =
@@ -41211,7 +41212,7 @@ module Scale =
         let (x, y) = handler scale
         Internal.Raw.setI32 1 x
         Internal.Raw.setI32 2 y)
-    Internal.Gtk4C.zgtk_override_Gtk_Scale_get_layout_offsets gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_Scale_get_layout_offsets (Internal.Raw.gtype gtype) zcb
 
   /// Obtains the coordinates where the scale will draw the `PangoLayout` representing the text in the scale.
   let parentGetLayoutOffsets (self: Scale) : (int * int) =
@@ -41348,7 +41349,7 @@ module ScaleButton =
         let button = ScaleButton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let value = Internal.Raw.argFloat 1
         handler button value)
-    Internal.Gtk4C.zgtk_override_Gtk_ScaleButton_value_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_ScaleButton_value_changed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_ScaleButton_value_changed`.
   let parentValueChanged (self: ScaleButton) (value: float) : unit =
@@ -44918,7 +44919,7 @@ module StyleContext =
       Internal.Raw.hold (fun () ->
         let context = StyleContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_StyleContext_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_StyleContext_changed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_StyleContext_changed`.
   let parentChanged (self: StyleContext) : unit =
@@ -45727,11 +45728,11 @@ module TextBuffer =
 
   /// Inserts @len bytes of @text at position @iter.
   let insert (self: TextBuffer) (iter: TextIter) (text: string) (len: int) : unit =
-    Internal.Gtk4C.gtk_text_buffer_insert (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) text (i32 len)
+    Internal.Gtk4C.gtk_text_buffer_insert (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) text (i32 (Internal.Raw.within text 0 len false 1))
 
   /// Inserts @text in @buffer.
   let insertAtCursor (self: TextBuffer) (text: string) (len: int) : unit =
-    Internal.Gtk4C.gtk_text_buffer_insert_at_cursor (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) text (i32 len)
+    Internal.Gtk4C.gtk_text_buffer_insert_at_cursor (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) text (i32 (Internal.Raw.within text 0 len false 1))
 
   /// Inserts a child widget anchor into the text buffer at @iter.
   let insertChildAnchor (self: TextBuffer) (iter: TextIter) (anchor: TextChildAnchor) : unit =
@@ -45739,15 +45740,15 @@ module TextBuffer =
 
   /// Inserts @text in @buffer.
   let insertInteractive (self: TextBuffer) (iter: TextIter) (text: string) (len: int) (defaultEditable: bool) : bool =
-    (((Internal.Gtk4C.gtk_text_buffer_insert_interactive (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) text (i32 len) (if defaultEditable then i32 1 else i32 0))) <> i32 0)
+    (((Internal.Gtk4C.gtk_text_buffer_insert_interactive (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) text (i32 (Internal.Raw.within text 0 len false 1)) (if defaultEditable then i32 1 else i32 0))) <> i32 0)
 
   /// Inserts @text in @buffer.
   let insertInteractiveAtCursor (self: TextBuffer) (text: string) (len: int) (defaultEditable: bool) : bool =
-    (((Internal.Gtk4C.gtk_text_buffer_insert_interactive_at_cursor (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) text (i32 len) (if defaultEditable then i32 1 else i32 0))) <> i32 0)
+    (((Internal.Gtk4C.gtk_text_buffer_insert_interactive_at_cursor (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) text (i32 (Internal.Raw.within text 0 len false 1)) (if defaultEditable then i32 1 else i32 0))) <> i32 0)
 
   /// Inserts the text in @markup at position @iter.
   let insertMarkup (self: TextBuffer) (iter: TextIter) (markup: string) (len: int) : unit =
-    Internal.Gtk4C.gtk_text_buffer_insert_markup (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) markup (i32 len)
+    Internal.Gtk4C.gtk_text_buffer_insert_markup (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) markup (i32 (Internal.Raw.within markup 0 len false 1))
 
   /// Inserts an image into the text buffer at @iter.
   let insertPaintable (self: TextBuffer) (iter: TextIter) (paintable: Gdk.Paintable) : unit =
@@ -45823,7 +45824,7 @@ module TextBuffer =
 
   /// Deletes current contents of @buffer, and inserts @text instead.
   let setText (self: TextBuffer) (text: string) (len: int) : unit =
-    Internal.Gtk4C.gtk_text_buffer_set_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) text (i32 len)
+    Internal.Gtk4C.gtk_text_buffer_set_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) text (i32 (Internal.Raw.within text 0 len false 1))
 
   /// Undoes the last undoable action on the buffer, if there is one.
   let undo (self: TextBuffer) : unit =
@@ -45957,7 +45958,7 @@ module TextBuffer =
         let start = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         let end = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         handler buffer tag start end)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_apply_tag gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_apply_tag (Internal.Raw.gtype gtype) zcb
 
   /// Emits the “apply-tag” signal on @buffer.
   let parentApplyTag (self: TextBuffer) (tag: TextTag) (start: TextIter) (end: TextIter) : unit =
@@ -45969,7 +45970,7 @@ module TextBuffer =
       Internal.Raw.hold (fun () ->
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler buffer)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_begin_user_action gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_begin_user_action (Internal.Raw.gtype gtype) zcb
 
   /// Called to indicate that the buffer operations between here and a call to gtk_text_buffer_end_user_action() are part of a single user-visible operation.
   let parentBeginUserAction (self: TextBuffer) : unit =
@@ -45981,7 +45982,7 @@ module TextBuffer =
       Internal.Raw.hold (fun () ->
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler buffer)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_changed (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextBuffer::changed` signal.
   let parentChanged (self: TextBuffer) : unit =
@@ -45995,7 +45996,7 @@ module TextBuffer =
         let start = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         let end = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         handler buffer start end)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_delete_range gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_delete_range (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextBuffer::delete-range` signal.
   let parentDeleteRange (self: TextBuffer) (start: TextIter) (end: TextIter) : unit =
@@ -46007,7 +46008,7 @@ module TextBuffer =
       Internal.Raw.hold (fun () ->
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler buffer)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_end_user_action gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_end_user_action (Internal.Raw.gtype gtype) zcb
 
   /// Ends a user-visible operation.
   let parentEndUserAction (self: TextBuffer) : unit =
@@ -46021,7 +46022,7 @@ module TextBuffer =
         let iter = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         let anchor = TextChildAnchor (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler buffer iter anchor)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_insert_child_anchor gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_insert_child_anchor (Internal.Raw.gtype gtype) zcb
 
   /// Inserts a child widget anchor into the text buffer at @iter.
   let parentInsertChildAnchor (self: TextBuffer) (iter: TextIter) (anchor: TextChildAnchor) : unit =
@@ -46035,7 +46036,7 @@ module TextBuffer =
         let iter = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         let paintable = Gdk.Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler buffer iter paintable)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_insert_paintable gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_insert_paintable (Internal.Raw.gtype gtype) zcb
 
   /// Inserts an image into the text buffer at @iter.
   let parentInsertPaintable (self: TextBuffer) (iter: TextIter) (paintable: Gdk.Paintable) : unit =
@@ -46050,11 +46051,11 @@ module TextBuffer =
         let newText = Internal.Raw.text (Internal.Raw.argPointer 2)
         let newTextLength = Internal.Raw.argInt 3
         handler buffer pos newText newTextLength)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_insert_text gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_insert_text (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextBuffer::insert-text` signal.
   let parentInsertText (self: TextBuffer) (pos: TextIter) (newText: string) (newTextLength: int) : unit =
-    Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_insert_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj pos.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) newText (i32 newTextLength)
+    Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_insert_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj pos.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) newText (i32 (Internal.Raw.within newText 0 newTextLength false 1))
 
   /// Gives a type made with `Glue.subclass` its own `mark_deleted`: The class handler for the `GtkTextBuffer::mark-deleted` signal.
   let overrideMarkDeleted (gtype: usize) (handler: TextBuffer -> TextMark -> unit) : unit =
@@ -46063,7 +46064,7 @@ module TextBuffer =
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let mark = TextMark (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler buffer mark)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_mark_deleted gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_mark_deleted (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextBuffer::mark-deleted` signal.
   let parentMarkDeleted (self: TextBuffer) (mark: TextMark) : unit =
@@ -46077,7 +46078,7 @@ module TextBuffer =
         let location = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         let mark = TextMark (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler buffer location mark)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_mark_set gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_mark_set (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextBuffer::mark-set` signal.
   let parentMarkSet (self: TextBuffer) (location: TextIter) (mark: TextMark) : unit =
@@ -46089,7 +46090,7 @@ module TextBuffer =
       Internal.Raw.hold (fun () ->
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler buffer)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_modified_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_modified_changed (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextBuffer::modified-changed` signal.
   let parentModifiedChanged (self: TextBuffer) : unit =
@@ -46102,7 +46103,7 @@ module TextBuffer =
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let clipboard = Gdk.Clipboard (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler buffer clipboard)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_paste_done gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_paste_done (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextBuffer::paste-done` signal.
   let parentPasteDone (self: TextBuffer) (clipboard: Gdk.Clipboard) : unit =
@@ -46114,7 +46115,7 @@ module TextBuffer =
       Internal.Raw.hold (fun () ->
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler buffer)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_redo gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_redo (Internal.Raw.gtype gtype) zcb
 
   /// Redoes the next redoable action on the buffer, if there is one.
   let parentRedo (self: TextBuffer) : unit =
@@ -46129,7 +46130,7 @@ module TextBuffer =
         let start = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         let end = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         handler buffer tag start end)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_remove_tag gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_remove_tag (Internal.Raw.gtype gtype) zcb
 
   /// Emits the “remove-tag” signal.
   let parentRemoveTag (self: TextBuffer) (tag: TextTag) (start: TextIter) (end: TextIter) : unit =
@@ -46141,7 +46142,7 @@ module TextBuffer =
       Internal.Raw.hold (fun () ->
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler buffer)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_undo gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_undo (Internal.Raw.gtype gtype) zcb
 
   /// Undoes the last undoable action on the buffer, if there is one.
   let parentUndo (self: TextBuffer) : unit =
@@ -48151,7 +48152,7 @@ module TextView =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler textView)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_backspace gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextView_backspace (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextView::backspace` keybinding signal.
   let parentBackspace (self: TextView) : unit =
@@ -48163,7 +48164,7 @@ module TextView =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler textView)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_copy_clipboard gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextView_copy_clipboard (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextView::copy-clipboard` keybinding signal.
   let parentCopyClipboard (self: TextView) : unit =
@@ -48175,7 +48176,7 @@ module TextView =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler textView).Id (Internal.Gtk4C.gtk_text_buffer_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_create_buffer gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextView_create_buffer (Internal.Raw.gtype gtype) zcb
 
   /// The create_buffer vfunc is called to create a `GtkTextBuffer` for the text view.
   let parentCreateBuffer (self: TextView) : TextBuffer =
@@ -48187,7 +48188,7 @@ module TextView =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler textView)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_cut_clipboard gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextView_cut_clipboard (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextView::cut-clipboard` keybinding signal
   let parentCutClipboard (self: TextView) : unit =
@@ -48201,7 +48202,7 @@ module TextView =
         let type_ = DeleteType (int (Internal.Raw.argInt 1))
         let count = Internal.Raw.argInt 2
         handler textView type_ count)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_delete_from_cursor gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextView_delete_from_cursor (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextView::delete-from-cursor` keybinding signal.
   let parentDeleteFromCursor (self: TextView) (type_: DeleteType) (count: int) : unit =
@@ -48217,7 +48218,7 @@ module TextView =
         let start = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         let end = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 4) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         Internal.Raw.returnBool (handler textView granularity location start end))
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_extend_selection gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextView_extend_selection (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextView::extend-selection` signal.
   let parentExtendSelection (self: TextView) (granularity: TextExtendSelection) (location: TextIter) (start: TextIter) (end: TextIter) : bool =
@@ -48230,7 +48231,7 @@ module TextView =
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let str = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler textView str)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_insert_at_cursor gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextView_insert_at_cursor (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextView::insert-at-cursor` keybinding signal.
   let parentInsertAtCursor (self: TextView) (str: string) : unit =
@@ -48242,7 +48243,7 @@ module TextView =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler textView)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_insert_emoji gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextView_insert_emoji (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextView::insert-emoji` signal.
   let parentInsertEmoji (self: TextView) : unit =
@@ -48257,7 +48258,7 @@ module TextView =
         let count = Internal.Raw.argInt 2
         let extendSelection = (Internal.Raw.argInt 3 <> 0)
         handler textView step count extendSelection)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_move_cursor gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextView_move_cursor (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextView::move-cursor` keybinding signal.
   let parentMoveCursor (self: TextView) (step: MovementStep) (count: int) (extendSelection: bool) : unit =
@@ -48269,7 +48270,7 @@ module TextView =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler textView)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_paste_clipboard gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextView_paste_clipboard (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextView::paste-clipboard` keybinding signal.
   let parentPasteClipboard (self: TextView) : unit =
@@ -48281,7 +48282,7 @@ module TextView =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler textView)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_set_anchor gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextView_set_anchor (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextView::set-anchor` keybinding signal.
   let parentSetAnchor (self: TextView) : unit =
@@ -48295,7 +48296,7 @@ module TextView =
         let layer = TextViewLayer (int (Internal.Raw.argInt 1))
         let snapshot = Snapshot (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler textView layer snapshot)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_snapshot_layer gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextView_snapshot_layer (Internal.Raw.gtype gtype) zcb
 
   /// The snapshot_layer vfunc is called before and after the text view is drawing its own text.
   let parentSnapshotLayer (self: TextView) (layer: TextViewLayer) (snapshot: Snapshot) : unit =
@@ -48307,7 +48308,7 @@ module TextView =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler textView)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_toggle_overwrite gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TextView_toggle_overwrite (Internal.Raw.gtype gtype) zcb
 
   /// The class handler for the `GtkTextView::toggle-overwrite` keybinding signal.
   let parentToggleOverwrite (self: TextView) : unit =
@@ -48395,7 +48396,7 @@ module ToggleButton =
       Internal.Raw.hold (fun () ->
         let toggleButton = ToggleButton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler toggleButton)
-    Internal.Gtk4C.zgtk_override_Gtk_ToggleButton_toggled gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_ToggleButton_toggled (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Emits the ::toggled signal on the `GtkToggleButton`.
   let parentToggled (self: ToggleButton) : unit =
@@ -48846,7 +48847,7 @@ module TreeModelFilter =
         let column = Internal.Raw.argInt 3
         let value = func model iter column
         Internal.Raw.setRecord 2 (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())) (Internal.GObjectC.zgtk_sizeof_GObject_Value ()))
-    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) types) 8
+    let za3 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) types) 8
     Internal.Gtk4C.gtk_tree_model_filter_set_modify_func (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_filter_get_type ())) (i32 (Internal.Raw.count types)) za3 (Internal.Gtk4C.zgtk_tramp_Gtk_TreeModelFilterModifyFunc ()) zcb2 (Internal.Raw.dropFn ())
     Internal.Raw.free za3
 
@@ -48886,7 +48887,7 @@ module TreeModelFilter =
         let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.GObjectC.g_value_get_type ()) false)
         let column = Internal.Raw.argInt 4
         handler self_ childModel iter value column)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModelFilter_modify gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModelFilter_modify (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeModelFilter_modify`.
   let parentModify (self: TreeModelFilter) (childModel: TreeModel) (iter: TreeIter) (value: GObject.Value) (column: int) : unit =
@@ -48900,7 +48901,7 @@ module TreeModelFilter =
         let childModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         Internal.Raw.returnBool (handler self_ childModel iter))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModelFilter_visible gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeModelFilter_visible (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeModelFilter_visible`.
   let parentVisible (self: TreeModelFilter) (childModel: TreeModel) (iter: TreeIter) : bool =
@@ -49103,6 +49104,7 @@ module TreeRowReference =
     Internal.Gtk4C.gtk_tree_row_reference_inserted (Internal.Raw.obj proxy.Id (Internal.GObjectC.g_object_get_type ())) (Internal.Raw.obj path.Id (Internal.Gtk4C.gtk_tree_path_get_type ()))
 
   /// Deprecated. Lets a set of row reference created by gtk_tree_row_reference_new_proxy() know that the model emitted the ::rows-reordered signal.
+  [<Unsafe>]
   let reordered (proxy: GObject.Object) (path: TreePath) (iter: TreeIter) (newOrder: list<int>) : unit =
     let za1 = Internal.Raw.ints newOrder 4
     Internal.Gtk4C.gtk_tree_row_reference_reordered (Internal.Raw.obj proxy.Id (Internal.GObjectC.g_object_get_type ())) (Internal.Raw.obj path.Id (Internal.Gtk4C.gtk_tree_path_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) za1
@@ -49260,7 +49262,7 @@ module TreeStore =
 
   /// Deprecated. Creates a new tree store.
   let create (types: list<usize>) : TreeStore =
-    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) types) 8
+    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) types) 8
     let zr = Internal.Gtk4C.gtk_tree_store_newv (i32 (Internal.Raw.count types)) za2
     let zv = TreeStore (Internal.Raw.wrap (zr) true)
     Internal.Raw.free za2
@@ -49376,6 +49378,7 @@ module TreeStore =
     (((Internal.Gtk4C.gtk_tree_store_remove (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_store_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())))) <> i32 0)
 
   /// Deprecated. Reorders the children of @parent in @tree_store to follow the order indicated by @new_order.
+  [<Unsafe>]
   let reorder (self: TreeStore) (parent: option<TreeIter>) (newOrder: list<int>) : unit =
     let zp1 =
       match parent with
@@ -49387,7 +49390,7 @@ module TreeStore =
 
   /// Deprecated. Sets the type of the columns in a tree store.
   let setColumnTypes (self: TreeStore) (types: list<usize>) : unit =
-    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) types) 8
+    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) types) 8
     Internal.Gtk4C.gtk_tree_store_set_column_types (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_store_get_type ())) (i32 (Internal.Raw.count types)) za2
     Internal.Raw.free za2
 
@@ -50159,7 +50162,7 @@ module TreeView =
       Internal.Raw.hold (fun () ->
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler treeView)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_columns_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeView_columns_changed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeView_columns_changed`.
   let parentColumnsChanged (self: TreeView) : unit =
@@ -50171,7 +50174,7 @@ module TreeView =
       Internal.Raw.hold (fun () ->
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler treeView)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_cursor_changed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeView_cursor_changed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeView_cursor_changed`.
   let parentCursorChanged (self: TreeView) : unit =
@@ -50186,7 +50189,7 @@ module TreeView =
         let expand = (Internal.Raw.argInt 2 <> 0)
         let openAll = (Internal.Raw.argInt 3 <> 0)
         Internal.Raw.returnBool (handler treeView logical expand openAll))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_expand_collapse_cursor_row gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeView_expand_collapse_cursor_row (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeView_expand_collapse_cursor_row`.
   let parentExpandCollapseCursorRow (self: TreeView) (logical: bool) (expand: bool) (openAll: bool) : bool =
@@ -50202,7 +50205,7 @@ module TreeView =
         let extend = (Internal.Raw.argInt 3 <> 0)
         let modify = (Internal.Raw.argInt 4 <> 0)
         Internal.Raw.returnBool (handler treeView step count extend modify))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_move_cursor gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeView_move_cursor (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeView_move_cursor`.
   let parentMoveCursor (self: TreeView) (step: MovementStep) (count: int) (extend: bool) (modify: bool) : bool =
@@ -50217,7 +50220,7 @@ module TreeView =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 2) false
         let column = (if zid1 = 0 then None else Some (TreeViewColumn zid1))
         handler treeView path column)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_row_activated gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeView_row_activated (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Activates the cell determined by @path and @column.
   let parentRowActivated (self: TreeView) (path: TreePath) (column: option<TreeViewColumn>) : unit =
@@ -50235,7 +50238,7 @@ module TreeView =
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         handler treeView iter path)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_row_collapsed gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeView_row_collapsed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeView_row_collapsed`.
   let parentRowCollapsed (self: TreeView) (iter: TreeIter) (path: TreePath) : unit =
@@ -50249,7 +50252,7 @@ module TreeView =
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         handler treeView iter path)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_row_expanded gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeView_row_expanded (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeView_row_expanded`.
   let parentRowExpanded (self: TreeView) (iter: TreeIter) (path: TreePath) : unit =
@@ -50261,7 +50264,7 @@ module TreeView =
       Internal.Raw.hold (fun () ->
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler treeView))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_select_all gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeView_select_all (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeView_select_all`.
   let parentSelectAll (self: TreeView) : bool =
@@ -50273,7 +50276,7 @@ module TreeView =
       Internal.Raw.hold (fun () ->
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler treeView))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_select_cursor_parent gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeView_select_cursor_parent (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeView_select_cursor_parent`.
   let parentSelectCursorParent (self: TreeView) : bool =
@@ -50286,7 +50289,7 @@ module TreeView =
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let startEditing = (Internal.Raw.argInt 1 <> 0)
         Internal.Raw.returnBool (handler treeView startEditing))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_select_cursor_row gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeView_select_cursor_row (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeView_select_cursor_row`.
   let parentSelectCursorRow (self: TreeView) (startEditing: bool) : bool =
@@ -50298,7 +50301,7 @@ module TreeView =
       Internal.Raw.hold (fun () ->
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler treeView))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_start_interactive_search gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeView_start_interactive_search (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeView_start_interactive_search`.
   let parentStartInteractiveSearch (self: TreeView) : bool =
@@ -50312,7 +50315,7 @@ module TreeView =
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         Internal.Raw.returnBool (handler treeView iter path))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_test_collapse_row gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeView_test_collapse_row (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeView_test_collapse_row`.
   let parentTestCollapseRow (self: TreeView) (iter: TreeIter) (path: TreePath) : bool =
@@ -50326,7 +50329,7 @@ module TreeView =
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         Internal.Raw.returnBool (handler treeView iter path))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_test_expand_row gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeView_test_expand_row (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeView_test_expand_row`.
   let parentTestExpandRow (self: TreeView) (iter: TreeIter) (path: TreePath) : bool =
@@ -50338,7 +50341,7 @@ module TreeView =
       Internal.Raw.hold (fun () ->
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler treeView))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_toggle_cursor_row gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeView_toggle_cursor_row (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeView_toggle_cursor_row`.
   let parentToggleCursorRow (self: TreeView) : bool =
@@ -50350,7 +50353,7 @@ module TreeView =
       Internal.Raw.hold (fun () ->
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler treeView))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_unselect_all gtype zcb
+    Internal.Gtk4C.zgtk_override_Gtk_TreeView_unselect_all (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Gtk_TreeView_unselect_all`.
   let parentUnselectAll (self: TreeView) : bool =
@@ -51138,7 +51141,7 @@ module WidgetClass =
   /// Sets the type to be used for creating layout managers for widgets of @widget_class.
   [<Unsafe>]
   let setLayoutManagerType (self: WidgetClass) (type_: usize) : unit =
-    Internal.Gtk4C.gtk_widget_class_set_layout_manager_type self.Ptr type_
+    Internal.Gtk4C.gtk_widget_class_set_layout_manager_type self.Ptr (Internal.Raw.gtype type_)
 
   /// This should be called at class initialization time to specify the `GtkBuilder` XML to be used to extend a widget.
   [<Unsafe>]

@@ -2462,7 +2462,7 @@ module Font =
       Internal.Raw.hold (fun () ->
         let font = Font (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (handler font))
-    Internal.PangoC.zgtk_override_Pango_Font_create_hb_font gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Font_create_hb_font (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Pango_Font_create_hb_font`.
   let parentCreateHbFont (self: Font) : cptr =
@@ -2474,7 +2474,7 @@ module Font =
       Internal.Raw.hold (fun () ->
         let font = Font (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler font).Id (Internal.PangoC.pango_font_description_get_type ())) (Internal.PangoC.pango_font_description_get_type ())))
-    Internal.PangoC.zgtk_override_Pango_Font_describe gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Font_describe (Internal.Raw.gtype gtype) zcb
 
   /// Returns a description of the font, with font size set in points.
   let parentDescribe (self: Font) : FontDescription =
@@ -2486,7 +2486,7 @@ module Font =
       Internal.Raw.hold (fun () ->
         let font = Font (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler font).Id (Internal.PangoC.pango_font_description_get_type ())) (Internal.PangoC.pango_font_description_get_type ())))
-    Internal.PangoC.zgtk_override_Pango_Font_describe_absolute gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Font_describe_absolute (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Pango_Font_describe_absolute`.
   let parentDescribeAbsolute (self: Font) : FontDescription =
@@ -2499,7 +2499,7 @@ module Font =
         let font = Font (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let language = Language (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.PangoC.pango_language_get_type ()) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler font language).Id (Internal.PangoC.pango_coverage_get_type ()))))
-    Internal.PangoC.zgtk_override_Pango_Font_get_coverage gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Font_get_coverage (Internal.Raw.gtype gtype) zcb
 
   /// Computes the coverage map for a given font and language tag.
   let parentGetCoverage (self: Font) (language: Language) : Coverage =
@@ -2515,7 +2515,7 @@ module Font =
         let numFeatures = Internal.Raw.getI32 3
         let numFeaturesAfter = handler font features len numFeatures
         Internal.Raw.setI32 3 numFeaturesAfter)
-    Internal.PangoC.zgtk_override_Pango_Font_get_features gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Font_get_features (Internal.Raw.gtype gtype) zcb
 
   /// Obtain the OpenType features that are provided by the font.
   [<Unsafe>]
@@ -2536,7 +2536,7 @@ module Font =
         match handler font with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.PangoC.pango_font_map_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.PangoC.zgtk_override_Pango_Font_get_font_map gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Font_get_font_map (Internal.Raw.gtype gtype) zcb
 
   /// Gets the font map for which the font was created.
   let parentGetFontMap (self: Font) : option<FontMap> =
@@ -2554,7 +2554,7 @@ module Font =
         let (inkRect, logicalRect) = handler font glyph
         Internal.Raw.setRecord 2 (Internal.Raw.obj inkRect.Id (Internal.PangoC.zgtk_tag_Pango_Rectangle ())) (Internal.PangoC.zgtk_sizeof_Pango_Rectangle ())
         Internal.Raw.setRecord 3 (Internal.Raw.obj logicalRect.Id (Internal.PangoC.zgtk_tag_Pango_Rectangle ())) (Internal.PangoC.zgtk_sizeof_Pango_Rectangle ()))
-    Internal.PangoC.zgtk_override_Pango_Font_get_glyph_extents gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Font_get_glyph_extents (Internal.Raw.gtype gtype) zcb
 
   /// Gets the logical and ink extents of a glyph within a font.
   let parentGetGlyphExtents (self: Font) (glyph: int) : (Rectangle * Rectangle) =
@@ -2572,7 +2572,7 @@ module Font =
         let zid2 = Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.PangoC.pango_language_get_type ()) false
         let language = (if zid2 = 0 then None else Some (Language zid2))
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler font language).Id (Internal.PangoC.pango_font_metrics_get_type ())) (Internal.PangoC.pango_font_metrics_get_type ())))
-    Internal.PangoC.zgtk_override_Pango_Font_get_metrics gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Font_get_metrics (Internal.Raw.gtype gtype) zcb
 
   /// Gets overall metric information for a font.
   let parentGetMetrics (self: Font) (language: option<Language>) : FontMetrics =
@@ -2802,7 +2802,7 @@ module FontFace =
       Internal.Raw.hold (fun () ->
         let face = FontFace (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler face).Id (Internal.PangoC.pango_font_description_get_type ())) (Internal.PangoC.pango_font_description_get_type ())))
-    Internal.PangoC.zgtk_override_Pango_FontFace_describe gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontFace_describe (Internal.Raw.gtype gtype) zcb
 
   /// Returns a font description that matches the face.
   let parentDescribe (self: FontFace) : FontDescription =
@@ -2814,7 +2814,7 @@ module FontFace =
       Internal.Raw.hold (fun () ->
         let face = FontFace (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler face)))
-    Internal.PangoC.zgtk_override_Pango_FontFace_get_face_name gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontFace_get_face_name (Internal.Raw.gtype gtype) zcb
 
   /// Gets a name representing the style of this face.
   let parentGetFaceName (self: FontFace) : string =
@@ -2826,7 +2826,7 @@ module FontFace =
       Internal.Raw.hold (fun () ->
         let face = FontFace (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler face).Id (Internal.PangoC.pango_font_family_get_type ()))))
-    Internal.PangoC.zgtk_override_Pango_FontFace_get_family gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontFace_get_family (Internal.Raw.gtype gtype) zcb
 
   /// Gets the `PangoFontFamily` that @face belongs to.
   let parentGetFamily (self: FontFace) : FontFamily =
@@ -2838,7 +2838,7 @@ module FontFace =
       Internal.Raw.hold (fun () ->
         let face = FontFace (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler face))
-    Internal.PangoC.zgtk_override_Pango_FontFace_is_synthesized gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontFace_is_synthesized (Internal.Raw.gtype gtype) zcb
 
   /// Returns whether a `PangoFontFace` is synthesized.
   let parentIsSynthesized (self: FontFace) : bool =
@@ -2852,7 +2852,7 @@ module FontFace =
         let sizes = Internal.Raw.argPointer 1
         let nSizes = handler face sizes
         Internal.Raw.setI32 2 nSizes)
-    Internal.PangoC.zgtk_override_Pango_FontFace_list_sizes gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontFace_list_sizes (Internal.Raw.gtype gtype) zcb
 
   /// List the available sizes for a font.
   let parentListSizes (self: FontFace) : list<int> =
@@ -2937,7 +2937,7 @@ module FontFamily =
         match handler family name with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.PangoC.pango_font_face_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.PangoC.zgtk_override_Pango_FontFamily_get_face gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontFamily_get_face (Internal.Raw.gtype gtype) zcb
 
   /// Gets the `PangoFontFace` of @family with the given name.
   let parentGetFace (self: FontFamily) (name: option<string>) : option<FontFace> =
@@ -2954,7 +2954,7 @@ module FontFamily =
       Internal.Raw.hold (fun () ->
         let family = FontFamily (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler family)))
-    Internal.PangoC.zgtk_override_Pango_FontFamily_get_name gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontFamily_get_name (Internal.Raw.gtype gtype) zcb
 
   /// Gets the name of the family.
   let parentGetName (self: FontFamily) : string =
@@ -2966,7 +2966,7 @@ module FontFamily =
       Internal.Raw.hold (fun () ->
         let family = FontFamily (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler family))
-    Internal.PangoC.zgtk_override_Pango_FontFamily_is_monospace gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontFamily_is_monospace (Internal.Raw.gtype gtype) zcb
 
   /// A monospace font is a font designed for text display where the the characters form a regular grid.
   let parentIsMonospace (self: FontFamily) : bool =
@@ -2978,7 +2978,7 @@ module FontFamily =
       Internal.Raw.hold (fun () ->
         let family = FontFamily (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler family))
-    Internal.PangoC.zgtk_override_Pango_FontFamily_is_variable gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontFamily_is_variable (Internal.Raw.gtype gtype) zcb
 
   /// A variable font is a font which has axes that can be modified to produce different faces.
   let parentIsVariable (self: FontFamily) : bool =
@@ -2992,7 +2992,7 @@ module FontFamily =
         let faces = Internal.Raw.argPointer 1
         let nFaces = handler family faces
         Internal.Raw.setI32 2 nFaces)
-    Internal.PangoC.zgtk_override_Pango_FontFamily_list_faces gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontFamily_list_faces (Internal.Raw.gtype gtype) zcb
 
   /// Lists the different font faces that make up @family.
   let parentListFaces (self: FontFamily) : list<FontFace> =
@@ -3096,7 +3096,7 @@ module FontMap =
       Internal.Raw.hold (fun () ->
         let fontmap = FontMap (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler fontmap)
-    Internal.PangoC.zgtk_override_Pango_FontMap_changed gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontMap_changed (Internal.Raw.gtype gtype) zcb
 
   /// Forces a change in the fontmap, which will cause any `PangoContext` using this fontmap to change.
   let parentChanged (self: FontMap) : unit =
@@ -3109,7 +3109,7 @@ module FontMap =
         let fontmap = FontMap (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let font = Font (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler fontmap font).Id (Internal.PangoC.pango_font_face_get_type ()))))
-    Internal.PangoC.zgtk_override_Pango_FontMap_get_face gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontMap_get_face (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Pango_FontMap_get_face`.
   let parentGetFace (self: FontMap) (font: Font) : FontFace =
@@ -3124,7 +3124,7 @@ module FontMap =
         match handler fontmap name with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.PangoC.pango_font_family_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.PangoC.zgtk_override_Pango_FontMap_get_family gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontMap_get_family (Internal.Raw.gtype gtype) zcb
 
   /// Gets a font family by name.
   let parentGetFamily (self: FontMap) (name: string) : option<FontFamily> =
@@ -3138,7 +3138,7 @@ module FontMap =
       Internal.Raw.hold (fun () ->
         let fontmap = FontMap (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler fontmap))
-    Internal.PangoC.zgtk_override_Pango_FontMap_get_serial gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontMap_get_serial (Internal.Raw.gtype gtype) zcb
 
   /// Returns the current serial number of @fontmap.
   let parentGetSerial (self: FontMap) : int =
@@ -3152,7 +3152,7 @@ module FontMap =
         let families = Internal.Raw.argPointer 1
         let nFamilies = handler fontmap families
         Internal.Raw.setI32 2 nFamilies)
-    Internal.PangoC.zgtk_override_Pango_FontMap_list_families gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontMap_list_families (Internal.Raw.gtype gtype) zcb
 
   /// List all families for a fontmap.
   let parentListFamilies (self: FontMap) : list<FontFamily> =
@@ -3172,7 +3172,7 @@ module FontMap =
         match handler fontmap context desc with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.PangoC.pango_font_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.PangoC.zgtk_override_Pango_FontMap_load_font gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontMap_load_font (Internal.Raw.gtype gtype) zcb
 
   /// Load the font in the fontmap that is the closest match for @desc.
   let parentLoadFont (self: FontMap) (context: Context) (desc: FontDescription) : option<Font> =
@@ -3191,7 +3191,7 @@ module FontMap =
         match handler fontmap context desc language with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.PangoC.pango_fontset_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.PangoC.zgtk_override_Pango_FontMap_load_fontset gtype zcb
+    Internal.PangoC.zgtk_override_Pango_FontMap_load_fontset (Internal.Raw.gtype gtype) zcb
 
   /// Load a set of fonts in the fontmap that can be used to render a font matching @desc.
   let parentLoadFontset (self: FontMap) (context: Context) (desc: FontDescription) (language: Language) : option<Fontset> =
@@ -3291,7 +3291,7 @@ module Fontset =
         let func = Internal.Raw.argPointer 1
         let data = Internal.Raw.argPointer 2
         handler fontset func data)
-    Internal.PangoC.zgtk_override_Pango_Fontset_foreach gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Fontset_foreach (Internal.Raw.gtype gtype) zcb
 
   /// Iterates through all the fonts in a fontset, calling @func for each one.
   let parentForeach (self: Fontset) (func: Fontset -> Font -> bool) : unit =
@@ -3310,7 +3310,7 @@ module Fontset =
         let fontset = Fontset (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let wc = Internal.Raw.argInt 1
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler fontset wc).Id (Internal.PangoC.pango_font_get_type ()))))
-    Internal.PangoC.zgtk_override_Pango_Fontset_get_font gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Fontset_get_font (Internal.Raw.gtype gtype) zcb
 
   /// Returns the font in the fontset that contains the best glyph for a Unicode character.
   let parentGetFont (self: Fontset) (wc: int) : Font =
@@ -3322,7 +3322,7 @@ module Fontset =
       Internal.Raw.hold (fun () ->
         let fontset = Fontset (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler fontset).Id (Internal.PangoC.pango_language_get_type ())) (Internal.PangoC.pango_language_get_type ())))
-    Internal.PangoC.zgtk_override_Pango_Fontset_get_language gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Fontset_get_language (Internal.Raw.gtype gtype) zcb
 
   /// a function to get the language of the fontset.
   let parentGetLanguage (self: Fontset) : Language =
@@ -3334,7 +3334,7 @@ module Fontset =
       Internal.Raw.hold (fun () ->
         let fontset = Fontset (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler fontset).Id (Internal.PangoC.pango_font_metrics_get_type ())) (Internal.PangoC.pango_font_metrics_get_type ())))
-    Internal.PangoC.zgtk_override_Pango_Fontset_get_metrics gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Fontset_get_metrics (Internal.Raw.gtype gtype) zcb
 
   /// Get overall metric information for the fonts in the fontset.
   let parentGetMetrics (self: Fontset) : FontMetrics =
@@ -3441,6 +3441,7 @@ module GlyphItem =
     Internal.PangoC.pango_glyph_item_get_logical_widths (Internal.Raw.obj self.Id (Internal.PangoC.pango_glyph_item_get_type ())) text logicalWidths
 
   /// Adds spacing between the graphemes of @glyph_item to give the effect of typographic letter spacing.
+  [<Unsafe>]
   let letterSpace (self: GlyphItem) (text: string) (logAttrs: list<LogAttr>) (letterSpacing: int) : unit =
     let za1 = Internal.Raw.records (Internal.Raw.mapList (fun (zo: LogAttr) -> Internal.Raw.obj zo.Id (Internal.PangoC.zgtk_tag_Pango_LogAttr ())) logAttrs) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ())
     Internal.PangoC.pango_glyph_item_letter_space (Internal.Raw.obj self.Id (Internal.PangoC.pango_glyph_item_get_type ())) text za1 (i32 letterSpacing)
@@ -3448,7 +3449,7 @@ module GlyphItem =
 
   /// Modifies @orig to cover only the text after @split_index, and returns a new item that covers the text before @split_index that used to be in @orig.
   let split (self: GlyphItem) (text: string) (splitIndex: int) : option<GlyphItem> =
-    let zr = Internal.PangoC.pango_glyph_item_split (Internal.Raw.obj self.Id (Internal.PangoC.pango_glyph_item_get_type ())) text (i32 splitIndex)
+    let zr = Internal.PangoC.pango_glyph_item_split (Internal.Raw.obj self.Id (Internal.PangoC.pango_glyph_item_get_type ())) text (i32 (Internal.Raw.within text 0 splitIndex false 2))
     let zid1 = Internal.Raw.wrapBoxed (zr) (Internal.PangoC.pango_glyph_item_get_type ()) true
     (if zid1 = 0 then None else Some (GlyphItem zid1))
 
@@ -3579,7 +3580,7 @@ module GlyphString =
   /// Given a `PangoGlyphString` and corresponding text, determine the width corresponding to each character.
   [<Unsafe>]
   let getLogicalWidths (self: GlyphString) (text: string) (length: int) (embeddingLevel: int) (logicalWidths: cptr) : unit =
-    Internal.PangoC.pango_glyph_string_get_logical_widths (Internal.Raw.obj self.Id (Internal.PangoC.pango_glyph_string_get_type ())) text (i32 length) (i32 embeddingLevel) logicalWidths
+    Internal.PangoC.pango_glyph_string_get_logical_widths (Internal.Raw.obj self.Id (Internal.PangoC.pango_glyph_string_get_type ())) text (i32 (Internal.Raw.within text 0 length false 1)) (i32 embeddingLevel) logicalWidths
 
   /// Computes the logical width of the glyph string.
   let getWidth (self: GlyphString) : int =
@@ -3588,7 +3589,7 @@ module GlyphString =
   /// Converts from character position to x position.
   let indexToX (self: GlyphString) (text: string) (length: int) (analysis: Analysis) (index: int) (trailing: bool) : int =
     Internal.Raw.outBegin ()
-    Internal.PangoC.pango_glyph_string_index_to_x (Internal.Raw.obj self.Id (Internal.PangoC.pango_glyph_string_get_type ())) text (i32 length) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) (i32 index) (if trailing then i32 1 else i32 0) (Internal.Raw.out 0)
+    Internal.PangoC.pango_glyph_string_index_to_x (Internal.Raw.obj self.Id (Internal.PangoC.pango_glyph_string_get_type ())) text (i32 (Internal.Raw.within text 0 length false 1)) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) (i32 index) (if trailing then i32 1 else i32 0) (Internal.Raw.out 0)
     let zv = Internal.Raw.outI32 0
     Internal.Raw.outEnd ()
     zv
@@ -3600,7 +3601,7 @@ module GlyphString =
       | Some zo -> Internal.Raw.obj zo.Id (Internal.PangoC.zgtk_tag_Pango_LogAttr ())
       | None -> Internal.Raw.none ()
     Internal.Raw.outBegin ()
-    Internal.PangoC.pango_glyph_string_index_to_x_full (Internal.Raw.obj self.Id (Internal.PangoC.pango_glyph_string_get_type ())) text (i32 length) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) zp1 (i32 index) (if trailing then i32 1 else i32 0) (Internal.Raw.out 0)
+    Internal.PangoC.pango_glyph_string_index_to_x_full (Internal.Raw.obj self.Id (Internal.PangoC.pango_glyph_string_get_type ())) text (i32 (Internal.Raw.within text 0 length false 1)) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) zp1 (i32 index) (if trailing then i32 1 else i32 0) (Internal.Raw.out 0)
     let zv = Internal.Raw.outI32 0
     Internal.Raw.outEnd ()
     zv
@@ -3612,7 +3613,7 @@ module GlyphString =
   /// Convert from x offset to character position.
   let xToIndex (self: GlyphString) (text: string) (length: int) (analysis: Analysis) (xPos: int) : (int * int) =
     Internal.Raw.outBegin ()
-    Internal.PangoC.pango_glyph_string_x_to_index (Internal.Raw.obj self.Id (Internal.PangoC.pango_glyph_string_get_type ())) text (i32 length) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) (i32 xPos) (Internal.Raw.out 0) (Internal.Raw.out 1)
+    Internal.PangoC.pango_glyph_string_x_to_index (Internal.Raw.obj self.Id (Internal.PangoC.pango_glyph_string_get_type ())) text (i32 (Internal.Raw.within text 0 length false 1)) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) (i32 xPos) (Internal.Raw.out 0) (Internal.Raw.out 1)
     let zv = (Internal.Raw.outI32 0, Internal.Raw.outI32 1)
     Internal.Raw.outEnd ()
     zv
@@ -4022,12 +4023,12 @@ module Layout =
 
   /// Sets the layout text and attribute list from marked-up text.
   let setMarkup (self: Layout) (markup: string) (length: int) : unit =
-    Internal.PangoC.pango_layout_set_markup (Internal.Raw.obj self.Id (Internal.PangoC.pango_layout_get_type ())) markup (i32 length)
+    Internal.PangoC.pango_layout_set_markup (Internal.Raw.obj self.Id (Internal.PangoC.pango_layout_get_type ())) markup (i32 (Internal.Raw.within markup 0 length false 1))
 
   /// Sets the layout text and attribute list from marked-up text.
   let setMarkupWithAccel (self: Layout) (markup: string) (length: int) (accelMarker: int) : int =
     Internal.Raw.outBegin ()
-    Internal.PangoC.pango_layout_set_markup_with_accel (Internal.Raw.obj self.Id (Internal.PangoC.pango_layout_get_type ())) markup (i32 length) (u32 accelMarker) (Internal.Raw.out 0)
+    Internal.PangoC.pango_layout_set_markup_with_accel (Internal.Raw.obj self.Id (Internal.PangoC.pango_layout_get_type ())) markup (i32 (Internal.Raw.within markup 0 length false 1)) (u32 accelMarker) (Internal.Raw.out 0)
     let zv = Internal.Raw.outU32 0
     Internal.Raw.outEnd ()
     zv
@@ -4050,7 +4051,7 @@ module Layout =
 
   /// Sets the text of the layout.
   let setText (self: Layout) (text: string) (length: int) : unit =
-    Internal.PangoC.pango_layout_set_text (Internal.Raw.obj self.Id (Internal.PangoC.pango_layout_get_type ())) text (i32 length)
+    Internal.PangoC.pango_layout_set_text (Internal.Raw.obj self.Id (Internal.PangoC.pango_layout_get_type ())) text (i32 (Internal.Raw.within text 0 length false 1))
 
   /// Sets the width to which the lines of the `PangoLayout` should wrap or get ellipsized.
   let setWidth (self: Layout) (width: int) : unit =
@@ -4564,7 +4565,7 @@ module Renderer =
       Internal.Raw.hold (fun () ->
         let renderer = Renderer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler renderer)
-    Internal.PangoC.zgtk_override_Pango_Renderer_begin gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Renderer_begin (Internal.Raw.gtype gtype) zcb
 
   /// Do renderer-specific initialization before drawing
   let parentBegin (self: Renderer) : unit =
@@ -4580,7 +4581,7 @@ module Renderer =
         let width = Internal.Raw.argInt 3
         let height = Internal.Raw.argInt 4
         handler renderer x y width height)
-    Internal.PangoC.zgtk_override_Pango_Renderer_draw_error_underline gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Renderer_draw_error_underline (Internal.Raw.gtype gtype) zcb
 
   /// Draw a squiggly line that approximately covers the given rectangle in the style of an underline used to indicate a spelling error.
   let parentDrawErrorUnderline (self: Renderer) (x: int) (y: int) (width: int) (height: int) : unit =
@@ -4596,7 +4597,7 @@ module Renderer =
         let x = Internal.Raw.argFloat 3
         let y = Internal.Raw.argFloat 4
         handler renderer font glyph x y)
-    Internal.PangoC.zgtk_override_Pango_Renderer_draw_glyph gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Renderer_draw_glyph (Internal.Raw.gtype gtype) zcb
 
   /// Draws a single glyph with coordinates in device space.
   let parentDrawGlyph (self: Renderer) (font: Font) (glyph: int) (x: float) (y: float) : unit =
@@ -4612,7 +4613,7 @@ module Renderer =
         let x = Internal.Raw.argInt 3
         let y = Internal.Raw.argInt 4
         handler renderer text glyphItem x y)
-    Internal.PangoC.zgtk_override_Pango_Renderer_draw_glyph_item gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Renderer_draw_glyph_item (Internal.Raw.gtype gtype) zcb
 
   /// Draws the glyphs in @glyph_item with the specified `PangoRenderer`, embedding the text associated with the glyphs in the output if the output format supports it.
   let parentDrawGlyphItem (self: Renderer) (text: option<string>) (glyphItem: GlyphItem) (x: int) (y: int) : unit =
@@ -4630,7 +4631,7 @@ module Renderer =
         let x = Internal.Raw.argInt 3
         let y = Internal.Raw.argInt 4
         handler renderer font glyphs x y)
-    Internal.PangoC.zgtk_override_Pango_Renderer_draw_glyphs gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Renderer_draw_glyphs (Internal.Raw.gtype gtype) zcb
 
   /// Draws the glyphs in @glyphs with the specified `PangoRenderer`.
   let parentDrawGlyphs (self: Renderer) (font: Font) (glyphs: GlyphString) (x: int) (y: int) : unit =
@@ -4647,7 +4648,7 @@ module Renderer =
         let width = Internal.Raw.argInt 4
         let height = Internal.Raw.argInt 5
         handler renderer part x y width height)
-    Internal.PangoC.zgtk_override_Pango_Renderer_draw_rectangle gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Renderer_draw_rectangle (Internal.Raw.gtype gtype) zcb
 
   /// Draws an axis-aligned rectangle in user space coordinates with the specified `PangoRenderer`.
   let parentDrawRectangle (self: Renderer) (part: RenderPart) (x: int) (y: int) (width: int) (height: int) : unit =
@@ -4662,7 +4663,7 @@ module Renderer =
         let x = Internal.Raw.argInt 2
         let y = Internal.Raw.argInt 3
         handler renderer attr x y)
-    Internal.PangoC.zgtk_override_Pango_Renderer_draw_shape gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Renderer_draw_shape (Internal.Raw.gtype gtype) zcb
 
   /// draw content for a glyph shaped with `PangoAttrShape` @x, @y are the coordinates of the left edge of the baseline, in user coordinates.
   let parentDrawShape (self: Renderer) (attr: AttrShape) (x: int) (y: int) : unit =
@@ -4681,7 +4682,7 @@ module Renderer =
         let x12 = Internal.Raw.argFloat 6
         let x22 = Internal.Raw.argFloat 7
         handler renderer part y1 x11 x21 y2 x12 x22)
-    Internal.PangoC.zgtk_override_Pango_Renderer_draw_trapezoid gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Renderer_draw_trapezoid (Internal.Raw.gtype gtype) zcb
 
   /// Draws a trapezoid with the parallel sides aligned with the X axis using the given `PangoRenderer`; coordinates are in device space.
   let parentDrawTrapezoid (self: Renderer) (part: RenderPart) (y1: float) (x11: float) (x21: float) (y2: float) (x12: float) (x22: float) : unit =
@@ -4693,7 +4694,7 @@ module Renderer =
       Internal.Raw.hold (fun () ->
         let renderer = Renderer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler renderer)
-    Internal.PangoC.zgtk_override_Pango_Renderer_end gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Renderer_end (Internal.Raw.gtype gtype) zcb
 
   /// Do renderer-specific cleanup after drawing
   let parentEnd (self: Renderer) : unit =
@@ -4706,7 +4707,7 @@ module Renderer =
         let renderer = Renderer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let part = RenderPart (int (Internal.Raw.argInt 1))
         handler renderer part)
-    Internal.PangoC.zgtk_override_Pango_Renderer_part_changed gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Renderer_part_changed (Internal.Raw.gtype gtype) zcb
 
   /// Informs Pango that the way that the rendering is done for @part has changed.
   let parentPartChanged (self: Renderer) (part: RenderPart) : unit =
@@ -4719,7 +4720,7 @@ module Renderer =
         let renderer = Renderer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let run = GlyphItem (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.PangoC.pango_glyph_item_get_type ()) false)
         handler renderer run)
-    Internal.PangoC.zgtk_override_Pango_Renderer_prepare_run gtype zcb
+    Internal.PangoC.zgtk_override_Pango_Renderer_prepare_run (Internal.Raw.gtype gtype) zcb
 
   /// updates the renderer for a new run
   let parentPrepareRun (self: Renderer) (run: GlyphItem) : unit =
@@ -4731,7 +4732,7 @@ module ScriptIter =
 
   /// Create a new `PangoScriptIter`, used to break a string of Unicode text into runs by Unicode script.
   let create (text: string) (length: int) : ScriptIter =
-    ScriptIter (Internal.Raw.wrapBoxed ((Internal.PangoC.pango_script_iter_new text (i32 length))) (Internal.PangoC.pango_script_iter_get_type ()) true)
+    ScriptIter (Internal.Raw.wrapBoxed ((Internal.PangoC.pango_script_iter_new text (i32 (Internal.Raw.within text 0 length false 1)))) (Internal.PangoC.pango_script_iter_get_type ()) true)
 
   /// Frees a `PangoScriptIter`.
   [<Unsafe>]
@@ -4875,7 +4876,7 @@ let attrBaselineShiftNew (shift: int) : Attribute =
 /// Apply customization from attributes to the breaks in @attrs.
 let attrBreak (text: string) (length: int) (attrList: AttrList) (offset: int) (attrsLen: int) : list<LogAttr> =
   let zbuf1 = Internal.Raw.roomFor (attrsLen) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ())
-  Internal.PangoC.pango_attr_break text (i32 length) (Internal.Raw.obj attrList.Id (Internal.PangoC.pango_attr_list_get_type ())) (i32 offset) zbuf1 (i32 attrsLen)
+  Internal.PangoC.pango_attr_break text (i32 (Internal.Raw.within text 0 length false 1)) (Internal.Raw.obj attrList.Id (Internal.PangoC.pango_attr_list_get_type ())) (i32 offset) zbuf1 (i32 attrsLen)
   let zrs2 = Internal.Raw.mapList (fun zp -> LogAttr (Internal.Raw.copyPlain (zp) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ()) (Internal.PangoC.zgtk_tag_Pango_LogAttr ()))) (Internal.Raw.recordsOf (zbuf1) (attrsLen) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ()))
   Internal.Raw.free (zbuf1)
   zrs2
@@ -4991,7 +4992,7 @@ let attrWordNew () : Attribute =
 /// Deprecated. Determines possible line, word, and character breaks for a string of Unicode text with a single analysis.
 let break_ (text: string) (length: int) (analysis: Analysis) (attrsLen: int) : list<LogAttr> =
   let zbuf1 = Internal.Raw.roomFor (attrsLen) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ())
-  Internal.PangoC.pango_break text (i32 length) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) zbuf1 (i32 attrsLen)
+  Internal.PangoC.pango_break text (i32 (Internal.Raw.within text 0 length false 1)) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) zbuf1 (i32 attrsLen)
   let zrs2 = Internal.Raw.mapList (fun zp -> LogAttr (Internal.Raw.copyPlain (zp) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ()) (Internal.PangoC.zgtk_tag_Pango_LogAttr ()))) (Internal.Raw.recordsOf (zbuf1) (attrsLen) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ()))
   Internal.Raw.free (zbuf1)
   zrs2
@@ -5003,7 +5004,7 @@ let defaultBreak (text: string) (length: int) (analysis: option<Analysis>) (attr
     | Some zo -> Internal.Raw.obj zo.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())
     | None -> Internal.Raw.none ()
   let zbuf2 = Internal.Raw.roomFor (attrsLen) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ())
-  Internal.PangoC.pango_default_break text (i32 length) zp1 zbuf2 (i32 attrsLen)
+  Internal.PangoC.pango_default_break text (i32 (Internal.Raw.within text 0 length false 1)) zp1 zbuf2 (i32 attrsLen)
   let zrs3 = Internal.Raw.mapList (fun zp -> LogAttr (Internal.Raw.copyPlain (zp) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ()) (Internal.PangoC.zgtk_tag_Pango_LogAttr ()))) (Internal.Raw.recordsOf (zbuf2) (attrsLen) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ()))
   Internal.Raw.free (zbuf2)
   zrs3
@@ -5014,12 +5015,12 @@ let extentsToPixels (inclusive: Rectangle) (nearest: Rectangle) : unit =
 
 /// Searches a string the first character that has a strong direction, according to the Unicode bidirectional algorithm.
 let findBaseDir (text: string) (length: int) : Direction =
-  Direction (int ((Internal.PangoC.pango_find_base_dir text (i32 length))))
+  Direction (int ((Internal.PangoC.pango_find_base_dir text (i32 (Internal.Raw.within text 0 length false 1)))))
 
 /// Locates a paragraph boundary in @text.
 let findParagraphBoundary (text: string) (length: int) : (int * int) =
   Internal.Raw.outBegin ()
-  Internal.PangoC.pango_find_paragraph_boundary text (i32 length) (Internal.Raw.out 0) (Internal.Raw.out 1)
+  Internal.PangoC.pango_find_paragraph_boundary text (i32 (Internal.Raw.within text 0 length false 1)) (Internal.Raw.out 0) (Internal.Raw.out 1)
   let zv = (Internal.Raw.outI32 0, Internal.Raw.outI32 1)
   Internal.Raw.outEnd ()
   zv
@@ -5027,7 +5028,7 @@ let findParagraphBoundary (text: string) (length: int) : (int * int) =
 /// Computes a `PangoLogAttr` for each character in @text.
 let getLogAttrs (text: string) (length: int) (level: int) (language: Language) (attrsLen: int) : list<LogAttr> =
   let zbuf1 = Internal.Raw.roomFor (attrsLen) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ())
-  Internal.PangoC.pango_get_log_attrs text (i32 length) (i32 level) (Internal.Raw.obj language.Id (Internal.PangoC.pango_language_get_type ())) zbuf1 (i32 attrsLen)
+  Internal.PangoC.pango_get_log_attrs text (i32 (Internal.Raw.within text 0 length false 1)) (i32 level) (Internal.Raw.obj language.Id (Internal.PangoC.pango_language_get_type ())) zbuf1 (i32 attrsLen)
   let zrs2 = Internal.Raw.mapList (fun zp -> LogAttr (Internal.Raw.copyPlain (zp) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ()) (Internal.PangoC.zgtk_tag_Pango_LogAttr ()))) (Internal.Raw.recordsOf (zbuf1) (attrsLen) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ()))
   Internal.Raw.free (zbuf1)
   zrs2
@@ -5050,7 +5051,7 @@ let itemize (context: Context) (text: string) (startIndex: int) (length: int) (a
     match cachedIter with
     | Some zo -> Internal.Raw.obj zo.Id (Internal.PangoC.pango_attr_iterator_get_type ())
     | None -> Internal.Raw.none ()
-  let zr = Internal.PangoC.pango_itemize (Internal.Raw.obj context.Id (Internal.PangoC.pango_context_get_type ())) text (i32 startIndex) (i32 length) (Internal.Raw.obj attrs.Id (Internal.PangoC.pango_attr_list_get_type ())) zp1
+  let zr = Internal.PangoC.pango_itemize (Internal.Raw.obj context.Id (Internal.PangoC.pango_context_get_type ())) text (i32 (Internal.Raw.within text 0 startIndex false 2)) (i32 (Internal.Raw.within text (Internal.Raw.within text 0 startIndex false 2) length false 1)) (Internal.Raw.obj attrs.Id (Internal.PangoC.pango_attr_list_get_type ())) zp1
   Internal.Raw.mapList (fun zp -> Item (Internal.Raw.wrapBoxed (zp) (Internal.PangoC.pango_item_get_type ()) true)) (Internal.Raw.pointers (zr) false true)
 
 /// Like `pango_itemize()`, but with an explicitly specified base direction.
@@ -5059,13 +5060,13 @@ let itemizeWithBaseDir (context: Context) (baseDir: Direction) (text: string) (s
     match cachedIter with
     | Some zo -> Internal.Raw.obj zo.Id (Internal.PangoC.pango_attr_iterator_get_type ())
     | None -> Internal.Raw.none ()
-  let zr = Internal.PangoC.pango_itemize_with_base_dir (Internal.Raw.obj context.Id (Internal.PangoC.pango_context_get_type ())) (i32 baseDir.Int) text (i32 startIndex) (i32 length) (Internal.Raw.obj attrs.Id (Internal.PangoC.pango_attr_list_get_type ())) zp1
+  let zr = Internal.PangoC.pango_itemize_with_base_dir (Internal.Raw.obj context.Id (Internal.PangoC.pango_context_get_type ())) (i32 baseDir.Int) text (i32 (Internal.Raw.within text 0 startIndex false 2)) (i32 (Internal.Raw.within text (Internal.Raw.within text 0 startIndex false 2) length false 1)) (Internal.Raw.obj attrs.Id (Internal.PangoC.pango_attr_list_get_type ())) zp1
   Internal.Raw.mapList (fun zp -> Item (Internal.Raw.wrapBoxed (zp) (Internal.PangoC.pango_item_get_type ()) true)) (Internal.Raw.pointers (zr) false true)
 
 /// Return the bidirectional embedding levels of the input paragraph.
 [<Unsafe>]
 let log2visGetEmbeddingLevels (text: string) (length: int) (pbaseDir: cptr) : cptr =
-  (Internal.PangoC.pango_log2vis_get_embedding_levels text (i32 length) pbaseDir)
+  (Internal.PangoC.pango_log2vis_get_embedding_levels text (i32 (Internal.Raw.within text 0 length false 1)) pbaseDir)
 
 /// Finishes parsing markup.
 let markupParserFinish (context: GLib.MarkupParseContext) : result<(bool * option<AttrList> * option<string> * int), Glue.Error> =
@@ -5089,7 +5090,7 @@ let markupParserNew (accelMarker: int) : GLib.MarkupParseContext =
 let parseEnum (type_: usize) (str: option<string>) (warn: bool) : (bool * int * option<string>) =
   let zs1 = Internal.Raw.dupOption str
   Internal.Raw.outBegin ()
-  let zr = Internal.PangoC.pango_parse_enum type_ zs1 (Internal.Raw.out 0) (if warn then i32 1 else i32 0) (Internal.Raw.out 1)
+  let zr = Internal.PangoC.pango_parse_enum (Internal.Raw.gtype type_) zs1 (Internal.Raw.out 0) (if warn then i32 1 else i32 0) (Internal.Raw.out 1)
   let zv = (((zr) <> i32 0), Internal.Raw.outI32 0, Internal.Raw.takeTextOption (Internal.Raw.outPtr 1))
   Internal.Raw.outEnd ()
   Internal.Raw.free zs1
@@ -5098,7 +5099,7 @@ let parseEnum (type_: usize) (str: option<string>) (warn: bool) : (bool * int * 
 /// Parses marked-up text to create a plain-text string and an attribute list.
 let parseMarkup (markupText: string) (length: int) (accelMarker: int) : result<(bool * option<AttrList> * option<string> * int), Glue.Error> =
   Internal.Raw.outBegin ()
-  let zr = Internal.PangoC.pango_parse_markup markupText (i32 length) (u32 accelMarker) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.out 2) (Internal.Raw.err ())
+  let zr = Internal.PangoC.pango_parse_markup markupText (i32 (Internal.Raw.within markupText 0 length false 1)) (u32 accelMarker) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.out 2) (Internal.Raw.err ())
   match Internal.Raw.takeError () with
   | Some ze ->
     Internal.Raw.outEnd ()
@@ -5186,14 +5187,14 @@ let scanWord (pos: cptr) (out: GLib.String) : bool =
 /// Convert the characters in @text into glyphs.
 let shape (text: string) (length: int) (analysis: Analysis) : GlyphString =
   let zo1 = Internal.Raw.alloc (Internal.PangoC.zgtk_sizeof_Pango_GlyphString ()) (Internal.PangoC.pango_glyph_string_get_type ())
-  Internal.PangoC.pango_shape text (i32 length) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) (Internal.Raw.obj zo1 (Internal.PangoC.pango_glyph_string_get_type ()))
+  Internal.PangoC.pango_shape text (i32 (Internal.Raw.within text 0 length false 1)) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) (Internal.Raw.obj zo1 (Internal.PangoC.pango_glyph_string_get_type ()))
   GlyphString zo1
 
 /// Convert the characters in @text into glyphs.
 let shapeFull (itemText: string) (itemLength: int) (paragraphText: option<string>) (paragraphLength: int) (analysis: Analysis) : GlyphString =
   let zs1 = Internal.Raw.dupOption paragraphText
   let zo2 = Internal.Raw.alloc (Internal.PangoC.zgtk_sizeof_Pango_GlyphString ()) (Internal.PangoC.pango_glyph_string_get_type ())
-  Internal.PangoC.pango_shape_full itemText (i32 itemLength) zs1 (i32 paragraphLength) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) (Internal.Raw.obj zo2 (Internal.PangoC.pango_glyph_string_get_type ()))
+  Internal.PangoC.pango_shape_full itemText (i32 (Internal.Raw.within itemText 0 itemLength false 1)) zs1 (i32 paragraphLength) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) (Internal.Raw.obj zo2 (Internal.PangoC.pango_glyph_string_get_type ()))
   let zv = GlyphString zo2
   Internal.Raw.free zs1
   zv
@@ -5215,7 +5216,7 @@ let shapeItem (item: Item) (paragraphText: option<string>) (paragraphLength: int
 let shapeWithFlags (itemText: string) (itemLength: int) (paragraphText: option<string>) (paragraphLength: int) (analysis: Analysis) (flags: ShapeFlags) : GlyphString =
   let zs1 = Internal.Raw.dupOption paragraphText
   let zo2 = Internal.Raw.alloc (Internal.PangoC.zgtk_sizeof_Pango_GlyphString ()) (Internal.PangoC.pango_glyph_string_get_type ())
-  Internal.PangoC.pango_shape_with_flags itemText (i32 itemLength) zs1 (i32 paragraphLength) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) (Internal.Raw.obj zo2 (Internal.PangoC.pango_glyph_string_get_type ())) (u32 flags.Int)
+  Internal.PangoC.pango_shape_with_flags itemText (i32 (Internal.Raw.within itemText 0 itemLength false 1)) zs1 (i32 paragraphLength) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) (Internal.Raw.obj zo2 (Internal.PangoC.pango_glyph_string_get_type ())) (u32 flags.Int)
   let zv = GlyphString zo2
   Internal.Raw.free zs1
   zv
@@ -5232,7 +5233,7 @@ let splitFileList (str: string) : list<string> =
 /// Apply language-specific tailoring to the breaks in @attrs.
 let tailorBreak (text: string) (length: int) (analysis: Analysis) (offset: int) (attrsLen: int) : list<LogAttr> =
   let zbuf1 = Internal.Raw.roomFor (attrsLen) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ())
-  Internal.PangoC.pango_tailor_break text (i32 length) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) (i32 offset) zbuf1 (i32 attrsLen)
+  Internal.PangoC.pango_tailor_break text (i32 (Internal.Raw.within text 0 length false 1)) (Internal.Raw.obj analysis.Id (Internal.PangoC.zgtk_tag_Pango_Analysis ())) (i32 offset) zbuf1 (i32 attrsLen)
   let zrs2 = Internal.Raw.mapList (fun zp -> LogAttr (Internal.Raw.copyPlain (zp) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ()) (Internal.PangoC.zgtk_tag_Pango_LogAttr ()))) (Internal.Raw.recordsOf (zbuf1) (attrsLen) (Internal.PangoC.zgtk_sizeof_Pango_LogAttr ()))
   Internal.Raw.free (zbuf1)
   zrs2

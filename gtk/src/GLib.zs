@@ -4772,10 +4772,12 @@ module Completion =
     Internal.GLibC.g_completion_clear_items (Internal.Raw.obj self.Id (Internal.GLibC.zgtk_tag_GLib_Completion ()))
 
   /// Deprecated. Attempts to complete the string @prefix using the #GCompletion target items.
+  [<Unsafe>]
   let complete (self: Completion) (prefix: string) (newPrefix: string) : list<cptr> =
     (Internal.Raw.pointers ((Internal.GLibC.g_completion_complete (Internal.Raw.obj self.Id (Internal.GLibC.zgtk_tag_GLib_Completion ())) prefix newPrefix)) false false)
 
   /// Deprecated. Attempts to complete the string @prefix using the #GCompletion target items.
+  [<Unsafe>]
   let completeUtf8 (self: Completion) (prefix: string) (newPrefix: string) : list<string> =
     Internal.Raw.mapList Internal.Raw.text (Internal.Raw.pointers ((Internal.GLibC.g_completion_complete_utf8 (Internal.Raw.obj self.Id (Internal.GLibC.zgtk_tag_GLib_Completion ())) prefix newPrefix)) false false)
 
@@ -5028,6 +5030,7 @@ module Date =
     (((Internal.GLibC.g_date_is_leap_year (u16 year))) <> i32 0)
 
   /// Generates a printed representation of the date, in a [locale](running.html#locale)-specific way.
+  [<Unsafe>]
   let strftime (s: string) (slen: int) (format: string) (date: Date) : int =
     (int ((Internal.GLibC.g_date_strftime s (usize slen) format (Internal.Raw.obj date.Id (Internal.GLibC.g_date_get_type ())))))
 
@@ -5857,6 +5860,7 @@ module IOChannel =
     Internal.GLibC.g_io_channel_init (Internal.Raw.obj self.Id (Internal.GLibC.g_io_channel_get_type ()))
 
   /// Deprecated. Reads data from a #GIOChannel.
+  [<Unsafe>]
   let read (self: IOChannel) (buf: string) (count: int) (bytesRead: int) : IOError =
     IOError (int ((Internal.GLibC.g_io_channel_read (Internal.Raw.obj self.Id (Internal.GLibC.g_io_channel_get_type ())) buf (usize count) (usize bytesRead))))
 
@@ -5992,7 +5996,7 @@ module IOChannel =
   /// This sets the string that #GIOChannel uses to determine where in the file a line break occurs.
   let setLineTerm (self: IOChannel) (lineTerm: option<string>) (length: int) : unit =
     let zs1 = Internal.Raw.dupOption lineTerm
-    Internal.GLibC.g_io_channel_set_line_term (Internal.Raw.obj self.Id (Internal.GLibC.g_io_channel_get_type ())) zs1 (i32 length)
+    Internal.GLibC.g_io_channel_set_line_term (Internal.Raw.obj self.Id (Internal.GLibC.g_io_channel_get_type ())) zs1 (i32 (Internal.Raw.within (Option.defaultValue "" lineTerm) 0 length false 1))
     Internal.Raw.free zs1
 
   /// Close an IO channel.
@@ -6022,6 +6026,7 @@ module IOChannel =
     IOError (int ((Internal.GLibC.g_io_channel_write (Internal.Raw.obj self.Id (Internal.GLibC.g_io_channel_get_type ())) buf (usize count) (usize bytesWritten))))
 
   /// Replacement for g_io_channel_write() with the new API.
+  [<Unsafe>]
   let writeChars (self: IOChannel) (buf: array<u8>) (count: int) : result<(IOStatus * int), Glue.Error> =
     let za1 = Internal.Raw.bytes buf
     Internal.Raw.outBegin ()
@@ -6341,7 +6346,7 @@ module KeyFile =
   /// Loads a key file from memory into an empty [struct@GLib.KeyFile] structure.
   let loadFromData (self: KeyFile) (data: string) (length: int) (flags: KeyFileFlags) : result<bool, Glue.Error> =
     Internal.Raw.outBegin ()
-    let zr = Internal.GLibC.g_key_file_load_from_data (Internal.Raw.obj self.Id (Internal.GLibC.g_key_file_get_type ())) data (usize length) (u32 flags.Int) (Internal.Raw.err ())
+    let zr = Internal.GLibC.g_key_file_load_from_data (Internal.Raw.obj self.Id (Internal.GLibC.g_key_file_get_type ())) data (usize (Internal.Raw.within data 0 length false 0)) (u32 flags.Int) (Internal.Raw.err ())
     match Internal.Raw.takeError () with
     | Some ze ->
       Internal.Raw.outEnd ()
@@ -7215,7 +7220,7 @@ module MarkupParseContext =
   /// Feed some data to the #GMarkupParseContext.
   let parse (self: MarkupParseContext) (text: string) (textLen: int) : result<bool, Glue.Error> =
     Internal.Raw.outBegin ()
-    let zr = Internal.GLibC.g_markup_parse_context_parse (Internal.Raw.obj self.Id (Internal.GLibC.g_markup_parse_context_get_type ())) text (i64 textLen) (Internal.Raw.err ())
+    let zr = Internal.GLibC.g_markup_parse_context_parse (Internal.Raw.obj self.Id (Internal.GLibC.g_markup_parse_context_get_type ())) text (i64 (Internal.Raw.within text 0 textLen false 1)) (Internal.Raw.err ())
     match Internal.Raw.takeError () with
     | Some ze ->
       Internal.Raw.outEnd ()
@@ -8840,11 +8845,11 @@ module Regex =
 
   /// Escapes the nul characters in @string to "/x00".
   let escapeNul (string: string) (length: int) : string =
-    Internal.Raw.takeText ((Internal.GLibC.g_regex_escape_nul string (i32 length)))
+    Internal.Raw.takeText ((Internal.GLibC.g_regex_escape_nul string (i32 (Internal.Raw.within string 0 length false 1))))
 
   /// Escapes the special characters used for regular expressions in @string, for instance "a.b*c" becomes "a/.b/*c".
   let escapeString (string: string) (length: int) : string =
-    Internal.Raw.takeText ((Internal.GLibC.g_regex_escape_string string (i32 length)))
+    Internal.Raw.takeText ((Internal.GLibC.g_regex_escape_string string (i32 (Internal.Raw.within string 0 length false 1))))
 
   /// Scans for a match in @string for @pattern.
   let matchSimple (pattern: string) (string: string) (compileOptions: RegexCompileFlags) (matchOptions: RegexMatchFlags) : bool =
@@ -9225,7 +9230,7 @@ module Scanner =
 
   /// Prepares to scan a text buffer.
   let inputText (self: Scanner) (text: string) (textLen: int) : unit =
-    Internal.GLibC.g_scanner_input_text (Internal.Raw.obj self.Id (Internal.GLibC.zgtk_tag_GLib_Scanner ())) text (u32 textLen)
+    Internal.GLibC.g_scanner_input_text (Internal.Raw.obj self.Id (Internal.GLibC.zgtk_tag_GLib_Scanner ())) text (u32 (Internal.Raw.within text 0 textLen false 0))
 
   /// Looks up a symbol in the current scope and return its value.
   let lookupSymbol (self: Scanner) (symbol: string) : cptr =
@@ -9923,7 +9928,7 @@ module String =
 
   /// Creates a new #GString with @len bytes of the @init buffer.
   let createLen (init: string) (len: int) : String =
-    String (Internal.Raw.wrapBoxed ((Internal.GLibC.g_string_new_len init (i64 len))) (Internal.GLibC.g_gstring_get_type ()) true)
+    String (Internal.Raw.wrapBoxed ((Internal.GLibC.g_string_new_len init (i64 (Internal.Raw.within init 0 len false 1)))) (Internal.GLibC.g_gstring_get_type ()) true)
 
   /// Creates a new #GString, initialized with the given string.
   let createTake (init: option<string>) : String =
@@ -9945,7 +9950,7 @@ module String =
 
   /// Appends @len bytes of @val to @string.
   let appendLen (self: String) (val: string) (len: int) : String =
-    String (Internal.Raw.wrapBoxed ((Internal.GLibC.g_string_append_len (Internal.Raw.obj self.Id (Internal.GLibC.g_gstring_get_type ())) val (i64 len))) (Internal.GLibC.g_gstring_get_type ()) false)
+    String (Internal.Raw.wrapBoxed ((Internal.GLibC.g_string_append_len (Internal.Raw.obj self.Id (Internal.GLibC.g_gstring_get_type ())) val (i64 (Internal.Raw.within val 0 len false 1)))) (Internal.GLibC.g_gstring_get_type ()) false)
 
   /// Converts a Unicode character into UTF-8, and appends it to the string.
   let appendUnichar (self: String) (wc: int) : String =
@@ -10015,7 +10020,7 @@ module String =
 
   /// Inserts @len bytes of @val into @string at @pos.
   let insertLen (self: String) (pos: int) (val: string) (len: int) : String =
-    String (Internal.Raw.wrapBoxed ((Internal.GLibC.g_string_insert_len (Internal.Raw.obj self.Id (Internal.GLibC.g_gstring_get_type ())) (i64 pos) val (i64 len))) (Internal.GLibC.g_gstring_get_type ()) false)
+    String (Internal.Raw.wrapBoxed ((Internal.GLibC.g_string_insert_len (Internal.Raw.obj self.Id (Internal.GLibC.g_gstring_get_type ())) (i64 pos) val (i64 (Internal.Raw.within val 0 len false 1)))) (Internal.GLibC.g_gstring_get_type ()) false)
 
   /// Converts a Unicode character into UTF-8, and insert it into the string at the given position.
   let insertUnichar (self: String) (pos: int) (wc: int) : String =
@@ -10027,7 +10032,7 @@ module String =
 
   /// Overwrites part of a string, lengthening it if necessary.
   let overwriteLen (self: String) (pos: int) (val: string) (len: int) : String =
-    String (Internal.Raw.wrapBoxed ((Internal.GLibC.g_string_overwrite_len (Internal.Raw.obj self.Id (Internal.GLibC.g_gstring_get_type ())) (usize pos) val (i64 len))) (Internal.GLibC.g_gstring_get_type ()) false)
+    String (Internal.Raw.wrapBoxed ((Internal.GLibC.g_string_overwrite_len (Internal.Raw.obj self.Id (Internal.GLibC.g_gstring_get_type ())) (usize pos) val (i64 (Internal.Raw.within val 0 len false 1)))) (Internal.GLibC.g_gstring_get_type ()) false)
 
   /// Adds a string on to the start of a #GString, expanding it if necessary.
   let prepend (self: String) (val: string) : String =
@@ -10039,7 +10044,7 @@ module String =
 
   /// Prepends @len bytes of @val to @string.
   let prependLen (self: String) (val: string) (len: int) : String =
-    String (Internal.Raw.wrapBoxed ((Internal.GLibC.g_string_prepend_len (Internal.Raw.obj self.Id (Internal.GLibC.g_gstring_get_type ())) val (i64 len))) (Internal.GLibC.g_gstring_get_type ()) false)
+    String (Internal.Raw.wrapBoxed ((Internal.GLibC.g_string_prepend_len (Internal.Raw.obj self.Id (Internal.GLibC.g_gstring_get_type ())) val (i64 (Internal.Raw.within val 0 len false 1)))) (Internal.GLibC.g_gstring_get_type ()) false)
 
   /// Converts a Unicode character into UTF-8, and prepends it to the string.
   let prependUnichar (self: String) (wc: int) : String =
@@ -10103,7 +10108,7 @@ module StringChunk =
   /// Adds a copy of the first @len bytes of @string to the #GStringChunk.
   [<Unsafe>]
   let insertLen (self: StringChunk) (string: string) (len: int) : string =
-    Internal.Raw.takeText ((Internal.GLibC.g_string_chunk_insert_len self.Ptr string (i64 len)))
+    Internal.Raw.takeText ((Internal.GLibC.g_string_chunk_insert_len self.Ptr string (i64 (Internal.Raw.within string 0 len false 1))))
 
   /// Creates a new #GStringChunk.
   let create (size: int) : StringChunk =
@@ -11129,7 +11134,7 @@ module Uri =
   /// Many URI schemes include one or more attribute/value pairs as part of the URI value.
   let parseParams (params: string) (length: int) (separators: string) (flags: UriParamsFlags) : result<HashTable, Glue.Error> =
     Internal.Raw.outBegin ()
-    let zr = Internal.GLibC.g_uri_parse_params params (i64 length) separators (u32 flags.Int) (Internal.Raw.err ())
+    let zr = Internal.GLibC.g_uri_parse_params params (i64 (Internal.Raw.within params 0 length false 1)) separators (u32 flags.Int) (Internal.Raw.err ())
     match Internal.Raw.takeError () with
     | Some ze ->
       Internal.Raw.outEnd ()
@@ -11206,7 +11211,7 @@ module Uri =
   let unescapeBytes (escapedString: string) (length: int) (illegalCharacters: option<string>) : result<Bytes, Glue.Error> =
     let zs1 = Internal.Raw.dupOption illegalCharacters
     Internal.Raw.outBegin ()
-    let zr = Internal.GLibC.g_uri_unescape_bytes escapedString (i64 length) zs1 (Internal.Raw.err ())
+    let zr = Internal.GLibC.g_uri_unescape_bytes escapedString (i64 (Internal.Raw.within escapedString 0 length false 1)) zs1 (Internal.Raw.err ())
     match Internal.Raw.takeError () with
     | Some ze ->
       Internal.Raw.outEnd ()
@@ -11244,7 +11249,7 @@ module UriParamsIter =
 
   /// Initializes an attribute/value pair iterator.
   let init (self: UriParamsIter) (params: string) (length: int) (separators: string) (flags: UriParamsFlags) : unit =
-    Internal.GLibC.g_uri_params_iter_init (Internal.Raw.obj self.Id (Internal.GLibC.zgtk_tag_GLib_UriParamsIter ())) params (i64 length) separators (u32 flags.Int)
+    Internal.GLibC.g_uri_params_iter_init (Internal.Raw.obj self.Id (Internal.GLibC.zgtk_tag_GLib_UriParamsIter ())) params (i64 (Internal.Raw.within params 0 length false 1)) separators (u32 flags.Int)
 
   /// Advances @iter and retrieves the next attribute/value.
   let next (self: UriParamsIter) : result<(bool * option<string> * option<string>), Glue.Error> =
@@ -11391,6 +11396,7 @@ module Variant =
     zv
 
   /// Creates a string #GVariant with the contents of @string.
+  [<Unsafe>]
   let createTakeString (string: string) : Variant =
     Variant (Internal.GLibC.zgtk_wrap_GLib_Variant ((Internal.GLibC.g_variant_new_take_string string)) (i32 0))
 
@@ -12426,10 +12432,12 @@ let asciiDigitValue (c: int) : int =
   (int ((Internal.GLibC.g_ascii_digit_value (i8 c))))
 
 /// Converts a `gdouble` to a string, using the '.' as decimal point.
+[<Unsafe>]
 let asciiDtostr (buffer: string) (bufLen: int) (d: float) : string =
   Internal.Raw.takeText ((Internal.GLibC.g_ascii_dtostr buffer (i32 bufLen) d))
 
 /// Converts a `gdouble` to a string, using the '.' as decimal point.
+[<Unsafe>]
 let asciiFormatd (buffer: string) (bufLen: int) (format: string) (d: float) : string =
   Internal.Raw.takeText ((Internal.GLibC.g_ascii_formatd buffer (i32 bufLen) format d))
 
@@ -12439,7 +12447,7 @@ let asciiStrcasecmp (s1: string) (s2: string) : int =
 
 /// Converts all upper case ASCII letters to lower case ASCII letters, with semantics that exactly match [func@GLib.ascii_tolower].
 let asciiStrdown (str: string) (len: int) : string =
-  Internal.Raw.takeText ((Internal.GLibC.g_ascii_strdown str (i64 len)))
+  Internal.Raw.takeText ((Internal.GLibC.g_ascii_strdown str (i64 (Internal.Raw.within str 0 len false 1))))
 
 /// A convenience function for converting a string to a signed number.
 let asciiStringToSigned (str: string) (base: int) (min: int) (max: int) : result<(bool * int), Glue.Error> =
@@ -12497,7 +12505,7 @@ let asciiStrtoull (nptr: string) (base: int) : (int * option<string>) =
 
 /// Converts all lower case ASCII letters to upper case ASCII letters, with semantics that exactly match [func@GLib.ascii_toupper].
 let asciiStrup (str: string) (len: int) : string =
-  Internal.Raw.takeText ((Internal.GLibC.g_ascii_strup str (i64 len)))
+  Internal.Raw.takeText ((Internal.GLibC.g_ascii_strup str (i64 (Internal.Raw.within str 0 len false 1))))
 
 /// Convert a character to ASCII lower case.
 let asciiTolower (c: int) : int =
@@ -12952,7 +12960,7 @@ let computeChecksumForData (checksumType: ChecksumType) (data: array<u8>) : opti
 
 /// Computes the checksum of a string.
 let computeChecksumForString (checksumType: ChecksumType) (str: string) (length: int) : option<string> =
-  Internal.Raw.takeTextOption ((Internal.GLibC.g_compute_checksum_for_string (i32 checksumType.Int) str (i64 length)))
+  Internal.Raw.takeTextOption ((Internal.GLibC.g_compute_checksum_for_string (i32 checksumType.Int) str (i64 (Internal.Raw.within str 0 length false 1))))
 
 /// Computes the HMAC for a binary @data.
 let computeHmacForBytes (digestType: ChecksumType) (key: Bytes) (data: Bytes) : string =
@@ -12971,7 +12979,7 @@ let computeHmacForData (digestType: ChecksumType) (key: array<u8>) (data: array<
 /// Computes the HMAC for a string.
 let computeHmacForString (digestType: ChecksumType) (key: array<u8>) (str: string) (length: int) : string =
   let za2 = Internal.Raw.bytes key
-  let zr = Internal.GLibC.g_compute_hmac_for_string (i32 digestType.Int) za2 (usize (Internal.Raw.countBytes key)) str (i64 length)
+  let zr = Internal.GLibC.g_compute_hmac_for_string (i32 digestType.Int) za2 (usize (Internal.Raw.countBytes key)) str (i64 (Internal.Raw.within str 0 length false 1))
   let zv = Internal.Raw.takeText (zr)
   Internal.Raw.free za2
   zv
@@ -13191,7 +13199,7 @@ let doubleHash (v: cptr) : int =
 /// This function is a variant of g_dgettext() which supports a disambiguating message context.
 let dpgettext (domain: option<string>) (msgctxtid: string) (msgidoffset: int) : string =
   let zs1 = Internal.Raw.dupOption domain
-  let zr = Internal.GLibC.g_dpgettext zs1 msgctxtid (usize msgidoffset)
+  let zr = Internal.GLibC.g_dpgettext zs1 msgctxtid (usize (Internal.Raw.within msgctxtid 0 msgidoffset false 2))
   let zv = Internal.Raw.text (zr)
   Internal.Raw.free zs1
   zv
@@ -13334,7 +13342,7 @@ let filenameFromUri (uri: string) : result<(string * option<string>), Glue.Error
 /// Converts a string from UTF-8 to the encoding GLib uses for filenames.
 let filenameFromUtf8 (utf8string: string) (len: int) : result<(string * int * int), Glue.Error> =
   Internal.Raw.outBegin ()
-  let zr = Internal.GLibC.g_filename_from_utf8 utf8string (i64 len) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.err ())
+  let zr = Internal.GLibC.g_filename_from_utf8 utf8string (i64 (Internal.Raw.within utf8string 0 len false 1)) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.err ())
   match Internal.Raw.takeError () with
   | Some ze ->
     Internal.Raw.outEnd ()
@@ -13363,7 +13371,7 @@ let filenameToUri (filename: string) (hostname: option<string>) : result<string,
 /// Converts a string which is in the encoding used by GLib for filenames into a UTF-8 string.
 let filenameToUtf8 (opsysstring: string) (len: int) : result<(string * int * int), Glue.Error> =
   Internal.Raw.outBegin ()
-  let zr = Internal.GLibC.g_filename_to_utf8 opsysstring (i64 len) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.err ())
+  let zr = Internal.GLibC.g_filename_to_utf8 opsysstring (i64 (Internal.Raw.within opsysstring 0 len false 1)) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.err ())
   match Internal.Raw.takeError () with
   | Some ze ->
     Internal.Raw.outEnd ()
@@ -13661,7 +13669,7 @@ let listenv () : list<string> =
 /// Converts a string from UTF-8 to the encoding used for strings by the C runtime (usually the same as that used by the operating system) in the [current locale](running.html#locale).
 let localeFromUtf8 (utf8string: string) (len: int) : result<(array<u8> * int), Glue.Error> =
   Internal.Raw.outBegin ()
-  let zr = Internal.GLibC.g_locale_from_utf8 utf8string (i64 len) (Internal.Raw.out 1) (Internal.Raw.out 0) (Internal.Raw.err ())
+  let zr = Internal.GLibC.g_locale_from_utf8 utf8string (i64 (Internal.Raw.within utf8string 0 len false 1)) (Internal.Raw.out 1) (Internal.Raw.out 0) (Internal.Raw.err ())
   match Internal.Raw.takeError () with
   | Some ze ->
     Internal.Raw.outEnd ()
@@ -13878,7 +13886,7 @@ let markupErrorQuark () : int =
 
 /// Escapes text so that the markup parser will parse it verbatim.
 let markupEscapeText (text: string) (length: int) : string =
-  Internal.Raw.takeText ((Internal.GLibC.g_markup_escape_text text (i64 length)))
+  Internal.Raw.takeText ((Internal.GLibC.g_markup_escape_text text (i64 (Internal.Raw.within text 0 length false 1))))
 
 /// Formats the data in @args according to @format, escaping all string and character arguments in the fashion of g_markup_escape_text().
 [<Unsafe>]
@@ -13916,18 +13924,22 @@ let mkdirWithParents (pathname: string) (mode: int) : int =
   (int ((Internal.GLibC.g_mkdir_with_parents pathname (i32 mode))))
 
 /// Creates a temporary directory in the current directory.
+[<Unsafe>]
 let mkdtemp (tmpl: string) : option<string> =
   Internal.Raw.takeTextOption ((Internal.GLibC.g_mkdtemp tmpl))
 
 /// Creates a temporary directory in the current directory.
+[<Unsafe>]
 let mkdtempFull (tmpl: string) (mode: int) : option<string> =
   Internal.Raw.takeTextOption ((Internal.GLibC.g_mkdtemp_full tmpl (i32 mode)))
 
 /// Opens a temporary file in the current directory.
+[<Unsafe>]
 let mkstemp (tmpl: string) : int =
   (int ((Internal.GLibC.g_mkstemp tmpl)))
 
 /// Opens a temporary file in the current directory.
+[<Unsafe>]
 let mkstempFull (tmpl: string) (flags: int) (mode: int) : int =
   (int ((Internal.GLibC.g_mkstemp_full tmpl (i32 flags) (i32 mode))))
 
@@ -14190,6 +14202,7 @@ let gRefCountInit () : int =
   zv
 
 /// Acquires a reference on a string.
+[<Unsafe>]
 let refStringAcquire (str: string) : string =
   Internal.Raw.takeText ((Internal.GLibC.g_ref_string_acquire str))
 
@@ -14198,6 +14211,7 @@ let refStringEqual (str1: string) (str2: string) : bool =
   (((Internal.GLibC.g_ref_string_equal str1 str2)) <> i32 0)
 
 /// Retrieves the length of @str.
+[<Unsafe>]
 let refStringLength (str: string) : int =
   (int ((Internal.GLibC.g_ref_string_length str)))
 
@@ -14211,9 +14225,10 @@ let refStringNewIntern (str: string) : string =
 
 /// Creates a new reference counted string and copies the contents of @str into it, up to @len bytes.
 let refStringNewLen (str: string) (len: int) : string =
-  Internal.Raw.takeText ((Internal.GLibC.g_ref_string_new_len str (i64 len)))
+  Internal.Raw.takeText ((Internal.GLibC.g_ref_string_new_len str (i64 (Internal.Raw.within str 0 len false 1))))
 
 /// Releases a reference on a string; if it was the last reference, the resources allocated by the string are freed as well.
+[<Unsafe>]
 let refStringRelease (str: string) : unit =
   Internal.GLibC.g_ref_string_release str
 
@@ -14560,6 +14575,7 @@ let stat (filename: string) (buf: StatBuf) : int =
   (int ((Internal.GLibC.g_stat filename buf.Ptr)))
 
 /// Copies a nul-terminated string into the destination buffer, including the trailing nul byte, and returns a pointer to the trailing nul byte in `dest`.
+[<Unsafe>]
 let stpcpy (dest: string) (src: string) : string =
   Internal.Raw.takeText ((Internal.GLibC.g_stpcpy dest src))
 
@@ -14608,6 +14624,7 @@ let strTokenizeAndFold (string: string) (translitLocale: option<string>) : (list
   zv
 
 /// For each character in @string, if the character is not in @valid_chars, replaces the character with @substitutor.
+[<Unsafe>]
 let strcanon (string: string) (validChars: string) (substitutor: int) : string =
   Internal.Raw.takeText ((Internal.GLibC.g_strcanon string validChars (i8 substitutor)))
 
@@ -14616,10 +14633,12 @@ let strcasecmp (s1: string) (s2: string) : int =
   (int ((Internal.GLibC.g_strcasecmp s1 s2)))
 
 /// Removes trailing whitespace from a string.
+[<Unsafe>]
 let strchomp (string: string) : string =
   Internal.Raw.takeText ((Internal.GLibC.g_strchomp string))
 
 /// Removes leading whitespace from a string, by moving the rest of the characters forward.
+[<Unsafe>]
 let strchug (string: string) : string =
   Internal.Raw.takeText ((Internal.GLibC.g_strchug string))
 
@@ -14638,6 +14657,7 @@ let strcompress (source: string) : string =
   Internal.Raw.takeText ((Internal.GLibC.g_strcompress source))
 
 /// Converts any delimiter characters in @string to @new_delimiter.
+[<Unsafe>]
 let strdelimit (string: string) (delimiters: option<string>) (newDelimiter: int) : string =
   let zs1 = Internal.Raw.dupOption delimiters
   let zr = Internal.GLibC.g_strdelimit string zs1 (i8 newDelimiter)
@@ -14646,6 +14666,7 @@ let strdelimit (string: string) (delimiters: option<string>) (newDelimiter: int)
   zv
 
 /// Deprecated. Converts a string to lower case.
+[<Unsafe>]
 let strdown (string: string) : string =
   Internal.Raw.takeText ((Internal.GLibC.g_strdown string))
 
@@ -14702,10 +14723,12 @@ let strjoinv (separator: option<string>) (strArray: list<string>) : string =
   zv
 
 /// Portability wrapper that calls `strlcat()` on systems which have it, and emulates it otherwise.
+[<Unsafe>]
 let strlcat (dest: string) (src: string) (destSize: int) : int =
   (int ((Internal.GLibC.g_strlcat dest src (usize destSize))))
 
 /// Portability wrapper that calls `strlcpy()` on systems which have it, and emulates `strlcpy()` otherwise.
+[<Unsafe>]
 let strlcpy (dest: string) (src: string) (destSize: int) : int =
   (int ((Internal.GLibC.g_strlcpy dest src (usize destSize))))
 
@@ -14726,6 +14749,7 @@ let strnfill (length: int) (fillChar: int) : string =
   Internal.Raw.takeText ((Internal.GLibC.g_strnfill (usize length) (i8 fillChar)))
 
 /// Reverses all of the bytes in a string.
+[<Unsafe>]
 let strreverse (string: string) : string =
   Internal.Raw.takeText ((Internal.GLibC.g_strreverse string))
 
@@ -14735,7 +14759,7 @@ let strrstr (haystack: string) (needle: string) : option<string> =
 
 /// Searches the string @haystack for the last occurrence of the string @needle, limiting the length of the search to @haystack_len.
 let strrstrLen (haystack: string) (haystackLen: int) (needle: string) : option<string> =
-  Internal.Raw.textOption ((Internal.GLibC.g_strrstr_len haystack (i64 haystackLen) needle))
+  Internal.Raw.textOption ((Internal.GLibC.g_strrstr_len haystack (i64 (Internal.Raw.within haystack 0 haystackLen false 1)) needle))
 
 /// Returns a string describing the given signal, e.g.
 let strsignal (signum: int) : string =
@@ -14755,7 +14779,7 @@ let strsplitSet (string: string) (delimiters: array<u8>) (maxTokens: int) : list
 
 /// Searches the string @haystack for the first occurrence of the string @needle, limiting the length of the search to @haystack_len or a nul terminator byte (whichever is reached first).
 let strstrLen (haystack: string) (haystackLen: int) (needle: string) : option<string> =
-  Internal.Raw.textOption ((Internal.GLibC.g_strstr_len haystack (i64 haystackLen) needle))
+  Internal.Raw.textOption ((Internal.GLibC.g_strstr_len haystack (i64 (Internal.Raw.within haystack 0 haystackLen false 1)) needle))
 
 /// Converts a string to a floating point value.
 let strtod (nptr: string) : (float * option<string>) =
@@ -14766,6 +14790,7 @@ let strtod (nptr: string) : (float * option<string>) =
   zv
 
 /// Deprecated. Converts a string to upper case.
+[<Unsafe>]
 let strup (string: string) : string =
   Internal.Raw.takeText ((Internal.GLibC.g_strup string))
 
@@ -15286,7 +15311,7 @@ let utf16ToUtf8 (str: list<int>) : result<(string * int * int), Glue.Error> =
 
 /// Converts a string into a form that is independent of case.
 let utf8Casefold (str: string) (len: int) : string =
-  Internal.Raw.takeText ((Internal.GLibC.g_utf8_casefold str (i64 len)))
+  Internal.Raw.takeText ((Internal.GLibC.g_utf8_casefold str (i64 (Internal.Raw.within str 0 len false 1))))
 
 /// Compares two strings for ordering using the linguistically correct rules for the [current locale](running.html#locale).
 let utf8Collate (str1: string) (str2: string) : int =
@@ -15294,11 +15319,11 @@ let utf8Collate (str1: string) (str2: string) : int =
 
 /// Converts a string into a collation key that can be compared with other collation keys produced by the same function using strcmp().
 let utf8CollateKey (str: string) (len: int) : string =
-  Internal.Raw.takeText ((Internal.GLibC.g_utf8_collate_key str (i64 len)))
+  Internal.Raw.takeText ((Internal.GLibC.g_utf8_collate_key str (i64 (Internal.Raw.within str 0 len false 1))))
 
 /// Converts a string into a collation key that can be compared with other collation keys produced by the same function using strcmp().
 let utf8CollateKeyForFilename (str: string) (len: int) : string =
-  Internal.Raw.takeText ((Internal.GLibC.g_utf8_collate_key_for_filename str (i64 len)))
+  Internal.Raw.takeText ((Internal.GLibC.g_utf8_collate_key_for_filename str (i64 (Internal.Raw.within str 0 len false 1))))
 
 /// Finds the start of the next UTF-8 character in the string after @p.
 let utf8FindNextChar (p: string) (end: option<string>) : option<string> =
@@ -15318,19 +15343,19 @@ let utf8GetChar (p: string) : int =
 
 /// Convert a sequence of bytes encoded as UTF-8 to a Unicode character.
 let utf8GetCharValidated (p: string) (maxLen: int) : int =
-  (int ((Internal.GLibC.g_utf8_get_char_validated p (i64 maxLen))))
+  (int ((Internal.GLibC.g_utf8_get_char_validated p (i64 (Internal.Raw.within p 0 maxLen false 1)))))
 
 /// If the provided string is valid UTF-8, return a copy of it.
 let utf8MakeValid (str: string) (len: int) : string =
-  Internal.Raw.takeText ((Internal.GLibC.g_utf8_make_valid str (i64 len)))
+  Internal.Raw.takeText ((Internal.GLibC.g_utf8_make_valid str (i64 (Internal.Raw.within str 0 len false 1))))
 
 /// Converts a string into canonical form, standardizing such issues as whether a character with an accent is represented as a base character and combining accent or as a single precomposed character.
 let utf8Normalize (str: string) (len: int) (mode: NormalizeMode) : option<string> =
-  Internal.Raw.takeTextOption ((Internal.GLibC.g_utf8_normalize str (i64 len) (i32 mode.Int)))
+  Internal.Raw.takeTextOption ((Internal.GLibC.g_utf8_normalize str (i64 (Internal.Raw.within str 0 len false 1)) (i32 mode.Int)))
 
 /// Converts from an integer character offset to a pointer to a position within the string.
 let utf8OffsetToPointer (str: string) (offset: int) : string =
-  Internal.Raw.text ((Internal.GLibC.g_utf8_offset_to_pointer str (i64 offset)))
+  Internal.Raw.text ((Internal.GLibC.g_utf8_offset_to_pointer str (i64 (Internal.Raw.within str 0 offset true 2))))
 
 /// Converts from a pointer to position within a string to an integer character offset.
 let utf8PointerToOffset (str: string) (pos: string) : int =
@@ -15342,40 +15367,41 @@ let utf8PrevChar (p: string) : string =
 
 /// Finds the leftmost occurrence of the given Unicode character in a UTF-8 encoded string, while limiting the search to @len bytes.
 let utf8Strchr (p: string) (len: int) (c: int) : option<string> =
-  Internal.Raw.textOption ((Internal.GLibC.g_utf8_strchr p (i64 len) (u32 c)))
+  Internal.Raw.textOption ((Internal.GLibC.g_utf8_strchr p (i64 (Internal.Raw.within p 0 len false 1)) (u32 c)))
 
 /// Converts all Unicode characters in the string that have a case to lowercase.
 let utf8Strdown (str: string) (len: int) : string =
-  Internal.Raw.takeText ((Internal.GLibC.g_utf8_strdown str (i64 len)))
+  Internal.Raw.takeText ((Internal.GLibC.g_utf8_strdown str (i64 (Internal.Raw.within str 0 len false 1))))
 
 /// Computes the length of the string in characters, not including the terminating nul character.
 let utf8Strlen (p: string) (max: int) : int =
-  (int ((Internal.GLibC.g_utf8_strlen p (i64 max))))
+  (int ((Internal.GLibC.g_utf8_strlen p (i64 (Internal.Raw.within p 0 max false 1)))))
 
 /// Like the standard C [`strncpy()`](man:strncpy) function, but copies a given number of characters instead of a given number of bytes.
+[<Unsafe>]
 let utf8Strncpy (dest: string) (src: string) (n: int) : string =
   Internal.Raw.text ((Internal.GLibC.g_utf8_strncpy dest src (usize n)))
 
 /// Find the rightmost occurrence of the given Unicode character in a UTF-8 encoded string, while limiting the search to @len bytes.
 let utf8Strrchr (p: string) (len: int) (c: int) : option<string> =
-  Internal.Raw.textOption ((Internal.GLibC.g_utf8_strrchr p (i64 len) (u32 c)))
+  Internal.Raw.textOption ((Internal.GLibC.g_utf8_strrchr p (i64 (Internal.Raw.within p 0 len false 1)) (u32 c)))
 
 /// Reverses a UTF-8 string.
 let utf8Strreverse (str: string) (len: int) : string =
-  Internal.Raw.takeText ((Internal.GLibC.g_utf8_strreverse str (i64 len)))
+  Internal.Raw.takeText ((Internal.GLibC.g_utf8_strreverse str (i64 (Internal.Raw.within str 0 len false 1))))
 
 /// Converts all Unicode characters in the string that have a case to uppercase.
 let utf8Strup (str: string) (len: int) : string =
-  Internal.Raw.takeText ((Internal.GLibC.g_utf8_strup str (i64 len)))
+  Internal.Raw.takeText ((Internal.GLibC.g_utf8_strup str (i64 (Internal.Raw.within str 0 len false 1))))
 
 /// Copies a substring out of a UTF-8 encoded string.
 let utf8Substring (str: string) (startPos: int) (endPos: int) : string =
-  Internal.Raw.takeText ((Internal.GLibC.g_utf8_substring str (i64 startPos) (i64 endPos)))
+  Internal.Raw.takeText ((Internal.GLibC.g_utf8_substring str (i64 (Internal.Raw.within str 0 startPos true 2)) (i64 (Internal.Raw.within str 0 endPos true 1))))
 
 /// Convert a string from UTF-8 to a 32-bit fixed width representation as UCS-4.
 let utf8ToUcs4 (str: string) (len: int) : result<(int * int * int), Glue.Error> =
   Internal.Raw.outBegin ()
-  let zr = Internal.GLibC.g_utf8_to_ucs4 str (i64 len) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.err ())
+  let zr = Internal.GLibC.g_utf8_to_ucs4 str (i64 (Internal.Raw.within str 0 len false 1)) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.err ())
   match Internal.Raw.takeError () with
   | Some ze ->
     Internal.Raw.outEnd ()
@@ -15388,7 +15414,7 @@ let utf8ToUcs4 (str: string) (len: int) : result<(int * int * int), Glue.Error> 
 /// Convert a string from UTF-8 to a 32-bit fixed width representation as UCS-4, assuming valid UTF-8 input.
 let utf8ToUcs4Fast (str: string) (len: int) : (int * int) =
   Internal.Raw.outBegin ()
-  let zr = Internal.GLibC.g_utf8_to_ucs4_fast str (i64 len) (Internal.Raw.out 0)
+  let zr = Internal.GLibC.g_utf8_to_ucs4_fast str (i64 (Internal.Raw.within str 0 len false 1)) (Internal.Raw.out 0)
   let zv = ((int (zr)), Internal.Raw.outI64 0)
   Internal.Raw.outEnd ()
   zv
@@ -15396,7 +15422,7 @@ let utf8ToUcs4Fast (str: string) (len: int) : (int * int) =
 /// Convert a string from UTF-8 to UTF-16.
 let utf8ToUtf16 (str: string) (len: int) : result<(int * int * int), Glue.Error> =
   Internal.Raw.outBegin ()
-  let zr = Internal.GLibC.g_utf8_to_utf16 str (i64 len) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.err ())
+  let zr = Internal.GLibC.g_utf8_to_utf16 str (i64 (Internal.Raw.within str 0 len false 1)) (Internal.Raw.out 0) (Internal.Raw.out 1) (Internal.Raw.err ())
   match Internal.Raw.takeError () with
   | Some ze ->
     Internal.Raw.outEnd ()

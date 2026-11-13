@@ -4044,7 +4044,7 @@ module Dialog =
       Internal.Raw.hold (fun () ->
         let dialog = Dialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler dialog)
-    Internal.AdwC.zgtk_override_Adw_Dialog_close_attempt gtype zcb
+    Internal.AdwC.zgtk_override_Adw_Dialog_close_attempt (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Adw_Dialog_close_attempt`.
   let parentCloseAttempt (self: Dialog) : unit =
@@ -4056,7 +4056,7 @@ module Dialog =
       Internal.Raw.hold (fun () ->
         let dialog = Dialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler dialog)
-    Internal.AdwC.zgtk_override_Adw_Dialog_closed gtype zcb
+    Internal.AdwC.zgtk_override_Adw_Dialog_closed (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Adw_Dialog_closed`.
   let parentClosed (self: Dialog) : unit =
@@ -5068,7 +5068,7 @@ module ActionRow =
       Internal.Raw.hold (fun () ->
         let self_ = ActionRow (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.AdwC.zgtk_override_Adw_ActionRow_activate gtype zcb
+    Internal.AdwC.zgtk_override_Adw_ActionRow_activate (Internal.Raw.gtype gtype) zcb
 
   /// Activates @self.
   let parentActivate (self: ActionRow) : unit =
@@ -5302,7 +5302,7 @@ module AlertDialog =
         let self_ = AlertDialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let response = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler self_ response)
-    Internal.AdwC.zgtk_override_Adw_AlertDialog_response gtype zcb
+    Internal.AdwC.zgtk_override_Adw_AlertDialog_response (Internal.Raw.gtype gtype) zcb
 
   /// `zgtk_parent_Adw_AlertDialog_response`.
   let parentResponse (self: AlertDialog) (response: string) : unit =
@@ -5852,7 +5852,7 @@ module Swipeable =
       Internal.Raw.hold (fun () ->
         let self_ = Swipeable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnFloat (handler self_))
-    Internal.AdwC.zgtk_override_Adw_Swipeable_get_cancel_progress gtype zcb
+    Internal.AdwC.zgtk_override_Adw_Swipeable_get_cancel_progress (Internal.Raw.gtype gtype) zcb
 
   /// Gets the progress @self will snap back to after the gesture is canceled.
   let parentGetCancelProgress (self: Swipeable) : float =
@@ -5864,7 +5864,7 @@ module Swipeable =
       Internal.Raw.hold (fun () ->
         let self_ = Swipeable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnFloat (handler self_))
-    Internal.AdwC.zgtk_override_Adw_Swipeable_get_distance gtype zcb
+    Internal.AdwC.zgtk_override_Adw_Swipeable_get_distance (Internal.Raw.gtype gtype) zcb
 
   /// Gets the swipe distance of @self.
   let parentGetDistance (self: Swipeable) : float =
@@ -5876,7 +5876,7 @@ module Swipeable =
       Internal.Raw.hold (fun () ->
         let self_ = Swipeable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnFloat (handler self_))
-    Internal.AdwC.zgtk_override_Adw_Swipeable_get_progress gtype zcb
+    Internal.AdwC.zgtk_override_Adw_Swipeable_get_progress (Internal.Raw.gtype gtype) zcb
 
   /// Gets the current progress of @self.
   let parentGetProgress (self: Swipeable) : float =
@@ -5890,7 +5890,7 @@ module Swipeable =
         let (zres, nSnapPoints) = handler self_
         Internal.Raw.setI32 1 nSnapPoints
         Internal.Raw.returnPointer (zres))
-    Internal.AdwC.zgtk_override_Adw_Swipeable_get_snap_points gtype zcb
+    Internal.AdwC.zgtk_override_Adw_Swipeable_get_snap_points (Internal.Raw.gtype gtype) zcb
 
   /// Gets the snap points of @self.
   let parentGetSnapPoints (self: Swipeable) : list<float> =
@@ -5909,7 +5909,7 @@ module Swipeable =
         let isDrag = (Internal.Raw.argInt 2 <> 0)
         let rect = handler self_ navigationDirection isDrag
         Internal.Raw.setRecord 3 (Internal.Raw.obj rect.Id (Internal.GdkC.gdk_rectangle_get_type ())) (Internal.GdkC.zgtk_sizeof_Gdk_Rectangle ()))
-    Internal.AdwC.zgtk_override_Adw_Swipeable_get_swipe_area gtype zcb
+    Internal.AdwC.zgtk_override_Adw_Swipeable_get_swipe_area (Internal.Raw.gtype gtype) zcb
 
   /// Gets the area @self can start a swipe from for the given direction and gesture type.
   let parentGetSwipeArea (self: Swipeable) (navigationDirection: NavigationDirection) (isDrag: bool) : Gdk.Rectangle =
@@ -7373,7 +7373,7 @@ module EnumListModel =
 
   /// Creates a new `AdwEnumListModel` for @enum_type.
   let create (enumType: usize) : EnumListModel =
-    EnumListModel (Internal.Raw.wrap ((Internal.AdwC.adw_enum_list_model_new enumType)) true)
+    EnumListModel (Internal.Raw.wrap ((Internal.AdwC.adw_enum_list_model_new (Internal.Raw.gtype enumType))) true)
 
   /// Finds the position of a given enum value in @self.
   let findPosition (self: EnumListModel) (value: int) : int =
@@ -8582,7 +8582,7 @@ module MessageDialog =
         let self_ = MessageDialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let response = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler self_ response)
-    Internal.AdwC.zgtk_override_Adw_MessageDialog_response gtype zcb
+    Internal.AdwC.zgtk_override_Adw_MessageDialog_response (Internal.Raw.gtype gtype) zcb
 
   /// Deprecated. Emits the [signal@MessageDialog::response] signal with the given response ID.
   let parentResponse (self: MessageDialog) (response: string) : unit =
@@ -8780,7 +8780,7 @@ module NavigationPage =
       Internal.Raw.hold (fun () ->
         let self_ = NavigationPage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.AdwC.zgtk_override_Adw_NavigationPage_hidden gtype zcb
+    Internal.AdwC.zgtk_override_Adw_NavigationPage_hidden (Internal.Raw.gtype gtype) zcb
 
   /// Called when the navigation view transition has been completed and the page is fully hidden.
   let parentHidden (self: NavigationPage) : unit =
@@ -8792,7 +8792,7 @@ module NavigationPage =
       Internal.Raw.hold (fun () ->
         let self_ = NavigationPage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.AdwC.zgtk_override_Adw_NavigationPage_hiding gtype zcb
+    Internal.AdwC.zgtk_override_Adw_NavigationPage_hiding (Internal.Raw.gtype gtype) zcb
 
   /// Called when the page starts hiding at the beginning of the navigation view transition.
   let parentHiding (self: NavigationPage) : unit =
@@ -8804,7 +8804,7 @@ module NavigationPage =
       Internal.Raw.hold (fun () ->
         let self_ = NavigationPage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.AdwC.zgtk_override_Adw_NavigationPage_showing gtype zcb
+    Internal.AdwC.zgtk_override_Adw_NavigationPage_showing (Internal.Raw.gtype gtype) zcb
 
   /// Called when the page shows at the beginning of the navigation view transition.
   let parentShowing (self: NavigationPage) : unit =
@@ -8816,7 +8816,7 @@ module NavigationPage =
       Internal.Raw.hold (fun () ->
         let self_ = NavigationPage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.AdwC.zgtk_override_Adw_NavigationPage_shown gtype zcb
+    Internal.AdwC.zgtk_override_Adw_NavigationPage_shown (Internal.Raw.gtype gtype) zcb
 
   /// Called when the navigation view transition has been completed and the page is fully shown.
   let parentShown (self: NavigationPage) : unit =
@@ -10288,7 +10288,7 @@ module Sidebar =
 
   /// Sets up a drop target on the items.
   let setupDropTarget (self: Sidebar) (actions: Gdk.DragAction) (types: list<usize>) : unit =
-    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) types) 8
+    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) types) 8
     Internal.AdwC.adw_sidebar_setup_drop_target (Internal.Raw.obj self.Id (Internal.AdwC.adw_sidebar_get_type ())) (u32 actions.Int) za2 (usize (Internal.Raw.count types))
     Internal.Raw.free za2
 
@@ -11946,7 +11946,7 @@ module TabBar =
 
   /// Sets up an extra drop target on tabs.
   let setupExtraDropTarget (self: TabBar) (actions: Gdk.DragAction) (types: list<usize>) : unit =
-    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) types) 8
+    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) types) 8
     Internal.AdwC.adw_tab_bar_setup_extra_drop_target (Internal.Raw.obj self.Id (Internal.AdwC.adw_tab_bar_get_type ())) (u32 actions.Int) za2 (usize (Internal.Raw.count types))
     Internal.Raw.free za2
 
@@ -12202,7 +12202,7 @@ module TabOverview =
 
   /// Sets up an extra drop target on tabs.
   let setupExtraDropTarget (self: TabOverview) (actions: Gdk.DragAction) (types: list<usize>) : unit =
-    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int zt) types) 8
+    let za2 = Internal.Raw.ints (Internal.Raw.mapList (fun (zt: usize) -> int (Internal.Raw.gtype zt)) types) 8
     Internal.AdwC.adw_tab_overview_setup_extra_drop_target (Internal.Raw.obj self.Id (Internal.AdwC.adw_tab_overview_get_type ())) (u32 actions.Int) za2 (usize (Internal.Raw.count types))
     Internal.Raw.free za2
 
