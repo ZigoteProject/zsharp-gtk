@@ -122,7 +122,9 @@ type Widget<'msg> =
   /// A widget with what any widget can be given: where it stands, its size, its tooltip.
   | With of list<Attr> * Widget<'msg>
   /// A widget that is itself only while its key is the same: among children that come and go,
-  /// a widget of another key is made anew, and never takes over another's state.
+  /// a widget of another key is made anew, and never takes over another's state. Children that
+  /// all have keys are told apart by them: one whose key has gone fades out where it stood,
+  /// a new one fades in, and the others stay as they are, in the order asked for.
   | Keyed of string * Widget<'msg>
   /// A group of rows under a title, drawn as Adwaita's boxed list.
   | Group of string * list<Widget<'msg>>
@@ -169,6 +171,8 @@ type Widget<'msg> =
   /// step: a ring that fills (`Animated (done, fun x -> Canvas (ring x))`), a count that runs
   /// up. In a window that isn't shown it's there at once.
   | Animated of float * (float -> Widget<'msg>)
+  /// `Animated` for several numbers at once, each with its own motion: a chart's bars.
+  | AnimatedAll of list<float> * (list<float> -> Widget<'msg>)
   /// A long list that scrolls: how many rows it has, and the function that gives a row's
   /// widget from its index. Only the rows on screen are made, so a hundred thousand cost what
   /// twenty do.
@@ -390,7 +394,9 @@ type private Live<'msg> =
     probes: unit -> list<Probe>
     // a part of it a page takes into its header bar in the title's place: called with a
     // function that is given the part while it's held
-    hoisted: option<(Gtk4.Widget -> unit) -> unit> }
+    hoisted: option<(Gtk4.Widget -> unit) -> unit>
+    // what `Keyed` named it, for a list that tells its children apart by name
+    key: string }
 
 // where a list of widgets stands: a box, a group, a side of a header bar
 type private Slot =
@@ -400,7 +406,7 @@ type private Slot =
     swap: option<Gtk4.Widget -> Gtk4.Widget -> unit> }
 
 let private leaf (w: Gtk4.Widget) (apply: Widget<'msg> -> bool) (probes: unit -> list<Probe>) : Live<'msg> =
-  { native = w; apply = apply; kids = (fun () -> []); probes = probes; hoisted = None }
+  { native = w; apply = apply; kids = (fun () -> []); probes = probes; hoisted = None; key = "" }
 
 let private noProbes () : list<Probe> = []
 
@@ -496,6 +502,18 @@ let private settling (w: Gtk4.Widget) (first: float) (show: float -> unit) : flo
       Internal.Raw.keep spring.Id
       running.Value <- Some spring
       Adw.Animation.play (Adw.SpringAnimation.toAnimation spring)
+
+// Fades a widget from one opacity to another, by the clock of a widget that is on the screen,
+// then does what comes after; at once where nothing is on the screen.
+let private fade (clock: Gtk4.Widget) (w: Gtk4.Widget) (from: float) (to_: float) (after: unit -> unit) : unit =
+  Gtk4.Widget.setOpacity w from
+  let step =
+    Adw.CallbackAnimationTarget.create (fun x ->
+      if Internal.Raw.alive w.Id then Gtk4.Widget.setOpacity w x)
+  let motion =
+    Adw.TimedAnimation.create clock from to_ 200 (Adw.CallbackAnimationTarget.toAnimationTarget step)
+  Adw.Animation.onDone (Adw.TimedAnimation.toAnimation motion) after
+  Adw.Animation.play (Adw.TimedAnimation.toAnimation motion)
 
 // ---- the widgets with nothing inside them
 
@@ -1171,7 +1189,39 @@ let rec private build (send: 'msg -> unit) (widget: Widget<'msg>) : Live<'msg> =
       apply = apply
       kids = (fun () -> [ child.Value ])
       probes = noProbes
-      hoisted = None }
+      hoisted = None
+      key = "" }
+  | AnimatedAll (first, body) ->
+    let bin = Adw.Bin.create ()
+    let draw = ref body
+    let at = ref first
+    let child = ref (build send (body first))
+    Adw.Bin.setChild bin (Some child.Value.native)
+    let redraw () : unit =
+      let next = draw.Value at.Value
+      if not (child.Value.apply next) then
+        let fresh = build send next
+        Adw.Bin.setChild bin (Some fresh.native)
+        child.Value <- fresh
+    let settles =
+      List.mapi (fun i x ->
+        settling (Adw.Bin.toGtkWidget bin) x (fun v ->
+          at.Value <- List.mapi (fun j old -> if j = i then v else old) at.Value
+          redraw ())) first
+    let apply (next: Widget<'msg>) : bool =
+      match next with
+      | AnimatedAll (targets, body) when List.length targets = List.length first ->
+        draw.Value <- body
+        redraw ()
+        List.iter2 (fun settle target -> settle target) settles targets
+        true
+      | _ -> false
+    { native = Adw.Bin.toGtkWidget bin
+      apply = apply
+      kids = (fun () -> [ child.Value ])
+      probes = noProbes
+      hoisted = None
+      key = "" }
   | ExpanderRow (title, subtitle, rows) ->
     let w = Adw.ExpanderRow.create ()
     let row = Adw.ExpanderRow.toPreferencesRow w
@@ -1259,7 +1309,7 @@ let rec private build (send: 'msg -> unit) (widget: Widget<'msg>) : Live<'msg> =
       match next with
       | Keyed (other, inner) -> other = key && live.apply inner
       | _ -> false
-    { live with apply = apply }
+    { live with apply = apply; key = key }
 
 // A widget that holds one other: `unwrap` takes a tree's widget of the same kind for itself,
 // and gives what that holds.
@@ -1278,7 +1328,8 @@ and private single (send: 'msg -> unit) (w: Gtk4.Widget) (setChild: option<Gtk4.
     apply = apply
     kids = (fun () -> [ child.Value ])
     probes = noProbes
-    hoisted = None }
+    hoisted = None
+    key = "" }
 
 // A widget that holds a list of others, in a slot.
 and private many (send: 'msg -> unit) (w: Gtk4.Widget) (slot: Slot) (first: list<Widget<'msg>>) (unwrap: Widget<'msg> -> option<list<Widget<'msg>>>) : Live<'msg> =
@@ -1293,7 +1344,8 @@ and private many (send: 'msg -> unit) (w: Gtk4.Widget) (slot: Slot) (first: list
     apply = apply
     kids = (fun () -> children.Value)
     probes = noProbes
-    hoisted = None }
+    hoisted = None
+    key = "" }
 
 and private box (send: 'msg -> unit) (vertical: bool) (children: list<Widget<'msg>>) : Live<'msg> =
   let orientation = if vertical then Gtk4.Orientation.vertical else Gtk4.Orientation.horizontal
@@ -1329,7 +1381,8 @@ and private grid (send: 'msg -> unit) (rows: list<list<Widget<'msg>>>) : Live<'m
     apply = apply
     kids = (fun () -> cells)
     probes = noProbes
-    hoisted = None }
+    hoisted = None
+    key = "" }
 
 and private tabsOf (send: 'msg -> unit) (shown: string) (tabs: list<Tab<'msg>>) (select: string -> 'msg) : Live<'msg> =
   let stack = Adw.ViewStack.create ()
@@ -1380,7 +1433,8 @@ and private tabsOf (send: 'msg -> unit) (shown: string) (tabs: list<Tab<'msg>>) 
     apply = apply
     kids = (fun () -> lives)
     probes = probes
-    hoisted = Some hoist }
+    hoisted = Some hoist
+    key = "" }
 
 // Any widget, by its type: properties set by name where their values differ from the last
 // tree's, signals connected once and given each tree's function, children added as GtkBuilder
@@ -1476,7 +1530,7 @@ and private element (send: 'msg -> unit) (gtype: usize) (props: list<Prop<'msg>>
       List.map (fun (name, _) -> ProbePress (name, fun () -> Internal.Raw.emit (ptr ()) name)) slots.Value
     List.append texts fire
   let all () = List.append (List.map snd inside.Value) kids.Value
-  { native = w; apply = apply; kids = all; probes = probes; hoisted = None }
+  { native = w; apply = apply; kids = all; probes = probes; hoisted = None; key = "" }
 
 // A list view over a model of as many blanks as there are rows: GTK asks for a row's widget
 // when it comes on screen, and takes the widget back for another row when it leaves.
@@ -1529,7 +1583,12 @@ and private lazyList (send: 'msg -> unit) (count: int) (row: int -> Widget<'msg>
       true
     | _ -> false
   let kids () = List.map (fun (_, _, live) -> live) (List.sortBy (fun (_, at, _) -> at) bound.Value)
-  { native = scroller.Widget; apply = apply; kids = kids; probes = noProbes; hoisted = None }
+  { native = scroller.Widget
+    apply = apply
+    kids = kids
+    probes = noProbes
+    hoisted = None
+    key = "" }
 
 and private appendAll (send: 'msg -> unit) (slot: Slot) (widgets: list<Widget<'msg>>) : list<Live<'msg>> =
   List.map (fun w ->
@@ -1537,20 +1596,20 @@ and private appendAll (send: 'msg -> unit) (slot: Slot) (widgets: list<Widget<'m
     slot.append fresh.native
     fresh) widgets
 
-// ponytail: children are matched by position. One of another kind (or another key) is made
-// again where it stands in a row or a column; in a group or a header bar, which can't put a
-// widget between others, it and the rest are. Reorder by key when long lists need it
-and private patchAll (send: 'msg -> unit) (slot: Slot) (lives: list<Live<'msg>>) (widgets: list<Widget<'msg>>) : list<Live<'msg>> =
+// Children without keys are matched by position. One of another kind is made again where it
+// stands in a row or a column; in a group or a header bar, which can't put a widget between
+// others, it and the rest are.
+and private patchByPlace (send: 'msg -> unit) (slot: Slot) (lives: list<Live<'msg>>) (widgets: list<Widget<'msg>>) : list<Live<'msg>> =
   match (lives, widgets) with
   | (l :: ls, w :: ws) ->
     if l.apply w then
-      l :: patchAll send slot ls ws
+      l :: patchByPlace send slot ls ws
     else
       match slot.swap with
       | Some swap ->
         let fresh = build send w
         swap l.native fresh.native
-        fresh :: patchAll send slot ls ws
+        fresh :: patchByPlace send slot ls ws
       | None ->
         List.iter (fun (old: Live<'msg>) -> slot.remove old.native) lives
         appendAll send slot widgets
@@ -1558,6 +1617,64 @@ and private patchAll (send: 'msg -> unit) (slot: Slot) (lives: list<Live<'msg>>)
   | (ls, []) ->
     List.iter (fun (old: Live<'msg>) -> slot.remove old.native) ls
     []
+
+// Children that all have keys are matched by them: one whose key has gone fades out where it
+// stood and is then taken away, a new one fades in, and the others are kept. Where the order
+// asked for parts from the order there is, the rest are put again at the end in order (a slot
+// can't put a widget between others).
+and private patchKeyed (send: 'msg -> unit) (slot: Slot) (lives: list<Live<'msg>>) (widgets: list<Widget<'msg>>) : list<Live<'msg>> =
+  let keyOf (w: Widget<'msg>) : string =
+    match w with
+    | Keyed (key, _) -> key
+    | _ -> ""
+  let wanted = List.map keyOf widgets
+  let leave (old: Live<'msg>) : unit =
+    fade old.native old.native 1.0 0.0 (fun () ->
+      if Internal.Raw.alive old.native.Id && Option.isSome (Gtk4.Widget.getParent old.native) then
+        slot.remove old.native)
+  let (kept, gone) = List.partition (fun (l: Live<'msg>) -> List.contains l.key wanted) lives
+  List.iter leave gone
+  // each widget asked for: the one there is, or a new one (true)
+  let next =
+    List.map (fun w ->
+      match List.tryFind (fun (l: Live<'msg>) -> l.key = keyOf w) kept with
+      | Some l when l.apply w -> (l, false)
+      | Some l ->
+        slot.remove l.native
+        (build send w, true)
+      | None -> (build send w, true)) widgets
+  let standing =
+    List.filter (fun (l: Live<'msg>) ->
+      List.exists (fun (n: Live<'msg>, fresh: bool) -> not fresh && n.native.Id = l.native.Id) next) kept
+  let rec place (there: list<Live<'msg>>) (asked: list<Live<'msg> * bool>) : unit =
+    match (there, asked) with
+    | (t :: ts, (a, false) :: rest) when t.native.Id = a.native.Id -> place ts rest
+    | _ ->
+      // held while it's out of the container, which was all that held it
+      List.iter (fun (t: Live<'msg>) ->
+        Internal.Raw.keep t.native.Id
+        slot.remove t.native) there
+      List.iter (fun (a: Live<'msg>, fresh: bool) ->
+        slot.append a.native
+        if fresh then
+          let clock = Option.defaultValue a.native (Gtk4.Widget.getParent a.native)
+          fade clock a.native 0.0 1.0 (fun () -> ())) asked
+      List.iter (fun (t: Live<'msg>) -> Internal.Raw.unkeep t.native.Id) there
+  place standing next
+  List.map fst next
+
+and private patchAll (send: 'msg -> unit) (slot: Slot) (lives: list<Live<'msg>>) (widgets: list<Widget<'msg>>) : list<Live<'msg>> =
+  let keys =
+    List.map (fun w ->
+      match w with
+      | Keyed (key, _) -> key
+      | _ -> "") widgets
+  let named =
+    not (List.isEmpty keys) && not (List.contains "" keys) && List.length (List.distinct keys) = List.length keys
+  if named && List.forall (fun (l: Live<'msg>) -> l.key <> "") lives then
+    patchKeyed send slot lives widgets
+  else
+    patchByPlace send slot lives widgets
 
 // Makes a live widget show `w`: in place, or as a new one, given to `replace` to stand where the
 // old one did.

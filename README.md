@@ -45,6 +45,9 @@ let main () = App.run "org.example.Counter" 0 update view
   runs up); a `Progress` settles the same way, one of `Tabs`' views fades into the next, a
   status page and anything `Styled ([ "appear" ], …)` fade in where they're made, and what a
   `Revealer` reveals takes the keys.
+- **Children with keys come and go in motion:** where every child of a row, a column or a
+  group is `Keyed`, one whose key has gone fades out where it stood, a new one fades in, and
+  the rest stay as they are. `AnimatedAll` is `Animated` for several numbers, a chart's bars.
 - **`PressRow`** is a row pressed as a whole, with widgets at its end; a `MenuButton` or a
   `Toggle` named as an icon (`open-menu-symbolic`) shows the icon.
 - **A property's change is a message:** `Ui.Calendar.onDayChanged DueDay`, for every property

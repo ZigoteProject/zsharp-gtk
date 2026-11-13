@@ -92,4 +92,20 @@ let tests =
       Test.click "Count" p
       expect (n.Value, Test.labels p) "(2, [at 2])"
       Test.close p)
+    test "children with keys are told apart by them: one goes, one comes, the rest stay in order" (fun () ->
+      let names = signal [ "a"; "b"; "c" ]
+      let made = signal 0
+      let p =
+        Test.startSignals (fun () ->
+          let row (name: string) = Keyed (name, ActionRow (name, ""))
+          let heights =
+            AnimatedAll (List.map (fun (n: string) -> float (String.length n)) names.Value,
+              fun xs -> Label $"{List.sum xs:F0}")
+          window "keys" (Column [ Group ("", List.map row names.Value); heights ]))
+      let before = Test.rows p
+      // b goes, d comes between the two that stay, and they change places
+      names.Set [ "c"; "d"; "a" ]
+      Test.settle ()
+      expect (before, Test.rows p, Test.labels p) "([a; b; c], [c; d; a], [3])"
+      Test.close p)
   ]
