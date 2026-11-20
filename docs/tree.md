@@ -203,3 +203,6 @@ let main () = App.run "org.example.Elements" 0.25 update view
 - **A property that is a widget** takes a widget of the tree: `AdwUi.HeaderBar.titleWidget`.
 - **`Native (key, make)`** puts a widget made with [the libraries themselves](libraries.md)
   into the tree: `make` is called once for as long as the key stays the same.
+- **`Embed.signals view`** is the other way: a tree in a GTK widget of the program's own, for a
+  window `App` doesn't make (one with no header bar, one of several). `view ()` reads
+  [signals](signals.md) and runs again when one changes; it stops when the widget is destroyed.

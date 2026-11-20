@@ -2408,6 +2408,34 @@ module App =
   let runSignals (id: string) (view: unit -> Window<unit -> unit>) : int =
     runApp id (fun frame -> mountSignals frame view |> ignore)
 
+/// A tree of widgets in a GTK widget of the program's own, for a place `App` doesn't make: a
+/// window with no header bar, one of several windows, a popover.
+module Embed =
+  /// The GTK widget showing `view ()`, which reads signals (the `signals` package) and runs
+  /// again after any of them changes, the widgets on screen changed only where the tree differs.
+  /// A widget's message is the function to run for its event. The view stops when the GTK
+  /// widget is destroyed.
+  let signals (view: unit -> Widget<unit -> unit>) : Gtk4.Widget =
+    let holder = Adw.Bin.create ()
+    let shown: ref<option<Live<unit -> unit>>> = ref None
+    // a destroyed widget's last signals change nothing
+    let send (handler: unit -> unit) : unit =
+      if Option.isSome shown.Value then untracked (fun () -> batch handler)
+    let put (fresh: Live<unit -> unit>) : unit = Adw.Bin.setChild holder (Some fresh.native)
+    let stop =
+      watch (fun () ->
+        let next = view ()
+        match shown.Value with
+        | Some live -> shown.Value <- Some (refresh send live next put)
+        | None ->
+          let fresh = build send next
+          put fresh
+          shown.Value <- Some fresh)
+    Gtk4.Widget.onDestroy (Adw.Bin.toGtkWidget holder) (fun () ->
+      shown.Value <- None
+      stop ())
+    Adw.Bin.toGtkWidget holder
+
 /// A view driven from a test, with no main loop: its widgets are GTK's own, so a display is
 /// needed (Xvfb will do).
 module Test =

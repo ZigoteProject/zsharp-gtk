@@ -117,4 +117,27 @@ let tests =
       expect p.model.Value "21"
       kept.Value <- None
       Test.close p)
+    test "a tree in a widget of the program's own follows its signals until the widget goes" (fun () ->
+      Adw.init ()
+      let count = signal 0
+      let runs = ref 0
+      let holder =
+        Embed.signals (fun () ->
+          runs.Value <- runs.Value + 1
+          Column [ Label $"count {count.Value}"
+            Button ("add", fun () -> count.Update(fun n -> n + 1)) ])
+      let w = Gtk4.Window.create ()
+      Gtk4.Window.setChild w (Some holder)
+      // the column in the holder, its label and its button
+      let label = Option.bind Gtk4.Widget.getFirstChild (Gtk4.Widget.getFirstChild holder)
+      let text () =
+        Option.bind (fun (l: Gtk4.Widget) -> Gtk4.Label.cast l.Object) label
+        |> Option.map Gtk4.Label.getLabel
+      Option.iter (fun (b: Gtk4.Widget) -> Glue.emit b.Id "clicked") (Option.bind Gtk4.Widget.getNextSibling label)
+      let clicked = text ()
+      count.Set 5
+      expect (clicked, text (), runs.Value) "(Some count 1, Some count 5, 3)"
+      Gtk4.Window.destroy w
+      count.Set 9
+      expect runs.Value "3")
   ]

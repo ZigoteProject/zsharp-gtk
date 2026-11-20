@@ -6,6 +6,9 @@ is written.
 
 ## Unreleased
 
+- **`Embed.signals view`** gives a GTK widget showing a tree that runs on signals, for a window
+  `App` doesn't make: one with no header bar, one of several. Nothing to rewrite.
+
 ## 0.1.0 (2026-11-13)
 
 The first release: GTK 4 and libadwaita for Z#, as the libraries themselves and as a tree of
