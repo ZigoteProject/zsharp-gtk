@@ -714,9 +714,11 @@ static char* vf_Gtk_Accessible_get_accessible_id(GtkAccessible* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gtk_Accessible_get_accessible_id(gsize type, void *closure) {
-    GtkAccessibleInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Accessible.get_accessible_id", closure); k->get_accessible_id = (gpointer)vf_Gtk_Accessible_get_accessible_id; }
+int zgtk_override_Gtk_Accessible_get_accessible_id(gsize type, void *closure) {
+    GtkAccessibleInterface *k = zgtk_iface_below(type, gtk_accessible_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Accessible.get_accessible_id", closure); k->get_accessible_id = (gpointer)vf_Gtk_Accessible_get_accessible_id;
+    return 1;
 }
 char* zgtk_parent_Gtk_Accessible_get_accessible_id(GtkAccessible* a0) {
     GtkAccessibleInterface *k = zgtk_vfunc_parent(a0, "Gtk_Accessible.get_accessible_id", gtk_accessible_get_type());
@@ -729,9 +731,11 @@ static GtkAccessible* vf_Gtk_Accessible_get_accessible_parent(GtkAccessible* a0)
     if (f) zgtk_dispatch(f, &c);
     return (GtkAccessible*)c.ret.p;
 }
-void zgtk_override_Gtk_Accessible_get_accessible_parent(gsize type, void *closure) {
-    GtkAccessibleInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Accessible.get_accessible_parent", closure); k->get_accessible_parent = (gpointer)vf_Gtk_Accessible_get_accessible_parent; }
+int zgtk_override_Gtk_Accessible_get_accessible_parent(gsize type, void *closure) {
+    GtkAccessibleInterface *k = zgtk_iface_below(type, gtk_accessible_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Accessible.get_accessible_parent", closure); k->get_accessible_parent = (gpointer)vf_Gtk_Accessible_get_accessible_parent;
+    return 1;
 }
 GtkAccessible* zgtk_parent_Gtk_Accessible_get_accessible_parent(GtkAccessible* a0) {
     GtkAccessibleInterface *k = zgtk_vfunc_parent(a0, "Gtk_Accessible.get_accessible_parent", gtk_accessible_get_type());
@@ -744,9 +748,11 @@ static GtkATContext* vf_Gtk_Accessible_get_at_context(GtkAccessible* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GtkATContext*)c.ret.p;
 }
-void zgtk_override_Gtk_Accessible_get_at_context(gsize type, void *closure) {
-    GtkAccessibleInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Accessible.get_at_context", closure); k->get_at_context = (gpointer)vf_Gtk_Accessible_get_at_context; }
+int zgtk_override_Gtk_Accessible_get_at_context(gsize type, void *closure) {
+    GtkAccessibleInterface *k = zgtk_iface_below(type, gtk_accessible_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Accessible.get_at_context", closure); k->get_at_context = (gpointer)vf_Gtk_Accessible_get_at_context;
+    return 1;
 }
 GtkATContext* zgtk_parent_Gtk_Accessible_get_at_context(GtkAccessible* a0) {
     GtkAccessibleInterface *k = zgtk_vfunc_parent(a0, "Gtk_Accessible.get_at_context", gtk_accessible_get_type());
@@ -763,9 +769,11 @@ static gboolean vf_Gtk_Accessible_get_bounds(GtkAccessible* a0, int* a1, int* a2
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_Accessible_get_bounds(gsize type, void *closure) {
-    GtkAccessibleInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Accessible.get_bounds", closure); k->get_bounds = (gpointer)vf_Gtk_Accessible_get_bounds; }
+int zgtk_override_Gtk_Accessible_get_bounds(gsize type, void *closure) {
+    GtkAccessibleInterface *k = zgtk_iface_below(type, gtk_accessible_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Accessible.get_bounds", closure); k->get_bounds = (gpointer)vf_Gtk_Accessible_get_bounds;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_Accessible_get_bounds(GtkAccessible* a0, int* a1, int* a2, int* a3, int* a4) {
     GtkAccessibleInterface *k = zgtk_vfunc_parent(a0, "Gtk_Accessible.get_bounds", gtk_accessible_get_type());
@@ -778,9 +786,11 @@ static GtkAccessible* vf_Gtk_Accessible_get_first_accessible_child(GtkAccessible
     if (f) zgtk_dispatch(f, &c);
     return (GtkAccessible*)c.ret.p;
 }
-void zgtk_override_Gtk_Accessible_get_first_accessible_child(gsize type, void *closure) {
-    GtkAccessibleInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Accessible.get_first_accessible_child", closure); k->get_first_accessible_child = (gpointer)vf_Gtk_Accessible_get_first_accessible_child; }
+int zgtk_override_Gtk_Accessible_get_first_accessible_child(gsize type, void *closure) {
+    GtkAccessibleInterface *k = zgtk_iface_below(type, gtk_accessible_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Accessible.get_first_accessible_child", closure); k->get_first_accessible_child = (gpointer)vf_Gtk_Accessible_get_first_accessible_child;
+    return 1;
 }
 GtkAccessible* zgtk_parent_Gtk_Accessible_get_first_accessible_child(GtkAccessible* a0) {
     GtkAccessibleInterface *k = zgtk_vfunc_parent(a0, "Gtk_Accessible.get_first_accessible_child", gtk_accessible_get_type());
@@ -793,9 +803,11 @@ static GtkAccessible* vf_Gtk_Accessible_get_next_accessible_sibling(GtkAccessibl
     if (f) zgtk_dispatch(f, &c);
     return (GtkAccessible*)c.ret.p;
 }
-void zgtk_override_Gtk_Accessible_get_next_accessible_sibling(gsize type, void *closure) {
-    GtkAccessibleInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Accessible.get_next_accessible_sibling", closure); k->get_next_accessible_sibling = (gpointer)vf_Gtk_Accessible_get_next_accessible_sibling; }
+int zgtk_override_Gtk_Accessible_get_next_accessible_sibling(gsize type, void *closure) {
+    GtkAccessibleInterface *k = zgtk_iface_below(type, gtk_accessible_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Accessible.get_next_accessible_sibling", closure); k->get_next_accessible_sibling = (gpointer)vf_Gtk_Accessible_get_next_accessible_sibling;
+    return 1;
 }
 GtkAccessible* zgtk_parent_Gtk_Accessible_get_next_accessible_sibling(GtkAccessible* a0) {
     GtkAccessibleInterface *k = zgtk_vfunc_parent(a0, "Gtk_Accessible.get_next_accessible_sibling", gtk_accessible_get_type());
@@ -809,9 +821,11 @@ static gboolean vf_Gtk_Accessible_get_platform_state(GtkAccessible* a0, GtkAcces
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_Accessible_get_platform_state(gsize type, void *closure) {
-    GtkAccessibleInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Accessible.get_platform_state", closure); k->get_platform_state = (gpointer)vf_Gtk_Accessible_get_platform_state; }
+int zgtk_override_Gtk_Accessible_get_platform_state(gsize type, void *closure) {
+    GtkAccessibleInterface *k = zgtk_iface_below(type, gtk_accessible_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Accessible.get_platform_state", closure); k->get_platform_state = (gpointer)vf_Gtk_Accessible_get_platform_state;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_Accessible_get_platform_state(GtkAccessible* a0, GtkAccessiblePlatformState a1) {
     GtkAccessibleInterface *k = zgtk_vfunc_parent(a0, "Gtk_Accessible.get_platform_state", gtk_accessible_get_type());
@@ -826,9 +840,11 @@ static void vf_Gtk_Buildable_add_child(GtkBuildable* a0, GtkBuilder* a1, GObject
     void *f = zgtk_vfunc_find(a0, "Gtk_Buildable.add_child");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Buildable_add_child(gsize type, void *closure) {
-    GtkBuildableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_buildable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Buildable.add_child", closure); k->add_child = (gpointer)vf_Gtk_Buildable_add_child; }
+int zgtk_override_Gtk_Buildable_add_child(gsize type, void *closure) {
+    GtkBuildableIface *k = zgtk_iface_below(type, gtk_buildable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Buildable.add_child", closure); k->add_child = (gpointer)vf_Gtk_Buildable_add_child;
+    return 1;
 }
 void zgtk_parent_Gtk_Buildable_add_child(GtkBuildable* a0, GtkBuilder* a1, GObject* a2, const char* a3) {
     GtkBuildableIface *k = zgtk_vfunc_parent(a0, "Gtk_Buildable.add_child", gtk_buildable_get_type());
@@ -843,9 +859,11 @@ static GObject* vf_Gtk_Buildable_construct_child(GtkBuildable* a0, GtkBuilder* a
     if (f) zgtk_dispatch(f, &c);
     return (GObject*)c.ret.p;
 }
-void zgtk_override_Gtk_Buildable_construct_child(gsize type, void *closure) {
-    GtkBuildableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_buildable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Buildable.construct_child", closure); k->construct_child = (gpointer)vf_Gtk_Buildable_construct_child; }
+int zgtk_override_Gtk_Buildable_construct_child(gsize type, void *closure) {
+    GtkBuildableIface *k = zgtk_iface_below(type, gtk_buildable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Buildable.construct_child", closure); k->construct_child = (gpointer)vf_Gtk_Buildable_construct_child;
+    return 1;
 }
 GObject* zgtk_parent_Gtk_Buildable_construct_child(GtkBuildable* a0, GtkBuilder* a1, const char* a2) {
     GtkBuildableIface *k = zgtk_vfunc_parent(a0, "Gtk_Buildable.construct_child", gtk_buildable_get_type());
@@ -861,9 +879,11 @@ static void vf_Gtk_Buildable_custom_finished(GtkBuildable* a0, GtkBuilder* a1, G
     void *f = zgtk_vfunc_find(a0, "Gtk_Buildable.custom_finished");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Buildable_custom_finished(gsize type, void *closure) {
-    GtkBuildableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_buildable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Buildable.custom_finished", closure); k->custom_finished = (gpointer)vf_Gtk_Buildable_custom_finished; }
+int zgtk_override_Gtk_Buildable_custom_finished(gsize type, void *closure) {
+    GtkBuildableIface *k = zgtk_iface_below(type, gtk_buildable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Buildable.custom_finished", closure); k->custom_finished = (gpointer)vf_Gtk_Buildable_custom_finished;
+    return 1;
 }
 void zgtk_parent_Gtk_Buildable_custom_finished(GtkBuildable* a0, GtkBuilder* a1, GObject* a2, const char* a3, gpointer a4) {
     GtkBuildableIface *k = zgtk_vfunc_parent(a0, "Gtk_Buildable.custom_finished", gtk_buildable_get_type());
@@ -879,9 +899,11 @@ static void vf_Gtk_Buildable_custom_tag_end(GtkBuildable* a0, GtkBuilder* a1, GO
     void *f = zgtk_vfunc_find(a0, "Gtk_Buildable.custom_tag_end");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Buildable_custom_tag_end(gsize type, void *closure) {
-    GtkBuildableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_buildable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Buildable.custom_tag_end", closure); k->custom_tag_end = (gpointer)vf_Gtk_Buildable_custom_tag_end; }
+int zgtk_override_Gtk_Buildable_custom_tag_end(gsize type, void *closure) {
+    GtkBuildableIface *k = zgtk_iface_below(type, gtk_buildable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Buildable.custom_tag_end", closure); k->custom_tag_end = (gpointer)vf_Gtk_Buildable_custom_tag_end;
+    return 1;
 }
 void zgtk_parent_Gtk_Buildable_custom_tag_end(GtkBuildable* a0, GtkBuilder* a1, GObject* a2, const char* a3, gpointer a4) {
     GtkBuildableIface *k = zgtk_vfunc_parent(a0, "Gtk_Buildable.custom_tag_end", gtk_buildable_get_type());
@@ -899,9 +921,11 @@ static gboolean vf_Gtk_Buildable_custom_tag_start(GtkBuildable* a0, GtkBuilder* 
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_Buildable_custom_tag_start(gsize type, void *closure) {
-    GtkBuildableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_buildable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Buildable.custom_tag_start", closure); k->custom_tag_start = (gpointer)vf_Gtk_Buildable_custom_tag_start; }
+int zgtk_override_Gtk_Buildable_custom_tag_start(gsize type, void *closure) {
+    GtkBuildableIface *k = zgtk_iface_below(type, gtk_buildable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Buildable.custom_tag_start", closure); k->custom_tag_start = (gpointer)vf_Gtk_Buildable_custom_tag_start;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_Buildable_custom_tag_start(GtkBuildable* a0, GtkBuilder* a1, GObject* a2, const char* a3, GtkBuildableParser* a4, gpointer* a5) {
     GtkBuildableIface *k = zgtk_vfunc_parent(a0, "Gtk_Buildable.custom_tag_start", gtk_buildable_get_type());
@@ -914,9 +938,11 @@ static const char* vf_Gtk_Buildable_get_id(GtkBuildable* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const char*)c.ret.p;
 }
-void zgtk_override_Gtk_Buildable_get_id(gsize type, void *closure) {
-    GtkBuildableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_buildable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Buildable.get_id", closure); k->get_id = (gpointer)vf_Gtk_Buildable_get_id; }
+int zgtk_override_Gtk_Buildable_get_id(gsize type, void *closure) {
+    GtkBuildableIface *k = zgtk_iface_below(type, gtk_buildable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Buildable.get_id", closure); k->get_id = (gpointer)vf_Gtk_Buildable_get_id;
+    return 1;
 }
 const char* zgtk_parent_Gtk_Buildable_get_id(GtkBuildable* a0) {
     GtkBuildableIface *k = zgtk_vfunc_parent(a0, "Gtk_Buildable.get_id", gtk_buildable_get_type());
@@ -931,9 +957,11 @@ static GObject* vf_Gtk_Buildable_get_internal_child(GtkBuildable* a0, GtkBuilder
     if (f) zgtk_dispatch(f, &c);
     return (GObject*)c.ret.p;
 }
-void zgtk_override_Gtk_Buildable_get_internal_child(gsize type, void *closure) {
-    GtkBuildableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_buildable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Buildable.get_internal_child", closure); k->get_internal_child = (gpointer)vf_Gtk_Buildable_get_internal_child; }
+int zgtk_override_Gtk_Buildable_get_internal_child(gsize type, void *closure) {
+    GtkBuildableIface *k = zgtk_iface_below(type, gtk_buildable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Buildable.get_internal_child", closure); k->get_internal_child = (gpointer)vf_Gtk_Buildable_get_internal_child;
+    return 1;
 }
 GObject* zgtk_parent_Gtk_Buildable_get_internal_child(GtkBuildable* a0, GtkBuilder* a1, const char* a2) {
     GtkBuildableIface *k = zgtk_vfunc_parent(a0, "Gtk_Buildable.get_internal_child", gtk_buildable_get_type());
@@ -946,9 +974,11 @@ static void vf_Gtk_Buildable_parser_finished(GtkBuildable* a0, GtkBuilder* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Buildable.parser_finished");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Buildable_parser_finished(gsize type, void *closure) {
-    GtkBuildableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_buildable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Buildable.parser_finished", closure); k->parser_finished = (gpointer)vf_Gtk_Buildable_parser_finished; }
+int zgtk_override_Gtk_Buildable_parser_finished(gsize type, void *closure) {
+    GtkBuildableIface *k = zgtk_iface_below(type, gtk_buildable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Buildable.parser_finished", closure); k->parser_finished = (gpointer)vf_Gtk_Buildable_parser_finished;
+    return 1;
 }
 void zgtk_parent_Gtk_Buildable_parser_finished(GtkBuildable* a0, GtkBuilder* a1) {
     GtkBuildableIface *k = zgtk_vfunc_parent(a0, "Gtk_Buildable.parser_finished", gtk_buildable_get_type());
@@ -963,9 +993,11 @@ static void vf_Gtk_Buildable_set_buildable_property(GtkBuildable* a0, GtkBuilder
     void *f = zgtk_vfunc_find(a0, "Gtk_Buildable.set_buildable_property");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Buildable_set_buildable_property(gsize type, void *closure) {
-    GtkBuildableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_buildable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Buildable.set_buildable_property", closure); k->set_buildable_property = (gpointer)vf_Gtk_Buildable_set_buildable_property; }
+int zgtk_override_Gtk_Buildable_set_buildable_property(gsize type, void *closure) {
+    GtkBuildableIface *k = zgtk_iface_below(type, gtk_buildable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Buildable.set_buildable_property", closure); k->set_buildable_property = (gpointer)vf_Gtk_Buildable_set_buildable_property;
+    return 1;
 }
 void zgtk_parent_Gtk_Buildable_set_buildable_property(GtkBuildable* a0, GtkBuilder* a1, const char* a2, const GValue* a3) {
     GtkBuildableIface *k = zgtk_vfunc_parent(a0, "Gtk_Buildable.set_buildable_property", gtk_buildable_get_type());
@@ -978,9 +1010,11 @@ static void vf_Gtk_Buildable_set_id(GtkBuildable* a0, const char* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Buildable.set_id");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Buildable_set_id(gsize type, void *closure) {
-    GtkBuildableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_buildable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Buildable.set_id", closure); k->set_id = (gpointer)vf_Gtk_Buildable_set_id; }
+int zgtk_override_Gtk_Buildable_set_id(gsize type, void *closure) {
+    GtkBuildableIface *k = zgtk_iface_below(type, gtk_buildable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Buildable.set_id", closure); k->set_id = (gpointer)vf_Gtk_Buildable_set_id;
+    return 1;
 }
 void zgtk_parent_Gtk_Buildable_set_id(GtkBuildable* a0, const char* a1) {
     GtkBuildableIface *k = zgtk_vfunc_parent(a0, "Gtk_Buildable.set_id", gtk_buildable_get_type());
@@ -993,9 +1027,11 @@ static void vf_Gtk_ShortcutManager_add_controller(GtkShortcutManager* a0, GtkSho
     void *f = zgtk_vfunc_find(a0, "Gtk_ShortcutManager.add_controller");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_ShortcutManager_add_controller(gsize type, void *closure) {
-    GtkShortcutManagerInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_shortcut_manager_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_ShortcutManager.add_controller", closure); k->add_controller = (gpointer)vf_Gtk_ShortcutManager_add_controller; }
+int zgtk_override_Gtk_ShortcutManager_add_controller(gsize type, void *closure) {
+    GtkShortcutManagerInterface *k = zgtk_iface_below(type, gtk_shortcut_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_ShortcutManager.add_controller", closure); k->add_controller = (gpointer)vf_Gtk_ShortcutManager_add_controller;
+    return 1;
 }
 void zgtk_parent_Gtk_ShortcutManager_add_controller(GtkShortcutManager* a0, GtkShortcutController* a1) {
     GtkShortcutManagerInterface *k = zgtk_vfunc_parent(a0, "Gtk_ShortcutManager.add_controller", gtk_shortcut_manager_get_type());
@@ -1008,9 +1044,11 @@ static void vf_Gtk_ShortcutManager_remove_controller(GtkShortcutManager* a0, Gtk
     void *f = zgtk_vfunc_find(a0, "Gtk_ShortcutManager.remove_controller");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_ShortcutManager_remove_controller(gsize type, void *closure) {
-    GtkShortcutManagerInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_shortcut_manager_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_ShortcutManager.remove_controller", closure); k->remove_controller = (gpointer)vf_Gtk_ShortcutManager_remove_controller; }
+int zgtk_override_Gtk_ShortcutManager_remove_controller(gsize type, void *closure) {
+    GtkShortcutManagerInterface *k = zgtk_iface_below(type, gtk_shortcut_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_ShortcutManager.remove_controller", closure); k->remove_controller = (gpointer)vf_Gtk_ShortcutManager_remove_controller;
+    return 1;
 }
 void zgtk_parent_Gtk_ShortcutManager_remove_controller(GtkShortcutManager* a0, GtkShortcutController* a1) {
     GtkShortcutManagerInterface *k = zgtk_vfunc_parent(a0, "Gtk_ShortcutManager.remove_controller", gtk_shortcut_manager_get_type());
@@ -1024,9 +1062,11 @@ static void vf_Gtk_Widget_compute_expand(GtkWidget* a0, gboolean* a1, gboolean* 
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.compute_expand");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_compute_expand(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.compute_expand", closure); k->compute_expand = (gpointer)vf_Gtk_Widget_compute_expand; }
+int zgtk_override_Gtk_Widget_compute_expand(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.compute_expand", closure); k->compute_expand = (gpointer)vf_Gtk_Widget_compute_expand;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_compute_expand(GtkWidget* a0, gboolean* a1, gboolean* a2) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.compute_expand", 0);
@@ -1041,9 +1081,11 @@ static gboolean vf_Gtk_Widget_contains(GtkWidget* a0, double a1, double a2) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_Widget_contains(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.contains", closure); k->contains = (gpointer)vf_Gtk_Widget_contains; }
+int zgtk_override_Gtk_Widget_contains(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.contains", closure); k->contains = (gpointer)vf_Gtk_Widget_contains;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_Widget_contains(GtkWidget* a0, double a1, double a2) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.contains", 0);
@@ -1056,9 +1098,11 @@ static void vf_Gtk_Widget_css_changed(GtkWidget* a0, GtkCssStyleChange* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.css_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_css_changed(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.css_changed", closure); k->css_changed = (gpointer)vf_Gtk_Widget_css_changed; }
+int zgtk_override_Gtk_Widget_css_changed(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.css_changed", closure); k->css_changed = (gpointer)vf_Gtk_Widget_css_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_css_changed(GtkWidget* a0, GtkCssStyleChange* a1) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.css_changed", 0);
@@ -1071,9 +1115,11 @@ static void vf_Gtk_Widget_direction_changed(GtkWidget* a0, GtkTextDirection a1) 
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.direction_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_direction_changed(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.direction_changed", closure); k->direction_changed = (gpointer)vf_Gtk_Widget_direction_changed; }
+int zgtk_override_Gtk_Widget_direction_changed(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.direction_changed", closure); k->direction_changed = (gpointer)vf_Gtk_Widget_direction_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_direction_changed(GtkWidget* a0, GtkTextDirection a1) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.direction_changed", 0);
@@ -1087,9 +1133,11 @@ static gboolean vf_Gtk_Widget_focus(GtkWidget* a0, GtkDirectionType a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_Widget_focus(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.focus", closure); k->focus = (gpointer)vf_Gtk_Widget_focus; }
+int zgtk_override_Gtk_Widget_focus(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.focus", closure); k->focus = (gpointer)vf_Gtk_Widget_focus;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_Widget_focus(GtkWidget* a0, GtkDirectionType a1) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.focus", 0);
@@ -1102,9 +1150,11 @@ static GtkSizeRequestMode vf_Gtk_Widget_get_request_mode(GtkWidget* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GtkSizeRequestMode)c.ret.i;
 }
-void zgtk_override_Gtk_Widget_get_request_mode(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.get_request_mode", closure); k->get_request_mode = (gpointer)vf_Gtk_Widget_get_request_mode; }
+int zgtk_override_Gtk_Widget_get_request_mode(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.get_request_mode", closure); k->get_request_mode = (gpointer)vf_Gtk_Widget_get_request_mode;
+    return 1;
 }
 GtkSizeRequestMode zgtk_parent_Gtk_Widget_get_request_mode(GtkWidget* a0) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.get_request_mode", 0);
@@ -1117,9 +1167,11 @@ static gboolean vf_Gtk_Widget_grab_focus(GtkWidget* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_Widget_grab_focus(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.grab_focus", closure); k->grab_focus = (gpointer)vf_Gtk_Widget_grab_focus; }
+int zgtk_override_Gtk_Widget_grab_focus(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.grab_focus", closure); k->grab_focus = (gpointer)vf_Gtk_Widget_grab_focus;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_Widget_grab_focus(GtkWidget* a0) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.grab_focus", 0);
@@ -1131,9 +1183,11 @@ static void vf_Gtk_Widget_hide(GtkWidget* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.hide");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_hide(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.hide", closure); k->hide = (gpointer)vf_Gtk_Widget_hide; }
+int zgtk_override_Gtk_Widget_hide(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.hide", closure); k->hide = (gpointer)vf_Gtk_Widget_hide;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_hide(GtkWidget* a0) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.hide", 0);
@@ -1147,9 +1201,11 @@ static gboolean vf_Gtk_Widget_keynav_failed(GtkWidget* a0, GtkDirectionType a1) 
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_Widget_keynav_failed(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.keynav_failed", closure); k->keynav_failed = (gpointer)vf_Gtk_Widget_keynav_failed; }
+int zgtk_override_Gtk_Widget_keynav_failed(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.keynav_failed", closure); k->keynav_failed = (gpointer)vf_Gtk_Widget_keynav_failed;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_Widget_keynav_failed(GtkWidget* a0, GtkDirectionType a1) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.keynav_failed", 0);
@@ -1161,9 +1217,11 @@ static void vf_Gtk_Widget_map(GtkWidget* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.map");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_map(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.map", closure); k->map = (gpointer)vf_Gtk_Widget_map; }
+int zgtk_override_Gtk_Widget_map(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.map", closure); k->map = (gpointer)vf_Gtk_Widget_map;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_map(GtkWidget* a0) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.map", 0);
@@ -1181,9 +1239,11 @@ static void vf_Gtk_Widget_measure(GtkWidget* a0, GtkOrientation a1, int a2, int*
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.measure");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_measure(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.measure", closure); k->measure = (gpointer)vf_Gtk_Widget_measure; }
+int zgtk_override_Gtk_Widget_measure(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.measure", closure); k->measure = (gpointer)vf_Gtk_Widget_measure;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_measure(GtkWidget* a0, GtkOrientation a1, int a2, int* a3, int* a4, int* a5, int* a6) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.measure", 0);
@@ -1197,9 +1257,11 @@ static gboolean vf_Gtk_Widget_mnemonic_activate(GtkWidget* a0, gboolean a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_Widget_mnemonic_activate(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.mnemonic_activate", closure); k->mnemonic_activate = (gpointer)vf_Gtk_Widget_mnemonic_activate; }
+int zgtk_override_Gtk_Widget_mnemonic_activate(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.mnemonic_activate", closure); k->mnemonic_activate = (gpointer)vf_Gtk_Widget_mnemonic_activate;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_Widget_mnemonic_activate(GtkWidget* a0, gboolean a1) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.mnemonic_activate", 0);
@@ -1212,9 +1274,11 @@ static void vf_Gtk_Widget_move_focus(GtkWidget* a0, GtkDirectionType a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.move_focus");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_move_focus(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.move_focus", closure); k->move_focus = (gpointer)vf_Gtk_Widget_move_focus; }
+int zgtk_override_Gtk_Widget_move_focus(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.move_focus", closure); k->move_focus = (gpointer)vf_Gtk_Widget_move_focus;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_move_focus(GtkWidget* a0, GtkDirectionType a1) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.move_focus", 0);
@@ -1231,9 +1295,11 @@ static gboolean vf_Gtk_Widget_query_tooltip(GtkWidget* a0, int a1, int a2, gbool
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_Widget_query_tooltip(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.query_tooltip", closure); k->query_tooltip = (gpointer)vf_Gtk_Widget_query_tooltip; }
+int zgtk_override_Gtk_Widget_query_tooltip(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.query_tooltip", closure); k->query_tooltip = (gpointer)vf_Gtk_Widget_query_tooltip;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_Widget_query_tooltip(GtkWidget* a0, int a1, int a2, gboolean a3, GtkTooltip* a4) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.query_tooltip", 0);
@@ -1245,9 +1311,11 @@ static void vf_Gtk_Widget_realize(GtkWidget* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.realize");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_realize(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.realize", closure); k->realize = (gpointer)vf_Gtk_Widget_realize; }
+int zgtk_override_Gtk_Widget_realize(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.realize", closure); k->realize = (gpointer)vf_Gtk_Widget_realize;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_realize(GtkWidget* a0) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.realize", 0);
@@ -1259,9 +1327,11 @@ static void vf_Gtk_Widget_root(GtkWidget* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.root");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_root(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.root", closure); k->root = (gpointer)vf_Gtk_Widget_root; }
+int zgtk_override_Gtk_Widget_root(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.root", closure); k->root = (gpointer)vf_Gtk_Widget_root;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_root(GtkWidget* a0) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.root", 0);
@@ -1274,9 +1344,11 @@ static void vf_Gtk_Widget_set_focus_child(GtkWidget* a0, GtkWidget* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.set_focus_child");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_set_focus_child(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.set_focus_child", closure); k->set_focus_child = (gpointer)vf_Gtk_Widget_set_focus_child; }
+int zgtk_override_Gtk_Widget_set_focus_child(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.set_focus_child", closure); k->set_focus_child = (gpointer)vf_Gtk_Widget_set_focus_child;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_set_focus_child(GtkWidget* a0, GtkWidget* a1) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.set_focus_child", 0);
@@ -1288,9 +1360,11 @@ static void vf_Gtk_Widget_show(GtkWidget* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.show");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_show(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.show", closure); k->show = (gpointer)vf_Gtk_Widget_show; }
+int zgtk_override_Gtk_Widget_show(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.show", closure); k->show = (gpointer)vf_Gtk_Widget_show;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_show(GtkWidget* a0) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.show", 0);
@@ -1305,9 +1379,11 @@ static void vf_Gtk_Widget_size_allocate(GtkWidget* a0, int a1, int a2, int a3) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.size_allocate");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_size_allocate(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.size_allocate", closure); k->size_allocate = (gpointer)vf_Gtk_Widget_size_allocate; }
+int zgtk_override_Gtk_Widget_size_allocate(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.size_allocate", closure); k->size_allocate = (gpointer)vf_Gtk_Widget_size_allocate;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_size_allocate(GtkWidget* a0, int a1, int a2, int a3) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.size_allocate", 0);
@@ -1320,9 +1396,11 @@ static void vf_Gtk_Widget_snapshot(GtkWidget* a0, GtkSnapshot* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.snapshot");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_snapshot(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.snapshot", closure); k->snapshot = (gpointer)vf_Gtk_Widget_snapshot; }
+int zgtk_override_Gtk_Widget_snapshot(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.snapshot", closure); k->snapshot = (gpointer)vf_Gtk_Widget_snapshot;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_snapshot(GtkWidget* a0, GtkSnapshot* a1) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.snapshot", 0);
@@ -1335,9 +1413,11 @@ static void vf_Gtk_Widget_state_flags_changed(GtkWidget* a0, GtkStateFlags a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.state_flags_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_state_flags_changed(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.state_flags_changed", closure); k->state_flags_changed = (gpointer)vf_Gtk_Widget_state_flags_changed; }
+int zgtk_override_Gtk_Widget_state_flags_changed(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.state_flags_changed", closure); k->state_flags_changed = (gpointer)vf_Gtk_Widget_state_flags_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_state_flags_changed(GtkWidget* a0, GtkStateFlags a1) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.state_flags_changed", 0);
@@ -1350,9 +1430,11 @@ static void vf_Gtk_Widget_system_setting_changed(GtkWidget* a0, GtkSystemSetting
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.system_setting_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_system_setting_changed(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.system_setting_changed", closure); k->system_setting_changed = (gpointer)vf_Gtk_Widget_system_setting_changed; }
+int zgtk_override_Gtk_Widget_system_setting_changed(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.system_setting_changed", closure); k->system_setting_changed = (gpointer)vf_Gtk_Widget_system_setting_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_system_setting_changed(GtkWidget* a0, GtkSystemSetting a1) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.system_setting_changed", 0);
@@ -1364,9 +1446,11 @@ static void vf_Gtk_Widget_unmap(GtkWidget* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.unmap");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_unmap(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.unmap", closure); k->unmap = (gpointer)vf_Gtk_Widget_unmap; }
+int zgtk_override_Gtk_Widget_unmap(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.unmap", closure); k->unmap = (gpointer)vf_Gtk_Widget_unmap;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_unmap(GtkWidget* a0) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.unmap", 0);
@@ -1378,9 +1462,11 @@ static void vf_Gtk_Widget_unrealize(GtkWidget* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.unrealize");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_unrealize(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.unrealize", closure); k->unrealize = (gpointer)vf_Gtk_Widget_unrealize; }
+int zgtk_override_Gtk_Widget_unrealize(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.unrealize", closure); k->unrealize = (gpointer)vf_Gtk_Widget_unrealize;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_unrealize(GtkWidget* a0) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.unrealize", 0);
@@ -1392,9 +1478,11 @@ static void vf_Gtk_Widget_unroot(GtkWidget* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Widget.unroot");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Widget_unroot(gsize type, void *closure) {
-    GtkWidgetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Widget.unroot", closure); k->unroot = (gpointer)vf_Gtk_Widget_unroot; }
+int zgtk_override_Gtk_Widget_unroot(gsize type, void *closure) {
+    GtkWidgetClass *k = zgtk_class_below(type, gtk_widget_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Widget.unroot", closure); k->unroot = (gpointer)vf_Gtk_Widget_unroot;
+    return 1;
 }
 void zgtk_parent_Gtk_Widget_unroot(GtkWidget* a0) {
     GtkWidgetClass *k = zgtk_vfunc_parent(a0, "Gtk_Widget.unroot", 0);
@@ -1406,9 +1494,11 @@ static void vf_Gtk_Window_activate_default(GtkWindow* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Window.activate_default");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Window_activate_default(gsize type, void *closure) {
-    GtkWindowClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Window.activate_default", closure); k->activate_default = (gpointer)vf_Gtk_Window_activate_default; }
+int zgtk_override_Gtk_Window_activate_default(gsize type, void *closure) {
+    GtkWindowClass *k = zgtk_class_below(type, gtk_window_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Window.activate_default", closure); k->activate_default = (gpointer)vf_Gtk_Window_activate_default;
+    return 1;
 }
 void zgtk_parent_Gtk_Window_activate_default(GtkWindow* a0) {
     GtkWindowClass *k = zgtk_vfunc_parent(a0, "Gtk_Window.activate_default", 0);
@@ -1420,9 +1510,11 @@ static void vf_Gtk_Window_activate_focus(GtkWindow* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Window.activate_focus");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Window_activate_focus(gsize type, void *closure) {
-    GtkWindowClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Window.activate_focus", closure); k->activate_focus = (gpointer)vf_Gtk_Window_activate_focus; }
+int zgtk_override_Gtk_Window_activate_focus(gsize type, void *closure) {
+    GtkWindowClass *k = zgtk_class_below(type, gtk_window_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Window.activate_focus", closure); k->activate_focus = (gpointer)vf_Gtk_Window_activate_focus;
+    return 1;
 }
 void zgtk_parent_Gtk_Window_activate_focus(GtkWindow* a0) {
     GtkWindowClass *k = zgtk_vfunc_parent(a0, "Gtk_Window.activate_focus", 0);
@@ -1435,9 +1527,11 @@ static gboolean vf_Gtk_Window_close_request(GtkWindow* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_Window_close_request(gsize type, void *closure) {
-    GtkWindowClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Window.close_request", closure); k->close_request = (gpointer)vf_Gtk_Window_close_request; }
+int zgtk_override_Gtk_Window_close_request(gsize type, void *closure) {
+    GtkWindowClass *k = zgtk_class_below(type, gtk_window_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Window.close_request", closure); k->close_request = (gpointer)vf_Gtk_Window_close_request;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_Window_close_request(GtkWindow* a0) {
     GtkWindowClass *k = zgtk_vfunc_parent(a0, "Gtk_Window.close_request", 0);
@@ -1451,9 +1545,11 @@ static gboolean vf_Gtk_Window_enable_debugging(GtkWindow* a0, gboolean a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_Window_enable_debugging(gsize type, void *closure) {
-    GtkWindowClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Window.enable_debugging", closure); k->enable_debugging = (gpointer)vf_Gtk_Window_enable_debugging; }
+int zgtk_override_Gtk_Window_enable_debugging(gsize type, void *closure) {
+    GtkWindowClass *k = zgtk_class_below(type, gtk_window_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Window.enable_debugging", closure); k->enable_debugging = (gpointer)vf_Gtk_Window_enable_debugging;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_Window_enable_debugging(GtkWindow* a0, gboolean a1) {
     GtkWindowClass *k = zgtk_vfunc_parent(a0, "Gtk_Window.enable_debugging", 0);
@@ -1465,9 +1561,11 @@ static void vf_Gtk_Window_keys_changed(GtkWindow* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Window.keys_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Window_keys_changed(gsize type, void *closure) {
-    GtkWindowClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Window.keys_changed", closure); k->keys_changed = (gpointer)vf_Gtk_Window_keys_changed; }
+int zgtk_override_Gtk_Window_keys_changed(gsize type, void *closure) {
+    GtkWindowClass *k = zgtk_class_below(type, gtk_window_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Window.keys_changed", closure); k->keys_changed = (gpointer)vf_Gtk_Window_keys_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_Window_keys_changed(GtkWindow* a0) {
     GtkWindowClass *k = zgtk_vfunc_parent(a0, "Gtk_Window.keys_changed", 0);
@@ -1481,9 +1579,11 @@ static GtkAccessibleHyperlink* vf_Gtk_AccessibleHypertext_get_link(GtkAccessible
     if (f) zgtk_dispatch(f, &c);
     return (GtkAccessibleHyperlink*)c.ret.p;
 }
-void zgtk_override_Gtk_AccessibleHypertext_get_link(gsize type, void *closure) {
-    GtkAccessibleHypertextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_hypertext_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleHypertext.get_link", closure); k->get_link = (gpointer)vf_Gtk_AccessibleHypertext_get_link; }
+int zgtk_override_Gtk_AccessibleHypertext_get_link(gsize type, void *closure) {
+    GtkAccessibleHypertextInterface *k = zgtk_iface_below(type, gtk_accessible_hypertext_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_AccessibleHypertext.get_link", closure); k->get_link = (gpointer)vf_Gtk_AccessibleHypertext_get_link;
+    return 1;
 }
 GtkAccessibleHyperlink* zgtk_parent_Gtk_AccessibleHypertext_get_link(GtkAccessibleHypertext* a0, unsigned int a1) {
     GtkAccessibleHypertextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleHypertext.get_link", gtk_accessible_hypertext_get_type());
@@ -1497,9 +1597,11 @@ static unsigned int vf_Gtk_AccessibleHypertext_get_link_at(GtkAccessibleHypertex
     if (f) zgtk_dispatch(f, &c);
     return (unsigned int)c.ret.i;
 }
-void zgtk_override_Gtk_AccessibleHypertext_get_link_at(gsize type, void *closure) {
-    GtkAccessibleHypertextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_hypertext_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleHypertext.get_link_at", closure); k->get_link_at = (gpointer)vf_Gtk_AccessibleHypertext_get_link_at; }
+int zgtk_override_Gtk_AccessibleHypertext_get_link_at(gsize type, void *closure) {
+    GtkAccessibleHypertextInterface *k = zgtk_iface_below(type, gtk_accessible_hypertext_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_AccessibleHypertext.get_link_at", closure); k->get_link_at = (gpointer)vf_Gtk_AccessibleHypertext_get_link_at;
+    return 1;
 }
 unsigned int zgtk_parent_Gtk_AccessibleHypertext_get_link_at(GtkAccessibleHypertext* a0, unsigned int a1) {
     GtkAccessibleHypertextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleHypertext.get_link_at", gtk_accessible_hypertext_get_type());
@@ -1512,9 +1614,11 @@ static unsigned int vf_Gtk_AccessibleHypertext_get_n_links(GtkAccessibleHypertex
     if (f) zgtk_dispatch(f, &c);
     return (unsigned int)c.ret.i;
 }
-void zgtk_override_Gtk_AccessibleHypertext_get_n_links(gsize type, void *closure) {
-    GtkAccessibleHypertextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_hypertext_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleHypertext.get_n_links", closure); k->get_n_links = (gpointer)vf_Gtk_AccessibleHypertext_get_n_links; }
+int zgtk_override_Gtk_AccessibleHypertext_get_n_links(gsize type, void *closure) {
+    GtkAccessibleHypertextInterface *k = zgtk_iface_below(type, gtk_accessible_hypertext_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_AccessibleHypertext.get_n_links", closure); k->get_n_links = (gpointer)vf_Gtk_AccessibleHypertext_get_n_links;
+    return 1;
 }
 unsigned int zgtk_parent_Gtk_AccessibleHypertext_get_n_links(GtkAccessibleHypertext* a0) {
     GtkAccessibleHypertextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleHypertext.get_n_links", gtk_accessible_hypertext_get_type());
@@ -1528,9 +1632,11 @@ static gboolean vf_Gtk_AccessibleRange_set_current_value(GtkAccessibleRange* a0,
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_AccessibleRange_set_current_value(gsize type, void *closure) {
-    GtkAccessibleRangeInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_range_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleRange.set_current_value", closure); k->set_current_value = (gpointer)vf_Gtk_AccessibleRange_set_current_value; }
+int zgtk_override_Gtk_AccessibleRange_set_current_value(gsize type, void *closure) {
+    GtkAccessibleRangeInterface *k = zgtk_iface_below(type, gtk_accessible_range_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_AccessibleRange.set_current_value", closure); k->set_current_value = (gpointer)vf_Gtk_AccessibleRange_set_current_value;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_AccessibleRange_set_current_value(GtkAccessibleRange* a0, double a1) {
     GtkAccessibleRangeInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleRange.set_current_value", gtk_accessible_range_get_type());
@@ -1548,9 +1654,11 @@ static gboolean vf_Gtk_AccessibleText_get_attributes(GtkAccessibleText* a0, unsi
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_AccessibleText_get_attributes(gsize type, void *closure) {
-    GtkAccessibleTextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_text_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleText.get_attributes", closure); k->get_attributes = (gpointer)vf_Gtk_AccessibleText_get_attributes; }
+int zgtk_override_Gtk_AccessibleText_get_attributes(gsize type, void *closure) {
+    GtkAccessibleTextInterface *k = zgtk_iface_below(type, gtk_accessible_text_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_AccessibleText.get_attributes", closure); k->get_attributes = (gpointer)vf_Gtk_AccessibleText_get_attributes;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_AccessibleText_get_attributes(GtkAccessibleText* a0, unsigned int a1, gsize* a2, GtkAccessibleTextRange** a3, char*** a4, char*** a5) {
     GtkAccessibleTextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleText.get_attributes", gtk_accessible_text_get_type());
@@ -1563,9 +1671,11 @@ static unsigned int vf_Gtk_AccessibleText_get_caret_position(GtkAccessibleText* 
     if (f) zgtk_dispatch(f, &c);
     return (unsigned int)c.ret.i;
 }
-void zgtk_override_Gtk_AccessibleText_get_caret_position(gsize type, void *closure) {
-    GtkAccessibleTextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_text_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleText.get_caret_position", closure); k->get_caret_position = (gpointer)vf_Gtk_AccessibleText_get_caret_position; }
+int zgtk_override_Gtk_AccessibleText_get_caret_position(gsize type, void *closure) {
+    GtkAccessibleTextInterface *k = zgtk_iface_below(type, gtk_accessible_text_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_AccessibleText.get_caret_position", closure); k->get_caret_position = (gpointer)vf_Gtk_AccessibleText_get_caret_position;
+    return 1;
 }
 unsigned int zgtk_parent_Gtk_AccessibleText_get_caret_position(GtkAccessibleText* a0) {
     GtkAccessibleTextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleText.get_caret_position", gtk_accessible_text_get_type());
@@ -1580,9 +1690,11 @@ static GBytes* vf_Gtk_AccessibleText_get_contents(GtkAccessibleText* a0, unsigne
     if (f) zgtk_dispatch(f, &c);
     return (GBytes*)c.ret.p;
 }
-void zgtk_override_Gtk_AccessibleText_get_contents(gsize type, void *closure) {
-    GtkAccessibleTextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_text_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleText.get_contents", closure); k->get_contents = (gpointer)vf_Gtk_AccessibleText_get_contents; }
+int zgtk_override_Gtk_AccessibleText_get_contents(gsize type, void *closure) {
+    GtkAccessibleTextInterface *k = zgtk_iface_below(type, gtk_accessible_text_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_AccessibleText.get_contents", closure); k->get_contents = (gpointer)vf_Gtk_AccessibleText_get_contents;
+    return 1;
 }
 GBytes* zgtk_parent_Gtk_AccessibleText_get_contents(GtkAccessibleText* a0, unsigned int a1, unsigned int a2) {
     GtkAccessibleTextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleText.get_contents", gtk_accessible_text_get_type());
@@ -1599,9 +1711,11 @@ static GBytes* vf_Gtk_AccessibleText_get_contents_at(GtkAccessibleText* a0, unsi
     if (f) zgtk_dispatch(f, &c);
     return (GBytes*)c.ret.p;
 }
-void zgtk_override_Gtk_AccessibleText_get_contents_at(gsize type, void *closure) {
-    GtkAccessibleTextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_text_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleText.get_contents_at", closure); k->get_contents_at = (gpointer)vf_Gtk_AccessibleText_get_contents_at; }
+int zgtk_override_Gtk_AccessibleText_get_contents_at(gsize type, void *closure) {
+    GtkAccessibleTextInterface *k = zgtk_iface_below(type, gtk_accessible_text_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_AccessibleText.get_contents_at", closure); k->get_contents_at = (gpointer)vf_Gtk_AccessibleText_get_contents_at;
+    return 1;
 }
 GBytes* zgtk_parent_Gtk_AccessibleText_get_contents_at(GtkAccessibleText* a0, unsigned int a1, GtkAccessibleTextGranularity a2, unsigned int* a3, unsigned int* a4) {
     GtkAccessibleTextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleText.get_contents_at", gtk_accessible_text_get_type());
@@ -1615,9 +1729,11 @@ static void vf_Gtk_AccessibleText_get_default_attributes(GtkAccessibleText* a0, 
     void *f = zgtk_vfunc_find(a0, "Gtk_AccessibleText.get_default_attributes");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_AccessibleText_get_default_attributes(gsize type, void *closure) {
-    GtkAccessibleTextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_text_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleText.get_default_attributes", closure); k->get_default_attributes = (gpointer)vf_Gtk_AccessibleText_get_default_attributes; }
+int zgtk_override_Gtk_AccessibleText_get_default_attributes(gsize type, void *closure) {
+    GtkAccessibleTextInterface *k = zgtk_iface_below(type, gtk_accessible_text_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_AccessibleText.get_default_attributes", closure); k->get_default_attributes = (gpointer)vf_Gtk_AccessibleText_get_default_attributes;
+    return 1;
 }
 void zgtk_parent_Gtk_AccessibleText_get_default_attributes(GtkAccessibleText* a0, char*** a1, char*** a2) {
     GtkAccessibleTextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleText.get_default_attributes", gtk_accessible_text_get_type());
@@ -1633,9 +1749,11 @@ static gboolean vf_Gtk_AccessibleText_get_extents(GtkAccessibleText* a0, unsigne
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_AccessibleText_get_extents(gsize type, void *closure) {
-    GtkAccessibleTextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_text_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleText.get_extents", closure); k->get_extents = (gpointer)vf_Gtk_AccessibleText_get_extents; }
+int zgtk_override_Gtk_AccessibleText_get_extents(gsize type, void *closure) {
+    GtkAccessibleTextInterface *k = zgtk_iface_below(type, gtk_accessible_text_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_AccessibleText.get_extents", closure); k->get_extents = (gpointer)vf_Gtk_AccessibleText_get_extents;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_AccessibleText_get_extents(GtkAccessibleText* a0, unsigned int a1, unsigned int a2, graphene_rect_t* a3) {
     GtkAccessibleTextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleText.get_extents", gtk_accessible_text_get_type());
@@ -1650,9 +1768,11 @@ static gboolean vf_Gtk_AccessibleText_get_offset(GtkAccessibleText* a0, const gr
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_AccessibleText_get_offset(gsize type, void *closure) {
-    GtkAccessibleTextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_text_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleText.get_offset", closure); k->get_offset = (gpointer)vf_Gtk_AccessibleText_get_offset; }
+int zgtk_override_Gtk_AccessibleText_get_offset(gsize type, void *closure) {
+    GtkAccessibleTextInterface *k = zgtk_iface_below(type, gtk_accessible_text_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_AccessibleText.get_offset", closure); k->get_offset = (gpointer)vf_Gtk_AccessibleText_get_offset;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_AccessibleText_get_offset(GtkAccessibleText* a0, const graphene_point_t* a1, unsigned int* a2) {
     GtkAccessibleTextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleText.get_offset", gtk_accessible_text_get_type());
@@ -1667,9 +1787,11 @@ static gboolean vf_Gtk_AccessibleText_get_selection(GtkAccessibleText* a0, gsize
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_AccessibleText_get_selection(gsize type, void *closure) {
-    GtkAccessibleTextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_text_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleText.get_selection", closure); k->get_selection = (gpointer)vf_Gtk_AccessibleText_get_selection; }
+int zgtk_override_Gtk_AccessibleText_get_selection(gsize type, void *closure) {
+    GtkAccessibleTextInterface *k = zgtk_iface_below(type, gtk_accessible_text_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_AccessibleText.get_selection", closure); k->get_selection = (gpointer)vf_Gtk_AccessibleText_get_selection;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_AccessibleText_get_selection(GtkAccessibleText* a0, gsize* a1, GtkAccessibleTextRange** a2) {
     GtkAccessibleTextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleText.get_selection", gtk_accessible_text_get_type());
@@ -1683,9 +1805,11 @@ static gboolean vf_Gtk_AccessibleText_set_caret_position(GtkAccessibleText* a0, 
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_AccessibleText_set_caret_position(gsize type, void *closure) {
-    GtkAccessibleTextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_text_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleText.set_caret_position", closure); k->set_caret_position = (gpointer)vf_Gtk_AccessibleText_set_caret_position; }
+int zgtk_override_Gtk_AccessibleText_set_caret_position(gsize type, void *closure) {
+    GtkAccessibleTextInterface *k = zgtk_iface_below(type, gtk_accessible_text_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_AccessibleText.set_caret_position", closure); k->set_caret_position = (gpointer)vf_Gtk_AccessibleText_set_caret_position;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_AccessibleText_set_caret_position(GtkAccessibleText* a0, unsigned int a1) {
     GtkAccessibleTextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleText.set_caret_position", gtk_accessible_text_get_type());
@@ -1700,9 +1824,11 @@ static gboolean vf_Gtk_AccessibleText_set_selection(GtkAccessibleText* a0, gsize
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_AccessibleText_set_selection(gsize type, void *closure) {
-    GtkAccessibleTextInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_accessible_text_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_AccessibleText.set_selection", closure); k->set_selection = (gpointer)vf_Gtk_AccessibleText_set_selection; }
+int zgtk_override_Gtk_AccessibleText_set_selection(gsize type, void *closure) {
+    GtkAccessibleTextInterface *k = zgtk_iface_below(type, gtk_accessible_text_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_AccessibleText.set_selection", closure); k->set_selection = (gpointer)vf_Gtk_AccessibleText_set_selection;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_AccessibleText_set_selection(GtkAccessibleText* a0, gsize a1, GtkAccessibleTextRange* a2) {
     GtkAccessibleTextInterface *k = zgtk_vfunc_parent(a0, "Gtk_AccessibleText.set_selection", gtk_accessible_text_get_type());
@@ -1720,9 +1846,11 @@ static const char* vf_Gtk_Actionable_get_action_name(GtkActionable* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const char*)c.ret.p;
 }
-void zgtk_override_Gtk_Actionable_get_action_name(gsize type, void *closure) {
-    GtkActionableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_actionable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Actionable.get_action_name", closure); k->get_action_name = (gpointer)vf_Gtk_Actionable_get_action_name; }
+int zgtk_override_Gtk_Actionable_get_action_name(gsize type, void *closure) {
+    GtkActionableInterface *k = zgtk_iface_below(type, gtk_actionable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Actionable.get_action_name", closure); k->get_action_name = (gpointer)vf_Gtk_Actionable_get_action_name;
+    return 1;
 }
 const char* zgtk_parent_Gtk_Actionable_get_action_name(GtkActionable* a0) {
     GtkActionableInterface *k = zgtk_vfunc_parent(a0, "Gtk_Actionable.get_action_name", gtk_actionable_get_type());
@@ -1735,9 +1863,11 @@ static GVariant* vf_Gtk_Actionable_get_action_target_value(GtkActionable* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GVariant*)c.ret.p;
 }
-void zgtk_override_Gtk_Actionable_get_action_target_value(gsize type, void *closure) {
-    GtkActionableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_actionable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Actionable.get_action_target_value", closure); k->get_action_target_value = (gpointer)vf_Gtk_Actionable_get_action_target_value; }
+int zgtk_override_Gtk_Actionable_get_action_target_value(gsize type, void *closure) {
+    GtkActionableInterface *k = zgtk_iface_below(type, gtk_actionable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Actionable.get_action_target_value", closure); k->get_action_target_value = (gpointer)vf_Gtk_Actionable_get_action_target_value;
+    return 1;
 }
 GVariant* zgtk_parent_Gtk_Actionable_get_action_target_value(GtkActionable* a0) {
     GtkActionableInterface *k = zgtk_vfunc_parent(a0, "Gtk_Actionable.get_action_target_value", gtk_actionable_get_type());
@@ -1750,9 +1880,11 @@ static void vf_Gtk_Actionable_set_action_name(GtkActionable* a0, const char* a1)
     void *f = zgtk_vfunc_find(a0, "Gtk_Actionable.set_action_name");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Actionable_set_action_name(gsize type, void *closure) {
-    GtkActionableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_actionable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Actionable.set_action_name", closure); k->set_action_name = (gpointer)vf_Gtk_Actionable_set_action_name; }
+int zgtk_override_Gtk_Actionable_set_action_name(gsize type, void *closure) {
+    GtkActionableInterface *k = zgtk_iface_below(type, gtk_actionable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Actionable.set_action_name", closure); k->set_action_name = (gpointer)vf_Gtk_Actionable_set_action_name;
+    return 1;
 }
 void zgtk_parent_Gtk_Actionable_set_action_name(GtkActionable* a0, const char* a1) {
     GtkActionableInterface *k = zgtk_vfunc_parent(a0, "Gtk_Actionable.set_action_name", gtk_actionable_get_type());
@@ -1765,9 +1897,11 @@ static void vf_Gtk_Actionable_set_action_target_value(GtkActionable* a0, GVarian
     void *f = zgtk_vfunc_find(a0, "Gtk_Actionable.set_action_target_value");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Actionable_set_action_target_value(gsize type, void *closure) {
-    GtkActionableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_actionable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Actionable.set_action_target_value", closure); k->set_action_target_value = (gpointer)vf_Gtk_Actionable_set_action_target_value; }
+int zgtk_override_Gtk_Actionable_set_action_target_value(gsize type, void *closure) {
+    GtkActionableInterface *k = zgtk_iface_below(type, gtk_actionable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Actionable.set_action_target_value", closure); k->set_action_target_value = (gpointer)vf_Gtk_Actionable_set_action_target_value;
+    return 1;
 }
 void zgtk_parent_Gtk_Actionable_set_action_target_value(GtkActionable* a0, GVariant* a1) {
     GtkActionableInterface *k = zgtk_vfunc_parent(a0, "Gtk_Actionable.set_action_target_value", gtk_actionable_get_type());
@@ -1779,9 +1913,11 @@ static void vf_Gtk_Adjustment_changed(GtkAdjustment* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Adjustment.changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Adjustment_changed(gsize type, void *closure) {
-    GtkAdjustmentClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Adjustment.changed", closure); k->changed = (gpointer)vf_Gtk_Adjustment_changed; }
+int zgtk_override_Gtk_Adjustment_changed(gsize type, void *closure) {
+    GtkAdjustmentClass *k = zgtk_class_below(type, gtk_adjustment_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Adjustment.changed", closure); k->changed = (gpointer)vf_Gtk_Adjustment_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_Adjustment_changed(GtkAdjustment* a0) {
     GtkAdjustmentClass *k = zgtk_vfunc_parent(a0, "Gtk_Adjustment.changed", 0);
@@ -1793,9 +1929,11 @@ static void vf_Gtk_Adjustment_value_changed(GtkAdjustment* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Adjustment.value_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Adjustment_value_changed(gsize type, void *closure) {
-    GtkAdjustmentClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Adjustment.value_changed", closure); k->value_changed = (gpointer)vf_Gtk_Adjustment_value_changed; }
+int zgtk_override_Gtk_Adjustment_value_changed(gsize type, void *closure) {
+    GtkAdjustmentClass *k = zgtk_class_below(type, gtk_adjustment_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Adjustment.value_changed", closure); k->value_changed = (gpointer)vf_Gtk_Adjustment_value_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_Adjustment_value_changed(GtkAdjustment* a0) {
     GtkAdjustmentClass *k = zgtk_vfunc_parent(a0, "Gtk_Adjustment.value_changed", 0);
@@ -1808,9 +1946,11 @@ static GtkFilterMatch vf_Gtk_Filter_get_strictness(GtkFilter* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GtkFilterMatch)c.ret.i;
 }
-void zgtk_override_Gtk_Filter_get_strictness(gsize type, void *closure) {
-    GtkFilterClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Filter.get_strictness", closure); k->get_strictness = (gpointer)vf_Gtk_Filter_get_strictness; }
+int zgtk_override_Gtk_Filter_get_strictness(gsize type, void *closure) {
+    GtkFilterClass *k = zgtk_class_below(type, gtk_filter_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Filter.get_strictness", closure); k->get_strictness = (gpointer)vf_Gtk_Filter_get_strictness;
+    return 1;
 }
 GtkFilterMatch zgtk_parent_Gtk_Filter_get_strictness(GtkFilter* a0) {
     GtkFilterClass *k = zgtk_vfunc_parent(a0, "Gtk_Filter.get_strictness", 0);
@@ -1824,9 +1964,11 @@ static gboolean vf_Gtk_Filter_match(GtkFilter* a0, gpointer a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_Filter_match(gsize type, void *closure) {
-    GtkFilterClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Filter.match", closure); k->match = (gpointer)vf_Gtk_Filter_match; }
+int zgtk_override_Gtk_Filter_match(gsize type, void *closure) {
+    GtkFilterClass *k = zgtk_class_below(type, gtk_filter_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Filter.match", closure); k->match = (gpointer)vf_Gtk_Filter_match;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_Filter_match(GtkFilter* a0, gpointer a1) {
     GtkFilterClass *k = zgtk_vfunc_parent(a0, "Gtk_Filter.match", 0);
@@ -1838,9 +1980,11 @@ static void vf_Gtk_Dialog_close(GtkDialog* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Dialog.close");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Dialog_close(gsize type, void *closure) {
-    GtkDialogClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Dialog.close", closure); k->close = (gpointer)vf_Gtk_Dialog_close; }
+int zgtk_override_Gtk_Dialog_close(gsize type, void *closure) {
+    GtkDialogClass *k = zgtk_class_below(type, gtk_dialog_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Dialog.close", closure); k->close = (gpointer)vf_Gtk_Dialog_close;
+    return 1;
 }
 void zgtk_parent_Gtk_Dialog_close(GtkDialog* a0) {
     GtkDialogClass *k = zgtk_vfunc_parent(a0, "Gtk_Dialog.close", 0);
@@ -1853,9 +1997,11 @@ static void vf_Gtk_Dialog_response(GtkDialog* a0, int a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Dialog.response");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Dialog_response(gsize type, void *closure) {
-    GtkDialogClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Dialog.response", closure); k->response = (gpointer)vf_Gtk_Dialog_response; }
+int zgtk_override_Gtk_Dialog_response(gsize type, void *closure) {
+    GtkDialogClass *k = zgtk_class_below(type, gtk_dialog_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Dialog.response", closure); k->response = (gpointer)vf_Gtk_Dialog_response;
+    return 1;
 }
 void zgtk_parent_Gtk_Dialog_response(GtkDialog* a0, int a1) {
     GtkDialogClass *k = zgtk_vfunc_parent(a0, "Gtk_Dialog.response", 0);
@@ -1868,9 +2014,11 @@ static void vf_Gtk_Application_window_added(GtkApplication* a0, GtkWindow* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Application.window_added");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Application_window_added(gsize type, void *closure) {
-    GtkApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Application.window_added", closure); k->window_added = (gpointer)vf_Gtk_Application_window_added; }
+int zgtk_override_Gtk_Application_window_added(gsize type, void *closure) {
+    GtkApplicationClass *k = zgtk_class_below(type, gtk_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Application.window_added", closure); k->window_added = (gpointer)vf_Gtk_Application_window_added;
+    return 1;
 }
 void zgtk_parent_Gtk_Application_window_added(GtkApplication* a0, GtkWindow* a1) {
     GtkApplicationClass *k = zgtk_vfunc_parent(a0, "Gtk_Application.window_added", 0);
@@ -1883,9 +2031,11 @@ static void vf_Gtk_Application_window_removed(GtkApplication* a0, GtkWindow* a1)
     void *f = zgtk_vfunc_find(a0, "Gtk_Application.window_removed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Application_window_removed(gsize type, void *closure) {
-    GtkApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Application.window_removed", closure); k->window_removed = (gpointer)vf_Gtk_Application_window_removed; }
+int zgtk_override_Gtk_Application_window_removed(gsize type, void *closure) {
+    GtkApplicationClass *k = zgtk_class_below(type, gtk_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Application.window_removed", closure); k->window_removed = (gpointer)vf_Gtk_Application_window_removed;
+    return 1;
 }
 void zgtk_parent_Gtk_Application_window_removed(GtkApplication* a0, GtkWindow* a1) {
     GtkApplicationClass *k = zgtk_vfunc_parent(a0, "Gtk_Application.window_removed", 0);
@@ -1901,9 +2051,11 @@ static void vf_Gtk_LayoutManager_allocate(GtkLayoutManager* a0, GtkWidget* a1, i
     void *f = zgtk_vfunc_find(a0, "Gtk_LayoutManager.allocate");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_LayoutManager_allocate(gsize type, void *closure) {
-    GtkLayoutManagerClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_LayoutManager.allocate", closure); k->allocate = (gpointer)vf_Gtk_LayoutManager_allocate; }
+int zgtk_override_Gtk_LayoutManager_allocate(gsize type, void *closure) {
+    GtkLayoutManagerClass *k = zgtk_class_below(type, gtk_layout_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_LayoutManager.allocate", closure); k->allocate = (gpointer)vf_Gtk_LayoutManager_allocate;
+    return 1;
 }
 void zgtk_parent_Gtk_LayoutManager_allocate(GtkLayoutManager* a0, GtkWidget* a1, int a2, int a3, int a4) {
     GtkLayoutManagerClass *k = zgtk_vfunc_parent(a0, "Gtk_LayoutManager.allocate", 0);
@@ -1918,9 +2070,11 @@ static GtkLayoutChild* vf_Gtk_LayoutManager_create_layout_child(GtkLayoutManager
     if (f) zgtk_dispatch(f, &c);
     return (GtkLayoutChild*)c.ret.p;
 }
-void zgtk_override_Gtk_LayoutManager_create_layout_child(gsize type, void *closure) {
-    GtkLayoutManagerClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_LayoutManager.create_layout_child", closure); k->create_layout_child = (gpointer)vf_Gtk_LayoutManager_create_layout_child; }
+int zgtk_override_Gtk_LayoutManager_create_layout_child(gsize type, void *closure) {
+    GtkLayoutManagerClass *k = zgtk_class_below(type, gtk_layout_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_LayoutManager.create_layout_child", closure); k->create_layout_child = (gpointer)vf_Gtk_LayoutManager_create_layout_child;
+    return 1;
 }
 GtkLayoutChild* zgtk_parent_Gtk_LayoutManager_create_layout_child(GtkLayoutManager* a0, GtkWidget* a1, GtkWidget* a2) {
     GtkLayoutManagerClass *k = zgtk_vfunc_parent(a0, "Gtk_LayoutManager.create_layout_child", 0);
@@ -1934,9 +2088,11 @@ static GtkSizeRequestMode vf_Gtk_LayoutManager_get_request_mode(GtkLayoutManager
     if (f) zgtk_dispatch(f, &c);
     return (GtkSizeRequestMode)c.ret.i;
 }
-void zgtk_override_Gtk_LayoutManager_get_request_mode(gsize type, void *closure) {
-    GtkLayoutManagerClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_LayoutManager.get_request_mode", closure); k->get_request_mode = (gpointer)vf_Gtk_LayoutManager_get_request_mode; }
+int zgtk_override_Gtk_LayoutManager_get_request_mode(gsize type, void *closure) {
+    GtkLayoutManagerClass *k = zgtk_class_below(type, gtk_layout_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_LayoutManager.get_request_mode", closure); k->get_request_mode = (gpointer)vf_Gtk_LayoutManager_get_request_mode;
+    return 1;
 }
 GtkSizeRequestMode zgtk_parent_Gtk_LayoutManager_get_request_mode(GtkLayoutManager* a0, GtkWidget* a1) {
     GtkLayoutManagerClass *k = zgtk_vfunc_parent(a0, "Gtk_LayoutManager.get_request_mode", 0);
@@ -1955,9 +2111,11 @@ static void vf_Gtk_LayoutManager_measure(GtkLayoutManager* a0, GtkWidget* a1, Gt
     void *f = zgtk_vfunc_find(a0, "Gtk_LayoutManager.measure");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_LayoutManager_measure(gsize type, void *closure) {
-    GtkLayoutManagerClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_LayoutManager.measure", closure); k->measure = (gpointer)vf_Gtk_LayoutManager_measure; }
+int zgtk_override_Gtk_LayoutManager_measure(gsize type, void *closure) {
+    GtkLayoutManagerClass *k = zgtk_class_below(type, gtk_layout_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_LayoutManager.measure", closure); k->measure = (gpointer)vf_Gtk_LayoutManager_measure;
+    return 1;
 }
 void zgtk_parent_Gtk_LayoutManager_measure(GtkLayoutManager* a0, GtkWidget* a1, GtkOrientation a2, int a3, int* a4, int* a5, int* a6, int* a7) {
     GtkLayoutManagerClass *k = zgtk_vfunc_parent(a0, "Gtk_LayoutManager.measure", 0);
@@ -1969,9 +2127,11 @@ static void vf_Gtk_LayoutManager_root(GtkLayoutManager* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_LayoutManager.root");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_LayoutManager_root(gsize type, void *closure) {
-    GtkLayoutManagerClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_LayoutManager.root", closure); k->root = (gpointer)vf_Gtk_LayoutManager_root; }
+int zgtk_override_Gtk_LayoutManager_root(gsize type, void *closure) {
+    GtkLayoutManagerClass *k = zgtk_class_below(type, gtk_layout_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_LayoutManager.root", closure); k->root = (gpointer)vf_Gtk_LayoutManager_root;
+    return 1;
 }
 void zgtk_parent_Gtk_LayoutManager_root(GtkLayoutManager* a0) {
     GtkLayoutManagerClass *k = zgtk_vfunc_parent(a0, "Gtk_LayoutManager.root", 0);
@@ -1983,9 +2143,11 @@ static void vf_Gtk_LayoutManager_unroot(GtkLayoutManager* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_LayoutManager.unroot");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_LayoutManager_unroot(gsize type, void *closure) {
-    GtkLayoutManagerClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_LayoutManager.unroot", closure); k->unroot = (gpointer)vf_Gtk_LayoutManager_unroot; }
+int zgtk_override_Gtk_LayoutManager_unroot(gsize type, void *closure) {
+    GtkLayoutManagerClass *k = zgtk_class_below(type, gtk_layout_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_LayoutManager.unroot", closure); k->unroot = (gpointer)vf_Gtk_LayoutManager_unroot;
+    return 1;
 }
 void zgtk_parent_Gtk_LayoutManager_unroot(GtkLayoutManager* a0) {
     GtkLayoutManagerClass *k = zgtk_vfunc_parent(a0, "Gtk_LayoutManager.unroot", 0);
@@ -2011,9 +2173,11 @@ static GType vf_Gtk_BuilderScope_get_type_from_function(GtkBuilderScope* a0, Gtk
     if (f) zgtk_dispatch(f, &c);
     return (GType)c.ret.i;
 }
-void zgtk_override_Gtk_BuilderScope_get_type_from_function(gsize type, void *closure) {
-    GtkBuilderScopeInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_builder_scope_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_BuilderScope.get_type_from_function", closure); k->get_type_from_function = (gpointer)vf_Gtk_BuilderScope_get_type_from_function; }
+int zgtk_override_Gtk_BuilderScope_get_type_from_function(gsize type, void *closure) {
+    GtkBuilderScopeInterface *k = zgtk_iface_below(type, gtk_builder_scope_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_BuilderScope.get_type_from_function", closure); k->get_type_from_function = (gpointer)vf_Gtk_BuilderScope_get_type_from_function;
+    return 1;
 }
 GType zgtk_parent_Gtk_BuilderScope_get_type_from_function(GtkBuilderScope* a0, GtkBuilder* a1, const char* a2) {
     GtkBuilderScopeInterface *k = zgtk_vfunc_parent(a0, "Gtk_BuilderScope.get_type_from_function", gtk_builder_scope_get_type());
@@ -2028,9 +2192,11 @@ static GType vf_Gtk_BuilderScope_get_type_from_name(GtkBuilderScope* a0, GtkBuil
     if (f) zgtk_dispatch(f, &c);
     return (GType)c.ret.i;
 }
-void zgtk_override_Gtk_BuilderScope_get_type_from_name(gsize type, void *closure) {
-    GtkBuilderScopeInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_builder_scope_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_BuilderScope.get_type_from_name", closure); k->get_type_from_name = (gpointer)vf_Gtk_BuilderScope_get_type_from_name; }
+int zgtk_override_Gtk_BuilderScope_get_type_from_name(gsize type, void *closure) {
+    GtkBuilderScopeInterface *k = zgtk_iface_below(type, gtk_builder_scope_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_BuilderScope.get_type_from_name", closure); k->get_type_from_name = (gpointer)vf_Gtk_BuilderScope_get_type_from_name;
+    return 1;
 }
 GType zgtk_parent_Gtk_BuilderScope_get_type_from_name(GtkBuilderScope* a0, GtkBuilder* a1, const char* a2) {
     GtkBuilderScopeInterface *k = zgtk_vfunc_parent(a0, "Gtk_BuilderScope.get_type_from_name", gtk_builder_scope_get_type());
@@ -2042,9 +2208,11 @@ static void vf_Gtk_Button_activate(GtkButton* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Button.activate");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Button_activate(gsize type, void *closure) {
-    GtkButtonClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Button.activate", closure); k->activate = (gpointer)vf_Gtk_Button_activate; }
+int zgtk_override_Gtk_Button_activate(gsize type, void *closure) {
+    GtkButtonClass *k = zgtk_class_below(type, gtk_button_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Button.activate", closure); k->activate = (gpointer)vf_Gtk_Button_activate;
+    return 1;
 }
 void zgtk_parent_Gtk_Button_activate(GtkButton* a0) {
     GtkButtonClass *k = zgtk_vfunc_parent(a0, "Gtk_Button.activate", 0);
@@ -2056,9 +2224,11 @@ static void vf_Gtk_Button_clicked(GtkButton* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Button.clicked");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Button_clicked(gsize type, void *closure) {
-    GtkButtonClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Button.clicked", closure); k->clicked = (gpointer)vf_Gtk_Button_clicked; }
+int zgtk_override_Gtk_Button_clicked(gsize type, void *closure) {
+    GtkButtonClass *k = zgtk_class_below(type, gtk_button_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Button.clicked", closure); k->clicked = (gpointer)vf_Gtk_Button_clicked;
+    return 1;
 }
 void zgtk_parent_Gtk_Button_clicked(GtkButton* a0) {
     GtkButtonClass *k = zgtk_vfunc_parent(a0, "Gtk_Button.clicked", 0);
@@ -2073,9 +2243,11 @@ static void vf_Gtk_CellLayout_add_attribute(GtkCellLayout* a0, GtkCellRenderer* 
     void *f = zgtk_vfunc_find(a0, "Gtk_CellLayout.add_attribute");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellLayout_add_attribute(gsize type, void *closure) {
-    GtkCellLayoutIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_cell_layout_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellLayout.add_attribute", closure); k->add_attribute = (gpointer)vf_Gtk_CellLayout_add_attribute; }
+int zgtk_override_Gtk_CellLayout_add_attribute(gsize type, void *closure) {
+    GtkCellLayoutIface *k = zgtk_iface_below(type, gtk_cell_layout_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellLayout.add_attribute", closure); k->add_attribute = (gpointer)vf_Gtk_CellLayout_add_attribute;
+    return 1;
 }
 void zgtk_parent_Gtk_CellLayout_add_attribute(GtkCellLayout* a0, GtkCellRenderer* a1, const char* a2, int a3) {
     GtkCellLayoutIface *k = zgtk_vfunc_parent(a0, "Gtk_CellLayout.add_attribute", gtk_cell_layout_get_type());
@@ -2087,9 +2259,11 @@ static void vf_Gtk_CellLayout_clear(GtkCellLayout* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_CellLayout.clear");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellLayout_clear(gsize type, void *closure) {
-    GtkCellLayoutIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_cell_layout_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellLayout.clear", closure); k->clear = (gpointer)vf_Gtk_CellLayout_clear; }
+int zgtk_override_Gtk_CellLayout_clear(gsize type, void *closure) {
+    GtkCellLayoutIface *k = zgtk_iface_below(type, gtk_cell_layout_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellLayout.clear", closure); k->clear = (gpointer)vf_Gtk_CellLayout_clear;
+    return 1;
 }
 void zgtk_parent_Gtk_CellLayout_clear(GtkCellLayout* a0) {
     GtkCellLayoutIface *k = zgtk_vfunc_parent(a0, "Gtk_CellLayout.clear", gtk_cell_layout_get_type());
@@ -2102,9 +2276,11 @@ static void vf_Gtk_CellLayout_clear_attributes(GtkCellLayout* a0, GtkCellRendere
     void *f = zgtk_vfunc_find(a0, "Gtk_CellLayout.clear_attributes");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellLayout_clear_attributes(gsize type, void *closure) {
-    GtkCellLayoutIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_cell_layout_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellLayout.clear_attributes", closure); k->clear_attributes = (gpointer)vf_Gtk_CellLayout_clear_attributes; }
+int zgtk_override_Gtk_CellLayout_clear_attributes(gsize type, void *closure) {
+    GtkCellLayoutIface *k = zgtk_iface_below(type, gtk_cell_layout_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellLayout.clear_attributes", closure); k->clear_attributes = (gpointer)vf_Gtk_CellLayout_clear_attributes;
+    return 1;
 }
 void zgtk_parent_Gtk_CellLayout_clear_attributes(GtkCellLayout* a0, GtkCellRenderer* a1) {
     GtkCellLayoutIface *k = zgtk_vfunc_parent(a0, "Gtk_CellLayout.clear_attributes", gtk_cell_layout_get_type());
@@ -2117,9 +2293,11 @@ static GtkCellArea* vf_Gtk_CellLayout_get_area(GtkCellLayout* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GtkCellArea*)c.ret.p;
 }
-void zgtk_override_Gtk_CellLayout_get_area(gsize type, void *closure) {
-    GtkCellLayoutIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_cell_layout_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellLayout.get_area", closure); k->get_area = (gpointer)vf_Gtk_CellLayout_get_area; }
+int zgtk_override_Gtk_CellLayout_get_area(gsize type, void *closure) {
+    GtkCellLayoutIface *k = zgtk_iface_below(type, gtk_cell_layout_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellLayout.get_area", closure); k->get_area = (gpointer)vf_Gtk_CellLayout_get_area;
+    return 1;
 }
 GtkCellArea* zgtk_parent_Gtk_CellLayout_get_area(GtkCellLayout* a0) {
     GtkCellLayoutIface *k = zgtk_vfunc_parent(a0, "Gtk_CellLayout.get_area", gtk_cell_layout_get_type());
@@ -2132,9 +2310,11 @@ static GList* vf_Gtk_CellLayout_get_cells(GtkCellLayout* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GList*)c.ret.p;
 }
-void zgtk_override_Gtk_CellLayout_get_cells(gsize type, void *closure) {
-    GtkCellLayoutIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_cell_layout_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellLayout.get_cells", closure); k->get_cells = (gpointer)vf_Gtk_CellLayout_get_cells; }
+int zgtk_override_Gtk_CellLayout_get_cells(gsize type, void *closure) {
+    GtkCellLayoutIface *k = zgtk_iface_below(type, gtk_cell_layout_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellLayout.get_cells", closure); k->get_cells = (gpointer)vf_Gtk_CellLayout_get_cells;
+    return 1;
 }
 GList* zgtk_parent_Gtk_CellLayout_get_cells(GtkCellLayout* a0) {
     GtkCellLayoutIface *k = zgtk_vfunc_parent(a0, "Gtk_CellLayout.get_cells", gtk_cell_layout_get_type());
@@ -2148,9 +2328,11 @@ static void vf_Gtk_CellLayout_pack_end(GtkCellLayout* a0, GtkCellRenderer* a1, g
     void *f = zgtk_vfunc_find(a0, "Gtk_CellLayout.pack_end");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellLayout_pack_end(gsize type, void *closure) {
-    GtkCellLayoutIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_cell_layout_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellLayout.pack_end", closure); k->pack_end = (gpointer)vf_Gtk_CellLayout_pack_end; }
+int zgtk_override_Gtk_CellLayout_pack_end(gsize type, void *closure) {
+    GtkCellLayoutIface *k = zgtk_iface_below(type, gtk_cell_layout_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellLayout.pack_end", closure); k->pack_end = (gpointer)vf_Gtk_CellLayout_pack_end;
+    return 1;
 }
 void zgtk_parent_Gtk_CellLayout_pack_end(GtkCellLayout* a0, GtkCellRenderer* a1, gboolean a2) {
     GtkCellLayoutIface *k = zgtk_vfunc_parent(a0, "Gtk_CellLayout.pack_end", gtk_cell_layout_get_type());
@@ -2164,9 +2346,11 @@ static void vf_Gtk_CellLayout_pack_start(GtkCellLayout* a0, GtkCellRenderer* a1,
     void *f = zgtk_vfunc_find(a0, "Gtk_CellLayout.pack_start");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellLayout_pack_start(gsize type, void *closure) {
-    GtkCellLayoutIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_cell_layout_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellLayout.pack_start", closure); k->pack_start = (gpointer)vf_Gtk_CellLayout_pack_start; }
+int zgtk_override_Gtk_CellLayout_pack_start(gsize type, void *closure) {
+    GtkCellLayoutIface *k = zgtk_iface_below(type, gtk_cell_layout_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellLayout.pack_start", closure); k->pack_start = (gpointer)vf_Gtk_CellLayout_pack_start;
+    return 1;
 }
 void zgtk_parent_Gtk_CellLayout_pack_start(GtkCellLayout* a0, GtkCellRenderer* a1, gboolean a2) {
     GtkCellLayoutIface *k = zgtk_vfunc_parent(a0, "Gtk_CellLayout.pack_start", gtk_cell_layout_get_type());
@@ -2180,9 +2364,11 @@ static void vf_Gtk_CellLayout_reorder(GtkCellLayout* a0, GtkCellRenderer* a1, in
     void *f = zgtk_vfunc_find(a0, "Gtk_CellLayout.reorder");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellLayout_reorder(gsize type, void *closure) {
-    GtkCellLayoutIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_cell_layout_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellLayout.reorder", closure); k->reorder = (gpointer)vf_Gtk_CellLayout_reorder; }
+int zgtk_override_Gtk_CellLayout_reorder(gsize type, void *closure) {
+    GtkCellLayoutIface *k = zgtk_iface_below(type, gtk_cell_layout_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellLayout.reorder", closure); k->reorder = (gpointer)vf_Gtk_CellLayout_reorder;
+    return 1;
 }
 void zgtk_parent_Gtk_CellLayout_reorder(GtkCellLayout* a0, GtkCellRenderer* a1, int a2) {
     GtkCellLayoutIface *k = zgtk_vfunc_parent(a0, "Gtk_CellLayout.reorder", gtk_cell_layout_get_type());
@@ -2198,9 +2384,11 @@ static void vf_Gtk_CellLayout_set_cell_data_func(GtkCellLayout* a0, GtkCellRende
     void *f = zgtk_vfunc_find(a0, "Gtk_CellLayout.set_cell_data_func");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellLayout_set_cell_data_func(gsize type, void *closure) {
-    GtkCellLayoutIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_cell_layout_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellLayout.set_cell_data_func", closure); k->set_cell_data_func = (gpointer)vf_Gtk_CellLayout_set_cell_data_func; }
+int zgtk_override_Gtk_CellLayout_set_cell_data_func(gsize type, void *closure) {
+    GtkCellLayoutIface *k = zgtk_iface_below(type, gtk_cell_layout_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellLayout.set_cell_data_func", closure); k->set_cell_data_func = (gpointer)vf_Gtk_CellLayout_set_cell_data_func;
+    return 1;
 }
 void zgtk_parent_Gtk_CellLayout_set_cell_data_func(GtkCellLayout* a0, GtkCellRenderer* a1, GtkCellLayoutDataFunc a2, gpointer a3, GDestroyNotify a4) {
     GtkCellLayoutIface *k = zgtk_vfunc_parent(a0, "Gtk_CellLayout.set_cell_data_func", gtk_cell_layout_get_type());
@@ -2218,9 +2406,11 @@ static gboolean vf_Gtk_CellArea_activate(GtkCellArea* a0, GtkCellAreaContext* a1
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_CellArea_activate(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.activate", closure); k->activate = (gpointer)vf_Gtk_CellArea_activate; }
+int zgtk_override_Gtk_CellArea_activate(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.activate", closure); k->activate = (gpointer)vf_Gtk_CellArea_activate;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_CellArea_activate(GtkCellArea* a0, GtkCellAreaContext* a1, GtkWidget* a2, const GdkRectangle* a3, GtkCellRendererState a4, gboolean a5) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.activate", 0);
@@ -2233,9 +2423,11 @@ static void vf_Gtk_CellArea_add(GtkCellArea* a0, GtkCellRenderer* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_CellArea.add");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellArea_add(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.add", closure); k->add = (gpointer)vf_Gtk_CellArea_add; }
+int zgtk_override_Gtk_CellArea_add(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.add", closure); k->add = (gpointer)vf_Gtk_CellArea_add;
+    return 1;
 }
 void zgtk_parent_Gtk_CellArea_add(GtkCellArea* a0, GtkCellRenderer* a1) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.add", 0);
@@ -2251,9 +2443,11 @@ static void vf_Gtk_CellArea_apply_attributes(GtkCellArea* a0, GtkTreeModel* a1, 
     void *f = zgtk_vfunc_find(a0, "Gtk_CellArea.apply_attributes");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellArea_apply_attributes(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.apply_attributes", closure); k->apply_attributes = (gpointer)vf_Gtk_CellArea_apply_attributes; }
+int zgtk_override_Gtk_CellArea_apply_attributes(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.apply_attributes", closure); k->apply_attributes = (gpointer)vf_Gtk_CellArea_apply_attributes;
+    return 1;
 }
 void zgtk_parent_Gtk_CellArea_apply_attributes(GtkCellArea* a0, GtkTreeModel* a1, GtkTreeIter* a2, gboolean a3, gboolean a4) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.apply_attributes", 0);
@@ -2267,9 +2461,11 @@ static GtkCellAreaContext* vf_Gtk_CellArea_copy_context(GtkCellArea* a0, GtkCell
     if (f) zgtk_dispatch(f, &c);
     return (GtkCellAreaContext*)c.ret.p;
 }
-void zgtk_override_Gtk_CellArea_copy_context(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.copy_context", closure); k->copy_context = (gpointer)vf_Gtk_CellArea_copy_context; }
+int zgtk_override_Gtk_CellArea_copy_context(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.copy_context", closure); k->copy_context = (gpointer)vf_Gtk_CellArea_copy_context;
+    return 1;
 }
 GtkCellAreaContext* zgtk_parent_Gtk_CellArea_copy_context(GtkCellArea* a0, GtkCellAreaContext* a1) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.copy_context", 0);
@@ -2282,9 +2478,11 @@ static GtkCellAreaContext* vf_Gtk_CellArea_create_context(GtkCellArea* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GtkCellAreaContext*)c.ret.p;
 }
-void zgtk_override_Gtk_CellArea_create_context(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.create_context", closure); k->create_context = (gpointer)vf_Gtk_CellArea_create_context; }
+int zgtk_override_Gtk_CellArea_create_context(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.create_context", closure); k->create_context = (gpointer)vf_Gtk_CellArea_create_context;
+    return 1;
 }
 GtkCellAreaContext* zgtk_parent_Gtk_CellArea_create_context(GtkCellArea* a0) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.create_context", 0);
@@ -2302,9 +2500,11 @@ static int vf_Gtk_CellArea_event(GtkCellArea* a0, GtkCellAreaContext* a1, GtkWid
     if (f) zgtk_dispatch(f, &c);
     return (int)c.ret.i;
 }
-void zgtk_override_Gtk_CellArea_event(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.event", closure); k->event = (gpointer)vf_Gtk_CellArea_event; }
+int zgtk_override_Gtk_CellArea_event(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.event", closure); k->event = (gpointer)vf_Gtk_CellArea_event;
+    return 1;
 }
 int zgtk_parent_Gtk_CellArea_event(GtkCellArea* a0, GtkCellAreaContext* a1, GtkWidget* a2, GdkEvent* a3, const GdkRectangle* a4, GtkCellRendererState a5) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.event", 0);
@@ -2318,9 +2518,11 @@ static gboolean vf_Gtk_CellArea_focus(GtkCellArea* a0, GtkDirectionType a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_CellArea_focus(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.focus", closure); k->focus = (gpointer)vf_Gtk_CellArea_focus; }
+int zgtk_override_Gtk_CellArea_focus(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.focus", closure); k->focus = (gpointer)vf_Gtk_CellArea_focus;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_CellArea_focus(GtkCellArea* a0, GtkDirectionType a1) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.focus", 0);
@@ -2334,9 +2536,11 @@ static void vf_Gtk_CellArea_foreach(GtkCellArea* a0, GtkCellCallback a1, gpointe
     void *f = zgtk_vfunc_find(a0, "Gtk_CellArea.foreach");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellArea_foreach(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.foreach", closure); k->foreach = (gpointer)vf_Gtk_CellArea_foreach; }
+int zgtk_override_Gtk_CellArea_foreach(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.foreach", closure); k->foreach = (gpointer)vf_Gtk_CellArea_foreach;
+    return 1;
 }
 void zgtk_parent_Gtk_CellArea_foreach(GtkCellArea* a0, GtkCellCallback a1, gpointer a2) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.foreach", 0);
@@ -2354,9 +2558,11 @@ static void vf_Gtk_CellArea_foreach_alloc(GtkCellArea* a0, GtkCellAreaContext* a
     void *f = zgtk_vfunc_find(a0, "Gtk_CellArea.foreach_alloc");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellArea_foreach_alloc(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.foreach_alloc", closure); k->foreach_alloc = (gpointer)vf_Gtk_CellArea_foreach_alloc; }
+int zgtk_override_Gtk_CellArea_foreach_alloc(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.foreach_alloc", closure); k->foreach_alloc = (gpointer)vf_Gtk_CellArea_foreach_alloc;
+    return 1;
 }
 void zgtk_parent_Gtk_CellArea_foreach_alloc(GtkCellArea* a0, GtkCellAreaContext* a1, GtkWidget* a2, const GdkRectangle* a3, const GdkRectangle* a4, GtkCellAllocCallback a5, gpointer a6) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.foreach_alloc", 0);
@@ -2372,9 +2578,11 @@ static void vf_Gtk_CellArea_get_cell_property(GtkCellArea* a0, GtkCellRenderer* 
     void *f = zgtk_vfunc_find(a0, "Gtk_CellArea.get_cell_property");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellArea_get_cell_property(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.get_cell_property", closure); k->get_cell_property = (gpointer)vf_Gtk_CellArea_get_cell_property; }
+int zgtk_override_Gtk_CellArea_get_cell_property(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.get_cell_property", closure); k->get_cell_property = (gpointer)vf_Gtk_CellArea_get_cell_property;
+    return 1;
 }
 void zgtk_parent_Gtk_CellArea_get_cell_property(GtkCellArea* a0, GtkCellRenderer* a1, guint a2, GValue* a3, GParamSpec* a4) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.get_cell_property", 0);
@@ -2390,9 +2598,11 @@ static void vf_Gtk_CellArea_get_preferred_height(GtkCellArea* a0, GtkCellAreaCon
     void *f = zgtk_vfunc_find(a0, "Gtk_CellArea.get_preferred_height");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellArea_get_preferred_height(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.get_preferred_height", closure); k->get_preferred_height = (gpointer)vf_Gtk_CellArea_get_preferred_height; }
+int zgtk_override_Gtk_CellArea_get_preferred_height(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.get_preferred_height", closure); k->get_preferred_height = (gpointer)vf_Gtk_CellArea_get_preferred_height;
+    return 1;
 }
 void zgtk_parent_Gtk_CellArea_get_preferred_height(GtkCellArea* a0, GtkCellAreaContext* a1, GtkWidget* a2, int* a3, int* a4) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.get_preferred_height", 0);
@@ -2409,9 +2619,11 @@ static void vf_Gtk_CellArea_get_preferred_height_for_width(GtkCellArea* a0, GtkC
     void *f = zgtk_vfunc_find(a0, "Gtk_CellArea.get_preferred_height_for_width");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellArea_get_preferred_height_for_width(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.get_preferred_height_for_width", closure); k->get_preferred_height_for_width = (gpointer)vf_Gtk_CellArea_get_preferred_height_for_width; }
+int zgtk_override_Gtk_CellArea_get_preferred_height_for_width(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.get_preferred_height_for_width", closure); k->get_preferred_height_for_width = (gpointer)vf_Gtk_CellArea_get_preferred_height_for_width;
+    return 1;
 }
 void zgtk_parent_Gtk_CellArea_get_preferred_height_for_width(GtkCellArea* a0, GtkCellAreaContext* a1, GtkWidget* a2, int a3, int* a4, int* a5) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.get_preferred_height_for_width", 0);
@@ -2427,9 +2639,11 @@ static void vf_Gtk_CellArea_get_preferred_width(GtkCellArea* a0, GtkCellAreaCont
     void *f = zgtk_vfunc_find(a0, "Gtk_CellArea.get_preferred_width");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellArea_get_preferred_width(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.get_preferred_width", closure); k->get_preferred_width = (gpointer)vf_Gtk_CellArea_get_preferred_width; }
+int zgtk_override_Gtk_CellArea_get_preferred_width(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.get_preferred_width", closure); k->get_preferred_width = (gpointer)vf_Gtk_CellArea_get_preferred_width;
+    return 1;
 }
 void zgtk_parent_Gtk_CellArea_get_preferred_width(GtkCellArea* a0, GtkCellAreaContext* a1, GtkWidget* a2, int* a3, int* a4) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.get_preferred_width", 0);
@@ -2446,9 +2660,11 @@ static void vf_Gtk_CellArea_get_preferred_width_for_height(GtkCellArea* a0, GtkC
     void *f = zgtk_vfunc_find(a0, "Gtk_CellArea.get_preferred_width_for_height");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellArea_get_preferred_width_for_height(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.get_preferred_width_for_height", closure); k->get_preferred_width_for_height = (gpointer)vf_Gtk_CellArea_get_preferred_width_for_height; }
+int zgtk_override_Gtk_CellArea_get_preferred_width_for_height(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.get_preferred_width_for_height", closure); k->get_preferred_width_for_height = (gpointer)vf_Gtk_CellArea_get_preferred_width_for_height;
+    return 1;
 }
 void zgtk_parent_Gtk_CellArea_get_preferred_width_for_height(GtkCellArea* a0, GtkCellAreaContext* a1, GtkWidget* a2, int a3, int* a4, int* a5) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.get_preferred_width_for_height", 0);
@@ -2461,9 +2677,11 @@ static GtkSizeRequestMode vf_Gtk_CellArea_get_request_mode(GtkCellArea* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GtkSizeRequestMode)c.ret.i;
 }
-void zgtk_override_Gtk_CellArea_get_request_mode(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.get_request_mode", closure); k->get_request_mode = (gpointer)vf_Gtk_CellArea_get_request_mode; }
+int zgtk_override_Gtk_CellArea_get_request_mode(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.get_request_mode", closure); k->get_request_mode = (gpointer)vf_Gtk_CellArea_get_request_mode;
+    return 1;
 }
 GtkSizeRequestMode zgtk_parent_Gtk_CellArea_get_request_mode(GtkCellArea* a0) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.get_request_mode", 0);
@@ -2476,9 +2694,11 @@ static gboolean vf_Gtk_CellArea_is_activatable(GtkCellArea* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_CellArea_is_activatable(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.is_activatable", closure); k->is_activatable = (gpointer)vf_Gtk_CellArea_is_activatable; }
+int zgtk_override_Gtk_CellArea_is_activatable(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.is_activatable", closure); k->is_activatable = (gpointer)vf_Gtk_CellArea_is_activatable;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_CellArea_is_activatable(GtkCellArea* a0) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.is_activatable", 0);
@@ -2491,9 +2711,11 @@ static void vf_Gtk_CellArea_remove(GtkCellArea* a0, GtkCellRenderer* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_CellArea.remove");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellArea_remove(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.remove", closure); k->remove = (gpointer)vf_Gtk_CellArea_remove; }
+int zgtk_override_Gtk_CellArea_remove(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.remove", closure); k->remove = (gpointer)vf_Gtk_CellArea_remove;
+    return 1;
 }
 void zgtk_parent_Gtk_CellArea_remove(GtkCellArea* a0, GtkCellRenderer* a1) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.remove", 0);
@@ -2509,9 +2731,11 @@ static void vf_Gtk_CellArea_set_cell_property(GtkCellArea* a0, GtkCellRenderer* 
     void *f = zgtk_vfunc_find(a0, "Gtk_CellArea.set_cell_property");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellArea_set_cell_property(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.set_cell_property", closure); k->set_cell_property = (gpointer)vf_Gtk_CellArea_set_cell_property; }
+int zgtk_override_Gtk_CellArea_set_cell_property(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.set_cell_property", closure); k->set_cell_property = (gpointer)vf_Gtk_CellArea_set_cell_property;
+    return 1;
 }
 void zgtk_parent_Gtk_CellArea_set_cell_property(GtkCellArea* a0, GtkCellRenderer* a1, guint a2, const GValue* a3, GParamSpec* a4) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.set_cell_property", 0);
@@ -2530,9 +2754,11 @@ static void vf_Gtk_CellArea_snapshot(GtkCellArea* a0, GtkCellAreaContext* a1, Gt
     void *f = zgtk_vfunc_find(a0, "Gtk_CellArea.snapshot");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellArea_snapshot(gsize type, void *closure) {
-    GtkCellAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellArea.snapshot", closure); k->snapshot = (gpointer)vf_Gtk_CellArea_snapshot; }
+int zgtk_override_Gtk_CellArea_snapshot(gsize type, void *closure) {
+    GtkCellAreaClass *k = zgtk_class_below(type, gtk_cell_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellArea.snapshot", closure); k->snapshot = (gpointer)vf_Gtk_CellArea_snapshot;
+    return 1;
 }
 void zgtk_parent_Gtk_CellArea_snapshot(GtkCellArea* a0, GtkCellAreaContext* a1, GtkWidget* a2, GtkSnapshot* a3, const GdkRectangle* a4, const GdkRectangle* a5, GtkCellRendererState a6, gboolean a7) {
     GtkCellAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_CellArea.snapshot", 0);
@@ -2546,9 +2772,11 @@ static void vf_Gtk_CellAreaContext_allocate(GtkCellAreaContext* a0, int a1, int 
     void *f = zgtk_vfunc_find(a0, "Gtk_CellAreaContext.allocate");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellAreaContext_allocate(gsize type, void *closure) {
-    GtkCellAreaContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellAreaContext.allocate", closure); k->allocate = (gpointer)vf_Gtk_CellAreaContext_allocate; }
+int zgtk_override_Gtk_CellAreaContext_allocate(gsize type, void *closure) {
+    GtkCellAreaContextClass *k = zgtk_class_below(type, gtk_cell_area_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellAreaContext.allocate", closure); k->allocate = (gpointer)vf_Gtk_CellAreaContext_allocate;
+    return 1;
 }
 void zgtk_parent_Gtk_CellAreaContext_allocate(GtkCellAreaContext* a0, int a1, int a2) {
     GtkCellAreaContextClass *k = zgtk_vfunc_parent(a0, "Gtk_CellAreaContext.allocate", 0);
@@ -2563,9 +2791,11 @@ static void vf_Gtk_CellAreaContext_get_preferred_height_for_width(GtkCellAreaCon
     void *f = zgtk_vfunc_find(a0, "Gtk_CellAreaContext.get_preferred_height_for_width");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellAreaContext_get_preferred_height_for_width(gsize type, void *closure) {
-    GtkCellAreaContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellAreaContext.get_preferred_height_for_width", closure); k->get_preferred_height_for_width = (gpointer)vf_Gtk_CellAreaContext_get_preferred_height_for_width; }
+int zgtk_override_Gtk_CellAreaContext_get_preferred_height_for_width(gsize type, void *closure) {
+    GtkCellAreaContextClass *k = zgtk_class_below(type, gtk_cell_area_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellAreaContext.get_preferred_height_for_width", closure); k->get_preferred_height_for_width = (gpointer)vf_Gtk_CellAreaContext_get_preferred_height_for_width;
+    return 1;
 }
 void zgtk_parent_Gtk_CellAreaContext_get_preferred_height_for_width(GtkCellAreaContext* a0, int a1, int* a2, int* a3) {
     GtkCellAreaContextClass *k = zgtk_vfunc_parent(a0, "Gtk_CellAreaContext.get_preferred_height_for_width", 0);
@@ -2580,9 +2810,11 @@ static void vf_Gtk_CellAreaContext_get_preferred_width_for_height(GtkCellAreaCon
     void *f = zgtk_vfunc_find(a0, "Gtk_CellAreaContext.get_preferred_width_for_height");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellAreaContext_get_preferred_width_for_height(gsize type, void *closure) {
-    GtkCellAreaContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellAreaContext.get_preferred_width_for_height", closure); k->get_preferred_width_for_height = (gpointer)vf_Gtk_CellAreaContext_get_preferred_width_for_height; }
+int zgtk_override_Gtk_CellAreaContext_get_preferred_width_for_height(gsize type, void *closure) {
+    GtkCellAreaContextClass *k = zgtk_class_below(type, gtk_cell_area_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellAreaContext.get_preferred_width_for_height", closure); k->get_preferred_width_for_height = (gpointer)vf_Gtk_CellAreaContext_get_preferred_width_for_height;
+    return 1;
 }
 void zgtk_parent_Gtk_CellAreaContext_get_preferred_width_for_height(GtkCellAreaContext* a0, int a1, int* a2, int* a3) {
     GtkCellAreaContextClass *k = zgtk_vfunc_parent(a0, "Gtk_CellAreaContext.get_preferred_width_for_height", 0);
@@ -2594,9 +2826,11 @@ static void vf_Gtk_CellAreaContext_reset(GtkCellAreaContext* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_CellAreaContext.reset");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellAreaContext_reset(gsize type, void *closure) {
-    GtkCellAreaContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellAreaContext.reset", closure); k->reset = (gpointer)vf_Gtk_CellAreaContext_reset; }
+int zgtk_override_Gtk_CellAreaContext_reset(gsize type, void *closure) {
+    GtkCellAreaContextClass *k = zgtk_class_below(type, gtk_cell_area_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellAreaContext.reset", closure); k->reset = (gpointer)vf_Gtk_CellAreaContext_reset;
+    return 1;
 }
 void zgtk_parent_Gtk_CellAreaContext_reset(GtkCellAreaContext* a0) {
     GtkCellAreaContextClass *k = zgtk_vfunc_parent(a0, "Gtk_CellAreaContext.reset", 0);
@@ -2608,9 +2842,11 @@ static void vf_Gtk_CellEditable_editing_done(GtkCellEditable* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_CellEditable.editing_done");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellEditable_editing_done(gsize type, void *closure) {
-    GtkCellEditableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_cell_editable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellEditable.editing_done", closure); k->editing_done = (gpointer)vf_Gtk_CellEditable_editing_done; }
+int zgtk_override_Gtk_CellEditable_editing_done(gsize type, void *closure) {
+    GtkCellEditableIface *k = zgtk_iface_below(type, gtk_cell_editable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellEditable.editing_done", closure); k->editing_done = (gpointer)vf_Gtk_CellEditable_editing_done;
+    return 1;
 }
 void zgtk_parent_Gtk_CellEditable_editing_done(GtkCellEditable* a0) {
     GtkCellEditableIface *k = zgtk_vfunc_parent(a0, "Gtk_CellEditable.editing_done", gtk_cell_editable_get_type());
@@ -2622,9 +2858,11 @@ static void vf_Gtk_CellEditable_remove_widget(GtkCellEditable* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_CellEditable.remove_widget");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellEditable_remove_widget(gsize type, void *closure) {
-    GtkCellEditableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_cell_editable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellEditable.remove_widget", closure); k->remove_widget = (gpointer)vf_Gtk_CellEditable_remove_widget; }
+int zgtk_override_Gtk_CellEditable_remove_widget(gsize type, void *closure) {
+    GtkCellEditableIface *k = zgtk_iface_below(type, gtk_cell_editable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellEditable.remove_widget", closure); k->remove_widget = (gpointer)vf_Gtk_CellEditable_remove_widget;
+    return 1;
 }
 void zgtk_parent_Gtk_CellEditable_remove_widget(GtkCellEditable* a0) {
     GtkCellEditableIface *k = zgtk_vfunc_parent(a0, "Gtk_CellEditable.remove_widget", gtk_cell_editable_get_type());
@@ -2637,9 +2875,11 @@ static void vf_Gtk_CellEditable_start_editing(GtkCellEditable* a0, GdkEvent* a1)
     void *f = zgtk_vfunc_find(a0, "Gtk_CellEditable.start_editing");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellEditable_start_editing(gsize type, void *closure) {
-    GtkCellEditableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_cell_editable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellEditable.start_editing", closure); k->start_editing = (gpointer)vf_Gtk_CellEditable_start_editing; }
+int zgtk_override_Gtk_CellEditable_start_editing(gsize type, void *closure) {
+    GtkCellEditableIface *k = zgtk_iface_below(type, gtk_cell_editable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellEditable.start_editing", closure); k->start_editing = (gpointer)vf_Gtk_CellEditable_start_editing;
+    return 1;
 }
 void zgtk_parent_Gtk_CellEditable_start_editing(GtkCellEditable* a0, GdkEvent* a1) {
     GtkCellEditableIface *k = zgtk_vfunc_parent(a0, "Gtk_CellEditable.start_editing", gtk_cell_editable_get_type());
@@ -2658,9 +2898,11 @@ static gboolean vf_Gtk_CellRenderer_activate(GtkCellRenderer* a0, GdkEvent* a1, 
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_CellRenderer_activate(gsize type, void *closure) {
-    GtkCellRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellRenderer.activate", closure); k->activate = (gpointer)vf_Gtk_CellRenderer_activate; }
+int zgtk_override_Gtk_CellRenderer_activate(gsize type, void *closure) {
+    GtkCellRendererClass *k = zgtk_class_below(type, gtk_cell_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellRenderer.activate", closure); k->activate = (gpointer)vf_Gtk_CellRenderer_activate;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_CellRenderer_activate(GtkCellRenderer* a0, GdkEvent* a1, GtkWidget* a2, const char* a3, const GdkRectangle* a4, const GdkRectangle* a5, GtkCellRendererState a6) {
     GtkCellRendererClass *k = zgtk_vfunc_parent(a0, "Gtk_CellRenderer.activate", 0);
@@ -2672,9 +2914,11 @@ static void vf_Gtk_CellRenderer_editing_canceled(GtkCellRenderer* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_CellRenderer.editing_canceled");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellRenderer_editing_canceled(gsize type, void *closure) {
-    GtkCellRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellRenderer.editing_canceled", closure); k->editing_canceled = (gpointer)vf_Gtk_CellRenderer_editing_canceled; }
+int zgtk_override_Gtk_CellRenderer_editing_canceled(gsize type, void *closure) {
+    GtkCellRendererClass *k = zgtk_class_below(type, gtk_cell_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellRenderer.editing_canceled", closure); k->editing_canceled = (gpointer)vf_Gtk_CellRenderer_editing_canceled;
+    return 1;
 }
 void zgtk_parent_Gtk_CellRenderer_editing_canceled(GtkCellRenderer* a0) {
     GtkCellRendererClass *k = zgtk_vfunc_parent(a0, "Gtk_CellRenderer.editing_canceled", 0);
@@ -2688,9 +2932,11 @@ static void vf_Gtk_CellRenderer_editing_started(GtkCellRenderer* a0, GtkCellEdit
     void *f = zgtk_vfunc_find(a0, "Gtk_CellRenderer.editing_started");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellRenderer_editing_started(gsize type, void *closure) {
-    GtkCellRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellRenderer.editing_started", closure); k->editing_started = (gpointer)vf_Gtk_CellRenderer_editing_started; }
+int zgtk_override_Gtk_CellRenderer_editing_started(gsize type, void *closure) {
+    GtkCellRendererClass *k = zgtk_class_below(type, gtk_cell_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellRenderer.editing_started", closure); k->editing_started = (gpointer)vf_Gtk_CellRenderer_editing_started;
+    return 1;
 }
 void zgtk_parent_Gtk_CellRenderer_editing_started(GtkCellRenderer* a0, GtkCellEditable* a1, const char* a2) {
     GtkCellRendererClass *k = zgtk_vfunc_parent(a0, "Gtk_CellRenderer.editing_started", 0);
@@ -2706,9 +2952,11 @@ static void vf_Gtk_CellRenderer_get_aligned_area(GtkCellRenderer* a0, GtkWidget*
     void *f = zgtk_vfunc_find(a0, "Gtk_CellRenderer.get_aligned_area");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellRenderer_get_aligned_area(gsize type, void *closure) {
-    GtkCellRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellRenderer.get_aligned_area", closure); k->get_aligned_area = (gpointer)vf_Gtk_CellRenderer_get_aligned_area; }
+int zgtk_override_Gtk_CellRenderer_get_aligned_area(gsize type, void *closure) {
+    GtkCellRendererClass *k = zgtk_class_below(type, gtk_cell_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellRenderer.get_aligned_area", closure); k->get_aligned_area = (gpointer)vf_Gtk_CellRenderer_get_aligned_area;
+    return 1;
 }
 void zgtk_parent_Gtk_CellRenderer_get_aligned_area(GtkCellRenderer* a0, GtkWidget* a1, GtkCellRendererState a2, const GdkRectangle* a3, GdkRectangle* a4) {
     GtkCellRendererClass *k = zgtk_vfunc_parent(a0, "Gtk_CellRenderer.get_aligned_area", 0);
@@ -2723,9 +2971,11 @@ static void vf_Gtk_CellRenderer_get_preferred_height(GtkCellRenderer* a0, GtkWid
     void *f = zgtk_vfunc_find(a0, "Gtk_CellRenderer.get_preferred_height");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellRenderer_get_preferred_height(gsize type, void *closure) {
-    GtkCellRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellRenderer.get_preferred_height", closure); k->get_preferred_height = (gpointer)vf_Gtk_CellRenderer_get_preferred_height; }
+int zgtk_override_Gtk_CellRenderer_get_preferred_height(gsize type, void *closure) {
+    GtkCellRendererClass *k = zgtk_class_below(type, gtk_cell_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellRenderer.get_preferred_height", closure); k->get_preferred_height = (gpointer)vf_Gtk_CellRenderer_get_preferred_height;
+    return 1;
 }
 void zgtk_parent_Gtk_CellRenderer_get_preferred_height(GtkCellRenderer* a0, GtkWidget* a1, int* a2, int* a3) {
     GtkCellRendererClass *k = zgtk_vfunc_parent(a0, "Gtk_CellRenderer.get_preferred_height", 0);
@@ -2741,9 +2991,11 @@ static void vf_Gtk_CellRenderer_get_preferred_height_for_width(GtkCellRenderer* 
     void *f = zgtk_vfunc_find(a0, "Gtk_CellRenderer.get_preferred_height_for_width");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellRenderer_get_preferred_height_for_width(gsize type, void *closure) {
-    GtkCellRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellRenderer.get_preferred_height_for_width", closure); k->get_preferred_height_for_width = (gpointer)vf_Gtk_CellRenderer_get_preferred_height_for_width; }
+int zgtk_override_Gtk_CellRenderer_get_preferred_height_for_width(gsize type, void *closure) {
+    GtkCellRendererClass *k = zgtk_class_below(type, gtk_cell_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellRenderer.get_preferred_height_for_width", closure); k->get_preferred_height_for_width = (gpointer)vf_Gtk_CellRenderer_get_preferred_height_for_width;
+    return 1;
 }
 void zgtk_parent_Gtk_CellRenderer_get_preferred_height_for_width(GtkCellRenderer* a0, GtkWidget* a1, int a2, int* a3, int* a4) {
     GtkCellRendererClass *k = zgtk_vfunc_parent(a0, "Gtk_CellRenderer.get_preferred_height_for_width", 0);
@@ -2758,9 +3010,11 @@ static void vf_Gtk_CellRenderer_get_preferred_width(GtkCellRenderer* a0, GtkWidg
     void *f = zgtk_vfunc_find(a0, "Gtk_CellRenderer.get_preferred_width");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellRenderer_get_preferred_width(gsize type, void *closure) {
-    GtkCellRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellRenderer.get_preferred_width", closure); k->get_preferred_width = (gpointer)vf_Gtk_CellRenderer_get_preferred_width; }
+int zgtk_override_Gtk_CellRenderer_get_preferred_width(gsize type, void *closure) {
+    GtkCellRendererClass *k = zgtk_class_below(type, gtk_cell_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellRenderer.get_preferred_width", closure); k->get_preferred_width = (gpointer)vf_Gtk_CellRenderer_get_preferred_width;
+    return 1;
 }
 void zgtk_parent_Gtk_CellRenderer_get_preferred_width(GtkCellRenderer* a0, GtkWidget* a1, int* a2, int* a3) {
     GtkCellRendererClass *k = zgtk_vfunc_parent(a0, "Gtk_CellRenderer.get_preferred_width", 0);
@@ -2776,9 +3030,11 @@ static void vf_Gtk_CellRenderer_get_preferred_width_for_height(GtkCellRenderer* 
     void *f = zgtk_vfunc_find(a0, "Gtk_CellRenderer.get_preferred_width_for_height");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellRenderer_get_preferred_width_for_height(gsize type, void *closure) {
-    GtkCellRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellRenderer.get_preferred_width_for_height", closure); k->get_preferred_width_for_height = (gpointer)vf_Gtk_CellRenderer_get_preferred_width_for_height; }
+int zgtk_override_Gtk_CellRenderer_get_preferred_width_for_height(gsize type, void *closure) {
+    GtkCellRendererClass *k = zgtk_class_below(type, gtk_cell_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellRenderer.get_preferred_width_for_height", closure); k->get_preferred_width_for_height = (gpointer)vf_Gtk_CellRenderer_get_preferred_width_for_height;
+    return 1;
 }
 void zgtk_parent_Gtk_CellRenderer_get_preferred_width_for_height(GtkCellRenderer* a0, GtkWidget* a1, int a2, int* a3, int* a4) {
     GtkCellRendererClass *k = zgtk_vfunc_parent(a0, "Gtk_CellRenderer.get_preferred_width_for_height", 0);
@@ -2791,9 +3047,11 @@ static GtkSizeRequestMode vf_Gtk_CellRenderer_get_request_mode(GtkCellRenderer* 
     if (f) zgtk_dispatch(f, &c);
     return (GtkSizeRequestMode)c.ret.i;
 }
-void zgtk_override_Gtk_CellRenderer_get_request_mode(gsize type, void *closure) {
-    GtkCellRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellRenderer.get_request_mode", closure); k->get_request_mode = (gpointer)vf_Gtk_CellRenderer_get_request_mode; }
+int zgtk_override_Gtk_CellRenderer_get_request_mode(gsize type, void *closure) {
+    GtkCellRendererClass *k = zgtk_class_below(type, gtk_cell_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellRenderer.get_request_mode", closure); k->get_request_mode = (gpointer)vf_Gtk_CellRenderer_get_request_mode;
+    return 1;
 }
 GtkSizeRequestMode zgtk_parent_Gtk_CellRenderer_get_request_mode(GtkCellRenderer* a0) {
     GtkCellRendererClass *k = zgtk_vfunc_parent(a0, "Gtk_CellRenderer.get_request_mode", 0);
@@ -2810,9 +3068,11 @@ static void vf_Gtk_CellRenderer_snapshot(GtkCellRenderer* a0, GtkSnapshot* a1, G
     void *f = zgtk_vfunc_find(a0, "Gtk_CellRenderer.snapshot");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellRenderer_snapshot(gsize type, void *closure) {
-    GtkCellRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellRenderer.snapshot", closure); k->snapshot = (gpointer)vf_Gtk_CellRenderer_snapshot; }
+int zgtk_override_Gtk_CellRenderer_snapshot(gsize type, void *closure) {
+    GtkCellRendererClass *k = zgtk_class_below(type, gtk_cell_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellRenderer.snapshot", closure); k->snapshot = (gpointer)vf_Gtk_CellRenderer_snapshot;
+    return 1;
 }
 void zgtk_parent_Gtk_CellRenderer_snapshot(GtkCellRenderer* a0, GtkSnapshot* a1, GtkWidget* a2, const GdkRectangle* a3, const GdkRectangle* a4, GtkCellRendererState a5) {
     GtkCellRendererClass *k = zgtk_vfunc_parent(a0, "Gtk_CellRenderer.snapshot", 0);
@@ -2831,9 +3091,11 @@ static GtkCellEditable* vf_Gtk_CellRenderer_start_editing(GtkCellRenderer* a0, G
     if (f) zgtk_dispatch(f, &c);
     return (GtkCellEditable*)c.ret.p;
 }
-void zgtk_override_Gtk_CellRenderer_start_editing(gsize type, void *closure) {
-    GtkCellRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellRenderer.start_editing", closure); k->start_editing = (gpointer)vf_Gtk_CellRenderer_start_editing; }
+int zgtk_override_Gtk_CellRenderer_start_editing(gsize type, void *closure) {
+    GtkCellRendererClass *k = zgtk_class_below(type, gtk_cell_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellRenderer.start_editing", closure); k->start_editing = (gpointer)vf_Gtk_CellRenderer_start_editing;
+    return 1;
 }
 GtkCellEditable* zgtk_parent_Gtk_CellRenderer_start_editing(GtkCellRenderer* a0, GdkEvent* a1, GtkWidget* a2, const char* a3, const GdkRectangle* a4, const GdkRectangle* a5, GtkCellRendererState a6) {
     GtkCellRendererClass *k = zgtk_vfunc_parent(a0, "Gtk_CellRenderer.start_editing", 0);
@@ -2847,9 +3109,11 @@ static void vf_Gtk_CellRendererText_edited(GtkCellRendererText* a0, const char* 
     void *f = zgtk_vfunc_find(a0, "Gtk_CellRendererText.edited");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CellRendererText_edited(gsize type, void *closure) {
-    GtkCellRendererTextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CellRendererText.edited", closure); k->edited = (gpointer)vf_Gtk_CellRendererText_edited; }
+int zgtk_override_Gtk_CellRendererText_edited(gsize type, void *closure) {
+    GtkCellRendererTextClass *k = zgtk_class_below(type, gtk_cell_renderer_text_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CellRendererText.edited", closure); k->edited = (gpointer)vf_Gtk_CellRendererText_edited;
+    return 1;
 }
 void zgtk_parent_Gtk_CellRendererText_edited(GtkCellRendererText* a0, const char* a1, const char* a2) {
     GtkCellRendererTextClass *k = zgtk_vfunc_parent(a0, "Gtk_CellRendererText.edited", 0);
@@ -2861,9 +3125,11 @@ static void vf_Gtk_CheckButton_activate(GtkCheckButton* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_CheckButton.activate");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CheckButton_activate(gsize type, void *closure) {
-    GtkCheckButtonClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CheckButton.activate", closure); k->activate = (gpointer)vf_Gtk_CheckButton_activate; }
+int zgtk_override_Gtk_CheckButton_activate(gsize type, void *closure) {
+    GtkCheckButtonClass *k = zgtk_class_below(type, gtk_check_button_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CheckButton.activate", closure); k->activate = (gpointer)vf_Gtk_CheckButton_activate;
+    return 1;
 }
 void zgtk_parent_Gtk_CheckButton_activate(GtkCheckButton* a0) {
     GtkCheckButtonClass *k = zgtk_vfunc_parent(a0, "Gtk_CheckButton.activate", 0);
@@ -2875,9 +3141,11 @@ static void vf_Gtk_CheckButton_toggled(GtkCheckButton* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_CheckButton.toggled");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_CheckButton_toggled(gsize type, void *closure) {
-    GtkCheckButtonClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_CheckButton.toggled", closure); k->toggled = (gpointer)vf_Gtk_CheckButton_toggled; }
+int zgtk_override_Gtk_CheckButton_toggled(gsize type, void *closure) {
+    GtkCheckButtonClass *k = zgtk_class_below(type, gtk_check_button_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_CheckButton.toggled", closure); k->toggled = (gpointer)vf_Gtk_CheckButton_toggled;
+    return 1;
 }
 void zgtk_parent_Gtk_CheckButton_toggled(GtkCheckButton* a0) {
     GtkCheckButtonClass *k = zgtk_vfunc_parent(a0, "Gtk_CheckButton.toggled", 0);
@@ -2893,9 +3161,11 @@ static void vf_Gtk_ColorChooser_add_palette(GtkColorChooser* a0, GtkOrientation 
     void *f = zgtk_vfunc_find(a0, "Gtk_ColorChooser.add_palette");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_ColorChooser_add_palette(gsize type, void *closure) {
-    GtkColorChooserInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_color_chooser_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_ColorChooser.add_palette", closure); k->add_palette = (gpointer)vf_Gtk_ColorChooser_add_palette; }
+int zgtk_override_Gtk_ColorChooser_add_palette(gsize type, void *closure) {
+    GtkColorChooserInterface *k = zgtk_iface_below(type, gtk_color_chooser_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_ColorChooser.add_palette", closure); k->add_palette = (gpointer)vf_Gtk_ColorChooser_add_palette;
+    return 1;
 }
 void zgtk_parent_Gtk_ColorChooser_add_palette(GtkColorChooser* a0, GtkOrientation a1, int a2, int a3, GdkRGBA* a4) {
     GtkColorChooserInterface *k = zgtk_vfunc_parent(a0, "Gtk_ColorChooser.add_palette", gtk_color_chooser_get_type());
@@ -2908,9 +3178,11 @@ static void vf_Gtk_ColorChooser_color_activated(GtkColorChooser* a0, const GdkRG
     void *f = zgtk_vfunc_find(a0, "Gtk_ColorChooser.color_activated");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_ColorChooser_color_activated(gsize type, void *closure) {
-    GtkColorChooserInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_color_chooser_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_ColorChooser.color_activated", closure); k->color_activated = (gpointer)vf_Gtk_ColorChooser_color_activated; }
+int zgtk_override_Gtk_ColorChooser_color_activated(gsize type, void *closure) {
+    GtkColorChooserInterface *k = zgtk_iface_below(type, gtk_color_chooser_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_ColorChooser.color_activated", closure); k->color_activated = (gpointer)vf_Gtk_ColorChooser_color_activated;
+    return 1;
 }
 void zgtk_parent_Gtk_ColorChooser_color_activated(GtkColorChooser* a0, const GdkRGBA* a1) {
     GtkColorChooserInterface *k = zgtk_vfunc_parent(a0, "Gtk_ColorChooser.color_activated", gtk_color_chooser_get_type());
@@ -2923,9 +3195,11 @@ static void vf_Gtk_ColorChooser_get_rgba(GtkColorChooser* a0, GdkRGBA* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_ColorChooser.get_rgba");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_ColorChooser_get_rgba(gsize type, void *closure) {
-    GtkColorChooserInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_color_chooser_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_ColorChooser.get_rgba", closure); k->get_rgba = (gpointer)vf_Gtk_ColorChooser_get_rgba; }
+int zgtk_override_Gtk_ColorChooser_get_rgba(gsize type, void *closure) {
+    GtkColorChooserInterface *k = zgtk_iface_below(type, gtk_color_chooser_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_ColorChooser.get_rgba", closure); k->get_rgba = (gpointer)vf_Gtk_ColorChooser_get_rgba;
+    return 1;
 }
 void zgtk_parent_Gtk_ColorChooser_get_rgba(GtkColorChooser* a0, GdkRGBA* a1) {
     GtkColorChooserInterface *k = zgtk_vfunc_parent(a0, "Gtk_ColorChooser.get_rgba", gtk_color_chooser_get_type());
@@ -2938,9 +3212,11 @@ static void vf_Gtk_ColorChooser_set_rgba(GtkColorChooser* a0, const GdkRGBA* a1)
     void *f = zgtk_vfunc_find(a0, "Gtk_ColorChooser.set_rgba");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_ColorChooser_set_rgba(gsize type, void *closure) {
-    GtkColorChooserInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_color_chooser_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_ColorChooser.set_rgba", closure); k->set_rgba = (gpointer)vf_Gtk_ColorChooser_set_rgba; }
+int zgtk_override_Gtk_ColorChooser_set_rgba(gsize type, void *closure) {
+    GtkColorChooserInterface *k = zgtk_iface_below(type, gtk_color_chooser_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_ColorChooser.set_rgba", closure); k->set_rgba = (gpointer)vf_Gtk_ColorChooser_set_rgba;
+    return 1;
 }
 void zgtk_parent_Gtk_ColorChooser_set_rgba(GtkColorChooser* a0, const GdkRGBA* a1) {
     GtkColorChooserInterface *k = zgtk_vfunc_parent(a0, "Gtk_ColorChooser.set_rgba", gtk_color_chooser_get_type());
@@ -2954,9 +3230,11 @@ static gboolean vf_Gtk_Scrollable_get_border(GtkScrollable* a0, GtkBorder* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_Scrollable_get_border(gsize type, void *closure) {
-    GtkScrollableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_scrollable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Scrollable.get_border", closure); k->get_border = (gpointer)vf_Gtk_Scrollable_get_border; }
+int zgtk_override_Gtk_Scrollable_get_border(gsize type, void *closure) {
+    GtkScrollableInterface *k = zgtk_iface_below(type, gtk_scrollable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Scrollable.get_border", closure); k->get_border = (gpointer)vf_Gtk_Scrollable_get_border;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_Scrollable_get_border(GtkScrollable* a0, GtkBorder* a1) {
     GtkScrollableInterface *k = zgtk_vfunc_parent(a0, "Gtk_Scrollable.get_border", gtk_scrollable_get_type());
@@ -2971,9 +3249,11 @@ static GtkOrdering vf_Gtk_Sorter_compare(GtkSorter* a0, gpointer a1, gpointer a2
     if (f) zgtk_dispatch(f, &c);
     return (GtkOrdering)c.ret.i;
 }
-void zgtk_override_Gtk_Sorter_compare(gsize type, void *closure) {
-    GtkSorterClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Sorter.compare", closure); k->compare = (gpointer)vf_Gtk_Sorter_compare; }
+int zgtk_override_Gtk_Sorter_compare(gsize type, void *closure) {
+    GtkSorterClass *k = zgtk_class_below(type, gtk_sorter_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Sorter.compare", closure); k->compare = (gpointer)vf_Gtk_Sorter_compare;
+    return 1;
 }
 GtkOrdering zgtk_parent_Gtk_Sorter_compare(GtkSorter* a0, gpointer a1, gpointer a2) {
     GtkSorterClass *k = zgtk_vfunc_parent(a0, "Gtk_Sorter.compare", 0);
@@ -2986,9 +3266,11 @@ static GtkSorterOrder vf_Gtk_Sorter_get_order(GtkSorter* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GtkSorterOrder)c.ret.i;
 }
-void zgtk_override_Gtk_Sorter_get_order(gsize type, void *closure) {
-    GtkSorterClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Sorter.get_order", closure); k->get_order = (gpointer)vf_Gtk_Sorter_get_order; }
+int zgtk_override_Gtk_Sorter_get_order(gsize type, void *closure) {
+    GtkSorterClass *k = zgtk_class_below(type, gtk_sorter_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Sorter.get_order", closure); k->get_order = (gpointer)vf_Gtk_Sorter_get_order;
+    return 1;
 }
 GtkSorterOrder zgtk_parent_Gtk_Sorter_get_order(GtkSorter* a0) {
     GtkSorterClass *k = zgtk_vfunc_parent(a0, "Gtk_Sorter.get_order", 0);
@@ -3000,9 +3282,11 @@ static void vf_Gtk_ComboBox_activate(GtkComboBox* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_ComboBox.activate");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_ComboBox_activate(gsize type, void *closure) {
-    GtkComboBoxClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_ComboBox.activate", closure); k->activate = (gpointer)vf_Gtk_ComboBox_activate; }
+int zgtk_override_Gtk_ComboBox_activate(gsize type, void *closure) {
+    GtkComboBoxClass *k = zgtk_class_below(type, gtk_combo_box_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_ComboBox.activate", closure); k->activate = (gpointer)vf_Gtk_ComboBox_activate;
+    return 1;
 }
 void zgtk_parent_Gtk_ComboBox_activate(GtkComboBox* a0) {
     GtkComboBoxClass *k = zgtk_vfunc_parent(a0, "Gtk_ComboBox.activate", 0);
@@ -3014,9 +3298,11 @@ static void vf_Gtk_ComboBox_changed(GtkComboBox* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_ComboBox.changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_ComboBox_changed(gsize type, void *closure) {
-    GtkComboBoxClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_ComboBox.changed", closure); k->changed = (gpointer)vf_Gtk_ComboBox_changed; }
+int zgtk_override_Gtk_ComboBox_changed(gsize type, void *closure) {
+    GtkComboBoxClass *k = zgtk_class_below(type, gtk_combo_box_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_ComboBox.changed", closure); k->changed = (gpointer)vf_Gtk_ComboBox_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_ComboBox_changed(GtkComboBox* a0) {
     GtkComboBoxClass *k = zgtk_vfunc_parent(a0, "Gtk_ComboBox.changed", 0);
@@ -3030,9 +3316,11 @@ static char* vf_Gtk_ComboBox_format_entry_text(GtkComboBox* a0, const char* a1) 
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gtk_ComboBox_format_entry_text(gsize type, void *closure) {
-    GtkComboBoxClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_ComboBox.format_entry_text", closure); k->format_entry_text = (gpointer)vf_Gtk_ComboBox_format_entry_text; }
+int zgtk_override_Gtk_ComboBox_format_entry_text(gsize type, void *closure) {
+    GtkComboBoxClass *k = zgtk_class_below(type, gtk_combo_box_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_ComboBox.format_entry_text", closure); k->format_entry_text = (gpointer)vf_Gtk_ComboBox_format_entry_text;
+    return 1;
 }
 char* zgtk_parent_Gtk_ComboBox_format_entry_text(GtkComboBox* a0, const char* a1) {
     GtkComboBoxClass *k = zgtk_vfunc_parent(a0, "Gtk_ComboBox.format_entry_text", 0);
@@ -3057,9 +3345,11 @@ static void vf_Gtk_DrawingArea_resize(GtkDrawingArea* a0, int a1, int a2) {
     void *f = zgtk_vfunc_find(a0, "Gtk_DrawingArea.resize");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_DrawingArea_resize(gsize type, void *closure) {
-    GtkDrawingAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_DrawingArea.resize", closure); k->resize = (gpointer)vf_Gtk_DrawingArea_resize; }
+int zgtk_override_Gtk_DrawingArea_resize(gsize type, void *closure) {
+    GtkDrawingAreaClass *k = zgtk_class_below(type, gtk_drawing_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_DrawingArea.resize", closure); k->resize = (gpointer)vf_Gtk_DrawingArea_resize;
+    return 1;
 }
 void zgtk_parent_Gtk_DrawingArea_resize(GtkDrawingArea* a0, int a1, int a2) {
     GtkDrawingAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_DrawingArea.resize", 0);
@@ -3071,9 +3361,11 @@ static void vf_Gtk_Editable_changed(GtkEditable* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Editable.changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Editable_changed(gsize type, void *closure) {
-    GtkEditableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_editable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Editable.changed", closure); k->changed = (gpointer)vf_Gtk_Editable_changed; }
+int zgtk_override_Gtk_Editable_changed(gsize type, void *closure) {
+    GtkEditableInterface *k = zgtk_iface_below(type, gtk_editable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Editable.changed", closure); k->changed = (gpointer)vf_Gtk_Editable_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_Editable_changed(GtkEditable* a0) {
     GtkEditableInterface *k = zgtk_vfunc_parent(a0, "Gtk_Editable.changed", gtk_editable_get_type());
@@ -3087,9 +3379,11 @@ static void vf_Gtk_Editable_delete_text(GtkEditable* a0, int a1, int a2) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Editable.delete_text");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Editable_delete_text(gsize type, void *closure) {
-    GtkEditableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_editable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Editable.delete_text", closure); k->delete_text = (gpointer)vf_Gtk_Editable_delete_text; }
+int zgtk_override_Gtk_Editable_delete_text(gsize type, void *closure) {
+    GtkEditableInterface *k = zgtk_iface_below(type, gtk_editable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Editable.delete_text", closure); k->delete_text = (gpointer)vf_Gtk_Editable_delete_text;
+    return 1;
 }
 void zgtk_parent_Gtk_Editable_delete_text(GtkEditable* a0, int a1, int a2) {
     GtkEditableInterface *k = zgtk_vfunc_parent(a0, "Gtk_Editable.delete_text", gtk_editable_get_type());
@@ -3103,9 +3397,11 @@ static void vf_Gtk_Editable_do_delete_text(GtkEditable* a0, int a1, int a2) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Editable.do_delete_text");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Editable_do_delete_text(gsize type, void *closure) {
-    GtkEditableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_editable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Editable.do_delete_text", closure); k->do_delete_text = (gpointer)vf_Gtk_Editable_do_delete_text; }
+int zgtk_override_Gtk_Editable_do_delete_text(gsize type, void *closure) {
+    GtkEditableInterface *k = zgtk_iface_below(type, gtk_editable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Editable.do_delete_text", closure); k->do_delete_text = (gpointer)vf_Gtk_Editable_do_delete_text;
+    return 1;
 }
 void zgtk_parent_Gtk_Editable_do_delete_text(GtkEditable* a0, int a1, int a2) {
     GtkEditableInterface *k = zgtk_vfunc_parent(a0, "Gtk_Editable.do_delete_text", gtk_editable_get_type());
@@ -3120,9 +3416,11 @@ static void vf_Gtk_Editable_do_insert_text(GtkEditable* a0, const char* a1, int 
     void *f = zgtk_vfunc_find(a0, "Gtk_Editable.do_insert_text");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Editable_do_insert_text(gsize type, void *closure) {
-    GtkEditableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_editable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Editable.do_insert_text", closure); k->do_insert_text = (gpointer)vf_Gtk_Editable_do_insert_text; }
+int zgtk_override_Gtk_Editable_do_insert_text(gsize type, void *closure) {
+    GtkEditableInterface *k = zgtk_iface_below(type, gtk_editable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Editable.do_insert_text", closure); k->do_insert_text = (gpointer)vf_Gtk_Editable_do_insert_text;
+    return 1;
 }
 void zgtk_parent_Gtk_Editable_do_insert_text(GtkEditable* a0, const char* a1, int a2, int* a3) {
     GtkEditableInterface *k = zgtk_vfunc_parent(a0, "Gtk_Editable.do_insert_text", gtk_editable_get_type());
@@ -3135,9 +3433,11 @@ static GtkEditable* vf_Gtk_Editable_get_delegate(GtkEditable* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GtkEditable*)c.ret.p;
 }
-void zgtk_override_Gtk_Editable_get_delegate(gsize type, void *closure) {
-    GtkEditableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_editable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Editable.get_delegate", closure); k->get_delegate = (gpointer)vf_Gtk_Editable_get_delegate; }
+int zgtk_override_Gtk_Editable_get_delegate(gsize type, void *closure) {
+    GtkEditableInterface *k = zgtk_iface_below(type, gtk_editable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Editable.get_delegate", closure); k->get_delegate = (gpointer)vf_Gtk_Editable_get_delegate;
+    return 1;
 }
 GtkEditable* zgtk_parent_Gtk_Editable_get_delegate(GtkEditable* a0) {
     GtkEditableInterface *k = zgtk_vfunc_parent(a0, "Gtk_Editable.get_delegate", gtk_editable_get_type());
@@ -3152,9 +3452,11 @@ static gboolean vf_Gtk_Editable_get_selection_bounds(GtkEditable* a0, int* a1, i
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_Editable_get_selection_bounds(gsize type, void *closure) {
-    GtkEditableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_editable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Editable.get_selection_bounds", closure); k->get_selection_bounds = (gpointer)vf_Gtk_Editable_get_selection_bounds; }
+int zgtk_override_Gtk_Editable_get_selection_bounds(gsize type, void *closure) {
+    GtkEditableInterface *k = zgtk_iface_below(type, gtk_editable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Editable.get_selection_bounds", closure); k->get_selection_bounds = (gpointer)vf_Gtk_Editable_get_selection_bounds;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_Editable_get_selection_bounds(GtkEditable* a0, int* a1, int* a2) {
     GtkEditableInterface *k = zgtk_vfunc_parent(a0, "Gtk_Editable.get_selection_bounds", gtk_editable_get_type());
@@ -3167,9 +3469,11 @@ static const char* vf_Gtk_Editable_get_text(GtkEditable* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const char*)c.ret.p;
 }
-void zgtk_override_Gtk_Editable_get_text(gsize type, void *closure) {
-    GtkEditableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_editable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Editable.get_text", closure); k->get_text = (gpointer)vf_Gtk_Editable_get_text; }
+int zgtk_override_Gtk_Editable_get_text(gsize type, void *closure) {
+    GtkEditableInterface *k = zgtk_iface_below(type, gtk_editable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Editable.get_text", closure); k->get_text = (gpointer)vf_Gtk_Editable_get_text;
+    return 1;
 }
 const char* zgtk_parent_Gtk_Editable_get_text(GtkEditable* a0) {
     GtkEditableInterface *k = zgtk_vfunc_parent(a0, "Gtk_Editable.get_text", gtk_editable_get_type());
@@ -3184,9 +3488,11 @@ static void vf_Gtk_Editable_insert_text(GtkEditable* a0, const char* a1, int a2,
     void *f = zgtk_vfunc_find(a0, "Gtk_Editable.insert_text");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Editable_insert_text(gsize type, void *closure) {
-    GtkEditableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_editable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Editable.insert_text", closure); k->insert_text = (gpointer)vf_Gtk_Editable_insert_text; }
+int zgtk_override_Gtk_Editable_insert_text(gsize type, void *closure) {
+    GtkEditableInterface *k = zgtk_iface_below(type, gtk_editable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Editable.insert_text", closure); k->insert_text = (gpointer)vf_Gtk_Editable_insert_text;
+    return 1;
 }
 void zgtk_parent_Gtk_Editable_insert_text(GtkEditable* a0, const char* a1, int a2, int* a3) {
     GtkEditableInterface *k = zgtk_vfunc_parent(a0, "Gtk_Editable.insert_text", gtk_editable_get_type());
@@ -3200,9 +3506,11 @@ static void vf_Gtk_Editable_set_selection_bounds(GtkEditable* a0, int a1, int a2
     void *f = zgtk_vfunc_find(a0, "Gtk_Editable.set_selection_bounds");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Editable_set_selection_bounds(gsize type, void *closure) {
-    GtkEditableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_editable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_Editable.set_selection_bounds", closure); k->set_selection_bounds = (gpointer)vf_Gtk_Editable_set_selection_bounds; }
+int zgtk_override_Gtk_Editable_set_selection_bounds(gsize type, void *closure) {
+    GtkEditableInterface *k = zgtk_iface_below(type, gtk_editable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Editable.set_selection_bounds", closure); k->set_selection_bounds = (gpointer)vf_Gtk_Editable_set_selection_bounds;
+    return 1;
 }
 void zgtk_parent_Gtk_Editable_set_selection_bounds(GtkEditable* a0, int a1, int a2) {
     GtkEditableInterface *k = zgtk_vfunc_parent(a0, "Gtk_Editable.set_selection_bounds", gtk_editable_get_type());
@@ -3214,9 +3522,11 @@ static void vf_Gtk_Popover_activate_default(GtkPopover* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Popover.activate_default");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Popover_activate_default(gsize type, void *closure) {
-    GtkPopoverClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Popover.activate_default", closure); k->activate_default = (gpointer)vf_Gtk_Popover_activate_default; }
+int zgtk_override_Gtk_Popover_activate_default(gsize type, void *closure) {
+    GtkPopoverClass *k = zgtk_class_below(type, gtk_popover_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Popover.activate_default", closure); k->activate_default = (gpointer)vf_Gtk_Popover_activate_default;
+    return 1;
 }
 void zgtk_parent_Gtk_Popover_activate_default(GtkPopover* a0) {
     GtkPopoverClass *k = zgtk_vfunc_parent(a0, "Gtk_Popover.activate_default", 0);
@@ -3228,9 +3538,11 @@ static void vf_Gtk_Popover_closed(GtkPopover* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Popover.closed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Popover_closed(gsize type, void *closure) {
-    GtkPopoverClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Popover.closed", closure); k->closed = (gpointer)vf_Gtk_Popover_closed; }
+int zgtk_override_Gtk_Popover_closed(gsize type, void *closure) {
+    GtkPopoverClass *k = zgtk_class_below(type, gtk_popover_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Popover.closed", closure); k->closed = (gpointer)vf_Gtk_Popover_closed;
+    return 1;
 }
 void zgtk_parent_Gtk_Popover_closed(GtkPopover* a0) {
     GtkPopoverClass *k = zgtk_vfunc_parent(a0, "Gtk_Popover.closed", 0);
@@ -3242,9 +3554,11 @@ static void vf_Gtk_Entry_activate(GtkEntry* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Entry.activate");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Entry_activate(gsize type, void *closure) {
-    GtkEntryClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Entry.activate", closure); k->activate = (gpointer)vf_Gtk_Entry_activate; }
+int zgtk_override_Gtk_Entry_activate(gsize type, void *closure) {
+    GtkEntryClass *k = zgtk_class_below(type, gtk_entry_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Entry.activate", closure); k->activate = (gpointer)vf_Gtk_Entry_activate;
+    return 1;
 }
 void zgtk_parent_Gtk_Entry_activate(GtkEntry* a0) {
     GtkEntryClass *k = zgtk_vfunc_parent(a0, "Gtk_Entry.activate", 0);
@@ -3259,9 +3573,11 @@ static guint vf_Gtk_EntryBuffer_delete_text(GtkEntryBuffer* a0, guint a1, guint 
     if (f) zgtk_dispatch(f, &c);
     return (guint)c.ret.i;
 }
-void zgtk_override_Gtk_EntryBuffer_delete_text(gsize type, void *closure) {
-    GtkEntryBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_EntryBuffer.delete_text", closure); k->delete_text = (gpointer)vf_Gtk_EntryBuffer_delete_text; }
+int zgtk_override_Gtk_EntryBuffer_delete_text(gsize type, void *closure) {
+    GtkEntryBufferClass *k = zgtk_class_below(type, gtk_entry_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_EntryBuffer.delete_text", closure); k->delete_text = (gpointer)vf_Gtk_EntryBuffer_delete_text;
+    return 1;
 }
 guint zgtk_parent_Gtk_EntryBuffer_delete_text(GtkEntryBuffer* a0, guint a1, guint a2) {
     GtkEntryBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_EntryBuffer.delete_text", 0);
@@ -3275,9 +3591,11 @@ static void vf_Gtk_EntryBuffer_deleted_text(GtkEntryBuffer* a0, guint a1, guint 
     void *f = zgtk_vfunc_find(a0, "Gtk_EntryBuffer.deleted_text");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_EntryBuffer_deleted_text(gsize type, void *closure) {
-    GtkEntryBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_EntryBuffer.deleted_text", closure); k->deleted_text = (gpointer)vf_Gtk_EntryBuffer_deleted_text; }
+int zgtk_override_Gtk_EntryBuffer_deleted_text(gsize type, void *closure) {
+    GtkEntryBufferClass *k = zgtk_class_below(type, gtk_entry_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_EntryBuffer.deleted_text", closure); k->deleted_text = (gpointer)vf_Gtk_EntryBuffer_deleted_text;
+    return 1;
 }
 void zgtk_parent_Gtk_EntryBuffer_deleted_text(GtkEntryBuffer* a0, guint a1, guint a2) {
     GtkEntryBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_EntryBuffer.deleted_text", 0);
@@ -3290,9 +3608,11 @@ static guint vf_Gtk_EntryBuffer_get_length(GtkEntryBuffer* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (guint)c.ret.i;
 }
-void zgtk_override_Gtk_EntryBuffer_get_length(gsize type, void *closure) {
-    GtkEntryBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_EntryBuffer.get_length", closure); k->get_length = (gpointer)vf_Gtk_EntryBuffer_get_length; }
+int zgtk_override_Gtk_EntryBuffer_get_length(gsize type, void *closure) {
+    GtkEntryBufferClass *k = zgtk_class_below(type, gtk_entry_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_EntryBuffer.get_length", closure); k->get_length = (gpointer)vf_Gtk_EntryBuffer_get_length;
+    return 1;
 }
 guint zgtk_parent_Gtk_EntryBuffer_get_length(GtkEntryBuffer* a0) {
     GtkEntryBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_EntryBuffer.get_length", 0);
@@ -3306,9 +3626,11 @@ static const char* vf_Gtk_EntryBuffer_get_text(GtkEntryBuffer* a0, gsize* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (const char*)c.ret.p;
 }
-void zgtk_override_Gtk_EntryBuffer_get_text(gsize type, void *closure) {
-    GtkEntryBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_EntryBuffer.get_text", closure); k->get_text = (gpointer)vf_Gtk_EntryBuffer_get_text; }
+int zgtk_override_Gtk_EntryBuffer_get_text(gsize type, void *closure) {
+    GtkEntryBufferClass *k = zgtk_class_below(type, gtk_entry_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_EntryBuffer.get_text", closure); k->get_text = (gpointer)vf_Gtk_EntryBuffer_get_text;
+    return 1;
 }
 const char* zgtk_parent_Gtk_EntryBuffer_get_text(GtkEntryBuffer* a0, gsize* a1) {
     GtkEntryBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_EntryBuffer.get_text", 0);
@@ -3324,9 +3646,11 @@ static guint vf_Gtk_EntryBuffer_insert_text(GtkEntryBuffer* a0, guint a1, const 
     if (f) zgtk_dispatch(f, &c);
     return (guint)c.ret.i;
 }
-void zgtk_override_Gtk_EntryBuffer_insert_text(gsize type, void *closure) {
-    GtkEntryBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_EntryBuffer.insert_text", closure); k->insert_text = (gpointer)vf_Gtk_EntryBuffer_insert_text; }
+int zgtk_override_Gtk_EntryBuffer_insert_text(gsize type, void *closure) {
+    GtkEntryBufferClass *k = zgtk_class_below(type, gtk_entry_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_EntryBuffer.insert_text", closure); k->insert_text = (gpointer)vf_Gtk_EntryBuffer_insert_text;
+    return 1;
 }
 guint zgtk_parent_Gtk_EntryBuffer_insert_text(GtkEntryBuffer* a0, guint a1, const char* a2, guint a3) {
     GtkEntryBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_EntryBuffer.insert_text", 0);
@@ -3341,9 +3665,11 @@ static void vf_Gtk_EntryBuffer_inserted_text(GtkEntryBuffer* a0, guint a1, const
     void *f = zgtk_vfunc_find(a0, "Gtk_EntryBuffer.inserted_text");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_EntryBuffer_inserted_text(gsize type, void *closure) {
-    GtkEntryBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_EntryBuffer.inserted_text", closure); k->inserted_text = (gpointer)vf_Gtk_EntryBuffer_inserted_text; }
+int zgtk_override_Gtk_EntryBuffer_inserted_text(gsize type, void *closure) {
+    GtkEntryBufferClass *k = zgtk_class_below(type, gtk_entry_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_EntryBuffer.inserted_text", closure); k->inserted_text = (gpointer)vf_Gtk_EntryBuffer_inserted_text;
+    return 1;
 }
 void zgtk_parent_Gtk_EntryBuffer_inserted_text(GtkEntryBuffer* a0, guint a1, const char* a2, guint a3) {
     GtkEntryBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_EntryBuffer.inserted_text", 0);
@@ -3355,9 +3681,11 @@ static void vf_Gtk_NativeDialog_hide(GtkNativeDialog* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_NativeDialog.hide");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_NativeDialog_hide(gsize type, void *closure) {
-    GtkNativeDialogClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_NativeDialog.hide", closure); k->hide = (gpointer)vf_Gtk_NativeDialog_hide; }
+int zgtk_override_Gtk_NativeDialog_hide(gsize type, void *closure) {
+    GtkNativeDialogClass *k = zgtk_class_below(type, gtk_native_dialog_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_NativeDialog.hide", closure); k->hide = (gpointer)vf_Gtk_NativeDialog_hide;
+    return 1;
 }
 void zgtk_parent_Gtk_NativeDialog_hide(GtkNativeDialog* a0) {
     GtkNativeDialogClass *k = zgtk_vfunc_parent(a0, "Gtk_NativeDialog.hide", 0);
@@ -3370,9 +3698,11 @@ static void vf_Gtk_NativeDialog_response(GtkNativeDialog* a0, int a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_NativeDialog.response");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_NativeDialog_response(gsize type, void *closure) {
-    GtkNativeDialogClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_NativeDialog.response", closure); k->response = (gpointer)vf_Gtk_NativeDialog_response; }
+int zgtk_override_Gtk_NativeDialog_response(gsize type, void *closure) {
+    GtkNativeDialogClass *k = zgtk_class_below(type, gtk_native_dialog_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_NativeDialog.response", closure); k->response = (gpointer)vf_Gtk_NativeDialog_response;
+    return 1;
 }
 void zgtk_parent_Gtk_NativeDialog_response(GtkNativeDialog* a0, int a1) {
     GtkNativeDialogClass *k = zgtk_vfunc_parent(a0, "Gtk_NativeDialog.response", 0);
@@ -3384,9 +3714,11 @@ static void vf_Gtk_NativeDialog_show(GtkNativeDialog* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_NativeDialog.show");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_NativeDialog_show(gsize type, void *closure) {
-    GtkNativeDialogClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_NativeDialog.show", closure); k->show = (gpointer)vf_Gtk_NativeDialog_show; }
+int zgtk_override_Gtk_NativeDialog_show(gsize type, void *closure) {
+    GtkNativeDialogClass *k = zgtk_class_below(type, gtk_native_dialog_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_NativeDialog.show", closure); k->show = (gpointer)vf_Gtk_NativeDialog_show;
+    return 1;
 }
 void zgtk_parent_Gtk_NativeDialog_show(GtkNativeDialog* a0) {
     GtkNativeDialogClass *k = zgtk_vfunc_parent(a0, "Gtk_NativeDialog.show", 0);
@@ -3401,9 +3733,11 @@ static void vf_Gtk_SectionModel_get_section(GtkSectionModel* a0, guint a1, guint
     void *f = zgtk_vfunc_find(a0, "Gtk_SectionModel.get_section");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_SectionModel_get_section(gsize type, void *closure) {
-    GtkSectionModelInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_section_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_SectionModel.get_section", closure); k->get_section = (gpointer)vf_Gtk_SectionModel_get_section; }
+int zgtk_override_Gtk_SectionModel_get_section(gsize type, void *closure) {
+    GtkSectionModelInterface *k = zgtk_iface_below(type, gtk_section_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_SectionModel.get_section", closure); k->get_section = (gpointer)vf_Gtk_SectionModel_get_section;
+    return 1;
 }
 void zgtk_parent_Gtk_SectionModel_get_section(GtkSectionModel* a0, guint a1, guint* a2, guint* a3) {
     GtkSectionModelInterface *k = zgtk_vfunc_parent(a0, "Gtk_SectionModel.get_section", gtk_section_model_get_type());
@@ -3415,9 +3749,11 @@ static void vf_Gtk_FlowBoxChild_activate(GtkFlowBoxChild* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_FlowBoxChild.activate");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_FlowBoxChild_activate(gsize type, void *closure) {
-    GtkFlowBoxChildClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_FlowBoxChild.activate", closure); k->activate = (gpointer)vf_Gtk_FlowBoxChild_activate; }
+int zgtk_override_Gtk_FlowBoxChild_activate(gsize type, void *closure) {
+    GtkFlowBoxChildClass *k = zgtk_class_below(type, gtk_flow_box_child_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_FlowBoxChild.activate", closure); k->activate = (gpointer)vf_Gtk_FlowBoxChild_activate;
+    return 1;
 }
 void zgtk_parent_Gtk_FlowBoxChild_activate(GtkFlowBoxChild* a0) {
     GtkFlowBoxChildClass *k = zgtk_vfunc_parent(a0, "Gtk_FlowBoxChild.activate", 0);
@@ -3430,9 +3766,11 @@ static void vf_Gtk_FontChooser_font_activated(GtkFontChooser* a0, const char* a1
     void *f = zgtk_vfunc_find(a0, "Gtk_FontChooser.font_activated");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_FontChooser_font_activated(gsize type, void *closure) {
-    GtkFontChooserIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_font_chooser_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_FontChooser.font_activated", closure); k->font_activated = (gpointer)vf_Gtk_FontChooser_font_activated; }
+int zgtk_override_Gtk_FontChooser_font_activated(gsize type, void *closure) {
+    GtkFontChooserIface *k = zgtk_iface_below(type, gtk_font_chooser_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_FontChooser.font_activated", closure); k->font_activated = (gpointer)vf_Gtk_FontChooser_font_activated;
+    return 1;
 }
 void zgtk_parent_Gtk_FontChooser_font_activated(GtkFontChooser* a0, const char* a1) {
     GtkFontChooserIface *k = zgtk_vfunc_parent(a0, "Gtk_FontChooser.font_activated", gtk_font_chooser_get_type());
@@ -3445,9 +3783,11 @@ static PangoFontFace* vf_Gtk_FontChooser_get_font_face(GtkFontChooser* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (PangoFontFace*)c.ret.p;
 }
-void zgtk_override_Gtk_FontChooser_get_font_face(gsize type, void *closure) {
-    GtkFontChooserIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_font_chooser_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_FontChooser.get_font_face", closure); k->get_font_face = (gpointer)vf_Gtk_FontChooser_get_font_face; }
+int zgtk_override_Gtk_FontChooser_get_font_face(gsize type, void *closure) {
+    GtkFontChooserIface *k = zgtk_iface_below(type, gtk_font_chooser_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_FontChooser.get_font_face", closure); k->get_font_face = (gpointer)vf_Gtk_FontChooser_get_font_face;
+    return 1;
 }
 PangoFontFace* zgtk_parent_Gtk_FontChooser_get_font_face(GtkFontChooser* a0) {
     GtkFontChooserIface *k = zgtk_vfunc_parent(a0, "Gtk_FontChooser.get_font_face", gtk_font_chooser_get_type());
@@ -3460,9 +3800,11 @@ static PangoFontFamily* vf_Gtk_FontChooser_get_font_family(GtkFontChooser* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (PangoFontFamily*)c.ret.p;
 }
-void zgtk_override_Gtk_FontChooser_get_font_family(gsize type, void *closure) {
-    GtkFontChooserIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_font_chooser_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_FontChooser.get_font_family", closure); k->get_font_family = (gpointer)vf_Gtk_FontChooser_get_font_family; }
+int zgtk_override_Gtk_FontChooser_get_font_family(gsize type, void *closure) {
+    GtkFontChooserIface *k = zgtk_iface_below(type, gtk_font_chooser_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_FontChooser.get_font_family", closure); k->get_font_family = (gpointer)vf_Gtk_FontChooser_get_font_family;
+    return 1;
 }
 PangoFontFamily* zgtk_parent_Gtk_FontChooser_get_font_family(GtkFontChooser* a0) {
     GtkFontChooserIface *k = zgtk_vfunc_parent(a0, "Gtk_FontChooser.get_font_family", gtk_font_chooser_get_type());
@@ -3475,9 +3817,11 @@ static PangoFontMap* vf_Gtk_FontChooser_get_font_map(GtkFontChooser* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (PangoFontMap*)c.ret.p;
 }
-void zgtk_override_Gtk_FontChooser_get_font_map(gsize type, void *closure) {
-    GtkFontChooserIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_font_chooser_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_FontChooser.get_font_map", closure); k->get_font_map = (gpointer)vf_Gtk_FontChooser_get_font_map; }
+int zgtk_override_Gtk_FontChooser_get_font_map(gsize type, void *closure) {
+    GtkFontChooserIface *k = zgtk_iface_below(type, gtk_font_chooser_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_FontChooser.get_font_map", closure); k->get_font_map = (gpointer)vf_Gtk_FontChooser_get_font_map;
+    return 1;
 }
 PangoFontMap* zgtk_parent_Gtk_FontChooser_get_font_map(GtkFontChooser* a0) {
     GtkFontChooserIface *k = zgtk_vfunc_parent(a0, "Gtk_FontChooser.get_font_map", gtk_font_chooser_get_type());
@@ -3490,9 +3834,11 @@ static int vf_Gtk_FontChooser_get_font_size(GtkFontChooser* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (int)c.ret.i;
 }
-void zgtk_override_Gtk_FontChooser_get_font_size(gsize type, void *closure) {
-    GtkFontChooserIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_font_chooser_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_FontChooser.get_font_size", closure); k->get_font_size = (gpointer)vf_Gtk_FontChooser_get_font_size; }
+int zgtk_override_Gtk_FontChooser_get_font_size(gsize type, void *closure) {
+    GtkFontChooserIface *k = zgtk_iface_below(type, gtk_font_chooser_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_FontChooser.get_font_size", closure); k->get_font_size = (gpointer)vf_Gtk_FontChooser_get_font_size;
+    return 1;
 }
 int zgtk_parent_Gtk_FontChooser_get_font_size(GtkFontChooser* a0) {
     GtkFontChooserIface *k = zgtk_vfunc_parent(a0, "Gtk_FontChooser.get_font_size", gtk_font_chooser_get_type());
@@ -3507,9 +3853,11 @@ static void vf_Gtk_FontChooser_set_filter_func(GtkFontChooser* a0, GtkFontFilter
     void *f = zgtk_vfunc_find(a0, "Gtk_FontChooser.set_filter_func");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_FontChooser_set_filter_func(gsize type, void *closure) {
-    GtkFontChooserIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_font_chooser_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_FontChooser.set_filter_func", closure); k->set_filter_func = (gpointer)vf_Gtk_FontChooser_set_filter_func; }
+int zgtk_override_Gtk_FontChooser_set_filter_func(gsize type, void *closure) {
+    GtkFontChooserIface *k = zgtk_iface_below(type, gtk_font_chooser_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_FontChooser.set_filter_func", closure); k->set_filter_func = (gpointer)vf_Gtk_FontChooser_set_filter_func;
+    return 1;
 }
 void zgtk_parent_Gtk_FontChooser_set_filter_func(GtkFontChooser* a0, GtkFontFilterFunc a1, gpointer a2, GDestroyNotify a3) {
     GtkFontChooserIface *k = zgtk_vfunc_parent(a0, "Gtk_FontChooser.set_filter_func", gtk_font_chooser_get_type());
@@ -3522,9 +3870,11 @@ static void vf_Gtk_FontChooser_set_font_map(GtkFontChooser* a0, PangoFontMap* a1
     void *f = zgtk_vfunc_find(a0, "Gtk_FontChooser.set_font_map");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_FontChooser_set_font_map(gsize type, void *closure) {
-    GtkFontChooserIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_font_chooser_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_FontChooser.set_font_map", closure); k->set_font_map = (gpointer)vf_Gtk_FontChooser_set_font_map; }
+int zgtk_override_Gtk_FontChooser_set_font_map(gsize type, void *closure) {
+    GtkFontChooserIface *k = zgtk_iface_below(type, gtk_font_chooser_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_FontChooser.set_font_map", closure); k->set_font_map = (gpointer)vf_Gtk_FontChooser_set_font_map;
+    return 1;
 }
 void zgtk_parent_Gtk_FontChooser_set_font_map(GtkFontChooser* a0, PangoFontMap* a1) {
     GtkFontChooserIface *k = zgtk_vfunc_parent(a0, "Gtk_FontChooser.set_font_map", gtk_font_chooser_get_type());
@@ -3537,9 +3887,11 @@ static void vf_Gtk_Frame_compute_child_allocation(GtkFrame* a0, GtkAllocation* a
     void *f = zgtk_vfunc_find(a0, "Gtk_Frame.compute_child_allocation");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Frame_compute_child_allocation(gsize type, void *closure) {
-    GtkFrameClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Frame.compute_child_allocation", closure); k->compute_child_allocation = (gpointer)vf_Gtk_Frame_compute_child_allocation; }
+int zgtk_override_Gtk_Frame_compute_child_allocation(gsize type, void *closure) {
+    GtkFrameClass *k = zgtk_class_below(type, gtk_frame_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Frame.compute_child_allocation", closure); k->compute_child_allocation = (gpointer)vf_Gtk_Frame_compute_child_allocation;
+    return 1;
 }
 void zgtk_parent_Gtk_Frame_compute_child_allocation(GtkFrame* a0, GtkAllocation* a1) {
     GtkFrameClass *k = zgtk_vfunc_parent(a0, "Gtk_Frame.compute_child_allocation", 0);
@@ -3552,9 +3904,11 @@ static GdkGLContext* vf_Gtk_GLArea_create_context(GtkGLArea* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GdkGLContext*)c.ret.p;
 }
-void zgtk_override_Gtk_GLArea_create_context(gsize type, void *closure) {
-    GtkGLAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_GLArea.create_context", closure); k->create_context = (gpointer)vf_Gtk_GLArea_create_context; }
+int zgtk_override_Gtk_GLArea_create_context(gsize type, void *closure) {
+    GtkGLAreaClass *k = zgtk_class_below(type, gtk_gl_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_GLArea.create_context", closure); k->create_context = (gpointer)vf_Gtk_GLArea_create_context;
+    return 1;
 }
 GdkGLContext* zgtk_parent_Gtk_GLArea_create_context(GtkGLArea* a0) {
     GtkGLAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_GLArea.create_context", 0);
@@ -3568,9 +3922,11 @@ static gboolean vf_Gtk_GLArea_render(GtkGLArea* a0, GdkGLContext* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_GLArea_render(gsize type, void *closure) {
-    GtkGLAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_GLArea.render", closure); k->render = (gpointer)vf_Gtk_GLArea_render; }
+int zgtk_override_Gtk_GLArea_render(gsize type, void *closure) {
+    GtkGLAreaClass *k = zgtk_class_below(type, gtk_gl_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_GLArea.render", closure); k->render = (gpointer)vf_Gtk_GLArea_render;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_GLArea_render(GtkGLArea* a0, GdkGLContext* a1) {
     GtkGLAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_GLArea.render", 0);
@@ -3584,9 +3940,11 @@ static void vf_Gtk_GLArea_resize(GtkGLArea* a0, int a1, int a2) {
     void *f = zgtk_vfunc_find(a0, "Gtk_GLArea.resize");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_GLArea_resize(gsize type, void *closure) {
-    GtkGLAreaClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_GLArea.resize", closure); k->resize = (gpointer)vf_Gtk_GLArea_resize; }
+int zgtk_override_Gtk_GLArea_resize(gsize type, void *closure) {
+    GtkGLAreaClass *k = zgtk_class_below(type, gtk_gl_area_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_GLArea.resize", closure); k->resize = (gpointer)vf_Gtk_GLArea_resize;
+    return 1;
 }
 void zgtk_parent_Gtk_GLArea_resize(GtkGLArea* a0, int a1, int a2) {
     GtkGLAreaClass *k = zgtk_vfunc_parent(a0, "Gtk_GLArea.resize", 0);
@@ -3598,9 +3956,11 @@ static void vf_Gtk_IMContext_activate_osk(GtkIMContext* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_IMContext.activate_osk");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_IMContext_activate_osk(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.activate_osk", closure); k->activate_osk = (gpointer)vf_Gtk_IMContext_activate_osk; }
+int zgtk_override_Gtk_IMContext_activate_osk(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.activate_osk", closure); k->activate_osk = (gpointer)vf_Gtk_IMContext_activate_osk;
+    return 1;
 }
 void zgtk_parent_Gtk_IMContext_activate_osk(GtkIMContext* a0) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.activate_osk", 0);
@@ -3614,9 +3974,11 @@ static gboolean vf_Gtk_IMContext_activate_osk_with_event(GtkIMContext* a0, GdkEv
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_IMContext_activate_osk_with_event(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.activate_osk_with_event", closure); k->activate_osk_with_event = (gpointer)vf_Gtk_IMContext_activate_osk_with_event; }
+int zgtk_override_Gtk_IMContext_activate_osk_with_event(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.activate_osk_with_event", closure); k->activate_osk_with_event = (gpointer)vf_Gtk_IMContext_activate_osk_with_event;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_IMContext_activate_osk_with_event(GtkIMContext* a0, GdkEvent* a1) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.activate_osk_with_event", 0);
@@ -3629,9 +3991,11 @@ static void vf_Gtk_IMContext_commit(GtkIMContext* a0, const char* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_IMContext.commit");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_IMContext_commit(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.commit", closure); k->commit = (gpointer)vf_Gtk_IMContext_commit; }
+int zgtk_override_Gtk_IMContext_commit(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.commit", closure); k->commit = (gpointer)vf_Gtk_IMContext_commit;
+    return 1;
 }
 void zgtk_parent_Gtk_IMContext_commit(GtkIMContext* a0, const char* a1) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.commit", 0);
@@ -3646,9 +4010,11 @@ static gboolean vf_Gtk_IMContext_delete_surrounding(GtkIMContext* a0, int a1, in
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_IMContext_delete_surrounding(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.delete_surrounding", closure); k->delete_surrounding = (gpointer)vf_Gtk_IMContext_delete_surrounding; }
+int zgtk_override_Gtk_IMContext_delete_surrounding(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.delete_surrounding", closure); k->delete_surrounding = (gpointer)vf_Gtk_IMContext_delete_surrounding;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_IMContext_delete_surrounding(GtkIMContext* a0, int a1, int a2) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.delete_surrounding", 0);
@@ -3662,9 +4028,11 @@ static gboolean vf_Gtk_IMContext_filter_keypress(GtkIMContext* a0, GdkEvent* a1)
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_IMContext_filter_keypress(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.filter_keypress", closure); k->filter_keypress = (gpointer)vf_Gtk_IMContext_filter_keypress; }
+int zgtk_override_Gtk_IMContext_filter_keypress(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.filter_keypress", closure); k->filter_keypress = (gpointer)vf_Gtk_IMContext_filter_keypress;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_IMContext_filter_keypress(GtkIMContext* a0, GdkEvent* a1) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.filter_keypress", 0);
@@ -3676,9 +4044,11 @@ static void vf_Gtk_IMContext_focus_in(GtkIMContext* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_IMContext.focus_in");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_IMContext_focus_in(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.focus_in", closure); k->focus_in = (gpointer)vf_Gtk_IMContext_focus_in; }
+int zgtk_override_Gtk_IMContext_focus_in(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.focus_in", closure); k->focus_in = (gpointer)vf_Gtk_IMContext_focus_in;
+    return 1;
 }
 void zgtk_parent_Gtk_IMContext_focus_in(GtkIMContext* a0) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.focus_in", 0);
@@ -3690,9 +4060,11 @@ static void vf_Gtk_IMContext_focus_out(GtkIMContext* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_IMContext.focus_out");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_IMContext_focus_out(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.focus_out", closure); k->focus_out = (gpointer)vf_Gtk_IMContext_focus_out; }
+int zgtk_override_Gtk_IMContext_focus_out(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.focus_out", closure); k->focus_out = (gpointer)vf_Gtk_IMContext_focus_out;
+    return 1;
 }
 void zgtk_parent_Gtk_IMContext_focus_out(GtkIMContext* a0) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.focus_out", 0);
@@ -3707,9 +4079,11 @@ static void vf_Gtk_IMContext_get_preedit_string(GtkIMContext* a0, char** a1, Pan
     void *f = zgtk_vfunc_find(a0, "Gtk_IMContext.get_preedit_string");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_IMContext_get_preedit_string(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.get_preedit_string", closure); k->get_preedit_string = (gpointer)vf_Gtk_IMContext_get_preedit_string; }
+int zgtk_override_Gtk_IMContext_get_preedit_string(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.get_preedit_string", closure); k->get_preedit_string = (gpointer)vf_Gtk_IMContext_get_preedit_string;
+    return 1;
 }
 void zgtk_parent_Gtk_IMContext_get_preedit_string(GtkIMContext* a0, char** a1, PangoAttrList** a2, int* a3) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.get_preedit_string", 0);
@@ -3724,9 +4098,11 @@ static gboolean vf_Gtk_IMContext_get_surrounding(GtkIMContext* a0, char** a1, in
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_IMContext_get_surrounding(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.get_surrounding", closure); k->get_surrounding = (gpointer)vf_Gtk_IMContext_get_surrounding; }
+int zgtk_override_Gtk_IMContext_get_surrounding(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.get_surrounding", closure); k->get_surrounding = (gpointer)vf_Gtk_IMContext_get_surrounding;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_IMContext_get_surrounding(GtkIMContext* a0, char** a1, int* a2) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.get_surrounding", 0);
@@ -3742,9 +4118,11 @@ static gboolean vf_Gtk_IMContext_get_surrounding_with_selection(GtkIMContext* a0
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_IMContext_get_surrounding_with_selection(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.get_surrounding_with_selection", closure); k->get_surrounding_with_selection = (gpointer)vf_Gtk_IMContext_get_surrounding_with_selection; }
+int zgtk_override_Gtk_IMContext_get_surrounding_with_selection(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.get_surrounding_with_selection", closure); k->get_surrounding_with_selection = (gpointer)vf_Gtk_IMContext_get_surrounding_with_selection;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_IMContext_get_surrounding_with_selection(GtkIMContext* a0, char** a1, int* a2, int* a3) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.get_surrounding_with_selection", 0);
@@ -3758,9 +4136,11 @@ static gboolean vf_Gtk_IMContext_invalid_composition(GtkIMContext* a0, const cha
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_IMContext_invalid_composition(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.invalid_composition", closure); k->invalid_composition = (gpointer)vf_Gtk_IMContext_invalid_composition; }
+int zgtk_override_Gtk_IMContext_invalid_composition(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.invalid_composition", closure); k->invalid_composition = (gpointer)vf_Gtk_IMContext_invalid_composition;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_IMContext_invalid_composition(GtkIMContext* a0, const char* a1) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.invalid_composition", 0);
@@ -3772,9 +4152,11 @@ static void vf_Gtk_IMContext_preedit_changed(GtkIMContext* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_IMContext.preedit_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_IMContext_preedit_changed(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.preedit_changed", closure); k->preedit_changed = (gpointer)vf_Gtk_IMContext_preedit_changed; }
+int zgtk_override_Gtk_IMContext_preedit_changed(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.preedit_changed", closure); k->preedit_changed = (gpointer)vf_Gtk_IMContext_preedit_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_IMContext_preedit_changed(GtkIMContext* a0) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.preedit_changed", 0);
@@ -3786,9 +4168,11 @@ static void vf_Gtk_IMContext_preedit_end(GtkIMContext* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_IMContext.preedit_end");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_IMContext_preedit_end(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.preedit_end", closure); k->preedit_end = (gpointer)vf_Gtk_IMContext_preedit_end; }
+int zgtk_override_Gtk_IMContext_preedit_end(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.preedit_end", closure); k->preedit_end = (gpointer)vf_Gtk_IMContext_preedit_end;
+    return 1;
 }
 void zgtk_parent_Gtk_IMContext_preedit_end(GtkIMContext* a0) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.preedit_end", 0);
@@ -3800,9 +4184,11 @@ static void vf_Gtk_IMContext_preedit_start(GtkIMContext* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_IMContext.preedit_start");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_IMContext_preedit_start(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.preedit_start", closure); k->preedit_start = (gpointer)vf_Gtk_IMContext_preedit_start; }
+int zgtk_override_Gtk_IMContext_preedit_start(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.preedit_start", closure); k->preedit_start = (gpointer)vf_Gtk_IMContext_preedit_start;
+    return 1;
 }
 void zgtk_parent_Gtk_IMContext_preedit_start(GtkIMContext* a0) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.preedit_start", 0);
@@ -3814,9 +4200,11 @@ static void vf_Gtk_IMContext_reset(GtkIMContext* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_IMContext.reset");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_IMContext_reset(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.reset", closure); k->reset = (gpointer)vf_Gtk_IMContext_reset; }
+int zgtk_override_Gtk_IMContext_reset(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.reset", closure); k->reset = (gpointer)vf_Gtk_IMContext_reset;
+    return 1;
 }
 void zgtk_parent_Gtk_IMContext_reset(GtkIMContext* a0) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.reset", 0);
@@ -3829,9 +4217,11 @@ static gboolean vf_Gtk_IMContext_retrieve_surrounding(GtkIMContext* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_IMContext_retrieve_surrounding(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.retrieve_surrounding", closure); k->retrieve_surrounding = (gpointer)vf_Gtk_IMContext_retrieve_surrounding; }
+int zgtk_override_Gtk_IMContext_retrieve_surrounding(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.retrieve_surrounding", closure); k->retrieve_surrounding = (gpointer)vf_Gtk_IMContext_retrieve_surrounding;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_IMContext_retrieve_surrounding(GtkIMContext* a0) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.retrieve_surrounding", 0);
@@ -3844,9 +4234,11 @@ static void vf_Gtk_IMContext_set_client_widget(GtkIMContext* a0, GtkWidget* a1) 
     void *f = zgtk_vfunc_find(a0, "Gtk_IMContext.set_client_widget");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_IMContext_set_client_widget(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.set_client_widget", closure); k->set_client_widget = (gpointer)vf_Gtk_IMContext_set_client_widget; }
+int zgtk_override_Gtk_IMContext_set_client_widget(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.set_client_widget", closure); k->set_client_widget = (gpointer)vf_Gtk_IMContext_set_client_widget;
+    return 1;
 }
 void zgtk_parent_Gtk_IMContext_set_client_widget(GtkIMContext* a0, GtkWidget* a1) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.set_client_widget", 0);
@@ -3859,9 +4251,11 @@ static void vf_Gtk_IMContext_set_cursor_location(GtkIMContext* a0, GdkRectangle*
     void *f = zgtk_vfunc_find(a0, "Gtk_IMContext.set_cursor_location");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_IMContext_set_cursor_location(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.set_cursor_location", closure); k->set_cursor_location = (gpointer)vf_Gtk_IMContext_set_cursor_location; }
+int zgtk_override_Gtk_IMContext_set_cursor_location(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.set_cursor_location", closure); k->set_cursor_location = (gpointer)vf_Gtk_IMContext_set_cursor_location;
+    return 1;
 }
 void zgtk_parent_Gtk_IMContext_set_cursor_location(GtkIMContext* a0, GdkRectangle* a1) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.set_cursor_location", 0);
@@ -3876,9 +4270,11 @@ static void vf_Gtk_IMContext_set_surrounding(GtkIMContext* a0, const char* a1, i
     void *f = zgtk_vfunc_find(a0, "Gtk_IMContext.set_surrounding");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_IMContext_set_surrounding(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.set_surrounding", closure); k->set_surrounding = (gpointer)vf_Gtk_IMContext_set_surrounding; }
+int zgtk_override_Gtk_IMContext_set_surrounding(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.set_surrounding", closure); k->set_surrounding = (gpointer)vf_Gtk_IMContext_set_surrounding;
+    return 1;
 }
 void zgtk_parent_Gtk_IMContext_set_surrounding(GtkIMContext* a0, const char* a1, int a2, int a3) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.set_surrounding", 0);
@@ -3894,9 +4290,11 @@ static void vf_Gtk_IMContext_set_surrounding_with_selection(GtkIMContext* a0, co
     void *f = zgtk_vfunc_find(a0, "Gtk_IMContext.set_surrounding_with_selection");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_IMContext_set_surrounding_with_selection(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.set_surrounding_with_selection", closure); k->set_surrounding_with_selection = (gpointer)vf_Gtk_IMContext_set_surrounding_with_selection; }
+int zgtk_override_Gtk_IMContext_set_surrounding_with_selection(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.set_surrounding_with_selection", closure); k->set_surrounding_with_selection = (gpointer)vf_Gtk_IMContext_set_surrounding_with_selection;
+    return 1;
 }
 void zgtk_parent_Gtk_IMContext_set_surrounding_with_selection(GtkIMContext* a0, const char* a1, int a2, int a3, int a4) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.set_surrounding_with_selection", 0);
@@ -3909,9 +4307,11 @@ static void vf_Gtk_IMContext_set_use_preedit(GtkIMContext* a0, gboolean a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_IMContext.set_use_preedit");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_IMContext_set_use_preedit(gsize type, void *closure) {
-    GtkIMContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_IMContext.set_use_preedit", closure); k->set_use_preedit = (gpointer)vf_Gtk_IMContext_set_use_preedit; }
+int zgtk_override_Gtk_IMContext_set_use_preedit(gsize type, void *closure) {
+    GtkIMContextClass *k = zgtk_class_below(type, gtk_im_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_IMContext.set_use_preedit", closure); k->set_use_preedit = (gpointer)vf_Gtk_IMContext_set_use_preedit;
+    return 1;
 }
 void zgtk_parent_Gtk_IMContext_set_use_preedit(GtkIMContext* a0, gboolean a1) {
     GtkIMContextClass *k = zgtk_vfunc_parent(a0, "Gtk_IMContext.set_use_preedit", 0);
@@ -3928,9 +4328,11 @@ static void vf_Gtk_SymbolicPaintable_snapshot_symbolic(GtkSymbolicPaintable* a0,
     void *f = zgtk_vfunc_find(a0, "Gtk_SymbolicPaintable.snapshot_symbolic");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_SymbolicPaintable_snapshot_symbolic(gsize type, void *closure) {
-    GtkSymbolicPaintableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_symbolic_paintable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_SymbolicPaintable.snapshot_symbolic", closure); k->snapshot_symbolic = (gpointer)vf_Gtk_SymbolicPaintable_snapshot_symbolic; }
+int zgtk_override_Gtk_SymbolicPaintable_snapshot_symbolic(gsize type, void *closure) {
+    GtkSymbolicPaintableInterface *k = zgtk_iface_below(type, gtk_symbolic_paintable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_SymbolicPaintable.snapshot_symbolic", closure); k->snapshot_symbolic = (gpointer)vf_Gtk_SymbolicPaintable_snapshot_symbolic;
+    return 1;
 }
 void zgtk_parent_Gtk_SymbolicPaintable_snapshot_symbolic(GtkSymbolicPaintable* a0, GdkSnapshot* a1, double a2, double a3, const GdkRGBA* a4, gsize a5) {
     GtkSymbolicPaintableInterface *k = zgtk_vfunc_parent(a0, "Gtk_SymbolicPaintable.snapshot_symbolic", gtk_symbolic_paintable_get_type());
@@ -3948,9 +4350,11 @@ static void vf_Gtk_SymbolicPaintable_snapshot_with_weight(GtkSymbolicPaintable* 
     void *f = zgtk_vfunc_find(a0, "Gtk_SymbolicPaintable.snapshot_with_weight");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_SymbolicPaintable_snapshot_with_weight(gsize type, void *closure) {
-    GtkSymbolicPaintableInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_symbolic_paintable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_SymbolicPaintable.snapshot_with_weight", closure); k->snapshot_with_weight = (gpointer)vf_Gtk_SymbolicPaintable_snapshot_with_weight; }
+int zgtk_override_Gtk_SymbolicPaintable_snapshot_with_weight(gsize type, void *closure) {
+    GtkSymbolicPaintableInterface *k = zgtk_iface_below(type, gtk_symbolic_paintable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_SymbolicPaintable.snapshot_with_weight", closure); k->snapshot_with_weight = (gpointer)vf_Gtk_SymbolicPaintable_snapshot_with_weight;
+    return 1;
 }
 void zgtk_parent_Gtk_SymbolicPaintable_snapshot_with_weight(GtkSymbolicPaintable* a0, GdkSnapshot* a1, double a2, double a3, const GdkRGBA* a4, gsize a5, double a6) {
     GtkSymbolicPaintableInterface *k = zgtk_vfunc_parent(a0, "Gtk_SymbolicPaintable.snapshot_with_weight", gtk_symbolic_paintable_get_type());
@@ -3962,9 +4366,11 @@ static void vf_Gtk_ListBoxRow_activate(GtkListBoxRow* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_ListBoxRow.activate");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_ListBoxRow_activate(gsize type, void *closure) {
-    GtkListBoxRowClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_ListBoxRow.activate", closure); k->activate = (gpointer)vf_Gtk_ListBoxRow_activate; }
+int zgtk_override_Gtk_ListBoxRow_activate(gsize type, void *closure) {
+    GtkListBoxRowClass *k = zgtk_class_below(type, gtk_list_box_row_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_ListBoxRow.activate", closure); k->activate = (gpointer)vf_Gtk_ListBoxRow_activate;
+    return 1;
 }
 void zgtk_parent_Gtk_ListBoxRow_activate(GtkListBoxRow* a0) {
     GtkListBoxRowClass *k = zgtk_vfunc_parent(a0, "Gtk_ListBoxRow.activate", 0);
@@ -3979,9 +4385,11 @@ static gboolean vf_Gtk_TreeDragDest_drag_data_received(GtkTreeDragDest* a0, GtkT
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeDragDest_drag_data_received(gsize type, void *closure) {
-    GtkTreeDragDestIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_drag_dest_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeDragDest.drag_data_received", closure); k->drag_data_received = (gpointer)vf_Gtk_TreeDragDest_drag_data_received; }
+int zgtk_override_Gtk_TreeDragDest_drag_data_received(gsize type, void *closure) {
+    GtkTreeDragDestIface *k = zgtk_iface_below(type, gtk_tree_drag_dest_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeDragDest.drag_data_received", closure); k->drag_data_received = (gpointer)vf_Gtk_TreeDragDest_drag_data_received;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeDragDest_drag_data_received(GtkTreeDragDest* a0, GtkTreePath* a1, const GValue* a2) {
     GtkTreeDragDestIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeDragDest.drag_data_received", gtk_tree_drag_dest_get_type());
@@ -3996,9 +4404,11 @@ static gboolean vf_Gtk_TreeDragDest_row_drop_possible(GtkTreeDragDest* a0, GtkTr
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeDragDest_row_drop_possible(gsize type, void *closure) {
-    GtkTreeDragDestIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_drag_dest_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeDragDest.row_drop_possible", closure); k->row_drop_possible = (gpointer)vf_Gtk_TreeDragDest_row_drop_possible; }
+int zgtk_override_Gtk_TreeDragDest_row_drop_possible(gsize type, void *closure) {
+    GtkTreeDragDestIface *k = zgtk_iface_below(type, gtk_tree_drag_dest_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeDragDest.row_drop_possible", closure); k->row_drop_possible = (gpointer)vf_Gtk_TreeDragDest_row_drop_possible;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeDragDest_row_drop_possible(GtkTreeDragDest* a0, GtkTreePath* a1, const GValue* a2) {
     GtkTreeDragDestIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeDragDest.row_drop_possible", gtk_tree_drag_dest_get_type());
@@ -4012,9 +4422,11 @@ static gboolean vf_Gtk_TreeDragSource_drag_data_delete(GtkTreeDragSource* a0, Gt
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeDragSource_drag_data_delete(gsize type, void *closure) {
-    GtkTreeDragSourceIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_drag_source_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeDragSource.drag_data_delete", closure); k->drag_data_delete = (gpointer)vf_Gtk_TreeDragSource_drag_data_delete; }
+int zgtk_override_Gtk_TreeDragSource_drag_data_delete(gsize type, void *closure) {
+    GtkTreeDragSourceIface *k = zgtk_iface_below(type, gtk_tree_drag_source_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeDragSource.drag_data_delete", closure); k->drag_data_delete = (gpointer)vf_Gtk_TreeDragSource_drag_data_delete;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeDragSource_drag_data_delete(GtkTreeDragSource* a0, GtkTreePath* a1) {
     GtkTreeDragSourceIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeDragSource.drag_data_delete", gtk_tree_drag_source_get_type());
@@ -4028,9 +4440,11 @@ static GdkContentProvider* vf_Gtk_TreeDragSource_drag_data_get(GtkTreeDragSource
     if (f) zgtk_dispatch(f, &c);
     return (GdkContentProvider*)c.ret.p;
 }
-void zgtk_override_Gtk_TreeDragSource_drag_data_get(gsize type, void *closure) {
-    GtkTreeDragSourceIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_drag_source_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeDragSource.drag_data_get", closure); k->drag_data_get = (gpointer)vf_Gtk_TreeDragSource_drag_data_get; }
+int zgtk_override_Gtk_TreeDragSource_drag_data_get(gsize type, void *closure) {
+    GtkTreeDragSourceIface *k = zgtk_iface_below(type, gtk_tree_drag_source_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeDragSource.drag_data_get", closure); k->drag_data_get = (gpointer)vf_Gtk_TreeDragSource_drag_data_get;
+    return 1;
 }
 GdkContentProvider* zgtk_parent_Gtk_TreeDragSource_drag_data_get(GtkTreeDragSource* a0, GtkTreePath* a1) {
     GtkTreeDragSourceIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeDragSource.drag_data_get", gtk_tree_drag_source_get_type());
@@ -4044,9 +4458,11 @@ static gboolean vf_Gtk_TreeDragSource_row_draggable(GtkTreeDragSource* a0, GtkTr
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeDragSource_row_draggable(gsize type, void *closure) {
-    GtkTreeDragSourceIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_drag_source_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeDragSource.row_draggable", closure); k->row_draggable = (gpointer)vf_Gtk_TreeDragSource_row_draggable; }
+int zgtk_override_Gtk_TreeDragSource_row_draggable(gsize type, void *closure) {
+    GtkTreeDragSourceIface *k = zgtk_iface_below(type, gtk_tree_drag_source_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeDragSource.row_draggable", closure); k->row_draggable = (gpointer)vf_Gtk_TreeDragSource_row_draggable;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeDragSource_row_draggable(GtkTreeDragSource* a0, GtkTreePath* a1) {
     GtkTreeDragSourceIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeDragSource.row_draggable", gtk_tree_drag_source_get_type());
@@ -4060,9 +4476,11 @@ static GType vf_Gtk_TreeModel_get_column_type(GtkTreeModel* a0, int a1) {
     if (f) zgtk_dispatch(f, &c);
     return (GType)c.ret.i;
 }
-void zgtk_override_Gtk_TreeModel_get_column_type(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.get_column_type", closure); k->get_column_type = (gpointer)vf_Gtk_TreeModel_get_column_type; }
+int zgtk_override_Gtk_TreeModel_get_column_type(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.get_column_type", closure); k->get_column_type = (gpointer)vf_Gtk_TreeModel_get_column_type;
+    return 1;
 }
 GType zgtk_parent_Gtk_TreeModel_get_column_type(GtkTreeModel* a0, int a1) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.get_column_type", gtk_tree_model_get_type());
@@ -4075,9 +4493,11 @@ static GtkTreeModelFlags vf_Gtk_TreeModel_get_flags(GtkTreeModel* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GtkTreeModelFlags)c.ret.i;
 }
-void zgtk_override_Gtk_TreeModel_get_flags(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.get_flags", closure); k->get_flags = (gpointer)vf_Gtk_TreeModel_get_flags; }
+int zgtk_override_Gtk_TreeModel_get_flags(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.get_flags", closure); k->get_flags = (gpointer)vf_Gtk_TreeModel_get_flags;
+    return 1;
 }
 GtkTreeModelFlags zgtk_parent_Gtk_TreeModel_get_flags(GtkTreeModel* a0) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.get_flags", gtk_tree_model_get_type());
@@ -4092,9 +4512,11 @@ static gboolean vf_Gtk_TreeModel_get_iter(GtkTreeModel* a0, GtkTreeIter* a1, Gtk
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeModel_get_iter(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.get_iter", closure); k->get_iter = (gpointer)vf_Gtk_TreeModel_get_iter; }
+int zgtk_override_Gtk_TreeModel_get_iter(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.get_iter", closure); k->get_iter = (gpointer)vf_Gtk_TreeModel_get_iter;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeModel_get_iter(GtkTreeModel* a0, GtkTreeIter* a1, GtkTreePath* a2) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.get_iter", gtk_tree_model_get_type());
@@ -4107,9 +4529,11 @@ static int vf_Gtk_TreeModel_get_n_columns(GtkTreeModel* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (int)c.ret.i;
 }
-void zgtk_override_Gtk_TreeModel_get_n_columns(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.get_n_columns", closure); k->get_n_columns = (gpointer)vf_Gtk_TreeModel_get_n_columns; }
+int zgtk_override_Gtk_TreeModel_get_n_columns(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.get_n_columns", closure); k->get_n_columns = (gpointer)vf_Gtk_TreeModel_get_n_columns;
+    return 1;
 }
 int zgtk_parent_Gtk_TreeModel_get_n_columns(GtkTreeModel* a0) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.get_n_columns", gtk_tree_model_get_type());
@@ -4123,9 +4547,11 @@ static GtkTreePath* vf_Gtk_TreeModel_get_path(GtkTreeModel* a0, GtkTreeIter* a1)
     if (f) zgtk_dispatch(f, &c);
     return (GtkTreePath*)c.ret.p;
 }
-void zgtk_override_Gtk_TreeModel_get_path(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.get_path", closure); k->get_path = (gpointer)vf_Gtk_TreeModel_get_path; }
+int zgtk_override_Gtk_TreeModel_get_path(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.get_path", closure); k->get_path = (gpointer)vf_Gtk_TreeModel_get_path;
+    return 1;
 }
 GtkTreePath* zgtk_parent_Gtk_TreeModel_get_path(GtkTreeModel* a0, GtkTreeIter* a1) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.get_path", gtk_tree_model_get_type());
@@ -4140,9 +4566,11 @@ static void vf_Gtk_TreeModel_get_value(GtkTreeModel* a0, GtkTreeIter* a1, int a2
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeModel.get_value");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeModel_get_value(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.get_value", closure); k->get_value = (gpointer)vf_Gtk_TreeModel_get_value; }
+int zgtk_override_Gtk_TreeModel_get_value(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.get_value", closure); k->get_value = (gpointer)vf_Gtk_TreeModel_get_value;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeModel_get_value(GtkTreeModel* a0, GtkTreeIter* a1, int a2, GValue* a3) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.get_value", gtk_tree_model_get_type());
@@ -4157,9 +4585,11 @@ static gboolean vf_Gtk_TreeModel_iter_children(GtkTreeModel* a0, GtkTreeIter* a1
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeModel_iter_children(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.iter_children", closure); k->iter_children = (gpointer)vf_Gtk_TreeModel_iter_children; }
+int zgtk_override_Gtk_TreeModel_iter_children(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.iter_children", closure); k->iter_children = (gpointer)vf_Gtk_TreeModel_iter_children;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeModel_iter_children(GtkTreeModel* a0, GtkTreeIter* a1, GtkTreeIter* a2) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.iter_children", gtk_tree_model_get_type());
@@ -4173,9 +4603,11 @@ static gboolean vf_Gtk_TreeModel_iter_has_child(GtkTreeModel* a0, GtkTreeIter* a
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeModel_iter_has_child(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.iter_has_child", closure); k->iter_has_child = (gpointer)vf_Gtk_TreeModel_iter_has_child; }
+int zgtk_override_Gtk_TreeModel_iter_has_child(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.iter_has_child", closure); k->iter_has_child = (gpointer)vf_Gtk_TreeModel_iter_has_child;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeModel_iter_has_child(GtkTreeModel* a0, GtkTreeIter* a1) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.iter_has_child", gtk_tree_model_get_type());
@@ -4189,9 +4621,11 @@ static int vf_Gtk_TreeModel_iter_n_children(GtkTreeModel* a0, GtkTreeIter* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (int)c.ret.i;
 }
-void zgtk_override_Gtk_TreeModel_iter_n_children(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.iter_n_children", closure); k->iter_n_children = (gpointer)vf_Gtk_TreeModel_iter_n_children; }
+int zgtk_override_Gtk_TreeModel_iter_n_children(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.iter_n_children", closure); k->iter_n_children = (gpointer)vf_Gtk_TreeModel_iter_n_children;
+    return 1;
 }
 int zgtk_parent_Gtk_TreeModel_iter_n_children(GtkTreeModel* a0, GtkTreeIter* a1) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.iter_n_children", gtk_tree_model_get_type());
@@ -4205,9 +4639,11 @@ static gboolean vf_Gtk_TreeModel_iter_next(GtkTreeModel* a0, GtkTreeIter* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeModel_iter_next(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.iter_next", closure); k->iter_next = (gpointer)vf_Gtk_TreeModel_iter_next; }
+int zgtk_override_Gtk_TreeModel_iter_next(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.iter_next", closure); k->iter_next = (gpointer)vf_Gtk_TreeModel_iter_next;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeModel_iter_next(GtkTreeModel* a0, GtkTreeIter* a1) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.iter_next", gtk_tree_model_get_type());
@@ -4223,9 +4659,11 @@ static gboolean vf_Gtk_TreeModel_iter_nth_child(GtkTreeModel* a0, GtkTreeIter* a
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeModel_iter_nth_child(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.iter_nth_child", closure); k->iter_nth_child = (gpointer)vf_Gtk_TreeModel_iter_nth_child; }
+int zgtk_override_Gtk_TreeModel_iter_nth_child(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.iter_nth_child", closure); k->iter_nth_child = (gpointer)vf_Gtk_TreeModel_iter_nth_child;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeModel_iter_nth_child(GtkTreeModel* a0, GtkTreeIter* a1, GtkTreeIter* a2, int a3) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.iter_nth_child", gtk_tree_model_get_type());
@@ -4240,9 +4678,11 @@ static gboolean vf_Gtk_TreeModel_iter_parent(GtkTreeModel* a0, GtkTreeIter* a1, 
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeModel_iter_parent(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.iter_parent", closure); k->iter_parent = (gpointer)vf_Gtk_TreeModel_iter_parent; }
+int zgtk_override_Gtk_TreeModel_iter_parent(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.iter_parent", closure); k->iter_parent = (gpointer)vf_Gtk_TreeModel_iter_parent;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeModel_iter_parent(GtkTreeModel* a0, GtkTreeIter* a1, GtkTreeIter* a2) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.iter_parent", gtk_tree_model_get_type());
@@ -4256,9 +4696,11 @@ static gboolean vf_Gtk_TreeModel_iter_previous(GtkTreeModel* a0, GtkTreeIter* a1
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeModel_iter_previous(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.iter_previous", closure); k->iter_previous = (gpointer)vf_Gtk_TreeModel_iter_previous; }
+int zgtk_override_Gtk_TreeModel_iter_previous(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.iter_previous", closure); k->iter_previous = (gpointer)vf_Gtk_TreeModel_iter_previous;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeModel_iter_previous(GtkTreeModel* a0, GtkTreeIter* a1) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.iter_previous", gtk_tree_model_get_type());
@@ -4271,9 +4713,11 @@ static void vf_Gtk_TreeModel_ref_node(GtkTreeModel* a0, GtkTreeIter* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeModel.ref_node");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeModel_ref_node(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.ref_node", closure); k->ref_node = (gpointer)vf_Gtk_TreeModel_ref_node; }
+int zgtk_override_Gtk_TreeModel_ref_node(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.ref_node", closure); k->ref_node = (gpointer)vf_Gtk_TreeModel_ref_node;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeModel_ref_node(GtkTreeModel* a0, GtkTreeIter* a1) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.ref_node", gtk_tree_model_get_type());
@@ -4287,9 +4731,11 @@ static void vf_Gtk_TreeModel_row_changed(GtkTreeModel* a0, GtkTreePath* a1, GtkT
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeModel.row_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeModel_row_changed(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.row_changed", closure); k->row_changed = (gpointer)vf_Gtk_TreeModel_row_changed; }
+int zgtk_override_Gtk_TreeModel_row_changed(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.row_changed", closure); k->row_changed = (gpointer)vf_Gtk_TreeModel_row_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeModel_row_changed(GtkTreeModel* a0, GtkTreePath* a1, GtkTreeIter* a2) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.row_changed", gtk_tree_model_get_type());
@@ -4302,9 +4748,11 @@ static void vf_Gtk_TreeModel_row_deleted(GtkTreeModel* a0, GtkTreePath* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeModel.row_deleted");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeModel_row_deleted(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.row_deleted", closure); k->row_deleted = (gpointer)vf_Gtk_TreeModel_row_deleted; }
+int zgtk_override_Gtk_TreeModel_row_deleted(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.row_deleted", closure); k->row_deleted = (gpointer)vf_Gtk_TreeModel_row_deleted;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeModel_row_deleted(GtkTreeModel* a0, GtkTreePath* a1) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.row_deleted", gtk_tree_model_get_type());
@@ -4318,9 +4766,11 @@ static void vf_Gtk_TreeModel_row_has_child_toggled(GtkTreeModel* a0, GtkTreePath
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeModel.row_has_child_toggled");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeModel_row_has_child_toggled(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.row_has_child_toggled", closure); k->row_has_child_toggled = (gpointer)vf_Gtk_TreeModel_row_has_child_toggled; }
+int zgtk_override_Gtk_TreeModel_row_has_child_toggled(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.row_has_child_toggled", closure); k->row_has_child_toggled = (gpointer)vf_Gtk_TreeModel_row_has_child_toggled;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeModel_row_has_child_toggled(GtkTreeModel* a0, GtkTreePath* a1, GtkTreeIter* a2) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.row_has_child_toggled", gtk_tree_model_get_type());
@@ -4334,9 +4784,11 @@ static void vf_Gtk_TreeModel_row_inserted(GtkTreeModel* a0, GtkTreePath* a1, Gtk
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeModel.row_inserted");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeModel_row_inserted(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.row_inserted", closure); k->row_inserted = (gpointer)vf_Gtk_TreeModel_row_inserted; }
+int zgtk_override_Gtk_TreeModel_row_inserted(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.row_inserted", closure); k->row_inserted = (gpointer)vf_Gtk_TreeModel_row_inserted;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeModel_row_inserted(GtkTreeModel* a0, GtkTreePath* a1, GtkTreeIter* a2) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.row_inserted", gtk_tree_model_get_type());
@@ -4351,9 +4803,11 @@ static void vf_Gtk_TreeModel_rows_reordered(GtkTreeModel* a0, GtkTreePath* a1, G
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeModel.rows_reordered");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeModel_rows_reordered(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.rows_reordered", closure); k->rows_reordered = (gpointer)vf_Gtk_TreeModel_rows_reordered; }
+int zgtk_override_Gtk_TreeModel_rows_reordered(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.rows_reordered", closure); k->rows_reordered = (gpointer)vf_Gtk_TreeModel_rows_reordered;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeModel_rows_reordered(GtkTreeModel* a0, GtkTreePath* a1, GtkTreeIter* a2, int* a3) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.rows_reordered", gtk_tree_model_get_type());
@@ -4366,9 +4820,11 @@ static void vf_Gtk_TreeModel_unref_node(GtkTreeModel* a0, GtkTreeIter* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeModel.unref_node");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeModel_unref_node(gsize type, void *closure) {
-    GtkTreeModelIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModel.unref_node", closure); k->unref_node = (gpointer)vf_Gtk_TreeModel_unref_node; }
+int zgtk_override_Gtk_TreeModel_unref_node(gsize type, void *closure) {
+    GtkTreeModelIface *k = zgtk_iface_below(type, gtk_tree_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModel.unref_node", closure); k->unref_node = (gpointer)vf_Gtk_TreeModel_unref_node;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeModel_unref_node(GtkTreeModel* a0, GtkTreeIter* a1) {
     GtkTreeModelIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeModel.unref_node", gtk_tree_model_get_type());
@@ -4383,9 +4839,11 @@ static gboolean vf_Gtk_TreeSortable_get_sort_column_id(GtkTreeSortable* a0, int*
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeSortable_get_sort_column_id(gsize type, void *closure) {
-    GtkTreeSortableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_sortable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeSortable.get_sort_column_id", closure); k->get_sort_column_id = (gpointer)vf_Gtk_TreeSortable_get_sort_column_id; }
+int zgtk_override_Gtk_TreeSortable_get_sort_column_id(gsize type, void *closure) {
+    GtkTreeSortableIface *k = zgtk_iface_below(type, gtk_tree_sortable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeSortable.get_sort_column_id", closure); k->get_sort_column_id = (gpointer)vf_Gtk_TreeSortable_get_sort_column_id;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeSortable_get_sort_column_id(GtkTreeSortable* a0, int* a1, GtkSortType* a2) {
     GtkTreeSortableIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeSortable.get_sort_column_id", gtk_tree_sortable_get_type());
@@ -4398,9 +4856,11 @@ static gboolean vf_Gtk_TreeSortable_has_default_sort_func(GtkTreeSortable* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeSortable_has_default_sort_func(gsize type, void *closure) {
-    GtkTreeSortableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_sortable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeSortable.has_default_sort_func", closure); k->has_default_sort_func = (gpointer)vf_Gtk_TreeSortable_has_default_sort_func; }
+int zgtk_override_Gtk_TreeSortable_has_default_sort_func(gsize type, void *closure) {
+    GtkTreeSortableIface *k = zgtk_iface_below(type, gtk_tree_sortable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeSortable.has_default_sort_func", closure); k->has_default_sort_func = (gpointer)vf_Gtk_TreeSortable_has_default_sort_func;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeSortable_has_default_sort_func(GtkTreeSortable* a0) {
     GtkTreeSortableIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeSortable.has_default_sort_func", gtk_tree_sortable_get_type());
@@ -4415,9 +4875,11 @@ static void vf_Gtk_TreeSortable_set_default_sort_func(GtkTreeSortable* a0, GtkTr
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeSortable.set_default_sort_func");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeSortable_set_default_sort_func(gsize type, void *closure) {
-    GtkTreeSortableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_sortable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeSortable.set_default_sort_func", closure); k->set_default_sort_func = (gpointer)vf_Gtk_TreeSortable_set_default_sort_func; }
+int zgtk_override_Gtk_TreeSortable_set_default_sort_func(gsize type, void *closure) {
+    GtkTreeSortableIface *k = zgtk_iface_below(type, gtk_tree_sortable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeSortable.set_default_sort_func", closure); k->set_default_sort_func = (gpointer)vf_Gtk_TreeSortable_set_default_sort_func;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeSortable_set_default_sort_func(GtkTreeSortable* a0, GtkTreeIterCompareFunc a1, gpointer a2, GDestroyNotify a3) {
     GtkTreeSortableIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeSortable.set_default_sort_func", gtk_tree_sortable_get_type());
@@ -4431,9 +4893,11 @@ static void vf_Gtk_TreeSortable_set_sort_column_id(GtkTreeSortable* a0, int a1, 
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeSortable.set_sort_column_id");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeSortable_set_sort_column_id(gsize type, void *closure) {
-    GtkTreeSortableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_sortable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeSortable.set_sort_column_id", closure); k->set_sort_column_id = (gpointer)vf_Gtk_TreeSortable_set_sort_column_id; }
+int zgtk_override_Gtk_TreeSortable_set_sort_column_id(gsize type, void *closure) {
+    GtkTreeSortableIface *k = zgtk_iface_below(type, gtk_tree_sortable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeSortable.set_sort_column_id", closure); k->set_sort_column_id = (gpointer)vf_Gtk_TreeSortable_set_sort_column_id;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeSortable_set_sort_column_id(GtkTreeSortable* a0, int a1, GtkSortType a2) {
     GtkTreeSortableIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeSortable.set_sort_column_id", gtk_tree_sortable_get_type());
@@ -4449,9 +4913,11 @@ static void vf_Gtk_TreeSortable_set_sort_func(GtkTreeSortable* a0, int a1, GtkTr
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeSortable.set_sort_func");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeSortable_set_sort_func(gsize type, void *closure) {
-    GtkTreeSortableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_sortable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeSortable.set_sort_func", closure); k->set_sort_func = (gpointer)vf_Gtk_TreeSortable_set_sort_func; }
+int zgtk_override_Gtk_TreeSortable_set_sort_func(gsize type, void *closure) {
+    GtkTreeSortableIface *k = zgtk_iface_below(type, gtk_tree_sortable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeSortable.set_sort_func", closure); k->set_sort_func = (gpointer)vf_Gtk_TreeSortable_set_sort_func;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeSortable_set_sort_func(GtkTreeSortable* a0, int a1, GtkTreeIterCompareFunc a2, gpointer a3, GDestroyNotify a4) {
     GtkTreeSortableIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeSortable.set_sort_func", gtk_tree_sortable_get_type());
@@ -4463,9 +4929,11 @@ static void vf_Gtk_TreeSortable_sort_column_changed(GtkTreeSortable* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeSortable.sort_column_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeSortable_sort_column_changed(gsize type, void *closure) {
-    GtkTreeSortableIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_tree_sortable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeSortable.sort_column_changed", closure); k->sort_column_changed = (gpointer)vf_Gtk_TreeSortable_sort_column_changed; }
+int zgtk_override_Gtk_TreeSortable_sort_column_changed(gsize type, void *closure) {
+    GtkTreeSortableIface *k = zgtk_iface_below(type, gtk_tree_sortable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeSortable.sort_column_changed", closure); k->sort_column_changed = (gpointer)vf_Gtk_TreeSortable_sort_column_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeSortable_sort_column_changed(GtkTreeSortable* a0) {
     GtkTreeSortableIface *k = zgtk_vfunc_parent(a0, "Gtk_TreeSortable.sort_column_changed", gtk_tree_sortable_get_type());
@@ -4477,9 +4945,11 @@ static void vf_Gtk_MediaStream_pause(GtkMediaStream* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_MediaStream.pause");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_MediaStream_pause(gsize type, void *closure) {
-    GtkMediaStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_MediaStream.pause", closure); k->pause = (gpointer)vf_Gtk_MediaStream_pause; }
+int zgtk_override_Gtk_MediaStream_pause(gsize type, void *closure) {
+    GtkMediaStreamClass *k = zgtk_class_below(type, gtk_media_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_MediaStream.pause", closure); k->pause = (gpointer)vf_Gtk_MediaStream_pause;
+    return 1;
 }
 void zgtk_parent_Gtk_MediaStream_pause(GtkMediaStream* a0) {
     GtkMediaStreamClass *k = zgtk_vfunc_parent(a0, "Gtk_MediaStream.pause", 0);
@@ -4492,9 +4962,11 @@ static gboolean vf_Gtk_MediaStream_play(GtkMediaStream* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_MediaStream_play(gsize type, void *closure) {
-    GtkMediaStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_MediaStream.play", closure); k->play = (gpointer)vf_Gtk_MediaStream_play; }
+int zgtk_override_Gtk_MediaStream_play(gsize type, void *closure) {
+    GtkMediaStreamClass *k = zgtk_class_below(type, gtk_media_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_MediaStream.play", closure); k->play = (gpointer)vf_Gtk_MediaStream_play;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_MediaStream_play(GtkMediaStream* a0) {
     GtkMediaStreamClass *k = zgtk_vfunc_parent(a0, "Gtk_MediaStream.play", 0);
@@ -4507,9 +4979,11 @@ static void vf_Gtk_MediaStream_realize(GtkMediaStream* a0, GdkSurface* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_MediaStream.realize");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_MediaStream_realize(gsize type, void *closure) {
-    GtkMediaStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_MediaStream.realize", closure); k->realize = (gpointer)vf_Gtk_MediaStream_realize; }
+int zgtk_override_Gtk_MediaStream_realize(gsize type, void *closure) {
+    GtkMediaStreamClass *k = zgtk_class_below(type, gtk_media_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_MediaStream.realize", closure); k->realize = (gpointer)vf_Gtk_MediaStream_realize;
+    return 1;
 }
 void zgtk_parent_Gtk_MediaStream_realize(GtkMediaStream* a0, GdkSurface* a1) {
     GtkMediaStreamClass *k = zgtk_vfunc_parent(a0, "Gtk_MediaStream.realize", 0);
@@ -4522,9 +4996,11 @@ static void vf_Gtk_MediaStream_seek(GtkMediaStream* a0, gint64 a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_MediaStream.seek");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_MediaStream_seek(gsize type, void *closure) {
-    GtkMediaStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_MediaStream.seek", closure); k->seek = (gpointer)vf_Gtk_MediaStream_seek; }
+int zgtk_override_Gtk_MediaStream_seek(gsize type, void *closure) {
+    GtkMediaStreamClass *k = zgtk_class_below(type, gtk_media_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_MediaStream.seek", closure); k->seek = (gpointer)vf_Gtk_MediaStream_seek;
+    return 1;
 }
 void zgtk_parent_Gtk_MediaStream_seek(GtkMediaStream* a0, gint64 a1) {
     GtkMediaStreamClass *k = zgtk_vfunc_parent(a0, "Gtk_MediaStream.seek", 0);
@@ -4537,9 +5013,11 @@ static void vf_Gtk_MediaStream_unrealize(GtkMediaStream* a0, GdkSurface* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_MediaStream.unrealize");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_MediaStream_unrealize(gsize type, void *closure) {
-    GtkMediaStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_MediaStream.unrealize", closure); k->unrealize = (gpointer)vf_Gtk_MediaStream_unrealize; }
+int zgtk_override_Gtk_MediaStream_unrealize(gsize type, void *closure) {
+    GtkMediaStreamClass *k = zgtk_class_below(type, gtk_media_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_MediaStream.unrealize", closure); k->unrealize = (gpointer)vf_Gtk_MediaStream_unrealize;
+    return 1;
 }
 void zgtk_parent_Gtk_MediaStream_unrealize(GtkMediaStream* a0, GdkSurface* a1) {
     GtkMediaStreamClass *k = zgtk_vfunc_parent(a0, "Gtk_MediaStream.unrealize", 0);
@@ -4553,9 +5031,11 @@ static void vf_Gtk_MediaStream_update_audio(GtkMediaStream* a0, gboolean a1, dou
     void *f = zgtk_vfunc_find(a0, "Gtk_MediaStream.update_audio");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_MediaStream_update_audio(gsize type, void *closure) {
-    GtkMediaStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_MediaStream.update_audio", closure); k->update_audio = (gpointer)vf_Gtk_MediaStream_update_audio; }
+int zgtk_override_Gtk_MediaStream_update_audio(gsize type, void *closure) {
+    GtkMediaStreamClass *k = zgtk_class_below(type, gtk_media_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_MediaStream.update_audio", closure); k->update_audio = (gpointer)vf_Gtk_MediaStream_update_audio;
+    return 1;
 }
 void zgtk_parent_Gtk_MediaStream_update_audio(GtkMediaStream* a0, gboolean a1, double a2) {
     GtkMediaStreamClass *k = zgtk_vfunc_parent(a0, "Gtk_MediaStream.update_audio", 0);
@@ -4567,9 +5047,11 @@ static void vf_Gtk_MediaFile_close(GtkMediaFile* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_MediaFile.close");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_MediaFile_close(gsize type, void *closure) {
-    GtkMediaFileClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_MediaFile.close", closure); k->close = (gpointer)vf_Gtk_MediaFile_close; }
+int zgtk_override_Gtk_MediaFile_close(gsize type, void *closure) {
+    GtkMediaFileClass *k = zgtk_class_below(type, gtk_media_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_MediaFile.close", closure); k->close = (gpointer)vf_Gtk_MediaFile_close;
+    return 1;
 }
 void zgtk_parent_Gtk_MediaFile_close(GtkMediaFile* a0) {
     GtkMediaFileClass *k = zgtk_vfunc_parent(a0, "Gtk_MediaFile.close", 0);
@@ -4581,9 +5063,11 @@ static void vf_Gtk_MediaFile_open(GtkMediaFile* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_MediaFile.open");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_MediaFile_open(gsize type, void *closure) {
-    GtkMediaFileClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_MediaFile.open", closure); k->open = (gpointer)vf_Gtk_MediaFile_open; }
+int zgtk_override_Gtk_MediaFile_open(gsize type, void *closure) {
+    GtkMediaFileClass *k = zgtk_class_below(type, gtk_media_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_MediaFile.open", closure); k->open = (gpointer)vf_Gtk_MediaFile_open;
+    return 1;
 }
 void zgtk_parent_Gtk_MediaFile_open(GtkMediaFile* a0) {
     GtkMediaFileClass *k = zgtk_vfunc_parent(a0, "Gtk_MediaFile.open", 0);
@@ -4598,9 +5082,11 @@ static GtkBitset* vf_Gtk_SelectionModel_get_selection_in_range(GtkSelectionModel
     if (f) zgtk_dispatch(f, &c);
     return (GtkBitset*)c.ret.p;
 }
-void zgtk_override_Gtk_SelectionModel_get_selection_in_range(gsize type, void *closure) {
-    GtkSelectionModelInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_selection_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_SelectionModel.get_selection_in_range", closure); k->get_selection_in_range = (gpointer)vf_Gtk_SelectionModel_get_selection_in_range; }
+int zgtk_override_Gtk_SelectionModel_get_selection_in_range(gsize type, void *closure) {
+    GtkSelectionModelInterface *k = zgtk_iface_below(type, gtk_selection_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_SelectionModel.get_selection_in_range", closure); k->get_selection_in_range = (gpointer)vf_Gtk_SelectionModel_get_selection_in_range;
+    return 1;
 }
 GtkBitset* zgtk_parent_Gtk_SelectionModel_get_selection_in_range(GtkSelectionModel* a0, guint a1, guint a2) {
     GtkSelectionModelInterface *k = zgtk_vfunc_parent(a0, "Gtk_SelectionModel.get_selection_in_range", gtk_selection_model_get_type());
@@ -4614,9 +5100,11 @@ static gboolean vf_Gtk_SelectionModel_is_selected(GtkSelectionModel* a0, guint a
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_SelectionModel_is_selected(gsize type, void *closure) {
-    GtkSelectionModelInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_selection_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_SelectionModel.is_selected", closure); k->is_selected = (gpointer)vf_Gtk_SelectionModel_is_selected; }
+int zgtk_override_Gtk_SelectionModel_is_selected(gsize type, void *closure) {
+    GtkSelectionModelInterface *k = zgtk_iface_below(type, gtk_selection_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_SelectionModel.is_selected", closure); k->is_selected = (gpointer)vf_Gtk_SelectionModel_is_selected;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_SelectionModel_is_selected(GtkSelectionModel* a0, guint a1) {
     GtkSelectionModelInterface *k = zgtk_vfunc_parent(a0, "Gtk_SelectionModel.is_selected", gtk_selection_model_get_type());
@@ -4629,9 +5117,11 @@ static gboolean vf_Gtk_SelectionModel_select_all(GtkSelectionModel* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_SelectionModel_select_all(gsize type, void *closure) {
-    GtkSelectionModelInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_selection_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_SelectionModel.select_all", closure); k->select_all = (gpointer)vf_Gtk_SelectionModel_select_all; }
+int zgtk_override_Gtk_SelectionModel_select_all(gsize type, void *closure) {
+    GtkSelectionModelInterface *k = zgtk_iface_below(type, gtk_selection_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_SelectionModel.select_all", closure); k->select_all = (gpointer)vf_Gtk_SelectionModel_select_all;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_SelectionModel_select_all(GtkSelectionModel* a0) {
     GtkSelectionModelInterface *k = zgtk_vfunc_parent(a0, "Gtk_SelectionModel.select_all", gtk_selection_model_get_type());
@@ -4646,9 +5136,11 @@ static gboolean vf_Gtk_SelectionModel_select_item(GtkSelectionModel* a0, guint a
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_SelectionModel_select_item(gsize type, void *closure) {
-    GtkSelectionModelInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_selection_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_SelectionModel.select_item", closure); k->select_item = (gpointer)vf_Gtk_SelectionModel_select_item; }
+int zgtk_override_Gtk_SelectionModel_select_item(gsize type, void *closure) {
+    GtkSelectionModelInterface *k = zgtk_iface_below(type, gtk_selection_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_SelectionModel.select_item", closure); k->select_item = (gpointer)vf_Gtk_SelectionModel_select_item;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_SelectionModel_select_item(GtkSelectionModel* a0, guint a1, gboolean a2) {
     GtkSelectionModelInterface *k = zgtk_vfunc_parent(a0, "Gtk_SelectionModel.select_item", gtk_selection_model_get_type());
@@ -4664,9 +5156,11 @@ static gboolean vf_Gtk_SelectionModel_select_range(GtkSelectionModel* a0, guint 
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_SelectionModel_select_range(gsize type, void *closure) {
-    GtkSelectionModelInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_selection_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_SelectionModel.select_range", closure); k->select_range = (gpointer)vf_Gtk_SelectionModel_select_range; }
+int zgtk_override_Gtk_SelectionModel_select_range(gsize type, void *closure) {
+    GtkSelectionModelInterface *k = zgtk_iface_below(type, gtk_selection_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_SelectionModel.select_range", closure); k->select_range = (gpointer)vf_Gtk_SelectionModel_select_range;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_SelectionModel_select_range(GtkSelectionModel* a0, guint a1, guint a2, gboolean a3) {
     GtkSelectionModelInterface *k = zgtk_vfunc_parent(a0, "Gtk_SelectionModel.select_range", gtk_selection_model_get_type());
@@ -4681,9 +5175,11 @@ static gboolean vf_Gtk_SelectionModel_set_selection(GtkSelectionModel* a0, GtkBi
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_SelectionModel_set_selection(gsize type, void *closure) {
-    GtkSelectionModelInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_selection_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_SelectionModel.set_selection", closure); k->set_selection = (gpointer)vf_Gtk_SelectionModel_set_selection; }
+int zgtk_override_Gtk_SelectionModel_set_selection(gsize type, void *closure) {
+    GtkSelectionModelInterface *k = zgtk_iface_below(type, gtk_selection_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_SelectionModel.set_selection", closure); k->set_selection = (gpointer)vf_Gtk_SelectionModel_set_selection;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_SelectionModel_set_selection(GtkSelectionModel* a0, GtkBitset* a1, GtkBitset* a2) {
     GtkSelectionModelInterface *k = zgtk_vfunc_parent(a0, "Gtk_SelectionModel.set_selection", gtk_selection_model_get_type());
@@ -4696,9 +5192,11 @@ static gboolean vf_Gtk_SelectionModel_unselect_all(GtkSelectionModel* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_SelectionModel_unselect_all(gsize type, void *closure) {
-    GtkSelectionModelInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_selection_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_SelectionModel.unselect_all", closure); k->unselect_all = (gpointer)vf_Gtk_SelectionModel_unselect_all; }
+int zgtk_override_Gtk_SelectionModel_unselect_all(gsize type, void *closure) {
+    GtkSelectionModelInterface *k = zgtk_iface_below(type, gtk_selection_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_SelectionModel.unselect_all", closure); k->unselect_all = (gpointer)vf_Gtk_SelectionModel_unselect_all;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_SelectionModel_unselect_all(GtkSelectionModel* a0) {
     GtkSelectionModelInterface *k = zgtk_vfunc_parent(a0, "Gtk_SelectionModel.unselect_all", gtk_selection_model_get_type());
@@ -4712,9 +5210,11 @@ static gboolean vf_Gtk_SelectionModel_unselect_item(GtkSelectionModel* a0, guint
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_SelectionModel_unselect_item(gsize type, void *closure) {
-    GtkSelectionModelInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_selection_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_SelectionModel.unselect_item", closure); k->unselect_item = (gpointer)vf_Gtk_SelectionModel_unselect_item; }
+int zgtk_override_Gtk_SelectionModel_unselect_item(gsize type, void *closure) {
+    GtkSelectionModelInterface *k = zgtk_iface_below(type, gtk_selection_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_SelectionModel.unselect_item", closure); k->unselect_item = (gpointer)vf_Gtk_SelectionModel_unselect_item;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_SelectionModel_unselect_item(GtkSelectionModel* a0, guint a1) {
     GtkSelectionModelInterface *k = zgtk_vfunc_parent(a0, "Gtk_SelectionModel.unselect_item", gtk_selection_model_get_type());
@@ -4729,9 +5229,11 @@ static gboolean vf_Gtk_SelectionModel_unselect_range(GtkSelectionModel* a0, guin
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_SelectionModel_unselect_range(gsize type, void *closure) {
-    GtkSelectionModelInterface *k = g_type_interface_peek(g_type_class_ref(type), gtk_selection_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_SelectionModel.unselect_range", closure); k->unselect_range = (gpointer)vf_Gtk_SelectionModel_unselect_range; }
+int zgtk_override_Gtk_SelectionModel_unselect_range(gsize type, void *closure) {
+    GtkSelectionModelInterface *k = zgtk_iface_below(type, gtk_selection_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_SelectionModel.unselect_range", closure); k->unselect_range = (gpointer)vf_Gtk_SelectionModel_unselect_range;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_SelectionModel_unselect_range(GtkSelectionModel* a0, guint a1, guint a2) {
     GtkSelectionModelInterface *k = zgtk_vfunc_parent(a0, "Gtk_SelectionModel.unselect_range", gtk_selection_model_get_type());
@@ -4755,9 +5257,11 @@ static void vf_Gtk_PrintOperationPreview_end_preview(GtkPrintOperationPreview* a
     void *f = zgtk_vfunc_find(a0, "Gtk_PrintOperationPreview.end_preview");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_PrintOperationPreview_end_preview(gsize type, void *closure) {
-    GtkPrintOperationPreviewIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_print_operation_preview_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperationPreview.end_preview", closure); k->end_preview = (gpointer)vf_Gtk_PrintOperationPreview_end_preview; }
+int zgtk_override_Gtk_PrintOperationPreview_end_preview(gsize type, void *closure) {
+    GtkPrintOperationPreviewIface *k = zgtk_iface_below(type, gtk_print_operation_preview_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperationPreview.end_preview", closure); k->end_preview = (gpointer)vf_Gtk_PrintOperationPreview_end_preview;
+    return 1;
 }
 void zgtk_parent_Gtk_PrintOperationPreview_end_preview(GtkPrintOperationPreview* a0) {
     GtkPrintOperationPreviewIface *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperationPreview.end_preview", gtk_print_operation_preview_get_type());
@@ -4771,9 +5275,11 @@ static void vf_Gtk_PrintOperationPreview_got_page_size(GtkPrintOperationPreview*
     void *f = zgtk_vfunc_find(a0, "Gtk_PrintOperationPreview.got_page_size");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_PrintOperationPreview_got_page_size(gsize type, void *closure) {
-    GtkPrintOperationPreviewIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_print_operation_preview_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperationPreview.got_page_size", closure); k->got_page_size = (gpointer)vf_Gtk_PrintOperationPreview_got_page_size; }
+int zgtk_override_Gtk_PrintOperationPreview_got_page_size(gsize type, void *closure) {
+    GtkPrintOperationPreviewIface *k = zgtk_iface_below(type, gtk_print_operation_preview_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperationPreview.got_page_size", closure); k->got_page_size = (gpointer)vf_Gtk_PrintOperationPreview_got_page_size;
+    return 1;
 }
 void zgtk_parent_Gtk_PrintOperationPreview_got_page_size(GtkPrintOperationPreview* a0, GtkPrintContext* a1, GtkPageSetup* a2) {
     GtkPrintOperationPreviewIface *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperationPreview.got_page_size", gtk_print_operation_preview_get_type());
@@ -4787,9 +5293,11 @@ static gboolean vf_Gtk_PrintOperationPreview_is_selected(GtkPrintOperationPrevie
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_PrintOperationPreview_is_selected(gsize type, void *closure) {
-    GtkPrintOperationPreviewIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_print_operation_preview_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperationPreview.is_selected", closure); k->is_selected = (gpointer)vf_Gtk_PrintOperationPreview_is_selected; }
+int zgtk_override_Gtk_PrintOperationPreview_is_selected(gsize type, void *closure) {
+    GtkPrintOperationPreviewIface *k = zgtk_iface_below(type, gtk_print_operation_preview_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperationPreview.is_selected", closure); k->is_selected = (gpointer)vf_Gtk_PrintOperationPreview_is_selected;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_PrintOperationPreview_is_selected(GtkPrintOperationPreview* a0, int a1) {
     GtkPrintOperationPreviewIface *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperationPreview.is_selected", gtk_print_operation_preview_get_type());
@@ -4802,9 +5310,11 @@ static void vf_Gtk_PrintOperationPreview_ready(GtkPrintOperationPreview* a0, Gtk
     void *f = zgtk_vfunc_find(a0, "Gtk_PrintOperationPreview.ready");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_PrintOperationPreview_ready(gsize type, void *closure) {
-    GtkPrintOperationPreviewIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_print_operation_preview_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperationPreview.ready", closure); k->ready = (gpointer)vf_Gtk_PrintOperationPreview_ready; }
+int zgtk_override_Gtk_PrintOperationPreview_ready(gsize type, void *closure) {
+    GtkPrintOperationPreviewIface *k = zgtk_iface_below(type, gtk_print_operation_preview_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperationPreview.ready", closure); k->ready = (gpointer)vf_Gtk_PrintOperationPreview_ready;
+    return 1;
 }
 void zgtk_parent_Gtk_PrintOperationPreview_ready(GtkPrintOperationPreview* a0, GtkPrintContext* a1) {
     GtkPrintOperationPreviewIface *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperationPreview.ready", gtk_print_operation_preview_get_type());
@@ -4817,9 +5327,11 @@ static void vf_Gtk_PrintOperationPreview_render_page(GtkPrintOperationPreview* a
     void *f = zgtk_vfunc_find(a0, "Gtk_PrintOperationPreview.render_page");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_PrintOperationPreview_render_page(gsize type, void *closure) {
-    GtkPrintOperationPreviewIface *k = g_type_interface_peek(g_type_class_ref(type), gtk_print_operation_preview_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperationPreview.render_page", closure); k->render_page = (gpointer)vf_Gtk_PrintOperationPreview_render_page; }
+int zgtk_override_Gtk_PrintOperationPreview_render_page(gsize type, void *closure) {
+    GtkPrintOperationPreviewIface *k = zgtk_iface_below(type, gtk_print_operation_preview_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperationPreview.render_page", closure); k->render_page = (gpointer)vf_Gtk_PrintOperationPreview_render_page;
+    return 1;
 }
 void zgtk_parent_Gtk_PrintOperationPreview_render_page(GtkPrintOperationPreview* a0, int a1) {
     GtkPrintOperationPreviewIface *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperationPreview.render_page", gtk_print_operation_preview_get_type());
@@ -4832,9 +5344,11 @@ static void vf_Gtk_PrintOperation_begin_print(GtkPrintOperation* a0, GtkPrintCon
     void *f = zgtk_vfunc_find(a0, "Gtk_PrintOperation.begin_print");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_PrintOperation_begin_print(gsize type, void *closure) {
-    GtkPrintOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperation.begin_print", closure); k->begin_print = (gpointer)vf_Gtk_PrintOperation_begin_print; }
+int zgtk_override_Gtk_PrintOperation_begin_print(gsize type, void *closure) {
+    GtkPrintOperationClass *k = zgtk_class_below(type, gtk_print_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperation.begin_print", closure); k->begin_print = (gpointer)vf_Gtk_PrintOperation_begin_print;
+    return 1;
 }
 void zgtk_parent_Gtk_PrintOperation_begin_print(GtkPrintOperation* a0, GtkPrintContext* a1) {
     GtkPrintOperationClass *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperation.begin_print", 0);
@@ -4847,9 +5361,11 @@ static GtkWidget* vf_Gtk_PrintOperation_create_custom_widget(GtkPrintOperation* 
     if (f) zgtk_dispatch(f, &c);
     return (GtkWidget*)c.ret.p;
 }
-void zgtk_override_Gtk_PrintOperation_create_custom_widget(gsize type, void *closure) {
-    GtkPrintOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperation.create_custom_widget", closure); k->create_custom_widget = (gpointer)vf_Gtk_PrintOperation_create_custom_widget; }
+int zgtk_override_Gtk_PrintOperation_create_custom_widget(gsize type, void *closure) {
+    GtkPrintOperationClass *k = zgtk_class_below(type, gtk_print_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperation.create_custom_widget", closure); k->create_custom_widget = (gpointer)vf_Gtk_PrintOperation_create_custom_widget;
+    return 1;
 }
 GtkWidget* zgtk_parent_Gtk_PrintOperation_create_custom_widget(GtkPrintOperation* a0) {
     GtkPrintOperationClass *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperation.create_custom_widget", 0);
@@ -4862,9 +5378,11 @@ static void vf_Gtk_PrintOperation_custom_widget_apply(GtkPrintOperation* a0, Gtk
     void *f = zgtk_vfunc_find(a0, "Gtk_PrintOperation.custom_widget_apply");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_PrintOperation_custom_widget_apply(gsize type, void *closure) {
-    GtkPrintOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperation.custom_widget_apply", closure); k->custom_widget_apply = (gpointer)vf_Gtk_PrintOperation_custom_widget_apply; }
+int zgtk_override_Gtk_PrintOperation_custom_widget_apply(gsize type, void *closure) {
+    GtkPrintOperationClass *k = zgtk_class_below(type, gtk_print_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperation.custom_widget_apply", closure); k->custom_widget_apply = (gpointer)vf_Gtk_PrintOperation_custom_widget_apply;
+    return 1;
 }
 void zgtk_parent_Gtk_PrintOperation_custom_widget_apply(GtkPrintOperation* a0, GtkWidget* a1) {
     GtkPrintOperationClass *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperation.custom_widget_apply", 0);
@@ -4877,9 +5395,11 @@ static void vf_Gtk_PrintOperation_done(GtkPrintOperation* a0, GtkPrintOperationR
     void *f = zgtk_vfunc_find(a0, "Gtk_PrintOperation.done");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_PrintOperation_done(gsize type, void *closure) {
-    GtkPrintOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperation.done", closure); k->done = (gpointer)vf_Gtk_PrintOperation_done; }
+int zgtk_override_Gtk_PrintOperation_done(gsize type, void *closure) {
+    GtkPrintOperationClass *k = zgtk_class_below(type, gtk_print_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperation.done", closure); k->done = (gpointer)vf_Gtk_PrintOperation_done;
+    return 1;
 }
 void zgtk_parent_Gtk_PrintOperation_done(GtkPrintOperation* a0, GtkPrintOperationResult a1) {
     GtkPrintOperationClass *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperation.done", 0);
@@ -4893,9 +5413,11 @@ static void vf_Gtk_PrintOperation_draw_page(GtkPrintOperation* a0, GtkPrintConte
     void *f = zgtk_vfunc_find(a0, "Gtk_PrintOperation.draw_page");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_PrintOperation_draw_page(gsize type, void *closure) {
-    GtkPrintOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperation.draw_page", closure); k->draw_page = (gpointer)vf_Gtk_PrintOperation_draw_page; }
+int zgtk_override_Gtk_PrintOperation_draw_page(gsize type, void *closure) {
+    GtkPrintOperationClass *k = zgtk_class_below(type, gtk_print_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperation.draw_page", closure); k->draw_page = (gpointer)vf_Gtk_PrintOperation_draw_page;
+    return 1;
 }
 void zgtk_parent_Gtk_PrintOperation_draw_page(GtkPrintOperation* a0, GtkPrintContext* a1, int a2) {
     GtkPrintOperationClass *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperation.draw_page", 0);
@@ -4908,9 +5430,11 @@ static void vf_Gtk_PrintOperation_end_print(GtkPrintOperation* a0, GtkPrintConte
     void *f = zgtk_vfunc_find(a0, "Gtk_PrintOperation.end_print");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_PrintOperation_end_print(gsize type, void *closure) {
-    GtkPrintOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperation.end_print", closure); k->end_print = (gpointer)vf_Gtk_PrintOperation_end_print; }
+int zgtk_override_Gtk_PrintOperation_end_print(gsize type, void *closure) {
+    GtkPrintOperationClass *k = zgtk_class_below(type, gtk_print_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperation.end_print", closure); k->end_print = (gpointer)vf_Gtk_PrintOperation_end_print;
+    return 1;
 }
 void zgtk_parent_Gtk_PrintOperation_end_print(GtkPrintOperation* a0, GtkPrintContext* a1) {
     GtkPrintOperationClass *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperation.end_print", 0);
@@ -4924,9 +5448,11 @@ static gboolean vf_Gtk_PrintOperation_paginate(GtkPrintOperation* a0, GtkPrintCo
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_PrintOperation_paginate(gsize type, void *closure) {
-    GtkPrintOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperation.paginate", closure); k->paginate = (gpointer)vf_Gtk_PrintOperation_paginate; }
+int zgtk_override_Gtk_PrintOperation_paginate(gsize type, void *closure) {
+    GtkPrintOperationClass *k = zgtk_class_below(type, gtk_print_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperation.paginate", closure); k->paginate = (gpointer)vf_Gtk_PrintOperation_paginate;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_PrintOperation_paginate(GtkPrintOperation* a0, GtkPrintContext* a1) {
     GtkPrintOperationClass *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperation.paginate", 0);
@@ -4942,9 +5468,11 @@ static gboolean vf_Gtk_PrintOperation_preview(GtkPrintOperation* a0, GtkPrintOpe
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_PrintOperation_preview(gsize type, void *closure) {
-    GtkPrintOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperation.preview", closure); k->preview = (gpointer)vf_Gtk_PrintOperation_preview; }
+int zgtk_override_Gtk_PrintOperation_preview(gsize type, void *closure) {
+    GtkPrintOperationClass *k = zgtk_class_below(type, gtk_print_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperation.preview", closure); k->preview = (gpointer)vf_Gtk_PrintOperation_preview;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_PrintOperation_preview(GtkPrintOperation* a0, GtkPrintOperationPreview* a1, GtkPrintContext* a2, GtkWindow* a3) {
     GtkPrintOperationClass *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperation.preview", 0);
@@ -4959,9 +5487,11 @@ static void vf_Gtk_PrintOperation_request_page_setup(GtkPrintOperation* a0, GtkP
     void *f = zgtk_vfunc_find(a0, "Gtk_PrintOperation.request_page_setup");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_PrintOperation_request_page_setup(gsize type, void *closure) {
-    GtkPrintOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperation.request_page_setup", closure); k->request_page_setup = (gpointer)vf_Gtk_PrintOperation_request_page_setup; }
+int zgtk_override_Gtk_PrintOperation_request_page_setup(gsize type, void *closure) {
+    GtkPrintOperationClass *k = zgtk_class_below(type, gtk_print_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperation.request_page_setup", closure); k->request_page_setup = (gpointer)vf_Gtk_PrintOperation_request_page_setup;
+    return 1;
 }
 void zgtk_parent_Gtk_PrintOperation_request_page_setup(GtkPrintOperation* a0, GtkPrintContext* a1, int a2, GtkPageSetup* a3) {
     GtkPrintOperationClass *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperation.request_page_setup", 0);
@@ -4973,9 +5503,11 @@ static void vf_Gtk_PrintOperation_status_changed(GtkPrintOperation* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_PrintOperation.status_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_PrintOperation_status_changed(gsize type, void *closure) {
-    GtkPrintOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperation.status_changed", closure); k->status_changed = (gpointer)vf_Gtk_PrintOperation_status_changed; }
+int zgtk_override_Gtk_PrintOperation_status_changed(gsize type, void *closure) {
+    GtkPrintOperationClass *k = zgtk_class_below(type, gtk_print_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperation.status_changed", closure); k->status_changed = (gpointer)vf_Gtk_PrintOperation_status_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_PrintOperation_status_changed(GtkPrintOperation* a0) {
     GtkPrintOperationClass *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperation.status_changed", 0);
@@ -4990,9 +5522,11 @@ static void vf_Gtk_PrintOperation_update_custom_widget(GtkPrintOperation* a0, Gt
     void *f = zgtk_vfunc_find(a0, "Gtk_PrintOperation.update_custom_widget");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_PrintOperation_update_custom_widget(gsize type, void *closure) {
-    GtkPrintOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_PrintOperation.update_custom_widget", closure); k->update_custom_widget = (gpointer)vf_Gtk_PrintOperation_update_custom_widget; }
+int zgtk_override_Gtk_PrintOperation_update_custom_widget(gsize type, void *closure) {
+    GtkPrintOperationClass *k = zgtk_class_below(type, gtk_print_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_PrintOperation.update_custom_widget", closure); k->update_custom_widget = (gpointer)vf_Gtk_PrintOperation_update_custom_widget;
+    return 1;
 }
 void zgtk_parent_Gtk_PrintOperation_update_custom_widget(GtkPrintOperation* a0, GtkWidget* a1, GtkPageSetup* a2, GtkPrintSettings* a3) {
     GtkPrintOperationClass *k = zgtk_vfunc_parent(a0, "Gtk_PrintOperation.update_custom_widget", 0);
@@ -5005,9 +5539,11 @@ static void vf_Gtk_Range_adjust_bounds(GtkRange* a0, double a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Range.adjust_bounds");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Range_adjust_bounds(gsize type, void *closure) {
-    GtkRangeClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Range.adjust_bounds", closure); k->adjust_bounds = (gpointer)vf_Gtk_Range_adjust_bounds; }
+int zgtk_override_Gtk_Range_adjust_bounds(gsize type, void *closure) {
+    GtkRangeClass *k = zgtk_class_below(type, gtk_range_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Range.adjust_bounds", closure); k->adjust_bounds = (gpointer)vf_Gtk_Range_adjust_bounds;
+    return 1;
 }
 void zgtk_parent_Gtk_Range_adjust_bounds(GtkRange* a0, double a1) {
     GtkRangeClass *k = zgtk_vfunc_parent(a0, "Gtk_Range.adjust_bounds", 0);
@@ -5022,9 +5558,11 @@ static gboolean vf_Gtk_Range_change_value(GtkRange* a0, GtkScrollType a1, double
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_Range_change_value(gsize type, void *closure) {
-    GtkRangeClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Range.change_value", closure); k->change_value = (gpointer)vf_Gtk_Range_change_value; }
+int zgtk_override_Gtk_Range_change_value(gsize type, void *closure) {
+    GtkRangeClass *k = zgtk_class_below(type, gtk_range_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Range.change_value", closure); k->change_value = (gpointer)vf_Gtk_Range_change_value;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_Range_change_value(GtkRange* a0, GtkScrollType a1, double a2) {
     GtkRangeClass *k = zgtk_vfunc_parent(a0, "Gtk_Range.change_value", 0);
@@ -5037,9 +5575,11 @@ static void vf_Gtk_Range_get_range_border(GtkRange* a0, GtkBorder* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Range.get_range_border");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Range_get_range_border(gsize type, void *closure) {
-    GtkRangeClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Range.get_range_border", closure); k->get_range_border = (gpointer)vf_Gtk_Range_get_range_border; }
+int zgtk_override_Gtk_Range_get_range_border(gsize type, void *closure) {
+    GtkRangeClass *k = zgtk_class_below(type, gtk_range_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Range.get_range_border", closure); k->get_range_border = (gpointer)vf_Gtk_Range_get_range_border;
+    return 1;
 }
 void zgtk_parent_Gtk_Range_get_range_border(GtkRange* a0, GtkBorder* a1) {
     GtkRangeClass *k = zgtk_vfunc_parent(a0, "Gtk_Range.get_range_border", 0);
@@ -5052,9 +5592,11 @@ static void vf_Gtk_Range_move_slider(GtkRange* a0, GtkScrollType a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Range.move_slider");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Range_move_slider(gsize type, void *closure) {
-    GtkRangeClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Range.move_slider", closure); k->move_slider = (gpointer)vf_Gtk_Range_move_slider; }
+int zgtk_override_Gtk_Range_move_slider(gsize type, void *closure) {
+    GtkRangeClass *k = zgtk_class_below(type, gtk_range_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Range.move_slider", closure); k->move_slider = (gpointer)vf_Gtk_Range_move_slider;
+    return 1;
 }
 void zgtk_parent_Gtk_Range_move_slider(GtkRange* a0, GtkScrollType a1) {
     GtkRangeClass *k = zgtk_vfunc_parent(a0, "Gtk_Range.move_slider", 0);
@@ -5066,9 +5608,11 @@ static void vf_Gtk_Range_value_changed(GtkRange* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Range.value_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Range_value_changed(gsize type, void *closure) {
-    GtkRangeClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Range.value_changed", closure); k->value_changed = (gpointer)vf_Gtk_Range_value_changed; }
+int zgtk_override_Gtk_Range_value_changed(gsize type, void *closure) {
+    GtkRangeClass *k = zgtk_class_below(type, gtk_range_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Range.value_changed", closure); k->value_changed = (gpointer)vf_Gtk_Range_value_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_Range_value_changed(GtkRange* a0) {
     GtkRangeClass *k = zgtk_vfunc_parent(a0, "Gtk_Range.value_changed", 0);
@@ -5083,9 +5627,11 @@ static void vf_Gtk_RecentManager_changed(GtkRecentManager* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_RecentManager.changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_RecentManager_changed(gsize type, void *closure) {
-    GtkRecentManagerClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_RecentManager.changed", closure); k->changed = (gpointer)vf_Gtk_RecentManager_changed; }
+int zgtk_override_Gtk_RecentManager_changed(gsize type, void *closure) {
+    GtkRecentManagerClass *k = zgtk_class_below(type, gtk_recent_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_RecentManager.changed", closure); k->changed = (gpointer)vf_Gtk_RecentManager_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_RecentManager_changed(GtkRecentManager* a0) {
     GtkRecentManagerClass *k = zgtk_vfunc_parent(a0, "Gtk_RecentManager.changed", 0);
@@ -5109,9 +5655,11 @@ static void vf_Gtk_Scale_get_layout_offsets(GtkScale* a0, int* a1, int* a2) {
     void *f = zgtk_vfunc_find(a0, "Gtk_Scale.get_layout_offsets");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_Scale_get_layout_offsets(gsize type, void *closure) {
-    GtkScaleClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_Scale.get_layout_offsets", closure); k->get_layout_offsets = (gpointer)vf_Gtk_Scale_get_layout_offsets; }
+int zgtk_override_Gtk_Scale_get_layout_offsets(gsize type, void *closure) {
+    GtkScaleClass *k = zgtk_class_below(type, gtk_scale_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_Scale.get_layout_offsets", closure); k->get_layout_offsets = (gpointer)vf_Gtk_Scale_get_layout_offsets;
+    return 1;
 }
 void zgtk_parent_Gtk_Scale_get_layout_offsets(GtkScale* a0, int* a1, int* a2) {
     GtkScaleClass *k = zgtk_vfunc_parent(a0, "Gtk_Scale.get_layout_offsets", 0);
@@ -5124,9 +5672,11 @@ static void vf_Gtk_ScaleButton_value_changed(GtkScaleButton* a0, double a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_ScaleButton.value_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_ScaleButton_value_changed(gsize type, void *closure) {
-    GtkScaleButtonClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_ScaleButton.value_changed", closure); k->value_changed = (gpointer)vf_Gtk_ScaleButton_value_changed; }
+int zgtk_override_Gtk_ScaleButton_value_changed(gsize type, void *closure) {
+    GtkScaleButtonClass *k = zgtk_class_below(type, gtk_scale_button_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_ScaleButton.value_changed", closure); k->value_changed = (gpointer)vf_Gtk_ScaleButton_value_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_ScaleButton_value_changed(GtkScaleButton* a0, double a1) {
     GtkScaleButtonClass *k = zgtk_vfunc_parent(a0, "Gtk_ScaleButton.value_changed", 0);
@@ -5138,9 +5688,11 @@ static void vf_Gtk_StyleContext_changed(GtkStyleContext* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_StyleContext.changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_StyleContext_changed(gsize type, void *closure) {
-    GtkStyleContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_StyleContext.changed", closure); k->changed = (gpointer)vf_Gtk_StyleContext_changed; }
+int zgtk_override_Gtk_StyleContext_changed(gsize type, void *closure) {
+    GtkStyleContextClass *k = zgtk_class_below(type, gtk_style_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_StyleContext.changed", closure); k->changed = (gpointer)vf_Gtk_StyleContext_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_StyleContext_changed(GtkStyleContext* a0) {
     GtkStyleContextClass *k = zgtk_vfunc_parent(a0, "Gtk_StyleContext.changed", 0);
@@ -5162,9 +5714,11 @@ static void vf_Gtk_TextBuffer_apply_tag(GtkTextBuffer* a0, GtkTextTag* a1, const
     void *f = zgtk_vfunc_find(a0, "Gtk_TextBuffer.apply_tag");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextBuffer_apply_tag(gsize type, void *closure) {
-    GtkTextBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextBuffer.apply_tag", closure); k->apply_tag = (gpointer)vf_Gtk_TextBuffer_apply_tag; }
+int zgtk_override_Gtk_TextBuffer_apply_tag(gsize type, void *closure) {
+    GtkTextBufferClass *k = zgtk_class_below(type, gtk_text_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextBuffer.apply_tag", closure); k->apply_tag = (gpointer)vf_Gtk_TextBuffer_apply_tag;
+    return 1;
 }
 void zgtk_parent_Gtk_TextBuffer_apply_tag(GtkTextBuffer* a0, GtkTextTag* a1, const GtkTextIter* a2, const GtkTextIter* a3) {
     GtkTextBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_TextBuffer.apply_tag", 0);
@@ -5176,9 +5730,11 @@ static void vf_Gtk_TextBuffer_begin_user_action(GtkTextBuffer* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextBuffer.begin_user_action");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextBuffer_begin_user_action(gsize type, void *closure) {
-    GtkTextBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextBuffer.begin_user_action", closure); k->begin_user_action = (gpointer)vf_Gtk_TextBuffer_begin_user_action; }
+int zgtk_override_Gtk_TextBuffer_begin_user_action(gsize type, void *closure) {
+    GtkTextBufferClass *k = zgtk_class_below(type, gtk_text_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextBuffer.begin_user_action", closure); k->begin_user_action = (gpointer)vf_Gtk_TextBuffer_begin_user_action;
+    return 1;
 }
 void zgtk_parent_Gtk_TextBuffer_begin_user_action(GtkTextBuffer* a0) {
     GtkTextBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_TextBuffer.begin_user_action", 0);
@@ -5190,9 +5746,11 @@ static void vf_Gtk_TextBuffer_changed(GtkTextBuffer* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextBuffer.changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextBuffer_changed(gsize type, void *closure) {
-    GtkTextBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextBuffer.changed", closure); k->changed = (gpointer)vf_Gtk_TextBuffer_changed; }
+int zgtk_override_Gtk_TextBuffer_changed(gsize type, void *closure) {
+    GtkTextBufferClass *k = zgtk_class_below(type, gtk_text_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextBuffer.changed", closure); k->changed = (gpointer)vf_Gtk_TextBuffer_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_TextBuffer_changed(GtkTextBuffer* a0) {
     GtkTextBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_TextBuffer.changed", 0);
@@ -5206,9 +5764,11 @@ static void vf_Gtk_TextBuffer_delete_range(GtkTextBuffer* a0, GtkTextIter* a1, G
     void *f = zgtk_vfunc_find(a0, "Gtk_TextBuffer.delete_range");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextBuffer_delete_range(gsize type, void *closure) {
-    GtkTextBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextBuffer.delete_range", closure); k->delete_range = (gpointer)vf_Gtk_TextBuffer_delete_range; }
+int zgtk_override_Gtk_TextBuffer_delete_range(gsize type, void *closure) {
+    GtkTextBufferClass *k = zgtk_class_below(type, gtk_text_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextBuffer.delete_range", closure); k->delete_range = (gpointer)vf_Gtk_TextBuffer_delete_range;
+    return 1;
 }
 void zgtk_parent_Gtk_TextBuffer_delete_range(GtkTextBuffer* a0, GtkTextIter* a1, GtkTextIter* a2) {
     GtkTextBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_TextBuffer.delete_range", 0);
@@ -5220,9 +5780,11 @@ static void vf_Gtk_TextBuffer_end_user_action(GtkTextBuffer* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextBuffer.end_user_action");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextBuffer_end_user_action(gsize type, void *closure) {
-    GtkTextBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextBuffer.end_user_action", closure); k->end_user_action = (gpointer)vf_Gtk_TextBuffer_end_user_action; }
+int zgtk_override_Gtk_TextBuffer_end_user_action(gsize type, void *closure) {
+    GtkTextBufferClass *k = zgtk_class_below(type, gtk_text_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextBuffer.end_user_action", closure); k->end_user_action = (gpointer)vf_Gtk_TextBuffer_end_user_action;
+    return 1;
 }
 void zgtk_parent_Gtk_TextBuffer_end_user_action(GtkTextBuffer* a0) {
     GtkTextBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_TextBuffer.end_user_action", 0);
@@ -5236,9 +5798,11 @@ static void vf_Gtk_TextBuffer_insert_child_anchor(GtkTextBuffer* a0, GtkTextIter
     void *f = zgtk_vfunc_find(a0, "Gtk_TextBuffer.insert_child_anchor");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextBuffer_insert_child_anchor(gsize type, void *closure) {
-    GtkTextBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextBuffer.insert_child_anchor", closure); k->insert_child_anchor = (gpointer)vf_Gtk_TextBuffer_insert_child_anchor; }
+int zgtk_override_Gtk_TextBuffer_insert_child_anchor(gsize type, void *closure) {
+    GtkTextBufferClass *k = zgtk_class_below(type, gtk_text_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextBuffer.insert_child_anchor", closure); k->insert_child_anchor = (gpointer)vf_Gtk_TextBuffer_insert_child_anchor;
+    return 1;
 }
 void zgtk_parent_Gtk_TextBuffer_insert_child_anchor(GtkTextBuffer* a0, GtkTextIter* a1, GtkTextChildAnchor* a2) {
     GtkTextBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_TextBuffer.insert_child_anchor", 0);
@@ -5252,9 +5816,11 @@ static void vf_Gtk_TextBuffer_insert_paintable(GtkTextBuffer* a0, GtkTextIter* a
     void *f = zgtk_vfunc_find(a0, "Gtk_TextBuffer.insert_paintable");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextBuffer_insert_paintable(gsize type, void *closure) {
-    GtkTextBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextBuffer.insert_paintable", closure); k->insert_paintable = (gpointer)vf_Gtk_TextBuffer_insert_paintable; }
+int zgtk_override_Gtk_TextBuffer_insert_paintable(gsize type, void *closure) {
+    GtkTextBufferClass *k = zgtk_class_below(type, gtk_text_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextBuffer.insert_paintable", closure); k->insert_paintable = (gpointer)vf_Gtk_TextBuffer_insert_paintable;
+    return 1;
 }
 void zgtk_parent_Gtk_TextBuffer_insert_paintable(GtkTextBuffer* a0, GtkTextIter* a1, GdkPaintable* a2) {
     GtkTextBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_TextBuffer.insert_paintable", 0);
@@ -5269,9 +5835,11 @@ static void vf_Gtk_TextBuffer_insert_text(GtkTextBuffer* a0, GtkTextIter* a1, co
     void *f = zgtk_vfunc_find(a0, "Gtk_TextBuffer.insert_text");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextBuffer_insert_text(gsize type, void *closure) {
-    GtkTextBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextBuffer.insert_text", closure); k->insert_text = (gpointer)vf_Gtk_TextBuffer_insert_text; }
+int zgtk_override_Gtk_TextBuffer_insert_text(gsize type, void *closure) {
+    GtkTextBufferClass *k = zgtk_class_below(type, gtk_text_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextBuffer.insert_text", closure); k->insert_text = (gpointer)vf_Gtk_TextBuffer_insert_text;
+    return 1;
 }
 void zgtk_parent_Gtk_TextBuffer_insert_text(GtkTextBuffer* a0, GtkTextIter* a1, const char* a2, int a3) {
     GtkTextBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_TextBuffer.insert_text", 0);
@@ -5284,9 +5852,11 @@ static void vf_Gtk_TextBuffer_mark_deleted(GtkTextBuffer* a0, GtkTextMark* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextBuffer.mark_deleted");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextBuffer_mark_deleted(gsize type, void *closure) {
-    GtkTextBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextBuffer.mark_deleted", closure); k->mark_deleted = (gpointer)vf_Gtk_TextBuffer_mark_deleted; }
+int zgtk_override_Gtk_TextBuffer_mark_deleted(gsize type, void *closure) {
+    GtkTextBufferClass *k = zgtk_class_below(type, gtk_text_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextBuffer.mark_deleted", closure); k->mark_deleted = (gpointer)vf_Gtk_TextBuffer_mark_deleted;
+    return 1;
 }
 void zgtk_parent_Gtk_TextBuffer_mark_deleted(GtkTextBuffer* a0, GtkTextMark* a1) {
     GtkTextBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_TextBuffer.mark_deleted", 0);
@@ -5300,9 +5870,11 @@ static void vf_Gtk_TextBuffer_mark_set(GtkTextBuffer* a0, const GtkTextIter* a1,
     void *f = zgtk_vfunc_find(a0, "Gtk_TextBuffer.mark_set");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextBuffer_mark_set(gsize type, void *closure) {
-    GtkTextBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextBuffer.mark_set", closure); k->mark_set = (gpointer)vf_Gtk_TextBuffer_mark_set; }
+int zgtk_override_Gtk_TextBuffer_mark_set(gsize type, void *closure) {
+    GtkTextBufferClass *k = zgtk_class_below(type, gtk_text_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextBuffer.mark_set", closure); k->mark_set = (gpointer)vf_Gtk_TextBuffer_mark_set;
+    return 1;
 }
 void zgtk_parent_Gtk_TextBuffer_mark_set(GtkTextBuffer* a0, const GtkTextIter* a1, GtkTextMark* a2) {
     GtkTextBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_TextBuffer.mark_set", 0);
@@ -5314,9 +5886,11 @@ static void vf_Gtk_TextBuffer_modified_changed(GtkTextBuffer* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextBuffer.modified_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextBuffer_modified_changed(gsize type, void *closure) {
-    GtkTextBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextBuffer.modified_changed", closure); k->modified_changed = (gpointer)vf_Gtk_TextBuffer_modified_changed; }
+int zgtk_override_Gtk_TextBuffer_modified_changed(gsize type, void *closure) {
+    GtkTextBufferClass *k = zgtk_class_below(type, gtk_text_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextBuffer.modified_changed", closure); k->modified_changed = (gpointer)vf_Gtk_TextBuffer_modified_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_TextBuffer_modified_changed(GtkTextBuffer* a0) {
     GtkTextBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_TextBuffer.modified_changed", 0);
@@ -5329,9 +5903,11 @@ static void vf_Gtk_TextBuffer_paste_done(GtkTextBuffer* a0, GdkClipboard* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextBuffer.paste_done");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextBuffer_paste_done(gsize type, void *closure) {
-    GtkTextBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextBuffer.paste_done", closure); k->paste_done = (gpointer)vf_Gtk_TextBuffer_paste_done; }
+int zgtk_override_Gtk_TextBuffer_paste_done(gsize type, void *closure) {
+    GtkTextBufferClass *k = zgtk_class_below(type, gtk_text_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextBuffer.paste_done", closure); k->paste_done = (gpointer)vf_Gtk_TextBuffer_paste_done;
+    return 1;
 }
 void zgtk_parent_Gtk_TextBuffer_paste_done(GtkTextBuffer* a0, GdkClipboard* a1) {
     GtkTextBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_TextBuffer.paste_done", 0);
@@ -5343,9 +5919,11 @@ static void vf_Gtk_TextBuffer_redo(GtkTextBuffer* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextBuffer.redo");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextBuffer_redo(gsize type, void *closure) {
-    GtkTextBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextBuffer.redo", closure); k->redo = (gpointer)vf_Gtk_TextBuffer_redo; }
+int zgtk_override_Gtk_TextBuffer_redo(gsize type, void *closure) {
+    GtkTextBufferClass *k = zgtk_class_below(type, gtk_text_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextBuffer.redo", closure); k->redo = (gpointer)vf_Gtk_TextBuffer_redo;
+    return 1;
 }
 void zgtk_parent_Gtk_TextBuffer_redo(GtkTextBuffer* a0) {
     GtkTextBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_TextBuffer.redo", 0);
@@ -5360,9 +5938,11 @@ static void vf_Gtk_TextBuffer_remove_tag(GtkTextBuffer* a0, GtkTextTag* a1, cons
     void *f = zgtk_vfunc_find(a0, "Gtk_TextBuffer.remove_tag");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextBuffer_remove_tag(gsize type, void *closure) {
-    GtkTextBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextBuffer.remove_tag", closure); k->remove_tag = (gpointer)vf_Gtk_TextBuffer_remove_tag; }
+int zgtk_override_Gtk_TextBuffer_remove_tag(gsize type, void *closure) {
+    GtkTextBufferClass *k = zgtk_class_below(type, gtk_text_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextBuffer.remove_tag", closure); k->remove_tag = (gpointer)vf_Gtk_TextBuffer_remove_tag;
+    return 1;
 }
 void zgtk_parent_Gtk_TextBuffer_remove_tag(GtkTextBuffer* a0, GtkTextTag* a1, const GtkTextIter* a2, const GtkTextIter* a3) {
     GtkTextBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_TextBuffer.remove_tag", 0);
@@ -5374,9 +5954,11 @@ static void vf_Gtk_TextBuffer_undo(GtkTextBuffer* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextBuffer.undo");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextBuffer_undo(gsize type, void *closure) {
-    GtkTextBufferClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextBuffer.undo", closure); k->undo = (gpointer)vf_Gtk_TextBuffer_undo; }
+int zgtk_override_Gtk_TextBuffer_undo(gsize type, void *closure) {
+    GtkTextBufferClass *k = zgtk_class_below(type, gtk_text_buffer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextBuffer.undo", closure); k->undo = (gpointer)vf_Gtk_TextBuffer_undo;
+    return 1;
 }
 void zgtk_parent_Gtk_TextBuffer_undo(GtkTextBuffer* a0) {
     GtkTextBufferClass *k = zgtk_vfunc_parent(a0, "Gtk_TextBuffer.undo", 0);
@@ -5389,9 +5971,11 @@ static void vf_Gtk_TextView_backspace(GtkTextView* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextView.backspace");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextView_backspace(gsize type, void *closure) {
-    GtkTextViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextView.backspace", closure); k->backspace = (gpointer)vf_Gtk_TextView_backspace; }
+int zgtk_override_Gtk_TextView_backspace(gsize type, void *closure) {
+    GtkTextViewClass *k = zgtk_class_below(type, gtk_text_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextView.backspace", closure); k->backspace = (gpointer)vf_Gtk_TextView_backspace;
+    return 1;
 }
 void zgtk_parent_Gtk_TextView_backspace(GtkTextView* a0) {
     GtkTextViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TextView.backspace", 0);
@@ -5403,9 +5987,11 @@ static void vf_Gtk_TextView_copy_clipboard(GtkTextView* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextView.copy_clipboard");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextView_copy_clipboard(gsize type, void *closure) {
-    GtkTextViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextView.copy_clipboard", closure); k->copy_clipboard = (gpointer)vf_Gtk_TextView_copy_clipboard; }
+int zgtk_override_Gtk_TextView_copy_clipboard(gsize type, void *closure) {
+    GtkTextViewClass *k = zgtk_class_below(type, gtk_text_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextView.copy_clipboard", closure); k->copy_clipboard = (gpointer)vf_Gtk_TextView_copy_clipboard;
+    return 1;
 }
 void zgtk_parent_Gtk_TextView_copy_clipboard(GtkTextView* a0) {
     GtkTextViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TextView.copy_clipboard", 0);
@@ -5418,9 +6004,11 @@ static GtkTextBuffer* vf_Gtk_TextView_create_buffer(GtkTextView* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GtkTextBuffer*)c.ret.p;
 }
-void zgtk_override_Gtk_TextView_create_buffer(gsize type, void *closure) {
-    GtkTextViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextView.create_buffer", closure); k->create_buffer = (gpointer)vf_Gtk_TextView_create_buffer; }
+int zgtk_override_Gtk_TextView_create_buffer(gsize type, void *closure) {
+    GtkTextViewClass *k = zgtk_class_below(type, gtk_text_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextView.create_buffer", closure); k->create_buffer = (gpointer)vf_Gtk_TextView_create_buffer;
+    return 1;
 }
 GtkTextBuffer* zgtk_parent_Gtk_TextView_create_buffer(GtkTextView* a0) {
     GtkTextViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TextView.create_buffer", 0);
@@ -5432,9 +6020,11 @@ static void vf_Gtk_TextView_cut_clipboard(GtkTextView* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextView.cut_clipboard");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextView_cut_clipboard(gsize type, void *closure) {
-    GtkTextViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextView.cut_clipboard", closure); k->cut_clipboard = (gpointer)vf_Gtk_TextView_cut_clipboard; }
+int zgtk_override_Gtk_TextView_cut_clipboard(gsize type, void *closure) {
+    GtkTextViewClass *k = zgtk_class_below(type, gtk_text_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextView.cut_clipboard", closure); k->cut_clipboard = (gpointer)vf_Gtk_TextView_cut_clipboard;
+    return 1;
 }
 void zgtk_parent_Gtk_TextView_cut_clipboard(GtkTextView* a0) {
     GtkTextViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TextView.cut_clipboard", 0);
@@ -5448,9 +6038,11 @@ static void vf_Gtk_TextView_delete_from_cursor(GtkTextView* a0, GtkDeleteType a1
     void *f = zgtk_vfunc_find(a0, "Gtk_TextView.delete_from_cursor");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextView_delete_from_cursor(gsize type, void *closure) {
-    GtkTextViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextView.delete_from_cursor", closure); k->delete_from_cursor = (gpointer)vf_Gtk_TextView_delete_from_cursor; }
+int zgtk_override_Gtk_TextView_delete_from_cursor(gsize type, void *closure) {
+    GtkTextViewClass *k = zgtk_class_below(type, gtk_text_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextView.delete_from_cursor", closure); k->delete_from_cursor = (gpointer)vf_Gtk_TextView_delete_from_cursor;
+    return 1;
 }
 void zgtk_parent_Gtk_TextView_delete_from_cursor(GtkTextView* a0, GtkDeleteType a1, int a2) {
     GtkTextViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TextView.delete_from_cursor", 0);
@@ -5467,9 +6059,11 @@ static gboolean vf_Gtk_TextView_extend_selection(GtkTextView* a0, GtkTextExtendS
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TextView_extend_selection(gsize type, void *closure) {
-    GtkTextViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextView.extend_selection", closure); k->extend_selection = (gpointer)vf_Gtk_TextView_extend_selection; }
+int zgtk_override_Gtk_TextView_extend_selection(gsize type, void *closure) {
+    GtkTextViewClass *k = zgtk_class_below(type, gtk_text_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextView.extend_selection", closure); k->extend_selection = (gpointer)vf_Gtk_TextView_extend_selection;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TextView_extend_selection(GtkTextView* a0, GtkTextExtendSelection a1, const GtkTextIter* a2, GtkTextIter* a3, GtkTextIter* a4) {
     GtkTextViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TextView.extend_selection", 0);
@@ -5482,9 +6076,11 @@ static void vf_Gtk_TextView_insert_at_cursor(GtkTextView* a0, const char* a1) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextView.insert_at_cursor");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextView_insert_at_cursor(gsize type, void *closure) {
-    GtkTextViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextView.insert_at_cursor", closure); k->insert_at_cursor = (gpointer)vf_Gtk_TextView_insert_at_cursor; }
+int zgtk_override_Gtk_TextView_insert_at_cursor(gsize type, void *closure) {
+    GtkTextViewClass *k = zgtk_class_below(type, gtk_text_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextView.insert_at_cursor", closure); k->insert_at_cursor = (gpointer)vf_Gtk_TextView_insert_at_cursor;
+    return 1;
 }
 void zgtk_parent_Gtk_TextView_insert_at_cursor(GtkTextView* a0, const char* a1) {
     GtkTextViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TextView.insert_at_cursor", 0);
@@ -5496,9 +6092,11 @@ static void vf_Gtk_TextView_insert_emoji(GtkTextView* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextView.insert_emoji");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextView_insert_emoji(gsize type, void *closure) {
-    GtkTextViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextView.insert_emoji", closure); k->insert_emoji = (gpointer)vf_Gtk_TextView_insert_emoji; }
+int zgtk_override_Gtk_TextView_insert_emoji(gsize type, void *closure) {
+    GtkTextViewClass *k = zgtk_class_below(type, gtk_text_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextView.insert_emoji", closure); k->insert_emoji = (gpointer)vf_Gtk_TextView_insert_emoji;
+    return 1;
 }
 void zgtk_parent_Gtk_TextView_insert_emoji(GtkTextView* a0) {
     GtkTextViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TextView.insert_emoji", 0);
@@ -5513,9 +6111,11 @@ static void vf_Gtk_TextView_move_cursor(GtkTextView* a0, GtkMovementStep a1, int
     void *f = zgtk_vfunc_find(a0, "Gtk_TextView.move_cursor");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextView_move_cursor(gsize type, void *closure) {
-    GtkTextViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextView.move_cursor", closure); k->move_cursor = (gpointer)vf_Gtk_TextView_move_cursor; }
+int zgtk_override_Gtk_TextView_move_cursor(gsize type, void *closure) {
+    GtkTextViewClass *k = zgtk_class_below(type, gtk_text_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextView.move_cursor", closure); k->move_cursor = (gpointer)vf_Gtk_TextView_move_cursor;
+    return 1;
 }
 void zgtk_parent_Gtk_TextView_move_cursor(GtkTextView* a0, GtkMovementStep a1, int a2, gboolean a3) {
     GtkTextViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TextView.move_cursor", 0);
@@ -5527,9 +6127,11 @@ static void vf_Gtk_TextView_paste_clipboard(GtkTextView* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextView.paste_clipboard");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextView_paste_clipboard(gsize type, void *closure) {
-    GtkTextViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextView.paste_clipboard", closure); k->paste_clipboard = (gpointer)vf_Gtk_TextView_paste_clipboard; }
+int zgtk_override_Gtk_TextView_paste_clipboard(gsize type, void *closure) {
+    GtkTextViewClass *k = zgtk_class_below(type, gtk_text_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextView.paste_clipboard", closure); k->paste_clipboard = (gpointer)vf_Gtk_TextView_paste_clipboard;
+    return 1;
 }
 void zgtk_parent_Gtk_TextView_paste_clipboard(GtkTextView* a0) {
     GtkTextViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TextView.paste_clipboard", 0);
@@ -5541,9 +6143,11 @@ static void vf_Gtk_TextView_set_anchor(GtkTextView* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextView.set_anchor");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextView_set_anchor(gsize type, void *closure) {
-    GtkTextViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextView.set_anchor", closure); k->set_anchor = (gpointer)vf_Gtk_TextView_set_anchor; }
+int zgtk_override_Gtk_TextView_set_anchor(gsize type, void *closure) {
+    GtkTextViewClass *k = zgtk_class_below(type, gtk_text_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextView.set_anchor", closure); k->set_anchor = (gpointer)vf_Gtk_TextView_set_anchor;
+    return 1;
 }
 void zgtk_parent_Gtk_TextView_set_anchor(GtkTextView* a0) {
     GtkTextViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TextView.set_anchor", 0);
@@ -5557,9 +6161,11 @@ static void vf_Gtk_TextView_snapshot_layer(GtkTextView* a0, GtkTextViewLayer a1,
     void *f = zgtk_vfunc_find(a0, "Gtk_TextView.snapshot_layer");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextView_snapshot_layer(gsize type, void *closure) {
-    GtkTextViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextView.snapshot_layer", closure); k->snapshot_layer = (gpointer)vf_Gtk_TextView_snapshot_layer; }
+int zgtk_override_Gtk_TextView_snapshot_layer(gsize type, void *closure) {
+    GtkTextViewClass *k = zgtk_class_below(type, gtk_text_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextView.snapshot_layer", closure); k->snapshot_layer = (gpointer)vf_Gtk_TextView_snapshot_layer;
+    return 1;
 }
 void zgtk_parent_Gtk_TextView_snapshot_layer(GtkTextView* a0, GtkTextViewLayer a1, GtkSnapshot* a2) {
     GtkTextViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TextView.snapshot_layer", 0);
@@ -5571,9 +6177,11 @@ static void vf_Gtk_TextView_toggle_overwrite(GtkTextView* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TextView.toggle_overwrite");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TextView_toggle_overwrite(gsize type, void *closure) {
-    GtkTextViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TextView.toggle_overwrite", closure); k->toggle_overwrite = (gpointer)vf_Gtk_TextView_toggle_overwrite; }
+int zgtk_override_Gtk_TextView_toggle_overwrite(gsize type, void *closure) {
+    GtkTextViewClass *k = zgtk_class_below(type, gtk_text_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TextView.toggle_overwrite", closure); k->toggle_overwrite = (gpointer)vf_Gtk_TextView_toggle_overwrite;
+    return 1;
 }
 void zgtk_parent_Gtk_TextView_toggle_overwrite(GtkTextView* a0) {
     GtkTextViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TextView.toggle_overwrite", 0);
@@ -5585,9 +6193,11 @@ static void vf_Gtk_ToggleButton_toggled(GtkToggleButton* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_ToggleButton.toggled");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_ToggleButton_toggled(gsize type, void *closure) {
-    GtkToggleButtonClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_ToggleButton.toggled", closure); k->toggled = (gpointer)vf_Gtk_ToggleButton_toggled; }
+int zgtk_override_Gtk_ToggleButton_toggled(gsize type, void *closure) {
+    GtkToggleButtonClass *k = zgtk_class_below(type, gtk_toggle_button_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_ToggleButton.toggled", closure); k->toggled = (gpointer)vf_Gtk_ToggleButton_toggled;
+    return 1;
 }
 void zgtk_parent_Gtk_ToggleButton_toggled(GtkToggleButton* a0) {
     GtkToggleButtonClass *k = zgtk_vfunc_parent(a0, "Gtk_ToggleButton.toggled", 0);
@@ -5606,9 +6216,11 @@ static void vf_Gtk_TreeModelFilter_modify(GtkTreeModelFilter* a0, GtkTreeModel* 
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeModelFilter.modify");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeModelFilter_modify(gsize type, void *closure) {
-    GtkTreeModelFilterClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModelFilter.modify", closure); k->modify = (gpointer)vf_Gtk_TreeModelFilter_modify; }
+int zgtk_override_Gtk_TreeModelFilter_modify(gsize type, void *closure) {
+    GtkTreeModelFilterClass *k = zgtk_class_below(type, gtk_tree_model_filter_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModelFilter.modify", closure); k->modify = (gpointer)vf_Gtk_TreeModelFilter_modify;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeModelFilter_modify(GtkTreeModelFilter* a0, GtkTreeModel* a1, GtkTreeIter* a2, GValue* a3, int a4) {
     GtkTreeModelFilterClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeModelFilter.modify", 0);
@@ -5623,9 +6235,11 @@ static gboolean vf_Gtk_TreeModelFilter_visible(GtkTreeModelFilter* a0, GtkTreeMo
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeModelFilter_visible(gsize type, void *closure) {
-    GtkTreeModelFilterClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeModelFilter.visible", closure); k->visible = (gpointer)vf_Gtk_TreeModelFilter_visible; }
+int zgtk_override_Gtk_TreeModelFilter_visible(gsize type, void *closure) {
+    GtkTreeModelFilterClass *k = zgtk_class_below(type, gtk_tree_model_filter_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeModelFilter.visible", closure); k->visible = (gpointer)vf_Gtk_TreeModelFilter_visible;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeModelFilter_visible(GtkTreeModelFilter* a0, GtkTreeModel* a1, GtkTreeIter* a2) {
     GtkTreeModelFilterClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeModelFilter.visible", 0);
@@ -5637,9 +6251,11 @@ static void vf_Gtk_TreeView_columns_changed(GtkTreeView* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeView.columns_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeView_columns_changed(gsize type, void *closure) {
-    GtkTreeViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeView.columns_changed", closure); k->columns_changed = (gpointer)vf_Gtk_TreeView_columns_changed; }
+int zgtk_override_Gtk_TreeView_columns_changed(gsize type, void *closure) {
+    GtkTreeViewClass *k = zgtk_class_below(type, gtk_tree_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeView.columns_changed", closure); k->columns_changed = (gpointer)vf_Gtk_TreeView_columns_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeView_columns_changed(GtkTreeView* a0) {
     GtkTreeViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeView.columns_changed", 0);
@@ -5651,9 +6267,11 @@ static void vf_Gtk_TreeView_cursor_changed(GtkTreeView* a0) {
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeView.cursor_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeView_cursor_changed(gsize type, void *closure) {
-    GtkTreeViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeView.cursor_changed", closure); k->cursor_changed = (gpointer)vf_Gtk_TreeView_cursor_changed; }
+int zgtk_override_Gtk_TreeView_cursor_changed(gsize type, void *closure) {
+    GtkTreeViewClass *k = zgtk_class_below(type, gtk_tree_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeView.cursor_changed", closure); k->cursor_changed = (gpointer)vf_Gtk_TreeView_cursor_changed;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeView_cursor_changed(GtkTreeView* a0) {
     GtkTreeViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeView.cursor_changed", 0);
@@ -5669,9 +6287,11 @@ static gboolean vf_Gtk_TreeView_expand_collapse_cursor_row(GtkTreeView* a0, gboo
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeView_expand_collapse_cursor_row(gsize type, void *closure) {
-    GtkTreeViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeView.expand_collapse_cursor_row", closure); k->expand_collapse_cursor_row = (gpointer)vf_Gtk_TreeView_expand_collapse_cursor_row; }
+int zgtk_override_Gtk_TreeView_expand_collapse_cursor_row(gsize type, void *closure) {
+    GtkTreeViewClass *k = zgtk_class_below(type, gtk_tree_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeView.expand_collapse_cursor_row", closure); k->expand_collapse_cursor_row = (gpointer)vf_Gtk_TreeView_expand_collapse_cursor_row;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeView_expand_collapse_cursor_row(GtkTreeView* a0, gboolean a1, gboolean a2, gboolean a3) {
     GtkTreeViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeView.expand_collapse_cursor_row", 0);
@@ -5688,9 +6308,11 @@ static gboolean vf_Gtk_TreeView_move_cursor(GtkTreeView* a0, GtkMovementStep a1,
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeView_move_cursor(gsize type, void *closure) {
-    GtkTreeViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeView.move_cursor", closure); k->move_cursor = (gpointer)vf_Gtk_TreeView_move_cursor; }
+int zgtk_override_Gtk_TreeView_move_cursor(gsize type, void *closure) {
+    GtkTreeViewClass *k = zgtk_class_below(type, gtk_tree_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeView.move_cursor", closure); k->move_cursor = (gpointer)vf_Gtk_TreeView_move_cursor;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeView_move_cursor(GtkTreeView* a0, GtkMovementStep a1, int a2, gboolean a3, gboolean a4) {
     GtkTreeViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeView.move_cursor", 0);
@@ -5704,9 +6326,11 @@ static void vf_Gtk_TreeView_row_activated(GtkTreeView* a0, GtkTreePath* a1, GtkT
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeView.row_activated");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeView_row_activated(gsize type, void *closure) {
-    GtkTreeViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeView.row_activated", closure); k->row_activated = (gpointer)vf_Gtk_TreeView_row_activated; }
+int zgtk_override_Gtk_TreeView_row_activated(gsize type, void *closure) {
+    GtkTreeViewClass *k = zgtk_class_below(type, gtk_tree_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeView.row_activated", closure); k->row_activated = (gpointer)vf_Gtk_TreeView_row_activated;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeView_row_activated(GtkTreeView* a0, GtkTreePath* a1, GtkTreeViewColumn* a2) {
     GtkTreeViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeView.row_activated", 0);
@@ -5720,9 +6344,11 @@ static void vf_Gtk_TreeView_row_collapsed(GtkTreeView* a0, GtkTreeIter* a1, GtkT
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeView.row_collapsed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeView_row_collapsed(gsize type, void *closure) {
-    GtkTreeViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeView.row_collapsed", closure); k->row_collapsed = (gpointer)vf_Gtk_TreeView_row_collapsed; }
+int zgtk_override_Gtk_TreeView_row_collapsed(gsize type, void *closure) {
+    GtkTreeViewClass *k = zgtk_class_below(type, gtk_tree_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeView.row_collapsed", closure); k->row_collapsed = (gpointer)vf_Gtk_TreeView_row_collapsed;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeView_row_collapsed(GtkTreeView* a0, GtkTreeIter* a1, GtkTreePath* a2) {
     GtkTreeViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeView.row_collapsed", 0);
@@ -5736,9 +6362,11 @@ static void vf_Gtk_TreeView_row_expanded(GtkTreeView* a0, GtkTreeIter* a1, GtkTr
     void *f = zgtk_vfunc_find(a0, "Gtk_TreeView.row_expanded");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gtk_TreeView_row_expanded(gsize type, void *closure) {
-    GtkTreeViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeView.row_expanded", closure); k->row_expanded = (gpointer)vf_Gtk_TreeView_row_expanded; }
+int zgtk_override_Gtk_TreeView_row_expanded(gsize type, void *closure) {
+    GtkTreeViewClass *k = zgtk_class_below(type, gtk_tree_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeView.row_expanded", closure); k->row_expanded = (gpointer)vf_Gtk_TreeView_row_expanded;
+    return 1;
 }
 void zgtk_parent_Gtk_TreeView_row_expanded(GtkTreeView* a0, GtkTreeIter* a1, GtkTreePath* a2) {
     GtkTreeViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeView.row_expanded", 0);
@@ -5751,9 +6379,11 @@ static gboolean vf_Gtk_TreeView_select_all(GtkTreeView* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeView_select_all(gsize type, void *closure) {
-    GtkTreeViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeView.select_all", closure); k->select_all = (gpointer)vf_Gtk_TreeView_select_all; }
+int zgtk_override_Gtk_TreeView_select_all(gsize type, void *closure) {
+    GtkTreeViewClass *k = zgtk_class_below(type, gtk_tree_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeView.select_all", closure); k->select_all = (gpointer)vf_Gtk_TreeView_select_all;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeView_select_all(GtkTreeView* a0) {
     GtkTreeViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeView.select_all", 0);
@@ -5766,9 +6396,11 @@ static gboolean vf_Gtk_TreeView_select_cursor_parent(GtkTreeView* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeView_select_cursor_parent(gsize type, void *closure) {
-    GtkTreeViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeView.select_cursor_parent", closure); k->select_cursor_parent = (gpointer)vf_Gtk_TreeView_select_cursor_parent; }
+int zgtk_override_Gtk_TreeView_select_cursor_parent(gsize type, void *closure) {
+    GtkTreeViewClass *k = zgtk_class_below(type, gtk_tree_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeView.select_cursor_parent", closure); k->select_cursor_parent = (gpointer)vf_Gtk_TreeView_select_cursor_parent;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeView_select_cursor_parent(GtkTreeView* a0) {
     GtkTreeViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeView.select_cursor_parent", 0);
@@ -5782,9 +6414,11 @@ static gboolean vf_Gtk_TreeView_select_cursor_row(GtkTreeView* a0, gboolean a1) 
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeView_select_cursor_row(gsize type, void *closure) {
-    GtkTreeViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeView.select_cursor_row", closure); k->select_cursor_row = (gpointer)vf_Gtk_TreeView_select_cursor_row; }
+int zgtk_override_Gtk_TreeView_select_cursor_row(gsize type, void *closure) {
+    GtkTreeViewClass *k = zgtk_class_below(type, gtk_tree_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeView.select_cursor_row", closure); k->select_cursor_row = (gpointer)vf_Gtk_TreeView_select_cursor_row;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeView_select_cursor_row(GtkTreeView* a0, gboolean a1) {
     GtkTreeViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeView.select_cursor_row", 0);
@@ -5797,9 +6431,11 @@ static gboolean vf_Gtk_TreeView_start_interactive_search(GtkTreeView* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeView_start_interactive_search(gsize type, void *closure) {
-    GtkTreeViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeView.start_interactive_search", closure); k->start_interactive_search = (gpointer)vf_Gtk_TreeView_start_interactive_search; }
+int zgtk_override_Gtk_TreeView_start_interactive_search(gsize type, void *closure) {
+    GtkTreeViewClass *k = zgtk_class_below(type, gtk_tree_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeView.start_interactive_search", closure); k->start_interactive_search = (gpointer)vf_Gtk_TreeView_start_interactive_search;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeView_start_interactive_search(GtkTreeView* a0) {
     GtkTreeViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeView.start_interactive_search", 0);
@@ -5814,9 +6450,11 @@ static gboolean vf_Gtk_TreeView_test_collapse_row(GtkTreeView* a0, GtkTreeIter* 
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeView_test_collapse_row(gsize type, void *closure) {
-    GtkTreeViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeView.test_collapse_row", closure); k->test_collapse_row = (gpointer)vf_Gtk_TreeView_test_collapse_row; }
+int zgtk_override_Gtk_TreeView_test_collapse_row(gsize type, void *closure) {
+    GtkTreeViewClass *k = zgtk_class_below(type, gtk_tree_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeView.test_collapse_row", closure); k->test_collapse_row = (gpointer)vf_Gtk_TreeView_test_collapse_row;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeView_test_collapse_row(GtkTreeView* a0, GtkTreeIter* a1, GtkTreePath* a2) {
     GtkTreeViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeView.test_collapse_row", 0);
@@ -5831,9 +6469,11 @@ static gboolean vf_Gtk_TreeView_test_expand_row(GtkTreeView* a0, GtkTreeIter* a1
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeView_test_expand_row(gsize type, void *closure) {
-    GtkTreeViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeView.test_expand_row", closure); k->test_expand_row = (gpointer)vf_Gtk_TreeView_test_expand_row; }
+int zgtk_override_Gtk_TreeView_test_expand_row(gsize type, void *closure) {
+    GtkTreeViewClass *k = zgtk_class_below(type, gtk_tree_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeView.test_expand_row", closure); k->test_expand_row = (gpointer)vf_Gtk_TreeView_test_expand_row;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeView_test_expand_row(GtkTreeView* a0, GtkTreeIter* a1, GtkTreePath* a2) {
     GtkTreeViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeView.test_expand_row", 0);
@@ -5846,9 +6486,11 @@ static gboolean vf_Gtk_TreeView_toggle_cursor_row(GtkTreeView* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeView_toggle_cursor_row(gsize type, void *closure) {
-    GtkTreeViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeView.toggle_cursor_row", closure); k->toggle_cursor_row = (gpointer)vf_Gtk_TreeView_toggle_cursor_row; }
+int zgtk_override_Gtk_TreeView_toggle_cursor_row(gsize type, void *closure) {
+    GtkTreeViewClass *k = zgtk_class_below(type, gtk_tree_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeView.toggle_cursor_row", closure); k->toggle_cursor_row = (gpointer)vf_Gtk_TreeView_toggle_cursor_row;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeView_toggle_cursor_row(GtkTreeView* a0) {
     GtkTreeViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeView.toggle_cursor_row", 0);
@@ -5861,9 +6503,11 @@ static gboolean vf_Gtk_TreeView_unselect_all(GtkTreeView* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gtk_TreeView_unselect_all(gsize type, void *closure) {
-    GtkTreeViewClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gtk_TreeView.unselect_all", closure); k->unselect_all = (gpointer)vf_Gtk_TreeView_unselect_all; }
+int zgtk_override_Gtk_TreeView_unselect_all(gsize type, void *closure) {
+    GtkTreeViewClass *k = zgtk_class_below(type, gtk_tree_view_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gtk_TreeView.unselect_all", closure); k->unselect_all = (gpointer)vf_Gtk_TreeView_unselect_all;
+    return 1;
 }
 gboolean zgtk_parent_Gtk_TreeView_unselect_all(GtkTreeView* a0) {
     GtkTreeViewClass *k = zgtk_vfunc_parent(a0, "Gtk_TreeView.unselect_all", 0);

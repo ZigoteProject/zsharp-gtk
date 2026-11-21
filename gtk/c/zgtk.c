@@ -499,6 +499,7 @@ static void class_init(gpointer klass, gpointer data) {
 gsize zgtk_subclass(gsize parent, const char *name) {
     GType t = g_type_from_name(name);
     if (t) return t;
+    if (!G_TYPE_IS_OBJECT(parent)) return 0; // class_init takes the class for a GObjectClass
     GTypeQuery q;
     g_type_query(parent, &q);
     if (!q.type) return 0;
@@ -717,6 +718,20 @@ static GType vfunc_owner(void *instance, GQuark q) {
     return 0;
 }
 
+// The class of a type made from `owner`, for an override to put a method of `owner`'s class in;
+// NULL for `owner` itself (the method it takes the place of would be read from a class of
+// another layout) or a type not made from it (the method would go past the end of its class).
+void *zgtk_class_below(gsize type, gsize owner) {
+    return owner && type != owner && G_TYPE_IS_CLASSED(type) && g_type_is_a(type, owner) ? g_type_class_ref(type) : NULL;
+}
+
+// The table of an interface's methods an object type has, for an override; NULL for a type that
+// is no object's or hasn't the interface.
+void *zgtk_iface_below(gsize type, gsize iface) {
+    void *k = zgtk_class_below(type, G_TYPE_OBJECT);
+    return k ? g_type_interface_peek(k, iface) : NULL;
+}
+
 void *zgtk_vfunc_find(void *instance, const char *key) {
     GQuark q = g_quark_from_string(key);
     GType t = instance ? vfunc_owner(instance, q) : 0;
@@ -781,10 +796,9 @@ int64_t zgtk_strv_len(void *v) { return v ? (int64_t)g_strv_length(v) : 0; }
 void *zgtk_strv_get(void *v, int64_t i) { return ((char **)v)[i]; }
 void zgtk_strv_free(void *v) { g_strfreev(v); }
 void zgtk_free(void *p) { g_free(p); }
-int64_t zgtk_list_len(void *l, int single) { return single ? g_slist_length(l) : g_list_length(l); }
-void *zgtk_list_nth(void *l, int64_t i, int single) {
-    return single ? g_slist_nth_data(l, (guint)i) : g_list_nth_data(l, (guint)i);
-}
+// a GList's element and the next, a GSList's as well: both begin with `data` and `next`
+void *zgtk_list_data(void *l) { return ((GSList *)l)->data; }
+void *zgtk_list_next(void *l) { return ((GSList *)l)->next; }
 void zgtk_list_free_all(void *l, int single) {
     if (single) g_slist_free_full(l, g_free);
     else g_list_free_full(l, g_free);

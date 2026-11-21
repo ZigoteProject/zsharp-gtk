@@ -2968,68 +2968,74 @@ module ContentProvider =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())) "notify::storable-formats" handler
 
   /// Gives a type made with `Glue.subclass` its own `attach_clipboard`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAttachClipboard (gtype: usize) (handler: ContentProvider -> Clipboard -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let clipboard = Clipboard (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler provider clipboard)
-    Internal.GdkC.zgtk_override_Gdk_ContentProvider_attach_clipboard (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkC.zgtk_override_Gdk_ContentProvider_attach_clipboard (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gdk_ContentProvider_attach_clipboard`.
   let parentAttachClipboard (self: ContentProvider) (clipboard: Clipboard) : unit =
     Internal.GdkC.zgtk_parent_Gdk_ContentProvider_attach_clipboard (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())) (Internal.Raw.obj clipboard.Id (Internal.GdkC.gdk_clipboard_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `content_changed`: Emits the ::content-changed signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideContentChanged (gtype: usize) (handler: ContentProvider -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler provider)
-    Internal.GdkC.zgtk_override_Gdk_ContentProvider_content_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkC.zgtk_override_Gdk_ContentProvider_content_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Emits the ::content-changed signal.
   let parentContentChanged (self: ContentProvider) : unit =
     Internal.GdkC.zgtk_parent_Gdk_ContentProvider_content_changed (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `detach_clipboard`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDetachClipboard (gtype: usize) (handler: ContentProvider -> Clipboard -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let clipboard = Clipboard (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler provider clipboard)
-    Internal.GdkC.zgtk_override_Gdk_ContentProvider_detach_clipboard (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkC.zgtk_override_Gdk_ContentProvider_detach_clipboard (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gdk_ContentProvider_detach_clipboard`.
   let parentDetachClipboard (self: ContentProvider) (clipboard: Clipboard) : unit =
     Internal.GdkC.zgtk_parent_Gdk_ContentProvider_detach_clipboard (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())) (Internal.Raw.obj clipboard.Id (Internal.GdkC.gdk_clipboard_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `ref_formats`: Gets the formats that the provider can provide its current contents in.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRefFormats (gtype: usize) (handler: ContentProvider -> ContentFormats) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler provider).Id (Internal.GdkC.gdk_content_formats_get_type ())) (Internal.GdkC.gdk_content_formats_get_type ())))
-    Internal.GdkC.zgtk_override_Gdk_ContentProvider_ref_formats (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkC.zgtk_override_Gdk_ContentProvider_ref_formats (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the formats that the provider can provide its current contents in.
   let parentRefFormats (self: ContentProvider) : ContentFormats =
     ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.zgtk_parent_Gdk_ContentProvider_ref_formats (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Gives a type made with `Glue.subclass` its own `ref_storable_formats`: Gets the formats that the provider suggests other applications to store the data in.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRefStorableFormats (gtype: usize) (handler: ContentProvider -> ContentFormats) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let provider = ContentProvider (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler provider).Id (Internal.GdkC.gdk_content_formats_get_type ())) (Internal.GdkC.gdk_content_formats_get_type ())))
-    Internal.GdkC.zgtk_override_Gdk_ContentProvider_ref_storable_formats (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkC.zgtk_override_Gdk_ContentProvider_ref_storable_formats (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the formats that the provider suggests other applications to store the data in.
   let parentRefStorableFormats (self: ContentProvider) : ContentFormats =
     ContentFormats (Internal.Raw.wrapBoxed ((Internal.GdkC.zgtk_parent_Gdk_ContentProvider_ref_storable_formats (Internal.Raw.obj self.Id (Internal.GdkC.gdk_content_provider_get_type ())))) (Internal.GdkC.gdk_content_formats_get_type ()) true)
 
   /// Gives a type made with `Glue.subclass` its own `write_mime_type_async`: Asynchronously writes the contents of @provider to @stream in the given @mime_type.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideWriteMimeTypeAsync (gtype: usize) (handler: ContentProvider -> string -> Gio.OutputStream -> int -> option<Gio.Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -3042,7 +3048,7 @@ module ContentProvider =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler provider mimeType stream ioPriority cancellable callback userData)
-    Internal.GdkC.zgtk_override_Gdk_ContentProvider_write_mime_type_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkC.zgtk_override_Gdk_ContentProvider_write_mime_type_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously writes the contents of @provider to @stream in the given @mime_type.
   let parentWriteMimeTypeAsync (self: ContentProvider) (mimeType: string) (stream: Gio.OutputStream) (ioPriority: int) (cancellable: option<Gio.Cancellable>) (callback: option<GObject.Object> -> Gio.AsyncResult -> unit) : unit =
@@ -3872,66 +3878,72 @@ module Paintable =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())) "invalidate-size" handler
 
   /// Gives a type made with `Glue.subclass` its own `get_current_image`: Gets an immutable paintable for the current contents displayed by @paintable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetCurrentImage (gtype: usize) (handler: Paintable -> Paintable) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler paintable).Id (Internal.GdkC.gdk_paintable_get_type ()))))
-    Internal.GdkC.zgtk_override_Gdk_Paintable_get_current_image (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkC.zgtk_override_Gdk_Paintable_get_current_image (Internal.Raw.gtype gtype) zcb)
 
   /// Gets an immutable paintable for the current contents displayed by @paintable.
   let parentGetCurrentImage (self: Paintable) : Paintable =
     Paintable (Internal.Raw.wrap ((Internal.GdkC.zgtk_parent_Gdk_Paintable_get_current_image (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_flags`: Get flags for the paintable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFlags (gtype: usize) (handler: Paintable -> PaintableFlags) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler paintable).Int)
-    Internal.GdkC.zgtk_override_Gdk_Paintable_get_flags (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkC.zgtk_override_Gdk_Paintable_get_flags (Internal.Raw.gtype gtype) zcb)
 
   /// Get flags for the paintable.
   let parentGetFlags (self: Paintable) : PaintableFlags =
     PaintableFlags (int ((Internal.GdkC.zgtk_parent_Gdk_Paintable_get_flags (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `get_intrinsic_aspect_ratio`: Gets the preferred aspect ratio the @paintable would like to be displayed at.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetIntrinsicAspectRatio (gtype: usize) (handler: Paintable -> float) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnFloat (handler paintable))
-    Internal.GdkC.zgtk_override_Gdk_Paintable_get_intrinsic_aspect_ratio (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkC.zgtk_override_Gdk_Paintable_get_intrinsic_aspect_ratio (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the preferred aspect ratio the @paintable would like to be displayed at.
   let parentGetIntrinsicAspectRatio (self: Paintable) : float =
     ((Internal.GdkC.zgtk_parent_Gdk_Paintable_get_intrinsic_aspect_ratio (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_intrinsic_height`: Gets the preferred height the @paintable would like to be displayed at.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetIntrinsicHeight (gtype: usize) (handler: Paintable -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler paintable))
-    Internal.GdkC.zgtk_override_Gdk_Paintable_get_intrinsic_height (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkC.zgtk_override_Gdk_Paintable_get_intrinsic_height (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the preferred height the @paintable would like to be displayed at.
   let parentGetIntrinsicHeight (self: Paintable) : int =
     (int ((Internal.GdkC.zgtk_parent_Gdk_Paintable_get_intrinsic_height (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `get_intrinsic_width`: Gets the preferred width the @paintable would like to be displayed at.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetIntrinsicWidth (gtype: usize) (handler: Paintable -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let paintable = Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler paintable))
-    Internal.GdkC.zgtk_override_Gdk_Paintable_get_intrinsic_width (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkC.zgtk_override_Gdk_Paintable_get_intrinsic_width (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the preferred width the @paintable would like to be displayed at.
   let parentGetIntrinsicWidth (self: Paintable) : int =
     (int ((Internal.GdkC.zgtk_parent_Gdk_Paintable_get_intrinsic_width (Internal.Raw.obj self.Id (Internal.GdkC.gdk_paintable_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `snapshot`: Snapshots the given paintable with the given @width and @height.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSnapshot (gtype: usize) (handler: Paintable -> Snapshot -> float -> float -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -3940,7 +3952,7 @@ module Paintable =
         let width = Internal.Raw.argFloat 2
         let height = Internal.Raw.argFloat 3
         handler paintable snapshot width height)
-    Internal.GdkC.zgtk_override_Gdk_Paintable_snapshot (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkC.zgtk_override_Gdk_Paintable_snapshot (Internal.Raw.gtype gtype) zcb)
 
   /// Snapshots the given paintable with the given @width and @height.
   let parentSnapshot (self: Paintable) (snapshot: Snapshot) (width: float) (height: float) : unit =

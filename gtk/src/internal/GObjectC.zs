@@ -460,15 +460,15 @@ extern zgtk_get_GObject_TypeQuery_instance_size : cptr -> int
 extern zgtk_get_GObject_ValueArray_n_values : cptr -> int
 extern zgtk_give_GObject_ParamSpec : cptr -> cptr
 extern zgtk_lend_GObject_ParamSpec : cptr -> cptr
-extern zgtk_override_GObject_Object_constructed : usize -> cptr -> unit
-extern zgtk_override_GObject_Object_dispatch_properties_changed : usize -> cptr -> unit
-extern zgtk_override_GObject_Object_dispose : usize -> cptr -> unit
-extern zgtk_override_GObject_Object_finalize : usize -> cptr -> unit
-extern zgtk_override_GObject_Object_get_property : usize -> cptr -> unit
-extern zgtk_override_GObject_Object_notify : usize -> cptr -> unit
-extern zgtk_override_GObject_Object_set_property : usize -> cptr -> unit
-extern zgtk_override_GObject_TypeModule_load : usize -> cptr -> unit
-extern zgtk_override_GObject_TypeModule_unload : usize -> cptr -> unit
+extern zgtk_override_GObject_Object_constructed : usize -> cptr -> i32
+extern zgtk_override_GObject_Object_dispatch_properties_changed : usize -> cptr -> i32
+extern zgtk_override_GObject_Object_dispose : usize -> cptr -> i32
+extern zgtk_override_GObject_Object_finalize : usize -> cptr -> i32
+extern zgtk_override_GObject_Object_get_property : usize -> cptr -> i32
+extern zgtk_override_GObject_Object_notify : usize -> cptr -> i32
+extern zgtk_override_GObject_Object_set_property : usize -> cptr -> i32
+extern zgtk_override_GObject_TypeModule_load : usize -> cptr -> i32
+extern zgtk_override_GObject_TypeModule_unload : usize -> cptr -> i32
 extern zgtk_parent_GObject_Object_constructed : cptr -> unit
 extern zgtk_parent_GObject_Object_dispatch_properties_changed : cptr -> u32 -> cptr -> unit
 extern zgtk_parent_GObject_Object_dispose : cptr -> unit

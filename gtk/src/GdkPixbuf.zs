@@ -1215,18 +1215,20 @@ module PixbufLoader =
       handler width height)
 
   /// Gives a type made with `Glue.subclass` its own `area_prepared`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAreaPrepared (gtype: usize) (handler: PixbufLoader -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let loader = PixbufLoader (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler loader)
-    Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_area_prepared (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_area_prepared (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_GdkPixbuf_PixbufLoader_area_prepared`.
   let parentAreaPrepared (self: PixbufLoader) : unit =
     Internal.GdkPixbufC.zgtk_parent_GdkPixbuf_PixbufLoader_area_prepared (Internal.Raw.obj self.Id (Internal.GdkPixbufC.gdk_pixbuf_loader_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `area_updated`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAreaUpdated (gtype: usize) (handler: PixbufLoader -> int -> int -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -1236,25 +1238,27 @@ module PixbufLoader =
         let width = Internal.Raw.argInt 3
         let height = Internal.Raw.argInt 4
         handler loader x y width height)
-    Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_area_updated (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_area_updated (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_GdkPixbuf_PixbufLoader_area_updated`.
   let parentAreaUpdated (self: PixbufLoader) (x: int) (y: int) (width: int) (height: int) : unit =
     Internal.GdkPixbufC.zgtk_parent_GdkPixbuf_PixbufLoader_area_updated (Internal.Raw.obj self.Id (Internal.GdkPixbufC.gdk_pixbuf_loader_get_type ())) (i32 x) (i32 y) (i32 width) (i32 height)
 
   /// Gives a type made with `Glue.subclass` its own `closed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideClosed (gtype: usize) (handler: PixbufLoader -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let loader = PixbufLoader (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler loader)
-    Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_closed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_closed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_GdkPixbuf_PixbufLoader_closed`.
   let parentClosed (self: PixbufLoader) : unit =
     Internal.GdkPixbufC.zgtk_parent_GdkPixbuf_PixbufLoader_closed (Internal.Raw.obj self.Id (Internal.GdkPixbufC.gdk_pixbuf_loader_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `size_prepared`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSizePrepared (gtype: usize) (handler: PixbufLoader -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -1262,7 +1266,7 @@ module PixbufLoader =
         let width = Internal.Raw.argInt 1
         let height = Internal.Raw.argInt 2
         handler loader width height)
-    Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_size_prepared (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GdkPixbufC.zgtk_override_GdkPixbuf_PixbufLoader_size_prepared (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_GdkPixbuf_PixbufLoader_size_prepared`.
   let parentSizePrepared (self: PixbufLoader) (width: int) (height: int) : unit =

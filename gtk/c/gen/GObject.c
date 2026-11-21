@@ -124,9 +124,11 @@ static void vf_GObject_Object_constructed(GObject* a0) {
     void *f = zgtk_vfunc_find(a0, "GObject_Object.constructed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_GObject_Object_constructed(gsize type, void *closure) {
-    GObjectClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "GObject_Object.constructed", closure); k->constructed = (gpointer)vf_GObject_Object_constructed; }
+int zgtk_override_GObject_Object_constructed(gsize type, void *closure) {
+    GObjectClass *k = zgtk_class_below(type, g_object_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "GObject_Object.constructed", closure); k->constructed = (gpointer)vf_GObject_Object_constructed;
+    return 1;
 }
 void zgtk_parent_GObject_Object_constructed(GObject* a0) {
     GObjectClass *k = zgtk_vfunc_parent(a0, "GObject_Object.constructed", 0);
@@ -140,9 +142,11 @@ static void vf_GObject_Object_dispatch_properties_changed(GObject* a0, guint a1,
     void *f = zgtk_vfunc_find(a0, "GObject_Object.dispatch_properties_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_GObject_Object_dispatch_properties_changed(gsize type, void *closure) {
-    GObjectClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "GObject_Object.dispatch_properties_changed", closure); k->dispatch_properties_changed = (gpointer)vf_GObject_Object_dispatch_properties_changed; }
+int zgtk_override_GObject_Object_dispatch_properties_changed(gsize type, void *closure) {
+    GObjectClass *k = zgtk_class_below(type, g_object_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "GObject_Object.dispatch_properties_changed", closure); k->dispatch_properties_changed = (gpointer)vf_GObject_Object_dispatch_properties_changed;
+    return 1;
 }
 void zgtk_parent_GObject_Object_dispatch_properties_changed(GObject* a0, guint a1, GParamSpec** a2) {
     GObjectClass *k = zgtk_vfunc_parent(a0, "GObject_Object.dispatch_properties_changed", 0);
@@ -154,9 +158,11 @@ static void vf_GObject_Object_dispose(GObject* a0) {
     void *f = zgtk_vfunc_find(a0, "GObject_Object.dispose");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_GObject_Object_dispose(gsize type, void *closure) {
-    GObjectClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "GObject_Object.dispose", closure); k->dispose = (gpointer)vf_GObject_Object_dispose; }
+int zgtk_override_GObject_Object_dispose(gsize type, void *closure) {
+    GObjectClass *k = zgtk_class_below(type, g_object_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "GObject_Object.dispose", closure); k->dispose = (gpointer)vf_GObject_Object_dispose;
+    return 1;
 }
 void zgtk_parent_GObject_Object_dispose(GObject* a0) {
     GObjectClass *k = zgtk_vfunc_parent(a0, "GObject_Object.dispose", 0);
@@ -168,9 +174,11 @@ static void vf_GObject_Object_finalize(GObject* a0) {
     void *f = zgtk_vfunc_find(a0, "GObject_Object.finalize");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_GObject_Object_finalize(gsize type, void *closure) {
-    GObjectClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "GObject_Object.finalize", closure); k->finalize = (gpointer)vf_GObject_Object_finalize; }
+int zgtk_override_GObject_Object_finalize(gsize type, void *closure) {
+    GObjectClass *k = zgtk_class_below(type, g_object_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "GObject_Object.finalize", closure); k->finalize = (gpointer)vf_GObject_Object_finalize;
+    return 1;
 }
 void zgtk_parent_GObject_Object_finalize(GObject* a0) {
     GObjectClass *k = zgtk_vfunc_parent(a0, "GObject_Object.finalize", 0);
@@ -185,9 +193,11 @@ static void vf_GObject_Object_get_property(GObject* a0, guint a1, GValue* a2, GP
     void *f = zgtk_vfunc_find(a0, "GObject_Object.get_property");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_GObject_Object_get_property(gsize type, void *closure) {
-    GObjectClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "GObject_Object.get_property", closure); k->get_property = (gpointer)vf_GObject_Object_get_property; }
+int zgtk_override_GObject_Object_get_property(gsize type, void *closure) {
+    GObjectClass *k = zgtk_class_below(type, g_object_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "GObject_Object.get_property", closure); k->get_property = (gpointer)vf_GObject_Object_get_property;
+    return 1;
 }
 void zgtk_parent_GObject_Object_get_property(GObject* a0, guint a1, GValue* a2, GParamSpec* a3) {
     GObjectClass *k = zgtk_vfunc_parent(a0, "GObject_Object.get_property", 0);
@@ -200,9 +210,11 @@ static void vf_GObject_Object_notify(GObject* a0, GParamSpec* a1) {
     void *f = zgtk_vfunc_find(a0, "GObject_Object.notify");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_GObject_Object_notify(gsize type, void *closure) {
-    GObjectClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "GObject_Object.notify", closure); k->notify = (gpointer)vf_GObject_Object_notify; }
+int zgtk_override_GObject_Object_notify(gsize type, void *closure) {
+    GObjectClass *k = zgtk_class_below(type, g_object_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "GObject_Object.notify", closure); k->notify = (gpointer)vf_GObject_Object_notify;
+    return 1;
 }
 void zgtk_parent_GObject_Object_notify(GObject* a0, GParamSpec* a1) {
     GObjectClass *k = zgtk_vfunc_parent(a0, "GObject_Object.notify", 0);
@@ -217,9 +229,11 @@ static void vf_GObject_Object_set_property(GObject* a0, guint a1, const GValue* 
     void *f = zgtk_vfunc_find(a0, "GObject_Object.set_property");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_GObject_Object_set_property(gsize type, void *closure) {
-    GObjectClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "GObject_Object.set_property", closure); k->set_property = (gpointer)vf_GObject_Object_set_property; }
+int zgtk_override_GObject_Object_set_property(gsize type, void *closure) {
+    GObjectClass *k = zgtk_class_below(type, g_object_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "GObject_Object.set_property", closure); k->set_property = (gpointer)vf_GObject_Object_set_property;
+    return 1;
 }
 void zgtk_parent_GObject_Object_set_property(GObject* a0, guint a1, const GValue* a2, GParamSpec* a3) {
     GObjectClass *k = zgtk_vfunc_parent(a0, "GObject_Object.set_property", 0);
@@ -294,9 +308,11 @@ static gboolean vf_GObject_TypeModule_load(GTypeModule* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_GObject_TypeModule_load(gsize type, void *closure) {
-    GTypeModuleClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "GObject_TypeModule.load", closure); k->load = (gpointer)vf_GObject_TypeModule_load; }
+int zgtk_override_GObject_TypeModule_load(gsize type, void *closure) {
+    GTypeModuleClass *k = zgtk_class_below(type, g_type_module_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "GObject_TypeModule.load", closure); k->load = (gpointer)vf_GObject_TypeModule_load;
+    return 1;
 }
 gboolean zgtk_parent_GObject_TypeModule_load(GTypeModule* a0) {
     GTypeModuleClass *k = zgtk_vfunc_parent(a0, "GObject_TypeModule.load", 0);
@@ -308,9 +324,11 @@ static void vf_GObject_TypeModule_unload(GTypeModule* a0) {
     void *f = zgtk_vfunc_find(a0, "GObject_TypeModule.unload");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_GObject_TypeModule_unload(gsize type, void *closure) {
-    GTypeModuleClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "GObject_TypeModule.unload", closure); k->unload = (gpointer)vf_GObject_TypeModule_unload; }
+int zgtk_override_GObject_TypeModule_unload(gsize type, void *closure) {
+    GTypeModuleClass *k = zgtk_class_below(type, g_type_module_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "GObject_TypeModule.unload", closure); k->unload = (gpointer)vf_GObject_TypeModule_unload;
+    return 1;
 }
 void zgtk_parent_GObject_TypeModule_unload(GTypeModule* a0) {
     GTypeModuleClass *k = zgtk_vfunc_parent(a0, "GObject_TypeModule.unload", 0);

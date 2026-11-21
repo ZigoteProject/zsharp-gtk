@@ -6246,6 +6246,7 @@ module Action =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_action_get_type ())) "notify::state-type" handler
 
   /// Gives a type made with `Glue.subclass` its own `activate`: Activates the action.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivate (gtype: usize) (handler: Action -> option<GLib.Variant> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -6253,7 +6254,7 @@ module Action =
         let zid1 = Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 1) (i32 0)
         let parameter = (if zid1 = 0 then None else Some (GLib.Variant zid1))
         handler action parameter)
-    Internal.GioC.zgtk_override_Gio_Action_activate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Action_activate (Internal.Raw.gtype gtype) zcb)
 
   /// Activates the action.
   let parentActivate (self: Action) (parameter: option<GLib.Variant>) : unit =
@@ -6264,43 +6265,47 @@ module Action =
     Internal.GioC.zgtk_parent_Gio_Action_activate (Internal.Raw.obj self.Id (Internal.GioC.g_action_get_type ())) zp1
 
   /// Gives a type made with `Glue.subclass` its own `change_state`: Request for the state of @action to be changed to @value.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChangeState (gtype: usize) (handler: Action -> GLib.Variant -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let action = Action (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let value = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 1) (i32 0))
         handler action value)
-    Internal.GioC.zgtk_override_Gio_Action_change_state (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Action_change_state (Internal.Raw.gtype gtype) zcb)
 
   /// Request for the state of @action to be changed to @value.
   let parentChangeState (self: Action) (value: GLib.Variant) : unit =
     Internal.GioC.zgtk_parent_Gio_Action_change_state (Internal.Raw.obj self.Id (Internal.GioC.g_action_get_type ())) (Internal.Raw.obj value.Id (Internal.GLibC.zgtk_type_GLib_Variant ()))
 
   /// Gives a type made with `Glue.subclass` its own `get_enabled`: Checks if @action is currently enabled.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetEnabled (gtype: usize) (handler: Action -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let action = Action (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler action))
-    Internal.GioC.zgtk_override_Gio_Action_get_enabled (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Action_get_enabled (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if @action is currently enabled.
   let parentGetEnabled (self: Action) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Action_get_enabled (Internal.Raw.obj self.Id (Internal.GioC.g_action_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `get_name`: Queries the name of @action.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetName (gtype: usize) (handler: Action -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let action = Action (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler action)))
-    Internal.GioC.zgtk_override_Gio_Action_get_name (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Action_get_name (Internal.Raw.gtype gtype) zcb)
 
   /// Queries the name of @action.
   let parentGetName (self: Action) : string =
     Internal.Raw.text ((Internal.GioC.zgtk_parent_Gio_Action_get_name (Internal.Raw.obj self.Id (Internal.GioC.g_action_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_parameter_type`: Queries the type of the parameter that must be given when activating @action.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetParameterType (gtype: usize) (handler: Action -> option<GLib.VariantType>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -6308,7 +6313,7 @@ module Action =
         match handler action with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lendBoxed (Internal.Raw.obj zo.Id (Internal.GLibC.g_variant_type_get_gtype ())) (Internal.GLibC.g_variant_type_get_gtype ()))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Action_get_parameter_type (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Action_get_parameter_type (Internal.Raw.gtype gtype) zcb)
 
   /// Queries the type of the parameter that must be given when activating @action.
   let parentGetParameterType (self: Action) : option<GLib.VariantType> =
@@ -6317,6 +6322,7 @@ module Action =
     (if zid1 = 0 then None else Some (GLib.VariantType zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_state`: Queries the current state of @action.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetState (gtype: usize) (handler: Action -> option<GLib.Variant>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -6324,7 +6330,7 @@ module Action =
         match handler action with
         | Some zo -> Internal.Raw.returnPointer (Internal.GLibC.zgtk_give_GLib_Variant (Internal.Raw.obj zo.Id (Internal.GLibC.zgtk_type_GLib_Variant ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Action_get_state (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Action_get_state (Internal.Raw.gtype gtype) zcb)
 
   /// Queries the current state of @action.
   let parentGetState (self: Action) : option<GLib.Variant> =
@@ -6333,6 +6339,7 @@ module Action =
     (if zid1 = 0 then None else Some (GLib.Variant zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_state_hint`: Requests a hint about the valid range of values for the state of @action.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetStateHint (gtype: usize) (handler: Action -> option<GLib.Variant>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -6340,7 +6347,7 @@ module Action =
         match handler action with
         | Some zo -> Internal.Raw.returnPointer (Internal.GLibC.zgtk_give_GLib_Variant (Internal.Raw.obj zo.Id (Internal.GLibC.zgtk_type_GLib_Variant ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Action_get_state_hint (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Action_get_state_hint (Internal.Raw.gtype gtype) zcb)
 
   /// Requests a hint about the valid range of values for the state of @action.
   let parentGetStateHint (self: Action) : option<GLib.Variant> =
@@ -6349,6 +6356,7 @@ module Action =
     (if zid1 = 0 then None else Some (GLib.Variant zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_state_type`: Queries the type of the state of @action.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetStateType (gtype: usize) (handler: Action -> option<GLib.VariantType>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -6356,7 +6364,7 @@ module Action =
         match handler action with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lendBoxed (Internal.Raw.obj zo.Id (Internal.GLibC.g_variant_type_get_gtype ())) (Internal.GLibC.g_variant_type_get_gtype ()))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Action_get_state_type (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Action_get_state_type (Internal.Raw.gtype gtype) zcb)
 
   /// Queries the type of the state of @action.
   let parentGetStateType (self: Action) : option<GLib.VariantType> =
@@ -6485,19 +6493,21 @@ module ActionGroup =
       handler actionName value)
 
   /// Gives a type made with `Glue.subclass` its own `action_added`: Emits the [signal@Gio.ActionGroup::action-added] signal on @action_group.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActionAdded (gtype: usize) (handler: ActionGroup -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let actionGroup = ActionGroup (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler actionGroup actionName)
-    Internal.GioC.zgtk_override_Gio_ActionGroup_action_added (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionGroup_action_added (Internal.Raw.gtype gtype) zcb)
 
   /// Emits the [signal@Gio.ActionGroup::action-added] signal on @action_group.
   let parentActionAdded (self: ActionGroup) (actionName: string) : unit =
     Internal.GioC.zgtk_parent_Gio_ActionGroup_action_added (Internal.Raw.obj self.Id (Internal.GioC.g_action_group_get_type ())) actionName
 
   /// Gives a type made with `Glue.subclass` its own `action_enabled_changed`: Emits the [signal@Gio.ActionGroup::action-enabled-changed] signal on @action_group.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActionEnabledChanged (gtype: usize) (handler: ActionGroup -> string -> bool -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -6505,26 +6515,28 @@ module ActionGroup =
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         let enabled = (Internal.Raw.argInt 2 <> 0)
         handler actionGroup actionName enabled)
-    Internal.GioC.zgtk_override_Gio_ActionGroup_action_enabled_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionGroup_action_enabled_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Emits the [signal@Gio.ActionGroup::action-enabled-changed] signal on @action_group.
   let parentActionEnabledChanged (self: ActionGroup) (actionName: string) (enabled: bool) : unit =
     Internal.GioC.zgtk_parent_Gio_ActionGroup_action_enabled_changed (Internal.Raw.obj self.Id (Internal.GioC.g_action_group_get_type ())) actionName (if enabled then i32 1 else i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `action_removed`: Emits the [signal@Gio.ActionGroup::action-removed] signal on @action_group.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActionRemoved (gtype: usize) (handler: ActionGroup -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let actionGroup = ActionGroup (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler actionGroup actionName)
-    Internal.GioC.zgtk_override_Gio_ActionGroup_action_removed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionGroup_action_removed (Internal.Raw.gtype gtype) zcb)
 
   /// Emits the [signal@Gio.ActionGroup::action-removed] signal on @action_group.
   let parentActionRemoved (self: ActionGroup) (actionName: string) : unit =
     Internal.GioC.zgtk_parent_Gio_ActionGroup_action_removed (Internal.Raw.obj self.Id (Internal.GioC.g_action_group_get_type ())) actionName
 
   /// Gives a type made with `Glue.subclass` its own `action_state_changed`: Emits the [signal@Gio.ActionGroup::action-state-changed] signal on @action_group.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActionStateChanged (gtype: usize) (handler: ActionGroup -> string -> GLib.Variant -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -6532,13 +6544,14 @@ module ActionGroup =
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         let state = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 2) (i32 0))
         handler actionGroup actionName state)
-    Internal.GioC.zgtk_override_Gio_ActionGroup_action_state_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionGroup_action_state_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Emits the [signal@Gio.ActionGroup::action-state-changed] signal on @action_group.
   let parentActionStateChanged (self: ActionGroup) (actionName: string) (state: GLib.Variant) : unit =
     Internal.GioC.zgtk_parent_Gio_ActionGroup_action_state_changed (Internal.Raw.obj self.Id (Internal.GioC.g_action_group_get_type ())) actionName (Internal.Raw.obj state.Id (Internal.GLibC.zgtk_type_GLib_Variant ()))
 
   /// Gives a type made with `Glue.subclass` its own `activate_action`: Activate the named action within @action_group.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivateAction (gtype: usize) (handler: ActionGroup -> string -> option<GLib.Variant> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -6547,7 +6560,7 @@ module ActionGroup =
         let zid1 = Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 2) (i32 0)
         let parameter = (if zid1 = 0 then None else Some (GLib.Variant zid1))
         handler actionGroup actionName parameter)
-    Internal.GioC.zgtk_override_Gio_ActionGroup_activate_action (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionGroup_activate_action (Internal.Raw.gtype gtype) zcb)
 
   /// Activate the named action within @action_group.
   let parentActivateAction (self: ActionGroup) (actionName: string) (parameter: option<GLib.Variant>) : unit =
@@ -6558,6 +6571,7 @@ module ActionGroup =
     Internal.GioC.zgtk_parent_Gio_ActionGroup_activate_action (Internal.Raw.obj self.Id (Internal.GioC.g_action_group_get_type ())) actionName zp1
 
   /// Gives a type made with `Glue.subclass` its own `change_action_state`: Request for the state of the named action within @action_group to be changed to @value.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChangeActionState (gtype: usize) (handler: ActionGroup -> string -> GLib.Variant -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -6565,26 +6579,28 @@ module ActionGroup =
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         let value = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 2) (i32 0))
         handler actionGroup actionName value)
-    Internal.GioC.zgtk_override_Gio_ActionGroup_change_action_state (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionGroup_change_action_state (Internal.Raw.gtype gtype) zcb)
 
   /// Request for the state of the named action within @action_group to be changed to @value.
   let parentChangeActionState (self: ActionGroup) (actionName: string) (value: GLib.Variant) : unit =
     Internal.GioC.zgtk_parent_Gio_ActionGroup_change_action_state (Internal.Raw.obj self.Id (Internal.GioC.g_action_group_get_type ())) actionName (Internal.Raw.obj value.Id (Internal.GLibC.zgtk_type_GLib_Variant ()))
 
   /// Gives a type made with `Glue.subclass` its own `get_action_enabled`: Checks if the named action within @action_group is currently enabled.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetActionEnabled (gtype: usize) (handler: ActionGroup -> string -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let actionGroup = ActionGroup (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnBool (handler actionGroup actionName))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_enabled (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_enabled (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if the named action within @action_group is currently enabled.
   let parentGetActionEnabled (self: ActionGroup) (actionName: string) : bool =
     (((Internal.GioC.zgtk_parent_Gio_ActionGroup_get_action_enabled (Internal.Raw.obj self.Id (Internal.GioC.g_action_group_get_type ())) actionName)) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `get_action_parameter_type`: Queries the type of the parameter that must be given when activating the named action within @action_group.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetActionParameterType (gtype: usize) (handler: ActionGroup -> string -> option<GLib.VariantType>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -6593,7 +6609,7 @@ module ActionGroup =
         match handler actionGroup actionName with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lendBoxed (Internal.Raw.obj zo.Id (Internal.GLibC.g_variant_type_get_gtype ())) (Internal.GLibC.g_variant_type_get_gtype ()))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_parameter_type (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_parameter_type (Internal.Raw.gtype gtype) zcb)
 
   /// Queries the type of the parameter that must be given when activating the named action within @action_group.
   let parentGetActionParameterType (self: ActionGroup) (actionName: string) : option<GLib.VariantType> =
@@ -6602,6 +6618,7 @@ module ActionGroup =
     (if zid1 = 0 then None else Some (GLib.VariantType zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_action_state`: Queries the current state of the named action within @action_group.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetActionState (gtype: usize) (handler: ActionGroup -> string -> option<GLib.Variant>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -6610,7 +6627,7 @@ module ActionGroup =
         match handler actionGroup actionName with
         | Some zo -> Internal.Raw.returnPointer (Internal.GLibC.zgtk_give_GLib_Variant (Internal.Raw.obj zo.Id (Internal.GLibC.zgtk_type_GLib_Variant ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_state (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_state (Internal.Raw.gtype gtype) zcb)
 
   /// Queries the current state of the named action within @action_group.
   let parentGetActionState (self: ActionGroup) (actionName: string) : option<GLib.Variant> =
@@ -6619,6 +6636,7 @@ module ActionGroup =
     (if zid1 = 0 then None else Some (GLib.Variant zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_action_state_hint`: Requests a hint about the valid range of values for the state of the named action within @action_group.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetActionStateHint (gtype: usize) (handler: ActionGroup -> string -> option<GLib.Variant>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -6627,7 +6645,7 @@ module ActionGroup =
         match handler actionGroup actionName with
         | Some zo -> Internal.Raw.returnPointer (Internal.GLibC.zgtk_give_GLib_Variant (Internal.Raw.obj zo.Id (Internal.GLibC.zgtk_type_GLib_Variant ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_state_hint (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_state_hint (Internal.Raw.gtype gtype) zcb)
 
   /// Requests a hint about the valid range of values for the state of the named action within @action_group.
   let parentGetActionStateHint (self: ActionGroup) (actionName: string) : option<GLib.Variant> =
@@ -6636,6 +6654,7 @@ module ActionGroup =
     (if zid1 = 0 then None else Some (GLib.Variant zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_action_state_type`: Queries the type of the state of the named action within @action_group.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetActionStateType (gtype: usize) (handler: ActionGroup -> string -> option<GLib.VariantType>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -6644,7 +6663,7 @@ module ActionGroup =
         match handler actionGroup actionName with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lendBoxed (Internal.Raw.obj zo.Id (Internal.GLibC.g_variant_type_get_gtype ())) (Internal.GLibC.g_variant_type_get_gtype ()))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_state_type (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionGroup_get_action_state_type (Internal.Raw.gtype gtype) zcb)
 
   /// Queries the type of the state of the named action within @action_group.
   let parentGetActionStateType (self: ActionGroup) (actionName: string) : option<GLib.VariantType> =
@@ -6653,31 +6672,34 @@ module ActionGroup =
     (if zid1 = 0 then None else Some (GLib.VariantType zid1))
 
   /// Gives a type made with `Glue.subclass` its own `has_action`: Checks if the named action exists within @action_group.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideHasAction (gtype: usize) (handler: ActionGroup -> string -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let actionGroup = ActionGroup (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnBool (handler actionGroup actionName))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_has_action (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionGroup_has_action (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if the named action exists within @action_group.
   let parentHasAction (self: ActionGroup) (actionName: string) : bool =
     (((Internal.GioC.zgtk_parent_Gio_ActionGroup_has_action (Internal.Raw.obj self.Id (Internal.GioC.g_action_group_get_type ())) actionName)) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `list_actions`: Lists the actions contained within @action_group.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideListActions (gtype: usize) (handler: ActionGroup -> list<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let actionGroup = ActionGroup (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.strv (handler actionGroup)))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_list_actions (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionGroup_list_actions (Internal.Raw.gtype gtype) zcb)
 
   /// Lists the actions contained within @action_group.
   let parentListActions (self: ActionGroup) : list<string> =
     Internal.Raw.strvList ((Internal.GioC.zgtk_parent_Gio_ActionGroup_list_actions (Internal.Raw.obj self.Id (Internal.GioC.g_action_group_get_type ())))) 2
 
   /// Gives a type made with `Glue.subclass` its own `query_action`: Queries all aspects of the named action within an @action_group.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideQueryAction (gtype: usize) (handler: ActionGroup -> string -> cptr -> cptr -> cptr -> cptr -> (bool * bool)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -6690,7 +6712,7 @@ module ActionGroup =
         let (zres, enabled) = handler actionGroup actionName parameterType stateType stateHint state
         Internal.Raw.setI32 2 (if enabled then 1 else 0)
         Internal.Raw.returnBool (zres))
-    Internal.GioC.zgtk_override_Gio_ActionGroup_query_action (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionGroup_query_action (Internal.Raw.gtype gtype) zcb)
 
   /// Queries all aspects of the named action within an @action_group.
   let parentQueryAction (self: ActionGroup) (actionName: string) : (bool * bool * option<GLib.VariantType> * option<GLib.VariantType> * option<GLib.Variant> * option<GLib.Variant>) =
@@ -6743,19 +6765,21 @@ module ActionMap =
     Internal.Raw.free za2
 
   /// Gives a type made with `Glue.subclass` its own `add_action`: Adds an action to the @action_map.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAddAction (gtype: usize) (handler: ActionMap -> Action -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let actionMap = ActionMap (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let action = Action (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler actionMap action)
-    Internal.GioC.zgtk_override_Gio_ActionMap_add_action (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionMap_add_action (Internal.Raw.gtype gtype) zcb)
 
   /// Adds an action to the @action_map.
   let parentAddAction (self: ActionMap) (action: Action) : unit =
     Internal.GioC.zgtk_parent_Gio_ActionMap_add_action (Internal.Raw.obj self.Id (Internal.GioC.g_action_map_get_type ())) (Internal.Raw.obj action.Id (Internal.GioC.g_action_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `lookup_action`: Looks up the action with the name @action_name in @action_map.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLookupAction (gtype: usize) (handler: ActionMap -> string -> option<Action>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -6764,7 +6788,7 @@ module ActionMap =
         match handler actionMap actionName with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.GioC.g_action_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_ActionMap_lookup_action (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionMap_lookup_action (Internal.Raw.gtype gtype) zcb)
 
   /// Looks up the action with the name @action_name in @action_map.
   let parentLookupAction (self: ActionMap) (actionName: string) : option<Action> =
@@ -6773,13 +6797,14 @@ module ActionMap =
     (if zid1 = 0 then None else Some (Action zid1))
 
   /// Gives a type made with `Glue.subclass` its own `remove_action`: Removes the named action from the action map.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRemoveAction (gtype: usize) (handler: ActionMap -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let actionMap = ActionMap (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let actionName = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler actionMap actionName)
-    Internal.GioC.zgtk_override_Gio_ActionMap_remove_action (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ActionMap_remove_action (Internal.Raw.gtype gtype) zcb)
 
   /// Removes the named action from the action map.
   let parentRemoveAction (self: ActionMap) (actionName: string) : unit =
@@ -7187,67 +7212,73 @@ module AppInfo =
     Internal.GioC.g_app_info_reset_type_associations contentType
 
   /// Gives a type made with `Glue.subclass` its own `can_delete`: Obtains the information whether the [iface@Gio.AppInfo] can be deleted.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanDelete (gtype: usize) (handler: AppInfo -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler appinfo))
-    Internal.GioC.zgtk_override_Gio_AppInfo_can_delete (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_can_delete (Internal.Raw.gtype gtype) zcb)
 
   /// Obtains the information whether the [iface@Gio.AppInfo] can be deleted.
   let parentCanDelete (self: AppInfo) : bool =
     (((Internal.GioC.zgtk_parent_Gio_AppInfo_can_delete (Internal.Raw.obj self.Id (Internal.GioC.g_app_info_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `can_remove_supports_type`: Checks if a supported content type can be removed from an application.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanRemoveSupportsType (gtype: usize) (handler: AppInfo -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler appinfo))
-    Internal.GioC.zgtk_override_Gio_AppInfo_can_remove_supports_type (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_can_remove_supports_type (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if a supported content type can be removed from an application.
   let parentCanRemoveSupportsType (self: AppInfo) : bool =
     (((Internal.GioC.zgtk_parent_Gio_AppInfo_can_remove_supports_type (Internal.Raw.obj self.Id (Internal.GioC.g_app_info_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `do_delete`: Tries to delete a [iface@Gio.AppInfo].
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDoDelete (gtype: usize) (handler: AppInfo -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler appinfo))
-    Internal.GioC.zgtk_override_Gio_AppInfo_do_delete (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_do_delete (Internal.Raw.gtype gtype) zcb)
 
   /// Tries to delete a [iface@Gio.AppInfo].
   let parentDoDelete (self: AppInfo) : bool =
     (((Internal.GioC.zgtk_parent_Gio_AppInfo_do_delete (Internal.Raw.obj self.Id (Internal.GioC.g_app_info_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `dup`: Creates a duplicate of a [iface@Gio.AppInfo].
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDup (gtype: usize) (handler: AppInfo -> AppInfo) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler appinfo).Id (Internal.GioC.g_app_info_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_AppInfo_dup (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_dup (Internal.Raw.gtype gtype) zcb)
 
   /// Creates a duplicate of a [iface@Gio.AppInfo].
   let parentDup (self: AppInfo) : AppInfo =
     AppInfo (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_AppInfo_dup (Internal.Raw.obj self.Id (Internal.GioC.g_app_info_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `equal`: Checks if two [iface@Gio.AppInfo]s are equal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEqual (gtype: usize) (handler: AppInfo -> AppInfo -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let appinfo1 = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let appinfo2 = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnBool (handler appinfo1 appinfo2))
-    Internal.GioC.zgtk_override_Gio_AppInfo_equal (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_equal (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if two [iface@Gio.AppInfo]s are equal.
   let parentEqual (self: AppInfo) (appinfo2: AppInfo) : bool =
     (((Internal.GioC.zgtk_parent_Gio_AppInfo_equal (Internal.Raw.obj self.Id (Internal.GioC.g_app_info_get_type ())) (Internal.Raw.obj appinfo2.Id (Internal.GioC.g_app_info_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `get_commandline`: Gets the commandline with which the application will be started.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetCommandline (gtype: usize) (handler: AppInfo -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -7255,13 +7286,14 @@ module AppInfo =
         match handler appinfo with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_commandline (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_get_commandline (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the commandline with which the application will be started.
   let parentGetCommandline (self: AppInfo) : option<string> =
     Internal.Raw.textOption ((Internal.GioC.zgtk_parent_Gio_AppInfo_get_commandline (Internal.Raw.obj self.Id (Internal.GioC.g_app_info_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_description`: Gets a human-readable description of an installed application.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetDescription (gtype: usize) (handler: AppInfo -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -7269,37 +7301,40 @@ module AppInfo =
         match handler appinfo with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_description (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_get_description (Internal.Raw.gtype gtype) zcb)
 
   /// Gets a human-readable description of an installed application.
   let parentGetDescription (self: AppInfo) : option<string> =
     Internal.Raw.textOption ((Internal.GioC.zgtk_parent_Gio_AppInfo_get_description (Internal.Raw.obj self.Id (Internal.GioC.g_app_info_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_display_name`: Gets the display name of the application.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetDisplayName (gtype: usize) (handler: AppInfo -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler appinfo)))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_display_name (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_get_display_name (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the display name of the application.
   let parentGetDisplayName (self: AppInfo) : string =
     Internal.Raw.text ((Internal.GioC.zgtk_parent_Gio_AppInfo_get_display_name (Internal.Raw.obj self.Id (Internal.GioC.g_app_info_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_executable`: Gets the executable’s name for the installed application.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetExecutable (gtype: usize) (handler: AppInfo -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler appinfo)))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_executable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_get_executable (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the executable’s name for the installed application.
   let parentGetExecutable (self: AppInfo) : string =
     Internal.Raw.text ((Internal.GioC.zgtk_parent_Gio_AppInfo_get_executable (Internal.Raw.obj self.Id (Internal.GioC.g_app_info_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_icon`: Gets the icon for the application.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetIcon (gtype: usize) (handler: AppInfo -> option<Icon>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -7307,7 +7342,7 @@ module AppInfo =
         match handler appinfo with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.GioC.g_icon_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_icon (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_get_icon (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the icon for the application.
   let parentGetIcon (self: AppInfo) : option<Icon> =
@@ -7316,6 +7351,7 @@ module AppInfo =
     (if zid1 = 0 then None else Some (Icon zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_id`: Gets the ID of an application.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetId (gtype: usize) (handler: AppInfo -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -7323,37 +7359,40 @@ module AppInfo =
         match handler appinfo with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_id (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_get_id (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the ID of an application.
   let parentGetId (self: AppInfo) : option<string> =
     Internal.Raw.textOption ((Internal.GioC.zgtk_parent_Gio_AppInfo_get_id (Internal.Raw.obj self.Id (Internal.GioC.g_app_info_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_name`: Gets the installed name of the application.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetName (gtype: usize) (handler: AppInfo -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler appinfo)))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_name (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_get_name (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the installed name of the application.
   let parentGetName (self: AppInfo) : string =
     Internal.Raw.text ((Internal.GioC.zgtk_parent_Gio_AppInfo_get_name (Internal.Raw.obj self.Id (Internal.GioC.g_app_info_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_supported_types`: Retrieves the list of content types that @app_info claims to support.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSupportedTypes (gtype: usize) (handler: AppInfo -> cptr) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (handler appinfo))
-    Internal.GioC.zgtk_override_Gio_AppInfo_get_supported_types (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_get_supported_types (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieves the list of content types that @app_info claims to support.
   let parentGetSupportedTypes (self: AppInfo) : list<string> =
     Internal.Raw.strvList ((Internal.GioC.zgtk_parent_Gio_AppInfo_get_supported_types (Internal.Raw.obj self.Id (Internal.GioC.g_app_info_get_type ())))) 0
 
   /// Gives a type made with `Glue.subclass` its own `launch_uris_async`: Async version of [method@Gio.AppInfo.launch_uris].
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLaunchUrisAsync (gtype: usize) (handler: AppInfo -> list<string> -> option<AppLaunchContext> -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -7366,7 +7405,7 @@ module AppInfo =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler appinfo uris context cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_AppInfo_launch_uris_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_launch_uris_async (Internal.Raw.gtype gtype) zcb)
 
   /// Async version of [method@Gio.AppInfo.launch_uris].
   let parentLaunchUrisAsync (self: AppInfo) (uris: list<string>) (context: option<AppLaunchContext>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -7389,36 +7428,39 @@ module AppInfo =
     Internal.Raw.freeGlistAll zl3 false
 
   /// Gives a type made with `Glue.subclass` its own `should_show`: Checks if the application info should be shown in menus that list available applications.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideShouldShow (gtype: usize) (handler: AppInfo -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler appinfo))
-    Internal.GioC.zgtk_override_Gio_AppInfo_should_show (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_should_show (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if the application info should be shown in menus that list available applications.
   let parentShouldShow (self: AppInfo) : bool =
     (((Internal.GioC.zgtk_parent_Gio_AppInfo_should_show (Internal.Raw.obj self.Id (Internal.GioC.g_app_info_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `supports_files`: Checks if the application accepts files as arguments.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSupportsFiles (gtype: usize) (handler: AppInfo -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler appinfo))
-    Internal.GioC.zgtk_override_Gio_AppInfo_supports_files (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_supports_files (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if the application accepts files as arguments.
   let parentSupportsFiles (self: AppInfo) : bool =
     (((Internal.GioC.zgtk_parent_Gio_AppInfo_supports_files (Internal.Raw.obj self.Id (Internal.GioC.g_app_info_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `supports_uris`: Checks if the application supports reading files and directories from URIs.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSupportsUris (gtype: usize) (handler: AppInfo -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let appinfo = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler appinfo))
-    Internal.GioC.zgtk_override_Gio_AppInfo_supports_uris (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppInfo_supports_uris (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if the application supports reading files and directories from URIs.
   let parentSupportsUris (self: AppInfo) : bool =
@@ -7516,6 +7558,7 @@ module AppLaunchContext =
       handler info platformData)
 
   /// Gives a type made with `Glue.subclass` its own `get_display`: Gets the display string for the @context.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetDisplay (gtype: usize) (handler: AppLaunchContext -> AppInfo -> list<File> -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -7525,7 +7568,7 @@ module AppLaunchContext =
         match handler context info files with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_AppLaunchContext_get_display (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppLaunchContext_get_display (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the display string for the @context.
   let parentGetDisplay (self: AppLaunchContext) (info: AppInfo) (files: list<File>) : option<string> =
@@ -7536,6 +7579,7 @@ module AppLaunchContext =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_startup_notify_id`: Initiates startup notification for the application and returns the `XDG_ACTIVATION_TOKEN` or `DESKTOP_STARTUP_ID` for the launched operation, if supported.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetStartupNotifyId (gtype: usize) (handler: AppLaunchContext -> option<AppInfo> -> list<File> -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -7546,7 +7590,7 @@ module AppLaunchContext =
         match handler context info files with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_AppLaunchContext_get_startup_notify_id (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppLaunchContext_get_startup_notify_id (Internal.Raw.gtype gtype) zcb)
 
   /// Initiates startup notification for the application and returns the `XDG_ACTIVATION_TOKEN` or `DESKTOP_STARTUP_ID` for the launched operation, if supported.
   let parentGetStartupNotifyId (self: AppLaunchContext) (info: option<AppInfo>) (files: list<File>) : option<string> =
@@ -7561,19 +7605,21 @@ module AppLaunchContext =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `launch_failed`: Called when an application has failed to launch, so that it can cancel the application startup notification started in [method@Gio.AppLaunchContext.get_startup_notify_id].
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLaunchFailed (gtype: usize) (handler: AppLaunchContext -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = AppLaunchContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let startupNotifyId = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler context startupNotifyId)
-    Internal.GioC.zgtk_override_Gio_AppLaunchContext_launch_failed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppLaunchContext_launch_failed (Internal.Raw.gtype gtype) zcb)
 
   /// Called when an application has failed to launch, so that it can cancel the application startup notification started in [method@Gio.AppLaunchContext.get_startup_notify_id].
   let parentLaunchFailed (self: AppLaunchContext) (startupNotifyId: string) : unit =
     Internal.GioC.zgtk_parent_Gio_AppLaunchContext_launch_failed (Internal.Raw.obj self.Id (Internal.GioC.g_app_launch_context_get_type ())) startupNotifyId
 
   /// Gives a type made with `Glue.subclass` its own `launch_started`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLaunchStarted (gtype: usize) (handler: AppLaunchContext -> AppInfo -> GLib.Variant -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -7581,13 +7627,14 @@ module AppLaunchContext =
         let info = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let platformData = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 2) (i32 0))
         handler context info platformData)
-    Internal.GioC.zgtk_override_Gio_AppLaunchContext_launch_started (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppLaunchContext_launch_started (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_AppLaunchContext_launch_started`.
   let parentLaunchStarted (self: AppLaunchContext) (info: AppInfo) (platformData: GLib.Variant) : unit =
     Internal.GioC.zgtk_parent_Gio_AppLaunchContext_launch_started (Internal.Raw.obj self.Id (Internal.GioC.g_app_launch_context_get_type ())) (Internal.Raw.obj info.Id (Internal.GioC.g_app_info_get_type ())) (Internal.Raw.obj platformData.Id (Internal.GLibC.zgtk_type_GLib_Variant ()))
 
   /// Gives a type made with `Glue.subclass` its own `launched`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLaunched (gtype: usize) (handler: AppLaunchContext -> AppInfo -> GLib.Variant -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -7595,7 +7642,7 @@ module AppLaunchContext =
         let info = AppInfo (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let platformData = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 2) (i32 0))
         handler context info platformData)
-    Internal.GioC.zgtk_override_Gio_AppLaunchContext_launched (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AppLaunchContext_launched (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_AppLaunchContext_launched`.
   let parentLaunched (self: AppLaunchContext) (info: AppInfo) (platformData: GLib.Variant) : unit =
@@ -7895,70 +7942,76 @@ module Application =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_application_get_type ())) "notify::version" handler
 
   /// Gives a type made with `Glue.subclass` its own `activate`: Activates the application.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivate (gtype: usize) (handler: Application -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler application)
-    Internal.GioC.zgtk_override_Gio_Application_activate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Application_activate (Internal.Raw.gtype gtype) zcb)
 
   /// Activates the application.
   let parentActivate (self: Application) : unit =
     Internal.GioC.zgtk_parent_Gio_Application_activate (Internal.Raw.obj self.Id (Internal.GioC.g_application_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `add_platform_data`: invoked (locally) to add 'platform data' to be sent to the primary instance when activating, opening or invoking actions.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAddPlatformData (gtype: usize) (handler: Application -> GLib.VariantBuilder -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let builder = GLib.VariantBuilder (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GLibC.g_variant_builder_get_type ()) false)
         handler application builder)
-    Internal.GioC.zgtk_override_Gio_Application_add_platform_data (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Application_add_platform_data (Internal.Raw.gtype gtype) zcb)
 
   /// invoked (locally) to add 'platform data' to be sent to the primary instance when activating, opening or invoking actions.
   let parentAddPlatformData (self: Application) (builder: GLib.VariantBuilder) : unit =
     Internal.GioC.zgtk_parent_Gio_Application_add_platform_data (Internal.Raw.obj self.Id (Internal.GioC.g_application_get_type ())) (Internal.Raw.obj builder.Id (Internal.GLibC.g_variant_builder_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `after_emit`: invoked on the primary instance after 'activate', 'open', 'command-line' or any action invocation, gets the 'platform data' from the calling instance.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAfterEmit (gtype: usize) (handler: Application -> GLib.Variant -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let platformData = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 1) (i32 0))
         handler application platformData)
-    Internal.GioC.zgtk_override_Gio_Application_after_emit (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Application_after_emit (Internal.Raw.gtype gtype) zcb)
 
   /// invoked on the primary instance after 'activate', 'open', 'command-line' or any action invocation, gets the 'platform data' from the calling instance.
   let parentAfterEmit (self: Application) (platformData: GLib.Variant) : unit =
     Internal.GioC.zgtk_parent_Gio_Application_after_emit (Internal.Raw.obj self.Id (Internal.GioC.g_application_get_type ())) (Internal.Raw.obj platformData.Id (Internal.GLibC.zgtk_type_GLib_Variant ()))
 
   /// Gives a type made with `Glue.subclass` its own `before_emit`: invoked on the primary instance before 'activate', 'open', 'command-line' or any action invocation, gets the 'platform data' from the calling instance.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideBeforeEmit (gtype: usize) (handler: Application -> GLib.Variant -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let platformData = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 1) (i32 0))
         handler application platformData)
-    Internal.GioC.zgtk_override_Gio_Application_before_emit (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Application_before_emit (Internal.Raw.gtype gtype) zcb)
 
   /// invoked on the primary instance before 'activate', 'open', 'command-line' or any action invocation, gets the 'platform data' from the calling instance.
   let parentBeforeEmit (self: Application) (platformData: GLib.Variant) : unit =
     Internal.GioC.zgtk_parent_Gio_Application_before_emit (Internal.Raw.obj self.Id (Internal.GioC.g_application_get_type ())) (Internal.Raw.obj platformData.Id (Internal.GLibC.zgtk_type_GLib_Variant ()))
 
   /// Gives a type made with `Glue.subclass` its own `command_line`: invoked on the primary instance when a command-line is not handled locally
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCommandLine (gtype: usize) (handler: Application -> ApplicationCommandLine -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let commandLine = ApplicationCommandLine (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnInt (handler application commandLine))
-    Internal.GioC.zgtk_override_Gio_Application_command_line (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Application_command_line (Internal.Raw.gtype gtype) zcb)
 
   /// invoked on the primary instance when a command-line is not handled locally
   let parentCommandLine (self: Application) (commandLine: ApplicationCommandLine) : int =
     (int ((Internal.GioC.zgtk_parent_Gio_Application_command_line (Internal.Raw.obj self.Id (Internal.GioC.g_application_get_type ())) (Internal.Raw.obj commandLine.Id (Internal.GioC.g_application_command_line_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `dbus_unregister`: invoked locally during unregistration, if the application is using its D-Bus backend.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDbusUnregister (gtype: usize) (handler: Application -> DBusConnection -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -7966,26 +8019,28 @@ module Application =
         let connection = DBusConnection (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let objectPath = Internal.Raw.text (Internal.Raw.argPointer 2)
         handler application connection objectPath)
-    Internal.GioC.zgtk_override_Gio_Application_dbus_unregister (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Application_dbus_unregister (Internal.Raw.gtype gtype) zcb)
 
   /// invoked locally during unregistration, if the application is using its D-Bus backend.
   let parentDbusUnregister (self: Application) (connection: DBusConnection) (objectPath: string) : unit =
     Internal.GioC.zgtk_parent_Gio_Application_dbus_unregister (Internal.Raw.obj self.Id (Internal.GioC.g_application_get_type ())) (Internal.Raw.obj connection.Id (Internal.GioC.g_dbus_connection_get_type ())) objectPath
 
   /// Gives a type made with `Glue.subclass` its own `handle_local_options`: invoked locally after the parsing of the commandline options has occurred.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideHandleLocalOptions (gtype: usize) (handler: Application -> GLib.VariantDict -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let options = GLib.VariantDict (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GLibC.g_variant_dict_get_type ()) false)
         Internal.Raw.returnInt (handler application options))
-    Internal.GioC.zgtk_override_Gio_Application_handle_local_options (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Application_handle_local_options (Internal.Raw.gtype gtype) zcb)
 
   /// invoked locally after the parsing of the commandline options has occurred.
   let parentHandleLocalOptions (self: Application) (options: GLib.VariantDict) : int =
     (int ((Internal.GioC.zgtk_parent_Gio_Application_handle_local_options (Internal.Raw.obj self.Id (Internal.GioC.g_application_get_type ())) (Internal.Raw.obj options.Id (Internal.GLibC.g_variant_dict_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `local_command_line`: This virtual function is always invoked in the local instance.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLocalCommandLine (gtype: usize) (handler: Application -> cptr -> (bool * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -7994,7 +8049,7 @@ module Application =
         let (zres, exitStatus) = handler application arguments
         Internal.Raw.setI32 2 exitStatus
         Internal.Raw.returnBool (zres))
-    Internal.GioC.zgtk_override_Gio_Application_local_command_line (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Application_local_command_line (Internal.Raw.gtype gtype) zcb)
 
   /// This virtual function is always invoked in the local instance.
   [<Unsafe>]
@@ -8006,18 +8061,20 @@ module Application =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `name_lost`: invoked when another instance is taking over the name.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideNameLost (gtype: usize) (handler: Application -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler application))
-    Internal.GioC.zgtk_override_Gio_Application_name_lost (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Application_name_lost (Internal.Raw.gtype gtype) zcb)
 
   /// invoked when another instance is taking over the name.
   let parentNameLost (self: Application) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Application_name_lost (Internal.Raw.obj self.Id (Internal.GioC.g_application_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `open`: Opens the given files.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideOpen (gtype: usize) (handler: Application -> list<File> -> int -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -8026,7 +8083,7 @@ module Application =
         let nFiles = Internal.Raw.argInt 2
         let hint = Internal.Raw.text (Internal.Raw.argPointer 3)
         handler application files nFiles hint)
-    Internal.GioC.zgtk_override_Gio_Application_open (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Application_open (Internal.Raw.gtype gtype) zcb)
 
   /// Opens the given files.
   let parentOpen (self: Application) (files: list<File>) (hint: string) : unit =
@@ -8035,48 +8092,52 @@ module Application =
     Internal.Raw.free za2
 
   /// Gives a type made with `Glue.subclass` its own `quit_mainloop`: Used to be invoked on the primary instance when the use count of the application drops to zero (and after any inactivity timeout, if requested).
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideQuitMainloop (gtype: usize) (handler: Application -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler application)
-    Internal.GioC.zgtk_override_Gio_Application_quit_mainloop (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Application_quit_mainloop (Internal.Raw.gtype gtype) zcb)
 
   /// Used to be invoked on the primary instance when the use count of the application drops to zero (and after any inactivity timeout, if requested).
   let parentQuitMainloop (self: Application) : unit =
     Internal.GioC.zgtk_parent_Gio_Application_quit_mainloop (Internal.Raw.obj self.Id (Internal.GioC.g_application_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `run_mainloop`: Used to be invoked on the primary instance from g_application_run() if the use-count is non-zero.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRunMainloop (gtype: usize) (handler: Application -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler application)
-    Internal.GioC.zgtk_override_Gio_Application_run_mainloop (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Application_run_mainloop (Internal.Raw.gtype gtype) zcb)
 
   /// Used to be invoked on the primary instance from g_application_run() if the use-count is non-zero.
   let parentRunMainloop (self: Application) : unit =
     Internal.GioC.zgtk_parent_Gio_Application_run_mainloop (Internal.Raw.obj self.Id (Internal.GioC.g_application_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `shutdown`: invoked only on the registered primary instance immediately after the main loop terminates
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideShutdown (gtype: usize) (handler: Application -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler application)
-    Internal.GioC.zgtk_override_Gio_Application_shutdown (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Application_shutdown (Internal.Raw.gtype gtype) zcb)
 
   /// invoked only on the registered primary instance immediately after the main loop terminates
   let parentShutdown (self: Application) : unit =
     Internal.GioC.zgtk_parent_Gio_Application_shutdown (Internal.Raw.obj self.Id (Internal.GioC.g_application_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `startup`: invoked on the primary instance immediately after registration
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideStartup (gtype: usize) (handler: Application -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler application)
-    Internal.GioC.zgtk_override_Gio_Application_startup (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Application_startup (Internal.Raw.gtype gtype) zcb)
 
   /// invoked on the primary instance immediately after registration
   let parentStartup (self: Application) : unit =
@@ -8174,18 +8235,20 @@ module ApplicationCommandLine =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_application_command_line_get_type ())) "notify::platform-data" handler
 
   /// Gives a type made with `Glue.subclass` its own `done`: Signals that command line processing is completed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDone (gtype: usize) (handler: ApplicationCommandLine -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let cmdline = ApplicationCommandLine (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler cmdline)
-    Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_done (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_done (Internal.Raw.gtype gtype) zcb)
 
   /// Signals that command line processing is completed.
   let parentDone (self: ApplicationCommandLine) : unit =
     Internal.GioC.zgtk_parent_Gio_ApplicationCommandLine_done (Internal.Raw.obj self.Id (Internal.GioC.g_application_command_line_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `get_stdin`: Gets the stdin of the invoking process.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetStdin (gtype: usize) (handler: ApplicationCommandLine -> option<InputStream>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -8193,7 +8256,7 @@ module ApplicationCommandLine =
         match handler cmdline with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_input_stream_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_get_stdin (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_get_stdin (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the stdin of the invoking process.
   let parentGetStdin (self: ApplicationCommandLine) : option<InputStream> =
@@ -8202,26 +8265,28 @@ module ApplicationCommandLine =
     (if zid1 = 0 then None else Some (InputStream zid1))
 
   /// Gives a type made with `Glue.subclass` its own `print_literal`: Prints a message using the stdout print handler in the invoking process.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePrintLiteral (gtype: usize) (handler: ApplicationCommandLine -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let cmdline = ApplicationCommandLine (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let message = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler cmdline message)
-    Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_print_literal (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_print_literal (Internal.Raw.gtype gtype) zcb)
 
   /// Prints a message using the stdout print handler in the invoking process.
   let parentPrintLiteral (self: ApplicationCommandLine) (message: string) : unit =
     Internal.GioC.zgtk_parent_Gio_ApplicationCommandLine_print_literal (Internal.Raw.obj self.Id (Internal.GioC.g_application_command_line_get_type ())) message
 
   /// Gives a type made with `Glue.subclass` its own `printerr_literal`: Prints a message using the stderr print handler in the invoking process.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePrinterrLiteral (gtype: usize) (handler: ApplicationCommandLine -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let cmdline = ApplicationCommandLine (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let message = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler cmdline message)
-    Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_printerr_literal (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ApplicationCommandLine_printerr_literal (Internal.Raw.gtype gtype) zcb)
 
   /// Prints a message using the stderr print handler in the invoking process.
   let parentPrinterrLiteral (self: ApplicationCommandLine) (message: string) : unit =
@@ -8317,6 +8382,7 @@ module AsyncInitable =
     Internal.GioC.g_async_initable_newv_async (Internal.Raw.gtype objectType) (u32 nParameters) (Internal.Raw.obj parameters.Id (Internal.GObjectC.zgtk_tag_GObject_Parameter ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `init_async`: Starts asynchronous initialization of the object implementing the interface.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInitAsync (gtype: usize) (handler: AsyncInitable -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -8327,7 +8393,7 @@ module AsyncInitable =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler initable ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_AsyncInitable_init_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AsyncInitable_init_async (Internal.Raw.gtype gtype) zcb)
 
   /// Starts asynchronous initialization of the object implementing the interface.
   let parentInitAsync (self: AsyncInitable) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -8383,6 +8449,7 @@ module AsyncResult =
       Ok zv
 
   /// Gives a type made with `Glue.subclass` its own `get_source_object`: Gets the source object from a [iface@Gio.AsyncResult].
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSourceObject (gtype: usize) (handler: AsyncResult -> option<GObject.Object>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -8390,7 +8457,7 @@ module AsyncResult =
         match handler res with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GObjectC.g_object_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_AsyncResult_get_source_object (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AsyncResult_get_source_object (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the source object from a [iface@Gio.AsyncResult].
   let parentGetSourceObject (self: AsyncResult) : option<GObject.Object> =
@@ -8399,25 +8466,27 @@ module AsyncResult =
     (if zid1 = 0 then None else Some (GObject.Object zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_user_data`: Gets the user data from a [iface@Gio.AsyncResult].
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetUserData (gtype: usize) (handler: AsyncResult -> cptr) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let res = AsyncResult (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (handler res))
-    Internal.GioC.zgtk_override_Gio_AsyncResult_get_user_data (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AsyncResult_get_user_data (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the user data from a [iface@Gio.AsyncResult].
   let parentGetUserData (self: AsyncResult) : cptr =
     ((Internal.GioC.zgtk_parent_Gio_AsyncResult_get_user_data (Internal.Raw.obj self.Id (Internal.GioC.g_async_result_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `is_tagged`: Checks if @res has the given @source_tag (generally a function pointer indicating the function @res was created by).
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsTagged (gtype: usize) (handler: AsyncResult -> cptr -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let res = AsyncResult (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let sourceTag = Internal.Raw.argPointer 1
         Internal.Raw.returnBool (handler res sourceTag))
-    Internal.GioC.zgtk_override_Gio_AsyncResult_is_tagged (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_AsyncResult_is_tagged (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if @res has the given @source_tag (generally a function pointer indicating the function @res was created by).
   [<Unsafe>]
@@ -8482,36 +8551,39 @@ module Seekable =
       Ok zv
 
   /// Gives a type made with `Glue.subclass` its own `can_seek`: Tests if the stream supports the #GSeekableIface.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanSeek (gtype: usize) (handler: Seekable -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let seekable = Seekable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler seekable))
-    Internal.GioC.zgtk_override_Gio_Seekable_can_seek (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Seekable_can_seek (Internal.Raw.gtype gtype) zcb)
 
   /// Tests if the stream supports the #GSeekableIface.
   let parentCanSeek (self: Seekable) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Seekable_can_seek (Internal.Raw.obj self.Id (Internal.GioC.g_seekable_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `can_truncate`: Tests if the length of the stream can be adjusted with g_seekable_truncate().
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanTruncate (gtype: usize) (handler: Seekable -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let seekable = Seekable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler seekable))
-    Internal.GioC.zgtk_override_Gio_Seekable_can_truncate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Seekable_can_truncate (Internal.Raw.gtype gtype) zcb)
 
   /// Tests if the length of the stream can be adjusted with g_seekable_truncate().
   let parentCanTruncate (self: Seekable) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Seekable_can_truncate (Internal.Raw.obj self.Id (Internal.GioC.g_seekable_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `tell`: Tells the current position within the stream.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideTell (gtype: usize) (handler: Seekable -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let seekable = Seekable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler seekable))
-    Internal.GioC.zgtk_override_Gio_Seekable_tell (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Seekable_tell (Internal.Raw.gtype gtype) zcb)
 
   /// Tells the current position within the stream.
   let parentTell (self: Seekable) : int =
@@ -8807,6 +8879,7 @@ module InputStream =
         zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `close_async`: Requests an asynchronous closes of the stream, releasing resources related to it.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCloseAsync (gtype: usize) (handler: InputStream -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -8817,7 +8890,7 @@ module InputStream =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler stream ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_InputStream_close_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_InputStream_close_async (Internal.Raw.gtype gtype) zcb)
 
   /// Requests an asynchronous closes of the stream, releasing resources related to it.
   let parentCloseAsync (self: InputStream) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -8834,6 +8907,7 @@ module InputStream =
     Internal.GioC.zgtk_parent_Gio_InputStream_close_async (Internal.Raw.obj self.Id (Internal.GioC.g_input_stream_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `read_async`: Request an asynchronous read of @count bytes from the stream into the buffer starting at @buffer.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideReadAsync (gtype: usize) (handler: InputStream -> cptr -> int -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -8846,7 +8920,7 @@ module InputStream =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler stream buffer count ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_InputStream_read_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_InputStream_read_async (Internal.Raw.gtype gtype) zcb)
 
   /// Request an asynchronous read of @count bytes from the stream into the buffer starting at @buffer.
   let parentReadAsync (self: InputStream) (count: int) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : array<u8> =
@@ -8865,6 +8939,7 @@ module InputStream =
     Internal.Raw.bytesOf (zbuf3) (count) true
 
   /// Gives a type made with `Glue.subclass` its own `skip_async`: Request an asynchronous skip of @count bytes from the stream.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSkipAsync (gtype: usize) (handler: InputStream -> int -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -8876,7 +8951,7 @@ module InputStream =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler stream count ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_InputStream_skip_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_InputStream_skip_async (Internal.Raw.gtype gtype) zcb)
 
   /// Request an asynchronous skip of @count bytes from the stream.
   let parentSkipAsync (self: InputStream) (count: int) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -9057,6 +9132,7 @@ module BufferedInputStream =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_buffered_input_stream_get_type ())) "notify::buffer-size" handler
 
   /// Gives a type made with `Glue.subclass` its own `fill_async`: Reads data into @stream's buffer asynchronously, up to @count size.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideFillAsync (gtype: usize) (handler: BufferedInputStream -> int -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -9068,7 +9144,7 @@ module BufferedInputStream =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler stream count ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_BufferedInputStream_fill_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_BufferedInputStream_fill_async (Internal.Raw.gtype gtype) zcb)
 
   /// Reads data into @stream's buffer asynchronously, up to @count size.
   let parentFillAsync (self: BufferedInputStream) (count: int) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -9584,6 +9660,7 @@ module OutputStream =
         zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `close_async`: Requests an asynchronous close of the stream, releasing resources related to it.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCloseAsync (gtype: usize) (handler: OutputStream -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -9594,7 +9671,7 @@ module OutputStream =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler stream ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_OutputStream_close_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_OutputStream_close_async (Internal.Raw.gtype gtype) zcb)
 
   /// Requests an asynchronous close of the stream, releasing resources related to it.
   let parentCloseAsync (self: OutputStream) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -9611,6 +9688,7 @@ module OutputStream =
     Internal.GioC.zgtk_parent_Gio_OutputStream_close_async (Internal.Raw.obj self.Id (Internal.GioC.g_output_stream_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `flush_async`: Forces an asynchronous write of all user-space buffered data for the given @stream.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideFlushAsync (gtype: usize) (handler: OutputStream -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -9621,7 +9699,7 @@ module OutputStream =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler stream ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_OutputStream_flush_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_OutputStream_flush_async (Internal.Raw.gtype gtype) zcb)
 
   /// Forces an asynchronous write of all user-space buffered data for the given @stream.
   let parentFlushAsync (self: OutputStream) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -9638,6 +9716,7 @@ module OutputStream =
     Internal.GioC.zgtk_parent_Gio_OutputStream_flush_async (Internal.Raw.obj self.Id (Internal.GioC.g_output_stream_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `splice_async`: Splices a stream asynchronously.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSpliceAsync (gtype: usize) (handler: OutputStream -> InputStream -> OutputStreamSpliceFlags -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -9650,7 +9729,7 @@ module OutputStream =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler stream source flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_OutputStream_splice_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_OutputStream_splice_async (Internal.Raw.gtype gtype) zcb)
 
   /// Splices a stream asynchronously.
   let parentSpliceAsync (self: OutputStream) (source: InputStream) (flags: OutputStreamSpliceFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -9667,6 +9746,7 @@ module OutputStream =
     Internal.GioC.zgtk_parent_Gio_OutputStream_splice_async (Internal.Raw.obj self.Id (Internal.GioC.g_output_stream_get_type ())) (Internal.Raw.obj source.Id (Internal.GioC.g_input_stream_get_type ())) (u32 flags.Int) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `write_async`: Request an asynchronous write of @count bytes from @buffer into the stream.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideWriteAsync (gtype: usize) (handler: OutputStream -> array<u8> -> int -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -9679,7 +9759,7 @@ module OutputStream =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler stream buffer count ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_OutputStream_write_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_OutputStream_write_async (Internal.Raw.gtype gtype) zcb)
 
   /// Request an asynchronous write of @count bytes from @buffer into the stream.
   let parentWriteAsync (self: OutputStream) (buffer: array<u8>) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -9698,6 +9778,7 @@ module OutputStream =
     Internal.Raw.free za4
 
   /// Gives a type made with `Glue.subclass` its own `writev_async`: Request an asynchronous write of the bytes contained in @n_vectors @vectors into the stream.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideWritevAsync (gtype: usize) (handler: OutputStream -> list<OutputVector> -> int -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -9711,7 +9792,7 @@ module OutputStream =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler stream vectors nVectors ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_OutputStream_writev_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_OutputStream_writev_async (Internal.Raw.gtype gtype) zcb)
 
   /// Request an asynchronous write of the bytes contained in @n_vectors @vectors into the stream.
   let parentWritevAsync (self: OutputStream) (vectors: list<OutputVector>) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -9869,6 +9950,7 @@ module Icon =
       Ok zv
 
   /// Gives a type made with `Glue.subclass` its own `equal`: Checks if two icons are equal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEqual (gtype: usize) (handler: option<Icon> -> option<Icon> -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -9877,7 +9959,7 @@ module Icon =
         let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let icon2 = (if zid2 = 0 then None else Some (Icon zid2))
         Internal.Raw.returnBool (handler icon1 icon2))
-    Internal.GioC.zgtk_override_Gio_Icon_equal (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Icon_equal (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if two icons are equal.
   let parentEqual (self: Icon) (icon2: option<Icon>) : bool =
@@ -9889,18 +9971,20 @@ module Icon =
     ((zr) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `hash`: Gets a hash for an icon.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideHash (gtype: usize) (handler: Icon -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let icon = Icon (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler icon))
-    Internal.GioC.zgtk_override_Gio_Icon_hash (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Icon_hash (Internal.Raw.gtype gtype) zcb)
 
   /// Gets a hash for an icon.
   let parentHash (self: Icon) : int =
     (int ((Internal.GioC.zgtk_parent_Gio_Icon_hash (Internal.Raw.obj self.Id (Internal.GioC.g_icon_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `serialize`: Serializes a #GIcon into a #GVariant.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSerialize (gtype: usize) (handler: Icon -> option<GLib.Variant>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -9908,7 +9992,7 @@ module Icon =
         match handler icon with
         | Some zo -> Internal.Raw.returnPointer (Internal.GLibC.zgtk_give_GLib_Variant (Internal.Raw.obj zo.Id (Internal.GLibC.zgtk_type_GLib_Variant ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Icon_serialize (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Icon_serialize (Internal.Raw.gtype gtype) zcb)
 
   /// Serializes a #GIcon into a #GVariant.
   let parentSerialize (self: Icon) : option<GLib.Variant> =
@@ -9917,6 +10001,7 @@ module Icon =
     (if zid1 = 0 then None else Some (GLib.Variant zid1))
 
   /// Gives a type made with `Glue.subclass` its own `to_tokens`: Serializes the @icon into string tokens.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideToTokens (gtype: usize) (handler: Icon -> cptr -> (bool * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -9925,7 +10010,7 @@ module Icon =
         let (zres, outVersion) = handler icon tokens
         Internal.Raw.setI32 2 outVersion
         Internal.Raw.returnBool (zres))
-    Internal.GioC.zgtk_override_Gio_Icon_to_tokens (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Icon_to_tokens (Internal.Raw.gtype gtype) zcb)
 
   /// Serializes the @icon into string tokens.
   [<Unsafe>]
@@ -10001,6 +10086,7 @@ module LoadableIcon =
         zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `load_async`: Loads an icon asynchronously.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLoadAsync (gtype: usize) (handler: LoadableIcon -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -10011,7 +10097,7 @@ module LoadableIcon =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler icon size cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_LoadableIcon_load_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_LoadableIcon_load_async (Internal.Raw.gtype gtype) zcb)
 
   /// Loads an icon asynchronously.
   let parentLoadAsync (self: LoadableIcon) (size: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -10140,13 +10226,14 @@ module Cancellable =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_cancellable_get_type ())) "cancelled" handler
 
   /// Gives a type made with `Glue.subclass` its own `cancelled`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCancelled (gtype: usize) (handler: option<Cancellable> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 0) false
         let cancellable = (if zid1 = 0 then None else Some (Cancellable zid1))
         handler cancellable)
-    Internal.GioC.zgtk_override_Gio_Cancellable_cancelled (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Cancellable_cancelled (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_Cancellable_cancelled`.
   let parentCancelled (self: Cancellable) : unit =
@@ -10200,12 +10287,13 @@ module Converter =
     Internal.GioC.g_converter_reset (Internal.Raw.obj self.Id (Internal.GioC.g_converter_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `reset`: Resets all internal state in the converter, making it behave as if it was just created.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideReset (gtype: usize) (handler: Converter -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let converter = Converter (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler converter)
-    Internal.GioC.zgtk_override_Gio_Converter_reset (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Converter_reset (Internal.Raw.gtype gtype) zcb)
 
   /// Resets all internal state in the converter, making it behave as if it was just created.
   let parentReset (self: Converter) : unit =
@@ -10384,18 +10472,20 @@ module PollableInputStream =
       Ok zv
 
   /// Gives a type made with `Glue.subclass` its own `can_poll`: Checks if @stream is actually pollable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanPoll (gtype: usize) (handler: PollableInputStream -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let stream = PollableInputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_PollableInputStream_can_poll (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_PollableInputStream_can_poll (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if @stream is actually pollable.
   let parentCanPoll (self: PollableInputStream) : bool =
     (((Internal.GioC.zgtk_parent_Gio_PollableInputStream_can_poll (Internal.Raw.obj self.Id (Internal.GioC.g_pollable_input_stream_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `create_source`: Creates a #GSource that triggers when @stream can be read, or @cancellable is triggered or an error occurs.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCreateSource (gtype: usize) (handler: PollableInputStream -> option<Cancellable> -> GLib.Source) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -10403,7 +10493,7 @@ module PollableInputStream =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let cancellable = (if zid1 = 0 then None else Some (Cancellable zid1))
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler stream cancellable).Id (Internal.GLibC.g_source_get_type ())) (Internal.GLibC.g_source_get_type ())))
-    Internal.GioC.zgtk_override_Gio_PollableInputStream_create_source (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_PollableInputStream_create_source (Internal.Raw.gtype gtype) zcb)
 
   /// Creates a #GSource that triggers when @stream can be read, or @cancellable is triggered or an error occurs.
   let parentCreateSource (self: PollableInputStream) (cancellable: option<Cancellable>) : GLib.Source =
@@ -10415,12 +10505,13 @@ module PollableInputStream =
     GLib.Source (Internal.Raw.wrapBoxed (zr) (Internal.GLibC.g_source_get_type ()) true)
 
   /// Gives a type made with `Glue.subclass` its own `is_readable`: Checks if @stream can be read.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsReadable (gtype: usize) (handler: PollableInputStream -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let stream = PollableInputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_PollableInputStream_is_readable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_PollableInputStream_is_readable (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if @stream can be read.
   let parentIsReadable (self: PollableInputStream) : bool =
@@ -10527,18 +10618,20 @@ module PollableOutputStream =
       Ok zv
 
   /// Gives a type made with `Glue.subclass` its own `can_poll`: Checks if @stream is actually pollable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanPoll (gtype: usize) (handler: PollableOutputStream -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let stream = PollableOutputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_PollableOutputStream_can_poll (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_PollableOutputStream_can_poll (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if @stream is actually pollable.
   let parentCanPoll (self: PollableOutputStream) : bool =
     (((Internal.GioC.zgtk_parent_Gio_PollableOutputStream_can_poll (Internal.Raw.obj self.Id (Internal.GioC.g_pollable_output_stream_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `create_source`: Creates a #GSource that triggers when @stream can be written, or @cancellable is triggered or an error occurs.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCreateSource (gtype: usize) (handler: PollableOutputStream -> option<Cancellable> -> GLib.Source) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -10546,7 +10639,7 @@ module PollableOutputStream =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let cancellable = (if zid1 = 0 then None else Some (Cancellable zid1))
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler stream cancellable).Id (Internal.GLibC.g_source_get_type ())) (Internal.GLibC.g_source_get_type ())))
-    Internal.GioC.zgtk_override_Gio_PollableOutputStream_create_source (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_PollableOutputStream_create_source (Internal.Raw.gtype gtype) zcb)
 
   /// Creates a #GSource that triggers when @stream can be written, or @cancellable is triggered or an error occurs.
   let parentCreateSource (self: PollableOutputStream) (cancellable: option<Cancellable>) : GLib.Source =
@@ -10558,12 +10651,13 @@ module PollableOutputStream =
     GLib.Source (Internal.Raw.wrapBoxed (zr) (Internal.GLibC.g_source_get_type ()) true)
 
   /// Gives a type made with `Glue.subclass` its own `is_writable`: Checks if @stream can be written.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsWritable (gtype: usize) (handler: PollableOutputStream -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let stream = PollableOutputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_PollableOutputStream_is_writable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_PollableOutputStream_is_writable (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if @stream can be written.
   let parentIsWritable (self: PollableOutputStream) : bool =
@@ -10705,6 +10799,7 @@ module RemoteActionGroup =
     Internal.GioC.g_remote_action_group_change_action_state_full (Internal.Raw.obj self.Id (Internal.GioC.g_remote_action_group_get_type ())) actionName (Internal.Raw.obj value.Id (Internal.GLibC.zgtk_type_GLib_Variant ())) (Internal.Raw.obj platformData.Id (Internal.GLibC.zgtk_type_GLib_Variant ()))
 
   /// Gives a type made with `Glue.subclass` its own `activate_action_full`: Activates the remote action.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivateActionFull (gtype: usize) (handler: RemoteActionGroup -> string -> option<GLib.Variant> -> GLib.Variant -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -10714,7 +10809,7 @@ module RemoteActionGroup =
         let parameter = (if zid1 = 0 then None else Some (GLib.Variant zid1))
         let platformData = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 3) (i32 0))
         handler remote actionName parameter platformData)
-    Internal.GioC.zgtk_override_Gio_RemoteActionGroup_activate_action_full (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_RemoteActionGroup_activate_action_full (Internal.Raw.gtype gtype) zcb)
 
   /// Activates the remote action.
   let parentActivateActionFull (self: RemoteActionGroup) (actionName: string) (parameter: option<GLib.Variant>) (platformData: GLib.Variant) : unit =
@@ -10725,6 +10820,7 @@ module RemoteActionGroup =
     Internal.GioC.zgtk_parent_Gio_RemoteActionGroup_activate_action_full (Internal.Raw.obj self.Id (Internal.GioC.g_remote_action_group_get_type ())) actionName zp1 (Internal.Raw.obj platformData.Id (Internal.GLibC.zgtk_type_GLib_Variant ()))
 
   /// Gives a type made with `Glue.subclass` its own `change_action_state_full`: Changes the state of a remote action.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChangeActionStateFull (gtype: usize) (handler: RemoteActionGroup -> string -> GLib.Variant -> GLib.Variant -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -10733,7 +10829,7 @@ module RemoteActionGroup =
         let value = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 2) (i32 0))
         let platformData = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 3) (i32 0))
         handler remote actionName value platformData)
-    Internal.GioC.zgtk_override_Gio_RemoteActionGroup_change_action_state_full (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_RemoteActionGroup_change_action_state_full (Internal.Raw.gtype gtype) zcb)
 
   /// Changes the state of a remote action.
   let parentChangeActionStateFull (self: RemoteActionGroup) (actionName: string) (value: GLib.Variant) (platformData: GLib.Variant) : unit =
@@ -11611,6 +11707,7 @@ module DBusInterface =
     Internal.GioC.g_dbus_interface_set_object (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_interface_get_type ())) zp1
 
   /// Gives a type made with `Glue.subclass` its own `dup_object`: Gets the #GDBusObject that @interface_ belongs to, if any.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDupObject (gtype: usize) (handler: DBusInterface -> option<DBusObject>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -11618,7 +11715,7 @@ module DBusInterface =
         match handler interface with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_object_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_DBusInterface_dup_object (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusInterface_dup_object (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the #GDBusObject that @interface_ belongs to, if any.
   let parentDupObject (self: DBusInterface) : option<DBusObject> =
@@ -11627,6 +11724,7 @@ module DBusInterface =
     (if zid1 = 0 then None else Some (DBusObject zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_info`: Gets D-Bus introspection information for the D-Bus interface implemented by @interface_.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetInfo (gtype: usize) (handler: DBusInterface -> option<DBusInterfaceInfo>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -11634,7 +11732,7 @@ module DBusInterface =
         match handler interface with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lendBoxed (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_interface_info_get_type ())) (Internal.GioC.g_dbus_interface_info_get_type ()))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_DBusInterface_get_info (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusInterface_get_info (Internal.Raw.gtype gtype) zcb)
 
   /// Gets D-Bus introspection information for the D-Bus interface implemented by @interface_.
   let parentGetInfo (self: DBusInterface) : option<DBusInterfaceInfo> =
@@ -11643,6 +11741,7 @@ module DBusInterface =
     (if zid1 = 0 then None else Some (DBusInterfaceInfo zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_object`: Gets the #GDBusObject that @interface_ belongs to, if any.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetObject (gtype: usize) (handler: DBusInterface -> option<DBusObject>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -11650,7 +11749,7 @@ module DBusInterface =
         match handler interface with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_object_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_DBusInterface_get_object (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusInterface_get_object (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the #GDBusObject that @interface_ belongs to, if any.
   let parentGetObject (self: DBusInterface) : option<DBusObject> =
@@ -11659,6 +11758,7 @@ module DBusInterface =
     (if zid1 = 0 then None else Some (DBusObject zid1))
 
   /// Gives a type made with `Glue.subclass` its own `set_object`: Sets the #GDBusObject for @interface_ to @object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetObject (gtype: usize) (handler: DBusInterface -> option<DBusObject> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -11666,7 +11766,7 @@ module DBusInterface =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let object = (if zid1 = 0 then None else Some (DBusObject zid1))
         handler interface object)
-    Internal.GioC.zgtk_override_Gio_DBusInterface_set_object (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusInterface_set_object (Internal.Raw.gtype gtype) zcb)
 
   /// Sets the #GDBusObject for @interface_ to @object.
   let parentSetObject (self: DBusInterface) (object: option<DBusObject>) : unit =
@@ -11823,67 +11923,73 @@ module DBusInterfaceSkeleton =
   let setGFlags (self: DBusInterfaceSkeleton) (value: DBusInterfaceSkeletonFlags) : unit = Internal.Raw.setInt (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_interface_skeleton_get_type ())) "g-flags" value.Int
 
   /// Gives a type made with `Glue.subclass` its own `flush`: If @interface_ has outstanding changes, request for these changes to be emitted immediately.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideFlush (gtype: usize) (handler: DBusInterfaceSkeleton -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let interface = DBusInterfaceSkeleton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler interface)
-    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_flush (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_flush (Internal.Raw.gtype gtype) zcb)
 
   /// If @interface_ has outstanding changes, request for these changes to be emitted immediately.
   let parentFlush (self: DBusInterfaceSkeleton) : unit =
     Internal.GioC.zgtk_parent_Gio_DBusInterfaceSkeleton_flush (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_interface_skeleton_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `g_authorize_method`: Signal class handler for the #GDBusInterfaceSkeleton::g-authorize-method signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGAuthorizeMethod (gtype: usize) (handler: DBusInterfaceSkeleton -> DBusMethodInvocation -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let interface = DBusInterfaceSkeleton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let invocation = DBusMethodInvocation (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnBool (handler interface invocation))
-    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_g_authorize_method (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_g_authorize_method (Internal.Raw.gtype gtype) zcb)
 
   /// Signal class handler for the #GDBusInterfaceSkeleton::g-authorize-method signal.
   let parentGAuthorizeMethod (self: DBusInterfaceSkeleton) (invocation: DBusMethodInvocation) : bool =
     (((Internal.GioC.zgtk_parent_Gio_DBusInterfaceSkeleton_g_authorize_method (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_interface_skeleton_get_type ())) (Internal.Raw.obj invocation.Id (Internal.GioC.g_dbus_method_invocation_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `get_info`: Gets D-Bus introspection information for the D-Bus interface implemented by @interface_.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetInfo (gtype: usize) (handler: DBusInterfaceSkeleton -> DBusInterfaceInfo) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let interface = DBusInterfaceSkeleton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.lendBoxed (Internal.Raw.obj (handler interface).Id (Internal.GioC.g_dbus_interface_info_get_type ())) (Internal.GioC.g_dbus_interface_info_get_type ())))
-    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_get_info (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_get_info (Internal.Raw.gtype gtype) zcb)
 
   /// Gets D-Bus introspection information for the D-Bus interface implemented by @interface_.
   let parentGetInfo (self: DBusInterfaceSkeleton) : DBusInterfaceInfo =
     DBusInterfaceInfo (Internal.Raw.wrapBoxed ((Internal.GioC.zgtk_parent_Gio_DBusInterfaceSkeleton_get_info (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_interface_skeleton_get_type ())))) (Internal.GioC.g_dbus_interface_info_get_type ()) false)
 
   /// Gives a type made with `Glue.subclass` its own `get_properties`: Gets all D-Bus properties for @interface_.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetProperties (gtype: usize) (handler: DBusInterfaceSkeleton -> GLib.Variant) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let interface = DBusInterfaceSkeleton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.GLibC.zgtk_give_GLib_Variant (Internal.Raw.obj (handler interface).Id (Internal.GLibC.zgtk_type_GLib_Variant ()))))
-    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_get_properties (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_get_properties (Internal.Raw.gtype gtype) zcb)
 
   /// Gets all D-Bus properties for @interface_.
   let parentGetProperties (self: DBusInterfaceSkeleton) : GLib.Variant =
     GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant ((Internal.GioC.zgtk_parent_Gio_DBusInterfaceSkeleton_get_properties (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_interface_skeleton_get_type ())))) (i32 1))
 
   /// Gives a type made with `Glue.subclass` its own `get_vtable`: Gets the interface vtable for the D-Bus interface implemented by @interface_.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetVtable (gtype: usize) (handler: DBusInterfaceSkeleton -> cptr) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let interface = DBusInterfaceSkeleton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (handler interface))
-    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_get_vtable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_get_vtable (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the interface vtable for the D-Bus interface implemented by @interface_.
   let parentGetVtable (self: DBusInterfaceSkeleton) : DBusInterfaceVTable =
     DBusInterfaceVTable (Internal.Raw.copyPlain ((Internal.GioC.zgtk_parent_Gio_DBusInterfaceSkeleton_get_vtable (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_interface_skeleton_get_type ())))) (Internal.GioC.zgtk_sizeof_Gio_DBusInterfaceVTable ()) (Internal.GioC.zgtk_tag_Gio_DBusInterfaceVTable ()))
 
   /// Gives a type made with `Glue.subclass` its own `method_dispatch`: Dispatches a method invocation.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMethodDispatch (gtype: usize) (handler: DBusInterfaceSkeleton -> cptr -> DBusMethodInvocation -> DBusInterfaceSkeletonFlags -> DBusObject -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -11893,7 +11999,7 @@ module DBusInterfaceSkeleton =
         let flags = DBusInterfaceSkeletonFlags (int (Internal.Raw.argInt 3))
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 4) false)
         handler interface methodCallFunc invocation flags object)
-    Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_method_dispatch (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusInterfaceSkeleton_method_dispatch (Internal.Raw.gtype gtype) zcb)
 
   /// Dispatches a method invocation.
   [<Unsafe>]
@@ -11963,6 +12069,7 @@ module MenuModel =
       handler position removed added)
 
   /// Gives a type made with `Glue.subclass` its own `get_item_attribute_value`: Queries the item at position @item_index in @model for the attribute specified by @attribute.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetItemAttributeValue (gtype: usize) (handler: MenuModel -> int -> string -> option<GLib.VariantType> -> option<GLib.Variant>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -11974,7 +12081,7 @@ module MenuModel =
         match handler model itemIndex attribute expectedType with
         | Some zo -> Internal.Raw.returnPointer (Internal.GLibC.zgtk_give_GLib_Variant (Internal.Raw.obj zo.Id (Internal.GLibC.zgtk_type_GLib_Variant ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_MenuModel_get_item_attribute_value (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MenuModel_get_item_attribute_value (Internal.Raw.gtype gtype) zcb)
 
   /// Queries the item at position @item_index in @model for the attribute specified by @attribute.
   let parentGetItemAttributeValue (self: MenuModel) (itemIndex: int) (attribute: string) (expectedType: option<GLib.VariantType>) : option<GLib.Variant> =
@@ -11987,6 +12094,7 @@ module MenuModel =
     (if zid2 = 0 then None else Some (GLib.Variant zid2))
 
   /// Gives a type made with `Glue.subclass` its own `get_item_attributes`: Gets all the attributes associated with the item in the menu model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetItemAttributes (gtype: usize) (handler: MenuModel -> int -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -11994,7 +12102,7 @@ module MenuModel =
         let itemIndex = Internal.Raw.argInt 1
         let attributes = Internal.Raw.argPointer 2
         handler model itemIndex attributes)
-    Internal.GioC.zgtk_override_Gio_MenuModel_get_item_attributes (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MenuModel_get_item_attributes (Internal.Raw.gtype gtype) zcb)
 
   /// Gets all the attributes associated with the item in the menu model.
   let parentGetItemAttributes (self: MenuModel) (itemIndex: int) : GLib.HashTable =
@@ -12005,6 +12113,7 @@ module MenuModel =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_item_link`: Queries the item at position @item_index in @model for the link specified by @link.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetItemLink (gtype: usize) (handler: MenuModel -> int -> string -> option<MenuModel>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12014,7 +12123,7 @@ module MenuModel =
         match handler model itemIndex link with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_menu_model_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_MenuModel_get_item_link (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MenuModel_get_item_link (Internal.Raw.gtype gtype) zcb)
 
   /// Queries the item at position @item_index in @model for the link specified by @link.
   let parentGetItemLink (self: MenuModel) (itemIndex: int) (link: string) : option<MenuModel> =
@@ -12023,6 +12132,7 @@ module MenuModel =
     (if zid1 = 0 then None else Some (MenuModel zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_item_links`: Gets all the links associated with the item in the menu model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetItemLinks (gtype: usize) (handler: MenuModel -> int -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12030,7 +12140,7 @@ module MenuModel =
         let itemIndex = Internal.Raw.argInt 1
         let links = Internal.Raw.argPointer 2
         handler model itemIndex links)
-    Internal.GioC.zgtk_override_Gio_MenuModel_get_item_links (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MenuModel_get_item_links (Internal.Raw.gtype gtype) zcb)
 
   /// Gets all the links associated with the item in the menu model.
   let parentGetItemLinks (self: MenuModel) (itemIndex: int) : GLib.HashTable =
@@ -12041,50 +12151,54 @@ module MenuModel =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_n_items`: Query the number of items in @model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetNItems (gtype: usize) (handler: MenuModel -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let model = MenuModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler model))
-    Internal.GioC.zgtk_override_Gio_MenuModel_get_n_items (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MenuModel_get_n_items (Internal.Raw.gtype gtype) zcb)
 
   /// Query the number of items in @model.
   let parentGetNItems (self: MenuModel) : int =
     (int ((Internal.GioC.zgtk_parent_Gio_MenuModel_get_n_items (Internal.Raw.obj self.Id (Internal.GioC.g_menu_model_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `is_mutable`: Queries if @model is mutable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsMutable (gtype: usize) (handler: MenuModel -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let model = MenuModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler model))
-    Internal.GioC.zgtk_override_Gio_MenuModel_is_mutable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MenuModel_is_mutable (Internal.Raw.gtype gtype) zcb)
 
   /// Queries if @model is mutable.
   let parentIsMutable (self: MenuModel) : bool =
     (((Internal.GioC.zgtk_parent_Gio_MenuModel_is_mutable (Internal.Raw.obj self.Id (Internal.GioC.g_menu_model_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `iterate_item_attributes`: Creates a #GMenuAttributeIter to iterate over the attributes of the item at position @item_index in @model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIterateItemAttributes (gtype: usize) (handler: MenuModel -> int -> MenuAttributeIter) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let model = MenuModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let itemIndex = Internal.Raw.argInt 1
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler model itemIndex).Id (Internal.GioC.g_menu_attribute_iter_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_MenuModel_iterate_item_attributes (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MenuModel_iterate_item_attributes (Internal.Raw.gtype gtype) zcb)
 
   /// Creates a #GMenuAttributeIter to iterate over the attributes of the item at position @item_index in @model.
   let parentIterateItemAttributes (self: MenuModel) (itemIndex: int) : MenuAttributeIter =
     MenuAttributeIter (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_MenuModel_iterate_item_attributes (Internal.Raw.obj self.Id (Internal.GioC.g_menu_model_get_type ())) (i32 itemIndex))) true)
 
   /// Gives a type made with `Glue.subclass` its own `iterate_item_links`: Creates a #GMenuLinkIter to iterate over the links of the item at position @item_index in @model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIterateItemLinks (gtype: usize) (handler: MenuModel -> int -> MenuLinkIter) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let model = MenuModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let itemIndex = Internal.Raw.argInt 1
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler model itemIndex).Id (Internal.GioC.g_menu_link_iter_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_MenuModel_iterate_item_links (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MenuModel_iterate_item_links (Internal.Raw.gtype gtype) zcb)
 
   /// Creates a #GMenuLinkIter to iterate over the links of the item at position @item_index in @model.
   let parentIterateItemLinks (self: MenuModel) (itemIndex: int) : MenuLinkIter =
@@ -12613,6 +12727,7 @@ module DBusObject =
       handler interface)
 
   /// Gives a type made with `Glue.subclass` its own `get_interface`: Gets the D-Bus interface with name @interface_name associated with @object, if any.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetInterface (gtype: usize) (handler: DBusObject -> string -> option<DBusInterface>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12621,7 +12736,7 @@ module DBusObject =
         match handler object interfaceName with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_interface_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_DBusObject_get_interface (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObject_get_interface (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the D-Bus interface with name @interface_name associated with @object, if any.
   let parentGetInterface (self: DBusObject) (interfaceName: string) : option<DBusInterface> =
@@ -12630,50 +12745,54 @@ module DBusObject =
     (if zid1 = 0 then None else Some (DBusInterface zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_interfaces`: Gets the D-Bus interfaces associated with @object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetInterfaces (gtype: usize) (handler: DBusObject -> list<DBusInterface>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.glist (Internal.Raw.mapList (fun (zo: DBusInterface) -> Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_interface_get_type ()))) (handler object)) false))
-    Internal.GioC.zgtk_override_Gio_DBusObject_get_interfaces (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObject_get_interfaces (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the D-Bus interfaces associated with @object.
   let parentGetInterfaces (self: DBusObject) : list<DBusInterface> =
     Internal.Raw.mapList (fun zp -> DBusInterface (Internal.Raw.wrap (zp) true)) (Internal.Raw.pointers ((Internal.GioC.zgtk_parent_Gio_DBusObject_get_interfaces (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_object_get_type ())))) false true)
 
   /// Gives a type made with `Glue.subclass` its own `get_object_path`: Gets the object path for @object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetObjectPath (gtype: usize) (handler: DBusObject -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler object)))
-    Internal.GioC.zgtk_override_Gio_DBusObject_get_object_path (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObject_get_object_path (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the object path for @object.
   let parentGetObjectPath (self: DBusObject) : string =
     Internal.Raw.text ((Internal.GioC.zgtk_parent_Gio_DBusObject_get_object_path (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_object_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `interface_added`: Signal handler for the #GDBusObject::interface-added signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInterfaceAdded (gtype: usize) (handler: DBusObject -> DBusInterface -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let interface = DBusInterface (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler object interface)
-    Internal.GioC.zgtk_override_Gio_DBusObject_interface_added (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObject_interface_added (Internal.Raw.gtype gtype) zcb)
 
   /// Signal handler for the #GDBusObject::interface-added signal.
   let parentInterfaceAdded (self: DBusObject) (interface: DBusInterface) : unit =
     Internal.GioC.zgtk_parent_Gio_DBusObject_interface_added (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_object_get_type ())) (Internal.Raw.obj interface.Id (Internal.GioC.g_dbus_interface_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `interface_removed`: Signal handler for the #GDBusObject::interface-removed signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInterfaceRemoved (gtype: usize) (handler: DBusObject -> DBusInterface -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let interface = DBusInterface (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler object interface)
-    Internal.GioC.zgtk_override_Gio_DBusObject_interface_removed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObject_interface_removed (Internal.Raw.gtype gtype) zcb)
 
   /// Signal handler for the #GDBusObject::interface-removed signal.
   let parentInterfaceRemoved (self: DBusObject) (interface: DBusInterface) : unit =
@@ -12737,6 +12856,7 @@ module DBusObjectManager =
       handler object)
 
   /// Gives a type made with `Glue.subclass` its own `get_interface`: Gets the interface proxy for @interface_name at @object_path, if any.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetInterface (gtype: usize) (handler: DBusObjectManager -> string -> string -> option<DBusInterface>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12746,7 +12866,7 @@ module DBusObjectManager =
         match handler manager objectPath interfaceName with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_interface_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_interface (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_interface (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the interface proxy for @interface_name at @object_path, if any.
   let parentGetInterface (self: DBusObjectManager) (objectPath: string) (interfaceName: string) : option<DBusInterface> =
@@ -12755,6 +12875,7 @@ module DBusObjectManager =
     (if zid1 = 0 then None else Some (DBusInterface zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_object`: Gets the #GDBusObject at @object_path, if any.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetObject (gtype: usize) (handler: DBusObjectManager -> string -> option<DBusObject>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12763,7 +12884,7 @@ module DBusObjectManager =
         match handler manager objectPath with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_object_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_object (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_object (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the #GDBusObject at @object_path, if any.
   let parentGetObject (self: DBusObjectManager) (objectPath: string) : option<DBusObject> =
@@ -12772,30 +12893,33 @@ module DBusObjectManager =
     (if zid1 = 0 then None else Some (DBusObject zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_object_path`: Gets the object path that @manager is for.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetObjectPath (gtype: usize) (handler: DBusObjectManager -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let manager = DBusObjectManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler manager)))
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_object_path (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_object_path (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the object path that @manager is for.
   let parentGetObjectPath (self: DBusObjectManager) : string =
     Internal.Raw.text ((Internal.GioC.zgtk_parent_Gio_DBusObjectManager_get_object_path (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_object_manager_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_objects`: Gets all #GDBusObject objects known to @manager.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetObjects (gtype: usize) (handler: DBusObjectManager -> list<DBusObject>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let manager = DBusObjectManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.glist (Internal.Raw.mapList (fun (zo: DBusObject) -> Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_dbus_object_get_type ()))) (handler manager)) false))
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_objects (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObjectManager_get_objects (Internal.Raw.gtype gtype) zcb)
 
   /// Gets all #GDBusObject objects known to @manager.
   let parentGetObjects (self: DBusObjectManager) : list<DBusObject> =
     Internal.Raw.mapList (fun zp -> DBusObject (Internal.Raw.wrap (zp) true)) (Internal.Raw.pointers ((Internal.GioC.zgtk_parent_Gio_DBusObjectManager_get_objects (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_object_manager_get_type ())))) false true)
 
   /// Gives a type made with `Glue.subclass` its own `interface_added`: Signal handler for the #GDBusObjectManager::interface-added signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInterfaceAdded (gtype: usize) (handler: DBusObjectManager -> DBusObject -> DBusInterface -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12803,13 +12927,14 @@ module DBusObjectManager =
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let interface = DBusInterface (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler manager object interface)
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_interface_added (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObjectManager_interface_added (Internal.Raw.gtype gtype) zcb)
 
   /// Signal handler for the #GDBusObjectManager::interface-added signal.
   let parentInterfaceAdded (self: DBusObjectManager) (object: DBusObject) (interface: DBusInterface) : unit =
     Internal.GioC.zgtk_parent_Gio_DBusObjectManager_interface_added (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_object_manager_get_type ())) (Internal.Raw.obj object.Id (Internal.GioC.g_dbus_object_get_type ())) (Internal.Raw.obj interface.Id (Internal.GioC.g_dbus_interface_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `interface_removed`: Signal handler for the #GDBusObjectManager::interface-removed signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInterfaceRemoved (gtype: usize) (handler: DBusObjectManager -> DBusObject -> DBusInterface -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12817,33 +12942,35 @@ module DBusObjectManager =
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let interface = DBusInterface (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler manager object interface)
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_interface_removed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObjectManager_interface_removed (Internal.Raw.gtype gtype) zcb)
 
   /// Signal handler for the #GDBusObjectManager::interface-removed signal.
   let parentInterfaceRemoved (self: DBusObjectManager) (object: DBusObject) (interface: DBusInterface) : unit =
     Internal.GioC.zgtk_parent_Gio_DBusObjectManager_interface_removed (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_object_manager_get_type ())) (Internal.Raw.obj object.Id (Internal.GioC.g_dbus_object_get_type ())) (Internal.Raw.obj interface.Id (Internal.GioC.g_dbus_interface_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `object_added`: Signal handler for the #GDBusObjectManager::object-added signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideObjectAdded (gtype: usize) (handler: DBusObjectManager -> DBusObject -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let manager = DBusObjectManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler manager object)
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_object_added (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObjectManager_object_added (Internal.Raw.gtype gtype) zcb)
 
   /// Signal handler for the #GDBusObjectManager::object-added signal.
   let parentObjectAdded (self: DBusObjectManager) (object: DBusObject) : unit =
     Internal.GioC.zgtk_parent_Gio_DBusObjectManager_object_added (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_object_manager_get_type ())) (Internal.Raw.obj object.Id (Internal.GioC.g_dbus_object_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `object_removed`: Signal handler for the #GDBusObjectManager::object-removed signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideObjectRemoved (gtype: usize) (handler: DBusObjectManager -> DBusObject -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let manager = DBusObjectManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let object = DBusObject (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler manager object)
-    Internal.GioC.zgtk_override_Gio_DBusObjectManager_object_removed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObjectManager_object_removed (Internal.Raw.gtype gtype) zcb)
 
   /// Signal handler for the #GDBusObjectManager::object-removed signal.
   let parentObjectRemoved (self: DBusObjectManager) (object: DBusObject) : unit =
@@ -13059,6 +13186,7 @@ module DBusObjectManagerClient =
   let getObjectPath (self: DBusObjectManagerClient) : option<string> = Internal.Raw.getText (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_object_manager_client_get_type ())) "object-path"
 
   /// Gives a type made with `Glue.subclass` its own `interface_proxy_properties_changed`: Signal class handler for the #GDBusObjectManagerClient::interface-proxy-properties-changed signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInterfaceProxyPropertiesChanged (gtype: usize) (handler: DBusObjectManagerClient -> DBusObjectProxy -> DBusProxy -> GLib.Variant -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -13068,13 +13196,14 @@ module DBusObjectManagerClient =
         let changedProperties = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 3) (i32 0))
         let invalidatedProperties = Internal.Raw.text (Internal.Raw.argPointer 4)
         handler manager objectProxy interfaceProxy changedProperties invalidatedProperties)
-    Internal.GioC.zgtk_override_Gio_DBusObjectManagerClient_interface_proxy_properties_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObjectManagerClient_interface_proxy_properties_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Signal class handler for the #GDBusObjectManagerClient::interface-proxy-properties-changed signal.
   let parentInterfaceProxyPropertiesChanged (self: DBusObjectManagerClient) (objectProxy: DBusObjectProxy) (interfaceProxy: DBusProxy) (changedProperties: GLib.Variant) (invalidatedProperties: string) : unit =
     Internal.GioC.zgtk_parent_Gio_DBusObjectManagerClient_interface_proxy_properties_changed (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_object_manager_client_get_type ())) (Internal.Raw.obj objectProxy.Id (Internal.GioC.g_dbus_object_proxy_get_type ())) (Internal.Raw.obj interfaceProxy.Id (Internal.GioC.g_dbus_proxy_get_type ())) (Internal.Raw.obj changedProperties.Id (Internal.GLibC.zgtk_type_GLib_Variant ())) invalidatedProperties
 
   /// Gives a type made with `Glue.subclass` its own `interface_proxy_signal`: Signal class handler for the #GDBusObjectManagerClient::interface-proxy-signal signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInterfaceProxySignal (gtype: usize) (handler: DBusObjectManagerClient -> DBusObjectProxy -> DBusProxy -> string -> string -> GLib.Variant -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -13085,7 +13214,7 @@ module DBusObjectManagerClient =
         let signalName = Internal.Raw.text (Internal.Raw.argPointer 4)
         let parameters = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 5) (i32 0))
         handler manager objectProxy interfaceProxy senderName signalName parameters)
-    Internal.GioC.zgtk_override_Gio_DBusObjectManagerClient_interface_proxy_signal (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObjectManagerClient_interface_proxy_signal (Internal.Raw.gtype gtype) zcb)
 
   /// Signal class handler for the #GDBusObjectManagerClient::interface-proxy-signal signal.
   let parentInterfaceProxySignal (self: DBusObjectManagerClient) (objectProxy: DBusObjectProxy) (interfaceProxy: DBusProxy) (senderName: string) (signalName: string) (parameters: GLib.Variant) : unit =
@@ -13244,6 +13373,7 @@ module DBusObjectSkeleton =
   let setGObjectPath (self: DBusObjectSkeleton) (value: string) : unit = Internal.Raw.setText (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_object_skeleton_get_type ())) "g-object-path" value
 
   /// Gives a type made with `Glue.subclass` its own `authorize_method`: Signal class handler for the #GDBusObjectSkeleton::authorize-method signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAuthorizeMethod (gtype: usize) (handler: DBusObjectSkeleton -> DBusInterfaceSkeleton -> DBusMethodInvocation -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -13251,7 +13381,7 @@ module DBusObjectSkeleton =
         let interface = DBusInterfaceSkeleton (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let invocation = DBusMethodInvocation (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         Internal.Raw.returnBool (handler object interface invocation))
-    Internal.GioC.zgtk_override_Gio_DBusObjectSkeleton_authorize_method (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusObjectSkeleton_authorize_method (Internal.Raw.gtype gtype) zcb)
 
   /// Signal class handler for the #GDBusObjectSkeleton::authorize-method signal.
   let parentAuthorizeMethod (self: DBusObjectSkeleton) (interface: DBusInterfaceSkeleton) (invocation: DBusMethodInvocation) : bool =
@@ -13707,6 +13837,7 @@ module DBusProxy =
   let getGObjectPath (self: DBusProxy) : option<string> = Internal.Raw.getText (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_proxy_get_type ())) "g-object-path"
 
   /// Gives a type made with `Glue.subclass` its own `g_properties_changed`: Signal class handler for the #GDBusProxy::g-properties-changed signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGPropertiesChanged (gtype: usize) (handler: DBusProxy -> GLib.Variant -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -13714,13 +13845,14 @@ module DBusProxy =
         let changedProperties = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 1) (i32 0))
         let invalidatedProperties = Internal.Raw.text (Internal.Raw.argPointer 2)
         handler proxy changedProperties invalidatedProperties)
-    Internal.GioC.zgtk_override_Gio_DBusProxy_g_properties_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusProxy_g_properties_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Signal class handler for the #GDBusProxy::g-properties-changed signal.
   let parentGPropertiesChanged (self: DBusProxy) (changedProperties: GLib.Variant) (invalidatedProperties: string) : unit =
     Internal.GioC.zgtk_parent_Gio_DBusProxy_g_properties_changed (Internal.Raw.obj self.Id (Internal.GioC.g_dbus_proxy_get_type ())) (Internal.Raw.obj changedProperties.Id (Internal.GLibC.zgtk_type_GLib_Variant ())) invalidatedProperties
 
   /// Gives a type made with `Glue.subclass` its own `g_signal`: Signal class handler for the #GDBusProxy::g-signal signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGSignal (gtype: usize) (handler: DBusProxy -> string -> string -> GLib.Variant -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -13729,7 +13861,7 @@ module DBusProxy =
         let signalName = Internal.Raw.text (Internal.Raw.argPointer 2)
         let parameters = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 3) (i32 0))
         handler proxy senderName signalName parameters)
-    Internal.GioC.zgtk_override_Gio_DBusProxy_g_signal (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DBusProxy_g_signal (Internal.Raw.gtype gtype) zcb)
 
   /// Signal class handler for the #GDBusProxy::g-signal signal.
   let parentGSignal (self: DBusProxy) (senderName: string) (signalName: string) (parameters: GLib.Variant) : unit =
@@ -14475,19 +14607,21 @@ module DatagramBased =
       Ok zv
 
   /// Gives a type made with `Glue.subclass` its own `condition_check`: Checks on the readiness of @datagram_based to perform operations.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideConditionCheck (gtype: usize) (handler: DatagramBased -> GLib.IOCondition -> GLib.IOCondition) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let datagramBased = DatagramBased (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let condition = GLib.IOCondition (int (Internal.Raw.argInt 1))
         Internal.Raw.returnInt (handler datagramBased condition).Int)
-    Internal.GioC.zgtk_override_Gio_DatagramBased_condition_check (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DatagramBased_condition_check (Internal.Raw.gtype gtype) zcb)
 
   /// Checks on the readiness of @datagram_based to perform operations.
   let parentConditionCheck (self: DatagramBased) (condition: GLib.IOCondition) : GLib.IOCondition =
     GLib.IOCondition (int ((Internal.GioC.zgtk_parent_Gio_DatagramBased_condition_check (Internal.Raw.obj self.Id (Internal.GioC.g_datagram_based_get_type ())) (u32 condition.Int))))
 
   /// Gives a type made with `Glue.subclass` its own `create_source`: Creates a #GSource that can be attached to a #GMainContext to monitor for the availability of the specified @condition on the #GDatagramBased.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCreateSource (gtype: usize) (handler: DatagramBased -> GLib.IOCondition -> option<Cancellable> -> GLib.Source) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -14496,7 +14630,7 @@ module DatagramBased =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 2) false
         let cancellable = (if zid1 = 0 then None else Some (Cancellable zid1))
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler datagramBased condition cancellable).Id (Internal.GLibC.g_source_get_type ())) (Internal.GLibC.g_source_get_type ())))
-    Internal.GioC.zgtk_override_Gio_DatagramBased_create_source (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DatagramBased_create_source (Internal.Raw.gtype gtype) zcb)
 
   /// Creates a #GSource that can be attached to a #GMainContext to monitor for the availability of the specified @condition on the #GDatagramBased.
   let parentCreateSource (self: DatagramBased) (condition: GLib.IOCondition) (cancellable: option<Cancellable>) : GLib.Source =
@@ -14584,13 +14718,14 @@ module DebugControllerDBus =
     if zid = 0 then None else Some (DBusConnection zid)
 
   /// Gives a type made with `Glue.subclass` its own `authorize`: Default handler for the #GDebugControllerDBus::authorize signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAuthorize (gtype: usize) (handler: DebugControllerDBus -> DBusMethodInvocation -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let controller = DebugControllerDBus (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let invocation = DBusMethodInvocation (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnBool (handler controller invocation))
-    Internal.GioC.zgtk_override_Gio_DebugControllerDBus_authorize (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DebugControllerDBus_authorize (Internal.Raw.gtype gtype) zcb)
 
   /// Default handler for the #GDebugControllerDBus::authorize signal.
   let parentAuthorize (self: DebugControllerDBus) (invocation: DBusMethodInvocation) : bool =
@@ -14888,90 +15023,98 @@ module Drive =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())) "stop-button" handler
 
   /// Gives a type made with `Glue.subclass` its own `can_eject`: Checks if a drive can be ejected.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanEject (gtype: usize) (handler: Drive -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_can_eject (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_can_eject (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if a drive can be ejected.
   let parentCanEject (self: Drive) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Drive_can_eject (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `can_poll_for_media`: Checks if a drive can be polled for media changes.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanPollForMedia (gtype: usize) (handler: Drive -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_can_poll_for_media (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_can_poll_for_media (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if a drive can be polled for media changes.
   let parentCanPollForMedia (self: Drive) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Drive_can_poll_for_media (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `can_start`: Checks if a drive can be started.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanStart (gtype: usize) (handler: Drive -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_can_start (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_can_start (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if a drive can be started.
   let parentCanStart (self: Drive) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Drive_can_start (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `can_start_degraded`: Checks if a drive can be started degraded.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanStartDegraded (gtype: usize) (handler: Drive -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_can_start_degraded (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_can_start_degraded (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if a drive can be started degraded.
   let parentCanStartDegraded (self: Drive) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Drive_can_start_degraded (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `can_stop`: Checks if a drive can be stopped.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanStop (gtype: usize) (handler: Drive -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_can_stop (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_can_stop (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if a drive can be stopped.
   let parentCanStop (self: Drive) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Drive_can_stop (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `changed`: Signal emitted when the drive is changed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChanged (gtype: usize) (handler: Drive -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler drive)
-    Internal.GioC.zgtk_override_Gio_Drive_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted when the drive is changed.
   let parentChanged (self: Drive) : unit =
     Internal.GioC.zgtk_parent_Gio_Drive_changed (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `disconnected`: The removed signal that is emitted when the #GDrive have been disconnected.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDisconnected (gtype: usize) (handler: Drive -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler drive)
-    Internal.GioC.zgtk_override_Gio_Drive_disconnected (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_disconnected (Internal.Raw.gtype gtype) zcb)
 
   /// The removed signal that is emitted when the #GDrive have been disconnected.
   let parentDisconnected (self: Drive) : unit =
     Internal.GioC.zgtk_parent_Gio_Drive_disconnected (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `eject`: Deprecated. Asynchronously ejects a drive.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEject (gtype: usize) (handler: Drive -> MountUnmountFlags -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -14982,7 +15125,7 @@ module Drive =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler drive flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Drive_eject (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_eject (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Asynchronously ejects a drive.
   let parentEject (self: Drive) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -14999,18 +15142,20 @@ module Drive =
     Internal.GioC.zgtk_parent_Gio_Drive_eject (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())) (u32 flags.Int) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `eject_button`: Signal emitted when the physical eject button (if any) of a drive have been pressed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEjectButton (gtype: usize) (handler: Drive -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler drive)
-    Internal.GioC.zgtk_override_Gio_Drive_eject_button (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_eject_button (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted when the physical eject button (if any) of a drive have been pressed.
   let parentEjectButton (self: Drive) : unit =
     Internal.GioC.zgtk_parent_Gio_Drive_eject_button (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `eject_with_operation`: Ejects a drive.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEjectWithOperation (gtype: usize) (handler: Drive -> MountUnmountFlags -> option<MountOperation> -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15023,7 +15168,7 @@ module Drive =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler drive flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Drive_eject_with_operation (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_eject_with_operation (Internal.Raw.gtype gtype) zcb)
 
   /// Ejects a drive.
   let parentEjectWithOperation (self: Drive) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -15044,30 +15189,33 @@ module Drive =
     Internal.GioC.zgtk_parent_Gio_Drive_eject_with_operation (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())) (u32 flags.Int) zp3 zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `enumerate_identifiers`: Gets the kinds of identifiers that @drive has.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEnumerateIdentifiers (gtype: usize) (handler: Drive -> list<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.strv (handler drive)))
-    Internal.GioC.zgtk_override_Gio_Drive_enumerate_identifiers (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_enumerate_identifiers (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the kinds of identifiers that @drive has.
   let parentEnumerateIdentifiers (self: Drive) : list<string> =
     Internal.Raw.strvList ((Internal.GioC.zgtk_parent_Gio_Drive_enumerate_identifiers (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())))) 2
 
   /// Gives a type made with `Glue.subclass` its own `get_icon`: Gets the icon for @drive.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetIcon (gtype: usize) (handler: Drive -> Icon) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler drive).Id (Internal.GioC.g_icon_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Drive_get_icon (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_get_icon (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the icon for @drive.
   let parentGetIcon (self: Drive) : Icon =
     Icon (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_Drive_get_icon (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_identifier`: Gets the identifier of the given kind for @drive.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetIdentifier (gtype: usize) (handler: Drive -> string -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15076,25 +15224,27 @@ module Drive =
         match handler drive kind with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Drive_get_identifier (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_get_identifier (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the identifier of the given kind for @drive.
   let parentGetIdentifier (self: Drive) (kind: string) : option<string> =
     Internal.Raw.takeTextOption ((Internal.GioC.zgtk_parent_Gio_Drive_get_identifier (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())) kind))
 
   /// Gives a type made with `Glue.subclass` its own `get_name`: Gets the name of @drive.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetName (gtype: usize) (handler: Drive -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler drive)))
-    Internal.GioC.zgtk_override_Gio_Drive_get_name (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_get_name (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the name of @drive.
   let parentGetName (self: Drive) : string =
     Internal.Raw.takeText ((Internal.GioC.zgtk_parent_Gio_Drive_get_name (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_sort_key`: Gets the sort key for @drive, if any.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSortKey (gtype: usize) (handler: Drive -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15102,109 +15252,118 @@ module Drive =
         match handler drive with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Drive_get_sort_key (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_get_sort_key (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the sort key for @drive, if any.
   let parentGetSortKey (self: Drive) : option<string> =
     Internal.Raw.textOption ((Internal.GioC.zgtk_parent_Gio_Drive_get_sort_key (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_start_stop_type`: Gets a hint about how a drive can be started/stopped.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetStartStopType (gtype: usize) (handler: Drive -> DriveStartStopType) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler drive).Int)
-    Internal.GioC.zgtk_override_Gio_Drive_get_start_stop_type (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_get_start_stop_type (Internal.Raw.gtype gtype) zcb)
 
   /// Gets a hint about how a drive can be started/stopped.
   let parentGetStartStopType (self: Drive) : DriveStartStopType =
     DriveStartStopType (int ((Internal.GioC.zgtk_parent_Gio_Drive_get_start_stop_type (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `get_symbolic_icon`: Gets the icon for @drive.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSymbolicIcon (gtype: usize) (handler: Drive -> Icon) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler drive).Id (Internal.GioC.g_icon_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Drive_get_symbolic_icon (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_get_symbolic_icon (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the icon for @drive.
   let parentGetSymbolicIcon (self: Drive) : Icon =
     Icon (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_Drive_get_symbolic_icon (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_volumes`: Get a list of mountable volumes for @drive.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetVolumes (gtype: usize) (handler: Drive -> list<Volume>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.glist (Internal.Raw.mapList (fun (zo: Volume) -> Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_volume_get_type ()))) (handler drive)) false))
-    Internal.GioC.zgtk_override_Gio_Drive_get_volumes (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_get_volumes (Internal.Raw.gtype gtype) zcb)
 
   /// Get a list of mountable volumes for @drive.
   let parentGetVolumes (self: Drive) : list<Volume> =
     Internal.Raw.mapList (fun zp -> Volume (Internal.Raw.wrap (zp) true)) (Internal.Raw.pointers ((Internal.GioC.zgtk_parent_Gio_Drive_get_volumes (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())))) false true)
 
   /// Gives a type made with `Glue.subclass` its own `has_media`: Checks if the @drive has media.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideHasMedia (gtype: usize) (handler: Drive -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_has_media (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_has_media (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if the @drive has media.
   let parentHasMedia (self: Drive) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Drive_has_media (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `has_volumes`: Check if @drive has any mountable volumes.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideHasVolumes (gtype: usize) (handler: Drive -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_has_volumes (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_has_volumes (Internal.Raw.gtype gtype) zcb)
 
   /// Check if @drive has any mountable volumes.
   let parentHasVolumes (self: Drive) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Drive_has_volumes (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `is_media_check_automatic`: Checks if @drive is capable of automatically detecting media changes.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsMediaCheckAutomatic (gtype: usize) (handler: Drive -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_is_media_check_automatic (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_is_media_check_automatic (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if @drive is capable of automatically detecting media changes.
   let parentIsMediaCheckAutomatic (self: Drive) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Drive_is_media_check_automatic (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `is_media_removable`: Checks if the @drive supports removable media.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsMediaRemovable (gtype: usize) (handler: Drive -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_is_media_removable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_is_media_removable (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if the @drive supports removable media.
   let parentIsMediaRemovable (self: Drive) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Drive_is_media_removable (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `is_removable`: Checks if the #GDrive and/or its media is considered removable by the user.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsRemovable (gtype: usize) (handler: Drive -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler drive))
-    Internal.GioC.zgtk_override_Gio_Drive_is_removable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_is_removable (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if the #GDrive and/or its media is considered removable by the user.
   let parentIsRemovable (self: Drive) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Drive_is_removable (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `poll_for_media`: Asynchronously polls @drive to see if media has been inserted or removed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePollForMedia (gtype: usize) (handler: Drive -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15214,7 +15373,7 @@ module Drive =
         let callback = Internal.Raw.argPointer 2
         let userData = Internal.Raw.argPointer 3
         handler drive cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Drive_poll_for_media (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_poll_for_media (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously polls @drive to see if media has been inserted or removed.
   let parentPollForMedia (self: Drive) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -15231,6 +15390,7 @@ module Drive =
     Internal.GioC.zgtk_parent_Gio_Drive_poll_for_media (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `start`: Asynchronously starts a drive.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideStart (gtype: usize) (handler: Drive -> DriveStartFlags -> option<MountOperation> -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15243,7 +15403,7 @@ module Drive =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler drive flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Drive_start (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_start (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously starts a drive.
   let parentStart (self: Drive) (flags: DriveStartFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -15264,6 +15424,7 @@ module Drive =
     Internal.GioC.zgtk_parent_Gio_Drive_start (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())) (u32 flags.Int) zp3 zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `stop`: Asynchronously stops a drive.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideStop (gtype: usize) (handler: Drive -> MountUnmountFlags -> option<MountOperation> -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15276,7 +15437,7 @@ module Drive =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler drive flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Drive_stop (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_stop (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously stops a drive.
   let parentStop (self: Drive) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -15297,12 +15458,13 @@ module Drive =
     Internal.GioC.zgtk_parent_Gio_Drive_stop (Internal.Raw.obj self.Id (Internal.GioC.g_drive_get_type ())) (u32 flags.Int) zp3 zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `stop_button`: Signal emitted when the physical stop button (if any) of a drive have been pressed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideStopButton (gtype: usize) (handler: Drive -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler drive)
-    Internal.GioC.zgtk_override_Gio_Drive_stop_button (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Drive_stop_button (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted when the physical stop button (if any) of a drive have been pressed.
   let parentStopButton (self: Drive) : unit =
@@ -15699,6 +15861,7 @@ module DtlsConnection =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_dtls_connection_get_type ())) "notify::require-close-notify" handler
 
   /// Gives a type made with `Glue.subclass` its own `accept_certificate`: Check whether to accept a certificate.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAcceptCertificate (gtype: usize) (handler: DtlsConnection -> TlsCertificate -> TlsCertificateFlags -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15706,13 +15869,14 @@ module DtlsConnection =
         let peerCert = TlsCertificate (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let errors = TlsCertificateFlags (int (Internal.Raw.argInt 2))
         Internal.Raw.returnBool (handler connection peerCert errors))
-    Internal.GioC.zgtk_override_Gio_DtlsConnection_accept_certificate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DtlsConnection_accept_certificate (Internal.Raw.gtype gtype) zcb)
 
   /// Check whether to accept a certificate.
   let parentAcceptCertificate (self: DtlsConnection) (peerCert: TlsCertificate) (errors: TlsCertificateFlags) : bool =
     (((Internal.GioC.zgtk_parent_Gio_DtlsConnection_accept_certificate (Internal.Raw.obj self.Id (Internal.GioC.g_dtls_connection_get_type ())) (Internal.Raw.obj peerCert.Id (Internal.GioC.g_tls_certificate_get_type ())) (u32 errors.Int))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `get_negotiated_protocol`: Gets the name of the application-layer protocol negotiated during the handshake.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetNegotiatedProtocol (gtype: usize) (handler: DtlsConnection -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15720,13 +15884,14 @@ module DtlsConnection =
         match handler conn with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_DtlsConnection_get_negotiated_protocol (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DtlsConnection_get_negotiated_protocol (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the name of the application-layer protocol negotiated during the handshake.
   let parentGetNegotiatedProtocol (self: DtlsConnection) : option<string> =
     Internal.Raw.textOption ((Internal.GioC.zgtk_parent_Gio_DtlsConnection_get_negotiated_protocol (Internal.Raw.obj self.Id (Internal.GioC.g_dtls_connection_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `handshake_async`: Asynchronously performs a TLS handshake on @conn.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideHandshakeAsync (gtype: usize) (handler: DtlsConnection -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15737,7 +15902,7 @@ module DtlsConnection =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler conn ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_DtlsConnection_handshake_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DtlsConnection_handshake_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously performs a TLS handshake on @conn.
   let parentHandshakeAsync (self: DtlsConnection) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -15754,13 +15919,14 @@ module DtlsConnection =
     Internal.GioC.zgtk_parent_Gio_DtlsConnection_handshake_async (Internal.Raw.obj self.Id (Internal.GioC.g_dtls_connection_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `set_advertised_protocols`: Sets the list of application-layer protocols to advertise that the caller is willing to speak on this connection.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetAdvertisedProtocols (gtype: usize) (handler: DtlsConnection -> list<string> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let conn = DtlsConnection (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let protocols = Internal.Raw.strvList (Internal.Raw.argPointer 1) 0
         handler conn protocols)
-    Internal.GioC.zgtk_override_Gio_DtlsConnection_set_advertised_protocols (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DtlsConnection_set_advertised_protocols (Internal.Raw.gtype gtype) zcb)
 
   /// Sets the list of application-layer protocols to advertise that the caller is willing to speak on this connection.
   let parentSetAdvertisedProtocols (self: DtlsConnection) (protocols: list<string>) : unit =
@@ -15769,6 +15935,7 @@ module DtlsConnection =
     Internal.Raw.freeStrv zv1
 
   /// Gives a type made with `Glue.subclass` its own `shutdown_async`: Asynchronously shut down part or all of the DTLS connection.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideShutdownAsync (gtype: usize) (handler: DtlsConnection -> bool -> bool -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15781,7 +15948,7 @@ module DtlsConnection =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler conn shutdownRead shutdownWrite ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_DtlsConnection_shutdown_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_DtlsConnection_shutdown_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously shut down part or all of the DTLS connection.
   let parentShutdownAsync (self: DtlsConnection) (shutdownRead: bool) (shutdownWrite: bool) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18095,6 +18262,7 @@ module File =
     File (Internal.Raw.wrap ((Internal.GioC.g_file_parse_name parseName)) true)
 
   /// Gives a type made with `Glue.subclass` its own `append_to_async`: Asynchronously opens @file for appending.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAppendToAsync (gtype: usize) (handler: File -> FileCreateFlags -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18106,7 +18274,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_append_to_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_append_to_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously opens @file for appending.
   let parentAppendToAsync (self: File) (flags: FileCreateFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18123,6 +18291,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_append_to_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (u32 flags.Int) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `copy_async`: Copies the file @source to the location specified by @destination asynchronously.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCopyAsync (gtype: usize) (handler: File -> File -> FileCopyFlags -> int -> option<Cancellable> -> cptr -> cptr -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18137,7 +18306,7 @@ module File =
         let callback = Internal.Raw.argPointer 7
         let userData = Internal.Raw.argPointer 8
         handler source destination flags ioPriority cancellable progressCallback progressCallbackData callback userData)
-    Internal.GioC.zgtk_override_Gio_File_copy_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_copy_async (Internal.Raw.gtype gtype) zcb)
 
   /// Copies the file @source to the location specified by @destination asynchronously.
   let parentCopyAsync (self: File) (destination: File) (flags: FileCopyFlags) (ioPriority: int) (cancellable: option<Cancellable>) (progressCallback: int -> int -> unit) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18159,6 +18328,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_copy_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (Internal.Raw.obj destination.Id (Internal.GioC.g_file_get_type ())) (u32 flags.Int) (i32 ioPriority) zp4 (Internal.GioC.zgtk_tramp_Gio_FileProgressCallback ()) zcb1 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb2
 
   /// Gives a type made with `Glue.subclass` its own `create_async`: Asynchronously creates a new file and returns an output stream for writing to it.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCreateAsync (gtype: usize) (handler: File -> FileCreateFlags -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18170,7 +18340,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_create_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_create_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously creates a new file and returns an output stream for writing to it.
   let parentCreateAsync (self: File) (flags: FileCreateFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18187,6 +18357,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_create_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (u32 flags.Int) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `create_readwrite_async`: Asynchronously creates a new file and returns a stream for reading and writing to it.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCreateReadwriteAsync (gtype: usize) (handler: File -> FileCreateFlags -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18198,7 +18369,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_create_readwrite_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_create_readwrite_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously creates a new file and returns a stream for reading and writing to it.
   let parentCreateReadwriteAsync (self: File) (flags: FileCreateFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18215,6 +18386,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_create_readwrite_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (u32 flags.Int) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `delete_file_async`: Asynchronously delete a file.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDeleteFileAsync (gtype: usize) (handler: File -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18225,7 +18397,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_delete_file_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_delete_file_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously delete a file.
   let parentDeleteFileAsync (self: File) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18242,18 +18414,20 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_delete_file_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `dup`: Duplicates a #GFile handle.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDup (gtype: usize) (handler: File -> File) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler file).Id (Internal.GioC.g_file_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_File_dup (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_dup (Internal.Raw.gtype gtype) zcb)
 
   /// Duplicates a #GFile handle.
   let parentDup (self: File) : File =
     File (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_File_dup (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `eject_mountable`: Deprecated. Starts an asynchronous eject on a mountable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEjectMountable (gtype: usize) (handler: File -> MountUnmountFlags -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18264,7 +18438,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_eject_mountable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_eject_mountable (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Starts an asynchronous eject on a mountable.
   let parentEjectMountable (self: File) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18281,6 +18455,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_eject_mountable (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (u32 flags.Int) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `eject_mountable_with_operation`: Starts an asynchronous eject on a mountable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEjectMountableWithOperation (gtype: usize) (handler: File -> MountUnmountFlags -> option<MountOperation> -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18293,7 +18468,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_eject_mountable_with_operation (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_eject_mountable_with_operation (Internal.Raw.gtype gtype) zcb)
 
   /// Starts an asynchronous eject on a mountable.
   let parentEjectMountableWithOperation (self: File) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18314,6 +18489,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_eject_mountable_with_operation (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (u32 flags.Int) zp3 zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `enumerate_children_async`: Asynchronously gets the requested information about the files in a directory.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEnumerateChildrenAsync (gtype: usize) (handler: File -> string -> FileQueryInfoFlags -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18326,7 +18502,7 @@ module File =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler file attributes flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_enumerate_children_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_enumerate_children_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously gets the requested information about the files in a directory.
   let parentEnumerateChildrenAsync (self: File) (attributes: string) (flags: FileQueryInfoFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18343,19 +18519,21 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_enumerate_children_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) attributes (u32 flags.Int) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `equal`: Checks if the two given #GFiles refer to the same file.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEqual (gtype: usize) (handler: File -> File -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let file1 = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let file2 = File (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnBool (handler file1 file2))
-    Internal.GioC.zgtk_override_Gio_File_equal (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_equal (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if the two given #GFiles refer to the same file.
   let parentEqual (self: File) (file2: File) : bool =
     (((Internal.GioC.zgtk_parent_Gio_File_equal (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (Internal.Raw.obj file2.Id (Internal.GioC.g_file_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `find_enclosing_mount_async`: Asynchronously gets the mount for the file.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideFindEnclosingMountAsync (gtype: usize) (handler: File -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18366,7 +18544,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_find_enclosing_mount_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_find_enclosing_mount_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously gets the mount for the file.
   let parentFindEnclosingMountAsync (self: File) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18383,6 +18561,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_find_enclosing_mount_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `get_basename`: Gets the base name (the last component of the path) for a given #GFile.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetBasename (gtype: usize) (handler: File -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18390,13 +18569,14 @@ module File =
         match handler file with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_File_get_basename (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_get_basename (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the base name (the last component of the path) for a given #GFile.
   let parentGetBasename (self: File) : option<string> =
     Internal.Raw.takeTextOption ((Internal.GioC.zgtk_parent_Gio_File_get_basename (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_parent`: Gets the parent directory for the @file.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetParent (gtype: usize) (handler: File -> option<File>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18404,7 +18584,7 @@ module File =
         match handler file with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_file_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_File_get_parent (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_get_parent (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the parent directory for the @file.
   let parentGetParent (self: File) : option<File> =
@@ -18413,18 +18593,20 @@ module File =
     (if zid1 = 0 then None else Some (File zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_parse_name`: Gets the parse name of the @file.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetParseName (gtype: usize) (handler: File -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler file)))
-    Internal.GioC.zgtk_override_Gio_File_get_parse_name (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_get_parse_name (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the parse name of the @file.
   let parentGetParseName (self: File) : string =
     Internal.Raw.takeText ((Internal.GioC.zgtk_parent_Gio_File_get_parse_name (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_path`: Gets the local pathname for #GFile, if one exists.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetPath (gtype: usize) (handler: File -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18432,13 +18614,14 @@ module File =
         match handler file with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_File_get_path (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_get_path (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the local pathname for #GFile, if one exists.
   let parentGetPath (self: File) : option<string> =
     Internal.Raw.takeTextOption ((Internal.GioC.zgtk_parent_Gio_File_get_path (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_relative_path`: Gets the path for @descendant relative to @parent.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetRelativePath (gtype: usize) (handler: File -> File -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18447,25 +18630,27 @@ module File =
         match handler parent descendant with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_File_get_relative_path (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_get_relative_path (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the path for @descendant relative to @parent.
   let parentGetRelativePath (self: File) (descendant: File) : option<string> =
     Internal.Raw.takeTextOption ((Internal.GioC.zgtk_parent_Gio_File_get_relative_path (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (Internal.Raw.obj descendant.Id (Internal.GioC.g_file_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_uri`: Gets the URI for the @file.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetUri (gtype: usize) (handler: File -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler file)))
-    Internal.GioC.zgtk_override_Gio_File_get_uri (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_get_uri (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the URI for the @file.
   let parentGetUri (self: File) : string =
     Internal.Raw.takeText ((Internal.GioC.zgtk_parent_Gio_File_get_uri (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_uri_scheme`: Gets the URI scheme for a #GFile.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetUriScheme (gtype: usize) (handler: File -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18473,50 +18658,54 @@ module File =
         match handler file with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_File_get_uri_scheme (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_get_uri_scheme (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the URI scheme for a #GFile.
   let parentGetUriScheme (self: File) : option<string> =
     Internal.Raw.takeTextOption ((Internal.GioC.zgtk_parent_Gio_File_get_uri_scheme (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `has_uri_scheme`: Checks to see if a #GFile has a given URI scheme.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideHasUriScheme (gtype: usize) (handler: File -> string -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let uriScheme = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnBool (handler file uriScheme))
-    Internal.GioC.zgtk_override_Gio_File_has_uri_scheme (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_has_uri_scheme (Internal.Raw.gtype gtype) zcb)
 
   /// Checks to see if a #GFile has a given URI scheme.
   let parentHasUriScheme (self: File) (uriScheme: string) : bool =
     (((Internal.GioC.zgtk_parent_Gio_File_has_uri_scheme (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) uriScheme)) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `hash`: Creates a hash value for a #GFile.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideHash (gtype: usize) (handler: File -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler file))
-    Internal.GioC.zgtk_override_Gio_File_hash (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_hash (Internal.Raw.gtype gtype) zcb)
 
   /// Creates a hash value for a #GFile.
   let parentHash (self: File) : int =
     (int ((Internal.GioC.zgtk_parent_Gio_File_hash (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `is_native`: Checks to see if a file is native to the platform.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsNative (gtype: usize) (handler: File -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler file))
-    Internal.GioC.zgtk_override_Gio_File_is_native (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_is_native (Internal.Raw.gtype gtype) zcb)
 
   /// Checks to see if a file is native to the platform.
   let parentIsNative (self: File) : bool =
     (((Internal.GioC.zgtk_parent_Gio_File_is_native (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `make_directory_async`: Asynchronously creates a directory.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMakeDirectoryAsync (gtype: usize) (handler: File -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18527,7 +18716,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_make_directory_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_make_directory_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously creates a directory.
   let parentMakeDirectoryAsync (self: File) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18544,6 +18733,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_make_directory_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `make_symbolic_link_async`: Asynchronously creates a symbolic link named @file which contains the string @symlink_value.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMakeSymbolicLinkAsync (gtype: usize) (handler: File -> string -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18555,7 +18745,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file symlinkValue ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_make_symbolic_link_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_make_symbolic_link_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously creates a symbolic link named @file which contains the string @symlink_value.
   let parentMakeSymbolicLinkAsync (self: File) (symlinkValue: string) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18572,6 +18762,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_make_symbolic_link_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) symlinkValue (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `measure_disk_usage_async`: Recursively measures the disk usage of @file.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMeasureDiskUsageAsync (gtype: usize) (handler: File -> FileMeasureFlags -> int -> option<Cancellable> -> cptr -> cptr -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18585,7 +18776,7 @@ module File =
         let callback = Internal.Raw.argPointer 6
         let userData = Internal.Raw.argPointer 7
         handler file flags ioPriority cancellable progressCallback progressData callback userData)
-    Internal.GioC.zgtk_override_Gio_File_measure_disk_usage_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_measure_disk_usage_async (Internal.Raw.gtype gtype) zcb)
 
   /// Recursively measures the disk usage of @file.
   let parentMeasureDiskUsageAsync (self: File) (flags: FileMeasureFlags) (ioPriority: int) (cancellable: option<Cancellable>) (progressCallback: bool -> int -> int -> int -> unit) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18610,6 +18801,7 @@ module File =
     Internal.Raw.drop zcb1
 
   /// Gives a type made with `Glue.subclass` its own `mount_enclosing_volume`: Starts a @mount_operation, mounting the volume that contains the file @location.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMountEnclosingVolume (gtype: usize) (handler: File -> MountMountFlags -> option<MountOperation> -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18622,7 +18814,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler location flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_mount_enclosing_volume (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_mount_enclosing_volume (Internal.Raw.gtype gtype) zcb)
 
   /// Starts a @mount_operation, mounting the volume that contains the file @location.
   let parentMountEnclosingVolume (self: File) (flags: MountMountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18643,6 +18835,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_mount_enclosing_volume (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (u32 flags.Int) zp3 zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `mount_mountable`: Mounts a file of type G_FILE_TYPE_MOUNTABLE.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMountMountable (gtype: usize) (handler: File -> MountMountFlags -> option<MountOperation> -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18655,7 +18848,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_mount_mountable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_mount_mountable (Internal.Raw.gtype gtype) zcb)
 
   /// Mounts a file of type G_FILE_TYPE_MOUNTABLE.
   let parentMountMountable (self: File) (flags: MountMountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18676,6 +18869,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_mount_mountable (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (u32 flags.Int) zp3 zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `move_async`: Asynchronously moves a file @source to the location of @destination.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMoveAsync (gtype: usize) (handler: File -> File -> FileCopyFlags -> int -> option<Cancellable> -> cptr -> cptr -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18690,7 +18884,7 @@ module File =
         let callback = Internal.Raw.argPointer 7
         let userData = Internal.Raw.argPointer 8
         handler source destination flags ioPriority cancellable progressCallback progressCallbackData callback userData)
-    Internal.GioC.zgtk_override_Gio_File_move_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_move_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously moves a file @source to the location of @destination.
   let parentMoveAsync (self: File) (destination: File) (flags: FileCopyFlags) (ioPriority: int) (cancellable: option<Cancellable>) (progressCallback: int -> int -> unit) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18713,6 +18907,7 @@ module File =
     Internal.Raw.drop zcb1
 
   /// Gives a type made with `Glue.subclass` its own `open_readwrite_async`: Asynchronously opens @file for reading and writing.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideOpenReadwriteAsync (gtype: usize) (handler: File -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18723,7 +18918,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_open_readwrite_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_open_readwrite_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously opens @file for reading and writing.
   let parentOpenReadwriteAsync (self: File) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18740,6 +18935,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_open_readwrite_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `poll_mountable`: Polls a file of type %G_FILE_TYPE_MOUNTABLE.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePollMountable (gtype: usize) (handler: File -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18749,7 +18945,7 @@ module File =
         let callback = Internal.Raw.argPointer 2
         let userData = Internal.Raw.argPointer 3
         handler file cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_poll_mountable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_poll_mountable (Internal.Raw.gtype gtype) zcb)
 
   /// Polls a file of type %G_FILE_TYPE_MOUNTABLE.
   let parentPollMountable (self: File) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18766,19 +18962,21 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_poll_mountable (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `prefix_matches`: Checks whether @file has the prefix specified by @prefix.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePrefixMatches (gtype: usize) (handler: File -> File -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let prefix = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnBool (handler prefix file))
-    Internal.GioC.zgtk_override_Gio_File_prefix_matches (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_prefix_matches (Internal.Raw.gtype gtype) zcb)
 
   /// Checks whether @file has the prefix specified by @prefix.
   let parentPrefixMatches (self: File) (file: File) : bool =
     (((Internal.GioC.zgtk_parent_Gio_File_prefix_matches (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (Internal.Raw.obj file.Id (Internal.GioC.g_file_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `query_exists`: Utility function to check if a particular file exists.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideQueryExists (gtype: usize) (handler: File -> option<Cancellable> -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18786,7 +18984,7 @@ module File =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let cancellable = (if zid1 = 0 then None else Some (Cancellable zid1))
         Internal.Raw.returnBool (handler file cancellable))
-    Internal.GioC.zgtk_override_Gio_File_query_exists (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_query_exists (Internal.Raw.gtype gtype) zcb)
 
   /// Utility function to check if a particular file exists.
   let parentQueryExists (self: File) (cancellable: option<Cancellable>) : bool =
@@ -18798,6 +18996,7 @@ module File =
     ((zr) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `query_filesystem_info_async`: Asynchronously gets the requested information about the filesystem that the specified @file is on.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideQueryFilesystemInfoAsync (gtype: usize) (handler: File -> string -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18809,7 +19008,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file attributes ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_query_filesystem_info_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_query_filesystem_info_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously gets the requested information about the filesystem that the specified @file is on.
   let parentQueryFilesystemInfoAsync (self: File) (attributes: string) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18826,6 +19025,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_query_filesystem_info_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) attributes (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `query_info_async`: Asynchronously gets the requested information about specified @file.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideQueryInfoAsync (gtype: usize) (handler: File -> string -> FileQueryInfoFlags -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18838,7 +19038,7 @@ module File =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler file attributes flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_query_info_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_query_info_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously gets the requested information about specified @file.
   let parentQueryInfoAsync (self: File) (attributes: string) (flags: FileQueryInfoFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18855,6 +19055,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_query_info_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) attributes (u32 flags.Int) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `read_async`: Asynchronously opens @file for reading.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideReadAsync (gtype: usize) (handler: File -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18865,7 +19066,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_read_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_read_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously opens @file for reading.
   let parentReadAsync (self: File) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18882,6 +19083,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_read_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `replace_async`: Asynchronously overwrites the file, replacing the contents, possibly creating a backup copy of the file first.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideReplaceAsync (gtype: usize) (handler: File -> option<string> -> bool -> FileCreateFlags -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18895,7 +19097,7 @@ module File =
         let callback = Internal.Raw.argPointer 6
         let userData = Internal.Raw.argPointer 7
         handler file etag makeBackup flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_replace_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_replace_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously overwrites the file, replacing the contents, possibly creating a backup copy of the file first.
   let parentReplaceAsync (self: File) (etag: option<string>) (makeBackup: bool) (flags: FileCreateFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18914,6 +19116,7 @@ module File =
     Internal.Raw.free zs3
 
   /// Gives a type made with `Glue.subclass` its own `replace_readwrite_async`: Asynchronously overwrites the file in read-write mode, replacing the contents, possibly creating a backup copy of the file first.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideReplaceReadwriteAsync (gtype: usize) (handler: File -> option<string> -> bool -> FileCreateFlags -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18927,7 +19130,7 @@ module File =
         let callback = Internal.Raw.argPointer 6
         let userData = Internal.Raw.argPointer 7
         handler file etag makeBackup flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_replace_readwrite_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_replace_readwrite_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously overwrites the file in read-write mode, replacing the contents, possibly creating a backup copy of the file first.
   let parentReplaceReadwriteAsync (self: File) (etag: option<string>) (makeBackup: bool) (flags: FileCreateFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18946,19 +19149,21 @@ module File =
     Internal.Raw.free zs3
 
   /// Gives a type made with `Glue.subclass` its own `resolve_relative_path`: Resolves a relative path for @file to an absolute path.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideResolveRelativePath (gtype: usize) (handler: File -> string -> File) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let file = File (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let relativePath = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler file relativePath).Id (Internal.GioC.g_file_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_File_resolve_relative_path (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_resolve_relative_path (Internal.Raw.gtype gtype) zcb)
 
   /// Resolves a relative path for @file to an absolute path.
   let parentResolveRelativePath (self: File) (relativePath: string) : File =
     File (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_File_resolve_relative_path (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) relativePath)) true)
 
   /// Gives a type made with `Glue.subclass` its own `set_attributes_async`: Asynchronously sets the attributes of @file with @info.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetAttributesAsync (gtype: usize) (handler: File -> FileInfo -> FileQueryInfoFlags -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18971,7 +19176,7 @@ module File =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler file info flags ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_set_attributes_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_set_attributes_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously sets the attributes of @file with @info.
   let parentSetAttributesAsync (self: File) (info: FileInfo) (flags: FileQueryInfoFlags) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -18988,6 +19193,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_set_attributes_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (Internal.Raw.obj info.Id (Internal.GioC.g_file_info_get_type ())) (u32 flags.Int) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `set_display_name_async`: Asynchronously sets the display name for a given #GFile.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetDisplayNameAsync (gtype: usize) (handler: File -> string -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18999,7 +19205,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file displayName ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_set_display_name_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_set_display_name_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously sets the display name for a given #GFile.
   let parentSetDisplayNameAsync (self: File) (displayName: string) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19016,6 +19222,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_set_display_name_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) displayName (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `start_mountable`: Starts a file of type %G_FILE_TYPE_MOUNTABLE.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideStartMountable (gtype: usize) (handler: File -> DriveStartFlags -> option<MountOperation> -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19028,7 +19235,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags startOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_start_mountable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_start_mountable (Internal.Raw.gtype gtype) zcb)
 
   /// Starts a file of type %G_FILE_TYPE_MOUNTABLE.
   let parentStartMountable (self: File) (flags: DriveStartFlags) (startOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19049,6 +19256,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_start_mountable (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (u32 flags.Int) zp3 zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `stop_mountable`: Stops a file of type %G_FILE_TYPE_MOUNTABLE.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideStopMountable (gtype: usize) (handler: File -> MountUnmountFlags -> option<MountOperation> -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19061,7 +19269,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_stop_mountable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_stop_mountable (Internal.Raw.gtype gtype) zcb)
 
   /// Stops a file of type %G_FILE_TYPE_MOUNTABLE.
   let parentStopMountable (self: File) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19082,6 +19290,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_stop_mountable (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (u32 flags.Int) zp3 zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `trash_async`: Asynchronously sends @file to the Trash location, if possible.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideTrashAsync (gtype: usize) (handler: File -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19092,7 +19301,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_trash_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_trash_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously sends @file to the Trash location, if possible.
   let parentTrashAsync (self: File) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19109,6 +19318,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_trash_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `unmount_mountable`: Deprecated. Unmounts a file of type G_FILE_TYPE_MOUNTABLE.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnmountMountable (gtype: usize) (handler: File -> MountUnmountFlags -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19119,7 +19329,7 @@ module File =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler file flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_unmount_mountable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_unmount_mountable (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Unmounts a file of type G_FILE_TYPE_MOUNTABLE.
   let parentUnmountMountable (self: File) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19136,6 +19346,7 @@ module File =
     Internal.GioC.zgtk_parent_Gio_File_unmount_mountable (Internal.Raw.obj self.Id (Internal.GioC.g_file_get_type ())) (u32 flags.Int) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `unmount_mountable_with_operation`: Unmounts a file of type %G_FILE_TYPE_MOUNTABLE.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnmountMountableWithOperation (gtype: usize) (handler: File -> MountUnmountFlags -> option<MountOperation> -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19148,7 +19359,7 @@ module File =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler file flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_File_unmount_mountable_with_operation (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_File_unmount_mountable_with_operation (Internal.Raw.gtype gtype) zcb)
 
   /// Unmounts a file of type %G_FILE_TYPE_MOUNTABLE.
   let parentUnmountMountableWithOperation (self: File) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19433,6 +19644,7 @@ module FileEnumerator =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_file_enumerator_get_type ())) "notify::container" handler
 
   /// Gives a type made with `Glue.subclass` its own `close_async`: Asynchronously closes the file enumerator.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCloseAsync (gtype: usize) (handler: FileEnumerator -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19443,7 +19655,7 @@ module FileEnumerator =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler enumerator ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_FileEnumerator_close_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileEnumerator_close_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously closes the file enumerator.
   let parentCloseAsync (self: FileEnumerator) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19460,6 +19672,7 @@ module FileEnumerator =
     Internal.GioC.zgtk_parent_Gio_FileEnumerator_close_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_enumerator_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `next_files_async`: Request information for a number of files from the enumerator asynchronously.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideNextFilesAsync (gtype: usize) (handler: FileEnumerator -> int -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19471,7 +19684,7 @@ module FileEnumerator =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler enumerator numFiles ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_FileEnumerator_next_files_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileEnumerator_next_files_async (Internal.Raw.gtype gtype) zcb)
 
   /// Request information for a number of files from the enumerator asynchronously.
   let parentNextFilesAsync (self: FileEnumerator) (numFiles: int) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19633,6 +19846,7 @@ module IOStream =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_io_stream_get_type ())) "notify::output-stream" handler
 
   /// Gives a type made with `Glue.subclass` its own `close_async`: Requests an asynchronous close of the stream, releasing resources related to it.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCloseAsync (gtype: usize) (handler: IOStream -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19643,7 +19857,7 @@ module IOStream =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler stream ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_IOStream_close_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_IOStream_close_async (Internal.Raw.gtype gtype) zcb)
 
   /// Requests an asynchronous close of the stream, releasing resources related to it.
   let parentCloseAsync (self: IOStream) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19660,24 +19874,26 @@ module IOStream =
     Internal.GioC.zgtk_parent_Gio_IOStream_close_async (Internal.Raw.obj self.Id (Internal.GioC.g_io_stream_get_type ())) (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `get_input_stream`: Gets the input stream for this object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetInputStream (gtype: usize) (handler: IOStream -> InputStream) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let stream = IOStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler stream).Id (Internal.GioC.g_input_stream_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_IOStream_get_input_stream (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_IOStream_get_input_stream (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the input stream for this object.
   let parentGetInputStream (self: IOStream) : InputStream =
     InputStream (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_IOStream_get_input_stream (Internal.Raw.obj self.Id (Internal.GioC.g_io_stream_get_type ())))) false)
 
   /// Gives a type made with `Glue.subclass` its own `get_output_stream`: Gets the output stream for this object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetOutputStream (gtype: usize) (handler: IOStream -> OutputStream) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let stream = IOStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler stream).Id (Internal.GioC.g_output_stream_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_IOStream_get_output_stream (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_IOStream_get_output_stream (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the output stream for this object.
   let parentGetOutputStream (self: IOStream) : OutputStream =
@@ -19758,30 +19974,33 @@ module FileIOStream =
         zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `can_seek`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanSeek (gtype: usize) (handler: FileIOStream -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let stream = FileIOStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileIOStream_can_seek (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileIOStream_can_seek (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_FileIOStream_can_seek`.
   let parentCanSeek (self: FileIOStream) : bool =
     (((Internal.GioC.zgtk_parent_Gio_FileIOStream_can_seek (Internal.Raw.obj self.Id (Internal.GioC.g_file_io_stream_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `can_truncate`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanTruncate (gtype: usize) (handler: FileIOStream -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let stream = FileIOStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileIOStream_can_truncate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileIOStream_can_truncate (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_FileIOStream_can_truncate`.
   let parentCanTruncate (self: FileIOStream) : bool =
     (((Internal.GioC.zgtk_parent_Gio_FileIOStream_can_truncate (Internal.Raw.obj self.Id (Internal.GioC.g_file_io_stream_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `get_etag`: Gets the entity tag for the file when it has been written.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetEtag (gtype: usize) (handler: FileIOStream -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19789,13 +20008,14 @@ module FileIOStream =
         match handler stream with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_FileIOStream_get_etag (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileIOStream_get_etag (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the entity tag for the file when it has been written.
   let parentGetEtag (self: FileIOStream) : option<string> =
     Internal.Raw.takeTextOption ((Internal.GioC.zgtk_parent_Gio_FileIOStream_get_etag (Internal.Raw.obj self.Id (Internal.GioC.g_file_io_stream_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `query_info_async`: Asynchronously queries the @stream for a #GFileInfo.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideQueryInfoAsync (gtype: usize) (handler: FileIOStream -> string -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19807,7 +20027,7 @@ module FileIOStream =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler stream attributes ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_FileIOStream_query_info_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileIOStream_query_info_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously queries the @stream for a #GFileInfo.
   let parentQueryInfoAsync (self: FileIOStream) (attributes: string) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -19824,12 +20044,13 @@ module FileIOStream =
     Internal.GioC.zgtk_parent_Gio_FileIOStream_query_info_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_io_stream_get_type ())) attributes (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `tell`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideTell (gtype: usize) (handler: FileIOStream -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let stream = FileIOStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileIOStream_tell (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileIOStream_tell (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_FileIOStream_tell`.
   let parentTell (self: FileIOStream) : int =
@@ -20257,18 +20478,20 @@ module FileInputStream =
         zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `can_seek`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanSeek (gtype: usize) (handler: FileInputStream -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let stream = FileInputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileInputStream_can_seek (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileInputStream_can_seek (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_FileInputStream_can_seek`.
   let parentCanSeek (self: FileInputStream) : bool =
     (((Internal.GioC.zgtk_parent_Gio_FileInputStream_can_seek (Internal.Raw.obj self.Id (Internal.GioC.g_file_input_stream_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `query_info_async`: Queries the stream information asynchronously.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideQueryInfoAsync (gtype: usize) (handler: FileInputStream -> string -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -20280,7 +20503,7 @@ module FileInputStream =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler stream attributes ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_FileInputStream_query_info_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileInputStream_query_info_async (Internal.Raw.gtype gtype) zcb)
 
   /// Queries the stream information asynchronously.
   let parentQueryInfoAsync (self: FileInputStream) (attributes: string) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -20297,12 +20520,13 @@ module FileInputStream =
     Internal.GioC.zgtk_parent_Gio_FileInputStream_query_info_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_input_stream_get_type ())) attributes (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `tell`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideTell (gtype: usize) (handler: FileInputStream -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let stream = FileInputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileInputStream_tell (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileInputStream_tell (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_FileInputStream_tell`.
   let parentTell (self: FileInputStream) : int =
@@ -20360,18 +20584,20 @@ module FileMonitor =
   let getRateLimit (self: FileMonitor) : int = Internal.Raw.getInt (Internal.Raw.obj self.Id (Internal.GioC.g_file_monitor_get_type ())) "rate-limit"
 
   /// Gives a type made with `Glue.subclass` its own `cancel`: Cancels a file monitor.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCancel (gtype: usize) (handler: FileMonitor -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let monitor = FileMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler monitor))
-    Internal.GioC.zgtk_override_Gio_FileMonitor_cancel (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileMonitor_cancel (Internal.Raw.gtype gtype) zcb)
 
   /// Cancels a file monitor.
   let parentCancel (self: FileMonitor) : bool =
     (((Internal.GioC.zgtk_parent_Gio_FileMonitor_cancel (Internal.Raw.obj self.Id (Internal.GioC.g_file_monitor_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `changed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChanged (gtype: usize) (handler: FileMonitor -> File -> File -> FileMonitorEvent -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -20380,7 +20606,7 @@ module FileMonitor =
         let otherFile = File (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         let eventType = FileMonitorEvent (int (Internal.Raw.argInt 3))
         handler monitor file otherFile eventType)
-    Internal.GioC.zgtk_override_Gio_FileMonitor_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileMonitor_changed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_FileMonitor_changed`.
   let parentChanged (self: FileMonitor) (file: File) (otherFile: File) (eventType: FileMonitorEvent) : unit =
@@ -20461,30 +20687,33 @@ module FileOutputStream =
         zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `can_seek`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanSeek (gtype: usize) (handler: FileOutputStream -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let stream = FileOutputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileOutputStream_can_seek (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileOutputStream_can_seek (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_FileOutputStream_can_seek`.
   let parentCanSeek (self: FileOutputStream) : bool =
     (((Internal.GioC.zgtk_parent_Gio_FileOutputStream_can_seek (Internal.Raw.obj self.Id (Internal.GioC.g_file_output_stream_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `can_truncate`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanTruncate (gtype: usize) (handler: FileOutputStream -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let stream = FileOutputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileOutputStream_can_truncate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileOutputStream_can_truncate (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_FileOutputStream_can_truncate`.
   let parentCanTruncate (self: FileOutputStream) : bool =
     (((Internal.GioC.zgtk_parent_Gio_FileOutputStream_can_truncate (Internal.Raw.obj self.Id (Internal.GioC.g_file_output_stream_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `get_etag`: Gets the entity tag for the file when it has been written.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetEtag (gtype: usize) (handler: FileOutputStream -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -20492,13 +20721,14 @@ module FileOutputStream =
         match handler stream with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_FileOutputStream_get_etag (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileOutputStream_get_etag (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the entity tag for the file when it has been written.
   let parentGetEtag (self: FileOutputStream) : option<string> =
     Internal.Raw.takeTextOption ((Internal.GioC.zgtk_parent_Gio_FileOutputStream_get_etag (Internal.Raw.obj self.Id (Internal.GioC.g_file_output_stream_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `query_info_async`: Asynchronously queries the @stream for a #GFileInfo.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideQueryInfoAsync (gtype: usize) (handler: FileOutputStream -> string -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -20510,7 +20740,7 @@ module FileOutputStream =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler stream attributes ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_FileOutputStream_query_info_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileOutputStream_query_info_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously queries the @stream for a #GFileInfo.
   let parentQueryInfoAsync (self: FileOutputStream) (attributes: string) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -20527,12 +20757,13 @@ module FileOutputStream =
     Internal.GioC.zgtk_parent_Gio_FileOutputStream_query_info_async (Internal.Raw.obj self.Id (Internal.GioC.g_file_output_stream_get_type ())) attributes (i32 ioPriority) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `tell`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideTell (gtype: usize) (handler: FileOutputStream -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let stream = FileOutputStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler stream))
-    Internal.GioC.zgtk_override_Gio_FileOutputStream_tell (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FileOutputStream_tell (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_FileOutputStream_tell`.
   let parentTell (self: FileOutputStream) : int =
@@ -20570,12 +20801,13 @@ module FilenameCompleter =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_filename_completer_get_type ())) "got-completion-data" handler
 
   /// Gives a type made with `Glue.subclass` its own `got_completion_data`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGotCompletionData (gtype: usize) (handler: FilenameCompleter -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let filenameCompleter = FilenameCompleter (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler filenameCompleter)
-    Internal.GioC.zgtk_override_Gio_FilenameCompleter_got_completion_data (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_FilenameCompleter_got_completion_data (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_FilenameCompleter_got_completion_data`.
   let parentGotCompletionData (self: FilenameCompleter) : unit =
@@ -20731,49 +20963,53 @@ module SocketControlMessage =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_level`: Returns the "level" (i.e.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetLevel (gtype: usize) (handler: SocketControlMessage -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let message = SocketControlMessage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler message))
-    Internal.GioC.zgtk_override_Gio_SocketControlMessage_get_level (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_SocketControlMessage_get_level (Internal.Raw.gtype gtype) zcb)
 
   /// Returns the "level" (i.e.
   let parentGetLevel (self: SocketControlMessage) : int =
     (int ((Internal.GioC.zgtk_parent_Gio_SocketControlMessage_get_level (Internal.Raw.obj self.Id (Internal.GioC.g_socket_control_message_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `get_size`: Returns the space required for the control message, not including headers or alignment.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSize (gtype: usize) (handler: SocketControlMessage -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let message = SocketControlMessage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler message))
-    Internal.GioC.zgtk_override_Gio_SocketControlMessage_get_size (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_SocketControlMessage_get_size (Internal.Raw.gtype gtype) zcb)
 
   /// Returns the space required for the control message, not including headers or alignment.
   let parentGetSize (self: SocketControlMessage) : int =
     (int ((Internal.GioC.zgtk_parent_Gio_SocketControlMessage_get_size (Internal.Raw.obj self.Id (Internal.GioC.g_socket_control_message_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `get_type`: gets the protocol specific type of the message.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetType (gtype: usize) (handler: SocketControlMessage -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let message = SocketControlMessage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler message))
-    Internal.GioC.zgtk_override_Gio_SocketControlMessage_get_type (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_SocketControlMessage_get_type (Internal.Raw.gtype gtype) zcb)
 
   /// gets the protocol specific type of the message.
   let parentGetType (self: SocketControlMessage) : int =
     (int ((Internal.GioC.zgtk_parent_Gio_SocketControlMessage_get_type (Internal.Raw.obj self.Id (Internal.GioC.g_socket_control_message_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `serialize`: Converts the data in the message to bytes placed in the message.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSerialize (gtype: usize) (handler: SocketControlMessage -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let message = SocketControlMessage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let data = Internal.Raw.argPointer 1
         handler message data)
-    Internal.GioC.zgtk_override_Gio_SocketControlMessage_serialize (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_SocketControlMessage_serialize (Internal.Raw.gtype gtype) zcb)
 
   /// Converts the data in the message to bytes placed in the message.
   [<Unsafe>]
@@ -20998,24 +21234,26 @@ module InetAddress =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_inet_address_get_type ())) "notify::scope-id" handler
 
   /// Gives a type made with `Glue.subclass` its own `to_bytes`: Gets the raw binary address data from @address.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideToBytes (gtype: usize) (handler: InetAddress -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let address = InetAddress (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler address))
-    Internal.GioC.zgtk_override_Gio_InetAddress_to_bytes (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_InetAddress_to_bytes (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the raw binary address data from @address.
   let parentToBytes (self: InetAddress) : int =
     (int ((Internal.GioC.zgtk_parent_Gio_InetAddress_to_bytes (Internal.Raw.obj self.Id (Internal.GioC.g_inet_address_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `to_string`: Converts @address to string form.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideToString (gtype: usize) (handler: InetAddress -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let address = InetAddress (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler address)))
-    Internal.GioC.zgtk_override_Gio_InetAddress_to_string (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_InetAddress_to_string (Internal.Raw.gtype gtype) zcb)
 
   /// Converts @address to string form.
   let parentToString (self: InetAddress) : string =
@@ -21127,36 +21365,39 @@ module SocketConnectable =
     Internal.Raw.takeText ((Internal.GioC.g_socket_connectable_to_string (Internal.Raw.obj self.Id (Internal.GioC.g_socket_connectable_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `enumerate`: Creates a #GSocketAddressEnumerator for @connectable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEnumerate (gtype: usize) (handler: SocketConnectable -> SocketAddressEnumerator) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let connectable = SocketConnectable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler connectable).Id (Internal.GioC.g_socket_address_enumerator_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_SocketConnectable_enumerate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_SocketConnectable_enumerate (Internal.Raw.gtype gtype) zcb)
 
   /// Creates a #GSocketAddressEnumerator for @connectable.
   let parentEnumerate (self: SocketConnectable) : SocketAddressEnumerator =
     SocketAddressEnumerator (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_SocketConnectable_enumerate (Internal.Raw.obj self.Id (Internal.GioC.g_socket_connectable_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `proxy_enumerate`: Creates a #GSocketAddressEnumerator for @connectable that will return a #GProxyAddress for each of its addresses that you must connect to via a proxy.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideProxyEnumerate (gtype: usize) (handler: SocketConnectable -> SocketAddressEnumerator) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let connectable = SocketConnectable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler connectable).Id (Internal.GioC.g_socket_address_enumerator_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_SocketConnectable_proxy_enumerate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_SocketConnectable_proxy_enumerate (Internal.Raw.gtype gtype) zcb)
 
   /// Creates a #GSocketAddressEnumerator for @connectable that will return a #GProxyAddress for each of its addresses that you must connect to via a proxy.
   let parentProxyEnumerate (self: SocketConnectable) : SocketAddressEnumerator =
     SocketAddressEnumerator (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_SocketConnectable_proxy_enumerate (Internal.Raw.obj self.Id (Internal.GioC.g_socket_connectable_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `to_string`: Format a #GSocketConnectable as a string.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideToString (gtype: usize) (handler: SocketConnectable -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let connectable = SocketConnectable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler connectable)))
-    Internal.GioC.zgtk_override_Gio_SocketConnectable_to_string (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_SocketConnectable_to_string (Internal.Raw.gtype gtype) zcb)
 
   /// Format a #GSocketConnectable as a string.
   let parentToString (self: SocketConnectable) : string =
@@ -21208,24 +21449,26 @@ module SocketAddress =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_socket_address_get_type ())) "notify::family" handler
 
   /// Gives a type made with `Glue.subclass` its own `get_family`: Gets the socket family type of @address.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFamily (gtype: usize) (handler: SocketAddress -> SocketFamily) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let address = SocketAddress (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler address).Int)
-    Internal.GioC.zgtk_override_Gio_SocketAddress_get_family (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_SocketAddress_get_family (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the socket family type of @address.
   let parentGetFamily (self: SocketAddress) : SocketFamily =
     SocketFamily (int ((Internal.GioC.zgtk_parent_Gio_SocketAddress_get_family (Internal.Raw.obj self.Id (Internal.GioC.g_socket_address_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `get_native_size`: Gets the size of @address's native struct sockaddr.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetNativeSize (gtype: usize) (handler: SocketAddress -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let address = SocketAddress (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler address))
-    Internal.GioC.zgtk_override_Gio_SocketAddress_get_native_size (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_SocketAddress_get_native_size (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the size of @address's native struct sockaddr.
   let parentGetNativeSize (self: SocketAddress) : int =
@@ -21364,6 +21607,7 @@ module ListModel =
       handler position removed added)
 
   /// Gives a type made with `Glue.subclass` its own `get_item`: Get the item at @position.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetItem (gtype: usize) (handler: ListModel -> int -> option<GObject.Object>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -21372,7 +21616,7 @@ module ListModel =
         match handler list position with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GObjectC.g_object_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_ListModel_get_item (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ListModel_get_item (Internal.Raw.gtype gtype) zcb)
 
   /// Get the item at @position.
   let parentGetItem (self: ListModel) (position: int) : option<GObject.Object> =
@@ -21381,24 +21625,26 @@ module ListModel =
     (if zid1 = 0 then None else Some (GObject.Object zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_item_type`: Gets the type of the items in @list.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetItemType (gtype: usize) (handler: ListModel -> usize) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let list = ListModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (int (Internal.Raw.gtype (handler list))))
-    Internal.GioC.zgtk_override_Gio_ListModel_get_item_type (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ListModel_get_item_type (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the type of the items in @list.
   let parentGetItemType (self: ListModel) : usize =
     ((Internal.GioC.zgtk_parent_Gio_ListModel_get_item_type (Internal.Raw.obj self.Id (Internal.GioC.g_list_model_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_n_items`: Gets the number of items in @list.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetNItems (gtype: usize) (handler: ListModel -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let list = ListModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler list))
-    Internal.GioC.zgtk_override_Gio_ListModel_get_n_items (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ListModel_get_n_items (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the number of items in @list.
   let parentGetNItems (self: ListModel) : int =
@@ -21583,13 +21829,14 @@ module MemoryMonitor =
       handler level)
 
   /// Gives a type made with `Glue.subclass` its own `low_memory_warning`: the virtual function pointer for the #GMemoryMonitor::low-memory-warning signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLowMemoryWarning (gtype: usize) (handler: MemoryMonitor -> MemoryMonitorWarningLevel -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let monitor = MemoryMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let level = MemoryMonitorWarningLevel (int (Internal.Raw.argInt 1))
         handler monitor level)
-    Internal.GioC.zgtk_override_Gio_MemoryMonitor_low_memory_warning (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MemoryMonitor_low_memory_warning (Internal.Raw.gtype gtype) zcb)
 
   /// the virtual function pointer for the #GMemoryMonitor::low-memory-warning signal.
   let parentLowMemoryWarning (self: MemoryMonitor) (level: MemoryMonitorWarningLevel) : unit =
@@ -21800,6 +22047,7 @@ module MenuAttributeIter =
     (((Internal.GioC.g_menu_attribute_iter_next (Internal.Raw.obj self.Id (Internal.GioC.g_menu_attribute_iter_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `get_next`: This function combines g_menu_attribute_iter_next() with g_menu_attribute_iter_get_name() and g_menu_attribute_iter_get_value().
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetNext (gtype: usize) (handler: MenuAttributeIter -> cptr -> (bool * string)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -21808,7 +22056,7 @@ module MenuAttributeIter =
         let (zres, outName) = handler iter value
         Internal.Raw.setPointer 1 (Internal.Raw.intern outName)
         Internal.Raw.returnBool (zres))
-    Internal.GioC.zgtk_override_Gio_MenuAttributeIter_get_next (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MenuAttributeIter_get_next (Internal.Raw.gtype gtype) zcb)
 
   /// This function combines g_menu_attribute_iter_next() with g_menu_attribute_iter_get_name() and g_menu_attribute_iter_get_value().
   let parentGetNext (self: MenuAttributeIter) : (bool * option<string> * option<GLib.Variant>) =
@@ -21965,6 +22213,7 @@ module MenuLinkIter =
     (((Internal.GioC.g_menu_link_iter_next (Internal.Raw.obj self.Id (Internal.GioC.g_menu_link_iter_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `get_next`: This function combines g_menu_link_iter_next() with g_menu_link_iter_get_name() and g_menu_link_iter_get_value().
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetNext (gtype: usize) (handler: MenuLinkIter -> (bool * string * MenuModel)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -21973,7 +22222,7 @@ module MenuLinkIter =
         Internal.Raw.setPointer 1 (Internal.Raw.intern outLink)
         Internal.Raw.setPointer 2 (Internal.Raw.give (Internal.Raw.obj value.Id (Internal.GioC.g_menu_model_get_type ())))
         Internal.Raw.returnBool (zres))
-    Internal.GioC.zgtk_override_Gio_MenuLinkIter_get_next (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MenuLinkIter_get_next (Internal.Raw.gtype gtype) zcb)
 
   /// This function combines g_menu_link_iter_next() with g_menu_link_iter_get_name() and g_menu_link_iter_get_value().
   let parentGetNext (self: MenuLinkIter) : (bool * option<string> * option<MenuModel>) =
@@ -22313,42 +22562,46 @@ module Mount =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ())) "unmounted" handler
 
   /// Gives a type made with `Glue.subclass` its own `can_eject`: Checks if @mount can be ejected.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanEject (gtype: usize) (handler: Mount -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler mount))
-    Internal.GioC.zgtk_override_Gio_Mount_can_eject (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_can_eject (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if @mount can be ejected.
   let parentCanEject (self: Mount) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Mount_can_eject (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `can_unmount`: Checks if @mount can be unmounted.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanUnmount (gtype: usize) (handler: Mount -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler mount))
-    Internal.GioC.zgtk_override_Gio_Mount_can_unmount (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_can_unmount (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if @mount can be unmounted.
   let parentCanUnmount (self: Mount) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Mount_can_unmount (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `changed`: Changed signal that is emitted when the mount's state has changed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChanged (gtype: usize) (handler: Mount -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler mount)
-    Internal.GioC.zgtk_override_Gio_Mount_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Changed signal that is emitted when the mount's state has changed.
   let parentChanged (self: Mount) : unit =
     Internal.GioC.zgtk_parent_Gio_Mount_changed (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `eject`: Deprecated. Ejects a mount.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEject (gtype: usize) (handler: Mount -> MountUnmountFlags -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22359,7 +22612,7 @@ module Mount =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler mount flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Mount_eject (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_eject (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Ejects a mount.
   let parentEject (self: Mount) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -22376,6 +22629,7 @@ module Mount =
     Internal.GioC.zgtk_parent_Gio_Mount_eject (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ())) (u32 flags.Int) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `eject_with_operation`: Ejects a mount.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEjectWithOperation (gtype: usize) (handler: Mount -> MountUnmountFlags -> option<MountOperation> -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22388,7 +22642,7 @@ module Mount =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler mount flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Mount_eject_with_operation (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_eject_with_operation (Internal.Raw.gtype gtype) zcb)
 
   /// Ejects a mount.
   let parentEjectWithOperation (self: Mount) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -22409,18 +22663,20 @@ module Mount =
     Internal.GioC.zgtk_parent_Gio_Mount_eject_with_operation (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ())) (u32 flags.Int) zp3 zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `get_default_location`: Gets the default location of @mount.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetDefaultLocation (gtype: usize) (handler: Mount -> File) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler mount).Id (Internal.GioC.g_file_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Mount_get_default_location (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_get_default_location (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the default location of @mount.
   let parentGetDefaultLocation (self: Mount) : File =
     File (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_Mount_get_default_location (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_drive`: Gets the drive for the @mount.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetDrive (gtype: usize) (handler: Mount -> option<Drive>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22428,7 +22684,7 @@ module Mount =
         match handler mount with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_drive_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Mount_get_drive (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_get_drive (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the drive for the @mount.
   let parentGetDrive (self: Mount) : option<Drive> =
@@ -22437,42 +22693,46 @@ module Mount =
     (if zid1 = 0 then None else Some (Drive zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_icon`: Gets the icon for @mount.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetIcon (gtype: usize) (handler: Mount -> Icon) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler mount).Id (Internal.GioC.g_icon_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Mount_get_icon (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_get_icon (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the icon for @mount.
   let parentGetIcon (self: Mount) : Icon =
     Icon (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_Mount_get_icon (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_name`: Gets the name of @mount.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetName (gtype: usize) (handler: Mount -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler mount)))
-    Internal.GioC.zgtk_override_Gio_Mount_get_name (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_get_name (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the name of @mount.
   let parentGetName (self: Mount) : string =
     Internal.Raw.takeText ((Internal.GioC.zgtk_parent_Gio_Mount_get_name (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_root`: Gets the root directory on @mount.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetRoot (gtype: usize) (handler: Mount -> File) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler mount).Id (Internal.GioC.g_file_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Mount_get_root (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_get_root (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the root directory on @mount.
   let parentGetRoot (self: Mount) : File =
     File (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_Mount_get_root (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_sort_key`: Gets the sort key for @mount, if any.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSortKey (gtype: usize) (handler: Mount -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22480,25 +22740,27 @@ module Mount =
         match handler mount with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Mount_get_sort_key (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_get_sort_key (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the sort key for @mount, if any.
   let parentGetSortKey (self: Mount) : option<string> =
     Internal.Raw.textOption ((Internal.GioC.zgtk_parent_Gio_Mount_get_sort_key (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_symbolic_icon`: Gets the symbolic icon for @mount.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSymbolicIcon (gtype: usize) (handler: Mount -> Icon) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler mount).Id (Internal.GioC.g_icon_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Mount_get_symbolic_icon (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_get_symbolic_icon (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the symbolic icon for @mount.
   let parentGetSymbolicIcon (self: Mount) : Icon =
     Icon (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_Mount_get_symbolic_icon (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_uuid`: Gets the UUID for the @mount.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetUuid (gtype: usize) (handler: Mount -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22506,13 +22768,14 @@ module Mount =
         match handler mount with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Mount_get_uuid (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_get_uuid (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the UUID for the @mount.
   let parentGetUuid (self: Mount) : option<string> =
     Internal.Raw.takeTextOption ((Internal.GioC.zgtk_parent_Gio_Mount_get_uuid (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_volume`: Gets the volume for the @mount.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetVolume (gtype: usize) (handler: Mount -> option<Volume>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22520,7 +22783,7 @@ module Mount =
         match handler mount with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_volume_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Mount_get_volume (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_get_volume (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the volume for the @mount.
   let parentGetVolume (self: Mount) : option<Volume> =
@@ -22529,6 +22792,7 @@ module Mount =
     (if zid1 = 0 then None else Some (Volume zid1))
 
   /// Gives a type made with `Glue.subclass` its own `guess_content_type`: Tries to guess the type of content stored on @mount.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGuessContentType (gtype: usize) (handler: Mount -> bool -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22539,7 +22803,7 @@ module Mount =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler mount forceRescan cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Mount_guess_content_type (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_guess_content_type (Internal.Raw.gtype gtype) zcb)
 
   /// Tries to guess the type of content stored on @mount.
   let parentGuessContentType (self: Mount) (forceRescan: bool) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -22556,18 +22820,20 @@ module Mount =
     Internal.GioC.zgtk_parent_Gio_Mount_guess_content_type (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ())) (if forceRescan then i32 1 else i32 0) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `pre_unmount`: The ::pre-unmount signal that is emitted when the #GMount will soon be emitted.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePreUnmount (gtype: usize) (handler: Mount -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler mount)
-    Internal.GioC.zgtk_override_Gio_Mount_pre_unmount (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_pre_unmount (Internal.Raw.gtype gtype) zcb)
 
   /// The ::pre-unmount signal that is emitted when the #GMount will soon be emitted.
   let parentPreUnmount (self: Mount) : unit =
     Internal.GioC.zgtk_parent_Gio_Mount_pre_unmount (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `remount`: Remounts a mount.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRemount (gtype: usize) (handler: Mount -> MountMountFlags -> option<MountOperation> -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22580,7 +22846,7 @@ module Mount =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler mount flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Mount_remount (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_remount (Internal.Raw.gtype gtype) zcb)
 
   /// Remounts a mount.
   let parentRemount (self: Mount) (flags: MountMountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -22601,6 +22867,7 @@ module Mount =
     Internal.GioC.zgtk_parent_Gio_Mount_remount (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ())) (u32 flags.Int) zp3 zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `unmount`: Deprecated. Unmounts a mount.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnmount (gtype: usize) (handler: Mount -> MountUnmountFlags -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22611,7 +22878,7 @@ module Mount =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler mount flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Mount_unmount (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_unmount (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Unmounts a mount.
   let parentUnmount (self: Mount) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -22628,6 +22895,7 @@ module Mount =
     Internal.GioC.zgtk_parent_Gio_Mount_unmount (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ())) (u32 flags.Int) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `unmount_with_operation`: Unmounts a mount.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnmountWithOperation (gtype: usize) (handler: Mount -> MountUnmountFlags -> option<MountOperation> -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22640,7 +22908,7 @@ module Mount =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler mount flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Mount_unmount_with_operation (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_unmount_with_operation (Internal.Raw.gtype gtype) zcb)
 
   /// Unmounts a mount.
   let parentUnmountWithOperation (self: Mount) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -22661,12 +22929,13 @@ module Mount =
     Internal.GioC.zgtk_parent_Gio_Mount_unmount_with_operation (Internal.Raw.obj self.Id (Internal.GioC.g_mount_get_type ())) (u32 flags.Int) zp3 zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `unmounted`: The unmounted signal that is emitted when the #GMount have been unmounted.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnmounted (gtype: usize) (handler: Mount -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler mount)
-    Internal.GioC.zgtk_override_Gio_Mount_unmounted (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Mount_unmounted (Internal.Raw.gtype gtype) zcb)
 
   /// The unmounted signal that is emitted when the #GMount have been unmounted.
   let parentUnmounted (self: Mount) : unit =
@@ -22848,18 +23117,20 @@ module MountOperation =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_mount_operation_get_type ())) "notify::username" handler
 
   /// Gives a type made with `Glue.subclass` its own `aborted`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAborted (gtype: usize) (handler: MountOperation -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let op = MountOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler op)
-    Internal.GioC.zgtk_override_Gio_MountOperation_aborted (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MountOperation_aborted (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_MountOperation_aborted`.
   let parentAborted (self: MountOperation) : unit =
     Internal.GioC.zgtk_parent_Gio_MountOperation_aborted (Internal.Raw.obj self.Id (Internal.GioC.g_mount_operation_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `ask_password`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAskPassword (gtype: usize) (handler: MountOperation -> string -> string -> string -> AskPasswordFlags -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22869,13 +23140,14 @@ module MountOperation =
         let defaultDomain = Internal.Raw.text (Internal.Raw.argPointer 3)
         let flags = AskPasswordFlags (int (Internal.Raw.argInt 4))
         handler op message defaultUser defaultDomain flags)
-    Internal.GioC.zgtk_override_Gio_MountOperation_ask_password (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MountOperation_ask_password (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_MountOperation_ask_password`.
   let parentAskPassword (self: MountOperation) (message: string) (defaultUser: string) (defaultDomain: string) (flags: AskPasswordFlags) : unit =
     Internal.GioC.zgtk_parent_Gio_MountOperation_ask_password (Internal.Raw.obj self.Id (Internal.GioC.g_mount_operation_get_type ())) message defaultUser defaultDomain (u32 flags.Int)
 
   /// Gives a type made with `Glue.subclass` its own `ask_question`: Virtual implementation of #GMountOperation::ask-question.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAskQuestion (gtype: usize) (handler: MountOperation -> string -> list<string> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22883,7 +23155,7 @@ module MountOperation =
         let message = Internal.Raw.text (Internal.Raw.argPointer 1)
         let choices = Internal.Raw.strvList (Internal.Raw.argPointer 2) 0
         handler op message choices)
-    Internal.GioC.zgtk_override_Gio_MountOperation_ask_question (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MountOperation_ask_question (Internal.Raw.gtype gtype) zcb)
 
   /// Virtual implementation of #GMountOperation::ask-question.
   let parentAskQuestion (self: MountOperation) (message: string) (choices: list<string>) : unit =
@@ -22892,19 +23164,21 @@ module MountOperation =
     Internal.Raw.freeStrv zv1
 
   /// Gives a type made with `Glue.subclass` its own `reply`: Emits the #GMountOperation::reply signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideReply (gtype: usize) (handler: MountOperation -> MountOperationResult -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let op = MountOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let result = MountOperationResult (int (Internal.Raw.argInt 1))
         handler op result)
-    Internal.GioC.zgtk_override_Gio_MountOperation_reply (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MountOperation_reply (Internal.Raw.gtype gtype) zcb)
 
   /// Emits the #GMountOperation::reply signal.
   let parentReply (self: MountOperation) (result: MountOperationResult) : unit =
     Internal.GioC.zgtk_parent_Gio_MountOperation_reply (Internal.Raw.obj self.Id (Internal.GioC.g_mount_operation_get_type ())) (i32 result.Int)
 
   /// Gives a type made with `Glue.subclass` its own `show_processes`: Virtual implementation of #GMountOperation::show-processes.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideShowProcesses (gtype: usize) (handler: MountOperation -> string -> GLib.Array -> list<string> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22913,7 +23187,7 @@ module MountOperation =
         let processes = GLib.Array (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GLibC.g_array_get_type ()) false)
         let choices = Internal.Raw.strvList (Internal.Raw.argPointer 3) 0
         handler op message processes choices)
-    Internal.GioC.zgtk_override_Gio_MountOperation_show_processes (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MountOperation_show_processes (Internal.Raw.gtype gtype) zcb)
 
   /// Virtual implementation of #GMountOperation::show-processes.
   let parentShowProcesses (self: MountOperation) (message: string) (processes: GLib.Array) (choices: list<string>) : unit =
@@ -22922,6 +23196,7 @@ module MountOperation =
     Internal.Raw.freeStrv zv1
 
   /// Gives a type made with `Glue.subclass` its own `show_unmount_progress`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideShowUnmountProgress (gtype: usize) (handler: MountOperation -> string -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22930,7 +23205,7 @@ module MountOperation =
         let timeLeft = Internal.Raw.argInt 2
         let bytesLeft = Internal.Raw.argInt 3
         handler op message timeLeft bytesLeft)
-    Internal.GioC.zgtk_override_Gio_MountOperation_show_unmount_progress (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_MountOperation_show_unmount_progress (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_MountOperation_show_unmount_progress`.
   let parentShowUnmountProgress (self: MountOperation) (message: string) (timeLeft: int) (bytesLeft: int) : unit =
@@ -23074,83 +23349,90 @@ module VolumeMonitor =
       handler volume)
 
   /// Gives a type made with `Glue.subclass` its own `drive_changed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDriveChanged (gtype: usize) (handler: VolumeMonitor -> Drive -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor drive)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_changed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_VolumeMonitor_drive_changed`.
   let parentDriveChanged (self: VolumeMonitor) (drive: Drive) : unit =
     Internal.GioC.zgtk_parent_Gio_VolumeMonitor_drive_changed (Internal.Raw.obj self.Id (Internal.GioC.g_volume_monitor_get_type ())) (Internal.Raw.obj drive.Id (Internal.GioC.g_drive_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `drive_connected`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDriveConnected (gtype: usize) (handler: VolumeMonitor -> Drive -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor drive)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_connected (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_connected (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_VolumeMonitor_drive_connected`.
   let parentDriveConnected (self: VolumeMonitor) (drive: Drive) : unit =
     Internal.GioC.zgtk_parent_Gio_VolumeMonitor_drive_connected (Internal.Raw.obj self.Id (Internal.GioC.g_volume_monitor_get_type ())) (Internal.Raw.obj drive.Id (Internal.GioC.g_drive_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `drive_disconnected`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDriveDisconnected (gtype: usize) (handler: VolumeMonitor -> Drive -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor drive)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_disconnected (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_disconnected (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_VolumeMonitor_drive_disconnected`.
   let parentDriveDisconnected (self: VolumeMonitor) (drive: Drive) : unit =
     Internal.GioC.zgtk_parent_Gio_VolumeMonitor_drive_disconnected (Internal.Raw.obj self.Id (Internal.GioC.g_volume_monitor_get_type ())) (Internal.Raw.obj drive.Id (Internal.GioC.g_drive_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `drive_eject_button`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDriveEjectButton (gtype: usize) (handler: VolumeMonitor -> Drive -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor drive)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_eject_button (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_eject_button (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_VolumeMonitor_drive_eject_button`.
   let parentDriveEjectButton (self: VolumeMonitor) (drive: Drive) : unit =
     Internal.GioC.zgtk_parent_Gio_VolumeMonitor_drive_eject_button (Internal.Raw.obj self.Id (Internal.GioC.g_volume_monitor_get_type ())) (Internal.Raw.obj drive.Id (Internal.GioC.g_drive_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `drive_stop_button`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDriveStopButton (gtype: usize) (handler: VolumeMonitor -> Drive -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let drive = Drive (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor drive)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_stop_button (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_drive_stop_button (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_VolumeMonitor_drive_stop_button`.
   let parentDriveStopButton (self: VolumeMonitor) (drive: Drive) : unit =
     Internal.GioC.zgtk_parent_Gio_VolumeMonitor_drive_stop_button (Internal.Raw.obj self.Id (Internal.GioC.g_volume_monitor_get_type ())) (Internal.Raw.obj drive.Id (Internal.GioC.g_drive_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `get_connected_drives`: Gets a list of drives connected to the system.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetConnectedDrives (gtype: usize) (handler: VolumeMonitor -> list<Drive>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.glist (Internal.Raw.mapList (fun (zo: Drive) -> Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_drive_get_type ()))) (handler volumeMonitor)) false))
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_connected_drives (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_connected_drives (Internal.Raw.gtype gtype) zcb)
 
   /// Gets a list of drives connected to the system.
   let parentGetConnectedDrives (self: VolumeMonitor) : list<Drive> =
     Internal.Raw.mapList (fun zp -> Drive (Internal.Raw.wrap (zp) true)) (Internal.Raw.pointers ((Internal.GioC.zgtk_parent_Gio_VolumeMonitor_get_connected_drives (Internal.Raw.obj self.Id (Internal.GioC.g_volume_monitor_get_type ())))) false true)
 
   /// Gives a type made with `Glue.subclass` its own `get_mount_for_uuid`: Finds a #GMount object by its UUID (see g_mount_get_uuid())
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetMountForUuid (gtype: usize) (handler: VolumeMonitor -> string -> option<Mount>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -23159,7 +23441,7 @@ module VolumeMonitor =
         match handler volumeMonitor uuid with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_mount_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_mount_for_uuid (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_mount_for_uuid (Internal.Raw.gtype gtype) zcb)
 
   /// Finds a #GMount object by its UUID (see g_mount_get_uuid())
   let parentGetMountForUuid (self: VolumeMonitor) (uuid: string) : option<Mount> =
@@ -23168,18 +23450,20 @@ module VolumeMonitor =
     (if zid1 = 0 then None else Some (Mount zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_mounts`: Gets a list of the mounts on the system.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetMounts (gtype: usize) (handler: VolumeMonitor -> list<Mount>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.glist (Internal.Raw.mapList (fun (zo: Mount) -> Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_mount_get_type ()))) (handler volumeMonitor)) false))
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_mounts (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_mounts (Internal.Raw.gtype gtype) zcb)
 
   /// Gets a list of the mounts on the system.
   let parentGetMounts (self: VolumeMonitor) : list<Mount> =
     Internal.Raw.mapList (fun zp -> Mount (Internal.Raw.wrap (zp) true)) (Internal.Raw.pointers ((Internal.GioC.zgtk_parent_Gio_VolumeMonitor_get_mounts (Internal.Raw.obj self.Id (Internal.GioC.g_volume_monitor_get_type ())))) false true)
 
   /// Gives a type made with `Glue.subclass` its own `get_volume_for_uuid`: Finds a #GVolume object by its UUID (see g_volume_get_uuid())
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetVolumeForUuid (gtype: usize) (handler: VolumeMonitor -> string -> option<Volume>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -23188,7 +23472,7 @@ module VolumeMonitor =
         match handler volumeMonitor uuid with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_volume_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_volume_for_uuid (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_volume_for_uuid (Internal.Raw.gtype gtype) zcb)
 
   /// Finds a #GVolume object by its UUID (see g_volume_get_uuid())
   let parentGetVolumeForUuid (self: VolumeMonitor) (uuid: string) : option<Volume> =
@@ -23197,103 +23481,111 @@ module VolumeMonitor =
     (if zid1 = 0 then None else Some (Volume zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_volumes`: Gets a list of the volumes on the system.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetVolumes (gtype: usize) (handler: VolumeMonitor -> list<Volume>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.glist (Internal.Raw.mapList (fun (zo: Volume) -> Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_volume_get_type ()))) (handler volumeMonitor)) false))
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_volumes (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_get_volumes (Internal.Raw.gtype gtype) zcb)
 
   /// Gets a list of the volumes on the system.
   let parentGetVolumes (self: VolumeMonitor) : list<Volume> =
     Internal.Raw.mapList (fun zp -> Volume (Internal.Raw.wrap (zp) true)) (Internal.Raw.pointers ((Internal.GioC.zgtk_parent_Gio_VolumeMonitor_get_volumes (Internal.Raw.obj self.Id (Internal.GioC.g_volume_monitor_get_type ())))) false true)
 
   /// Gives a type made with `Glue.subclass` its own `mount_added`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMountAdded (gtype: usize) (handler: VolumeMonitor -> Mount -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor mount)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_added (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_added (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_VolumeMonitor_mount_added`.
   let parentMountAdded (self: VolumeMonitor) (mount: Mount) : unit =
     Internal.GioC.zgtk_parent_Gio_VolumeMonitor_mount_added (Internal.Raw.obj self.Id (Internal.GioC.g_volume_monitor_get_type ())) (Internal.Raw.obj mount.Id (Internal.GioC.g_mount_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `mount_changed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMountChanged (gtype: usize) (handler: VolumeMonitor -> Mount -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor mount)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_changed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_VolumeMonitor_mount_changed`.
   let parentMountChanged (self: VolumeMonitor) (mount: Mount) : unit =
     Internal.GioC.zgtk_parent_Gio_VolumeMonitor_mount_changed (Internal.Raw.obj self.Id (Internal.GioC.g_volume_monitor_get_type ())) (Internal.Raw.obj mount.Id (Internal.GioC.g_mount_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `mount_pre_unmount`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMountPreUnmount (gtype: usize) (handler: VolumeMonitor -> Mount -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor mount)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_pre_unmount (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_pre_unmount (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_VolumeMonitor_mount_pre_unmount`.
   let parentMountPreUnmount (self: VolumeMonitor) (mount: Mount) : unit =
     Internal.GioC.zgtk_parent_Gio_VolumeMonitor_mount_pre_unmount (Internal.Raw.obj self.Id (Internal.GioC.g_volume_monitor_get_type ())) (Internal.Raw.obj mount.Id (Internal.GioC.g_mount_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `mount_removed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMountRemoved (gtype: usize) (handler: VolumeMonitor -> Mount -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let mount = Mount (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor mount)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_removed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_mount_removed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_VolumeMonitor_mount_removed`.
   let parentMountRemoved (self: VolumeMonitor) (mount: Mount) : unit =
     Internal.GioC.zgtk_parent_Gio_VolumeMonitor_mount_removed (Internal.Raw.obj self.Id (Internal.GioC.g_volume_monitor_get_type ())) (Internal.Raw.obj mount.Id (Internal.GioC.g_mount_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `volume_added`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideVolumeAdded (gtype: usize) (handler: VolumeMonitor -> Volume -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor volume)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_volume_added (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_volume_added (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_VolumeMonitor_volume_added`.
   let parentVolumeAdded (self: VolumeMonitor) (volume: Volume) : unit =
     Internal.GioC.zgtk_parent_Gio_VolumeMonitor_volume_added (Internal.Raw.obj self.Id (Internal.GioC.g_volume_monitor_get_type ())) (Internal.Raw.obj volume.Id (Internal.GioC.g_volume_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `volume_changed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideVolumeChanged (gtype: usize) (handler: VolumeMonitor -> Volume -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor volume)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_volume_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_volume_changed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_VolumeMonitor_volume_changed`.
   let parentVolumeChanged (self: VolumeMonitor) (volume: Volume) : unit =
     Internal.GioC.zgtk_parent_Gio_VolumeMonitor_volume_changed (Internal.Raw.obj self.Id (Internal.GioC.g_volume_monitor_get_type ())) (Internal.Raw.obj volume.Id (Internal.GioC.g_volume_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `volume_removed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideVolumeRemoved (gtype: usize) (handler: VolumeMonitor -> Volume -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volumeMonitor = VolumeMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler volumeMonitor volume)
-    Internal.GioC.zgtk_override_Gio_VolumeMonitor_volume_removed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_VolumeMonitor_volume_removed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_VolumeMonitor_volume_removed`.
   let parentVolumeRemoved (self: VolumeMonitor) (volume: Volume) : unit =
@@ -23484,6 +23776,7 @@ module NetworkMonitor =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_network_monitor_get_type ())) "notify::network-metered" handler
 
   /// Gives a type made with `Glue.subclass` its own `can_reach_async`: Asynchronously attempts to determine whether or not the host pointed to by @connectable can be reached, without actually trying to connect to it.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanReachAsync (gtype: usize) (handler: NetworkMonitor -> SocketConnectable -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -23494,7 +23787,7 @@ module NetworkMonitor =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler monitor connectable cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_NetworkMonitor_can_reach_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_NetworkMonitor_can_reach_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously attempts to determine whether or not the host pointed to by @connectable can be reached, without actually trying to connect to it.
   let parentCanReachAsync (self: NetworkMonitor) (connectable: SocketConnectable) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -23511,13 +23804,14 @@ module NetworkMonitor =
     Internal.GioC.zgtk_parent_Gio_NetworkMonitor_can_reach_async (Internal.Raw.obj self.Id (Internal.GioC.g_network_monitor_get_type ())) (Internal.Raw.obj connectable.Id (Internal.GioC.g_socket_connectable_get_type ())) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `network_changed`: the virtual function pointer for the GNetworkMonitor::network-changed signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideNetworkChanged (gtype: usize) (handler: NetworkMonitor -> bool -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let monitor = NetworkMonitor (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let networkAvailable = (Internal.Raw.argInt 1 <> 0)
         handler monitor networkAvailable)
-    Internal.GioC.zgtk_override_Gio_NetworkMonitor_network_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_NetworkMonitor_network_changed (Internal.Raw.gtype gtype) zcb)
 
   /// the virtual function pointer for the GNetworkMonitor::network-changed signal.
   let parentNetworkChanged (self: NetworkMonitor) (networkAvailable: bool) : unit =
@@ -23828,6 +24122,7 @@ module Permission =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_permission_get_type ())) "notify::can-release" handler
 
   /// Gives a type made with `Glue.subclass` its own `acquire_async`: Attempts to acquire the permission represented by @permission.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAcquireAsync (gtype: usize) (handler: Permission -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -23837,7 +24132,7 @@ module Permission =
         let callback = Internal.Raw.argPointer 2
         let userData = Internal.Raw.argPointer 3
         handler permission cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Permission_acquire_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Permission_acquire_async (Internal.Raw.gtype gtype) zcb)
 
   /// Attempts to acquire the permission represented by @permission.
   let parentAcquireAsync (self: Permission) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -23854,6 +24149,7 @@ module Permission =
     Internal.GioC.zgtk_parent_Gio_Permission_acquire_async (Internal.Raw.obj self.Id (Internal.GioC.g_permission_get_type ())) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `release_async`: Attempts to release the permission represented by @permission.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideReleaseAsync (gtype: usize) (handler: Permission -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -23863,7 +24159,7 @@ module Permission =
         let callback = Internal.Raw.argPointer 2
         let userData = Internal.Raw.argPointer 3
         handler permission cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Permission_release_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Permission_release_async (Internal.Raw.gtype gtype) zcb)
 
   /// Attempts to release the permission represented by @permission.
   let parentReleaseAsync (self: Permission) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24036,6 +24332,7 @@ module Proxy =
     (if zid1 = 0 then None else Some (Proxy zid1))
 
   /// Gives a type made with `Glue.subclass` its own `connect_async`: Asynchronous version of g_proxy_connect().
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideConnectAsync (gtype: usize) (handler: Proxy -> IOStream -> ProxyAddress -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -24047,7 +24344,7 @@ module Proxy =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler proxy connection proxyAddress cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Proxy_connect_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Proxy_connect_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronous version of g_proxy_connect().
   let parentConnectAsync (self: Proxy) (connection: IOStream) (proxyAddress: ProxyAddress) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24064,12 +24361,13 @@ module Proxy =
     Internal.GioC.zgtk_parent_Gio_Proxy_connect_async (Internal.Raw.obj self.Id (Internal.GioC.g_proxy_get_type ())) (Internal.Raw.obj connection.Id (Internal.GioC.g_io_stream_get_type ())) (Internal.Raw.obj proxyAddress.Id (Internal.GioC.g_proxy_address_get_type ())) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `supports_hostname`: Some proxy protocols expect to be passed a hostname, which they will resolve to an IP address themselves.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSupportsHostname (gtype: usize) (handler: Proxy -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let proxy = Proxy (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler proxy))
-    Internal.GioC.zgtk_override_Gio_Proxy_supports_hostname (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Proxy_supports_hostname (Internal.Raw.gtype gtype) zcb)
 
   /// Some proxy protocols expect to be passed a hostname, which they will resolve to an IP address themselves.
   let parentSupportsHostname (self: Proxy) : bool =
@@ -24228,6 +24526,7 @@ module SocketAddressEnumerator =
         zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `next_async`: Asynchronously retrieves the next #GSocketAddress from @enumerator and then calls @callback, which must call g_socket_address_enumerator_next_finish() to get the result.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideNextAsync (gtype: usize) (handler: SocketAddressEnumerator -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -24237,7 +24536,7 @@ module SocketAddressEnumerator =
         let callback = Internal.Raw.argPointer 2
         let userData = Internal.Raw.argPointer 3
         handler enumerator cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_SocketAddressEnumerator_next_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_SocketAddressEnumerator_next_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously retrieves the next #GSocketAddress from @enumerator and then calls @callback, which must call g_socket_address_enumerator_next_finish() to get the result.
   let parentNextAsync (self: SocketAddressEnumerator) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24375,18 +24674,20 @@ module ProxyResolver =
     ProxyResolver (Internal.Raw.wrap ((Internal.GioC.g_proxy_resolver_get_default ())) false)
 
   /// Gives a type made with `Glue.subclass` its own `is_supported`: Checks if @resolver can be used on this system.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsSupported (gtype: usize) (handler: ProxyResolver -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let resolver = ProxyResolver (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler resolver))
-    Internal.GioC.zgtk_override_Gio_ProxyResolver_is_supported (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ProxyResolver_is_supported (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if @resolver can be used on this system.
   let parentIsSupported (self: ProxyResolver) : bool =
     (((Internal.GioC.zgtk_parent_Gio_ProxyResolver_is_supported (Internal.Raw.obj self.Id (Internal.GioC.g_proxy_resolver_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `lookup_async`: Asynchronous lookup of proxy.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLookupAsync (gtype: usize) (handler: ProxyResolver -> string -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -24397,7 +24698,7 @@ module ProxyResolver =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler resolver uri cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_ProxyResolver_lookup_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ProxyResolver_lookup_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronous lookup of proxy.
   let parentLookupAsync (self: ProxyResolver) (uri: string) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24728,6 +25029,7 @@ module Resolver =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_resolver_get_type ())) "notify::timeout" handler
 
   /// Gives a type made with `Glue.subclass` its own `lookup_by_address_async`: Begins asynchronously reverse-resolving @address to determine its associated hostname, and eventually calls @callback, which must call g_resolver_lookup_by_address_finish() to get the final result.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLookupByAddressAsync (gtype: usize) (handler: Resolver -> InetAddress -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -24738,7 +25040,7 @@ module Resolver =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler resolver address cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Resolver_lookup_by_address_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Resolver_lookup_by_address_async (Internal.Raw.gtype gtype) zcb)
 
   /// Begins asynchronously reverse-resolving @address to determine its associated hostname, and eventually calls @callback, which must call g_resolver_lookup_by_address_finish() to get the final result.
   let parentLookupByAddressAsync (self: Resolver) (address: InetAddress) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24755,6 +25057,7 @@ module Resolver =
     Internal.GioC.zgtk_parent_Gio_Resolver_lookup_by_address_async (Internal.Raw.obj self.Id (Internal.GioC.g_resolver_get_type ())) (Internal.Raw.obj address.Id (Internal.GioC.g_inet_address_get_type ())) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `lookup_by_name_async`: Begins asynchronously resolving @hostname to determine its associated IP address(es), and eventually calls @callback, which must call g_resolver_lookup_by_name_finish() to get the result.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLookupByNameAsync (gtype: usize) (handler: Resolver -> string -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -24765,7 +25068,7 @@ module Resolver =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler resolver hostname cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Resolver_lookup_by_name_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Resolver_lookup_by_name_async (Internal.Raw.gtype gtype) zcb)
 
   /// Begins asynchronously resolving @hostname to determine its associated IP address(es), and eventually calls @callback, which must call g_resolver_lookup_by_name_finish() to get the result.
   let parentLookupByNameAsync (self: Resolver) (hostname: string) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24782,6 +25085,7 @@ module Resolver =
     Internal.GioC.zgtk_parent_Gio_Resolver_lookup_by_name_async (Internal.Raw.obj self.Id (Internal.GioC.g_resolver_get_type ())) hostname zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `lookup_by_name_with_flags_async`: Begins asynchronously resolving @hostname to determine its associated IP address(es), and eventually calls @callback, which must call g_resolver_lookup_by_name_with_flags_finish() to get the result.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLookupByNameWithFlagsAsync (gtype: usize) (handler: Resolver -> string -> ResolverNameLookupFlags -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -24793,7 +25097,7 @@ module Resolver =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler resolver hostname flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Resolver_lookup_by_name_with_flags_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Resolver_lookup_by_name_with_flags_async (Internal.Raw.gtype gtype) zcb)
 
   /// Begins asynchronously resolving @hostname to determine its associated IP address(es), and eventually calls @callback, which must call g_resolver_lookup_by_name_with_flags_finish() to get the result.
   let parentLookupByNameWithFlagsAsync (self: Resolver) (hostname: string) (flags: ResolverNameLookupFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24810,6 +25114,7 @@ module Resolver =
     Internal.GioC.zgtk_parent_Gio_Resolver_lookup_by_name_with_flags_async (Internal.Raw.obj self.Id (Internal.GioC.g_resolver_get_type ())) hostname (u32 flags.Int) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `lookup_records_async`: Begins asynchronously performing a DNS lookup for the given @rrname, and eventually calls @callback, which must call g_resolver_lookup_records_finish() to get the final result.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLookupRecordsAsync (gtype: usize) (handler: Resolver -> string -> ResolverRecordType -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -24821,7 +25126,7 @@ module Resolver =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler resolver rrname recordType cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Resolver_lookup_records_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Resolver_lookup_records_async (Internal.Raw.gtype gtype) zcb)
 
   /// Begins asynchronously performing a DNS lookup for the given @rrname, and eventually calls @callback, which must call g_resolver_lookup_records_finish() to get the final result.
   let parentLookupRecordsAsync (self: Resolver) (rrname: string) (recordType: ResolverRecordType) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24838,6 +25143,7 @@ module Resolver =
     Internal.GioC.zgtk_parent_Gio_Resolver_lookup_records_async (Internal.Raw.obj self.Id (Internal.GioC.g_resolver_get_type ())) rrname (i32 recordType.Int) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `lookup_service_async`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLookupServiceAsync (gtype: usize) (handler: Resolver -> string -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -24848,7 +25154,7 @@ module Resolver =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler resolver rrname cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Resolver_lookup_service_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Resolver_lookup_service_async (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_Resolver_lookup_service_async`.
   let parentLookupServiceAsync (self: Resolver) (rrname: string) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -24865,12 +25171,13 @@ module Resolver =
     Internal.GioC.zgtk_parent_Gio_Resolver_lookup_service_async (Internal.Raw.obj self.Id (Internal.GioC.g_resolver_get_type ())) rrname zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `reload`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideReload (gtype: usize) (handler: Resolver -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let resolver = Resolver (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler resolver)
-    Internal.GioC.zgtk_override_Gio_Resolver_reload (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Resolver_reload (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_Resolver_reload`.
   let parentReload (self: Resolver) : unit =
@@ -25275,6 +25582,7 @@ module Settings =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_settings_get_type ())) "notify::settings-schema" handler
 
   /// Gives a type made with `Glue.subclass` its own `change_event`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChangeEvent (gtype: usize) (handler: Settings -> int -> int -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -25282,46 +25590,49 @@ module Settings =
         let keys = Internal.Raw.argInt 1
         let nKeys = Internal.Raw.argInt 2
         Internal.Raw.returnBool (handler settings keys nKeys))
-    Internal.GioC.zgtk_override_Gio_Settings_change_event (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Settings_change_event (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_Settings_change_event`.
   let parentChangeEvent (self: Settings) (keys: int) (nKeys: int) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Settings_change_event (Internal.Raw.obj self.Id (Internal.GioC.g_settings_get_type ())) (u32 keys) (i32 nKeys))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `changed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChanged (gtype: usize) (handler: Settings -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let settings = Settings (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let key = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler settings key)
-    Internal.GioC.zgtk_override_Gio_Settings_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Settings_changed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_Settings_changed`.
   let parentChanged (self: Settings) (key: string) : unit =
     Internal.GioC.zgtk_parent_Gio_Settings_changed (Internal.Raw.obj self.Id (Internal.GioC.g_settings_get_type ())) key
 
   /// Gives a type made with `Glue.subclass` its own `writable_change_event`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideWritableChangeEvent (gtype: usize) (handler: Settings -> int -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let settings = Settings (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let key = Internal.Raw.argInt 1
         Internal.Raw.returnBool (handler settings key))
-    Internal.GioC.zgtk_override_Gio_Settings_writable_change_event (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Settings_writable_change_event (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_Settings_writable_change_event`.
   let parentWritableChangeEvent (self: Settings) (key: int) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Settings_writable_change_event (Internal.Raw.obj self.Id (Internal.GioC.g_settings_get_type ())) (u32 key))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `writable_changed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideWritableChanged (gtype: usize) (handler: Settings -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let settings = Settings (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let key = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler settings key)
-    Internal.GioC.zgtk_override_Gio_Settings_writable_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Settings_writable_changed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_Settings_writable_changed`.
   let parentWritableChanged (self: Settings) (key: string) : unit =
@@ -27028,6 +27339,7 @@ module SocketClient =
   let setType (self: SocketClient) (value: SocketType) : unit = Internal.Raw.setInt (Internal.Raw.obj self.Id (Internal.GioC.g_socket_client_get_type ())) "type" value.Int
 
   /// Gives a type made with `Glue.subclass` its own `event`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEvent (gtype: usize) (handler: SocketClient -> SocketClientEvent -> SocketConnectable -> IOStream -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -27036,7 +27348,7 @@ module SocketClient =
         let connectable = SocketConnectable (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         let connection = IOStream (Internal.Raw.wrap (Internal.Raw.argPointer 3) false)
         handler client event connectable connection)
-    Internal.GioC.zgtk_override_Gio_SocketClient_event (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_SocketClient_event (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_SocketClient_event`.
   let parentEvent (self: SocketClient) (event: SocketClientEvent) (connectable: SocketConnectable) (connection: IOStream) : unit =
@@ -27375,18 +27687,20 @@ module SocketListener =
   let setListenBacklog (self: SocketListener) (value: int) : unit = Internal.Raw.setInt (Internal.Raw.obj self.Id (Internal.GioC.g_socket_listener_get_type ())) "listen-backlog" value
 
   /// Gives a type made with `Glue.subclass` its own `changed`: virtual method called when the set of socket listened to changes
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChanged (gtype: usize) (handler: SocketListener -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let listener = SocketListener (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler listener)
-    Internal.GioC.zgtk_override_Gio_SocketListener_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_SocketListener_changed (Internal.Raw.gtype gtype) zcb)
 
   /// virtual method called when the set of socket listened to changes
   let parentChanged (self: SocketListener) : unit =
     Internal.GioC.zgtk_parent_Gio_SocketListener_changed (Internal.Raw.obj self.Id (Internal.GioC.g_socket_listener_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `event`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEvent (gtype: usize) (handler: SocketListener -> SocketListenerEvent -> Socket -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -27394,7 +27708,7 @@ module SocketListener =
         let event = SocketListenerEvent (int (Internal.Raw.argInt 1))
         let socket = Socket (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler listener event socket)
-    Internal.GioC.zgtk_override_Gio_SocketListener_event (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_SocketListener_event (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_SocketListener_event`.
   let parentEvent (self: SocketListener) (event: SocketListenerEvent) (socket: Socket) : unit =
@@ -27446,6 +27760,7 @@ module SocketService =
   let setActive (self: SocketService) (value: bool) : unit = Internal.Raw.setInt (Internal.Raw.obj self.Id (Internal.GioC.g_socket_service_get_type ())) "active" (if value then 1 else 0)
 
   /// Gives a type made with `Glue.subclass` its own `incoming`: signal emitted when new connections are accepted
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIncoming (gtype: usize) (handler: SocketService -> SocketConnection -> GObject.Object -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -27453,7 +27768,7 @@ module SocketService =
         let connection = SocketConnection (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let sourceObject = GObject.Object (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         Internal.Raw.returnBool (handler service connection sourceObject))
-    Internal.GioC.zgtk_override_Gio_SocketService_incoming (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_SocketService_incoming (Internal.Raw.gtype gtype) zcb)
 
   /// signal emitted when new connections are accepted
   let parentIncoming (self: SocketService) (connection: SocketConnection) (sourceObject: GObject.Object) : bool =
@@ -28409,6 +28724,7 @@ module ThreadedSocketService =
   let getMaxThreads (self: ThreadedSocketService) : int = Internal.Raw.getInt (Internal.Raw.obj self.Id (Internal.GioC.g_threaded_socket_service_get_type ())) "max-threads"
 
   /// Gives a type made with `Glue.subclass` its own `run`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRun (gtype: usize) (handler: ThreadedSocketService -> SocketConnection -> GObject.Object -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -28416,7 +28732,7 @@ module ThreadedSocketService =
         let connection = SocketConnection (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let sourceObject = GObject.Object (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         Internal.Raw.returnBool (handler service connection sourceObject))
-    Internal.GioC.zgtk_override_Gio_ThreadedSocketService_run (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_ThreadedSocketService_run (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_ThreadedSocketService_run`.
   let parentRun (self: ThreadedSocketService) (connection: SocketConnection) (sourceObject: GObject.Object) : bool =
@@ -28482,36 +28798,39 @@ module TlsBackend =
     TlsBackend (Internal.Raw.wrap ((Internal.GioC.g_tls_backend_get_default ())) false)
 
   /// Gives a type made with `Glue.subclass` its own `get_default_database`: Gets the default #GTlsDatabase used to verify TLS connections.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetDefaultDatabase (gtype: usize) (handler: TlsBackend -> TlsDatabase) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let backend = TlsBackend (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler backend).Id (Internal.GioC.g_tls_database_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_TlsBackend_get_default_database (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsBackend_get_default_database (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the default #GTlsDatabase used to verify TLS connections.
   let parentGetDefaultDatabase (self: TlsBackend) : TlsDatabase =
     TlsDatabase (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_TlsBackend_get_default_database (Internal.Raw.obj self.Id (Internal.GioC.g_tls_backend_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `supports_dtls`: Checks if DTLS is supported.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSupportsDtls (gtype: usize) (handler: TlsBackend -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let backend = TlsBackend (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler backend))
-    Internal.GioC.zgtk_override_Gio_TlsBackend_supports_dtls (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsBackend_supports_dtls (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if DTLS is supported.
   let parentSupportsDtls (self: TlsBackend) : bool =
     (((Internal.GioC.zgtk_parent_Gio_TlsBackend_supports_dtls (Internal.Raw.obj self.Id (Internal.GioC.g_tls_backend_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `supports_tls`: Checks if TLS is supported; if this returns %FALSE for the default #GTlsBackend, it means no "real" TLS backend is available.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSupportsTls (gtype: usize) (handler: TlsBackend -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let backend = TlsBackend (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler backend))
-    Internal.GioC.zgtk_override_Gio_TlsBackend_supports_tls (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsBackend_supports_tls (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if TLS is supported; if this returns %FALSE for the default #GTlsBackend, it means no "real" TLS backend is available.
   let parentSupportsTls (self: TlsBackend) : bool =
@@ -28752,6 +29071,7 @@ module TlsCertificate =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_tls_certificate_get_type ())) "notify::subject-name" handler
 
   /// Gives a type made with `Glue.subclass` its own `verify`: This verifies @cert and returns a set of #GTlsCertificateFlags indicating any problems found with it.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideVerify (gtype: usize) (handler: TlsCertificate -> option<SocketConnectable> -> option<TlsCertificate> -> TlsCertificateFlags) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -28761,7 +29081,7 @@ module TlsCertificate =
         let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 2) false
         let trustedCa = (if zid2 = 0 then None else Some (TlsCertificate zid2))
         Internal.Raw.returnInt (handler cert identity trustedCa).Int)
-    Internal.GioC.zgtk_override_Gio_TlsCertificate_verify (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsCertificate_verify (Internal.Raw.gtype gtype) zcb)
 
   /// This verifies @cert and returns a set of #GTlsCertificateFlags indicating any problems found with it.
   let parentVerify (self: TlsCertificate) (identity: option<SocketConnectable>) (trustedCa: option<TlsCertificate>) : TlsCertificateFlags =
@@ -28855,13 +29175,14 @@ module TlsClientConnection =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_tls_client_connection_get_type ())) "notify::validation-flags" handler
 
   /// Gives a type made with `Glue.subclass` its own `copy_session_state`: Possibly copies session state from one connection to another, for use in TLS session resumption.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCopySessionState (gtype: usize) (handler: TlsClientConnection -> TlsClientConnection -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let conn = TlsClientConnection (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let source = TlsClientConnection (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler conn source)
-    Internal.GioC.zgtk_override_Gio_TlsClientConnection_copy_session_state (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsClientConnection_copy_session_state (Internal.Raw.gtype gtype) zcb)
 
   /// Possibly copies session state from one connection to another, for use in TLS session resumption.
   let parentCopySessionState (self: TlsClientConnection) (source: TlsClientConnection) : unit =
@@ -29107,6 +29428,7 @@ module TlsConnection =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_tls_connection_get_type ())) "notify::use-system-certdb" handler
 
   /// Gives a type made with `Glue.subclass` its own `accept_certificate`: Check whether to accept a certificate.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAcceptCertificate (gtype: usize) (handler: TlsConnection -> TlsCertificate -> TlsCertificateFlags -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29114,13 +29436,14 @@ module TlsConnection =
         let peerCert = TlsCertificate (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let errors = TlsCertificateFlags (int (Internal.Raw.argInt 2))
         Internal.Raw.returnBool (handler connection peerCert errors))
-    Internal.GioC.zgtk_override_Gio_TlsConnection_accept_certificate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsConnection_accept_certificate (Internal.Raw.gtype gtype) zcb)
 
   /// Check whether to accept a certificate.
   let parentAcceptCertificate (self: TlsConnection) (peerCert: TlsCertificate) (errors: TlsCertificateFlags) : bool =
     (((Internal.GioC.zgtk_parent_Gio_TlsConnection_accept_certificate (Internal.Raw.obj self.Id (Internal.GioC.g_tls_connection_get_type ())) (Internal.Raw.obj peerCert.Id (Internal.GioC.g_tls_certificate_get_type ())) (u32 errors.Int))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `get_negotiated_protocol`: Gets the name of the application-layer protocol negotiated during the handshake.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetNegotiatedProtocol (gtype: usize) (handler: TlsConnection -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29128,13 +29451,14 @@ module TlsConnection =
         match handler conn with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_TlsConnection_get_negotiated_protocol (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsConnection_get_negotiated_protocol (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the name of the application-layer protocol negotiated during the handshake.
   let parentGetNegotiatedProtocol (self: TlsConnection) : option<string> =
     Internal.Raw.textOption ((Internal.GioC.zgtk_parent_Gio_TlsConnection_get_negotiated_protocol (Internal.Raw.obj self.Id (Internal.GioC.g_tls_connection_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `handshake_async`: Asynchronously performs a TLS handshake on @conn.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideHandshakeAsync (gtype: usize) (handler: TlsConnection -> int -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29145,7 +29469,7 @@ module TlsConnection =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler conn ioPriority cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_TlsConnection_handshake_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsConnection_handshake_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously performs a TLS handshake on @conn.
   let parentHandshakeAsync (self: TlsConnection) (ioPriority: int) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -29435,6 +29759,7 @@ module TlsDatabase =
         zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `create_certificate_handle`: Create a handle string for the certificate.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCreateCertificateHandle (gtype: usize) (handler: TlsDatabase -> TlsCertificate -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29443,13 +29768,14 @@ module TlsDatabase =
         match handler self_ certificate with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_TlsDatabase_create_certificate_handle (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsDatabase_create_certificate_handle (Internal.Raw.gtype gtype) zcb)
 
   /// Create a handle string for the certificate.
   let parentCreateCertificateHandle (self: TlsDatabase) (certificate: TlsCertificate) : option<string> =
     Internal.Raw.takeTextOption ((Internal.GioC.zgtk_parent_Gio_TlsDatabase_create_certificate_handle (Internal.Raw.obj self.Id (Internal.GioC.g_tls_database_get_type ())) (Internal.Raw.obj certificate.Id (Internal.GioC.g_tls_certificate_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `lookup_certificate_for_handle_async`: Asynchronously look up a certificate by its handle in the database.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLookupCertificateForHandleAsync (gtype: usize) (handler: TlsDatabase -> string -> option<TlsInteraction> -> TlsDatabaseLookupFlags -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29463,7 +29789,7 @@ module TlsDatabase =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler self_ handle_ interaction flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_TlsDatabase_lookup_certificate_for_handle_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsDatabase_lookup_certificate_for_handle_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously look up a certificate by its handle in the database.
   let parentLookupCertificateForHandleAsync (self: TlsDatabase) (handle_: string) (interaction: option<TlsInteraction>) (flags: TlsDatabaseLookupFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -29484,6 +29810,7 @@ module TlsDatabase =
     Internal.GioC.zgtk_parent_Gio_TlsDatabase_lookup_certificate_for_handle_async (Internal.Raw.obj self.Id (Internal.GioC.g_tls_database_get_type ())) handle_ zp3 (u32 flags.Int) zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `lookup_certificate_issuer_async`: Asynchronously look up the issuer of @certificate in the database.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLookupCertificateIssuerAsync (gtype: usize) (handler: TlsDatabase -> TlsCertificate -> option<TlsInteraction> -> TlsDatabaseLookupFlags -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29497,7 +29824,7 @@ module TlsDatabase =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler self_ certificate interaction flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_TlsDatabase_lookup_certificate_issuer_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsDatabase_lookup_certificate_issuer_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously look up the issuer of @certificate in the database.
   let parentLookupCertificateIssuerAsync (self: TlsDatabase) (certificate: TlsCertificate) (interaction: option<TlsInteraction>) (flags: TlsDatabaseLookupFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -29518,6 +29845,7 @@ module TlsDatabase =
     Internal.GioC.zgtk_parent_Gio_TlsDatabase_lookup_certificate_issuer_async (Internal.Raw.obj self.Id (Internal.GioC.g_tls_database_get_type ())) (Internal.Raw.obj certificate.Id (Internal.GioC.g_tls_certificate_get_type ())) zp3 (u32 flags.Int) zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `lookup_certificates_issued_by_async`: Asynchronously look up certificates issued by this issuer in the database.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLookupCertificatesIssuedByAsync (gtype: usize) (handler: TlsDatabase -> array<u8> -> option<TlsInteraction> -> TlsDatabaseLookupFlags -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29531,7 +29859,7 @@ module TlsDatabase =
         let callback = Internal.Raw.argPointer 5
         let userData = Internal.Raw.argPointer 6
         handler self_ issuerRawDn interaction flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_TlsDatabase_lookup_certificates_issued_by_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsDatabase_lookup_certificates_issued_by_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously look up certificates issued by this issuer in the database.
   let parentLookupCertificatesIssuedByAsync (self: TlsDatabase) (issuerRawDn: array<u8>) (interaction: option<TlsInteraction>) (flags: TlsDatabaseLookupFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -29554,6 +29882,7 @@ module TlsDatabase =
     Internal.Raw.byteArrayFree zb3
 
   /// Gives a type made with `Glue.subclass` its own `verify_chain_async`: Asynchronously determines the validity of a certificate chain after looking up and adding any missing certificates to the chain.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideVerifyChainAsync (gtype: usize) (handler: TlsDatabase -> TlsCertificate -> string -> option<SocketConnectable> -> option<TlsInteraction> -> TlsDatabaseVerifyFlags -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29570,7 +29899,7 @@ module TlsDatabase =
         let callback = Internal.Raw.argPointer 7
         let userData = Internal.Raw.argPointer 8
         handler self_ chain purpose identity interaction flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_TlsDatabase_verify_chain_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsDatabase_verify_chain_async (Internal.Raw.gtype gtype) zcb)
 
   /// Asynchronously determines the validity of a certificate chain after looking up and adding any missing certificates to the chain.
   let parentVerifyChainAsync (self: TlsDatabase) (chain: TlsCertificate) (purpose: string) (identity: option<SocketConnectable>) (interaction: option<TlsInteraction>) (flags: TlsDatabaseVerifyFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -29780,6 +30109,7 @@ module TlsInteraction =
         zk zr))
 
   /// Gives a type made with `Glue.subclass` its own `ask_password_async`: Run asynchronous interaction to ask the user for a password.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAskPasswordAsync (gtype: usize) (handler: TlsInteraction -> TlsPassword -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29790,7 +30120,7 @@ module TlsInteraction =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler interaction password cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_TlsInteraction_ask_password_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsInteraction_ask_password_async (Internal.Raw.gtype gtype) zcb)
 
   /// Run asynchronous interaction to ask the user for a password.
   let parentAskPasswordAsync (self: TlsInteraction) (password: TlsPassword) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -29807,6 +30137,7 @@ module TlsInteraction =
     Internal.GioC.zgtk_parent_Gio_TlsInteraction_ask_password_async (Internal.Raw.obj self.Id (Internal.GioC.g_tls_interaction_get_type ())) (Internal.Raw.obj password.Id (Internal.GioC.g_tls_password_get_type ())) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `request_certificate_async`: Run asynchronous interaction to ask the user for a certificate to use with the connection.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRequestCertificateAsync (gtype: usize) (handler: TlsInteraction -> TlsConnection -> TlsCertificateRequestFlags -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29818,7 +30149,7 @@ module TlsInteraction =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler interaction connection flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_TlsInteraction_request_certificate_async (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsInteraction_request_certificate_async (Internal.Raw.gtype gtype) zcb)
 
   /// Run asynchronous interaction to ask the user for a certificate to use with the connection.
   let parentRequestCertificateAsync (self: TlsInteraction) (connection: TlsConnection) (flags: TlsCertificateRequestFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -29907,18 +30238,20 @@ module TlsPassword =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_tls_password_get_type ())) "notify::warning" handler
 
   /// Gives a type made with `Glue.subclass` its own `get_default_warning`: virtual method for g_tls_password_get_warning() if no value has been set using g_tls_password_set_warning()
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetDefaultWarning (gtype: usize) (handler: TlsPassword -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let password = TlsPassword (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler password)))
-    Internal.GioC.zgtk_override_Gio_TlsPassword_get_default_warning (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsPassword_get_default_warning (Internal.Raw.gtype gtype) zcb)
 
   /// virtual method for g_tls_password_get_warning() if no value has been set using g_tls_password_set_warning()
   let parentGetDefaultWarning (self: TlsPassword) : string =
     Internal.Raw.text ((Internal.GioC.zgtk_parent_Gio_TlsPassword_get_default_warning (Internal.Raw.obj self.Id (Internal.GioC.g_tls_password_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_value`: Get the password value.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetValue (gtype: usize) (handler: TlsPassword -> (cptr * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29926,7 +30259,7 @@ module TlsPassword =
         let (zres, length) = handler password
         Internal.Raw.setI64 1 length
         Internal.Raw.returnPointer (zres))
-    Internal.GioC.zgtk_override_Gio_TlsPassword_get_value (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsPassword_get_value (Internal.Raw.gtype gtype) zcb)
 
   /// Get the password value.
   let parentGetValue (self: TlsPassword) : array<u8> =
@@ -29937,6 +30270,7 @@ module TlsPassword =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `set_value`: Provide the value for this password.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetValue (gtype: usize) (handler: TlsPassword -> array<u8> -> int -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29945,7 +30279,7 @@ module TlsPassword =
         let length = Internal.Raw.argInt 2
         let destroy = Internal.Raw.argPointer 3
         handler password value length destroy)
-    Internal.GioC.zgtk_override_Gio_TlsPassword_set_value (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_TlsPassword_set_value (Internal.Raw.gtype gtype) zcb)
 
   /// Provide the value for this password.
   [<Unsafe>]
@@ -30391,82 +30725,89 @@ module Vfs =
     Vfs (Internal.Raw.wrap ((Internal.GioC.g_vfs_get_local ())) false)
 
   /// Gives a type made with `Glue.subclass` its own `add_writable_namespaces`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAddWritableNamespaces (gtype: usize) (handler: Vfs -> FileAttributeInfoList -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let list = FileAttributeInfoList (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GioC.g_file_attribute_info_list_get_type ()) false)
         handler vfs list)
-    Internal.GioC.zgtk_override_Gio_Vfs_add_writable_namespaces (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Vfs_add_writable_namespaces (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_Vfs_add_writable_namespaces`.
   let parentAddWritableNamespaces (self: Vfs) (list: FileAttributeInfoList) : unit =
     Internal.GioC.zgtk_parent_Gio_Vfs_add_writable_namespaces (Internal.Raw.obj self.Id (Internal.GioC.g_vfs_get_type ())) (Internal.Raw.obj list.Id (Internal.GioC.g_file_attribute_info_list_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `deserialize_icon`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDeserializeIcon (gtype: usize) (handler: Vfs -> GLib.Variant -> Icon) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let value = GLib.Variant (Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 1) (i32 0))
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler vfs value).Id (Internal.GioC.g_icon_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Vfs_deserialize_icon (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Vfs_deserialize_icon (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_Vfs_deserialize_icon`.
   let parentDeserializeIcon (self: Vfs) (value: GLib.Variant) : Icon =
     Icon (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_Vfs_deserialize_icon (Internal.Raw.obj self.Id (Internal.GioC.g_vfs_get_type ())) (Internal.Raw.obj value.Id (Internal.GLibC.zgtk_type_GLib_Variant ())))) false)
 
   /// Gives a type made with `Glue.subclass` its own `get_file_for_path`: Gets a #GFile for @path.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFileForPath (gtype: usize) (handler: Vfs -> string -> File) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let path = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler vfs path).Id (Internal.GioC.g_file_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Vfs_get_file_for_path (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Vfs_get_file_for_path (Internal.Raw.gtype gtype) zcb)
 
   /// Gets a #GFile for @path.
   let parentGetFileForPath (self: Vfs) (path: string) : File =
     File (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_Vfs_get_file_for_path (Internal.Raw.obj self.Id (Internal.GioC.g_vfs_get_type ())) path)) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_file_for_uri`: Gets a #GFile for @uri.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFileForUri (gtype: usize) (handler: Vfs -> string -> File) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let uri = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler vfs uri).Id (Internal.GioC.g_file_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Vfs_get_file_for_uri (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Vfs_get_file_for_uri (Internal.Raw.gtype gtype) zcb)
 
   /// Gets a #GFile for @uri.
   let parentGetFileForUri (self: Vfs) (uri: string) : File =
     File (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_Vfs_get_file_for_uri (Internal.Raw.obj self.Id (Internal.GioC.g_vfs_get_type ())) uri)) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_supported_uri_schemes`: Gets a list of URI schemes supported by @vfs.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSupportedUriSchemes (gtype: usize) (handler: Vfs -> cptr) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (handler vfs))
-    Internal.GioC.zgtk_override_Gio_Vfs_get_supported_uri_schemes (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Vfs_get_supported_uri_schemes (Internal.Raw.gtype gtype) zcb)
 
   /// Gets a list of URI schemes supported by @vfs.
   let parentGetSupportedUriSchemes (self: Vfs) : list<string> =
     Internal.Raw.strvList ((Internal.GioC.zgtk_parent_Gio_Vfs_get_supported_uri_schemes (Internal.Raw.obj self.Id (Internal.GioC.g_vfs_get_type ())))) 0
 
   /// Gives a type made with `Glue.subclass` its own `is_active`: Checks if the VFS is active.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsActive (gtype: usize) (handler: Vfs -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler vfs))
-    Internal.GioC.zgtk_override_Gio_Vfs_is_active (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Vfs_is_active (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if the VFS is active.
   let parentIsActive (self: Vfs) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Vfs_is_active (Internal.Raw.obj self.Id (Internal.GioC.g_vfs_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `local_file_add_info`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLocalFileAddInfo (gtype: usize) (handler: Vfs -> string -> int -> FileAttributeMatcher -> FileInfo -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -30480,7 +30821,7 @@ module Vfs =
         let extraData = Internal.Raw.argPointer 6
         let freeExtraData = Internal.Raw.argPointer 7
         handler vfs filename device attributeMatcher info cancellable extraData freeExtraData)
-    Internal.GioC.zgtk_override_Gio_Vfs_local_file_add_info (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Vfs_local_file_add_info (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_Vfs_local_file_add_info`.
   [<Unsafe>]
@@ -30492,6 +30833,7 @@ module Vfs =
     Internal.GioC.zgtk_parent_Gio_Vfs_local_file_add_info (Internal.Raw.obj self.Id (Internal.GioC.g_vfs_get_type ())) filename (u64 device) (Internal.Raw.obj attributeMatcher.Id (Internal.GioC.g_file_attribute_matcher_get_type ())) (Internal.Raw.obj info.Id (Internal.GioC.g_file_info_get_type ())) zp1 extraData freeExtraData
 
   /// Gives a type made with `Glue.subclass` its own `local_file_moved`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLocalFileMoved (gtype: usize) (handler: Vfs -> string -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -30499,33 +30841,35 @@ module Vfs =
         let source = Internal.Raw.text (Internal.Raw.argPointer 1)
         let dest = Internal.Raw.text (Internal.Raw.argPointer 2)
         handler vfs source dest)
-    Internal.GioC.zgtk_override_Gio_Vfs_local_file_moved (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Vfs_local_file_moved (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_Vfs_local_file_moved`.
   let parentLocalFileMoved (self: Vfs) (source: string) (dest: string) : unit =
     Internal.GioC.zgtk_parent_Gio_Vfs_local_file_moved (Internal.Raw.obj self.Id (Internal.GioC.g_vfs_get_type ())) source dest
 
   /// Gives a type made with `Glue.subclass` its own `local_file_removed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLocalFileRemoved (gtype: usize) (handler: Vfs -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let filename = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler vfs filename)
-    Internal.GioC.zgtk_override_Gio_Vfs_local_file_removed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Vfs_local_file_removed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gio_Vfs_local_file_removed`.
   let parentLocalFileRemoved (self: Vfs) (filename: string) : unit =
     Internal.GioC.zgtk_parent_Gio_Vfs_local_file_removed (Internal.Raw.obj self.Id (Internal.GioC.g_vfs_get_type ())) filename
 
   /// Gives a type made with `Glue.subclass` its own `parse_name`: This operation never fails, but the returned object might not support any I/O operations if the @parse_name cannot be parsed by the #GVfs module.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideParseName (gtype: usize) (handler: Vfs -> string -> File) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let vfs = Vfs (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let parseName = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler vfs parseName).Id (Internal.GioC.g_file_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Vfs_parse_name (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Vfs_parse_name (Internal.Raw.gtype gtype) zcb)
 
   /// This operation never fails, but the returned object might not support any I/O operations if the @parse_name cannot be parsed by the #GVfs module.
   let parentParseName (self: Vfs) (parseName: string) : File =
@@ -30725,42 +31069,46 @@ module Volume =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.GioC.g_volume_get_type ())) "removed" handler
 
   /// Gives a type made with `Glue.subclass` its own `can_eject`: Checks if a volume can be ejected.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanEject (gtype: usize) (handler: Volume -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler volume))
-    Internal.GioC.zgtk_override_Gio_Volume_can_eject (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_can_eject (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if a volume can be ejected.
   let parentCanEject (self: Volume) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Volume_can_eject (Internal.Raw.obj self.Id (Internal.GioC.g_volume_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `can_mount`: Checks if a volume can be mounted.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCanMount (gtype: usize) (handler: Volume -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler volume))
-    Internal.GioC.zgtk_override_Gio_Volume_can_mount (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_can_mount (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if a volume can be mounted.
   let parentCanMount (self: Volume) : bool =
     (((Internal.GioC.zgtk_parent_Gio_Volume_can_mount (Internal.Raw.obj self.Id (Internal.GioC.g_volume_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `changed`: Changed signal that is emitted when the volume's state has changed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChanged (gtype: usize) (handler: Volume -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler volume)
-    Internal.GioC.zgtk_override_Gio_Volume_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Changed signal that is emitted when the volume's state has changed.
   let parentChanged (self: Volume) : unit =
     Internal.GioC.zgtk_parent_Gio_Volume_changed (Internal.Raw.obj self.Id (Internal.GioC.g_volume_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `eject`: Deprecated. Ejects a volume.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEject (gtype: usize) (handler: Volume -> MountUnmountFlags -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -30771,7 +31119,7 @@ module Volume =
         let callback = Internal.Raw.argPointer 3
         let userData = Internal.Raw.argPointer 4
         handler volume flags cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Volume_eject (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_eject (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Ejects a volume.
   let parentEject (self: Volume) (flags: MountUnmountFlags) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -30788,6 +31136,7 @@ module Volume =
     Internal.GioC.zgtk_parent_Gio_Volume_eject (Internal.Raw.obj self.Id (Internal.GioC.g_volume_get_type ())) (u32 flags.Int) zp3 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `eject_with_operation`: Ejects a volume.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEjectWithOperation (gtype: usize) (handler: Volume -> MountUnmountFlags -> option<MountOperation> -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -30800,7 +31149,7 @@ module Volume =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler volume flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Volume_eject_with_operation (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_eject_with_operation (Internal.Raw.gtype gtype) zcb)
 
   /// Ejects a volume.
   let parentEjectWithOperation (self: Volume) (flags: MountUnmountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -30821,18 +31170,20 @@ module Volume =
     Internal.GioC.zgtk_parent_Gio_Volume_eject_with_operation (Internal.Raw.obj self.Id (Internal.GioC.g_volume_get_type ())) (u32 flags.Int) zp3 zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `enumerate_identifiers`: Gets the kinds of [identifiers](#volume-identifiers) that @volume has.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEnumerateIdentifiers (gtype: usize) (handler: Volume -> list<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.strv (handler volume)))
-    Internal.GioC.zgtk_override_Gio_Volume_enumerate_identifiers (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_enumerate_identifiers (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the kinds of [identifiers](#volume-identifiers) that @volume has.
   let parentEnumerateIdentifiers (self: Volume) : list<string> =
     Internal.Raw.strvList ((Internal.GioC.zgtk_parent_Gio_Volume_enumerate_identifiers (Internal.Raw.obj self.Id (Internal.GioC.g_volume_get_type ())))) 2
 
   /// Gives a type made with `Glue.subclass` its own `get_activation_root`: Gets the activation root for a #GVolume if it is known ahead of mount time.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetActivationRoot (gtype: usize) (handler: Volume -> option<File>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -30840,7 +31191,7 @@ module Volume =
         match handler volume with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_file_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Volume_get_activation_root (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_get_activation_root (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the activation root for a #GVolume if it is known ahead of mount time.
   let parentGetActivationRoot (self: Volume) : option<File> =
@@ -30849,6 +31200,7 @@ module Volume =
     (if zid1 = 0 then None else Some (File zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_drive`: Gets the drive for the @volume.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetDrive (gtype: usize) (handler: Volume -> option<Drive>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -30856,7 +31208,7 @@ module Volume =
         match handler volume with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_drive_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Volume_get_drive (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_get_drive (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the drive for the @volume.
   let parentGetDrive (self: Volume) : option<Drive> =
@@ -30865,18 +31217,20 @@ module Volume =
     (if zid1 = 0 then None else Some (Drive zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_icon`: Gets the icon for @volume.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetIcon (gtype: usize) (handler: Volume -> Icon) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler volume).Id (Internal.GioC.g_icon_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Volume_get_icon (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_get_icon (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the icon for @volume.
   let parentGetIcon (self: Volume) : Icon =
     Icon (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_Volume_get_icon (Internal.Raw.obj self.Id (Internal.GioC.g_volume_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_identifier`: Gets the identifier of the given kind for @volume.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetIdentifier (gtype: usize) (handler: Volume -> string -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -30885,13 +31239,14 @@ module Volume =
         match handler volume kind with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Volume_get_identifier (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_get_identifier (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the identifier of the given kind for @volume.
   let parentGetIdentifier (self: Volume) (kind: string) : option<string> =
     Internal.Raw.takeTextOption ((Internal.GioC.zgtk_parent_Gio_Volume_get_identifier (Internal.Raw.obj self.Id (Internal.GioC.g_volume_get_type ())) kind))
 
   /// Gives a type made with `Glue.subclass` its own `get_mount`: Gets the mount for the @volume.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetMount (gtype: usize) (handler: Volume -> option<Mount>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -30899,7 +31254,7 @@ module Volume =
         match handler volume with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GioC.g_mount_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Volume_get_mount (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_get_mount (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the mount for the @volume.
   let parentGetMount (self: Volume) : option<Mount> =
@@ -30908,18 +31263,20 @@ module Volume =
     (if zid1 = 0 then None else Some (Mount zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_name`: Gets the name of @volume.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetName (gtype: usize) (handler: Volume -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler volume)))
-    Internal.GioC.zgtk_override_Gio_Volume_get_name (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_get_name (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the name of @volume.
   let parentGetName (self: Volume) : string =
     Internal.Raw.takeText ((Internal.GioC.zgtk_parent_Gio_Volume_get_name (Internal.Raw.obj self.Id (Internal.GioC.g_volume_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_sort_key`: Gets the sort key for @volume, if any.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSortKey (gtype: usize) (handler: Volume -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -30927,25 +31284,27 @@ module Volume =
         match handler volume with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Volume_get_sort_key (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_get_sort_key (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the sort key for @volume, if any.
   let parentGetSortKey (self: Volume) : option<string> =
     Internal.Raw.textOption ((Internal.GioC.zgtk_parent_Gio_Volume_get_sort_key (Internal.Raw.obj self.Id (Internal.GioC.g_volume_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_symbolic_icon`: Gets the symbolic icon for @volume.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSymbolicIcon (gtype: usize) (handler: Volume -> Icon) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler volume).Id (Internal.GioC.g_icon_get_type ()))))
-    Internal.GioC.zgtk_override_Gio_Volume_get_symbolic_icon (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_get_symbolic_icon (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the symbolic icon for @volume.
   let parentGetSymbolicIcon (self: Volume) : Icon =
     Icon (Internal.Raw.wrap ((Internal.GioC.zgtk_parent_Gio_Volume_get_symbolic_icon (Internal.Raw.obj self.Id (Internal.GioC.g_volume_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_uuid`: Gets the UUID for the @volume.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetUuid (gtype: usize) (handler: Volume -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -30953,13 +31312,14 @@ module Volume =
         match handler volume with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.GioC.zgtk_override_Gio_Volume_get_uuid (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_get_uuid (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the UUID for the @volume.
   let parentGetUuid (self: Volume) : option<string> =
     Internal.Raw.takeTextOption ((Internal.GioC.zgtk_parent_Gio_Volume_get_uuid (Internal.Raw.obj self.Id (Internal.GioC.g_volume_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `mount_fn`: Mounts a volume.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMountFn (gtype: usize) (handler: Volume -> MountMountFlags -> option<MountOperation> -> option<Cancellable> -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -30972,7 +31332,7 @@ module Volume =
         let callback = Internal.Raw.argPointer 4
         let userData = Internal.Raw.argPointer 5
         handler volume flags mountOperation cancellable callback userData)
-    Internal.GioC.zgtk_override_Gio_Volume_mount_fn (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_mount_fn (Internal.Raw.gtype gtype) zcb)
 
   /// Mounts a volume.
   let parentMountFn (self: Volume) (flags: MountMountFlags) (mountOperation: option<MountOperation>) (cancellable: option<Cancellable>) (callback: option<GObject.Object> -> AsyncResult -> unit) : unit =
@@ -30993,24 +31353,26 @@ module Volume =
     Internal.GioC.zgtk_parent_Gio_Volume_mount_fn (Internal.Raw.obj self.Id (Internal.GioC.g_volume_get_type ())) (u32 flags.Int) zp3 zp4 (Internal.GioC.zgtk_tramp_Gio_AsyncReadyCallback_once ()) zcb1
 
   /// Gives a type made with `Glue.subclass` its own `removed`: The removed signal that is emitted when the #GVolume have been removed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRemoved (gtype: usize) (handler: Volume -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler volume)
-    Internal.GioC.zgtk_override_Gio_Volume_removed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_removed (Internal.Raw.gtype gtype) zcb)
 
   /// The removed signal that is emitted when the #GVolume have been removed.
   let parentRemoved (self: Volume) : unit =
     Internal.GioC.zgtk_parent_Gio_Volume_removed (Internal.Raw.obj self.Id (Internal.GioC.g_volume_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `should_automount`: Returns whether the volume should be automatically mounted.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideShouldAutomount (gtype: usize) (handler: Volume -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let volume = Volume (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler volume))
-    Internal.GioC.zgtk_override_Gio_Volume_should_automount (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GioC.zgtk_override_Gio_Volume_should_automount (Internal.Raw.gtype gtype) zcb)
 
   /// Returns whether the volume should be automatically mounted.
   let parentShouldAutomount (self: Volume) : bool =

@@ -1388,20 +1388,20 @@ extern adw_wrap_layout_set_natural_line_length_unit : cptr -> i32 -> unit
 extern adw_wrap_layout_set_pack_direction : cptr -> i32 -> unit
 extern adw_wrap_layout_set_wrap_policy : cptr -> i32 -> unit
 extern adw_wrap_layout_set_wrap_reverse : cptr -> i32 -> unit
-extern zgtk_override_Adw_ActionRow_activate : usize -> cptr -> unit
-extern zgtk_override_Adw_AlertDialog_response : usize -> cptr -> unit
-extern zgtk_override_Adw_Dialog_close_attempt : usize -> cptr -> unit
-extern zgtk_override_Adw_Dialog_closed : usize -> cptr -> unit
-extern zgtk_override_Adw_MessageDialog_response : usize -> cptr -> unit
-extern zgtk_override_Adw_NavigationPage_hidden : usize -> cptr -> unit
-extern zgtk_override_Adw_NavigationPage_hiding : usize -> cptr -> unit
-extern zgtk_override_Adw_NavigationPage_showing : usize -> cptr -> unit
-extern zgtk_override_Adw_NavigationPage_shown : usize -> cptr -> unit
-extern zgtk_override_Adw_Swipeable_get_cancel_progress : usize -> cptr -> unit
-extern zgtk_override_Adw_Swipeable_get_distance : usize -> cptr -> unit
-extern zgtk_override_Adw_Swipeable_get_progress : usize -> cptr -> unit
-extern zgtk_override_Adw_Swipeable_get_snap_points : usize -> cptr -> unit
-extern zgtk_override_Adw_Swipeable_get_swipe_area : usize -> cptr -> unit
+extern zgtk_override_Adw_ActionRow_activate : usize -> cptr -> i32
+extern zgtk_override_Adw_AlertDialog_response : usize -> cptr -> i32
+extern zgtk_override_Adw_Dialog_close_attempt : usize -> cptr -> i32
+extern zgtk_override_Adw_Dialog_closed : usize -> cptr -> i32
+extern zgtk_override_Adw_MessageDialog_response : usize -> cptr -> i32
+extern zgtk_override_Adw_NavigationPage_hidden : usize -> cptr -> i32
+extern zgtk_override_Adw_NavigationPage_hiding : usize -> cptr -> i32
+extern zgtk_override_Adw_NavigationPage_showing : usize -> cptr -> i32
+extern zgtk_override_Adw_NavigationPage_shown : usize -> cptr -> i32
+extern zgtk_override_Adw_Swipeable_get_cancel_progress : usize -> cptr -> i32
+extern zgtk_override_Adw_Swipeable_get_distance : usize -> cptr -> i32
+extern zgtk_override_Adw_Swipeable_get_progress : usize -> cptr -> i32
+extern zgtk_override_Adw_Swipeable_get_snap_points : usize -> cptr -> i32
+extern zgtk_override_Adw_Swipeable_get_swipe_area : usize -> cptr -> i32
 extern zgtk_parent_Adw_ActionRow_activate : cptr -> unit
 extern zgtk_parent_Adw_AlertDialog_response : cptr -> cstr -> unit
 extern zgtk_parent_Adw_Dialog_close_attempt : cptr -> unit

@@ -116,10 +116,10 @@ extern gdk_pixbuf_simple_anim_iter_get_type : unit -> usize
 extern gdk_pixbuf_simple_anim_new : i32 -> i32 -> f32 -> cptr
 extern gdk_pixbuf_simple_anim_set_loop : cptr -> i32 -> unit
 extern gdk_pixbuf_unref : cptr -> unit
-extern zgtk_override_GdkPixbuf_PixbufLoader_area_prepared : usize -> cptr -> unit
-extern zgtk_override_GdkPixbuf_PixbufLoader_area_updated : usize -> cptr -> unit
-extern zgtk_override_GdkPixbuf_PixbufLoader_closed : usize -> cptr -> unit
-extern zgtk_override_GdkPixbuf_PixbufLoader_size_prepared : usize -> cptr -> unit
+extern zgtk_override_GdkPixbuf_PixbufLoader_area_prepared : usize -> cptr -> i32
+extern zgtk_override_GdkPixbuf_PixbufLoader_area_updated : usize -> cptr -> i32
+extern zgtk_override_GdkPixbuf_PixbufLoader_closed : usize -> cptr -> i32
+extern zgtk_override_GdkPixbuf_PixbufLoader_size_prepared : usize -> cptr -> i32
 extern zgtk_parent_GdkPixbuf_PixbufLoader_area_prepared : cptr -> unit
 extern zgtk_parent_GdkPixbuf_PixbufLoader_area_updated : cptr -> i32 -> i32 -> i32 -> i32 -> unit
 extern zgtk_parent_GdkPixbuf_PixbufLoader_closed : cptr -> unit

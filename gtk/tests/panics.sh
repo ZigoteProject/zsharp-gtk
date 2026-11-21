@@ -34,3 +34,7 @@ try "a made-up type, asked of an object" '  let l = Gtk4.Label.create None
 try "a made-up type, to make an object of" '  Glue.create (usize 123456) |> ignore' "$type"
 try "a made-up type, given to a library function" '  Gio.ListStore.create (usize 123456) |> ignore' "$type"
 try "a made-up type, to make a type from" '  Glue.subclass (usize 123456) "Mine" |> ignore' "$type"
+override="not a type made from the class"
+try "an override for a type of another class" '  Gtk4.Widget.overrideSnapshot (Gio.ListStore.gtype ()) (fun _ _ -> ())' "$override"
+try "an override for the class itself" '  Gtk4.Widget.overrideSnapshot (Gtk4.Widget.gtype ()) (fun _ _ -> ())' "$override"
+try "an interface override for a type without it" '  Gio.ListModel.overrideGetNItems (Gtk4.Label.gtype ()) (fun _ -> 0)' "$override"

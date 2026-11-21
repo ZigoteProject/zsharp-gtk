@@ -12357,6 +12357,7 @@ module Accessible =
   let setAccessibleRole (self: Accessible) (value: AccessibleRole) : unit = Internal.Raw.setInt (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_accessible_get_type ())) "accessible-role" value.Int
 
   /// Gives a type made with `Glue.subclass` its own `get_accessible_id`: Retrieves the accessible identifier for the accessible object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetAccessibleId (gtype: usize) (handler: Accessible -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12364,13 +12365,14 @@ module Accessible =
         match handler self_ with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.dup zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_accessible_id (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_accessible_id (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieves the accessible identifier for the accessible object.
   let parentGetAccessibleId (self: Accessible) : option<string> =
     Internal.Raw.takeTextOption ((Internal.Gtk4C.zgtk_parent_Gtk_Accessible_get_accessible_id (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_accessible_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_accessible_parent`: Retrieves the accessible parent for an accessible object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetAccessibleParent (gtype: usize) (handler: Accessible -> option<Accessible>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12378,7 +12380,7 @@ module Accessible =
         match handler self_ with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_accessible_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_accessible_parent (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_accessible_parent (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieves the accessible parent for an accessible object.
   let parentGetAccessibleParent (self: Accessible) : option<Accessible> =
@@ -12387,6 +12389,7 @@ module Accessible =
     (if zid1 = 0 then None else Some (Accessible zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_at_context`: Retrieves the implementation for the given accessible object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetAtContext (gtype: usize) (handler: Accessible -> option<ATContext>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12394,7 +12397,7 @@ module Accessible =
         match handler self_ with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_at_context_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_at_context (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_at_context (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieves the implementation for the given accessible object.
   let parentGetAtContext (self: Accessible) : option<ATContext> =
@@ -12403,6 +12406,7 @@ module Accessible =
     (if zid1 = 0 then None else Some (ATContext zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_bounds`: Queries the coordinates and dimensions of this accessible
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetBounds (gtype: usize) (handler: Accessible -> (bool * int * int * int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12413,7 +12417,7 @@ module Accessible =
         Internal.Raw.setI32 3 width
         Internal.Raw.setI32 4 height
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_bounds (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_bounds (Internal.Raw.gtype gtype) zcb)
 
   /// Queries the coordinates and dimensions of this accessible
   let parentGetBounds (self: Accessible) : (bool * int * int * int * int) =
@@ -12424,6 +12428,7 @@ module Accessible =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_first_accessible_child`: Retrieves the first accessible child of an accessible object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFirstAccessibleChild (gtype: usize) (handler: Accessible -> option<Accessible>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12431,7 +12436,7 @@ module Accessible =
         match handler self_ with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_accessible_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_first_accessible_child (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_first_accessible_child (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieves the first accessible child of an accessible object.
   let parentGetFirstAccessibleChild (self: Accessible) : option<Accessible> =
@@ -12440,6 +12445,7 @@ module Accessible =
     (if zid1 = 0 then None else Some (Accessible zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_next_accessible_sibling`: Retrieves the next accessible sibling of an accessible object
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetNextAccessibleSibling (gtype: usize) (handler: Accessible -> option<Accessible>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12447,7 +12453,7 @@ module Accessible =
         match handler self_ with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_accessible_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_next_accessible_sibling (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_next_accessible_sibling (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieves the next accessible sibling of an accessible object
   let parentGetNextAccessibleSibling (self: Accessible) : option<Accessible> =
@@ -12456,13 +12462,14 @@ module Accessible =
     (if zid1 = 0 then None else Some (Accessible zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_platform_state`: Queries a platform state, such as focus.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetPlatformState (gtype: usize) (handler: Accessible -> AccessiblePlatformState -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = Accessible (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let state = AccessiblePlatformState (int (Internal.Raw.argInt 1))
         Internal.Raw.returnBool (handler self_ state))
-    Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_platform_state (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Accessible_get_platform_state (Internal.Raw.gtype gtype) zcb)
 
   /// Queries a platform state, such as focus.
   let parentGetPlatformState (self: Accessible) (state: AccessiblePlatformState) : bool =
@@ -12484,6 +12491,7 @@ module Buildable =
     Internal.Raw.textOption ((Internal.Gtk4C.gtk_buildable_get_buildable_id (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_buildable_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `add_child`: Adds a child to @buildable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAddChild (gtype: usize) (handler: Buildable -> Builder -> GObject.Object -> option<string> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12492,7 +12500,7 @@ module Buildable =
         let child = GObject.Object (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         let type_ = Internal.Raw.textOption (Internal.Raw.argPointer 3)
         handler buildable builder child type_)
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_add_child (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Buildable_add_child (Internal.Raw.gtype gtype) zcb)
 
   /// Adds a child to @buildable.
   let parentAddChild (self: Buildable) (builder: Builder) (child: GObject.Object) (type_: option<string>) : unit =
@@ -12501,6 +12509,7 @@ module Buildable =
     Internal.Raw.free zs1
 
   /// Gives a type made with `Glue.subclass` its own `construct_child`: Constructs a child of a buildable that has been specified as “constructor” in the UI definition.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideConstructChild (gtype: usize) (handler: Buildable -> Builder -> string -> GObject.Object) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12508,13 +12517,14 @@ module Buildable =
         let builder = Builder (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let name = Internal.Raw.text (Internal.Raw.argPointer 2)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler buildable builder name).Id (Internal.GObjectC.g_object_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_construct_child (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Buildable_construct_child (Internal.Raw.gtype gtype) zcb)
 
   /// Constructs a child of a buildable that has been specified as “constructor” in the UI definition.
   let parentConstructChild (self: Buildable) (builder: Builder) (name: string) : GObject.Object =
     GObject.Object (Internal.Raw.wrap ((Internal.Gtk4C.zgtk_parent_Gtk_Buildable_construct_child (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_buildable_get_type ())) (Internal.Raw.obj builder.Id (Internal.Gtk4C.gtk_builder_get_type ())) name)) false)
 
   /// Gives a type made with `Glue.subclass` its own `custom_finished`: Similar to gtk_buildable_parser_finished() but is called once for each custom tag handled by the @buildable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCustomFinished (gtype: usize) (handler: Buildable -> Builder -> option<GObject.Object> -> string -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12525,7 +12535,7 @@ module Buildable =
         let tagname = Internal.Raw.text (Internal.Raw.argPointer 3)
         let data = Internal.Raw.argPointer 4
         handler buildable builder child tagname data)
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_custom_finished (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Buildable_custom_finished (Internal.Raw.gtype gtype) zcb)
 
   /// Similar to gtk_buildable_parser_finished() but is called once for each custom tag handled by the @buildable.
   [<Unsafe>]
@@ -12537,6 +12547,7 @@ module Buildable =
     Internal.Gtk4C.zgtk_parent_Gtk_Buildable_custom_finished (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_buildable_get_type ())) (Internal.Raw.obj builder.Id (Internal.Gtk4C.gtk_builder_get_type ())) zp1 tagname data
 
   /// Gives a type made with `Glue.subclass` its own `custom_tag_end`: Called at the end of each custom element handled by the buildable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCustomTagEnd (gtype: usize) (handler: Buildable -> Builder -> option<GObject.Object> -> string -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12547,7 +12558,7 @@ module Buildable =
         let tagname = Internal.Raw.text (Internal.Raw.argPointer 3)
         let data = Internal.Raw.argPointer 4
         handler buildable builder child tagname data)
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_custom_tag_end (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Buildable_custom_tag_end (Internal.Raw.gtype gtype) zcb)
 
   /// Called at the end of each custom element handled by the buildable.
   [<Unsafe>]
@@ -12559,6 +12570,7 @@ module Buildable =
     Internal.Gtk4C.zgtk_parent_Gtk_Buildable_custom_tag_end (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_buildable_get_type ())) (Internal.Raw.obj builder.Id (Internal.Gtk4C.gtk_builder_get_type ())) zp1 tagname data
 
   /// Gives a type made with `Glue.subclass` its own `custom_tag_start`: Called for each unknown element under `<child>`.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCustomTagStart (gtype: usize) (handler: Buildable -> Builder -> option<GObject.Object> -> string -> cptr -> (bool * BuildableParser)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12571,7 +12583,7 @@ module Buildable =
         let (zres, parser) = handler buildable builder child tagname data
         Internal.Raw.setRecord 4 (Internal.Raw.obj parser.Id (Internal.Gtk4C.zgtk_tag_Gtk_BuildableParser ())) (Internal.Gtk4C.zgtk_sizeof_Gtk_BuildableParser ())
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_custom_tag_start (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Buildable_custom_tag_start (Internal.Raw.gtype gtype) zcb)
 
   /// Called for each unknown element under `<child>`.
   let parentCustomTagStart (self: Buildable) (builder: Builder) (child: option<GObject.Object>) (tagname: string) : (bool * BuildableParser * cptr) =
@@ -12587,18 +12599,20 @@ module Buildable =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_id`: The getter corresponding to @set_id.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetId (gtype: usize) (handler: Buildable -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let buildable = Buildable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler buildable)))
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_get_id (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Buildable_get_id (Internal.Raw.gtype gtype) zcb)
 
   /// The getter corresponding to @set_id.
   let parentGetId (self: Buildable) : string =
     Internal.Raw.text ((Internal.Gtk4C.zgtk_parent_Gtk_Buildable_get_id (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_buildable_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_internal_child`: Retrieves the internal child called @childname of the @buildable object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetInternalChild (gtype: usize) (handler: Buildable -> Builder -> string -> GObject.Object) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12606,26 +12620,28 @@ module Buildable =
         let builder = Builder (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let childname = Internal.Raw.text (Internal.Raw.argPointer 2)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler buildable builder childname).Id (Internal.GObjectC.g_object_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_get_internal_child (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Buildable_get_internal_child (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieves the internal child called @childname of the @buildable object.
   let parentGetInternalChild (self: Buildable) (builder: Builder) (childname: string) : GObject.Object =
     GObject.Object (Internal.Raw.wrap ((Internal.Gtk4C.zgtk_parent_Gtk_Buildable_get_internal_child (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_buildable_get_type ())) (Internal.Raw.obj builder.Id (Internal.Gtk4C.gtk_builder_get_type ())) childname)) false)
 
   /// Gives a type made with `Glue.subclass` its own `parser_finished`: Called when a builder finishes the parsing of a UI definition.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideParserFinished (gtype: usize) (handler: Buildable -> Builder -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let buildable = Buildable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let builder = Builder (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler buildable builder)
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_parser_finished (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Buildable_parser_finished (Internal.Raw.gtype gtype) zcb)
 
   /// Called when a builder finishes the parsing of a UI definition.
   let parentParserFinished (self: Buildable) (builder: Builder) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Buildable_parser_finished (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_buildable_get_type ())) (Internal.Raw.obj builder.Id (Internal.Gtk4C.gtk_builder_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `set_buildable_property`: Sets a property of a buildable object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetBuildableProperty (gtype: usize) (handler: Buildable -> Builder -> string -> GObject.Value -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -12634,20 +12650,21 @@ module Buildable =
         let name = Internal.Raw.text (Internal.Raw.argPointer 2)
         let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.GObjectC.g_value_get_type ()) false)
         handler buildable builder name value)
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_set_buildable_property (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Buildable_set_buildable_property (Internal.Raw.gtype gtype) zcb)
 
   /// Sets a property of a buildable object.
   let parentSetBuildableProperty (self: Buildable) (builder: Builder) (name: string) (value: GObject.Value) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Buildable_set_buildable_property (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_buildable_get_type ())) (Internal.Raw.obj builder.Id (Internal.Gtk4C.gtk_builder_get_type ())) name (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `set_id`: Stores the id attribute given in the `GtkBuilder` UI definition.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetId (gtype: usize) (handler: Buildable -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let buildable = Buildable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let id = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler buildable id)
-    Internal.Gtk4C.zgtk_override_Gtk_Buildable_set_id (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Buildable_set_id (Internal.Raw.gtype gtype) zcb)
 
   /// Stores the id attribute given in the `GtkBuilder` UI definition.
   let parentSetId (self: Buildable) (id: string) : unit =
@@ -12750,26 +12767,28 @@ module ShortcutManager =
     if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.Gtk4C.gtk_shortcut_manager_get_type ()) then Some (ShortcutManager object.Id) else None
 
   /// Gives a type made with `Glue.subclass` its own `add_controller`: Add a `GtkShortcutController` to be managed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAddController (gtype: usize) (handler: ShortcutManager -> ShortcutController -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = ShortcutManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let controller = ShortcutController (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler self_ controller)
-    Internal.Gtk4C.zgtk_override_Gtk_ShortcutManager_add_controller (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_ShortcutManager_add_controller (Internal.Raw.gtype gtype) zcb)
 
   /// Add a `GtkShortcutController` to be managed.
   let parentAddController (self: ShortcutManager) (controller: ShortcutController) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_ShortcutManager_add_controller (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_shortcut_manager_get_type ())) (Internal.Raw.obj controller.Id (Internal.Gtk4C.gtk_shortcut_controller_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `remove_controller`: Remove a `GtkShortcutController` that had previously been added
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRemoveController (gtype: usize) (handler: ShortcutManager -> ShortcutController -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = ShortcutManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let controller = ShortcutController (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler self_ controller)
-    Internal.Gtk4C.zgtk_override_Gtk_ShortcutManager_remove_controller (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_ShortcutManager_remove_controller (Internal.Raw.gtype gtype) zcb)
 
   /// Remove a `GtkShortcutController` that had previously been added
   let parentRemoveController (self: ShortcutManager) (controller: ShortcutController) : unit =
@@ -13792,6 +13811,7 @@ module Widget =
   let setWidthRequest (self: Widget) (value: int) : unit = Internal.Raw.setInt (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) "width-request" value
 
   /// Gives a type made with `Glue.subclass` its own `compute_expand`: Computes whether a container should give this widget extra space when possible.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideComputeExpand (gtype: usize) (handler: Widget -> bool -> bool -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -13799,13 +13819,14 @@ module Widget =
         let hexpandP = (Internal.Raw.argInt 1 <> 0)
         let vexpandP = (Internal.Raw.argInt 2 <> 0)
         handler widget hexpandP vexpandP)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_compute_expand (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_compute_expand (Internal.Raw.gtype gtype) zcb)
 
   /// Computes whether a container should give this widget extra space when possible.
   let parentComputeExpand (self: Widget) (hexpandP: bool) (vexpandP: bool) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_compute_expand (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) (if hexpandP then i32 1 else i32 0) (if vexpandP then i32 1 else i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `contains`: Tests if a given point is contained in the widget.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideContains (gtype: usize) (handler: Widget -> float -> float -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -13813,20 +13834,21 @@ module Widget =
         let x = Internal.Raw.argFloat 1
         let y = Internal.Raw.argFloat 2
         Internal.Raw.returnBool (handler widget x y))
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_contains (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_contains (Internal.Raw.gtype gtype) zcb)
 
   /// Tests if a given point is contained in the widget.
   let parentContains (self: Widget) (x: float) (y: float) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_Widget_contains (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) x y)) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `css_changed`: Vfunc called when the CSS used by widget was changed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCssChanged (gtype: usize) (handler: Widget -> CssStyleChange -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let change = CssStyleChange (Internal.Raw.argPointer 1)
         handler widget change)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_css_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_css_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Vfunc called when the CSS used by widget was changed.
   [<Unsafe>]
@@ -13834,93 +13856,101 @@ module Widget =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_css_changed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) change.Ptr
 
   /// Gives a type made with `Glue.subclass` its own `direction_changed`: Signal emitted when the text direction of a widget changes.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDirectionChanged (gtype: usize) (handler: Widget -> TextDirection -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let previousDirection = TextDirection (int (Internal.Raw.argInt 1))
         handler widget previousDirection)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_direction_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_direction_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted when the text direction of a widget changes.
   let parentDirectionChanged (self: Widget) (previousDirection: TextDirection) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_direction_changed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) (i32 previousDirection.Int)
 
   /// Gives a type made with `Glue.subclass` its own `focus`: Vfunc for gtk_widget_child_focus()
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideFocus (gtype: usize) (handler: Widget -> DirectionType -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let direction = DirectionType (int (Internal.Raw.argInt 1))
         Internal.Raw.returnBool (handler widget direction))
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_focus (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_focus (Internal.Raw.gtype gtype) zcb)
 
   /// Vfunc for gtk_widget_child_focus()
   let parentFocus (self: Widget) (direction: DirectionType) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_Widget_focus (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) (i32 direction.Int))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `get_request_mode`: Gets whether the widget prefers a height-for-width layout or a width-for-height layout.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetRequestMode (gtype: usize) (handler: Widget -> SizeRequestMode) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler widget).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_get_request_mode (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_get_request_mode (Internal.Raw.gtype gtype) zcb)
 
   /// Gets whether the widget prefers a height-for-width layout or a width-for-height layout.
   let parentGetRequestMode (self: Widget) : SizeRequestMode =
     SizeRequestMode (int ((Internal.Gtk4C.zgtk_parent_Gtk_Widget_get_request_mode (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `grab_focus`: Causes @widget to have the keyboard focus for the window that it belongs to.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGrabFocus (gtype: usize) (handler: Widget -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler widget))
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_grab_focus (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_grab_focus (Internal.Raw.gtype gtype) zcb)
 
   /// Causes @widget to have the keyboard focus for the window that it belongs to.
   let parentGrabFocus (self: Widget) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_Widget_grab_focus (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `hide`: Deprecated. Reverses the effects of [method.Gtk.Widget.show].
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideHide (gtype: usize) (handler: Widget -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_hide (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_hide (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Reverses the effects of [method.Gtk.Widget.show].
   let parentHide (self: Widget) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_hide (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `keynav_failed`: Emits the [signal@Gtk.Widget::keynav-failed] signal on the widget.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideKeynavFailed (gtype: usize) (handler: Widget -> DirectionType -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let direction = DirectionType (int (Internal.Raw.argInt 1))
         Internal.Raw.returnBool (handler widget direction))
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_keynav_failed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_keynav_failed (Internal.Raw.gtype gtype) zcb)
 
   /// Emits the [signal@Gtk.Widget::keynav-failed] signal on the widget.
   let parentKeynavFailed (self: Widget) (direction: DirectionType) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_Widget_keynav_failed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) (i32 direction.Int))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `map`: Causes a widget to be mapped if it isn’t already.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMap (gtype: usize) (handler: Widget -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_map (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_map (Internal.Raw.gtype gtype) zcb)
 
   /// Causes a widget to be mapped if it isn’t already.
   let parentMap (self: Widget) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_map (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `measure`: Measures @widget in the orientation @orientation and for the given @for_size.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMeasure (gtype: usize) (handler: Widget -> Orientation -> int -> (int * int * int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -13932,7 +13962,7 @@ module Widget =
         Internal.Raw.setI32 4 natural
         Internal.Raw.setI32 5 minimumBaseline
         Internal.Raw.setI32 6 naturalBaseline)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_measure (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_measure (Internal.Raw.gtype gtype) zcb)
 
   /// Measures @widget in the orientation @orientation and for the given @for_size.
   let parentMeasure (self: Widget) (orientation: Orientation) (forSize: int) : (int * int * int * int) =
@@ -13943,32 +13973,35 @@ module Widget =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `mnemonic_activate`: Emits the [signal@Gtk.Widget::mnemonic-activate] signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMnemonicActivate (gtype: usize) (handler: Widget -> bool -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let groupCycling = (Internal.Raw.argInt 1 <> 0)
         Internal.Raw.returnBool (handler widget groupCycling))
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_mnemonic_activate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_mnemonic_activate (Internal.Raw.gtype gtype) zcb)
 
   /// Emits the [signal@Gtk.Widget::mnemonic-activate] signal.
   let parentMnemonicActivate (self: Widget) (groupCycling: bool) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_Widget_mnemonic_activate (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) (if groupCycling then i32 1 else i32 0))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `move_focus`: Signal emitted when a change of focus is requested
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMoveFocus (gtype: usize) (handler: Widget -> DirectionType -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let direction = DirectionType (int (Internal.Raw.argInt 1))
         handler widget direction)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_move_focus (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_move_focus (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted when a change of focus is requested
   let parentMoveFocus (self: Widget) (direction: DirectionType) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_move_focus (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) (i32 direction.Int)
 
   /// Gives a type made with `Glue.subclass` its own `query_tooltip`: Signal emitted when “has-tooltip” is %TRUE and the hover timeout has expired with the cursor hovering “above” widget; or emitted when widget got focus in keyboard mode.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideQueryTooltip (gtype: usize) (handler: Widget -> int -> int -> bool -> Tooltip -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -13978,37 +14011,40 @@ module Widget =
         let keyboardTooltip = (Internal.Raw.argInt 3 <> 0)
         let tooltip = Tooltip (Internal.Raw.wrap (Internal.Raw.argPointer 4) false)
         Internal.Raw.returnBool (handler widget x y keyboardTooltip tooltip))
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_query_tooltip (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_query_tooltip (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted when “has-tooltip” is %TRUE and the hover timeout has expired with the cursor hovering “above” widget; or emitted when widget got focus in keyboard mode.
   let parentQueryTooltip (self: Widget) (x: int) (y: int) (keyboardTooltip: bool) (tooltip: Tooltip) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_Widget_query_tooltip (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) (i32 x) (i32 y) (if keyboardTooltip then i32 1 else i32 0) (Internal.Raw.obj tooltip.Id (Internal.Gtk4C.gtk_tooltip_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `realize`: Creates the GDK resources associated with a widget.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRealize (gtype: usize) (handler: Widget -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_realize (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_realize (Internal.Raw.gtype gtype) zcb)
 
   /// Creates the GDK resources associated with a widget.
   let parentRealize (self: Widget) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_realize (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `root`: Called when the widget gets added to a `GtkRoot` widget.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRoot (gtype: usize) (handler: Widget -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_root (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_root (Internal.Raw.gtype gtype) zcb)
 
   /// Called when the widget gets added to a `GtkRoot` widget.
   let parentRoot (self: Widget) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_root (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `set_focus_child`: Set the focus child of the widget.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetFocusChild (gtype: usize) (handler: Widget -> option<Widget> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -14016,7 +14052,7 @@ module Widget =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let child = (if zid1 = 0 then None else Some (Widget zid1))
         handler widget child)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_set_focus_child (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_set_focus_child (Internal.Raw.gtype gtype) zcb)
 
   /// Set the focus child of the widget.
   let parentSetFocusChild (self: Widget) (child: option<Widget>) : unit =
@@ -14027,18 +14063,20 @@ module Widget =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_set_focus_child (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) zp1
 
   /// Gives a type made with `Glue.subclass` its own `show`: Deprecated. Flags a widget to be displayed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideShow (gtype: usize) (handler: Widget -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_show (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_show (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Flags a widget to be displayed.
   let parentShow (self: Widget) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_show (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `size_allocate`: Called to set the allocation, if the widget does not have a layout manager.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSizeAllocate (gtype: usize) (handler: Widget -> int -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -14047,82 +14085,88 @@ module Widget =
         let height = Internal.Raw.argInt 2
         let baseline = Internal.Raw.argInt 3
         handler widget width height baseline)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_size_allocate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_size_allocate (Internal.Raw.gtype gtype) zcb)
 
   /// Called to set the allocation, if the widget does not have a layout manager.
   let parentSizeAllocate (self: Widget) (width: int) (height: int) (baseline: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_size_allocate (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) (i32 width) (i32 height) (i32 baseline)
 
   /// Gives a type made with `Glue.subclass` its own `snapshot`: Vfunc called when a new snapshot of the widget has to be taken.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSnapshot (gtype: usize) (handler: Widget -> Snapshot -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let snapshot = Snapshot (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler widget snapshot)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_snapshot (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_snapshot (Internal.Raw.gtype gtype) zcb)
 
   /// Vfunc called when a new snapshot of the widget has to be taken.
   let parentSnapshot (self: Widget) (snapshot: Snapshot) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_snapshot (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) (Internal.Raw.obj snapshot.Id (Internal.Gtk4C.gtk_snapshot_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `state_flags_changed`: Signal emitted when the widget state changes, see gtk_widget_get_state_flags().
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideStateFlagsChanged (gtype: usize) (handler: Widget -> StateFlags -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let previousStateFlags = StateFlags (int (Internal.Raw.argInt 1))
         handler widget previousStateFlags)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_state_flags_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_state_flags_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted when the widget state changes, see gtk_widget_get_state_flags().
   let parentStateFlagsChanged (self: Widget) (previousStateFlags: StateFlags) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_state_flags_changed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) (u32 previousStateFlags.Int)
 
   /// Gives a type made with `Glue.subclass` its own `system_setting_changed`: Emitted when a system setting was changed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSystemSettingChanged (gtype: usize) (handler: Widget -> SystemSetting -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let settings = SystemSetting (int (Internal.Raw.argInt 1))
         handler widget settings)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_system_setting_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_system_setting_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Emitted when a system setting was changed.
   let parentSystemSettingChanged (self: Widget) (settings: SystemSetting) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_system_setting_changed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ())) (i32 settings.Int)
 
   /// Gives a type made with `Glue.subclass` its own `unmap`: Causes a widget to be unmapped if it’s currently mapped.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnmap (gtype: usize) (handler: Widget -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_unmap (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_unmap (Internal.Raw.gtype gtype) zcb)
 
   /// Causes a widget to be unmapped if it’s currently mapped.
   let parentUnmap (self: Widget) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_unmap (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `unrealize`: Causes a widget to be unrealized.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnrealize (gtype: usize) (handler: Widget -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_unrealize (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_unrealize (Internal.Raw.gtype gtype) zcb)
 
   /// Causes a widget to be unrealized.
   let parentUnrealize (self: Widget) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Widget_unrealize (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_widget_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `unroot`: Called when the widget is about to be removed from its `GtkRoot` widget.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnroot (gtype: usize) (handler: Widget -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler widget)
-    Internal.Gtk4C.zgtk_override_Gtk_Widget_unroot (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Widget_unroot (Internal.Raw.gtype gtype) zcb)
 
   /// Called when the widget is about to be removed from its `GtkRoot` widget.
   let parentUnroot (self: Widget) : unit =
@@ -14614,61 +14658,66 @@ module Window =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_window_get_type ())) "notify::transient-for" handler
 
   /// Gives a type made with `Glue.subclass` its own `activate_default`: Activates the default widget for the window.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivateDefault (gtype: usize) (handler: Window -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let window = Window (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler window)
-    Internal.Gtk4C.zgtk_override_Gtk_Window_activate_default (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Window_activate_default (Internal.Raw.gtype gtype) zcb)
 
   /// Activates the default widget for the window.
   let parentActivateDefault (self: Window) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Window_activate_default (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_window_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `activate_focus`: Activates the current focused widget within the window.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivateFocus (gtype: usize) (handler: Window -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let window = Window (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler window)
-    Internal.Gtk4C.zgtk_override_Gtk_Window_activate_focus (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Window_activate_focus (Internal.Raw.gtype gtype) zcb)
 
   /// Activates the current focused widget within the window.
   let parentActivateFocus (self: Window) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Window_activate_focus (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_window_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `close_request`: Class handler for the [signal@Window::close-request] signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCloseRequest (gtype: usize) (handler: Window -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let window = Window (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler window))
-    Internal.Gtk4C.zgtk_override_Gtk_Window_close_request (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Window_close_request (Internal.Raw.gtype gtype) zcb)
 
   /// Class handler for the [signal@Window::close-request] signal.
   let parentCloseRequest (self: Window) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_Window_close_request (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_window_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `enable_debugging`: Class handler for the `GtkWindow::enable-debugging` keybinding signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEnableDebugging (gtype: usize) (handler: Window -> bool -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let window = Window (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let toggle = (Internal.Raw.argInt 1 <> 0)
         Internal.Raw.returnBool (handler window toggle))
-    Internal.Gtk4C.zgtk_override_Gtk_Window_enable_debugging (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Window_enable_debugging (Internal.Raw.gtype gtype) zcb)
 
   /// Class handler for the `GtkWindow::enable-debugging` keybinding signal.
   let parentEnableDebugging (self: Window) (toggle: bool) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_Window_enable_debugging (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_window_get_type ())) (if toggle then i32 1 else i32 0))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `keys_changed`: Signal gets emitted when the set of accelerators or mnemonics that are associated with window changes.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideKeysChanged (gtype: usize) (handler: Window -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let window = Window (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler window)
-    Internal.Gtk4C.zgtk_override_Gtk_Window_keys_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Window_keys_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Signal gets emitted when the set of accelerators or mnemonics that are associated with window changes.
   let parentKeysChanged (self: Window) : unit =
@@ -14984,38 +15033,41 @@ module AccessibleHypertext =
     if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.Gtk4C.gtk_accessible_hypertext_get_type ()) then Some (AccessibleHypertext object.Id) else None
 
   /// Gives a type made with `Glue.subclass` its own `get_link`: Retrieve the n-th link in the accessible object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetLink (gtype: usize) (handler: AccessibleHypertext -> int -> AccessibleHyperlink) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = AccessibleHypertext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let index = Internal.Raw.argInt 1
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler self_ index).Id (Internal.Gtk4C.gtk_accessible_hyperlink_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleHypertext_get_link (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_AccessibleHypertext_get_link (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieve the n-th link in the accessible object.
   let parentGetLink (self: AccessibleHypertext) (index: int) : AccessibleHyperlink =
     AccessibleHyperlink (Internal.Raw.wrap ((Internal.Gtk4C.zgtk_parent_Gtk_AccessibleHypertext_get_link (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_accessible_hypertext_get_type ())) (u32 index))) false)
 
   /// Gives a type made with `Glue.subclass` its own `get_link_at`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetLinkAt (gtype: usize) (handler: AccessibleHypertext -> int -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = AccessibleHypertext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let offset = Internal.Raw.argInt 1
         Internal.Raw.returnInt (handler self_ offset))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleHypertext_get_link_at (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_AccessibleHypertext_get_link_at (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_AccessibleHypertext_get_link_at`.
   let parentGetLinkAt (self: AccessibleHypertext) (offset: int) : int =
     (int ((Internal.Gtk4C.zgtk_parent_Gtk_AccessibleHypertext_get_link_at (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_accessible_hypertext_get_type ())) (u32 offset))))
 
   /// Gives a type made with `Glue.subclass` its own `get_n_links`: Retrieve the number of links in the accessible object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetNLinks (gtype: usize) (handler: AccessibleHypertext -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = AccessibleHypertext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler self_))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleHypertext_get_n_links (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_AccessibleHypertext_get_n_links (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieve the number of links in the accessible object.
   let parentGetNLinks (self: AccessibleHypertext) : int =
@@ -15057,13 +15109,14 @@ module AccessibleRange =
     if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.Gtk4C.gtk_accessible_range_get_type ()) then Some (AccessibleRange object.Id) else None
 
   /// Gives a type made with `Glue.subclass` its own `set_current_value`: Sets the current value of the accessible range.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetCurrentValue (gtype: usize) (handler: AccessibleRange -> float -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = AccessibleRange (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let value = Internal.Raw.argFloat 1
         Internal.Raw.returnBool (handler self_ value))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleRange_set_current_value (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_AccessibleRange_set_current_value (Internal.Raw.gtype gtype) zcb)
 
   /// Sets the current value of the accessible range.
   let parentSetCurrentValue (self: AccessibleRange) (value: float) : bool =
@@ -15093,6 +15146,7 @@ module AccessibleText =
     Internal.Gtk4C.gtk_accessible_text_update_selection_bound (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_accessible_text_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `get_attributes`: Retrieves the text attributes inside the accessible object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetAttributes (gtype: usize) (handler: AccessibleText -> int -> cptr -> cptr -> cptr -> (bool * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15104,7 +15158,7 @@ module AccessibleText =
         let (zres, nRanges) = handler self_ offset ranges attributeNames attributeValues
         Internal.Raw.setI64 2 nRanges
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_attributes (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_attributes (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieves the text attributes inside the accessible object.
   let parentGetAttributes (self: AccessibleText) (offset: int) : (bool * list<AccessibleTextRange> * list<string> * list<string>) =
@@ -15117,18 +15171,20 @@ module AccessibleText =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_caret_position`: Retrieves the position of the caret inside the accessible object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetCaretPosition (gtype: usize) (handler: AccessibleText -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = AccessibleText (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler self_))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_caret_position (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_caret_position (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieves the position of the caret inside the accessible object.
   let parentGetCaretPosition (self: AccessibleText) : int =
     (int ((Internal.Gtk4C.zgtk_parent_Gtk_AccessibleText_get_caret_position (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_accessible_text_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `get_contents`: Retrieve the current contents of the accessible object within the given range.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetContents (gtype: usize) (handler: AccessibleText -> int -> int -> GLib.Bytes) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15136,13 +15192,14 @@ module AccessibleText =
         let start = Internal.Raw.argInt 1
         let end = Internal.Raw.argInt 2
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler self_ start end).Id (Internal.GLibC.g_bytes_get_type ())) (Internal.GLibC.g_bytes_get_type ())))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_contents (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_contents (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieve the current contents of the accessible object within the given range.
   let parentGetContents (self: AccessibleText) (start: int) (end: int) : GLib.Bytes =
     GLib.Bytes (Internal.Raw.wrapBoxed ((Internal.Gtk4C.zgtk_parent_Gtk_AccessibleText_get_contents (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_accessible_text_get_type ())) (u32 start) (u32 end))) (Internal.GLibC.g_bytes_get_type ()) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_contents_at`: Retrieve the current contents of the accessible object starting from the given offset, and using the given granularity.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetContentsAt (gtype: usize) (handler: AccessibleText -> int -> AccessibleTextGranularity -> (GLib.Bytes * int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15153,7 +15210,7 @@ module AccessibleText =
         Internal.Raw.setI32 3 start
         Internal.Raw.setI32 4 end
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (zres).Id (Internal.GLibC.g_bytes_get_type ())) (Internal.GLibC.g_bytes_get_type ())))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_contents_at (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_contents_at (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieve the current contents of the accessible object starting from the given offset, and using the given granularity.
   let parentGetContentsAt (self: AccessibleText) (offset: int) (granularity: AccessibleTextGranularity) : (GLib.Bytes * int * int) =
@@ -15164,6 +15221,7 @@ module AccessibleText =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_default_attributes`: Retrieves the default text attributes inside the accessible object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetDefaultAttributes (gtype: usize) (handler: AccessibleText -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15171,7 +15229,7 @@ module AccessibleText =
         let attributeNames = Internal.Raw.argPointer 1
         let attributeValues = Internal.Raw.argPointer 2
         handler self_ attributeNames attributeValues)
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_default_attributes (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_default_attributes (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieves the default text attributes inside the accessible object.
   let parentGetDefaultAttributes (self: AccessibleText) : (list<string> * list<string>) =
@@ -15182,6 +15240,7 @@ module AccessibleText =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_extents`: Obtains the extents of a range of text, in widget coordinates.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetExtents (gtype: usize) (handler: AccessibleText -> int -> int -> Graphene.Rect -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15190,13 +15249,14 @@ module AccessibleText =
         let end = Internal.Raw.argInt 2
         let extents = Graphene.Rect (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.GrapheneC.graphene_rect_get_type ()) false)
         Internal.Raw.returnBool (handler self_ start end extents))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_extents (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_extents (Internal.Raw.gtype gtype) zcb)
 
   /// Obtains the extents of a range of text, in widget coordinates.
   let parentGetExtents (self: AccessibleText) (start: int) (end: int) (extents: Graphene.Rect) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_AccessibleText_get_extents (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_accessible_text_get_type ())) (u32 start) (u32 end) (Internal.Raw.obj extents.Id (Internal.GrapheneC.graphene_rect_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `get_offset`: Gets the text offset at a given point.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetOffset (gtype: usize) (handler: AccessibleText -> Graphene.Point -> (bool * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15205,7 +15265,7 @@ module AccessibleText =
         let (zres, offset) = handler self_ point
         Internal.Raw.setI32 2 offset
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_offset (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_offset (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the text offset at a given point.
   let parentGetOffset (self: AccessibleText) (point: Graphene.Point) : (bool * int) =
@@ -15216,6 +15276,7 @@ module AccessibleText =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_selection`: Retrieves the selection ranges in the accessible object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSelection (gtype: usize) (handler: AccessibleText -> cptr -> (bool * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15224,7 +15285,7 @@ module AccessibleText =
         let (zres, nRanges) = handler self_ ranges
         Internal.Raw.setI64 1 nRanges
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_selection (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_get_selection (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieves the selection ranges in the accessible object.
   let parentGetSelection (self: AccessibleText) : (bool * list<AccessibleTextRange>) =
@@ -15237,19 +15298,21 @@ module AccessibleText =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `set_caret_position`: Sets the caret position.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetCaretPosition (gtype: usize) (handler: AccessibleText -> int -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = AccessibleText (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let offset = Internal.Raw.argInt 1
         Internal.Raw.returnBool (handler self_ offset))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_set_caret_position (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_set_caret_position (Internal.Raw.gtype gtype) zcb)
 
   /// Sets the caret position.
   let parentSetCaretPosition (self: AccessibleText) (offset: int) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_AccessibleText_set_caret_position (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_accessible_text_get_type ())) (u32 offset))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `set_selection`: Sets the caret position.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetSelection (gtype: usize) (handler: AccessibleText -> int -> AccessibleTextRange -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15257,7 +15320,7 @@ module AccessibleText =
         let i = Internal.Raw.argInt 1
         let range = AccessibleTextRange (Internal.Raw.copyPlain (Internal.Raw.argPointer 2) (Internal.Gtk4C.zgtk_sizeof_Gtk_AccessibleTextRange ()) (Internal.Gtk4C.zgtk_tag_Gtk_AccessibleTextRange ()))
         Internal.Raw.returnBool (handler self_ i range))
-    Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_set_selection (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_AccessibleText_set_selection (Internal.Raw.gtype gtype) zcb)
 
   /// Sets the caret position.
   let parentSetSelection (self: AccessibleText) (i: int) (range: AccessibleTextRange) : bool =
@@ -15398,6 +15461,7 @@ module Actionable =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_actionable_get_type ())) "notify::action-target" handler
 
   /// Gives a type made with `Glue.subclass` its own `get_action_name`: Gets the action name for @actionable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetActionName (gtype: usize) (handler: Actionable -> option<string>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15405,13 +15469,14 @@ module Actionable =
         match handler actionable with
         | Some zs -> Internal.Raw.returnPointer (Internal.Raw.intern zs)
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Actionable_get_action_name (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Actionable_get_action_name (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the action name for @actionable.
   let parentGetActionName (self: Actionable) : option<string> =
     Internal.Raw.textOption ((Internal.Gtk4C.zgtk_parent_Gtk_Actionable_get_action_name (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_actionable_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_action_target_value`: Gets the current target value of @actionable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetActionTargetValue (gtype: usize) (handler: Actionable -> option<GLib.Variant>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15419,7 +15484,7 @@ module Actionable =
         match handler actionable with
         | Some zo -> Internal.Raw.returnPointer (Internal.GLibC.zgtk_lend_GLib_Variant (Internal.Raw.obj zo.Id (Internal.GLibC.zgtk_type_GLib_Variant ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Actionable_get_action_target_value (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Actionable_get_action_target_value (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the current target value of @actionable.
   let parentGetActionTargetValue (self: Actionable) : option<GLib.Variant> =
@@ -15428,13 +15493,14 @@ module Actionable =
     (if zid1 = 0 then None else Some (GLib.Variant zid1))
 
   /// Gives a type made with `Glue.subclass` its own `set_action_name`: Specifies the name of the action with which this widget should be associated.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetActionName (gtype: usize) (handler: Actionable -> option<string> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let actionable = Actionable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let actionName = Internal.Raw.textOption (Internal.Raw.argPointer 1)
         handler actionable actionName)
-    Internal.Gtk4C.zgtk_override_Gtk_Actionable_set_action_name (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Actionable_set_action_name (Internal.Raw.gtype gtype) zcb)
 
   /// Specifies the name of the action with which this widget should be associated.
   let parentSetActionName (self: Actionable) (actionName: option<string>) : unit =
@@ -15443,6 +15509,7 @@ module Actionable =
     Internal.Raw.free zs1
 
   /// Gives a type made with `Glue.subclass` its own `set_action_target_value`: Sets the target value of an actionable widget.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetActionTargetValue (gtype: usize) (handler: Actionable -> option<GLib.Variant> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15450,7 +15517,7 @@ module Actionable =
         let zid1 = Internal.GLibC.zgtk_wrap_GLib_Variant (Internal.Raw.argPointer 1) (i32 0)
         let targetValue = (if zid1 = 0 then None else Some (GLib.Variant zid1))
         handler actionable targetValue)
-    Internal.Gtk4C.zgtk_override_Gtk_Actionable_set_action_target_value (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Actionable_set_action_target_value (Internal.Raw.gtype gtype) zcb)
 
   /// Sets the target value of an actionable widget.
   let parentSetActionTargetValue (self: Actionable) (targetValue: option<GLib.Variant>) : unit =
@@ -15621,24 +15688,26 @@ module Adjustment =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_adjustment_get_type ())) "notify::value" handler
 
   /// Gives a type made with `Glue.subclass` its own `changed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChanged (gtype: usize) (handler: Adjustment -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let adjustment = Adjustment (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler adjustment)
-    Internal.Gtk4C.zgtk_override_Gtk_Adjustment_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Adjustment_changed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_Adjustment_changed`.
   let parentChanged (self: Adjustment) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Adjustment_changed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_adjustment_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `value_changed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideValueChanged (gtype: usize) (handler: Adjustment -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let adjustment = Adjustment (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler adjustment)
-    Internal.Gtk4C.zgtk_override_Gtk_Adjustment_value_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Adjustment_value_changed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_Adjustment_value_changed`.
   let parentValueChanged (self: Adjustment) : unit =
@@ -15888,18 +15957,20 @@ module Filter =
       handler change)
 
   /// Gives a type made with `Glue.subclass` its own `get_strictness`: Gets the known strictness of a filter.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetStrictness (gtype: usize) (handler: Filter -> FilterMatch) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = Filter (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler self_).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_Filter_get_strictness (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Filter_get_strictness (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the known strictness of a filter.
   let parentGetStrictness (self: Filter) : FilterMatch =
     FilterMatch (int ((Internal.Gtk4C.zgtk_parent_Gtk_Filter_get_strictness (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_filter_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `match`: Checks if the given @item is matched by the filter or not.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMatch (gtype: usize) (handler: Filter -> option<GObject.Object> -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -15907,7 +15978,7 @@ module Filter =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let item = (if zid1 = 0 then None else Some (GObject.Object zid1))
         Internal.Raw.returnBool (handler self_ item))
-    Internal.Gtk4C.zgtk_override_Gtk_Filter_match (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Filter_match (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if the given @item is matched by the filter or not.
   let parentMatch (self: Filter) (item: option<GObject.Object>) : bool =
@@ -16218,25 +16289,27 @@ module Dialog =
   let getUseHeaderBar (self: Dialog) : int = Internal.Raw.getInt (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_dialog_get_type ())) "use-header-bar"
 
   /// Gives a type made with `Glue.subclass` its own `close`: Signal emitted when the user uses a keybinding to close the dialog.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideClose (gtype: usize) (handler: Dialog -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let dialog = Dialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler dialog)
-    Internal.Gtk4C.zgtk_override_Gtk_Dialog_close (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Dialog_close (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted when the user uses a keybinding to close the dialog.
   let parentClose (self: Dialog) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Dialog_close (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_dialog_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `response`: Deprecated. Emits the ::response signal with the given response ID.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideResponse (gtype: usize) (handler: Dialog -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let dialog = Dialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let responseId = Internal.Raw.argInt 1
         handler dialog responseId)
-    Internal.Gtk4C.zgtk_override_Gtk_Dialog_response (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Dialog_response (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Emits the ::response signal with the given response ID.
   let parentResponse (self: Dialog) (responseId: int) : unit =
@@ -16594,26 +16667,28 @@ module Application =
   let getScreensaverActive (self: Application) : bool = (Internal.Raw.getInt (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_application_get_type ())) "screensaver-active" <> 0)
 
   /// Gives a type made with `Glue.subclass` its own `window_added`: Signal emitted when a `GtkWindow` is added to application through gtk_application_add_window().
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideWindowAdded (gtype: usize) (handler: Application -> Window -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let window = Window (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler application window)
-    Internal.Gtk4C.zgtk_override_Gtk_Application_window_added (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Application_window_added (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted when a `GtkWindow` is added to application through gtk_application_add_window().
   let parentWindowAdded (self: Application) (window: Window) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Application_window_added (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_application_get_type ())) (Internal.Raw.obj window.Id (Internal.Gtk4C.gtk_window_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `window_removed`: Signal emitted when a `GtkWindow` is removed from application, either as a side-effect of being destroyed or explicitly through gtk_application_remove_window().
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideWindowRemoved (gtype: usize) (handler: Application -> Window -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let application = Application (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let window = Window (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler application window)
-    Internal.Gtk4C.zgtk_override_Gtk_Application_window_removed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Application_window_removed (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted when a `GtkWindow` is removed from application, either as a side-effect of being destroyed or explicitly through gtk_application_remove_window().
   let parentWindowRemoved (self: Application) (window: Window) : unit =
@@ -17057,6 +17132,7 @@ module LayoutManager =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `allocate`: Assigns the given @width, @height, and @baseline to a @widget, and computes the position and sizes of the children of the @widget using the layout management policy of @manager.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAllocate (gtype: usize) (handler: LayoutManager -> Widget -> int -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -17066,13 +17142,14 @@ module LayoutManager =
         let height = Internal.Raw.argInt 3
         let baseline = Internal.Raw.argInt 4
         handler manager widget width height baseline)
-    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_allocate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_allocate (Internal.Raw.gtype gtype) zcb)
 
   /// Assigns the given @width, @height, and @baseline to a @widget, and computes the position and sizes of the children of the @widget using the layout management policy of @manager.
   let parentAllocate (self: LayoutManager) (widget: Widget) (width: int) (height: int) (baseline: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_LayoutManager_allocate (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_layout_manager_get_type ())) (Internal.Raw.obj widget.Id (Internal.Gtk4C.gtk_widget_get_type ())) (i32 width) (i32 height) (i32 baseline)
 
   /// Gives a type made with `Glue.subclass` its own `create_layout_child`: Create a `GtkLayoutChild` instance for the given @for_child widget.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCreateLayoutChild (gtype: usize) (handler: LayoutManager -> Widget -> Widget -> LayoutChild) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -17080,26 +17157,28 @@ module LayoutManager =
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let forChild = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler manager widget forChild).Id (Internal.Gtk4C.gtk_layout_child_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_create_layout_child (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_create_layout_child (Internal.Raw.gtype gtype) zcb)
 
   /// Create a `GtkLayoutChild` instance for the given @for_child widget.
   let parentCreateLayoutChild (self: LayoutManager) (widget: Widget) (forChild: Widget) : LayoutChild =
     LayoutChild (Internal.Raw.wrap ((Internal.Gtk4C.zgtk_parent_Gtk_LayoutManager_create_layout_child (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_layout_manager_get_type ())) (Internal.Raw.obj widget.Id (Internal.Gtk4C.gtk_widget_get_type ())) (Internal.Raw.obj forChild.Id (Internal.Gtk4C.gtk_widget_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_request_mode`: a virtual function, used to return the preferred request mode for the layout manager; for instance, "width for height" or "height for width"; see `GtkSizeRequestMode`
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetRequestMode (gtype: usize) (handler: LayoutManager -> Widget -> SizeRequestMode) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let manager = LayoutManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnInt (handler manager widget).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_get_request_mode (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_get_request_mode (Internal.Raw.gtype gtype) zcb)
 
   /// a virtual function, used to return the preferred request mode for the layout manager; for instance, "width for height" or "height for width"; see `GtkSizeRequestMode`
   let parentGetRequestMode (self: LayoutManager) (widget: Widget) : SizeRequestMode =
     SizeRequestMode (int ((Internal.Gtk4C.zgtk_parent_Gtk_LayoutManager_get_request_mode (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_layout_manager_get_type ())) (Internal.Raw.obj widget.Id (Internal.Gtk4C.gtk_widget_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `measure`: Measures the size of the @widget using @manager, for the given @orientation and size.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMeasure (gtype: usize) (handler: LayoutManager -> Widget -> Orientation -> int -> (int * int * int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -17112,7 +17191,7 @@ module LayoutManager =
         Internal.Raw.setI32 5 natural
         Internal.Raw.setI32 6 minimumBaseline
         Internal.Raw.setI32 7 naturalBaseline)
-    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_measure (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_measure (Internal.Raw.gtype gtype) zcb)
 
   /// Measures the size of the @widget using @manager, for the given @orientation and size.
   let parentMeasure (self: LayoutManager) (widget: Widget) (orientation: Orientation) (forSize: int) : (int * int * int * int) =
@@ -17123,24 +17202,26 @@ module LayoutManager =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `root`: a virtual function, called when the widget using the layout manager is attached to a `GtkRoot`
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRoot (gtype: usize) (handler: LayoutManager -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let manager = LayoutManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler manager)
-    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_root (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_root (Internal.Raw.gtype gtype) zcb)
 
   /// a virtual function, called when the widget using the layout manager is attached to a `GtkRoot`
   let parentRoot (self: LayoutManager) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_LayoutManager_root (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_layout_manager_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `unroot`: a virtual function, called when the widget using the layout manager is detached from a `GtkRoot`
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnroot (gtype: usize) (handler: LayoutManager -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let manager = LayoutManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler manager)
-    Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_unroot (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_LayoutManager_unroot (Internal.Raw.gtype gtype) zcb)
 
   /// a virtual function, called when the widget using the layout manager is detached from a `GtkRoot`
   let parentUnroot (self: LayoutManager) : unit =
@@ -18004,6 +18085,7 @@ module BuilderScope =
     if Internal.Raw.isA (Internal.Raw.obj object.Id (usize 0)) (Internal.Gtk4C.gtk_builder_scope_get_type ()) then Some (BuilderScope object.Id) else None
 
   /// Gives a type made with `Glue.subclass` its own `get_type_from_function`: Try to lookup a `GType` via the given function name, specified explicitly in a GtkBuilder file, like via the "type-func" attribute in the `<object>` tag.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetTypeFromFunction (gtype: usize) (handler: BuilderScope -> Builder -> string -> usize) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18011,13 +18093,14 @@ module BuilderScope =
         let builder = Builder (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let functionName = Internal.Raw.text (Internal.Raw.argPointer 2)
         Internal.Raw.returnInt (int (Internal.Raw.gtype (handler self_ builder functionName))))
-    Internal.Gtk4C.zgtk_override_Gtk_BuilderScope_get_type_from_function (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_BuilderScope_get_type_from_function (Internal.Raw.gtype gtype) zcb)
 
   /// Try to lookup a `GType` via the given function name, specified explicitly in a GtkBuilder file, like via the "type-func" attribute in the `<object>` tag.
   let parentGetTypeFromFunction (self: BuilderScope) (builder: Builder) (functionName: string) : usize =
     ((Internal.Gtk4C.zgtk_parent_Gtk_BuilderScope_get_type_from_function (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_builder_scope_get_type ())) (Internal.Raw.obj builder.Id (Internal.Gtk4C.gtk_builder_get_type ())) functionName))
 
   /// Gives a type made with `Glue.subclass` its own `get_type_from_name`: Try to lookup a `GType` via the its name.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetTypeFromName (gtype: usize) (handler: BuilderScope -> Builder -> string -> usize) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18025,7 +18108,7 @@ module BuilderScope =
         let builder = Builder (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let typeName = Internal.Raw.text (Internal.Raw.argPointer 2)
         Internal.Raw.returnInt (int (Internal.Raw.gtype (handler self_ builder typeName))))
-    Internal.Gtk4C.zgtk_override_Gtk_BuilderScope_get_type_from_name (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_BuilderScope_get_type_from_name (Internal.Raw.gtype gtype) zcb)
 
   /// Try to lookup a `GType` via the its name.
   let parentGetTypeFromName (self: BuilderScope) (builder: Builder) (typeName: string) : usize =
@@ -18259,24 +18342,26 @@ module Button =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_button_get_type ())) "notify::use-underline" handler
 
   /// Gives a type made with `Glue.subclass` its own `activate`: Signal that causes the button to animate press then release.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivate (gtype: usize) (handler: Button -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let button = Button (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler button)
-    Internal.Gtk4C.zgtk_override_Gtk_Button_activate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Button_activate (Internal.Raw.gtype gtype) zcb)
 
   /// Signal that causes the button to animate press then release.
   let parentActivate (self: Button) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Button_activate (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_button_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `clicked`: Signal emitted when the button has been activated (pressed and released).
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideClicked (gtype: usize) (handler: Button -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let button = Button (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler button)
-    Internal.Gtk4C.zgtk_override_Gtk_Button_clicked (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Button_clicked (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted when the button has been activated (pressed and released).
   let parentClicked (self: Button) : unit =
@@ -18527,6 +18612,7 @@ module CellLayout =
     Internal.Gtk4C.gtk_cell_layout_set_cell_data_func (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_layout_get_type ())) (Internal.Raw.obj cell.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ())) (Internal.Gtk4C.zgtk_tramp_Gtk_CellLayoutDataFunc ()) zcb1 (Internal.Raw.dropFn ())
 
   /// Gives a type made with `Glue.subclass` its own `add_attribute`: Deprecated. Adds an attribute mapping to the list in @cell_layout.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAddAttribute (gtype: usize) (handler: CellLayout -> CellRenderer -> string -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18535,38 +18621,41 @@ module CellLayout =
         let attribute = Internal.Raw.text (Internal.Raw.argPointer 2)
         let column = Internal.Raw.argInt 3
         handler cellLayout cell attribute column)
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_add_attribute (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellLayout_add_attribute (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Adds an attribute mapping to the list in @cell_layout.
   let parentAddAttribute (self: CellLayout) (cell: CellRenderer) (attribute: string) (column: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellLayout_add_attribute (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_layout_get_type ())) (Internal.Raw.obj cell.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ())) attribute (i32 column)
 
   /// Gives a type made with `Glue.subclass` its own `clear`: Deprecated. Unsets all the mappings on all renderers on @cell_layout and removes all renderers from @cell_layout.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideClear (gtype: usize) (handler: CellLayout -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let cellLayout = CellLayout (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler cellLayout)
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_clear (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellLayout_clear (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Unsets all the mappings on all renderers on @cell_layout and removes all renderers from @cell_layout.
   let parentClear (self: CellLayout) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellLayout_clear (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_layout_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `clear_attributes`: Deprecated. Clears all existing attributes previously set with gtk_cell_layout_set_attributes().
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideClearAttributes (gtype: usize) (handler: CellLayout -> CellRenderer -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let cellLayout = CellLayout (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let cell = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler cellLayout cell)
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_clear_attributes (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellLayout_clear_attributes (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Clears all existing attributes previously set with gtk_cell_layout_set_attributes().
   let parentClearAttributes (self: CellLayout) (cell: CellRenderer) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellLayout_clear_attributes (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_layout_get_type ())) (Internal.Raw.obj cell.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `get_area`: Deprecated. Returns the underlying `GtkCellArea` which might be @cell_layout if called on a `GtkCellArea` or might be %NULL if no `GtkCellArea` is used by @cell_layout.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetArea (gtype: usize) (handler: CellLayout -> option<CellArea>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18574,7 +18663,7 @@ module CellLayout =
         match handler cellLayout with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_cell_area_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_get_area (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellLayout_get_area (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Returns the underlying `GtkCellArea` which might be @cell_layout if called on a `GtkCellArea` or might be %NULL if no `GtkCellArea` is used by @cell_layout.
   let parentGetArea (self: CellLayout) : option<CellArea> =
@@ -18583,18 +18672,20 @@ module CellLayout =
     (if zid1 = 0 then None else Some (CellArea zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_cells`: Deprecated. Returns the cell renderers which have been added to @cell_layout.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetCells (gtype: usize) (handler: CellLayout -> list<CellRenderer>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let cellLayout = CellLayout (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.glist (Internal.Raw.mapList (fun (zo: CellRenderer) -> Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ())) (handler cellLayout)) false))
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_get_cells (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellLayout_get_cells (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Returns the cell renderers which have been added to @cell_layout.
   let parentGetCells (self: CellLayout) : list<CellRenderer> =
     Internal.Raw.mapList (fun zp -> CellRenderer (Internal.Raw.wrap (zp) false)) (Internal.Raw.pointers ((Internal.Gtk4C.zgtk_parent_Gtk_CellLayout_get_cells (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_layout_get_type ())))) false true)
 
   /// Gives a type made with `Glue.subclass` its own `pack_end`: Deprecated. Adds the @cell to the end of @cell_layout.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePackEnd (gtype: usize) (handler: CellLayout -> CellRenderer -> bool -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18602,13 +18693,14 @@ module CellLayout =
         let cell = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let expand = (Internal.Raw.argInt 2 <> 0)
         handler cellLayout cell expand)
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_pack_end (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellLayout_pack_end (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Adds the @cell to the end of @cell_layout.
   let parentPackEnd (self: CellLayout) (cell: CellRenderer) (expand: bool) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellLayout_pack_end (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_layout_get_type ())) (Internal.Raw.obj cell.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ())) (if expand then i32 1 else i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `pack_start`: Deprecated. Packs the @cell into the beginning of @cell_layout.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePackStart (gtype: usize) (handler: CellLayout -> CellRenderer -> bool -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18616,13 +18708,14 @@ module CellLayout =
         let cell = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let expand = (Internal.Raw.argInt 2 <> 0)
         handler cellLayout cell expand)
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_pack_start (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellLayout_pack_start (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Packs the @cell into the beginning of @cell_layout.
   let parentPackStart (self: CellLayout) (cell: CellRenderer) (expand: bool) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellLayout_pack_start (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_layout_get_type ())) (Internal.Raw.obj cell.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ())) (if expand then i32 1 else i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `reorder`: Deprecated. Re-inserts @cell at @position.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideReorder (gtype: usize) (handler: CellLayout -> CellRenderer -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18630,13 +18723,14 @@ module CellLayout =
         let cell = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let position = Internal.Raw.argInt 2
         handler cellLayout cell position)
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_reorder (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellLayout_reorder (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Re-inserts @cell at @position.
   let parentReorder (self: CellLayout) (cell: CellRenderer) (position: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellLayout_reorder (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_layout_get_type ())) (Internal.Raw.obj cell.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ())) (i32 position)
 
   /// Gives a type made with `Glue.subclass` its own `set_cell_data_func`: Deprecated. Sets the `GtkCellLayout`DataFunc to use for @cell_layout.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetCellDataFunc (gtype: usize) (handler: CellLayout -> CellRenderer -> cptr -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18646,7 +18740,7 @@ module CellLayout =
         let funcData = Internal.Raw.argPointer 3
         let destroy = Internal.Raw.argPointer 4
         handler cellLayout cell func funcData destroy)
-    Internal.Gtk4C.zgtk_override_Gtk_CellLayout_set_cell_data_func (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellLayout_set_cell_data_func (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Sets the `GtkCellLayout`DataFunc to use for @cell_layout.
   let parentSetCellDataFunc (self: CellLayout) (cell: CellRenderer) (func: CellLayout -> CellRenderer -> TreeModel -> TreeIter -> unit) : unit =
@@ -18940,6 +19034,7 @@ module CellArea =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_area_get_type ())) "notify::focus-cell" handler
 
   /// Gives a type made with `Glue.subclass` its own `activate`: Deprecated. Activates @area, usually by activating the currently focused cell, however some subclasses which embed widgets in the area can also activate a widget if it currently has the focus.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivate (gtype: usize) (handler: CellArea -> CellAreaContext -> Widget -> Gdk.Rectangle -> CellRendererState -> bool -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18950,26 +19045,28 @@ module CellArea =
         let flags = CellRendererState (int (Internal.Raw.argInt 4))
         let editOnly = (Internal.Raw.argInt 5 <> 0)
         Internal.Raw.returnBool (handler area context widget cellArea flags editOnly))
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_activate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_activate (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Activates @area, usually by activating the currently focused cell, however some subclasses which embed widgets in the area can also activate a widget if it currently has the focus.
   let parentActivate (self: CellArea) (context: CellAreaContext) (widget: Widget) (cellArea: Gdk.Rectangle) (flags: CellRendererState) (editOnly: bool) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_CellArea_activate (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_area_get_type ())) (Internal.Raw.obj context.Id (Internal.Gtk4C.gtk_cell_area_context_get_type ())) (Internal.Raw.obj widget.Id (Internal.Gtk4C.gtk_widget_get_type ())) (Internal.Raw.obj cellArea.Id (Internal.GdkC.gdk_rectangle_get_type ())) (u32 flags.Int) (if editOnly then i32 1 else i32 0))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `add`: Deprecated. Adds @renderer to @area with the default child cell properties.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAdd (gtype: usize) (handler: CellArea -> CellRenderer -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let area = CellArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let renderer = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler area renderer)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_add (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_add (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Adds @renderer to @area with the default child cell properties.
   let parentAdd (self: CellArea) (renderer: CellRenderer) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellArea_add (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_area_get_type ())) (Internal.Raw.obj renderer.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `apply_attributes`: Deprecated. Applies any connected attributes to the renderers in @area by pulling the values from @tree_model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideApplyAttributes (gtype: usize) (handler: CellArea -> TreeModel -> TreeIter -> bool -> bool -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -18979,38 +19076,41 @@ module CellArea =
         let isExpander = (Internal.Raw.argInt 3 <> 0)
         let isExpanded = (Internal.Raw.argInt 4 <> 0)
         handler area treeModel iter isExpander isExpanded)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_apply_attributes (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_apply_attributes (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Applies any connected attributes to the renderers in @area by pulling the values from @tree_model.
   let parentApplyAttributes (self: CellArea) (treeModel: TreeModel) (iter: TreeIter) (isExpander: bool) (isExpanded: bool) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellArea_apply_attributes (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_area_get_type ())) (Internal.Raw.obj treeModel.Id (Internal.Gtk4C.gtk_tree_model_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) (if isExpander then i32 1 else i32 0) (if isExpanded then i32 1 else i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `copy_context`: Deprecated. This is sometimes needed for cases where rows need to share alignments in one orientation but may be separately grouped in the opposing orientation.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCopyContext (gtype: usize) (handler: CellArea -> CellAreaContext -> CellAreaContext) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let area = CellArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let context = CellAreaContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler area context).Id (Internal.Gtk4C.gtk_cell_area_context_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_copy_context (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_copy_context (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. This is sometimes needed for cases where rows need to share alignments in one orientation but may be separately grouped in the opposing orientation.
   let parentCopyContext (self: CellArea) (context: CellAreaContext) : CellAreaContext =
     CellAreaContext (Internal.Raw.wrap ((Internal.Gtk4C.zgtk_parent_Gtk_CellArea_copy_context (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_area_get_type ())) (Internal.Raw.obj context.Id (Internal.Gtk4C.gtk_cell_area_context_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `create_context`: Deprecated. Creates a `GtkCellArea`Context to be used with @area for all purposes.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCreateContext (gtype: usize) (handler: CellArea -> CellAreaContext) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let area = CellArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler area).Id (Internal.Gtk4C.gtk_cell_area_context_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_create_context (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_create_context (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Creates a `GtkCellArea`Context to be used with @area for all purposes.
   let parentCreateContext (self: CellArea) : CellAreaContext =
     CellAreaContext (Internal.Raw.wrap ((Internal.Gtk4C.zgtk_parent_Gtk_CellArea_create_context (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_area_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `event`: Deprecated. Delegates event handling to a `GtkCellArea`.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEvent (gtype: usize) (handler: CellArea -> CellAreaContext -> Widget -> Gdk.Event -> Gdk.Rectangle -> CellRendererState -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19021,26 +19121,28 @@ module CellArea =
         let cellArea = Gdk.Rectangle (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 4) (Internal.GdkC.gdk_rectangle_get_type ()) false)
         let flags = CellRendererState (int (Internal.Raw.argInt 5))
         Internal.Raw.returnInt (handler area context widget event cellArea flags))
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_event (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_event (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Delegates event handling to a `GtkCellArea`.
   let parentEvent (self: CellArea) (context: CellAreaContext) (widget: Widget) (event: Gdk.Event) (cellArea: Gdk.Rectangle) (flags: CellRendererState) : int =
     (int ((Internal.Gtk4C.zgtk_parent_Gtk_CellArea_event (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_area_get_type ())) (Internal.Raw.obj context.Id (Internal.Gtk4C.gtk_cell_area_context_get_type ())) (Internal.Raw.obj widget.Id (Internal.Gtk4C.gtk_widget_get_type ())) (Internal.Raw.obj event.Id (Internal.GdkC.zgtk_type_Gdk_Event ())) (Internal.Raw.obj cellArea.Id (Internal.GdkC.gdk_rectangle_get_type ())) (u32 flags.Int))))
 
   /// Gives a type made with `Glue.subclass` its own `focus`: Deprecated. This should be called by the @area’s owning layout widget when focus is to be passed to @area, or moved within @area for a given @direction and row data.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideFocus (gtype: usize) (handler: CellArea -> DirectionType -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let area = CellArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let direction = DirectionType (int (Internal.Raw.argInt 1))
         Internal.Raw.returnBool (handler area direction))
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_focus (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_focus (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. This should be called by the @area’s owning layout widget when focus is to be passed to @area, or moved within @area for a given @direction and row data.
   let parentFocus (self: CellArea) (direction: DirectionType) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_CellArea_focus (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_area_get_type ())) (i32 direction.Int))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `foreach`: Deprecated. Calls @callback for every `GtkCellRenderer` in @area.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideForeach (gtype: usize) (handler: CellArea -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19048,7 +19150,7 @@ module CellArea =
         let callback = Internal.Raw.argPointer 1
         let callbackData = Internal.Raw.argPointer 2
         handler area callback callbackData)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_foreach (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_foreach (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Calls @callback for every `GtkCellRenderer` in @area.
   let parentForeach (self: CellArea) (callback: CellRenderer -> bool) : unit =
@@ -19060,6 +19162,7 @@ module CellArea =
     Internal.Raw.drop zcb1
 
   /// Gives a type made with `Glue.subclass` its own `foreach_alloc`: Calls @callback for every `GtkCellRenderer` in @area with the allocated rectangle inside @cell_area.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideForeachAlloc (gtype: usize) (handler: CellArea -> CellAreaContext -> Widget -> Gdk.Rectangle -> Gdk.Rectangle -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19071,7 +19174,7 @@ module CellArea =
         let callback = Internal.Raw.argPointer 5
         let callbackData = Internal.Raw.argPointer 6
         handler area context widget cellArea backgroundArea callback callbackData)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_foreach_alloc (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_foreach_alloc (Internal.Raw.gtype gtype) zcb)
 
   /// Calls @callback for every `GtkCellRenderer` in @area with the allocated rectangle inside @cell_area.
   let parentForeachAlloc (self: CellArea) (context: CellAreaContext) (widget: Widget) (cellArea: Gdk.Rectangle) (backgroundArea: Gdk.Rectangle) (callback: CellRenderer -> Gdk.Rectangle -> Gdk.Rectangle -> bool) : unit =
@@ -19085,6 +19188,7 @@ module CellArea =
     Internal.Raw.drop zcb1
 
   /// Gives a type made with `Glue.subclass` its own `get_cell_property`: This should be implemented to report the values of child cell properties for a given child `GtkCellRenderer`.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetCellProperty (gtype: usize) (handler: CellArea -> CellRenderer -> int -> GObject.Value -> GObject.ParamSpec -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19094,13 +19198,14 @@ module CellArea =
         let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.GObjectC.g_value_get_type ()) false)
         let pspec = GObject.ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (Internal.Raw.argPointer 4) (i32 0))
         handler area renderer propertyId value pspec)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_cell_property (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_cell_property (Internal.Raw.gtype gtype) zcb)
 
   /// This should be implemented to report the values of child cell properties for a given child `GtkCellRenderer`.
   let parentGetCellProperty (self: CellArea) (renderer: CellRenderer) (propertyId: int) (value: GObject.Value) (pspec: GObject.ParamSpec) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellArea_get_cell_property (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_area_get_type ())) (Internal.Raw.obj renderer.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ())) (u32 propertyId) (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())) (Internal.Raw.obj pspec.Id (Internal.GObjectC.zgtk_type_GObject_ParamSpec ()))
 
   /// Gives a type made with `Glue.subclass` its own `get_preferred_height`: Deprecated. Retrieves a cell area’s initial minimum and natural height.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetPreferredHeight (gtype: usize) (handler: CellArea -> CellAreaContext -> Widget -> (int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19110,7 +19215,7 @@ module CellArea =
         let (minimumHeight, naturalHeight) = handler area context widget
         Internal.Raw.setI32 3 minimumHeight
         Internal.Raw.setI32 4 naturalHeight)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_height (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_height (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Retrieves a cell area’s initial minimum and natural height.
   let parentGetPreferredHeight (self: CellArea) (context: CellAreaContext) (widget: Widget) : (int * int) =
@@ -19121,6 +19226,7 @@ module CellArea =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_preferred_height_for_width`: Deprecated. Retrieves a cell area’s minimum and natural height if it would be given the specified @width.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetPreferredHeightForWidth (gtype: usize) (handler: CellArea -> CellAreaContext -> Widget -> int -> (int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19131,7 +19237,7 @@ module CellArea =
         let (minimumHeight, naturalHeight) = handler area context widget width
         Internal.Raw.setI32 4 minimumHeight
         Internal.Raw.setI32 5 naturalHeight)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_height_for_width (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_height_for_width (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Retrieves a cell area’s minimum and natural height if it would be given the specified @width.
   let parentGetPreferredHeightForWidth (self: CellArea) (context: CellAreaContext) (widget: Widget) (width: int) : (int * int) =
@@ -19142,6 +19248,7 @@ module CellArea =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_preferred_width`: Deprecated. Retrieves a cell area’s initial minimum and natural width.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetPreferredWidth (gtype: usize) (handler: CellArea -> CellAreaContext -> Widget -> (int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19151,7 +19258,7 @@ module CellArea =
         let (minimumWidth, naturalWidth) = handler area context widget
         Internal.Raw.setI32 3 minimumWidth
         Internal.Raw.setI32 4 naturalWidth)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_width (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_width (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Retrieves a cell area’s initial minimum and natural width.
   let parentGetPreferredWidth (self: CellArea) (context: CellAreaContext) (widget: Widget) : (int * int) =
@@ -19162,6 +19269,7 @@ module CellArea =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_preferred_width_for_height`: Deprecated. Retrieves a cell area’s minimum and natural width if it would be given the specified @height.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetPreferredWidthForHeight (gtype: usize) (handler: CellArea -> CellAreaContext -> Widget -> int -> (int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19172,7 +19280,7 @@ module CellArea =
         let (minimumWidth, naturalWidth) = handler area context widget height
         Internal.Raw.setI32 4 minimumWidth
         Internal.Raw.setI32 5 naturalWidth)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_width_for_height (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_preferred_width_for_height (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Retrieves a cell area’s minimum and natural width if it would be given the specified @height.
   let parentGetPreferredWidthForHeight (self: CellArea) (context: CellAreaContext) (widget: Widget) (height: int) : (int * int) =
@@ -19183,43 +19291,47 @@ module CellArea =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_request_mode`: Gets whether the area prefers a height-for-width layout or a width-for-height layout.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetRequestMode (gtype: usize) (handler: CellArea -> SizeRequestMode) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let area = CellArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler area).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_request_mode (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_get_request_mode (Internal.Raw.gtype gtype) zcb)
 
   /// Gets whether the area prefers a height-for-width layout or a width-for-height layout.
   let parentGetRequestMode (self: CellArea) : SizeRequestMode =
     SizeRequestMode (int ((Internal.Gtk4C.zgtk_parent_Gtk_CellArea_get_request_mode (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_area_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `is_activatable`: Deprecated. Returns whether the area can do anything when activated, after applying new attributes to @area.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsActivatable (gtype: usize) (handler: CellArea -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let area = CellArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler area))
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_is_activatable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_is_activatable (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Returns whether the area can do anything when activated, after applying new attributes to @area.
   let parentIsActivatable (self: CellArea) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_CellArea_is_activatable (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_area_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `remove`: Deprecated. Removes @renderer from @area.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRemove (gtype: usize) (handler: CellArea -> CellRenderer -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let area = CellArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let renderer = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler area renderer)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_remove (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_remove (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Removes @renderer from @area.
   let parentRemove (self: CellArea) (renderer: CellRenderer) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellArea_remove (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_area_get_type ())) (Internal.Raw.obj renderer.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `set_cell_property`: This should be implemented to handle changes in child cell properties for a given `GtkCellRenderer` that were previously installed on the `GtkCellAreaClass` with gtk_cell_area_class_install_cell_property().
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetCellProperty (gtype: usize) (handler: CellArea -> CellRenderer -> int -> GObject.Value -> GObject.ParamSpec -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19229,13 +19341,14 @@ module CellArea =
         let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.GObjectC.g_value_get_type ()) false)
         let pspec = GObject.ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (Internal.Raw.argPointer 4) (i32 0))
         handler area renderer propertyId value pspec)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_set_cell_property (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_set_cell_property (Internal.Raw.gtype gtype) zcb)
 
   /// This should be implemented to handle changes in child cell properties for a given `GtkCellRenderer` that were previously installed on the `GtkCellAreaClass` with gtk_cell_area_class_install_cell_property().
   let parentSetCellProperty (self: CellArea) (renderer: CellRenderer) (propertyId: int) (value: GObject.Value) (pspec: GObject.ParamSpec) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellArea_set_cell_property (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_area_get_type ())) (Internal.Raw.obj renderer.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ())) (u32 propertyId) (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())) (Internal.Raw.obj pspec.Id (Internal.GObjectC.zgtk_type_GObject_ParamSpec ()))
 
   /// Gives a type made with `Glue.subclass` its own `snapshot`: Deprecated. Snapshots @area’s cells according to @area’s layout onto at the given coordinates.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSnapshot (gtype: usize) (handler: CellArea -> CellAreaContext -> Widget -> Snapshot -> Gdk.Rectangle -> Gdk.Rectangle -> CellRendererState -> bool -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19248,7 +19361,7 @@ module CellArea =
         let flags = CellRendererState (int (Internal.Raw.argInt 6))
         let paintFocus = (Internal.Raw.argInt 7 <> 0)
         handler area context widget snapshot backgroundArea cellArea flags paintFocus)
-    Internal.Gtk4C.zgtk_override_Gtk_CellArea_snapshot (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellArea_snapshot (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Snapshots @area’s cells according to @area’s layout onto at the given coordinates.
   let parentSnapshot (self: CellArea) (context: CellAreaContext) (widget: Widget) (snapshot: Snapshot) (backgroundArea: Gdk.Rectangle) (cellArea: Gdk.Rectangle) (flags: CellRendererState) (paintFocus: bool) : unit =
@@ -19429,6 +19542,7 @@ module CellAreaContext =
   let getNaturalWidth (self: CellAreaContext) : int = Internal.Raw.getInt (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_area_context_get_type ())) "natural-width"
 
   /// Gives a type made with `Glue.subclass` its own `allocate`: Deprecated. Allocates a width and/or a height for all rows which are to be rendered with @context.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAllocate (gtype: usize) (handler: CellAreaContext -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19436,13 +19550,14 @@ module CellAreaContext =
         let width = Internal.Raw.argInt 1
         let height = Internal.Raw.argInt 2
         handler context width height)
-    Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_allocate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_allocate (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Allocates a width and/or a height for all rows which are to be rendered with @context.
   let parentAllocate (self: CellAreaContext) (width: int) (height: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellAreaContext_allocate (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_area_context_get_type ())) (i32 width) (i32 height)
 
   /// Gives a type made with `Glue.subclass` its own `get_preferred_height_for_width`: Deprecated. Gets the accumulative preferred height for @width for all rows which have been requested for the same said @width with this context.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetPreferredHeightForWidth (gtype: usize) (handler: CellAreaContext -> int -> (int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19451,7 +19566,7 @@ module CellAreaContext =
         let (minimumHeight, naturalHeight) = handler context width
         Internal.Raw.setI32 2 minimumHeight
         Internal.Raw.setI32 3 naturalHeight)
-    Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_get_preferred_height_for_width (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_get_preferred_height_for_width (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Gets the accumulative preferred height for @width for all rows which have been requested for the same said @width with this context.
   let parentGetPreferredHeightForWidth (self: CellAreaContext) (width: int) : (int * int) =
@@ -19462,6 +19577,7 @@ module CellAreaContext =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_preferred_width_for_height`: Deprecated. Gets the accumulative preferred width for @height for all rows which have been requested for the same said @height with this context.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetPreferredWidthForHeight (gtype: usize) (handler: CellAreaContext -> int -> (int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19470,7 +19586,7 @@ module CellAreaContext =
         let (minimumWidth, naturalWidth) = handler context height
         Internal.Raw.setI32 2 minimumWidth
         Internal.Raw.setI32 3 naturalWidth)
-    Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_get_preferred_width_for_height (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_get_preferred_width_for_height (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Gets the accumulative preferred width for @height for all rows which have been requested for the same said @height with this context.
   let parentGetPreferredWidthForHeight (self: CellAreaContext) (height: int) : (int * int) =
@@ -19481,12 +19597,13 @@ module CellAreaContext =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `reset`: Deprecated. Resets any previously cached request and allocation data.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideReset (gtype: usize) (handler: CellAreaContext -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = CellAreaContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_reset (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellAreaContext_reset (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Resets any previously cached request and allocation data.
   let parentReset (self: CellAreaContext) : unit =
@@ -19538,30 +19655,33 @@ module CellEditable =
   let setEditingCanceled (self: CellEditable) (value: bool) : unit = Internal.Raw.setInt (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_editable_get_type ())) "editing-canceled" (if value then 1 else 0)
 
   /// Gives a type made with `Glue.subclass` its own `editing_done`: Deprecated. Emits the `GtkCellEditable::editing-done` signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEditingDone (gtype: usize) (handler: CellEditable -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let cellEditable = CellEditable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler cellEditable)
-    Internal.Gtk4C.zgtk_override_Gtk_CellEditable_editing_done (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellEditable_editing_done (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Emits the `GtkCellEditable::editing-done` signal.
   let parentEditingDone (self: CellEditable) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellEditable_editing_done (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_editable_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `remove_widget`: Deprecated. Emits the `GtkCellEditable::remove-widget` signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRemoveWidget (gtype: usize) (handler: CellEditable -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let cellEditable = CellEditable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler cellEditable)
-    Internal.Gtk4C.zgtk_override_Gtk_CellEditable_remove_widget (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellEditable_remove_widget (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Emits the `GtkCellEditable::remove-widget` signal.
   let parentRemoveWidget (self: CellEditable) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellEditable_remove_widget (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_editable_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `start_editing`: Begins editing on a @cell_editable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideStartEditing (gtype: usize) (handler: CellEditable -> option<Gdk.Event> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19569,7 +19689,7 @@ module CellEditable =
         let zid1 = Internal.GdkC.zgtk_wrap_Gdk_Event (Internal.Raw.argPointer 1) (i32 0)
         let event = (if zid1 = 0 then None else Some (Gdk.Event zid1))
         handler cellEditable event)
-    Internal.Gtk4C.zgtk_override_Gtk_CellEditable_start_editing (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellEditable_start_editing (Internal.Raw.gtype gtype) zcb)
 
   /// Begins editing on a @cell_editable.
   let parentStartEditing (self: CellEditable) (event: option<Gdk.Event>) : unit =
@@ -19871,6 +19991,7 @@ module CellRenderer =
   let setYpad (self: CellRenderer) (value: int) : unit = Internal.Raw.setInt (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ())) "ypad" value
 
   /// Gives a type made with `Glue.subclass` its own `activate`: Deprecated. Passes an activate event to the cell renderer for possible processing.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivate (gtype: usize) (handler: CellRenderer -> Gdk.Event -> Widget -> string -> Gdk.Rectangle -> Gdk.Rectangle -> CellRendererState -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19882,25 +20003,27 @@ module CellRenderer =
         let cellArea = Gdk.Rectangle (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 5) (Internal.GdkC.gdk_rectangle_get_type ()) false)
         let flags = CellRendererState (int (Internal.Raw.argInt 6))
         Internal.Raw.returnBool (handler cell event widget path backgroundArea cellArea flags))
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_activate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_activate (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Passes an activate event to the cell renderer for possible processing.
   let parentActivate (self: CellRenderer) (event: Gdk.Event) (widget: Widget) (path: string) (backgroundArea: Gdk.Rectangle) (cellArea: Gdk.Rectangle) (flags: CellRendererState) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_CellRenderer_activate (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ())) (Internal.Raw.obj event.Id (Internal.GdkC.zgtk_type_Gdk_Event ())) (Internal.Raw.obj widget.Id (Internal.Gtk4C.gtk_widget_get_type ())) path (Internal.Raw.obj backgroundArea.Id (Internal.GdkC.gdk_rectangle_get_type ())) (Internal.Raw.obj cellArea.Id (Internal.GdkC.gdk_rectangle_get_type ())) (u32 flags.Int))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `editing_canceled`: Signal gets emitted when the user cancels the process of editing a cell.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEditingCanceled (gtype: usize) (handler: CellRenderer -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let cell = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler cell)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_editing_canceled (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_editing_canceled (Internal.Raw.gtype gtype) zcb)
 
   /// Signal gets emitted when the user cancels the process of editing a cell.
   let parentEditingCanceled (self: CellRenderer) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellRenderer_editing_canceled (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `editing_started`: Signal gets emitted when a cell starts to be edited.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEditingStarted (gtype: usize) (handler: CellRenderer -> CellEditable -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19908,13 +20031,14 @@ module CellRenderer =
         let editable = CellEditable (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let path = Internal.Raw.text (Internal.Raw.argPointer 2)
         handler cell editable path)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_editing_started (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_editing_started (Internal.Raw.gtype gtype) zcb)
 
   /// Signal gets emitted when a cell starts to be edited.
   let parentEditingStarted (self: CellRenderer) (editable: CellEditable) (path: string) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellRenderer_editing_started (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ())) (Internal.Raw.obj editable.Id (Internal.Gtk4C.gtk_cell_editable_get_type ())) path
 
   /// Gives a type made with `Glue.subclass` its own `get_aligned_area`: Deprecated. Gets the aligned area used by @cell inside @cell_area.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetAlignedArea (gtype: usize) (handler: CellRenderer -> Widget -> CellRendererState -> Gdk.Rectangle -> Gdk.Rectangle) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19924,7 +20048,7 @@ module CellRenderer =
         let cellArea = Gdk.Rectangle (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.GdkC.gdk_rectangle_get_type ()) false)
         let alignedArea = handler cell widget flags cellArea
         Internal.Raw.setRecord 4 (Internal.Raw.obj alignedArea.Id (Internal.GdkC.gdk_rectangle_get_type ())) (Internal.GdkC.zgtk_sizeof_Gdk_Rectangle ()))
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_aligned_area (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_aligned_area (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Gets the aligned area used by @cell inside @cell_area.
   let parentGetAlignedArea (self: CellRenderer) (widget: Widget) (flags: CellRendererState) (cellArea: Gdk.Rectangle) : Gdk.Rectangle =
@@ -19933,6 +20057,7 @@ module CellRenderer =
     Gdk.Rectangle zo1
 
   /// Gives a type made with `Glue.subclass` its own `get_preferred_height`: Deprecated. Retrieves a renderer’s natural size when rendered to @widget.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetPreferredHeight (gtype: usize) (handler: CellRenderer -> Widget -> (int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19941,7 +20066,7 @@ module CellRenderer =
         let (minimumSize, naturalSize) = handler cell widget
         Internal.Raw.setI32 2 minimumSize
         Internal.Raw.setI32 3 naturalSize)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_height (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_height (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Retrieves a renderer’s natural size when rendered to @widget.
   let parentGetPreferredHeight (self: CellRenderer) (widget: Widget) : (int * int) =
@@ -19952,6 +20077,7 @@ module CellRenderer =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_preferred_height_for_width`: Deprecated. Retrieves a cell renderers’s minimum and natural height if it were rendered to @widget with the specified @width.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetPreferredHeightForWidth (gtype: usize) (handler: CellRenderer -> Widget -> int -> (int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19961,7 +20087,7 @@ module CellRenderer =
         let (minimumHeight, naturalHeight) = handler cell widget width
         Internal.Raw.setI32 3 minimumHeight
         Internal.Raw.setI32 4 naturalHeight)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_height_for_width (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_height_for_width (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Retrieves a cell renderers’s minimum and natural height if it were rendered to @widget with the specified @width.
   let parentGetPreferredHeightForWidth (self: CellRenderer) (widget: Widget) (width: int) : (int * int) =
@@ -19972,6 +20098,7 @@ module CellRenderer =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_preferred_width`: Deprecated. Retrieves a renderer’s natural size when rendered to @widget.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetPreferredWidth (gtype: usize) (handler: CellRenderer -> Widget -> (int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -19980,7 +20107,7 @@ module CellRenderer =
         let (minimumSize, naturalSize) = handler cell widget
         Internal.Raw.setI32 2 minimumSize
         Internal.Raw.setI32 3 naturalSize)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_width (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_width (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Retrieves a renderer’s natural size when rendered to @widget.
   let parentGetPreferredWidth (self: CellRenderer) (widget: Widget) : (int * int) =
@@ -19991,6 +20118,7 @@ module CellRenderer =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_preferred_width_for_height`: Deprecated. Retrieves a cell renderers’s minimum and natural width if it were rendered to @widget with the specified @height.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetPreferredWidthForHeight (gtype: usize) (handler: CellRenderer -> Widget -> int -> (int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -20000,7 +20128,7 @@ module CellRenderer =
         let (minimumWidth, naturalWidth) = handler cell widget height
         Internal.Raw.setI32 3 minimumWidth
         Internal.Raw.setI32 4 naturalWidth)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_width_for_height (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_preferred_width_for_height (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Retrieves a cell renderers’s minimum and natural width if it were rendered to @widget with the specified @height.
   let parentGetPreferredWidthForHeight (self: CellRenderer) (widget: Widget) (height: int) : (int * int) =
@@ -20011,18 +20139,20 @@ module CellRenderer =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_request_mode`: Deprecated. Gets whether the cell renderer prefers a height-for-width layout or a width-for-height layout.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetRequestMode (gtype: usize) (handler: CellRenderer -> SizeRequestMode) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let cell = CellRenderer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler cell).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_request_mode (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_get_request_mode (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Gets whether the cell renderer prefers a height-for-width layout or a width-for-height layout.
   let parentGetRequestMode (self: CellRenderer) : SizeRequestMode =
     SizeRequestMode (int ((Internal.Gtk4C.zgtk_parent_Gtk_CellRenderer_get_request_mode (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `snapshot`: Deprecated. Invokes the virtual render function of the `GtkCellRenderer`.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSnapshot (gtype: usize) (handler: CellRenderer -> Snapshot -> Widget -> Gdk.Rectangle -> Gdk.Rectangle -> CellRendererState -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -20033,13 +20163,14 @@ module CellRenderer =
         let cellArea = Gdk.Rectangle (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 4) (Internal.GdkC.gdk_rectangle_get_type ()) false)
         let flags = CellRendererState (int (Internal.Raw.argInt 5))
         handler cell snapshot widget backgroundArea cellArea flags)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_snapshot (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_snapshot (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Invokes the virtual render function of the `GtkCellRenderer`.
   let parentSnapshot (self: CellRenderer) (snapshot: Snapshot) (widget: Widget) (backgroundArea: Gdk.Rectangle) (cellArea: Gdk.Rectangle) (flags: CellRendererState) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CellRenderer_snapshot (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_renderer_get_type ())) (Internal.Raw.obj snapshot.Id (Internal.Gtk4C.gtk_snapshot_get_type ())) (Internal.Raw.obj widget.Id (Internal.Gtk4C.gtk_widget_get_type ())) (Internal.Raw.obj backgroundArea.Id (Internal.GdkC.gdk_rectangle_get_type ())) (Internal.Raw.obj cellArea.Id (Internal.GdkC.gdk_rectangle_get_type ())) (u32 flags.Int)
 
   /// Gives a type made with `Glue.subclass` its own `start_editing`: Deprecated. Starts editing the contents of this @cell, through a new `GtkCellEditable` widget created by the `GtkCellRenderer`Class.start_editing virtual function.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideStartEditing (gtype: usize) (handler: CellRenderer -> option<Gdk.Event> -> Widget -> string -> Gdk.Rectangle -> Gdk.Rectangle -> CellRendererState -> option<CellEditable>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -20054,7 +20185,7 @@ module CellRenderer =
         match handler cell event widget path backgroundArea cellArea flags with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_cell_editable_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_start_editing (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellRenderer_start_editing (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Starts editing the contents of this @cell, through a new `GtkCellEditable` widget created by the `GtkCellRenderer`Class.start_editing virtual function.
   let parentStartEditing (self: CellRenderer) (event: option<Gdk.Event>) (widget: Widget) (path: string) (backgroundArea: Gdk.Rectangle) (cellArea: Gdk.Rectangle) (flags: CellRendererState) : option<CellEditable> =
@@ -20526,6 +20657,7 @@ module CellRendererText =
   let setWrapWidth (self: CellRendererText) (value: int) : unit = Internal.Raw.setInt (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_cell_renderer_text_get_type ())) "wrap-width" value
 
   /// Gives a type made with `Glue.subclass` its own `edited`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEdited (gtype: usize) (handler: CellRendererText -> string -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -20533,7 +20665,7 @@ module CellRendererText =
         let path = Internal.Raw.text (Internal.Raw.argPointer 1)
         let newText = Internal.Raw.text (Internal.Raw.argPointer 2)
         handler cellRendererText path newText)
-    Internal.Gtk4C.zgtk_override_Gtk_CellRendererText_edited (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CellRendererText_edited (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_CellRendererText_edited`.
   let parentEdited (self: CellRendererText) (path: string) (newText: string) : unit =
@@ -21504,24 +21636,26 @@ module CheckButton =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_check_button_get_type ())) "notify::use-underline" handler
 
   /// Gives a type made with `Glue.subclass` its own `activate`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivate (gtype: usize) (handler: CheckButton -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let checkButton = CheckButton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler checkButton)
-    Internal.Gtk4C.zgtk_override_Gtk_CheckButton_activate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CheckButton_activate (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_CheckButton_activate`.
   let parentActivate (self: CheckButton) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_CheckButton_activate (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_check_button_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `toggled`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideToggled (gtype: usize) (handler: CheckButton -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let checkButton = CheckButton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler checkButton)
-    Internal.Gtk4C.zgtk_override_Gtk_CheckButton_toggled (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_CheckButton_toggled (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_CheckButton_toggled`.
   let parentToggled (self: CheckButton) : unit =
@@ -21586,6 +21720,7 @@ module ColorChooser =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_color_chooser_get_type ())) "notify::use-alpha" handler
 
   /// Gives a type made with `Glue.subclass` its own `add_palette`: Deprecated. Adds a palette to the color chooser.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAddPalette (gtype: usize) (handler: ColorChooser -> Orientation -> int -> int -> list<Gdk.RGBA> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -21596,7 +21731,7 @@ module ColorChooser =
         let zrs2 = Internal.Raw.mapList (fun zp -> Gdk.RGBA (Internal.Raw.wrapBoxed (zp) (Internal.GdkC.gdk_rgba_get_type ()) false)) (Internal.Raw.recordsOf (Internal.Raw.argPointer 4) ((Internal.Raw.argInt 2)) (Internal.GdkC.zgtk_sizeof_Gdk_RGBA ()))
         let colors = zrs2
         handler chooser orientation colorsPerLine nColors colors)
-    Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_add_palette (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_add_palette (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Adds a palette to the color chooser.
   let parentAddPalette (self: ColorChooser) (orientation: Orientation) (colorsPerLine: int) (colors: list<Gdk.RGBA>) : unit =
@@ -21605,26 +21740,28 @@ module ColorChooser =
     Internal.Raw.free za2
 
   /// Gives a type made with `Glue.subclass` its own `color_activated`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideColorActivated (gtype: usize) (handler: ColorChooser -> Gdk.RGBA -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let chooser = ColorChooser (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let color = Gdk.RGBA (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GdkC.gdk_rgba_get_type ()) false)
         handler chooser color)
-    Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_color_activated (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_color_activated (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_ColorChooser_color_activated`.
   let parentColorActivated (self: ColorChooser) (color: Gdk.RGBA) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_ColorChooser_color_activated (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_color_chooser_get_type ())) (Internal.Raw.obj color.Id (Internal.GdkC.gdk_rgba_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `get_rgba`: Deprecated. Gets the currently-selected color.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetRgba (gtype: usize) (handler: ColorChooser -> Gdk.RGBA) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let chooser = ColorChooser (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let color = handler chooser
         Internal.Raw.setRecord 1 (Internal.Raw.obj color.Id (Internal.GdkC.gdk_rgba_get_type ())) (Internal.GdkC.zgtk_sizeof_Gdk_RGBA ()))
-    Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_get_rgba (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_get_rgba (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Gets the currently-selected color.
   let parentGetRgba (self: ColorChooser) : Gdk.RGBA =
@@ -21633,13 +21770,14 @@ module ColorChooser =
     Gdk.RGBA zo1
 
   /// Gives a type made with `Glue.subclass` its own `set_rgba`: Deprecated. Sets the color.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetRgba (gtype: usize) (handler: ColorChooser -> Gdk.RGBA -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let chooser = ColorChooser (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let color = Gdk.RGBA (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GdkC.gdk_rgba_get_type ()) false)
         handler chooser color)
-    Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_set_rgba (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_ColorChooser_set_rgba (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Sets the color.
   let parentSetRgba (self: ColorChooser) (color: Gdk.RGBA) : unit =
@@ -22071,6 +22209,7 @@ module Scrollable =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_scrollable_get_type ())) "notify::vscroll-policy" handler
 
   /// Gives a type made with `Glue.subclass` its own `get_border`: Returns the size of a non-scrolling border around the outside of the scrollable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetBorder (gtype: usize) (handler: Scrollable -> (bool * Border)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22078,7 +22217,7 @@ module Scrollable =
         let (zres, border) = handler scrollable
         Internal.Raw.setRecord 1 (Internal.Raw.obj border.Id (Internal.Gtk4C.gtk_border_get_type ())) (Internal.Gtk4C.zgtk_sizeof_Gtk_Border ())
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_Scrollable_get_border (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Scrollable_get_border (Internal.Raw.gtype gtype) zcb)
 
   /// Returns the size of a non-scrolling border around the outside of the scrollable.
   let parentGetBorder (self: Scrollable) : (bool * Border) =
@@ -22781,6 +22920,7 @@ module Sorter =
       handler change)
 
   /// Gives a type made with `Glue.subclass` its own `compare`: Compares two given items according to the sort order implemented by the sorter.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCompare (gtype: usize) (handler: Sorter -> option<GObject.Object> -> option<GObject.Object> -> Ordering) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -22790,7 +22930,7 @@ module Sorter =
         let zid2 = Internal.Raw.wrap (Internal.Raw.argPointer 2) false
         let item2 = (if zid2 = 0 then None else Some (GObject.Object zid2))
         Internal.Raw.returnInt (handler self_ item1 item2).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_Sorter_compare (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Sorter_compare (Internal.Raw.gtype gtype) zcb)
 
   /// Compares two given items according to the sort order implemented by the sorter.
   let parentCompare (self: Sorter) (item1: option<GObject.Object>) (item2: option<GObject.Object>) : Ordering =
@@ -22806,12 +22946,13 @@ module Sorter =
     Ordering (int (zr))
 
   /// Gives a type made with `Glue.subclass` its own `get_order`: Gets the order that @self conforms to.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetOrder (gtype: usize) (handler: Sorter -> SorterOrder) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = Sorter (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler self_).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_Sorter_get_order (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Sorter_get_order (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the order that @self conforms to.
   let parentGetOrder (self: Sorter) : SorterOrder =
@@ -23116,37 +23257,40 @@ module ComboBox =
   let getPopupShown (self: ComboBox) : bool = (Internal.Raw.getInt (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_combo_box_get_type ())) "popup-shown" <> 0)
 
   /// Gives a type made with `Glue.subclass` its own `activate`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivate (gtype: usize) (handler: ComboBox -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let comboBox = ComboBox (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler comboBox)
-    Internal.Gtk4C.zgtk_override_Gtk_ComboBox_activate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_ComboBox_activate (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_ComboBox_activate`.
   let parentActivate (self: ComboBox) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_ComboBox_activate (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_combo_box_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `changed`: Signal is emitted when the active item is changed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChanged (gtype: usize) (handler: ComboBox -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let comboBox = ComboBox (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler comboBox)
-    Internal.Gtk4C.zgtk_override_Gtk_ComboBox_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_ComboBox_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Signal is emitted when the active item is changed.
   let parentChanged (self: ComboBox) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_ComboBox_changed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_combo_box_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `format_entry_text`: Signal which allows you to change how the text displayed in a combo box’s entry is displayed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideFormatEntryText (gtype: usize) (handler: ComboBox -> string -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let comboBox = ComboBox (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let path = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnPointer (Internal.Raw.dup (handler comboBox path)))
-    Internal.Gtk4C.zgtk_override_Gtk_ComboBox_format_entry_text (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_ComboBox_format_entry_text (Internal.Raw.gtype gtype) zcb)
 
   /// Signal which allows you to change how the text displayed in a combo box’s entry is displayed.
   let parentFormatEntryText (self: ComboBox) (path: string) : string =
@@ -24555,6 +24699,7 @@ module DrawingArea =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_drawing_area_get_type ())) "notify::content-width" handler
 
   /// Gives a type made with `Glue.subclass` its own `resize`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideResize (gtype: usize) (handler: DrawingArea -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -24562,7 +24707,7 @@ module DrawingArea =
         let width = Internal.Raw.argInt 1
         let height = Internal.Raw.argInt 2
         handler area width height)
-    Internal.Gtk4C.zgtk_override_Gtk_DrawingArea_resize (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_DrawingArea_resize (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_DrawingArea_resize`.
   let parentResize (self: DrawingArea) (width: int) (height: int) : unit =
@@ -25241,18 +25386,20 @@ module Editable =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_editable_get_type ())) "notify::xalign" handler
 
   /// Gives a type made with `Glue.subclass` its own `changed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChanged (gtype: usize) (handler: Editable -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let editable = Editable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler editable)
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Editable_changed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_Editable_changed`.
   let parentChanged (self: Editable) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Editable_changed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_editable_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `delete_text`: Deletes a sequence of characters.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDeleteText (gtype: usize) (handler: Editable -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -25260,13 +25407,14 @@ module Editable =
         let startPos = Internal.Raw.argInt 1
         let endPos = Internal.Raw.argInt 2
         handler editable startPos endPos)
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_delete_text (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Editable_delete_text (Internal.Raw.gtype gtype) zcb)
 
   /// Deletes a sequence of characters.
   let parentDeleteText (self: Editable) (startPos: int) (endPos: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Editable_delete_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_editable_get_type ())) (i32 startPos) (i32 endPos)
 
   /// Gives a type made with `Glue.subclass` its own `do_delete_text`: Deletes a sequence of characters.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDoDeleteText (gtype: usize) (handler: Editable -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -25274,13 +25422,14 @@ module Editable =
         let startPos = Internal.Raw.argInt 1
         let endPos = Internal.Raw.argInt 2
         handler editable startPos endPos)
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_do_delete_text (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Editable_do_delete_text (Internal.Raw.gtype gtype) zcb)
 
   /// Deletes a sequence of characters.
   let parentDoDeleteText (self: Editable) (startPos: int) (endPos: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Editable_do_delete_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_editable_get_type ())) (i32 startPos) (i32 endPos)
 
   /// Gives a type made with `Glue.subclass` its own `do_insert_text`: Inserts @length bytes of @text into the contents of the widget, at position @position.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDoInsertText (gtype: usize) (handler: Editable -> string -> int -> int -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -25290,7 +25439,7 @@ module Editable =
         let position = Internal.Raw.getI32 3
         let positionAfter = handler editable text length position
         Internal.Raw.setI32 3 positionAfter)
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_do_insert_text (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Editable_do_insert_text (Internal.Raw.gtype gtype) zcb)
 
   /// Inserts @length bytes of @text into the contents of the widget, at position @position.
   let parentDoInsertText (self: Editable) (text: string) (length: int) (position: int) : int =
@@ -25302,6 +25451,7 @@ module Editable =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_delegate`: Gets the `GtkEditable` that @editable is delegating its implementation to.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetDelegate (gtype: usize) (handler: Editable -> option<Editable>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -25309,7 +25459,7 @@ module Editable =
         match handler editable with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.Gtk4C.gtk_editable_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_get_delegate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Editable_get_delegate (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the `GtkEditable` that @editable is delegating its implementation to.
   let parentGetDelegate (self: Editable) : option<Editable> =
@@ -25318,6 +25468,7 @@ module Editable =
     (if zid1 = 0 then None else Some (Editable zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_selection_bounds`: Retrieves the selection bound of the editable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSelectionBounds (gtype: usize) (handler: Editable -> (bool * int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -25326,7 +25477,7 @@ module Editable =
         Internal.Raw.setI32 1 startPos
         Internal.Raw.setI32 2 endPos
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_get_selection_bounds (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Editable_get_selection_bounds (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieves the selection bound of the editable.
   let parentGetSelectionBounds (self: Editable) : (bool * int * int) =
@@ -25337,18 +25488,20 @@ module Editable =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_text`: Retrieves the contents of @editable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetText (gtype: usize) (handler: Editable -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let editable = Editable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler editable)))
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_get_text (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Editable_get_text (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieves the contents of @editable.
   let parentGetText (self: Editable) : string =
     Internal.Raw.text ((Internal.Gtk4C.zgtk_parent_Gtk_Editable_get_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_editable_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `insert_text`: Inserts @length bytes of @text into the contents of the widget, at position @position.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInsertText (gtype: usize) (handler: Editable -> string -> int -> int -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -25358,7 +25511,7 @@ module Editable =
         let position = Internal.Raw.getI32 3
         let positionAfter = handler editable text length position
         Internal.Raw.setI32 3 positionAfter)
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_insert_text (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Editable_insert_text (Internal.Raw.gtype gtype) zcb)
 
   /// Inserts @length bytes of @text into the contents of the widget, at position @position.
   let parentInsertText (self: Editable) (text: string) (length: int) (position: int) : int =
@@ -25370,6 +25523,7 @@ module Editable =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `set_selection_bounds`: Selects a region of text.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetSelectionBounds (gtype: usize) (handler: Editable -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -25377,7 +25531,7 @@ module Editable =
         let startPos = Internal.Raw.argInt 1
         let endPos = Internal.Raw.argInt 2
         handler editable startPos endPos)
-    Internal.Gtk4C.zgtk_override_Gtk_Editable_set_selection_bounds (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Editable_set_selection_bounds (Internal.Raw.gtype gtype) zcb)
 
   /// Selects a region of text.
   let parentSetSelectionBounds (self: Editable) (startPos: int) (endPos: int) : unit =
@@ -25617,24 +25771,26 @@ module Popover =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_popover_get_type ())) "notify::position" handler
 
   /// Gives a type made with `Glue.subclass` its own `activate_default`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivateDefault (gtype: usize) (handler: Popover -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let popover = Popover (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler popover)
-    Internal.Gtk4C.zgtk_override_Gtk_Popover_activate_default (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Popover_activate_default (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_Popover_activate_default`.
   let parentActivateDefault (self: Popover) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Popover_activate_default (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_popover_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `closed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideClosed (gtype: usize) (handler: Popover -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let popover = Popover (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler popover)
-    Internal.Gtk4C.zgtk_override_Gtk_Popover_closed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Popover_closed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_Popover_closed`.
   let parentClosed (self: Popover) : unit =
@@ -26331,12 +26487,13 @@ module Entry =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_get_type ())) "notify::visibility" handler
 
   /// Gives a type made with `Glue.subclass` its own `activate`: Class handler for the `GtkEntry::activate` signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivate (gtype: usize) (handler: Entry -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let entry = Entry (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler entry)
-    Internal.Gtk4C.zgtk_override_Gtk_Entry_activate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Entry_activate (Internal.Raw.gtype gtype) zcb)
 
   /// Class handler for the `GtkEntry::activate` signal.
   let parentActivate (self: Entry) : unit =
@@ -26429,6 +26586,7 @@ module EntryBuffer =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())) "notify::text" handler
 
   /// Gives a type made with `Glue.subclass` its own `delete_text`: Deletes a sequence of characters from the buffer.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDeleteText (gtype: usize) (handler: EntryBuffer -> int -> int -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -26436,13 +26594,14 @@ module EntryBuffer =
         let position = Internal.Raw.argInt 1
         let nChars = Internal.Raw.argInt 2
         Internal.Raw.returnInt (handler buffer position nChars))
-    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_delete_text (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_delete_text (Internal.Raw.gtype gtype) zcb)
 
   /// Deletes a sequence of characters from the buffer.
   let parentDeleteText (self: EntryBuffer) (position: int) (nChars: int) : int =
     (int ((Internal.Gtk4C.zgtk_parent_Gtk_EntryBuffer_delete_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())) (u32 position) (u32 nChars))))
 
   /// Gives a type made with `Glue.subclass` its own `deleted_text`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDeletedText (gtype: usize) (handler: EntryBuffer -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -26450,38 +26609,41 @@ module EntryBuffer =
         let position = Internal.Raw.argInt 1
         let nChars = Internal.Raw.argInt 2
         handler buffer position nChars)
-    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_deleted_text (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_deleted_text (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_EntryBuffer_deleted_text`.
   let parentDeletedText (self: EntryBuffer) (position: int) (nChars: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_EntryBuffer_deleted_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())) (u32 position) (u32 nChars)
 
   /// Gives a type made with `Glue.subclass` its own `get_length`: Retrieves the length in characters of the buffer.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetLength (gtype: usize) (handler: EntryBuffer -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let buffer = EntryBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler buffer))
-    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_get_length (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_get_length (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieves the length in characters of the buffer.
   let parentGetLength (self: EntryBuffer) : int =
     (int ((Internal.Gtk4C.zgtk_parent_Gtk_EntryBuffer_get_length (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `get_text`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetText (gtype: usize) (handler: EntryBuffer -> int -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let buffer = EntryBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let nBytes = Internal.Raw.argInt 1
         Internal.Raw.returnPointer (Internal.Raw.intern (handler buffer nBytes)))
-    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_get_text (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_get_text (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_EntryBuffer_get_text`.
   let parentGetText (self: EntryBuffer) (nBytes: int) : string =
     Internal.Raw.text ((Internal.Gtk4C.zgtk_parent_Gtk_EntryBuffer_get_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())) (usize nBytes)))
 
   /// Gives a type made with `Glue.subclass` its own `insert_text`: Inserts @n_chars characters of @chars into the contents of the buffer, at position @position.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInsertText (gtype: usize) (handler: EntryBuffer -> int -> string -> int -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -26490,13 +26652,14 @@ module EntryBuffer =
         let chars = Internal.Raw.text (Internal.Raw.argPointer 2)
         let nChars = Internal.Raw.argInt 3
         Internal.Raw.returnInt (handler buffer position chars nChars))
-    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_insert_text (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_insert_text (Internal.Raw.gtype gtype) zcb)
 
   /// Inserts @n_chars characters of @chars into the contents of the buffer, at position @position.
   let parentInsertText (self: EntryBuffer) (position: int) (chars: string) (nChars: int) : int =
     (int ((Internal.Gtk4C.zgtk_parent_Gtk_EntryBuffer_insert_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_entry_buffer_get_type ())) (u32 position) chars (u32 (Internal.Raw.within chars 0 nChars true 0)))))
 
   /// Gives a type made with `Glue.subclass` its own `inserted_text`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInsertedText (gtype: usize) (handler: EntryBuffer -> int -> string -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -26505,7 +26668,7 @@ module EntryBuffer =
         let chars = Internal.Raw.text (Internal.Raw.argPointer 2)
         let nChars = Internal.Raw.argInt 3
         handler buffer position chars nChars)
-    Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_inserted_text (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_EntryBuffer_inserted_text (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_EntryBuffer_inserted_text`.
   let parentInsertedText (self: EntryBuffer) (position: int) (chars: string) (nChars: int) : unit =
@@ -27498,37 +27661,40 @@ module NativeDialog =
   let setVisible (self: NativeDialog) (value: bool) : unit = Internal.Raw.setInt (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_native_dialog_get_type ())) "visible" (if value then 1 else 0)
 
   /// Gives a type made with `Glue.subclass` its own `hide`: Hides the dialog if it is visible, aborting any interaction.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideHide (gtype: usize) (handler: NativeDialog -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = NativeDialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.Gtk4C.zgtk_override_Gtk_NativeDialog_hide (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_NativeDialog_hide (Internal.Raw.gtype gtype) zcb)
 
   /// Hides the dialog if it is visible, aborting any interaction.
   let parentHide (self: NativeDialog) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_NativeDialog_hide (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_native_dialog_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `response`: class handler for the `GtkNativeDialog::response` signal
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideResponse (gtype: usize) (handler: NativeDialog -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = NativeDialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let responseId = Internal.Raw.argInt 1
         handler self_ responseId)
-    Internal.Gtk4C.zgtk_override_Gtk_NativeDialog_response (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_NativeDialog_response (Internal.Raw.gtype gtype) zcb)
 
   /// class handler for the `GtkNativeDialog::response` signal
   let parentResponse (self: NativeDialog) (responseId: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_NativeDialog_response (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_native_dialog_get_type ())) (i32 responseId)
 
   /// Gives a type made with `Glue.subclass` its own `show`: Shows the dialog on the display.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideShow (gtype: usize) (handler: NativeDialog -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = NativeDialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.Gtk4C.zgtk_override_Gtk_NativeDialog_show (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_NativeDialog_show (Internal.Raw.gtype gtype) zcb)
 
   /// Shows the dialog on the display.
   let parentShow (self: NativeDialog) : unit =
@@ -28417,6 +28583,7 @@ module SectionModel =
       handler position nItems)
 
   /// Gives a type made with `Glue.subclass` its own `get_section`: Query the section that covers the given position.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSection (gtype: usize) (handler: SectionModel -> int -> (int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -28425,7 +28592,7 @@ module SectionModel =
         let (outStart, outEnd) = handler self_ position
         Internal.Raw.setI32 2 outStart
         Internal.Raw.setI32 3 outEnd)
-    Internal.Gtk4C.zgtk_override_Gtk_SectionModel_get_section (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_SectionModel_get_section (Internal.Raw.gtype gtype) zcb)
 
   /// Query the section that covers the given position.
   let parentGetSection (self: SectionModel) (position: int) : (int * int) =
@@ -29049,12 +29216,13 @@ module FlowBoxChild =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_flow_box_child_get_type ())) "notify::child" handler
 
   /// Gives a type made with `Glue.subclass` its own `activate`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivate (gtype: usize) (handler: FlowBoxChild -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let child = FlowBoxChild (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler child)
-    Internal.Gtk4C.zgtk_override_Gtk_FlowBoxChild_activate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_FlowBoxChild_activate (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_FlowBoxChild_activate`.
   let parentActivate (self: FlowBoxChild) : unit =
@@ -29199,19 +29367,21 @@ module FontChooser =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_font_chooser_get_type ())) "notify::show-preview-entry" handler
 
   /// Gives a type made with `Glue.subclass` its own `font_activated`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideFontActivated (gtype: usize) (handler: FontChooser -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let chooser = FontChooser (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let fontname = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler chooser fontname)
-    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_font_activated (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_FontChooser_font_activated (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_FontChooser_font_activated`.
   let parentFontActivated (self: FontChooser) (fontname: string) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_FontChooser_font_activated (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_font_chooser_get_type ())) fontname
 
   /// Gives a type made with `Glue.subclass` its own `get_font_face`: Deprecated. Gets the `PangoFontFace` representing the selected font group details (i.e.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFontFace (gtype: usize) (handler: FontChooser -> option<Pango.FontFace>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29219,7 +29389,7 @@ module FontChooser =
         match handler fontchooser with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.PangoC.pango_font_face_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_face (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_face (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Gets the `PangoFontFace` representing the selected font group details (i.e.
   let parentGetFontFace (self: FontChooser) : option<Pango.FontFace> =
@@ -29228,6 +29398,7 @@ module FontChooser =
     (if zid1 = 0 then None else Some (Pango.FontFace zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_font_family`: Deprecated. Gets the `PangoFontFamily` representing the selected font family.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFontFamily (gtype: usize) (handler: FontChooser -> option<Pango.FontFamily>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29235,7 +29406,7 @@ module FontChooser =
         match handler fontchooser with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.PangoC.pango_font_family_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_family (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_family (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Gets the `PangoFontFamily` representing the selected font family.
   let parentGetFontFamily (self: FontChooser) : option<Pango.FontFamily> =
@@ -29244,6 +29415,7 @@ module FontChooser =
     (if zid1 = 0 then None else Some (Pango.FontFamily zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_font_map`: Deprecated. Gets the custom font map of this font chooser widget, or %NULL if it does not have one.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFontMap (gtype: usize) (handler: FontChooser -> option<Pango.FontMap>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29251,7 +29423,7 @@ module FontChooser =
         match handler fontchooser with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.PangoC.pango_font_map_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_map (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_map (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Gets the custom font map of this font chooser widget, or %NULL if it does not have one.
   let parentGetFontMap (self: FontChooser) : option<Pango.FontMap> =
@@ -29260,18 +29432,20 @@ module FontChooser =
     (if zid1 = 0 then None else Some (Pango.FontMap zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_font_size`: Deprecated. The selected font size.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFontSize (gtype: usize) (handler: FontChooser -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let fontchooser = FontChooser (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler fontchooser))
-    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_size (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_FontChooser_get_font_size (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. The selected font size.
   let parentGetFontSize (self: FontChooser) : int =
     (int ((Internal.Gtk4C.zgtk_parent_Gtk_FontChooser_get_font_size (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_font_chooser_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `set_filter_func`: Deprecated. Adds a filter function that decides which fonts to display in the font chooser.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetFilterFunc (gtype: usize) (handler: FontChooser -> cptr -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29280,7 +29454,7 @@ module FontChooser =
         let userData = Internal.Raw.argPointer 2
         let destroy = Internal.Raw.argPointer 3
         handler fontchooser filter userData destroy)
-    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_set_filter_func (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_FontChooser_set_filter_func (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Adds a filter function that decides which fonts to display in the font chooser.
   let parentSetFilterFunc (self: FontChooser) (filter: Pango.FontFamily -> Pango.FontFace -> bool) : unit =
@@ -29292,6 +29466,7 @@ module FontChooser =
     Internal.Gtk4C.zgtk_parent_Gtk_FontChooser_set_filter_func (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_font_chooser_get_type ())) (Internal.Gtk4C.zgtk_tramp_Gtk_FontFilterFunc ()) zcb1 (Internal.Raw.dropFn ())
 
   /// Gives a type made with `Glue.subclass` its own `set_font_map`: Deprecated. Sets a custom font map to use for this font chooser widget.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetFontMap (gtype: usize) (handler: FontChooser -> option<Pango.FontMap> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -29299,7 +29474,7 @@ module FontChooser =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let fontmap = (if zid1 = 0 then None else Some (Pango.FontMap zid1))
         handler fontchooser fontmap)
-    Internal.Gtk4C.zgtk_override_Gtk_FontChooser_set_font_map (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_FontChooser_set_font_map (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Sets a custom font map to use for this font chooser widget.
   let parentSetFontMap (self: FontChooser) (fontmap: option<Pango.FontMap>) : unit =
@@ -29997,13 +30172,14 @@ module Frame =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_frame_get_type ())) "notify::label-xalign" handler
 
   /// Gives a type made with `Glue.subclass` its own `compute_child_allocation`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideComputeChildAllocation (gtype: usize) (handler: Frame -> Gdk.Rectangle -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let frame = Frame (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let allocation = Gdk.Rectangle (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GdkC.gdk_rectangle_get_type ()) false)
         handler frame allocation)
-    Internal.Gtk4C.zgtk_override_Gtk_Frame_compute_child_allocation (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Frame_compute_child_allocation (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_Frame_compute_child_allocation`.
   let parentComputeChildAllocation (self: Frame) (allocation: Gdk.Rectangle) : unit =
@@ -30170,31 +30346,34 @@ module GLArea =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_gl_area_get_type ())) "notify::use-es" handler
 
   /// Gives a type made with `Glue.subclass` its own `create_context`: class closure for the `GtkGLArea::create-context` signal
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCreateContext (gtype: usize) (handler: GLArea -> Gdk.GLContext) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let area = GLArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler area).Id (Internal.GdkC.gdk_gl_context_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_GLArea_create_context (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_GLArea_create_context (Internal.Raw.gtype gtype) zcb)
 
   /// class closure for the `GtkGLArea::create-context` signal
   let parentCreateContext (self: GLArea) : Gdk.GLContext =
     Gdk.GLContext (Internal.Raw.wrap ((Internal.Gtk4C.zgtk_parent_Gtk_GLArea_create_context (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_gl_area_get_type ())))) false)
 
   /// Gives a type made with `Glue.subclass` its own `render`: class closure for the `GtkGLArea::render` signal
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRender (gtype: usize) (handler: GLArea -> Gdk.GLContext -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let area = GLArea (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let context = Gdk.GLContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnBool (handler area context))
-    Internal.Gtk4C.zgtk_override_Gtk_GLArea_render (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_GLArea_render (Internal.Raw.gtype gtype) zcb)
 
   /// class closure for the `GtkGLArea::render` signal
   let parentRender (self: GLArea) (context: Gdk.GLContext) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_GLArea_render (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_gl_area_get_type ())) (Internal.Raw.obj context.Id (Internal.GdkC.gdk_gl_context_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `resize`: class closeure for the `GtkGLArea::resize` signal
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideResize (gtype: usize) (handler: GLArea -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -30202,7 +30381,7 @@ module GLArea =
         let width = Internal.Raw.argInt 1
         let height = Internal.Raw.argInt 2
         handler area width height)
-    Internal.Gtk4C.zgtk_override_Gtk_GLArea_resize (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_GLArea_resize (Internal.Raw.gtype gtype) zcb)
 
   /// class closeure for the `GtkGLArea::resize` signal
   let parentResize (self: GLArea) (width: int) (height: int) : unit =
@@ -31438,44 +31617,48 @@ module IMContext =
   let setInputPurpose (self: IMContext) (value: InputPurpose) : unit = Internal.Raw.setInt (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) "input-purpose" value.Int
 
   /// Gives a type made with `Glue.subclass` its own `activate_osk`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivateOsk (gtype: usize) (handler: IMContext -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_activate_osk (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_activate_osk (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_IMContext_activate_osk`.
   let parentActivateOsk (self: IMContext) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_IMContext_activate_osk (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `activate_osk_with_event`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivateOskWithEvent (gtype: usize) (handler: IMContext -> Gdk.Event -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let event = Gdk.Event (Internal.GdkC.zgtk_wrap_Gdk_Event (Internal.Raw.argPointer 1) (i32 0))
         Internal.Raw.returnBool (handler context event))
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_activate_osk_with_event (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_activate_osk_with_event (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_IMContext_activate_osk_with_event`.
   let parentActivateOskWithEvent (self: IMContext) (event: Gdk.Event) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_IMContext_activate_osk_with_event (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) (Internal.Raw.obj event.Id (Internal.GdkC.zgtk_type_Gdk_Event ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `commit`: Default handler of the [signal@Gtk.IMContext::commit] signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCommit (gtype: usize) (handler: IMContext -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let str = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler context str)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_commit (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_commit (Internal.Raw.gtype gtype) zcb)
 
   /// Default handler of the [signal@Gtk.IMContext::commit] signal.
   let parentCommit (self: IMContext) (str: string) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_IMContext_commit (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) str
 
   /// Gives a type made with `Glue.subclass` its own `delete_surrounding`: Asks the widget that the input context is attached to delete characters around the cursor position by emitting the `::delete_surrounding` signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDeleteSurrounding (gtype: usize) (handler: IMContext -> int -> int -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -31483,50 +31666,54 @@ module IMContext =
         let offset = Internal.Raw.argInt 1
         let nChars = Internal.Raw.argInt 2
         Internal.Raw.returnBool (handler context offset nChars))
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_delete_surrounding (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_delete_surrounding (Internal.Raw.gtype gtype) zcb)
 
   /// Asks the widget that the input context is attached to delete characters around the cursor position by emitting the `::delete_surrounding` signal.
   let parentDeleteSurrounding (self: IMContext) (offset: int) (nChars: int) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_IMContext_delete_surrounding (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) (i32 offset) (i32 nChars))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `filter_keypress`: Allow an input method to internally handle key press and release events.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideFilterKeypress (gtype: usize) (handler: IMContext -> Gdk.Event -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let event = Gdk.Event (Internal.GdkC.zgtk_wrap_Gdk_Event (Internal.Raw.argPointer 1) (i32 0))
         Internal.Raw.returnBool (handler context event))
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_filter_keypress (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_filter_keypress (Internal.Raw.gtype gtype) zcb)
 
   /// Allow an input method to internally handle key press and release events.
   let parentFilterKeypress (self: IMContext) (event: Gdk.Event) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_IMContext_filter_keypress (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) (Internal.Raw.obj event.Id (Internal.GdkC.zgtk_type_Gdk_Event ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `focus_in`: Notify the input method that the widget to which this input context corresponds has gained focus.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideFocusIn (gtype: usize) (handler: IMContext -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_focus_in (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_focus_in (Internal.Raw.gtype gtype) zcb)
 
   /// Notify the input method that the widget to which this input context corresponds has gained focus.
   let parentFocusIn (self: IMContext) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_IMContext_focus_in (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `focus_out`: Notify the input method that the widget to which this input context corresponds has lost focus.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideFocusOut (gtype: usize) (handler: IMContext -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_focus_out (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_focus_out (Internal.Raw.gtype gtype) zcb)
 
   /// Notify the input method that the widget to which this input context corresponds has lost focus.
   let parentFocusOut (self: IMContext) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_IMContext_focus_out (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `get_preedit_string`: Retrieve the current preedit string for the input context, and a list of attributes to apply to the string.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetPreeditString (gtype: usize) (handler: IMContext -> cptr -> (string * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -31535,7 +31722,7 @@ module IMContext =
         let (str, cursorPos) = handler context attrs
         Internal.Raw.setPointer 1 (Internal.Raw.dup str)
         Internal.Raw.setI32 3 cursorPos)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_get_preedit_string (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_get_preedit_string (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieve the current preedit string for the input context, and a list of attributes to apply to the string.
   let parentGetPreeditString (self: IMContext) : (string * Pango.AttrList * int) =
@@ -31546,6 +31733,7 @@ module IMContext =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_surrounding`: Deprecated. Retrieves context around the insertion point.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSurrounding (gtype: usize) (handler: IMContext -> (bool * string * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -31554,7 +31742,7 @@ module IMContext =
         Internal.Raw.setPointer 1 (Internal.Raw.dup text)
         Internal.Raw.setI32 2 cursorIndex
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_get_surrounding (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_get_surrounding (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Retrieves context around the insertion point.
   let parentGetSurrounding (self: IMContext) : (bool * string * int) =
@@ -31565,6 +31753,7 @@ module IMContext =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_surrounding_with_selection`: Retrieves context around the insertion point.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSurroundingWithSelection (gtype: usize) (handler: IMContext -> (bool * string * int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -31574,7 +31763,7 @@ module IMContext =
         Internal.Raw.setI32 2 cursorIndex
         Internal.Raw.setI32 3 anchorIndex
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_get_surrounding_with_selection (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_get_surrounding_with_selection (Internal.Raw.gtype gtype) zcb)
 
   /// Retrieves context around the insertion point.
   let parentGetSurroundingWithSelection (self: IMContext) : (bool * string * int * int) =
@@ -31585,79 +31774,86 @@ module IMContext =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `invalid_composition`: Default handler of the [signal@Gtk.IMContext::invalid-composition] signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInvalidComposition (gtype: usize) (handler: IMContext -> string -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let str = Internal.Raw.text (Internal.Raw.argPointer 1)
         Internal.Raw.returnBool (handler context str))
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_invalid_composition (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_invalid_composition (Internal.Raw.gtype gtype) zcb)
 
   /// Default handler of the [signal@Gtk.IMContext::invalid-composition] signal.
   let parentInvalidComposition (self: IMContext) (str: string) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_IMContext_invalid_composition (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) str)) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `preedit_changed`: Default handler of the [signal@Gtk.IMContext::preedit-changed] signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePreeditChanged (gtype: usize) (handler: IMContext -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_preedit_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_preedit_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Default handler of the [signal@Gtk.IMContext::preedit-changed] signal.
   let parentPreeditChanged (self: IMContext) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_IMContext_preedit_changed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `preedit_end`: Default handler of the [signal@Gtk.IMContext::preedit-end] signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePreeditEnd (gtype: usize) (handler: IMContext -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_preedit_end (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_preedit_end (Internal.Raw.gtype gtype) zcb)
 
   /// Default handler of the [signal@Gtk.IMContext::preedit-end] signal.
   let parentPreeditEnd (self: IMContext) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_IMContext_preedit_end (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `preedit_start`: Default handler of the [signal@Gtk.IMContext::preedit-start] signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePreeditStart (gtype: usize) (handler: IMContext -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_preedit_start (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_preedit_start (Internal.Raw.gtype gtype) zcb)
 
   /// Default handler of the [signal@Gtk.IMContext::preedit-start] signal.
   let parentPreeditStart (self: IMContext) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_IMContext_preedit_start (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `reset`: Notify the input method that a change such as a change in cursor position has been made.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideReset (gtype: usize) (handler: IMContext -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_reset (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_reset (Internal.Raw.gtype gtype) zcb)
 
   /// Notify the input method that a change such as a change in cursor position has been made.
   let parentReset (self: IMContext) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_IMContext_reset (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `retrieve_surrounding`: Default handler of the [signal@Gtk.IMContext::retrieve-surrounding] signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRetrieveSurrounding (gtype: usize) (handler: IMContext -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler context))
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_retrieve_surrounding (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_retrieve_surrounding (Internal.Raw.gtype gtype) zcb)
 
   /// Default handler of the [signal@Gtk.IMContext::retrieve-surrounding] signal.
   let parentRetrieveSurrounding (self: IMContext) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_IMContext_retrieve_surrounding (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `set_client_widget`: Set the client widget for the input context.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetClientWidget (gtype: usize) (handler: IMContext -> option<Widget> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -31665,7 +31861,7 @@ module IMContext =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 1) false
         let widget = (if zid1 = 0 then None else Some (Widget zid1))
         handler context widget)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_client_widget (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_client_widget (Internal.Raw.gtype gtype) zcb)
 
   /// Set the client widget for the input context.
   let parentSetClientWidget (self: IMContext) (widget: option<Widget>) : unit =
@@ -31676,19 +31872,21 @@ module IMContext =
     Internal.Gtk4C.zgtk_parent_Gtk_IMContext_set_client_widget (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) zp1
 
   /// Gives a type made with `Glue.subclass` its own `set_cursor_location`: Notify the input method that a change in cursor position has been made.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetCursorLocation (gtype: usize) (handler: IMContext -> Gdk.Rectangle -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let area = Gdk.Rectangle (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.GdkC.gdk_rectangle_get_type ()) false)
         handler context area)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_cursor_location (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_cursor_location (Internal.Raw.gtype gtype) zcb)
 
   /// Notify the input method that a change in cursor position has been made.
   let parentSetCursorLocation (self: IMContext) (area: Gdk.Rectangle) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_IMContext_set_cursor_location (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) (Internal.Raw.obj area.Id (Internal.GdkC.gdk_rectangle_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `set_surrounding`: Deprecated. Sets surrounding context around the insertion point and preedit string.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetSurrounding (gtype: usize) (handler: IMContext -> string -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -31697,13 +31895,14 @@ module IMContext =
         let len = Internal.Raw.argInt 2
         let cursorIndex = Internal.Raw.argInt 3
         handler context text len cursorIndex)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_surrounding (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_surrounding (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Sets surrounding context around the insertion point and preedit string.
   let parentSetSurrounding (self: IMContext) (text: string) (len: int) (cursorIndex: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_IMContext_set_surrounding (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) text (i32 (Internal.Raw.within text 0 len false 1)) (i32 cursorIndex)
 
   /// Gives a type made with `Glue.subclass` its own `set_surrounding_with_selection`: Sets surrounding context around the insertion point and preedit string.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetSurroundingWithSelection (gtype: usize) (handler: IMContext -> string -> int -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -31713,20 +31912,21 @@ module IMContext =
         let cursorIndex = Internal.Raw.argInt 3
         let anchorIndex = Internal.Raw.argInt 4
         handler context text len cursorIndex anchorIndex)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_surrounding_with_selection (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_surrounding_with_selection (Internal.Raw.gtype gtype) zcb)
 
   /// Sets surrounding context around the insertion point and preedit string.
   let parentSetSurroundingWithSelection (self: IMContext) (text: string) (len: int) (cursorIndex: int) (anchorIndex: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_IMContext_set_surrounding_with_selection (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_im_context_get_type ())) text (i32 (Internal.Raw.within text 0 len false 1)) (i32 cursorIndex) (i32 anchorIndex)
 
   /// Gives a type made with `Glue.subclass` its own `set_use_preedit`: Sets whether the IM context should use the preedit string to display feedback.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetUsePreedit (gtype: usize) (handler: IMContext -> bool -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = IMContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let usePreedit = (Internal.Raw.argInt 1 <> 0)
         handler context usePreedit)
-    Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_use_preedit (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_IMContext_set_use_preedit (Internal.Raw.gtype gtype) zcb)
 
   /// Sets whether the IM context should use the preedit string to display feedback.
   let parentSetUsePreedit (self: IMContext) (usePreedit: bool) : unit =
@@ -31813,6 +32013,7 @@ module SymbolicPaintable =
     Internal.Raw.free za2
 
   /// Gives a type made with `Glue.subclass` its own `snapshot_symbolic`: Snapshots the paintable with the given colors.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSnapshotSymbolic (gtype: usize) (handler: SymbolicPaintable -> Gdk.Snapshot -> float -> float -> list<Gdk.RGBA> -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -31824,7 +32025,7 @@ module SymbolicPaintable =
         let colors = zrs2
         let nColors = Internal.Raw.argInt 5
         handler paintable snapshot width height colors nColors)
-    Internal.Gtk4C.zgtk_override_Gtk_SymbolicPaintable_snapshot_symbolic (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_SymbolicPaintable_snapshot_symbolic (Internal.Raw.gtype gtype) zcb)
 
   /// Snapshots the paintable with the given colors.
   let parentSnapshotSymbolic (self: SymbolicPaintable) (snapshot: Gdk.Snapshot) (width: float) (height: float) (colors: list<Gdk.RGBA>) : unit =
@@ -31833,6 +32034,7 @@ module SymbolicPaintable =
     Internal.Raw.free za2
 
   /// Gives a type made with `Glue.subclass` its own `snapshot_with_weight`: Snapshots the paintable with the given colors and weight.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSnapshotWithWeight (gtype: usize) (handler: SymbolicPaintable -> Gdk.Snapshot -> float -> float -> list<Gdk.RGBA> -> int -> float -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -31845,7 +32047,7 @@ module SymbolicPaintable =
         let nColors = Internal.Raw.argInt 5
         let weight = Internal.Raw.argFloat 6
         handler paintable snapshot width height colors nColors weight)
-    Internal.Gtk4C.zgtk_override_Gtk_SymbolicPaintable_snapshot_with_weight (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_SymbolicPaintable_snapshot_with_weight (Internal.Raw.gtype gtype) zcb)
 
   /// Snapshots the paintable with the given colors and weight.
   let parentSnapshotWithWeight (self: SymbolicPaintable) (snapshot: Gdk.Snapshot) (width: float) (height: float) (colors: list<Gdk.RGBA>) (weight: float) : unit =
@@ -33990,12 +34192,13 @@ module ListBoxRow =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_list_box_row_get_type ())) "notify::selectable" handler
 
   /// Gives a type made with `Glue.subclass` its own `activate`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivate (gtype: usize) (handler: ListBoxRow -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let row = ListBoxRow (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler row)
-    Internal.Gtk4C.zgtk_override_Gtk_ListBoxRow_activate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_ListBoxRow_activate (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_ListBoxRow_activate`.
   let parentActivate (self: ListBoxRow) : unit =
@@ -34084,6 +34287,7 @@ module TreeDragDest =
     (((Internal.Gtk4C.gtk_tree_drag_dest_row_drop_possible (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_drag_dest_get_type ())) (Internal.Raw.obj destPath.Id (Internal.Gtk4C.gtk_tree_path_get_type ())) (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `drag_data_received`: Deprecated. Asks the `GtkTreeDragDest` to insert a row before the path @dest, deriving the contents of the row from @value.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDragDataReceived (gtype: usize) (handler: TreeDragDest -> TreePath -> GObject.Value -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34091,13 +34295,14 @@ module TreeDragDest =
         let dest = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GObjectC.g_value_get_type ()) false)
         Internal.Raw.returnBool (handler dragDest dest value))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeDragDest_drag_data_received (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeDragDest_drag_data_received (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Asks the `GtkTreeDragDest` to insert a row before the path @dest, deriving the contents of the row from @value.
   let parentDragDataReceived (self: TreeDragDest) (dest: TreePath) (value: GObject.Value) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TreeDragDest_drag_data_received (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_drag_dest_get_type ())) (Internal.Raw.obj dest.Id (Internal.Gtk4C.gtk_tree_path_get_type ())) (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `row_drop_possible`: Deprecated. Determines whether a drop is possible before the given @dest_path, at the same depth as @dest_path.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRowDropPossible (gtype: usize) (handler: TreeDragDest -> TreePath -> GObject.Value -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34105,7 +34310,7 @@ module TreeDragDest =
         let destPath = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GObjectC.g_value_get_type ()) false)
         Internal.Raw.returnBool (handler dragDest destPath value))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeDragDest_row_drop_possible (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeDragDest_row_drop_possible (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Determines whether a drop is possible before the given @dest_path, at the same depth as @dest_path.
   let parentRowDropPossible (self: TreeDragDest) (destPath: TreePath) (value: GObject.Value) : bool =
@@ -34137,19 +34342,21 @@ module TreeDragSource =
     (((Internal.Gtk4C.gtk_tree_drag_source_row_draggable (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_drag_source_get_type ())) (Internal.Raw.obj path.Id (Internal.Gtk4C.gtk_tree_path_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `drag_data_delete`: Deprecated. Asks the `GtkTreeDragSource` to delete the row at @path, because it was moved somewhere else via drag-and-drop.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDragDataDelete (gtype: usize) (handler: TreeDragSource -> TreePath -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let dragSource = TreeDragSource (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         Internal.Raw.returnBool (handler dragSource path))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeDragSource_drag_data_delete (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeDragSource_drag_data_delete (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Asks the `GtkTreeDragSource` to delete the row at @path, because it was moved somewhere else via drag-and-drop.
   let parentDragDataDelete (self: TreeDragSource) (path: TreePath) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TreeDragSource_drag_data_delete (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_drag_source_get_type ())) (Internal.Raw.obj path.Id (Internal.Gtk4C.gtk_tree_path_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `drag_data_get`: Deprecated. Asks the `GtkTreeDragSource` to return a `GdkContentProvider` representing the row at @path.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDragDataGet (gtype: usize) (handler: TreeDragSource -> TreePath -> option<Gdk.ContentProvider>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34158,7 +34365,7 @@ module TreeDragSource =
         match handler dragSource path with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.GdkC.gdk_content_provider_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeDragSource_drag_data_get (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeDragSource_drag_data_get (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Asks the `GtkTreeDragSource` to return a `GdkContentProvider` representing the row at @path.
   let parentDragDataGet (self: TreeDragSource) (path: TreePath) : option<Gdk.ContentProvider> =
@@ -34167,13 +34374,14 @@ module TreeDragSource =
     (if zid1 = 0 then None else Some (Gdk.ContentProvider zid1))
 
   /// Gives a type made with `Glue.subclass` its own `row_draggable`: Deprecated. Asks the `GtkTreeDragSource` whether a particular row can be used as the source of a DND operation.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRowDraggable (gtype: usize) (handler: TreeDragSource -> TreePath -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let dragSource = TreeDragSource (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         Internal.Raw.returnBool (handler dragSource path))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeDragSource_row_draggable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeDragSource_row_draggable (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Asks the `GtkTreeDragSource` whether a particular row can be used as the source of a DND operation.
   let parentRowDraggable (self: TreeDragSource) (path: TreePath) : bool =
@@ -34376,31 +34584,34 @@ module TreeModel =
       handler path iter newOrder)
 
   /// Gives a type made with `Glue.subclass` its own `get_column_type`: Deprecated. Returns the type of the column.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetColumnType (gtype: usize) (handler: TreeModel -> int -> usize) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let index = Internal.Raw.argInt 1
         Internal.Raw.returnInt (int (Internal.Raw.gtype (handler treeModel index))))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_column_type (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_column_type (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Returns the type of the column.
   let parentGetColumnType (self: TreeModel) (index: int) : usize =
     ((Internal.Gtk4C.zgtk_parent_Gtk_TreeModel_get_column_type (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_get_type ())) (i32 index)))
 
   /// Gives a type made with `Glue.subclass` its own `get_flags`: Deprecated. Returns a set of flags supported by this interface.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFlags (gtype: usize) (handler: TreeModel -> TreeModelFlags) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler treeModel).Int)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_flags (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_flags (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Returns a set of flags supported by this interface.
   let parentGetFlags (self: TreeModel) : TreeModelFlags =
     TreeModelFlags (int ((Internal.Gtk4C.zgtk_parent_Gtk_TreeModel_get_flags (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `get_iter`: Deprecated. Sets @iter to a valid iterator pointing to @path.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetIter (gtype: usize) (handler: TreeModel -> TreePath -> (bool * TreeIter)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34409,7 +34620,7 @@ module TreeModel =
         let (zres, iter) = handler treeModel path
         Internal.Raw.setRecord 1 (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) (Internal.Gtk4C.zgtk_sizeof_Gtk_TreeIter ())
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_iter (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_iter (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Sets @iter to a valid iterator pointing to @path.
   let parentGetIter (self: TreeModel) (path: TreePath) : (bool * TreeIter) =
@@ -34418,31 +34629,34 @@ module TreeModel =
     (((zr) <> i32 0), TreeIter zo1)
 
   /// Gives a type made with `Glue.subclass` its own `get_n_columns`: Deprecated. Returns the number of columns supported by @tree_model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetNColumns (gtype: usize) (handler: TreeModel -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler treeModel))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_n_columns (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_n_columns (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Returns the number of columns supported by @tree_model.
   let parentGetNColumns (self: TreeModel) : int =
     (int ((Internal.Gtk4C.zgtk_parent_Gtk_TreeModel_get_n_columns (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `get_path`: Deprecated. Returns a newly-created `GtkTreePath` referenced by @iter.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetPath (gtype: usize) (handler: TreeModel -> TreeIter -> TreePath) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler treeModel iter).Id (Internal.Gtk4C.gtk_tree_path_get_type ())) (Internal.Gtk4C.gtk_tree_path_get_type ())))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_path (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_path (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Returns a newly-created `GtkTreePath` referenced by @iter.
   let parentGetPath (self: TreeModel) (iter: TreeIter) : TreePath =
     TreePath (Internal.Raw.wrapBoxed ((Internal.Gtk4C.zgtk_parent_Gtk_TreeModel_get_path (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())))) (Internal.Gtk4C.gtk_tree_path_get_type ()) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_value`: Deprecated. Initializes and sets @value to that at @column.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetValue (gtype: usize) (handler: TreeModel -> TreeIter -> int -> GObject.Value) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34451,7 +34665,7 @@ module TreeModel =
         let column = Internal.Raw.argInt 2
         let value = handler treeModel iter column
         Internal.Raw.setRecord 3 (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())) (Internal.GObjectC.zgtk_sizeof_GObject_Value ()))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_value (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_get_value (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Initializes and sets @value to that at @column.
   let parentGetValue (self: TreeModel) (iter: TreeIter) (column: int) : GObject.Value =
@@ -34460,6 +34674,7 @@ module TreeModel =
     GObject.Value zo1
 
   /// Gives a type made with `Glue.subclass` its own `iter_children`: Deprecated. Sets @iter to point to the first child of @parent.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIterChildren (gtype: usize) (handler: TreeModel -> option<TreeIter> -> (bool * TreeIter)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34469,7 +34684,7 @@ module TreeModel =
         let (zres, iter) = handler treeModel parent
         Internal.Raw.setRecord 1 (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) (Internal.Gtk4C.zgtk_sizeof_Gtk_TreeIter ())
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_children (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_children (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Sets @iter to point to the first child of @parent.
   let parentIterChildren (self: TreeModel) (parent: option<TreeIter>) : (bool * TreeIter) =
@@ -34482,19 +34697,21 @@ module TreeModel =
     (((zr) <> i32 0), TreeIter zo1)
 
   /// Gives a type made with `Glue.subclass` its own `iter_has_child`: Deprecated. Returns %TRUE if @iter has children, %FALSE otherwise.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIterHasChild (gtype: usize) (handler: TreeModel -> TreeIter -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         Internal.Raw.returnBool (handler treeModel iter))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_has_child (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_has_child (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Returns %TRUE if @iter has children, %FALSE otherwise.
   let parentIterHasChild (self: TreeModel) (iter: TreeIter) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TreeModel_iter_has_child (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `iter_n_children`: Deprecated. Returns the number of children that @iter has.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIterNChildren (gtype: usize) (handler: TreeModel -> option<TreeIter> -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34502,7 +34719,7 @@ module TreeModel =
         let zid1 = Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false
         let iter = (if zid1 = 0 then None else Some (TreeIter zid1))
         Internal.Raw.returnInt (handler treeModel iter))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_n_children (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_n_children (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Returns the number of children that @iter has.
   let parentIterNChildren (self: TreeModel) (iter: option<TreeIter>) : int =
@@ -34514,19 +34731,21 @@ module TreeModel =
     (int (zr))
 
   /// Gives a type made with `Glue.subclass` its own `iter_next`: Deprecated. Sets @iter to point to the node following it at the current level.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIterNext (gtype: usize) (handler: TreeModel -> TreeIter -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         Internal.Raw.returnBool (handler treeModel iter))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_next (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_next (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Sets @iter to point to the node following it at the current level.
   let parentIterNext (self: TreeModel) (iter: TreeIter) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TreeModel_iter_next (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `iter_nth_child`: Deprecated. Sets @iter to be the child of @parent, using the given index.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIterNthChild (gtype: usize) (handler: TreeModel -> option<TreeIter> -> int -> (bool * TreeIter)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34537,7 +34756,7 @@ module TreeModel =
         let (zres, iter) = handler treeModel parent n
         Internal.Raw.setRecord 1 (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) (Internal.Gtk4C.zgtk_sizeof_Gtk_TreeIter ())
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_nth_child (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_nth_child (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Sets @iter to be the child of @parent, using the given index.
   let parentIterNthChild (self: TreeModel) (parent: option<TreeIter>) (n: int) : (bool * TreeIter) =
@@ -34550,6 +34769,7 @@ module TreeModel =
     (((zr) <> i32 0), TreeIter zo1)
 
   /// Gives a type made with `Glue.subclass` its own `iter_parent`: Deprecated. Sets @iter to be the parent of @child.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIterParent (gtype: usize) (handler: TreeModel -> TreeIter -> (bool * TreeIter)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34558,7 +34778,7 @@ module TreeModel =
         let (zres, iter) = handler treeModel child
         Internal.Raw.setRecord 1 (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) (Internal.Gtk4C.zgtk_sizeof_Gtk_TreeIter ())
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_parent (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_parent (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Sets @iter to be the parent of @child.
   let parentIterParent (self: TreeModel) (child: TreeIter) : (bool * TreeIter) =
@@ -34567,32 +34787,35 @@ module TreeModel =
     (((zr) <> i32 0), TreeIter zo1)
 
   /// Gives a type made with `Glue.subclass` its own `iter_previous`: Deprecated. Sets @iter to point to the previous node at the current level.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIterPrevious (gtype: usize) (handler: TreeModel -> TreeIter -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         Internal.Raw.returnBool (handler treeModel iter))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_previous (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_iter_previous (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Sets @iter to point to the previous node at the current level.
   let parentIterPrevious (self: TreeModel) (iter: TreeIter) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TreeModel_iter_previous (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `ref_node`: Deprecated. Lets the tree ref the node.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRefNode (gtype: usize) (handler: TreeModel -> TreeIter -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         handler treeModel iter)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_ref_node (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_ref_node (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Lets the tree ref the node.
   let parentRefNode (self: TreeModel) (iter: TreeIter) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TreeModel_ref_node (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `row_changed`: Deprecated. Emits the ::row-changed signal on @tree_model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRowChanged (gtype: usize) (handler: TreeModel -> TreePath -> TreeIter -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34600,26 +34823,28 @@ module TreeModel =
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         handler treeModel path iter)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Emits the ::row-changed signal on @tree_model.
   let parentRowChanged (self: TreeModel) (path: TreePath) (iter: TreeIter) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TreeModel_row_changed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_get_type ())) (Internal.Raw.obj path.Id (Internal.Gtk4C.gtk_tree_path_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `row_deleted`: Deprecated. Emits the ::row-deleted signal on @tree_model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRowDeleted (gtype: usize) (handler: TreeModel -> TreePath -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         handler treeModel path)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_deleted (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_deleted (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Emits the ::row-deleted signal on @tree_model.
   let parentRowDeleted (self: TreeModel) (path: TreePath) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TreeModel_row_deleted (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_get_type ())) (Internal.Raw.obj path.Id (Internal.Gtk4C.gtk_tree_path_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `row_has_child_toggled`: Deprecated. Emits the ::row-has-child-toggled signal on @tree_model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRowHasChildToggled (gtype: usize) (handler: TreeModel -> TreePath -> TreeIter -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34627,13 +34852,14 @@ module TreeModel =
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         handler treeModel path iter)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_has_child_toggled (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_has_child_toggled (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Emits the ::row-has-child-toggled signal on @tree_model.
   let parentRowHasChildToggled (self: TreeModel) (path: TreePath) (iter: TreeIter) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TreeModel_row_has_child_toggled (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_get_type ())) (Internal.Raw.obj path.Id (Internal.Gtk4C.gtk_tree_path_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `row_inserted`: Deprecated. Emits the ::row-inserted signal on @tree_model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRowInserted (gtype: usize) (handler: TreeModel -> TreePath -> TreeIter -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34641,13 +34867,14 @@ module TreeModel =
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         handler treeModel path iter)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_inserted (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_row_inserted (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Emits the ::row-inserted signal on @tree_model.
   let parentRowInserted (self: TreeModel) (path: TreePath) (iter: TreeIter) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TreeModel_row_inserted (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_get_type ())) (Internal.Raw.obj path.Id (Internal.Gtk4C.gtk_tree_path_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `rows_reordered`: Deprecated. Emits the ::rows-reordered signal on @tree_model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRowsReordered (gtype: usize) (handler: TreeModel -> TreePath -> TreeIter -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34656,20 +34883,21 @@ module TreeModel =
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         let newOrder = Internal.Raw.argInt 3
         handler treeModel path iter newOrder)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_rows_reordered (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_rows_reordered (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Emits the ::rows-reordered signal on @tree_model.
   let parentRowsReordered (self: TreeModel) (path: TreePath) (iter: TreeIter) (newOrder: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TreeModel_rows_reordered (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_get_type ())) (Internal.Raw.obj path.Id (Internal.Gtk4C.gtk_tree_path_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) (i32 newOrder)
 
   /// Gives a type made with `Glue.subclass` its own `unref_node`: Deprecated. Lets the tree unref the node.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnrefNode (gtype: usize) (handler: TreeModel -> TreeIter -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         handler treeModel iter)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModel_unref_node (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModel_unref_node (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Lets the tree unref the node.
   let parentUnrefNode (self: TreeModel) (iter: TreeIter) : unit =
@@ -34731,6 +34959,7 @@ module TreeSortable =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_sortable_get_type ())) "sort-column-changed" handler
 
   /// Gives a type made with `Glue.subclass` its own `get_sort_column_id`: Deprecated. Fills in @sort_column_id and @order with the current sort column and the order.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSortColumnId (gtype: usize) (handler: TreeSortable -> (bool * int * SortType)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34739,7 +34968,7 @@ module TreeSortable =
         Internal.Raw.setI32 1 sortColumnId
         Internal.Raw.setI32 2 order.Int
         Internal.Raw.returnBool (zres))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_get_sort_column_id (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_get_sort_column_id (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Fills in @sort_column_id and @order with the current sort column and the order.
   let parentGetSortColumnId (self: TreeSortable) : (bool * int * SortType) =
@@ -34750,18 +34979,20 @@ module TreeSortable =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `has_default_sort_func`: Deprecated. Returns %TRUE if the model has a default sort function.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideHasDefaultSortFunc (gtype: usize) (handler: TreeSortable -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let sortable = TreeSortable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler sortable))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_has_default_sort_func (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_has_default_sort_func (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Returns %TRUE if the model has a default sort function.
   let parentHasDefaultSortFunc (self: TreeSortable) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TreeSortable_has_default_sort_func (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_sortable_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `set_default_sort_func`: Deprecated. Sets the default comparison function used when sorting to be @sort_func.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetDefaultSortFunc (gtype: usize) (handler: TreeSortable -> cptr -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34770,7 +35001,7 @@ module TreeSortable =
         let userData = Internal.Raw.argPointer 2
         let destroy = Internal.Raw.argPointer 3
         handler sortable sortFunc userData destroy)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_set_default_sort_func (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_set_default_sort_func (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Sets the default comparison function used when sorting to be @sort_func.
   let parentSetDefaultSortFunc (self: TreeSortable) (sortFunc: TreeModel -> TreeIter -> TreeIter -> int) : unit =
@@ -34783,6 +35014,7 @@ module TreeSortable =
     Internal.Gtk4C.zgtk_parent_Gtk_TreeSortable_set_default_sort_func (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_sortable_get_type ())) (Internal.Gtk4C.zgtk_tramp_Gtk_TreeIterCompareFunc ()) zcb1 (Internal.Raw.dropFn ())
 
   /// Gives a type made with `Glue.subclass` its own `set_sort_column_id`: Deprecated. Sets the current sort column to be @sort_column_id.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetSortColumnId (gtype: usize) (handler: TreeSortable -> int -> SortType -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34790,13 +35022,14 @@ module TreeSortable =
         let sortColumnId = Internal.Raw.argInt 1
         let order = SortType (int (Internal.Raw.argInt 2))
         handler sortable sortColumnId order)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_set_sort_column_id (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_set_sort_column_id (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Sets the current sort column to be @sort_column_id.
   let parentSetSortColumnId (self: TreeSortable) (sortColumnId: int) (order: SortType) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TreeSortable_set_sort_column_id (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_sortable_get_type ())) (i32 sortColumnId) (i32 order.Int)
 
   /// Gives a type made with `Glue.subclass` its own `set_sort_func`: Deprecated. Sets the comparison function used when sorting to be @sort_func.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetSortFunc (gtype: usize) (handler: TreeSortable -> int -> cptr -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -34806,7 +35039,7 @@ module TreeSortable =
         let userData = Internal.Raw.argPointer 3
         let destroy = Internal.Raw.argPointer 4
         handler sortable sortColumnId sortFunc userData destroy)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_set_sort_func (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_set_sort_func (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Sets the comparison function used when sorting to be @sort_func.
   let parentSetSortFunc (self: TreeSortable) (sortColumnId: int) (sortFunc: TreeModel -> TreeIter -> TreeIter -> int) : unit =
@@ -34819,12 +35052,13 @@ module TreeSortable =
     Internal.Gtk4C.zgtk_parent_Gtk_TreeSortable_set_sort_func (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_sortable_get_type ())) (i32 sortColumnId) (Internal.Gtk4C.zgtk_tramp_Gtk_TreeIterCompareFunc ()) zcb1 (Internal.Raw.dropFn ())
 
   /// Gives a type made with `Glue.subclass` its own `sort_column_changed`: Deprecated. Emits a `GtkTreeSortable::sort-column-changed` signal on @sortable.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSortColumnChanged (gtype: usize) (handler: TreeSortable -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let sortable = TreeSortable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler sortable)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_sort_column_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeSortable_sort_column_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Emits a `GtkTreeSortable::sort-column-changed` signal on @sortable.
   let parentSortColumnChanged (self: TreeSortable) : unit =
@@ -35576,69 +35810,75 @@ module MediaStream =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_media_stream_get_type ())) "notify::volume" handler
 
   /// Gives a type made with `Glue.subclass` its own `pause`: Pauses playback of the stream.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePause (gtype: usize) (handler: MediaStream -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = MediaStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_pause (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_MediaStream_pause (Internal.Raw.gtype gtype) zcb)
 
   /// Pauses playback of the stream.
   let parentPause (self: MediaStream) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_MediaStream_pause (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_media_stream_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `play`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePlay (gtype: usize) (handler: MediaStream -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = MediaStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler self_))
-    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_play (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_MediaStream_play (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_MediaStream_play`.
   let parentPlay (self: MediaStream) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_MediaStream_play (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_media_stream_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `realize`: Called by users to attach the media stream to a `GdkSurface` they manage.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRealize (gtype: usize) (handler: MediaStream -> Gdk.Surface -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = MediaStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let surface = Gdk.Surface (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler self_ surface)
-    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_realize (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_MediaStream_realize (Internal.Raw.gtype gtype) zcb)
 
   /// Called by users to attach the media stream to a `GdkSurface` they manage.
   let parentRealize (self: MediaStream) (surface: Gdk.Surface) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_MediaStream_realize (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_media_stream_get_type ())) (Internal.Raw.obj surface.Id (Internal.GdkC.gdk_surface_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `seek`: Start a seek operation on @self to @timestamp.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSeek (gtype: usize) (handler: MediaStream -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = MediaStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let timestamp = Internal.Raw.argInt 1
         handler self_ timestamp)
-    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_seek (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_MediaStream_seek (Internal.Raw.gtype gtype) zcb)
 
   /// Start a seek operation on @self to @timestamp.
   let parentSeek (self: MediaStream) (timestamp: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_MediaStream_seek (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_media_stream_get_type ())) (i64 timestamp)
 
   /// Gives a type made with `Glue.subclass` its own `unrealize`: Undoes a previous call to gtk_media_stream_realize().
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnrealize (gtype: usize) (handler: MediaStream -> Gdk.Surface -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = MediaStream (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let surface = Gdk.Surface (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler self_ surface)
-    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_unrealize (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_MediaStream_unrealize (Internal.Raw.gtype gtype) zcb)
 
   /// Undoes a previous call to gtk_media_stream_realize().
   let parentUnrealize (self: MediaStream) (surface: Gdk.Surface) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_MediaStream_unrealize (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_media_stream_get_type ())) (Internal.Raw.obj surface.Id (Internal.GdkC.gdk_surface_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `update_audio`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUpdateAudio (gtype: usize) (handler: MediaStream -> bool -> float -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -35646,7 +35886,7 @@ module MediaStream =
         let muted = (Internal.Raw.argInt 1 <> 0)
         let volume = Internal.Raw.argFloat 2
         handler self_ muted volume)
-    Internal.Gtk4C.zgtk_override_Gtk_MediaStream_update_audio (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_MediaStream_update_audio (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_MediaStream_update_audio`.
   let parentUpdateAudio (self: MediaStream) (muted: bool) (volume: float) : unit =
@@ -35742,24 +35982,26 @@ module MediaFile =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_media_file_get_type ())) "notify::input-stream" handler
 
   /// Gives a type made with `Glue.subclass` its own `close`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideClose (gtype: usize) (handler: MediaFile -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = MediaFile (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.Gtk4C.zgtk_override_Gtk_MediaFile_close (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_MediaFile_close (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_MediaFile_close`.
   let parentClose (self: MediaFile) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_MediaFile_close (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_media_file_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `open`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideOpen (gtype: usize) (handler: MediaFile -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = MediaFile (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.Gtk4C.zgtk_override_Gtk_MediaFile_open (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_MediaFile_open (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_MediaFile_open`.
   let parentOpen (self: MediaFile) : unit =
@@ -36252,6 +36494,7 @@ module SelectionModel =
       handler position nItems)
 
   /// Gives a type made with `Glue.subclass` its own `get_selection_in_range`: Gets the set of selected items in a range.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSelectionInRange (gtype: usize) (handler: SelectionModel -> int -> int -> Bitset) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -36259,38 +36502,41 @@ module SelectionModel =
         let position = Internal.Raw.argInt 1
         let nItems = Internal.Raw.argInt 2
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler model position nItems).Id (Internal.Gtk4C.gtk_bitset_get_type ())) (Internal.Gtk4C.gtk_bitset_get_type ())))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_get_selection_in_range (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_get_selection_in_range (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the set of selected items in a range.
   let parentGetSelectionInRange (self: SelectionModel) (position: int) (nItems: int) : Bitset =
     Bitset (Internal.Raw.wrapBoxed ((Internal.Gtk4C.zgtk_parent_Gtk_SelectionModel_get_selection_in_range (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_selection_model_get_type ())) (u32 position) (u32 nItems))) (Internal.Gtk4C.gtk_bitset_get_type ()) true)
 
   /// Gives a type made with `Glue.subclass` its own `is_selected`: Checks if the given item is selected.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsSelected (gtype: usize) (handler: SelectionModel -> int -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let model = SelectionModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let position = Internal.Raw.argInt 1
         Internal.Raw.returnBool (handler model position))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_is_selected (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_is_selected (Internal.Raw.gtype gtype) zcb)
 
   /// Checks if the given item is selected.
   let parentIsSelected (self: SelectionModel) (position: int) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_SelectionModel_is_selected (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_selection_model_get_type ())) (u32 position))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `select_all`: Requests to select all items in the model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSelectAll (gtype: usize) (handler: SelectionModel -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let model = SelectionModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler model))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_select_all (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_select_all (Internal.Raw.gtype gtype) zcb)
 
   /// Requests to select all items in the model.
   let parentSelectAll (self: SelectionModel) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_SelectionModel_select_all (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_selection_model_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `select_item`: Requests to select an item in the model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSelectItem (gtype: usize) (handler: SelectionModel -> int -> bool -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -36298,13 +36544,14 @@ module SelectionModel =
         let position = Internal.Raw.argInt 1
         let unselectRest = (Internal.Raw.argInt 2 <> 0)
         Internal.Raw.returnBool (handler model position unselectRest))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_select_item (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_select_item (Internal.Raw.gtype gtype) zcb)
 
   /// Requests to select an item in the model.
   let parentSelectItem (self: SelectionModel) (position: int) (unselectRest: bool) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_SelectionModel_select_item (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_selection_model_get_type ())) (u32 position) (if unselectRest then i32 1 else i32 0))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `select_range`: Requests to select a range of items in the model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSelectRange (gtype: usize) (handler: SelectionModel -> int -> int -> bool -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -36313,13 +36560,14 @@ module SelectionModel =
         let nItems = Internal.Raw.argInt 2
         let unselectRest = (Internal.Raw.argInt 3 <> 0)
         Internal.Raw.returnBool (handler model position nItems unselectRest))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_select_range (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_select_range (Internal.Raw.gtype gtype) zcb)
 
   /// Requests to select a range of items in the model.
   let parentSelectRange (self: SelectionModel) (position: int) (nItems: int) (unselectRest: bool) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_SelectionModel_select_range (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_selection_model_get_type ())) (u32 position) (u32 nItems) (if unselectRest then i32 1 else i32 0))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `set_selection`: Make selection changes.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetSelection (gtype: usize) (handler: SelectionModel -> Bitset -> Bitset -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -36327,38 +36575,41 @@ module SelectionModel =
         let selected = Bitset (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_bitset_get_type ()) false)
         let mask = Bitset (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_bitset_get_type ()) false)
         Internal.Raw.returnBool (handler model selected mask))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_set_selection (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_set_selection (Internal.Raw.gtype gtype) zcb)
 
   /// Make selection changes.
   let parentSetSelection (self: SelectionModel) (selected: Bitset) (mask: Bitset) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_SelectionModel_set_selection (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_selection_model_get_type ())) (Internal.Raw.obj selected.Id (Internal.Gtk4C.gtk_bitset_get_type ())) (Internal.Raw.obj mask.Id (Internal.Gtk4C.gtk_bitset_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `unselect_all`: Requests to unselect all items in the model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnselectAll (gtype: usize) (handler: SelectionModel -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let model = SelectionModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler model))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_unselect_all (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_unselect_all (Internal.Raw.gtype gtype) zcb)
 
   /// Requests to unselect all items in the model.
   let parentUnselectAll (self: SelectionModel) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_SelectionModel_unselect_all (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_selection_model_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `unselect_item`: Requests to unselect an item in the model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnselectItem (gtype: usize) (handler: SelectionModel -> int -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let model = SelectionModel (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let position = Internal.Raw.argInt 1
         Internal.Raw.returnBool (handler model position))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_unselect_item (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_unselect_item (Internal.Raw.gtype gtype) zcb)
 
   /// Requests to unselect an item in the model.
   let parentUnselectItem (self: SelectionModel) (position: int) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_SelectionModel_unselect_item (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_selection_model_get_type ())) (u32 position))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `unselect_range`: Requests to unselect a range of items in the model.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnselectRange (gtype: usize) (handler: SelectionModel -> int -> int -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -36366,7 +36617,7 @@ module SelectionModel =
         let position = Internal.Raw.argInt 1
         let nItems = Internal.Raw.argInt 2
         Internal.Raw.returnBool (handler model position nItems))
-    Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_unselect_range (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_SelectionModel_unselect_range (Internal.Raw.gtype gtype) zcb)
 
   /// Requests to unselect a range of items in the model.
   let parentUnselectRange (self: SelectionModel) (position: int) (nItems: int) : bool =
@@ -39004,18 +39255,20 @@ module PrintOperationPreview =
       handler context)
 
   /// Gives a type made with `Glue.subclass` its own `end_preview`: Ends a preview.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEndPreview (gtype: usize) (handler: PrintOperationPreview -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let preview = PrintOperationPreview (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler preview)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_end_preview (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_end_preview (Internal.Raw.gtype gtype) zcb)
 
   /// Ends a preview.
   let parentEndPreview (self: PrintOperationPreview) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_PrintOperationPreview_end_preview (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_print_operation_preview_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `got_page_size`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGotPageSize (gtype: usize) (handler: PrintOperationPreview -> PrintContext -> PageSetup -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -39023,46 +39276,49 @@ module PrintOperationPreview =
         let context = PrintContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let pageSetup = PageSetup (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler preview context pageSetup)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_got_page_size (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_got_page_size (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_PrintOperationPreview_got_page_size`.
   let parentGotPageSize (self: PrintOperationPreview) (context: PrintContext) (pageSetup: PageSetup) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_PrintOperationPreview_got_page_size (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_print_operation_preview_get_type ())) (Internal.Raw.obj context.Id (Internal.Gtk4C.gtk_print_context_get_type ())) (Internal.Raw.obj pageSetup.Id (Internal.Gtk4C.gtk_page_setup_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `is_selected`: Returns whether the given page is included in the set of pages that have been selected for printing.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsSelected (gtype: usize) (handler: PrintOperationPreview -> int -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let preview = PrintOperationPreview (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let pageNr = Internal.Raw.argInt 1
         Internal.Raw.returnBool (handler preview pageNr))
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_is_selected (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_is_selected (Internal.Raw.gtype gtype) zcb)
 
   /// Returns whether the given page is included in the set of pages that have been selected for printing.
   let parentIsSelected (self: PrintOperationPreview) (pageNr: int) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_PrintOperationPreview_is_selected (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_print_operation_preview_get_type ())) (i32 pageNr))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `ready`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideReady (gtype: usize) (handler: PrintOperationPreview -> PrintContext -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let preview = PrintOperationPreview (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let context = PrintContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler preview context)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_ready (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_ready (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_PrintOperationPreview_ready`.
   let parentReady (self: PrintOperationPreview) (context: PrintContext) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_PrintOperationPreview_ready (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_print_operation_preview_get_type ())) (Internal.Raw.obj context.Id (Internal.Gtk4C.gtk_print_context_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `render_page`: Renders a page to the preview.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRenderPage (gtype: usize) (handler: PrintOperationPreview -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let preview = PrintOperationPreview (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let pageNr = Internal.Raw.argInt 1
         handler preview pageNr)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_render_page (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperationPreview_render_page (Internal.Raw.gtype gtype) zcb)
 
   /// Renders a page to the preview.
   let parentRenderPage (self: PrintOperationPreview) (pageNr: int) : unit =
@@ -39412,57 +39668,62 @@ module PrintOperation =
   let getUseFullPage (self: PrintOperation) : bool = (Internal.Raw.getInt (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_print_operation_get_type ())) "use-full-page" <> 0)
 
   /// Gives a type made with `Glue.subclass` its own `begin_print`: Signal emitted after the user has finished changing print settings in the dialog, before the actual rendering starts.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideBeginPrint (gtype: usize) (handler: PrintOperation -> PrintContext -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let operation = PrintOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let context = PrintContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler operation context)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_begin_print (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_begin_print (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted after the user has finished changing print settings in the dialog, before the actual rendering starts.
   let parentBeginPrint (self: PrintOperation) (context: PrintContext) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_PrintOperation_begin_print (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_print_operation_get_type ())) (Internal.Raw.obj context.Id (Internal.Gtk4C.gtk_print_context_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `create_custom_widget`: Signal emitted when displaying the print dialog.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCreateCustomWidget (gtype: usize) (handler: PrintOperation -> Widget) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let operation = PrintOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler operation).Id (Internal.Gtk4C.gtk_widget_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_create_custom_widget (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_create_custom_widget (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted when displaying the print dialog.
   let parentCreateCustomWidget (self: PrintOperation) : Widget =
     Widget (Internal.Raw.wrap ((Internal.Gtk4C.zgtk_parent_Gtk_PrintOperation_create_custom_widget (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_print_operation_get_type ())))) false)
 
   /// Gives a type made with `Glue.subclass` its own `custom_widget_apply`: Signal emitted right before “begin-print” if you added a custom widget in the “create-custom-widget” handler.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCustomWidgetApply (gtype: usize) (handler: PrintOperation -> Widget -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let operation = PrintOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let widget = Widget (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler operation widget)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_custom_widget_apply (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_custom_widget_apply (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted right before “begin-print” if you added a custom widget in the “create-custom-widget” handler.
   let parentCustomWidgetApply (self: PrintOperation) (widget: Widget) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_PrintOperation_custom_widget_apply (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_print_operation_get_type ())) (Internal.Raw.obj widget.Id (Internal.Gtk4C.gtk_widget_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `done`: Signal emitted when the print operation run has finished doing everything required for printing.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDone (gtype: usize) (handler: PrintOperation -> PrintOperationResult -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let operation = PrintOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let result = PrintOperationResult (int (Internal.Raw.argInt 1))
         handler operation result)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_done (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_done (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted when the print operation run has finished doing everything required for printing.
   let parentDone (self: PrintOperation) (result: PrintOperationResult) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_PrintOperation_done (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_print_operation_get_type ())) (i32 result.Int)
 
   /// Gives a type made with `Glue.subclass` its own `draw_page`: Signal emitted for every page that is printed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDrawPage (gtype: usize) (handler: PrintOperation -> PrintContext -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -39470,39 +39731,42 @@ module PrintOperation =
         let context = PrintContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let pageNr = Internal.Raw.argInt 2
         handler operation context pageNr)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_draw_page (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_draw_page (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted for every page that is printed.
   let parentDrawPage (self: PrintOperation) (context: PrintContext) (pageNr: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_PrintOperation_draw_page (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_print_operation_get_type ())) (Internal.Raw.obj context.Id (Internal.Gtk4C.gtk_print_context_get_type ())) (i32 pageNr)
 
   /// Gives a type made with `Glue.subclass` its own `end_print`: Signal emitted after all pages have been rendered.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEndPrint (gtype: usize) (handler: PrintOperation -> PrintContext -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let operation = PrintOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let context = PrintContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler operation context)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_end_print (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_end_print (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted after all pages have been rendered.
   let parentEndPrint (self: PrintOperation) (context: PrintContext) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_PrintOperation_end_print (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_print_operation_get_type ())) (Internal.Raw.obj context.Id (Internal.Gtk4C.gtk_print_context_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `paginate`: Signal emitted after the “begin-print” signal, but before the actual rendering starts.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePaginate (gtype: usize) (handler: PrintOperation -> PrintContext -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let operation = PrintOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let context = PrintContext (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnBool (handler operation context))
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_paginate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_paginate (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted after the “begin-print” signal, but before the actual rendering starts.
   let parentPaginate (self: PrintOperation) (context: PrintContext) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_PrintOperation_paginate (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_print_operation_get_type ())) (Internal.Raw.obj context.Id (Internal.Gtk4C.gtk_print_context_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `preview`: Signal emitted when a preview is requested from the native dialog.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePreview (gtype: usize) (handler: PrintOperation -> PrintOperationPreview -> PrintContext -> Window -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -39511,13 +39775,14 @@ module PrintOperation =
         let context = PrintContext (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         let parent = Window (Internal.Raw.wrap (Internal.Raw.argPointer 3) false)
         Internal.Raw.returnBool (handler operation preview context parent))
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_preview (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_preview (Internal.Raw.gtype gtype) zcb)
 
   /// Signal emitted when a preview is requested from the native dialog.
   let parentPreview (self: PrintOperation) (preview: PrintOperationPreview) (context: PrintContext) (parent: Window) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_PrintOperation_preview (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_print_operation_get_type ())) (Internal.Raw.obj preview.Id (Internal.Gtk4C.gtk_print_operation_preview_get_type ())) (Internal.Raw.obj context.Id (Internal.Gtk4C.gtk_print_context_get_type ())) (Internal.Raw.obj parent.Id (Internal.Gtk4C.gtk_window_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `request_page_setup`: Emitted once for every page that is printed, to give the application a chance to modify the page setup.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRequestPageSetup (gtype: usize) (handler: PrintOperation -> PrintContext -> int -> PageSetup -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -39526,25 +39791,27 @@ module PrintOperation =
         let pageNr = Internal.Raw.argInt 2
         let setup = PageSetup (Internal.Raw.wrap (Internal.Raw.argPointer 3) false)
         handler operation context pageNr setup)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_request_page_setup (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_request_page_setup (Internal.Raw.gtype gtype) zcb)
 
   /// Emitted once for every page that is printed, to give the application a chance to modify the page setup.
   let parentRequestPageSetup (self: PrintOperation) (context: PrintContext) (pageNr: int) (setup: PageSetup) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_PrintOperation_request_page_setup (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_print_operation_get_type ())) (Internal.Raw.obj context.Id (Internal.Gtk4C.gtk_print_context_get_type ())) (i32 pageNr) (Internal.Raw.obj setup.Id (Internal.Gtk4C.gtk_page_setup_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `status_changed`: Emitted at between the various phases of the print operation.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideStatusChanged (gtype: usize) (handler: PrintOperation -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let operation = PrintOperation (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler operation)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_status_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_status_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Emitted at between the various phases of the print operation.
   let parentStatusChanged (self: PrintOperation) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_PrintOperation_status_changed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_print_operation_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `update_custom_widget`: Emitted after change of selected printer.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUpdateCustomWidget (gtype: usize) (handler: PrintOperation -> Widget -> PageSetup -> PrintSettings -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -39553,7 +39820,7 @@ module PrintOperation =
         let setup = PageSetup (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         let settings = PrintSettings (Internal.Raw.wrap (Internal.Raw.argPointer 3) false)
         handler operation widget setup settings)
-    Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_update_custom_widget (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_PrintOperation_update_custom_widget (Internal.Raw.gtype gtype) zcb)
 
   /// Emitted after change of selected printer.
   let parentUpdateCustomWidget (self: PrintOperation) (widget: Widget) (setup: PageSetup) (settings: PrintSettings) : unit =
@@ -40608,19 +40875,21 @@ module Range =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_range_get_type ())) "notify::show-fill-level" handler
 
   /// Gives a type made with `Glue.subclass` its own `adjust_bounds`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideAdjustBounds (gtype: usize) (handler: Range -> float -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let range = Range (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let newValue = Internal.Raw.argFloat 1
         handler range newValue)
-    Internal.Gtk4C.zgtk_override_Gtk_Range_adjust_bounds (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Range_adjust_bounds (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_Range_adjust_bounds`.
   let parentAdjustBounds (self: Range) (newValue: float) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Range_adjust_bounds (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_range_get_type ())) newValue
 
   /// Gives a type made with `Glue.subclass` its own `change_value`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChangeValue (gtype: usize) (handler: Range -> ScrollType -> float -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -40628,45 +40897,48 @@ module Range =
         let scroll = ScrollType (int (Internal.Raw.argInt 1))
         let newValue = Internal.Raw.argFloat 2
         Internal.Raw.returnBool (handler range scroll newValue))
-    Internal.Gtk4C.zgtk_override_Gtk_Range_change_value (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Range_change_value (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_Range_change_value`.
   let parentChangeValue (self: Range) (scroll: ScrollType) (newValue: float) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_Range_change_value (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_range_get_type ())) (i32 scroll.Int) newValue)) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `get_range_border`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetRangeBorder (gtype: usize) (handler: Range -> Border -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let range = Range (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let border = Border (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_border_get_type ()) false)
         handler range border)
-    Internal.Gtk4C.zgtk_override_Gtk_Range_get_range_border (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Range_get_range_border (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_Range_get_range_border`.
   let parentGetRangeBorder (self: Range) (border: Border) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Range_get_range_border (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_range_get_type ())) (Internal.Raw.obj border.Id (Internal.Gtk4C.gtk_border_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `move_slider`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMoveSlider (gtype: usize) (handler: Range -> ScrollType -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let range = Range (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let scroll = ScrollType (int (Internal.Raw.argInt 1))
         handler range scroll)
-    Internal.Gtk4C.zgtk_override_Gtk_Range_move_slider (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Range_move_slider (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_Range_move_slider`.
   let parentMoveSlider (self: Range) (scroll: ScrollType) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_Range_move_slider (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_range_get_type ())) (i32 scroll.Int)
 
   /// Gives a type made with `Glue.subclass` its own `value_changed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideValueChanged (gtype: usize) (handler: Range -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let range = Range (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler range)
-    Internal.Gtk4C.zgtk_override_Gtk_Range_value_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Range_value_changed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_Range_value_changed`.
   let parentValueChanged (self: Range) : unit =
@@ -40924,12 +41196,13 @@ module RecentManager =
   let getSize (self: RecentManager) : int = Internal.Raw.getInt (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_recent_manager_get_type ())) "size"
 
   /// Gives a type made with `Glue.subclass` its own `changed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChanged (gtype: usize) (handler: RecentManager -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let manager = RecentManager (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler manager)
-    Internal.Gtk4C.zgtk_override_Gtk_RecentManager_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_RecentManager_changed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_RecentManager_changed`.
   let parentChanged (self: RecentManager) : unit =
@@ -41205,6 +41478,7 @@ module Scale =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_scale_get_type ())) "notify::value-pos" handler
 
   /// Gives a type made with `Glue.subclass` its own `get_layout_offsets`: Obtains the coordinates where the scale will draw the `PangoLayout` representing the text in the scale.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetLayoutOffsets (gtype: usize) (handler: Scale -> (int * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -41212,7 +41486,7 @@ module Scale =
         let (x, y) = handler scale
         Internal.Raw.setI32 1 x
         Internal.Raw.setI32 2 y)
-    Internal.Gtk4C.zgtk_override_Gtk_Scale_get_layout_offsets (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_Scale_get_layout_offsets (Internal.Raw.gtype gtype) zcb)
 
   /// Obtains the coordinates where the scale will draw the `PangoLayout` representing the text in the scale.
   let parentGetLayoutOffsets (self: Scale) : (int * int) =
@@ -41343,13 +41617,14 @@ module ScaleButton =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_scale_button_get_type ())) "notify::value" handler
 
   /// Gives a type made with `Glue.subclass` its own `value_changed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideValueChanged (gtype: usize) (handler: ScaleButton -> float -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let button = ScaleButton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let value = Internal.Raw.argFloat 1
         handler button value)
-    Internal.Gtk4C.zgtk_override_Gtk_ScaleButton_value_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_ScaleButton_value_changed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_ScaleButton_value_changed`.
   let parentValueChanged (self: ScaleButton) (value: float) : unit =
@@ -44914,12 +45189,13 @@ module StyleContext =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_style_context_get_type ())) "notify::display" handler
 
   /// Gives a type made with `Glue.subclass` its own `changed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChanged (gtype: usize) (handler: StyleContext -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let context = StyleContext (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler context)
-    Internal.Gtk4C.zgtk_override_Gtk_StyleContext_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_StyleContext_changed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_StyleContext_changed`.
   let parentChanged (self: StyleContext) : unit =
@@ -45950,6 +46226,7 @@ module TextBuffer =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) "notify::text" handler
 
   /// Gives a type made with `Glue.subclass` its own `apply_tag`: Emits the “apply-tag” signal on @buffer.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideApplyTag (gtype: usize) (handler: TextBuffer -> TextTag -> TextIter -> TextIter -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -45958,37 +46235,40 @@ module TextBuffer =
         let start = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         let end = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         handler buffer tag start end)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_apply_tag (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_apply_tag (Internal.Raw.gtype gtype) zcb)
 
   /// Emits the “apply-tag” signal on @buffer.
   let parentApplyTag (self: TextBuffer) (tag: TextTag) (start: TextIter) (end: TextIter) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_apply_tag (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj tag.Id (Internal.Gtk4C.gtk_text_tag_get_type ())) (Internal.Raw.obj start.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) (Internal.Raw.obj end.Id (Internal.Gtk4C.gtk_text_iter_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `begin_user_action`: Called to indicate that the buffer operations between here and a call to gtk_text_buffer_end_user_action() are part of a single user-visible operation.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideBeginUserAction (gtype: usize) (handler: TextBuffer -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler buffer)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_begin_user_action (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_begin_user_action (Internal.Raw.gtype gtype) zcb)
 
   /// Called to indicate that the buffer operations between here and a call to gtk_text_buffer_end_user_action() are part of a single user-visible operation.
   let parentBeginUserAction (self: TextBuffer) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_begin_user_action (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `changed`: The class handler for the `GtkTextBuffer::changed` signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChanged (gtype: usize) (handler: TextBuffer -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler buffer)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_changed (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextBuffer::changed` signal.
   let parentChanged (self: TextBuffer) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_changed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `delete_range`: The class handler for the `GtkTextBuffer::delete-range` signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDeleteRange (gtype: usize) (handler: TextBuffer -> TextIter -> TextIter -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -45996,25 +46276,27 @@ module TextBuffer =
         let start = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         let end = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         handler buffer start end)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_delete_range (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_delete_range (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextBuffer::delete-range` signal.
   let parentDeleteRange (self: TextBuffer) (start: TextIter) (end: TextIter) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_delete_range (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj start.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) (Internal.Raw.obj end.Id (Internal.Gtk4C.gtk_text_iter_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `end_user_action`: Ends a user-visible operation.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEndUserAction (gtype: usize) (handler: TextBuffer -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler buffer)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_end_user_action (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_end_user_action (Internal.Raw.gtype gtype) zcb)
 
   /// Ends a user-visible operation.
   let parentEndUserAction (self: TextBuffer) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_end_user_action (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `insert_child_anchor`: Inserts a child widget anchor into the text buffer at @iter.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInsertChildAnchor (gtype: usize) (handler: TextBuffer -> TextIter -> TextChildAnchor -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -46022,13 +46304,14 @@ module TextBuffer =
         let iter = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         let anchor = TextChildAnchor (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler buffer iter anchor)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_insert_child_anchor (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_insert_child_anchor (Internal.Raw.gtype gtype) zcb)
 
   /// Inserts a child widget anchor into the text buffer at @iter.
   let parentInsertChildAnchor (self: TextBuffer) (iter: TextIter) (anchor: TextChildAnchor) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_insert_child_anchor (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) (Internal.Raw.obj anchor.Id (Internal.Gtk4C.gtk_text_child_anchor_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `insert_paintable`: Inserts an image into the text buffer at @iter.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInsertPaintable (gtype: usize) (handler: TextBuffer -> TextIter -> Gdk.Paintable -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -46036,13 +46319,14 @@ module TextBuffer =
         let iter = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         let paintable = Gdk.Paintable (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler buffer iter paintable)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_insert_paintable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_insert_paintable (Internal.Raw.gtype gtype) zcb)
 
   /// Inserts an image into the text buffer at @iter.
   let parentInsertPaintable (self: TextBuffer) (iter: TextIter) (paintable: Gdk.Paintable) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_insert_paintable (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) (Internal.Raw.obj paintable.Id (Internal.GdkC.gdk_paintable_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `insert_text`: The class handler for the `GtkTextBuffer::insert-text` signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInsertText (gtype: usize) (handler: TextBuffer -> TextIter -> string -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -46051,26 +46335,28 @@ module TextBuffer =
         let newText = Internal.Raw.text (Internal.Raw.argPointer 2)
         let newTextLength = Internal.Raw.argInt 3
         handler buffer pos newText newTextLength)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_insert_text (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_insert_text (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextBuffer::insert-text` signal.
   let parentInsertText (self: TextBuffer) (pos: TextIter) (newText: string) (newTextLength: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_insert_text (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj pos.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) newText (i32 (Internal.Raw.within newText 0 newTextLength false 1))
 
   /// Gives a type made with `Glue.subclass` its own `mark_deleted`: The class handler for the `GtkTextBuffer::mark-deleted` signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMarkDeleted (gtype: usize) (handler: TextBuffer -> TextMark -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let mark = TextMark (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler buffer mark)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_mark_deleted (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_mark_deleted (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextBuffer::mark-deleted` signal.
   let parentMarkDeleted (self: TextBuffer) (mark: TextMark) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_mark_deleted (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj mark.Id (Internal.Gtk4C.gtk_text_mark_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `mark_set`: The class handler for the `GtkTextBuffer::mark-set` signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMarkSet (gtype: usize) (handler: TextBuffer -> TextIter -> TextMark -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -46078,50 +46364,54 @@ module TextBuffer =
         let location = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         let mark = TextMark (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler buffer location mark)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_mark_set (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_mark_set (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextBuffer::mark-set` signal.
   let parentMarkSet (self: TextBuffer) (location: TextIter) (mark: TextMark) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_mark_set (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj location.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) (Internal.Raw.obj mark.Id (Internal.Gtk4C.gtk_text_mark_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `modified_changed`: The class handler for the `GtkTextBuffer::modified-changed` signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideModifiedChanged (gtype: usize) (handler: TextBuffer -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler buffer)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_modified_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_modified_changed (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextBuffer::modified-changed` signal.
   let parentModifiedChanged (self: TextBuffer) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_modified_changed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `paste_done`: The class handler for the `GtkTextBuffer::paste-done` signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePasteDone (gtype: usize) (handler: TextBuffer -> Gdk.Clipboard -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let clipboard = Gdk.Clipboard (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         handler buffer clipboard)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_paste_done (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_paste_done (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextBuffer::paste-done` signal.
   let parentPasteDone (self: TextBuffer) (clipboard: Gdk.Clipboard) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_paste_done (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj clipboard.Id (Internal.GdkC.gdk_clipboard_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `redo`: Redoes the next redoable action on the buffer, if there is one.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRedo (gtype: usize) (handler: TextBuffer -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler buffer)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_redo (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_redo (Internal.Raw.gtype gtype) zcb)
 
   /// Redoes the next redoable action on the buffer, if there is one.
   let parentRedo (self: TextBuffer) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_redo (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `remove_tag`: Emits the “remove-tag” signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRemoveTag (gtype: usize) (handler: TextBuffer -> TextTag -> TextIter -> TextIter -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -46130,19 +46420,20 @@ module TextBuffer =
         let start = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         let end = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         handler buffer tag start end)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_remove_tag (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_remove_tag (Internal.Raw.gtype gtype) zcb)
 
   /// Emits the “remove-tag” signal.
   let parentRemoveTag (self: TextBuffer) (tag: TextTag) (start: TextIter) (end: TextIter) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextBuffer_remove_tag (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_buffer_get_type ())) (Internal.Raw.obj tag.Id (Internal.Gtk4C.gtk_text_tag_get_type ())) (Internal.Raw.obj start.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) (Internal.Raw.obj end.Id (Internal.Gtk4C.gtk_text_iter_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `undo`: Undoes the last undoable action on the buffer, if there is one.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUndo (gtype: usize) (handler: TextBuffer -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let buffer = TextBuffer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler buffer)
-    Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_undo (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextBuffer_undo (Internal.Raw.gtype gtype) zcb)
 
   /// Undoes the last undoable action on the buffer, if there is one.
   let parentUndo (self: TextBuffer) : unit =
@@ -48147,54 +48438,59 @@ module TextView =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_view_get_type ())) "notify::wrap-mode" handler
 
   /// Gives a type made with `Glue.subclass` its own `backspace`: The class handler for the `GtkTextView::backspace` keybinding signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideBackspace (gtype: usize) (handler: TextView -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler textView)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_backspace (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextView_backspace (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextView::backspace` keybinding signal.
   let parentBackspace (self: TextView) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextView_backspace (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_view_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `copy_clipboard`: The class handler for the `GtkTextView::copy-clipboard` keybinding signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCopyClipboard (gtype: usize) (handler: TextView -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler textView)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_copy_clipboard (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextView_copy_clipboard (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextView::copy-clipboard` keybinding signal.
   let parentCopyClipboard (self: TextView) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextView_copy_clipboard (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_view_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `create_buffer`: The create_buffer vfunc is called to create a `GtkTextBuffer` for the text view.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCreateBuffer (gtype: usize) (handler: TextView -> TextBuffer) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler textView).Id (Internal.Gtk4C.gtk_text_buffer_get_type ()))))
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_create_buffer (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextView_create_buffer (Internal.Raw.gtype gtype) zcb)
 
   /// The create_buffer vfunc is called to create a `GtkTextBuffer` for the text view.
   let parentCreateBuffer (self: TextView) : TextBuffer =
     TextBuffer (Internal.Raw.wrap ((Internal.Gtk4C.zgtk_parent_Gtk_TextView_create_buffer (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_view_get_type ())))) false)
 
   /// Gives a type made with `Glue.subclass` its own `cut_clipboard`: The class handler for the `GtkTextView::cut-clipboard` keybinding signal
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCutClipboard (gtype: usize) (handler: TextView -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler textView)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_cut_clipboard (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextView_cut_clipboard (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextView::cut-clipboard` keybinding signal
   let parentCutClipboard (self: TextView) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextView_cut_clipboard (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_view_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `delete_from_cursor`: The class handler for the `GtkTextView::delete-from-cursor` keybinding signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDeleteFromCursor (gtype: usize) (handler: TextView -> DeleteType -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -48202,13 +48498,14 @@ module TextView =
         let type_ = DeleteType (int (Internal.Raw.argInt 1))
         let count = Internal.Raw.argInt 2
         handler textView type_ count)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_delete_from_cursor (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextView_delete_from_cursor (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextView::delete-from-cursor` keybinding signal.
   let parentDeleteFromCursor (self: TextView) (type_: DeleteType) (count: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextView_delete_from_cursor (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_view_get_type ())) (i32 type_.Int) (i32 count)
 
   /// Gives a type made with `Glue.subclass` its own `extend_selection`: The class handler for the `GtkTextView::extend-selection` signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideExtendSelection (gtype: usize) (handler: TextView -> TextExtendSelection -> TextIter -> TextIter -> TextIter -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -48218,38 +48515,41 @@ module TextView =
         let start = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         let end = TextIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 4) (Internal.Gtk4C.gtk_text_iter_get_type ()) false)
         Internal.Raw.returnBool (handler textView granularity location start end))
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_extend_selection (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextView_extend_selection (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextView::extend-selection` signal.
   let parentExtendSelection (self: TextView) (granularity: TextExtendSelection) (location: TextIter) (start: TextIter) (end: TextIter) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TextView_extend_selection (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_view_get_type ())) (i32 granularity.Int) (Internal.Raw.obj location.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) (Internal.Raw.obj start.Id (Internal.Gtk4C.gtk_text_iter_get_type ())) (Internal.Raw.obj end.Id (Internal.Gtk4C.gtk_text_iter_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `insert_at_cursor`: The class handler for the `GtkTextView::insert-at-cursor` keybinding signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInsertAtCursor (gtype: usize) (handler: TextView -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let str = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler textView str)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_insert_at_cursor (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextView_insert_at_cursor (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextView::insert-at-cursor` keybinding signal.
   let parentInsertAtCursor (self: TextView) (str: string) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextView_insert_at_cursor (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_view_get_type ())) str
 
   /// Gives a type made with `Glue.subclass` its own `insert_emoji`: The class handler for the `GtkTextView::insert-emoji` signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideInsertEmoji (gtype: usize) (handler: TextView -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler textView)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_insert_emoji (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextView_insert_emoji (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextView::insert-emoji` signal.
   let parentInsertEmoji (self: TextView) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextView_insert_emoji (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_view_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `move_cursor`: The class handler for the `GtkTextView::move-cursor` keybinding signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMoveCursor (gtype: usize) (handler: TextView -> MovementStep -> int -> bool -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -48258,37 +48558,40 @@ module TextView =
         let count = Internal.Raw.argInt 2
         let extendSelection = (Internal.Raw.argInt 3 <> 0)
         handler textView step count extendSelection)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_move_cursor (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextView_move_cursor (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextView::move-cursor` keybinding signal.
   let parentMoveCursor (self: TextView) (step: MovementStep) (count: int) (extendSelection: bool) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextView_move_cursor (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_view_get_type ())) (i32 step.Int) (i32 count) (if extendSelection then i32 1 else i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `paste_clipboard`: The class handler for the `GtkTextView::paste-clipboard` keybinding signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePasteClipboard (gtype: usize) (handler: TextView -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler textView)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_paste_clipboard (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextView_paste_clipboard (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextView::paste-clipboard` keybinding signal.
   let parentPasteClipboard (self: TextView) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextView_paste_clipboard (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_view_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `set_anchor`: The class handler for the `GtkTextView::set-anchor` keybinding signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetAnchor (gtype: usize) (handler: TextView -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler textView)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_set_anchor (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextView_set_anchor (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextView::set-anchor` keybinding signal.
   let parentSetAnchor (self: TextView) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextView_set_anchor (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_view_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `snapshot_layer`: The snapshot_layer vfunc is called before and after the text view is drawing its own text.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSnapshotLayer (gtype: usize) (handler: TextView -> TextViewLayer -> Snapshot -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -48296,19 +48599,20 @@ module TextView =
         let layer = TextViewLayer (int (Internal.Raw.argInt 1))
         let snapshot = Snapshot (Internal.Raw.wrap (Internal.Raw.argPointer 2) false)
         handler textView layer snapshot)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_snapshot_layer (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextView_snapshot_layer (Internal.Raw.gtype gtype) zcb)
 
   /// The snapshot_layer vfunc is called before and after the text view is drawing its own text.
   let parentSnapshotLayer (self: TextView) (layer: TextViewLayer) (snapshot: Snapshot) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TextView_snapshot_layer (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_text_view_get_type ())) (i32 layer.Int) (Internal.Raw.obj snapshot.Id (Internal.Gtk4C.gtk_snapshot_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `toggle_overwrite`: The class handler for the `GtkTextView::toggle-overwrite` keybinding signal.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideToggleOverwrite (gtype: usize) (handler: TextView -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let textView = TextView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler textView)
-    Internal.Gtk4C.zgtk_override_Gtk_TextView_toggle_overwrite (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TextView_toggle_overwrite (Internal.Raw.gtype gtype) zcb)
 
   /// The class handler for the `GtkTextView::toggle-overwrite` keybinding signal.
   let parentToggleOverwrite (self: TextView) : unit =
@@ -48391,12 +48695,13 @@ module ToggleButton =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_toggle_button_get_type ())) "notify::group" handler
 
   /// Gives a type made with `Glue.subclass` its own `toggled`: Deprecated. Emits the ::toggled signal on the `GtkToggleButton`.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideToggled (gtype: usize) (handler: ToggleButton -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let toggleButton = ToggleButton (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler toggleButton)
-    Internal.Gtk4C.zgtk_override_Gtk_ToggleButton_toggled (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_ToggleButton_toggled (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Emits the ::toggled signal on the `GtkToggleButton`.
   let parentToggled (self: ToggleButton) : unit =
@@ -48878,6 +49183,7 @@ module TreeModelFilter =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_filter_get_type ())) "notify::virtual-root" handler
 
   /// Gives a type made with `Glue.subclass` its own `modify`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideModify (gtype: usize) (handler: TreeModelFilter -> TreeModel -> TreeIter -> GObject.Value -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -48887,13 +49193,14 @@ module TreeModelFilter =
         let value = GObject.Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 3) (Internal.GObjectC.g_value_get_type ()) false)
         let column = Internal.Raw.argInt 4
         handler self_ childModel iter value column)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModelFilter_modify (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModelFilter_modify (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeModelFilter_modify`.
   let parentModify (self: TreeModelFilter) (childModel: TreeModel) (iter: TreeIter) (value: GObject.Value) (column: int) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TreeModelFilter_modify (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_model_filter_get_type ())) (Internal.Raw.obj childModel.Id (Internal.Gtk4C.gtk_tree_model_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())) (i32 column)
 
   /// Gives a type made with `Glue.subclass` its own `visible`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideVisible (gtype: usize) (handler: TreeModelFilter -> TreeModel -> TreeIter -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -48901,7 +49208,7 @@ module TreeModelFilter =
         let childModel = TreeModel (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         Internal.Raw.returnBool (handler self_ childModel iter))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeModelFilter_visible (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeModelFilter_visible (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeModelFilter_visible`.
   let parentVisible (self: TreeModelFilter) (childModel: TreeModel) (iter: TreeIter) : bool =
@@ -50157,30 +50464,33 @@ module TreeView =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_view_get_type ())) "notify::tooltip-column" handler
 
   /// Gives a type made with `Glue.subclass` its own `columns_changed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideColumnsChanged (gtype: usize) (handler: TreeView -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler treeView)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_columns_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeView_columns_changed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeView_columns_changed`.
   let parentColumnsChanged (self: TreeView) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TreeView_columns_changed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_view_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `cursor_changed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCursorChanged (gtype: usize) (handler: TreeView -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler treeView)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_cursor_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeView_cursor_changed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeView_cursor_changed`.
   let parentCursorChanged (self: TreeView) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TreeView_cursor_changed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_view_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `expand_collapse_cursor_row`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideExpandCollapseCursorRow (gtype: usize) (handler: TreeView -> bool -> bool -> bool -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -50189,13 +50499,14 @@ module TreeView =
         let expand = (Internal.Raw.argInt 2 <> 0)
         let openAll = (Internal.Raw.argInt 3 <> 0)
         Internal.Raw.returnBool (handler treeView logical expand openAll))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_expand_collapse_cursor_row (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeView_expand_collapse_cursor_row (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeView_expand_collapse_cursor_row`.
   let parentExpandCollapseCursorRow (self: TreeView) (logical: bool) (expand: bool) (openAll: bool) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TreeView_expand_collapse_cursor_row (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_view_get_type ())) (if logical then i32 1 else i32 0) (if expand then i32 1 else i32 0) (if openAll then i32 1 else i32 0))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `move_cursor`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideMoveCursor (gtype: usize) (handler: TreeView -> MovementStep -> int -> bool -> bool -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -50205,13 +50516,14 @@ module TreeView =
         let extend = (Internal.Raw.argInt 3 <> 0)
         let modify = (Internal.Raw.argInt 4 <> 0)
         Internal.Raw.returnBool (handler treeView step count extend modify))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_move_cursor (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeView_move_cursor (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeView_move_cursor`.
   let parentMoveCursor (self: TreeView) (step: MovementStep) (count: int) (extend: bool) (modify: bool) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TreeView_move_cursor (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_view_get_type ())) (i32 step.Int) (i32 count) (if extend then i32 1 else i32 0) (if modify then i32 1 else i32 0))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `row_activated`: Deprecated. Activates the cell determined by @path and @column.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRowActivated (gtype: usize) (handler: TreeView -> TreePath -> option<TreeViewColumn> -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -50220,7 +50532,7 @@ module TreeView =
         let zid1 = Internal.Raw.wrap (Internal.Raw.argPointer 2) false
         let column = (if zid1 = 0 then None else Some (TreeViewColumn zid1))
         handler treeView path column)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_row_activated (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeView_row_activated (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Activates the cell determined by @path and @column.
   let parentRowActivated (self: TreeView) (path: TreePath) (column: option<TreeViewColumn>) : unit =
@@ -50231,6 +50543,7 @@ module TreeView =
     Internal.Gtk4C.zgtk_parent_Gtk_TreeView_row_activated (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_view_get_type ())) (Internal.Raw.obj path.Id (Internal.Gtk4C.gtk_tree_path_get_type ())) zp1
 
   /// Gives a type made with `Glue.subclass` its own `row_collapsed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRowCollapsed (gtype: usize) (handler: TreeView -> TreeIter -> TreePath -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -50238,13 +50551,14 @@ module TreeView =
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         handler treeView iter path)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_row_collapsed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeView_row_collapsed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeView_row_collapsed`.
   let parentRowCollapsed (self: TreeView) (iter: TreeIter) (path: TreePath) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TreeView_row_collapsed (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_view_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) (Internal.Raw.obj path.Id (Internal.Gtk4C.gtk_tree_path_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `row_expanded`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideRowExpanded (gtype: usize) (handler: TreeView -> TreeIter -> TreePath -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -50252,62 +50566,67 @@ module TreeView =
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         handler treeView iter path)
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_row_expanded (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeView_row_expanded (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeView_row_expanded`.
   let parentRowExpanded (self: TreeView) (iter: TreeIter) (path: TreePath) : unit =
     Internal.Gtk4C.zgtk_parent_Gtk_TreeView_row_expanded (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_view_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) (Internal.Raw.obj path.Id (Internal.Gtk4C.gtk_tree_path_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `select_all`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSelectAll (gtype: usize) (handler: TreeView -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler treeView))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_select_all (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeView_select_all (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeView_select_all`.
   let parentSelectAll (self: TreeView) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TreeView_select_all (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_view_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `select_cursor_parent`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSelectCursorParent (gtype: usize) (handler: TreeView -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler treeView))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_select_cursor_parent (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeView_select_cursor_parent (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeView_select_cursor_parent`.
   let parentSelectCursorParent (self: TreeView) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TreeView_select_cursor_parent (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_view_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `select_cursor_row`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSelectCursorRow (gtype: usize) (handler: TreeView -> bool -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let startEditing = (Internal.Raw.argInt 1 <> 0)
         Internal.Raw.returnBool (handler treeView startEditing))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_select_cursor_row (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeView_select_cursor_row (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeView_select_cursor_row`.
   let parentSelectCursorRow (self: TreeView) (startEditing: bool) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TreeView_select_cursor_row (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_view_get_type ())) (if startEditing then i32 1 else i32 0))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `start_interactive_search`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideStartInteractiveSearch (gtype: usize) (handler: TreeView -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler treeView))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_start_interactive_search (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeView_start_interactive_search (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeView_start_interactive_search`.
   let parentStartInteractiveSearch (self: TreeView) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TreeView_start_interactive_search (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_view_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `test_collapse_row`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideTestCollapseRow (gtype: usize) (handler: TreeView -> TreeIter -> TreePath -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -50315,13 +50634,14 @@ module TreeView =
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         Internal.Raw.returnBool (handler treeView iter path))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_test_collapse_row (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeView_test_collapse_row (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeView_test_collapse_row`.
   let parentTestCollapseRow (self: TreeView) (iter: TreeIter) (path: TreePath) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TreeView_test_collapse_row (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_view_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) (Internal.Raw.obj path.Id (Internal.Gtk4C.gtk_tree_path_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `test_expand_row`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideTestExpandRow (gtype: usize) (handler: TreeView -> TreeIter -> TreePath -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -50329,31 +50649,33 @@ module TreeView =
         let iter = TreeIter (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.Gtk4C.gtk_tree_iter_get_type ()) false)
         let path = TreePath (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.Gtk4C.gtk_tree_path_get_type ()) false)
         Internal.Raw.returnBool (handler treeView iter path))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_test_expand_row (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeView_test_expand_row (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeView_test_expand_row`.
   let parentTestExpandRow (self: TreeView) (iter: TreeIter) (path: TreePath) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TreeView_test_expand_row (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_view_get_type ())) (Internal.Raw.obj iter.Id (Internal.Gtk4C.gtk_tree_iter_get_type ())) (Internal.Raw.obj path.Id (Internal.Gtk4C.gtk_tree_path_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `toggle_cursor_row`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideToggleCursorRow (gtype: usize) (handler: TreeView -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler treeView))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_toggle_cursor_row (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeView_toggle_cursor_row (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeView_toggle_cursor_row`.
   let parentToggleCursorRow (self: TreeView) : bool =
     (((Internal.Gtk4C.zgtk_parent_Gtk_TreeView_toggle_cursor_row (Internal.Raw.obj self.Id (Internal.Gtk4C.gtk_tree_view_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `unselect_all`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnselectAll (gtype: usize) (handler: TreeView -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let treeView = TreeView (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler treeView))
-    Internal.Gtk4C.zgtk_override_Gtk_TreeView_unselect_all (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.Gtk4C.zgtk_override_Gtk_TreeView_unselect_all (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Gtk_TreeView_unselect_all`.
   let parentUnselectAll (self: TreeView) : bool =

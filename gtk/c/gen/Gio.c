@@ -485,9 +485,11 @@ static void vf_Gio_Action_activate(GAction* a0, GVariant* a1) {
     void *f = zgtk_vfunc_find(a0, "Gio_Action.activate");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Action_activate(gsize type, void *closure) {
-    GActionInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Action.activate", closure); k->activate = (gpointer)vf_Gio_Action_activate; }
+int zgtk_override_Gio_Action_activate(gsize type, void *closure) {
+    GActionInterface *k = zgtk_iface_below(type, g_action_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Action.activate", closure); k->activate = (gpointer)vf_Gio_Action_activate;
+    return 1;
 }
 void zgtk_parent_Gio_Action_activate(GAction* a0, GVariant* a1) {
     GActionInterface *k = zgtk_vfunc_parent(a0, "Gio_Action.activate", g_action_get_type());
@@ -500,9 +502,11 @@ static void vf_Gio_Action_change_state(GAction* a0, GVariant* a1) {
     void *f = zgtk_vfunc_find(a0, "Gio_Action.change_state");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Action_change_state(gsize type, void *closure) {
-    GActionInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Action.change_state", closure); k->change_state = (gpointer)vf_Gio_Action_change_state; }
+int zgtk_override_Gio_Action_change_state(gsize type, void *closure) {
+    GActionInterface *k = zgtk_iface_below(type, g_action_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Action.change_state", closure); k->change_state = (gpointer)vf_Gio_Action_change_state;
+    return 1;
 }
 void zgtk_parent_Gio_Action_change_state(GAction* a0, GVariant* a1) {
     GActionInterface *k = zgtk_vfunc_parent(a0, "Gio_Action.change_state", g_action_get_type());
@@ -515,9 +519,11 @@ static gboolean vf_Gio_Action_get_enabled(GAction* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Action_get_enabled(gsize type, void *closure) {
-    GActionInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Action.get_enabled", closure); k->get_enabled = (gpointer)vf_Gio_Action_get_enabled; }
+int zgtk_override_Gio_Action_get_enabled(gsize type, void *closure) {
+    GActionInterface *k = zgtk_iface_below(type, g_action_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Action.get_enabled", closure); k->get_enabled = (gpointer)vf_Gio_Action_get_enabled;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Action_get_enabled(GAction* a0) {
     GActionInterface *k = zgtk_vfunc_parent(a0, "Gio_Action.get_enabled", g_action_get_type());
@@ -530,9 +536,11 @@ static const gchar* vf_Gio_Action_get_name(GAction* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const gchar*)c.ret.p;
 }
-void zgtk_override_Gio_Action_get_name(gsize type, void *closure) {
-    GActionInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Action.get_name", closure); k->get_name = (gpointer)vf_Gio_Action_get_name; }
+int zgtk_override_Gio_Action_get_name(gsize type, void *closure) {
+    GActionInterface *k = zgtk_iface_below(type, g_action_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Action.get_name", closure); k->get_name = (gpointer)vf_Gio_Action_get_name;
+    return 1;
 }
 const gchar* zgtk_parent_Gio_Action_get_name(GAction* a0) {
     GActionInterface *k = zgtk_vfunc_parent(a0, "Gio_Action.get_name", g_action_get_type());
@@ -545,9 +553,11 @@ static const GVariantType* vf_Gio_Action_get_parameter_type(GAction* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const GVariantType*)c.ret.p;
 }
-void zgtk_override_Gio_Action_get_parameter_type(gsize type, void *closure) {
-    GActionInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Action.get_parameter_type", closure); k->get_parameter_type = (gpointer)vf_Gio_Action_get_parameter_type; }
+int zgtk_override_Gio_Action_get_parameter_type(gsize type, void *closure) {
+    GActionInterface *k = zgtk_iface_below(type, g_action_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Action.get_parameter_type", closure); k->get_parameter_type = (gpointer)vf_Gio_Action_get_parameter_type;
+    return 1;
 }
 const GVariantType* zgtk_parent_Gio_Action_get_parameter_type(GAction* a0) {
     GActionInterface *k = zgtk_vfunc_parent(a0, "Gio_Action.get_parameter_type", g_action_get_type());
@@ -560,9 +570,11 @@ static GVariant* vf_Gio_Action_get_state(GAction* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GVariant*)c.ret.p;
 }
-void zgtk_override_Gio_Action_get_state(gsize type, void *closure) {
-    GActionInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Action.get_state", closure); k->get_state = (gpointer)vf_Gio_Action_get_state; }
+int zgtk_override_Gio_Action_get_state(gsize type, void *closure) {
+    GActionInterface *k = zgtk_iface_below(type, g_action_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Action.get_state", closure); k->get_state = (gpointer)vf_Gio_Action_get_state;
+    return 1;
 }
 GVariant* zgtk_parent_Gio_Action_get_state(GAction* a0) {
     GActionInterface *k = zgtk_vfunc_parent(a0, "Gio_Action.get_state", g_action_get_type());
@@ -575,9 +587,11 @@ static GVariant* vf_Gio_Action_get_state_hint(GAction* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GVariant*)c.ret.p;
 }
-void zgtk_override_Gio_Action_get_state_hint(gsize type, void *closure) {
-    GActionInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Action.get_state_hint", closure); k->get_state_hint = (gpointer)vf_Gio_Action_get_state_hint; }
+int zgtk_override_Gio_Action_get_state_hint(gsize type, void *closure) {
+    GActionInterface *k = zgtk_iface_below(type, g_action_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Action.get_state_hint", closure); k->get_state_hint = (gpointer)vf_Gio_Action_get_state_hint;
+    return 1;
 }
 GVariant* zgtk_parent_Gio_Action_get_state_hint(GAction* a0) {
     GActionInterface *k = zgtk_vfunc_parent(a0, "Gio_Action.get_state_hint", g_action_get_type());
@@ -590,9 +604,11 @@ static const GVariantType* vf_Gio_Action_get_state_type(GAction* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const GVariantType*)c.ret.p;
 }
-void zgtk_override_Gio_Action_get_state_type(gsize type, void *closure) {
-    GActionInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Action.get_state_type", closure); k->get_state_type = (gpointer)vf_Gio_Action_get_state_type; }
+int zgtk_override_Gio_Action_get_state_type(gsize type, void *closure) {
+    GActionInterface *k = zgtk_iface_below(type, g_action_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Action.get_state_type", closure); k->get_state_type = (gpointer)vf_Gio_Action_get_state_type;
+    return 1;
 }
 const GVariantType* zgtk_parent_Gio_Action_get_state_type(GAction* a0) {
     GActionInterface *k = zgtk_vfunc_parent(a0, "Gio_Action.get_state_type", g_action_get_type());
@@ -606,9 +622,11 @@ static void vf_Gio_ActionGroup_action_added(GActionGroup* a0, const gchar* a1) {
     void *f = zgtk_vfunc_find(a0, "Gio_ActionGroup.action_added");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_ActionGroup_action_added(gsize type, void *closure) {
-    GActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionGroup.action_added", closure); k->action_added = (gpointer)vf_Gio_ActionGroup_action_added; }
+int zgtk_override_Gio_ActionGroup_action_added(gsize type, void *closure) {
+    GActionGroupInterface *k = zgtk_iface_below(type, g_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionGroup.action_added", closure); k->action_added = (gpointer)vf_Gio_ActionGroup_action_added;
+    return 1;
 }
 void zgtk_parent_Gio_ActionGroup_action_added(GActionGroup* a0, const gchar* a1) {
     GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.action_added", g_action_group_get_type());
@@ -622,9 +640,11 @@ static void vf_Gio_ActionGroup_action_enabled_changed(GActionGroup* a0, const gc
     void *f = zgtk_vfunc_find(a0, "Gio_ActionGroup.action_enabled_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_ActionGroup_action_enabled_changed(gsize type, void *closure) {
-    GActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionGroup.action_enabled_changed", closure); k->action_enabled_changed = (gpointer)vf_Gio_ActionGroup_action_enabled_changed; }
+int zgtk_override_Gio_ActionGroup_action_enabled_changed(gsize type, void *closure) {
+    GActionGroupInterface *k = zgtk_iface_below(type, g_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionGroup.action_enabled_changed", closure); k->action_enabled_changed = (gpointer)vf_Gio_ActionGroup_action_enabled_changed;
+    return 1;
 }
 void zgtk_parent_Gio_ActionGroup_action_enabled_changed(GActionGroup* a0, const gchar* a1, gboolean a2) {
     GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.action_enabled_changed", g_action_group_get_type());
@@ -637,9 +657,11 @@ static void vf_Gio_ActionGroup_action_removed(GActionGroup* a0, const gchar* a1)
     void *f = zgtk_vfunc_find(a0, "Gio_ActionGroup.action_removed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_ActionGroup_action_removed(gsize type, void *closure) {
-    GActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionGroup.action_removed", closure); k->action_removed = (gpointer)vf_Gio_ActionGroup_action_removed; }
+int zgtk_override_Gio_ActionGroup_action_removed(gsize type, void *closure) {
+    GActionGroupInterface *k = zgtk_iface_below(type, g_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionGroup.action_removed", closure); k->action_removed = (gpointer)vf_Gio_ActionGroup_action_removed;
+    return 1;
 }
 void zgtk_parent_Gio_ActionGroup_action_removed(GActionGroup* a0, const gchar* a1) {
     GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.action_removed", g_action_group_get_type());
@@ -653,9 +675,11 @@ static void vf_Gio_ActionGroup_action_state_changed(GActionGroup* a0, const gcha
     void *f = zgtk_vfunc_find(a0, "Gio_ActionGroup.action_state_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_ActionGroup_action_state_changed(gsize type, void *closure) {
-    GActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionGroup.action_state_changed", closure); k->action_state_changed = (gpointer)vf_Gio_ActionGroup_action_state_changed; }
+int zgtk_override_Gio_ActionGroup_action_state_changed(gsize type, void *closure) {
+    GActionGroupInterface *k = zgtk_iface_below(type, g_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionGroup.action_state_changed", closure); k->action_state_changed = (gpointer)vf_Gio_ActionGroup_action_state_changed;
+    return 1;
 }
 void zgtk_parent_Gio_ActionGroup_action_state_changed(GActionGroup* a0, const gchar* a1, GVariant* a2) {
     GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.action_state_changed", g_action_group_get_type());
@@ -669,9 +693,11 @@ static void vf_Gio_ActionGroup_activate_action(GActionGroup* a0, const gchar* a1
     void *f = zgtk_vfunc_find(a0, "Gio_ActionGroup.activate_action");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_ActionGroup_activate_action(gsize type, void *closure) {
-    GActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionGroup.activate_action", closure); k->activate_action = (gpointer)vf_Gio_ActionGroup_activate_action; }
+int zgtk_override_Gio_ActionGroup_activate_action(gsize type, void *closure) {
+    GActionGroupInterface *k = zgtk_iface_below(type, g_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionGroup.activate_action", closure); k->activate_action = (gpointer)vf_Gio_ActionGroup_activate_action;
+    return 1;
 }
 void zgtk_parent_Gio_ActionGroup_activate_action(GActionGroup* a0, const gchar* a1, GVariant* a2) {
     GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.activate_action", g_action_group_get_type());
@@ -685,9 +711,11 @@ static void vf_Gio_ActionGroup_change_action_state(GActionGroup* a0, const gchar
     void *f = zgtk_vfunc_find(a0, "Gio_ActionGroup.change_action_state");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_ActionGroup_change_action_state(gsize type, void *closure) {
-    GActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionGroup.change_action_state", closure); k->change_action_state = (gpointer)vf_Gio_ActionGroup_change_action_state; }
+int zgtk_override_Gio_ActionGroup_change_action_state(gsize type, void *closure) {
+    GActionGroupInterface *k = zgtk_iface_below(type, g_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionGroup.change_action_state", closure); k->change_action_state = (gpointer)vf_Gio_ActionGroup_change_action_state;
+    return 1;
 }
 void zgtk_parent_Gio_ActionGroup_change_action_state(GActionGroup* a0, const gchar* a1, GVariant* a2) {
     GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.change_action_state", g_action_group_get_type());
@@ -701,9 +729,11 @@ static gboolean vf_Gio_ActionGroup_get_action_enabled(GActionGroup* a0, const gc
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_ActionGroup_get_action_enabled(gsize type, void *closure) {
-    GActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionGroup.get_action_enabled", closure); k->get_action_enabled = (gpointer)vf_Gio_ActionGroup_get_action_enabled; }
+int zgtk_override_Gio_ActionGroup_get_action_enabled(gsize type, void *closure) {
+    GActionGroupInterface *k = zgtk_iface_below(type, g_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionGroup.get_action_enabled", closure); k->get_action_enabled = (gpointer)vf_Gio_ActionGroup_get_action_enabled;
+    return 1;
 }
 gboolean zgtk_parent_Gio_ActionGroup_get_action_enabled(GActionGroup* a0, const gchar* a1) {
     GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.get_action_enabled", g_action_group_get_type());
@@ -717,9 +747,11 @@ static const GVariantType* vf_Gio_ActionGroup_get_action_parameter_type(GActionG
     if (f) zgtk_dispatch(f, &c);
     return (const GVariantType*)c.ret.p;
 }
-void zgtk_override_Gio_ActionGroup_get_action_parameter_type(gsize type, void *closure) {
-    GActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionGroup.get_action_parameter_type", closure); k->get_action_parameter_type = (gpointer)vf_Gio_ActionGroup_get_action_parameter_type; }
+int zgtk_override_Gio_ActionGroup_get_action_parameter_type(gsize type, void *closure) {
+    GActionGroupInterface *k = zgtk_iface_below(type, g_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionGroup.get_action_parameter_type", closure); k->get_action_parameter_type = (gpointer)vf_Gio_ActionGroup_get_action_parameter_type;
+    return 1;
 }
 const GVariantType* zgtk_parent_Gio_ActionGroup_get_action_parameter_type(GActionGroup* a0, const gchar* a1) {
     GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.get_action_parameter_type", g_action_group_get_type());
@@ -733,9 +765,11 @@ static GVariant* vf_Gio_ActionGroup_get_action_state(GActionGroup* a0, const gch
     if (f) zgtk_dispatch(f, &c);
     return (GVariant*)c.ret.p;
 }
-void zgtk_override_Gio_ActionGroup_get_action_state(gsize type, void *closure) {
-    GActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionGroup.get_action_state", closure); k->get_action_state = (gpointer)vf_Gio_ActionGroup_get_action_state; }
+int zgtk_override_Gio_ActionGroup_get_action_state(gsize type, void *closure) {
+    GActionGroupInterface *k = zgtk_iface_below(type, g_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionGroup.get_action_state", closure); k->get_action_state = (gpointer)vf_Gio_ActionGroup_get_action_state;
+    return 1;
 }
 GVariant* zgtk_parent_Gio_ActionGroup_get_action_state(GActionGroup* a0, const gchar* a1) {
     GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.get_action_state", g_action_group_get_type());
@@ -749,9 +783,11 @@ static GVariant* vf_Gio_ActionGroup_get_action_state_hint(GActionGroup* a0, cons
     if (f) zgtk_dispatch(f, &c);
     return (GVariant*)c.ret.p;
 }
-void zgtk_override_Gio_ActionGroup_get_action_state_hint(gsize type, void *closure) {
-    GActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionGroup.get_action_state_hint", closure); k->get_action_state_hint = (gpointer)vf_Gio_ActionGroup_get_action_state_hint; }
+int zgtk_override_Gio_ActionGroup_get_action_state_hint(gsize type, void *closure) {
+    GActionGroupInterface *k = zgtk_iface_below(type, g_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionGroup.get_action_state_hint", closure); k->get_action_state_hint = (gpointer)vf_Gio_ActionGroup_get_action_state_hint;
+    return 1;
 }
 GVariant* zgtk_parent_Gio_ActionGroup_get_action_state_hint(GActionGroup* a0, const gchar* a1) {
     GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.get_action_state_hint", g_action_group_get_type());
@@ -765,9 +801,11 @@ static const GVariantType* vf_Gio_ActionGroup_get_action_state_type(GActionGroup
     if (f) zgtk_dispatch(f, &c);
     return (const GVariantType*)c.ret.p;
 }
-void zgtk_override_Gio_ActionGroup_get_action_state_type(gsize type, void *closure) {
-    GActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionGroup.get_action_state_type", closure); k->get_action_state_type = (gpointer)vf_Gio_ActionGroup_get_action_state_type; }
+int zgtk_override_Gio_ActionGroup_get_action_state_type(gsize type, void *closure) {
+    GActionGroupInterface *k = zgtk_iface_below(type, g_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionGroup.get_action_state_type", closure); k->get_action_state_type = (gpointer)vf_Gio_ActionGroup_get_action_state_type;
+    return 1;
 }
 const GVariantType* zgtk_parent_Gio_ActionGroup_get_action_state_type(GActionGroup* a0, const gchar* a1) {
     GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.get_action_state_type", g_action_group_get_type());
@@ -781,9 +819,11 @@ static gboolean vf_Gio_ActionGroup_has_action(GActionGroup* a0, const gchar* a1)
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_ActionGroup_has_action(gsize type, void *closure) {
-    GActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionGroup.has_action", closure); k->has_action = (gpointer)vf_Gio_ActionGroup_has_action; }
+int zgtk_override_Gio_ActionGroup_has_action(gsize type, void *closure) {
+    GActionGroupInterface *k = zgtk_iface_below(type, g_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionGroup.has_action", closure); k->has_action = (gpointer)vf_Gio_ActionGroup_has_action;
+    return 1;
 }
 gboolean zgtk_parent_Gio_ActionGroup_has_action(GActionGroup* a0, const gchar* a1) {
     GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.has_action", g_action_group_get_type());
@@ -796,9 +836,11 @@ static gchar** vf_Gio_ActionGroup_list_actions(GActionGroup* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gchar**)c.ret.p;
 }
-void zgtk_override_Gio_ActionGroup_list_actions(gsize type, void *closure) {
-    GActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionGroup.list_actions", closure); k->list_actions = (gpointer)vf_Gio_ActionGroup_list_actions; }
+int zgtk_override_Gio_ActionGroup_list_actions(gsize type, void *closure) {
+    GActionGroupInterface *k = zgtk_iface_below(type, g_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionGroup.list_actions", closure); k->list_actions = (gpointer)vf_Gio_ActionGroup_list_actions;
+    return 1;
 }
 gchar** zgtk_parent_Gio_ActionGroup_list_actions(GActionGroup* a0) {
     GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.list_actions", g_action_group_get_type());
@@ -817,9 +859,11 @@ static gboolean vf_Gio_ActionGroup_query_action(GActionGroup* a0, const gchar* a
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_ActionGroup_query_action(gsize type, void *closure) {
-    GActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionGroup.query_action", closure); k->query_action = (gpointer)vf_Gio_ActionGroup_query_action; }
+int zgtk_override_Gio_ActionGroup_query_action(gsize type, void *closure) {
+    GActionGroupInterface *k = zgtk_iface_below(type, g_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionGroup.query_action", closure); k->query_action = (gpointer)vf_Gio_ActionGroup_query_action;
+    return 1;
 }
 gboolean zgtk_parent_Gio_ActionGroup_query_action(GActionGroup* a0, const gchar* a1, gboolean* a2, const GVariantType** a3, const GVariantType** a4, GVariant** a5, GVariant** a6) {
     GActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionGroup.query_action", g_action_group_get_type());
@@ -832,9 +876,11 @@ static void vf_Gio_ActionMap_add_action(GActionMap* a0, GAction* a1) {
     void *f = zgtk_vfunc_find(a0, "Gio_ActionMap.add_action");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_ActionMap_add_action(gsize type, void *closure) {
-    GActionMapInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_map_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionMap.add_action", closure); k->add_action = (gpointer)vf_Gio_ActionMap_add_action; }
+int zgtk_override_Gio_ActionMap_add_action(gsize type, void *closure) {
+    GActionMapInterface *k = zgtk_iface_below(type, g_action_map_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionMap.add_action", closure); k->add_action = (gpointer)vf_Gio_ActionMap_add_action;
+    return 1;
 }
 void zgtk_parent_Gio_ActionMap_add_action(GActionMap* a0, GAction* a1) {
     GActionMapInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionMap.add_action", g_action_map_get_type());
@@ -848,9 +894,11 @@ static GAction* vf_Gio_ActionMap_lookup_action(GActionMap* a0, const gchar* a1) 
     if (f) zgtk_dispatch(f, &c);
     return (GAction*)c.ret.p;
 }
-void zgtk_override_Gio_ActionMap_lookup_action(gsize type, void *closure) {
-    GActionMapInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_map_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionMap.lookup_action", closure); k->lookup_action = (gpointer)vf_Gio_ActionMap_lookup_action; }
+int zgtk_override_Gio_ActionMap_lookup_action(gsize type, void *closure) {
+    GActionMapInterface *k = zgtk_iface_below(type, g_action_map_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionMap.lookup_action", closure); k->lookup_action = (gpointer)vf_Gio_ActionMap_lookup_action;
+    return 1;
 }
 GAction* zgtk_parent_Gio_ActionMap_lookup_action(GActionMap* a0, const gchar* a1) {
     GActionMapInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionMap.lookup_action", g_action_map_get_type());
@@ -863,9 +911,11 @@ static void vf_Gio_ActionMap_remove_action(GActionMap* a0, const gchar* a1) {
     void *f = zgtk_vfunc_find(a0, "Gio_ActionMap.remove_action");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_ActionMap_remove_action(gsize type, void *closure) {
-    GActionMapInterface *k = g_type_interface_peek(g_type_class_ref(type), g_action_map_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ActionMap.remove_action", closure); k->remove_action = (gpointer)vf_Gio_ActionMap_remove_action; }
+int zgtk_override_Gio_ActionMap_remove_action(gsize type, void *closure) {
+    GActionMapInterface *k = zgtk_iface_below(type, g_action_map_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ActionMap.remove_action", closure); k->remove_action = (gpointer)vf_Gio_ActionMap_remove_action;
+    return 1;
 }
 void zgtk_parent_Gio_ActionMap_remove_action(GActionMap* a0, const gchar* a1) {
     GActionMapInterface *k = zgtk_vfunc_parent(a0, "Gio_ActionMap.remove_action", g_action_map_get_type());
@@ -878,9 +928,11 @@ static gboolean vf_Gio_AppInfo_can_delete(GAppInfo* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_AppInfo_can_delete(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.can_delete", closure); k->can_delete = (gpointer)vf_Gio_AppInfo_can_delete; }
+int zgtk_override_Gio_AppInfo_can_delete(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.can_delete", closure); k->can_delete = (gpointer)vf_Gio_AppInfo_can_delete;
+    return 1;
 }
 gboolean zgtk_parent_Gio_AppInfo_can_delete(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.can_delete", g_app_info_get_type());
@@ -893,9 +945,11 @@ static gboolean vf_Gio_AppInfo_can_remove_supports_type(GAppInfo* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_AppInfo_can_remove_supports_type(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.can_remove_supports_type", closure); k->can_remove_supports_type = (gpointer)vf_Gio_AppInfo_can_remove_supports_type; }
+int zgtk_override_Gio_AppInfo_can_remove_supports_type(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.can_remove_supports_type", closure); k->can_remove_supports_type = (gpointer)vf_Gio_AppInfo_can_remove_supports_type;
+    return 1;
 }
 gboolean zgtk_parent_Gio_AppInfo_can_remove_supports_type(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.can_remove_supports_type", g_app_info_get_type());
@@ -908,9 +962,11 @@ static gboolean vf_Gio_AppInfo_do_delete(GAppInfo* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_AppInfo_do_delete(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.do_delete", closure); k->do_delete = (gpointer)vf_Gio_AppInfo_do_delete; }
+int zgtk_override_Gio_AppInfo_do_delete(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.do_delete", closure); k->do_delete = (gpointer)vf_Gio_AppInfo_do_delete;
+    return 1;
 }
 gboolean zgtk_parent_Gio_AppInfo_do_delete(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.do_delete", g_app_info_get_type());
@@ -923,9 +979,11 @@ static GAppInfo* vf_Gio_AppInfo_dup(GAppInfo* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GAppInfo*)c.ret.p;
 }
-void zgtk_override_Gio_AppInfo_dup(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.dup", closure); k->dup = (gpointer)vf_Gio_AppInfo_dup; }
+int zgtk_override_Gio_AppInfo_dup(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.dup", closure); k->dup = (gpointer)vf_Gio_AppInfo_dup;
+    return 1;
 }
 GAppInfo* zgtk_parent_Gio_AppInfo_dup(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.dup", g_app_info_get_type());
@@ -939,9 +997,11 @@ static gboolean vf_Gio_AppInfo_equal(GAppInfo* a0, GAppInfo* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_AppInfo_equal(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.equal", closure); k->equal = (gpointer)vf_Gio_AppInfo_equal; }
+int zgtk_override_Gio_AppInfo_equal(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.equal", closure); k->equal = (gpointer)vf_Gio_AppInfo_equal;
+    return 1;
 }
 gboolean zgtk_parent_Gio_AppInfo_equal(GAppInfo* a0, GAppInfo* a1) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.equal", g_app_info_get_type());
@@ -954,9 +1014,11 @@ static const char* vf_Gio_AppInfo_get_commandline(GAppInfo* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const char*)c.ret.p;
 }
-void zgtk_override_Gio_AppInfo_get_commandline(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.get_commandline", closure); k->get_commandline = (gpointer)vf_Gio_AppInfo_get_commandline; }
+int zgtk_override_Gio_AppInfo_get_commandline(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.get_commandline", closure); k->get_commandline = (gpointer)vf_Gio_AppInfo_get_commandline;
+    return 1;
 }
 const char* zgtk_parent_Gio_AppInfo_get_commandline(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.get_commandline", g_app_info_get_type());
@@ -969,9 +1031,11 @@ static const char* vf_Gio_AppInfo_get_description(GAppInfo* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const char*)c.ret.p;
 }
-void zgtk_override_Gio_AppInfo_get_description(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.get_description", closure); k->get_description = (gpointer)vf_Gio_AppInfo_get_description; }
+int zgtk_override_Gio_AppInfo_get_description(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.get_description", closure); k->get_description = (gpointer)vf_Gio_AppInfo_get_description;
+    return 1;
 }
 const char* zgtk_parent_Gio_AppInfo_get_description(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.get_description", g_app_info_get_type());
@@ -984,9 +1048,11 @@ static const char* vf_Gio_AppInfo_get_display_name(GAppInfo* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const char*)c.ret.p;
 }
-void zgtk_override_Gio_AppInfo_get_display_name(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.get_display_name", closure); k->get_display_name = (gpointer)vf_Gio_AppInfo_get_display_name; }
+int zgtk_override_Gio_AppInfo_get_display_name(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.get_display_name", closure); k->get_display_name = (gpointer)vf_Gio_AppInfo_get_display_name;
+    return 1;
 }
 const char* zgtk_parent_Gio_AppInfo_get_display_name(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.get_display_name", g_app_info_get_type());
@@ -999,9 +1065,11 @@ static const char* vf_Gio_AppInfo_get_executable(GAppInfo* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const char*)c.ret.p;
 }
-void zgtk_override_Gio_AppInfo_get_executable(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.get_executable", closure); k->get_executable = (gpointer)vf_Gio_AppInfo_get_executable; }
+int zgtk_override_Gio_AppInfo_get_executable(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.get_executable", closure); k->get_executable = (gpointer)vf_Gio_AppInfo_get_executable;
+    return 1;
 }
 const char* zgtk_parent_Gio_AppInfo_get_executable(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.get_executable", g_app_info_get_type());
@@ -1014,9 +1082,11 @@ static GIcon* vf_Gio_AppInfo_get_icon(GAppInfo* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GIcon*)c.ret.p;
 }
-void zgtk_override_Gio_AppInfo_get_icon(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.get_icon", closure); k->get_icon = (gpointer)vf_Gio_AppInfo_get_icon; }
+int zgtk_override_Gio_AppInfo_get_icon(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.get_icon", closure); k->get_icon = (gpointer)vf_Gio_AppInfo_get_icon;
+    return 1;
 }
 GIcon* zgtk_parent_Gio_AppInfo_get_icon(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.get_icon", g_app_info_get_type());
@@ -1029,9 +1099,11 @@ static const char* vf_Gio_AppInfo_get_id(GAppInfo* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const char*)c.ret.p;
 }
-void zgtk_override_Gio_AppInfo_get_id(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.get_id", closure); k->get_id = (gpointer)vf_Gio_AppInfo_get_id; }
+int zgtk_override_Gio_AppInfo_get_id(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.get_id", closure); k->get_id = (gpointer)vf_Gio_AppInfo_get_id;
+    return 1;
 }
 const char* zgtk_parent_Gio_AppInfo_get_id(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.get_id", g_app_info_get_type());
@@ -1044,9 +1116,11 @@ static const char* vf_Gio_AppInfo_get_name(GAppInfo* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const char*)c.ret.p;
 }
-void zgtk_override_Gio_AppInfo_get_name(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.get_name", closure); k->get_name = (gpointer)vf_Gio_AppInfo_get_name; }
+int zgtk_override_Gio_AppInfo_get_name(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.get_name", closure); k->get_name = (gpointer)vf_Gio_AppInfo_get_name;
+    return 1;
 }
 const char* zgtk_parent_Gio_AppInfo_get_name(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.get_name", g_app_info_get_type());
@@ -1059,9 +1133,11 @@ static const char** vf_Gio_AppInfo_get_supported_types(GAppInfo* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const char**)c.ret.p;
 }
-void zgtk_override_Gio_AppInfo_get_supported_types(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.get_supported_types", closure); k->get_supported_types = (gpointer)vf_Gio_AppInfo_get_supported_types; }
+int zgtk_override_Gio_AppInfo_get_supported_types(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.get_supported_types", closure); k->get_supported_types = (gpointer)vf_Gio_AppInfo_get_supported_types;
+    return 1;
 }
 const char** zgtk_parent_Gio_AppInfo_get_supported_types(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.get_supported_types", g_app_info_get_type());
@@ -1078,9 +1154,11 @@ static void vf_Gio_AppInfo_launch_uris_async(GAppInfo* a0, GList* a1, GAppLaunch
     void *f = zgtk_vfunc_find(a0, "Gio_AppInfo.launch_uris_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_AppInfo_launch_uris_async(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.launch_uris_async", closure); k->launch_uris_async = (gpointer)vf_Gio_AppInfo_launch_uris_async; }
+int zgtk_override_Gio_AppInfo_launch_uris_async(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.launch_uris_async", closure); k->launch_uris_async = (gpointer)vf_Gio_AppInfo_launch_uris_async;
+    return 1;
 }
 void zgtk_parent_Gio_AppInfo_launch_uris_async(GAppInfo* a0, GList* a1, GAppLaunchContext* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.launch_uris_async", g_app_info_get_type());
@@ -1093,9 +1171,11 @@ static gboolean vf_Gio_AppInfo_should_show(GAppInfo* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_AppInfo_should_show(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.should_show", closure); k->should_show = (gpointer)vf_Gio_AppInfo_should_show; }
+int zgtk_override_Gio_AppInfo_should_show(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.should_show", closure); k->should_show = (gpointer)vf_Gio_AppInfo_should_show;
+    return 1;
 }
 gboolean zgtk_parent_Gio_AppInfo_should_show(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.should_show", g_app_info_get_type());
@@ -1108,9 +1188,11 @@ static gboolean vf_Gio_AppInfo_supports_files(GAppInfo* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_AppInfo_supports_files(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.supports_files", closure); k->supports_files = (gpointer)vf_Gio_AppInfo_supports_files; }
+int zgtk_override_Gio_AppInfo_supports_files(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.supports_files", closure); k->supports_files = (gpointer)vf_Gio_AppInfo_supports_files;
+    return 1;
 }
 gboolean zgtk_parent_Gio_AppInfo_supports_files(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.supports_files", g_app_info_get_type());
@@ -1123,9 +1205,11 @@ static gboolean vf_Gio_AppInfo_supports_uris(GAppInfo* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_AppInfo_supports_uris(gsize type, void *closure) {
-    GAppInfoIface *k = g_type_interface_peek(g_type_class_ref(type), g_app_info_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AppInfo.supports_uris", closure); k->supports_uris = (gpointer)vf_Gio_AppInfo_supports_uris; }
+int zgtk_override_Gio_AppInfo_supports_uris(gsize type, void *closure) {
+    GAppInfoIface *k = zgtk_iface_below(type, g_app_info_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppInfo.supports_uris", closure); k->supports_uris = (gpointer)vf_Gio_AppInfo_supports_uris;
+    return 1;
 }
 gboolean zgtk_parent_Gio_AppInfo_supports_uris(GAppInfo* a0) {
     GAppInfoIface *k = zgtk_vfunc_parent(a0, "Gio_AppInfo.supports_uris", g_app_info_get_type());
@@ -1140,9 +1224,11 @@ static char* vf_Gio_AppLaunchContext_get_display(GAppLaunchContext* a0, GAppInfo
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_AppLaunchContext_get_display(gsize type, void *closure) {
-    GAppLaunchContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_AppLaunchContext.get_display", closure); k->get_display = (gpointer)vf_Gio_AppLaunchContext_get_display; }
+int zgtk_override_Gio_AppLaunchContext_get_display(gsize type, void *closure) {
+    GAppLaunchContextClass *k = zgtk_class_below(type, g_app_launch_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppLaunchContext.get_display", closure); k->get_display = (gpointer)vf_Gio_AppLaunchContext_get_display;
+    return 1;
 }
 char* zgtk_parent_Gio_AppLaunchContext_get_display(GAppLaunchContext* a0, GAppInfo* a1, GList* a2) {
     GAppLaunchContextClass *k = zgtk_vfunc_parent(a0, "Gio_AppLaunchContext.get_display", 0);
@@ -1157,9 +1243,11 @@ static char* vf_Gio_AppLaunchContext_get_startup_notify_id(GAppLaunchContext* a0
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_AppLaunchContext_get_startup_notify_id(gsize type, void *closure) {
-    GAppLaunchContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_AppLaunchContext.get_startup_notify_id", closure); k->get_startup_notify_id = (gpointer)vf_Gio_AppLaunchContext_get_startup_notify_id; }
+int zgtk_override_Gio_AppLaunchContext_get_startup_notify_id(gsize type, void *closure) {
+    GAppLaunchContextClass *k = zgtk_class_below(type, g_app_launch_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppLaunchContext.get_startup_notify_id", closure); k->get_startup_notify_id = (gpointer)vf_Gio_AppLaunchContext_get_startup_notify_id;
+    return 1;
 }
 char* zgtk_parent_Gio_AppLaunchContext_get_startup_notify_id(GAppLaunchContext* a0, GAppInfo* a1, GList* a2) {
     GAppLaunchContextClass *k = zgtk_vfunc_parent(a0, "Gio_AppLaunchContext.get_startup_notify_id", 0);
@@ -1172,9 +1260,11 @@ static void vf_Gio_AppLaunchContext_launch_failed(GAppLaunchContext* a0, const c
     void *f = zgtk_vfunc_find(a0, "Gio_AppLaunchContext.launch_failed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_AppLaunchContext_launch_failed(gsize type, void *closure) {
-    GAppLaunchContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_AppLaunchContext.launch_failed", closure); k->launch_failed = (gpointer)vf_Gio_AppLaunchContext_launch_failed; }
+int zgtk_override_Gio_AppLaunchContext_launch_failed(gsize type, void *closure) {
+    GAppLaunchContextClass *k = zgtk_class_below(type, g_app_launch_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppLaunchContext.launch_failed", closure); k->launch_failed = (gpointer)vf_Gio_AppLaunchContext_launch_failed;
+    return 1;
 }
 void zgtk_parent_Gio_AppLaunchContext_launch_failed(GAppLaunchContext* a0, const char* a1) {
     GAppLaunchContextClass *k = zgtk_vfunc_parent(a0, "Gio_AppLaunchContext.launch_failed", 0);
@@ -1188,9 +1278,11 @@ static void vf_Gio_AppLaunchContext_launch_started(GAppLaunchContext* a0, GAppIn
     void *f = zgtk_vfunc_find(a0, "Gio_AppLaunchContext.launch_started");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_AppLaunchContext_launch_started(gsize type, void *closure) {
-    GAppLaunchContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_AppLaunchContext.launch_started", closure); k->launch_started = (gpointer)vf_Gio_AppLaunchContext_launch_started; }
+int zgtk_override_Gio_AppLaunchContext_launch_started(gsize type, void *closure) {
+    GAppLaunchContextClass *k = zgtk_class_below(type, g_app_launch_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppLaunchContext.launch_started", closure); k->launch_started = (gpointer)vf_Gio_AppLaunchContext_launch_started;
+    return 1;
 }
 void zgtk_parent_Gio_AppLaunchContext_launch_started(GAppLaunchContext* a0, GAppInfo* a1, GVariant* a2) {
     GAppLaunchContextClass *k = zgtk_vfunc_parent(a0, "Gio_AppLaunchContext.launch_started", 0);
@@ -1204,9 +1296,11 @@ static void vf_Gio_AppLaunchContext_launched(GAppLaunchContext* a0, GAppInfo* a1
     void *f = zgtk_vfunc_find(a0, "Gio_AppLaunchContext.launched");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_AppLaunchContext_launched(gsize type, void *closure) {
-    GAppLaunchContextClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_AppLaunchContext.launched", closure); k->launched = (gpointer)vf_Gio_AppLaunchContext_launched; }
+int zgtk_override_Gio_AppLaunchContext_launched(gsize type, void *closure) {
+    GAppLaunchContextClass *k = zgtk_class_below(type, g_app_launch_context_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AppLaunchContext.launched", closure); k->launched = (gpointer)vf_Gio_AppLaunchContext_launched;
+    return 1;
 }
 void zgtk_parent_Gio_AppLaunchContext_launched(GAppLaunchContext* a0, GAppInfo* a1, GVariant* a2) {
     GAppLaunchContextClass *k = zgtk_vfunc_parent(a0, "Gio_AppLaunchContext.launched", 0);
@@ -1218,9 +1312,11 @@ static void vf_Gio_Application_activate(GApplication* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Application.activate");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Application_activate(gsize type, void *closure) {
-    GApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Application.activate", closure); k->activate = (gpointer)vf_Gio_Application_activate; }
+int zgtk_override_Gio_Application_activate(gsize type, void *closure) {
+    GApplicationClass *k = zgtk_class_below(type, g_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Application.activate", closure); k->activate = (gpointer)vf_Gio_Application_activate;
+    return 1;
 }
 void zgtk_parent_Gio_Application_activate(GApplication* a0) {
     GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.activate", 0);
@@ -1233,9 +1329,11 @@ static void vf_Gio_Application_add_platform_data(GApplication* a0, GVariantBuild
     void *f = zgtk_vfunc_find(a0, "Gio_Application.add_platform_data");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Application_add_platform_data(gsize type, void *closure) {
-    GApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Application.add_platform_data", closure); k->add_platform_data = (gpointer)vf_Gio_Application_add_platform_data; }
+int zgtk_override_Gio_Application_add_platform_data(gsize type, void *closure) {
+    GApplicationClass *k = zgtk_class_below(type, g_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Application.add_platform_data", closure); k->add_platform_data = (gpointer)vf_Gio_Application_add_platform_data;
+    return 1;
 }
 void zgtk_parent_Gio_Application_add_platform_data(GApplication* a0, GVariantBuilder* a1) {
     GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.add_platform_data", 0);
@@ -1248,9 +1346,11 @@ static void vf_Gio_Application_after_emit(GApplication* a0, GVariant* a1) {
     void *f = zgtk_vfunc_find(a0, "Gio_Application.after_emit");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Application_after_emit(gsize type, void *closure) {
-    GApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Application.after_emit", closure); k->after_emit = (gpointer)vf_Gio_Application_after_emit; }
+int zgtk_override_Gio_Application_after_emit(gsize type, void *closure) {
+    GApplicationClass *k = zgtk_class_below(type, g_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Application.after_emit", closure); k->after_emit = (gpointer)vf_Gio_Application_after_emit;
+    return 1;
 }
 void zgtk_parent_Gio_Application_after_emit(GApplication* a0, GVariant* a1) {
     GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.after_emit", 0);
@@ -1263,9 +1363,11 @@ static void vf_Gio_Application_before_emit(GApplication* a0, GVariant* a1) {
     void *f = zgtk_vfunc_find(a0, "Gio_Application.before_emit");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Application_before_emit(gsize type, void *closure) {
-    GApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Application.before_emit", closure); k->before_emit = (gpointer)vf_Gio_Application_before_emit; }
+int zgtk_override_Gio_Application_before_emit(gsize type, void *closure) {
+    GApplicationClass *k = zgtk_class_below(type, g_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Application.before_emit", closure); k->before_emit = (gpointer)vf_Gio_Application_before_emit;
+    return 1;
 }
 void zgtk_parent_Gio_Application_before_emit(GApplication* a0, GVariant* a1) {
     GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.before_emit", 0);
@@ -1279,9 +1381,11 @@ static int vf_Gio_Application_command_line(GApplication* a0, GApplicationCommand
     if (f) zgtk_dispatch(f, &c);
     return (int)c.ret.i;
 }
-void zgtk_override_Gio_Application_command_line(gsize type, void *closure) {
-    GApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Application.command_line", closure); k->command_line = (gpointer)vf_Gio_Application_command_line; }
+int zgtk_override_Gio_Application_command_line(gsize type, void *closure) {
+    GApplicationClass *k = zgtk_class_below(type, g_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Application.command_line", closure); k->command_line = (gpointer)vf_Gio_Application_command_line;
+    return 1;
 }
 int zgtk_parent_Gio_Application_command_line(GApplication* a0, GApplicationCommandLine* a1) {
     GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.command_line", 0);
@@ -1295,9 +1399,11 @@ static void vf_Gio_Application_dbus_unregister(GApplication* a0, GDBusConnection
     void *f = zgtk_vfunc_find(a0, "Gio_Application.dbus_unregister");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Application_dbus_unregister(gsize type, void *closure) {
-    GApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Application.dbus_unregister", closure); k->dbus_unregister = (gpointer)vf_Gio_Application_dbus_unregister; }
+int zgtk_override_Gio_Application_dbus_unregister(gsize type, void *closure) {
+    GApplicationClass *k = zgtk_class_below(type, g_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Application.dbus_unregister", closure); k->dbus_unregister = (gpointer)vf_Gio_Application_dbus_unregister;
+    return 1;
 }
 void zgtk_parent_Gio_Application_dbus_unregister(GApplication* a0, GDBusConnection* a1, const gchar* a2) {
     GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.dbus_unregister", 0);
@@ -1311,9 +1417,11 @@ static gint vf_Gio_Application_handle_local_options(GApplication* a0, GVariantDi
     if (f) zgtk_dispatch(f, &c);
     return (gint)c.ret.i;
 }
-void zgtk_override_Gio_Application_handle_local_options(gsize type, void *closure) {
-    GApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Application.handle_local_options", closure); k->handle_local_options = (gpointer)vf_Gio_Application_handle_local_options; }
+int zgtk_override_Gio_Application_handle_local_options(gsize type, void *closure) {
+    GApplicationClass *k = zgtk_class_below(type, g_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Application.handle_local_options", closure); k->handle_local_options = (gpointer)vf_Gio_Application_handle_local_options;
+    return 1;
 }
 gint zgtk_parent_Gio_Application_handle_local_options(GApplication* a0, GVariantDict* a1) {
     GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.handle_local_options", 0);
@@ -1328,9 +1436,11 @@ static gboolean vf_Gio_Application_local_command_line(GApplication* a0, gchar***
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Application_local_command_line(gsize type, void *closure) {
-    GApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Application.local_command_line", closure); k->local_command_line = (gpointer)vf_Gio_Application_local_command_line; }
+int zgtk_override_Gio_Application_local_command_line(gsize type, void *closure) {
+    GApplicationClass *k = zgtk_class_below(type, g_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Application.local_command_line", closure); k->local_command_line = (gpointer)vf_Gio_Application_local_command_line;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Application_local_command_line(GApplication* a0, gchar*** a1, int* a2) {
     GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.local_command_line", 0);
@@ -1343,9 +1453,11 @@ static gboolean vf_Gio_Application_name_lost(GApplication* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Application_name_lost(gsize type, void *closure) {
-    GApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Application.name_lost", closure); k->name_lost = (gpointer)vf_Gio_Application_name_lost; }
+int zgtk_override_Gio_Application_name_lost(gsize type, void *closure) {
+    GApplicationClass *k = zgtk_class_below(type, g_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Application.name_lost", closure); k->name_lost = (gpointer)vf_Gio_Application_name_lost;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Application_name_lost(GApplication* a0) {
     GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.name_lost", 0);
@@ -1360,9 +1472,11 @@ static void vf_Gio_Application_open(GApplication* a0, GFile** a1, gint a2, const
     void *f = zgtk_vfunc_find(a0, "Gio_Application.open");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Application_open(gsize type, void *closure) {
-    GApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Application.open", closure); k->open = (gpointer)vf_Gio_Application_open; }
+int zgtk_override_Gio_Application_open(gsize type, void *closure) {
+    GApplicationClass *k = zgtk_class_below(type, g_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Application.open", closure); k->open = (gpointer)vf_Gio_Application_open;
+    return 1;
 }
 void zgtk_parent_Gio_Application_open(GApplication* a0, GFile** a1, gint a2, const gchar* a3) {
     GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.open", 0);
@@ -1374,9 +1488,11 @@ static void vf_Gio_Application_quit_mainloop(GApplication* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Application.quit_mainloop");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Application_quit_mainloop(gsize type, void *closure) {
-    GApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Application.quit_mainloop", closure); k->quit_mainloop = (gpointer)vf_Gio_Application_quit_mainloop; }
+int zgtk_override_Gio_Application_quit_mainloop(gsize type, void *closure) {
+    GApplicationClass *k = zgtk_class_below(type, g_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Application.quit_mainloop", closure); k->quit_mainloop = (gpointer)vf_Gio_Application_quit_mainloop;
+    return 1;
 }
 void zgtk_parent_Gio_Application_quit_mainloop(GApplication* a0) {
     GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.quit_mainloop", 0);
@@ -1388,9 +1504,11 @@ static void vf_Gio_Application_run_mainloop(GApplication* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Application.run_mainloop");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Application_run_mainloop(gsize type, void *closure) {
-    GApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Application.run_mainloop", closure); k->run_mainloop = (gpointer)vf_Gio_Application_run_mainloop; }
+int zgtk_override_Gio_Application_run_mainloop(gsize type, void *closure) {
+    GApplicationClass *k = zgtk_class_below(type, g_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Application.run_mainloop", closure); k->run_mainloop = (gpointer)vf_Gio_Application_run_mainloop;
+    return 1;
 }
 void zgtk_parent_Gio_Application_run_mainloop(GApplication* a0) {
     GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.run_mainloop", 0);
@@ -1402,9 +1520,11 @@ static void vf_Gio_Application_shutdown(GApplication* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Application.shutdown");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Application_shutdown(gsize type, void *closure) {
-    GApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Application.shutdown", closure); k->shutdown = (gpointer)vf_Gio_Application_shutdown; }
+int zgtk_override_Gio_Application_shutdown(gsize type, void *closure) {
+    GApplicationClass *k = zgtk_class_below(type, g_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Application.shutdown", closure); k->shutdown = (gpointer)vf_Gio_Application_shutdown;
+    return 1;
 }
 void zgtk_parent_Gio_Application_shutdown(GApplication* a0) {
     GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.shutdown", 0);
@@ -1416,9 +1536,11 @@ static void vf_Gio_Application_startup(GApplication* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Application.startup");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Application_startup(gsize type, void *closure) {
-    GApplicationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Application.startup", closure); k->startup = (gpointer)vf_Gio_Application_startup; }
+int zgtk_override_Gio_Application_startup(gsize type, void *closure) {
+    GApplicationClass *k = zgtk_class_below(type, g_application_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Application.startup", closure); k->startup = (gpointer)vf_Gio_Application_startup;
+    return 1;
 }
 void zgtk_parent_Gio_Application_startup(GApplication* a0) {
     GApplicationClass *k = zgtk_vfunc_parent(a0, "Gio_Application.startup", 0);
@@ -1430,9 +1552,11 @@ static void vf_Gio_ApplicationCommandLine_done(GApplicationCommandLine* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_ApplicationCommandLine.done");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_ApplicationCommandLine_done(gsize type, void *closure) {
-    GApplicationCommandLineClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_ApplicationCommandLine.done", closure); k->done = (gpointer)vf_Gio_ApplicationCommandLine_done; }
+int zgtk_override_Gio_ApplicationCommandLine_done(gsize type, void *closure) {
+    GApplicationCommandLineClass *k = zgtk_class_below(type, g_application_command_line_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ApplicationCommandLine.done", closure); k->done = (gpointer)vf_Gio_ApplicationCommandLine_done;
+    return 1;
 }
 void zgtk_parent_Gio_ApplicationCommandLine_done(GApplicationCommandLine* a0) {
     GApplicationCommandLineClass *k = zgtk_vfunc_parent(a0, "Gio_ApplicationCommandLine.done", 0);
@@ -1445,9 +1569,11 @@ static GInputStream* vf_Gio_ApplicationCommandLine_get_stdin(GApplicationCommand
     if (f) zgtk_dispatch(f, &c);
     return (GInputStream*)c.ret.p;
 }
-void zgtk_override_Gio_ApplicationCommandLine_get_stdin(gsize type, void *closure) {
-    GApplicationCommandLineClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_ApplicationCommandLine.get_stdin", closure); k->get_stdin = (gpointer)vf_Gio_ApplicationCommandLine_get_stdin; }
+int zgtk_override_Gio_ApplicationCommandLine_get_stdin(gsize type, void *closure) {
+    GApplicationCommandLineClass *k = zgtk_class_below(type, g_application_command_line_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ApplicationCommandLine.get_stdin", closure); k->get_stdin = (gpointer)vf_Gio_ApplicationCommandLine_get_stdin;
+    return 1;
 }
 GInputStream* zgtk_parent_Gio_ApplicationCommandLine_get_stdin(GApplicationCommandLine* a0) {
     GApplicationCommandLineClass *k = zgtk_vfunc_parent(a0, "Gio_ApplicationCommandLine.get_stdin", 0);
@@ -1460,9 +1586,11 @@ static void vf_Gio_ApplicationCommandLine_print_literal(GApplicationCommandLine*
     void *f = zgtk_vfunc_find(a0, "Gio_ApplicationCommandLine.print_literal");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_ApplicationCommandLine_print_literal(gsize type, void *closure) {
-    GApplicationCommandLineClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_ApplicationCommandLine.print_literal", closure); k->print_literal = (gpointer)vf_Gio_ApplicationCommandLine_print_literal; }
+int zgtk_override_Gio_ApplicationCommandLine_print_literal(gsize type, void *closure) {
+    GApplicationCommandLineClass *k = zgtk_class_below(type, g_application_command_line_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ApplicationCommandLine.print_literal", closure); k->print_literal = (gpointer)vf_Gio_ApplicationCommandLine_print_literal;
+    return 1;
 }
 void zgtk_parent_Gio_ApplicationCommandLine_print_literal(GApplicationCommandLine* a0, const gchar* a1) {
     GApplicationCommandLineClass *k = zgtk_vfunc_parent(a0, "Gio_ApplicationCommandLine.print_literal", 0);
@@ -1475,9 +1603,11 @@ static void vf_Gio_ApplicationCommandLine_printerr_literal(GApplicationCommandLi
     void *f = zgtk_vfunc_find(a0, "Gio_ApplicationCommandLine.printerr_literal");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_ApplicationCommandLine_printerr_literal(gsize type, void *closure) {
-    GApplicationCommandLineClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_ApplicationCommandLine.printerr_literal", closure); k->printerr_literal = (gpointer)vf_Gio_ApplicationCommandLine_printerr_literal; }
+int zgtk_override_Gio_ApplicationCommandLine_printerr_literal(gsize type, void *closure) {
+    GApplicationCommandLineClass *k = zgtk_class_below(type, g_application_command_line_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ApplicationCommandLine.printerr_literal", closure); k->printerr_literal = (gpointer)vf_Gio_ApplicationCommandLine_printerr_literal;
+    return 1;
 }
 void zgtk_parent_Gio_ApplicationCommandLine_printerr_literal(GApplicationCommandLine* a0, const gchar* a1) {
     GApplicationCommandLineClass *k = zgtk_vfunc_parent(a0, "Gio_ApplicationCommandLine.printerr_literal", 0);
@@ -1493,9 +1623,11 @@ static void vf_Gio_AsyncInitable_init_async(GAsyncInitable* a0, int a1, GCancell
     void *f = zgtk_vfunc_find(a0, "Gio_AsyncInitable.init_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_AsyncInitable_init_async(gsize type, void *closure) {
-    GAsyncInitableIface *k = g_type_interface_peek(g_type_class_ref(type), g_async_initable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AsyncInitable.init_async", closure); k->init_async = (gpointer)vf_Gio_AsyncInitable_init_async; }
+int zgtk_override_Gio_AsyncInitable_init_async(gsize type, void *closure) {
+    GAsyncInitableIface *k = zgtk_iface_below(type, g_async_initable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AsyncInitable.init_async", closure); k->init_async = (gpointer)vf_Gio_AsyncInitable_init_async;
+    return 1;
 }
 void zgtk_parent_Gio_AsyncInitable_init_async(GAsyncInitable* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GAsyncInitableIface *k = zgtk_vfunc_parent(a0, "Gio_AsyncInitable.init_async", g_async_initable_get_type());
@@ -1508,9 +1640,11 @@ static GObject* vf_Gio_AsyncResult_get_source_object(GAsyncResult* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GObject*)c.ret.p;
 }
-void zgtk_override_Gio_AsyncResult_get_source_object(gsize type, void *closure) {
-    GAsyncResultIface *k = g_type_interface_peek(g_type_class_ref(type), g_async_result_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AsyncResult.get_source_object", closure); k->get_source_object = (gpointer)vf_Gio_AsyncResult_get_source_object; }
+int zgtk_override_Gio_AsyncResult_get_source_object(gsize type, void *closure) {
+    GAsyncResultIface *k = zgtk_iface_below(type, g_async_result_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AsyncResult.get_source_object", closure); k->get_source_object = (gpointer)vf_Gio_AsyncResult_get_source_object;
+    return 1;
 }
 GObject* zgtk_parent_Gio_AsyncResult_get_source_object(GAsyncResult* a0) {
     GAsyncResultIface *k = zgtk_vfunc_parent(a0, "Gio_AsyncResult.get_source_object", g_async_result_get_type());
@@ -1523,9 +1657,11 @@ static gpointer vf_Gio_AsyncResult_get_user_data(GAsyncResult* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gpointer)c.ret.p;
 }
-void zgtk_override_Gio_AsyncResult_get_user_data(gsize type, void *closure) {
-    GAsyncResultIface *k = g_type_interface_peek(g_type_class_ref(type), g_async_result_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AsyncResult.get_user_data", closure); k->get_user_data = (gpointer)vf_Gio_AsyncResult_get_user_data; }
+int zgtk_override_Gio_AsyncResult_get_user_data(gsize type, void *closure) {
+    GAsyncResultIface *k = zgtk_iface_below(type, g_async_result_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AsyncResult.get_user_data", closure); k->get_user_data = (gpointer)vf_Gio_AsyncResult_get_user_data;
+    return 1;
 }
 gpointer zgtk_parent_Gio_AsyncResult_get_user_data(GAsyncResult* a0) {
     GAsyncResultIface *k = zgtk_vfunc_parent(a0, "Gio_AsyncResult.get_user_data", g_async_result_get_type());
@@ -1539,9 +1675,11 @@ static gboolean vf_Gio_AsyncResult_is_tagged(GAsyncResult* a0, gpointer a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_AsyncResult_is_tagged(gsize type, void *closure) {
-    GAsyncResultIface *k = g_type_interface_peek(g_type_class_ref(type), g_async_result_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_AsyncResult.is_tagged", closure); k->is_tagged = (gpointer)vf_Gio_AsyncResult_is_tagged; }
+int zgtk_override_Gio_AsyncResult_is_tagged(gsize type, void *closure) {
+    GAsyncResultIface *k = zgtk_iface_below(type, g_async_result_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_AsyncResult.is_tagged", closure); k->is_tagged = (gpointer)vf_Gio_AsyncResult_is_tagged;
+    return 1;
 }
 gboolean zgtk_parent_Gio_AsyncResult_is_tagged(GAsyncResult* a0, gpointer a1) {
     GAsyncResultIface *k = zgtk_vfunc_parent(a0, "Gio_AsyncResult.is_tagged", g_async_result_get_type());
@@ -1554,9 +1692,11 @@ static gboolean vf_Gio_Seekable_can_seek(GSeekable* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Seekable_can_seek(gsize type, void *closure) {
-    GSeekableIface *k = g_type_interface_peek(g_type_class_ref(type), g_seekable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Seekable.can_seek", closure); k->can_seek = (gpointer)vf_Gio_Seekable_can_seek; }
+int zgtk_override_Gio_Seekable_can_seek(gsize type, void *closure) {
+    GSeekableIface *k = zgtk_iface_below(type, g_seekable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Seekable.can_seek", closure); k->can_seek = (gpointer)vf_Gio_Seekable_can_seek;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Seekable_can_seek(GSeekable* a0) {
     GSeekableIface *k = zgtk_vfunc_parent(a0, "Gio_Seekable.can_seek", g_seekable_get_type());
@@ -1569,9 +1709,11 @@ static gboolean vf_Gio_Seekable_can_truncate(GSeekable* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Seekable_can_truncate(gsize type, void *closure) {
-    GSeekableIface *k = g_type_interface_peek(g_type_class_ref(type), g_seekable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Seekable.can_truncate", closure); k->can_truncate = (gpointer)vf_Gio_Seekable_can_truncate; }
+int zgtk_override_Gio_Seekable_can_truncate(gsize type, void *closure) {
+    GSeekableIface *k = zgtk_iface_below(type, g_seekable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Seekable.can_truncate", closure); k->can_truncate = (gpointer)vf_Gio_Seekable_can_truncate;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Seekable_can_truncate(GSeekable* a0) {
     GSeekableIface *k = zgtk_vfunc_parent(a0, "Gio_Seekable.can_truncate", g_seekable_get_type());
@@ -1584,9 +1726,11 @@ static goffset vf_Gio_Seekable_tell(GSeekable* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (goffset)c.ret.i;
 }
-void zgtk_override_Gio_Seekable_tell(gsize type, void *closure) {
-    GSeekableIface *k = g_type_interface_peek(g_type_class_ref(type), g_seekable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Seekable.tell", closure); k->tell = (gpointer)vf_Gio_Seekable_tell; }
+int zgtk_override_Gio_Seekable_tell(gsize type, void *closure) {
+    GSeekableIface *k = zgtk_iface_below(type, g_seekable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Seekable.tell", closure); k->tell = (gpointer)vf_Gio_Seekable_tell;
+    return 1;
 }
 goffset zgtk_parent_Gio_Seekable_tell(GSeekable* a0) {
     GSeekableIface *k = zgtk_vfunc_parent(a0, "Gio_Seekable.tell", g_seekable_get_type());
@@ -1602,9 +1746,11 @@ static void vf_Gio_InputStream_close_async(GInputStream* a0, int a1, GCancellabl
     void *f = zgtk_vfunc_find(a0, "Gio_InputStream.close_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_InputStream_close_async(gsize type, void *closure) {
-    GInputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_InputStream.close_async", closure); k->close_async = (gpointer)vf_Gio_InputStream_close_async; }
+int zgtk_override_Gio_InputStream_close_async(gsize type, void *closure) {
+    GInputStreamClass *k = zgtk_class_below(type, g_input_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_InputStream.close_async", closure); k->close_async = (gpointer)vf_Gio_InputStream_close_async;
+    return 1;
 }
 void zgtk_parent_Gio_InputStream_close_async(GInputStream* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GInputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_InputStream.close_async", 0);
@@ -1622,9 +1768,11 @@ static void vf_Gio_InputStream_read_async(GInputStream* a0, void* a1, gsize a2, 
     void *f = zgtk_vfunc_find(a0, "Gio_InputStream.read_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_InputStream_read_async(gsize type, void *closure) {
-    GInputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_InputStream.read_async", closure); k->read_async = (gpointer)vf_Gio_InputStream_read_async; }
+int zgtk_override_Gio_InputStream_read_async(gsize type, void *closure) {
+    GInputStreamClass *k = zgtk_class_below(type, g_input_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_InputStream.read_async", closure); k->read_async = (gpointer)vf_Gio_InputStream_read_async;
+    return 1;
 }
 void zgtk_parent_Gio_InputStream_read_async(GInputStream* a0, void* a1, gsize a2, int a3, GCancellable* a4, GAsyncReadyCallback a5, gpointer a6) {
     GInputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_InputStream.read_async", 0);
@@ -1641,9 +1789,11 @@ static void vf_Gio_InputStream_skip_async(GInputStream* a0, gsize a1, int a2, GC
     void *f = zgtk_vfunc_find(a0, "Gio_InputStream.skip_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_InputStream_skip_async(gsize type, void *closure) {
-    GInputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_InputStream.skip_async", closure); k->skip_async = (gpointer)vf_Gio_InputStream_skip_async; }
+int zgtk_override_Gio_InputStream_skip_async(gsize type, void *closure) {
+    GInputStreamClass *k = zgtk_class_below(type, g_input_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_InputStream.skip_async", closure); k->skip_async = (gpointer)vf_Gio_InputStream_skip_async;
+    return 1;
 }
 void zgtk_parent_Gio_InputStream_skip_async(GInputStream* a0, gsize a1, int a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GInputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_InputStream.skip_async", 0);
@@ -1660,9 +1810,11 @@ static void vf_Gio_BufferedInputStream_fill_async(GBufferedInputStream* a0, gssi
     void *f = zgtk_vfunc_find(a0, "Gio_BufferedInputStream.fill_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_BufferedInputStream_fill_async(gsize type, void *closure) {
-    GBufferedInputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_BufferedInputStream.fill_async", closure); k->fill_async = (gpointer)vf_Gio_BufferedInputStream_fill_async; }
+int zgtk_override_Gio_BufferedInputStream_fill_async(gsize type, void *closure) {
+    GBufferedInputStreamClass *k = zgtk_class_below(type, g_buffered_input_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_BufferedInputStream.fill_async", closure); k->fill_async = (gpointer)vf_Gio_BufferedInputStream_fill_async;
+    return 1;
 }
 void zgtk_parent_Gio_BufferedInputStream_fill_async(GBufferedInputStream* a0, gssize a1, int a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GBufferedInputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_BufferedInputStream.fill_async", 0);
@@ -1678,9 +1830,11 @@ static void vf_Gio_OutputStream_close_async(GOutputStream* a0, int a1, GCancella
     void *f = zgtk_vfunc_find(a0, "Gio_OutputStream.close_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_OutputStream_close_async(gsize type, void *closure) {
-    GOutputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_OutputStream.close_async", closure); k->close_async = (gpointer)vf_Gio_OutputStream_close_async; }
+int zgtk_override_Gio_OutputStream_close_async(gsize type, void *closure) {
+    GOutputStreamClass *k = zgtk_class_below(type, g_output_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_OutputStream.close_async", closure); k->close_async = (gpointer)vf_Gio_OutputStream_close_async;
+    return 1;
 }
 void zgtk_parent_Gio_OutputStream_close_async(GOutputStream* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GOutputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_OutputStream.close_async", 0);
@@ -1696,9 +1850,11 @@ static void vf_Gio_OutputStream_flush_async(GOutputStream* a0, int a1, GCancella
     void *f = zgtk_vfunc_find(a0, "Gio_OutputStream.flush_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_OutputStream_flush_async(gsize type, void *closure) {
-    GOutputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_OutputStream.flush_async", closure); k->flush_async = (gpointer)vf_Gio_OutputStream_flush_async; }
+int zgtk_override_Gio_OutputStream_flush_async(gsize type, void *closure) {
+    GOutputStreamClass *k = zgtk_class_below(type, g_output_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_OutputStream.flush_async", closure); k->flush_async = (gpointer)vf_Gio_OutputStream_flush_async;
+    return 1;
 }
 void zgtk_parent_Gio_OutputStream_flush_async(GOutputStream* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GOutputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_OutputStream.flush_async", 0);
@@ -1716,9 +1872,11 @@ static void vf_Gio_OutputStream_splice_async(GOutputStream* a0, GInputStream* a1
     void *f = zgtk_vfunc_find(a0, "Gio_OutputStream.splice_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_OutputStream_splice_async(gsize type, void *closure) {
-    GOutputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_OutputStream.splice_async", closure); k->splice_async = (gpointer)vf_Gio_OutputStream_splice_async; }
+int zgtk_override_Gio_OutputStream_splice_async(gsize type, void *closure) {
+    GOutputStreamClass *k = zgtk_class_below(type, g_output_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_OutputStream.splice_async", closure); k->splice_async = (gpointer)vf_Gio_OutputStream_splice_async;
+    return 1;
 }
 void zgtk_parent_Gio_OutputStream_splice_async(GOutputStream* a0, GInputStream* a1, GOutputStreamSpliceFlags a2, int a3, GCancellable* a4, GAsyncReadyCallback a5, gpointer a6) {
     GOutputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_OutputStream.splice_async", 0);
@@ -1736,9 +1894,11 @@ static void vf_Gio_OutputStream_write_async(GOutputStream* a0, void* a1, gsize a
     void *f = zgtk_vfunc_find(a0, "Gio_OutputStream.write_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_OutputStream_write_async(gsize type, void *closure) {
-    GOutputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_OutputStream.write_async", closure); k->write_async = (gpointer)vf_Gio_OutputStream_write_async; }
+int zgtk_override_Gio_OutputStream_write_async(gsize type, void *closure) {
+    GOutputStreamClass *k = zgtk_class_below(type, g_output_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_OutputStream.write_async", closure); k->write_async = (gpointer)vf_Gio_OutputStream_write_async;
+    return 1;
 }
 void zgtk_parent_Gio_OutputStream_write_async(GOutputStream* a0, void* a1, gsize a2, int a3, GCancellable* a4, GAsyncReadyCallback a5, gpointer a6) {
     GOutputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_OutputStream.write_async", 0);
@@ -1756,9 +1916,11 @@ static void vf_Gio_OutputStream_writev_async(GOutputStream* a0, const GOutputVec
     void *f = zgtk_vfunc_find(a0, "Gio_OutputStream.writev_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_OutputStream_writev_async(gsize type, void *closure) {
-    GOutputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_OutputStream.writev_async", closure); k->writev_async = (gpointer)vf_Gio_OutputStream_writev_async; }
+int zgtk_override_Gio_OutputStream_writev_async(gsize type, void *closure) {
+    GOutputStreamClass *k = zgtk_class_below(type, g_output_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_OutputStream.writev_async", closure); k->writev_async = (gpointer)vf_Gio_OutputStream_writev_async;
+    return 1;
 }
 void zgtk_parent_Gio_OutputStream_writev_async(GOutputStream* a0, const GOutputVector* a1, gsize a2, int a3, GCancellable* a4, GAsyncReadyCallback a5, gpointer a6) {
     GOutputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_OutputStream.writev_async", 0);
@@ -1772,9 +1934,11 @@ static gboolean vf_Gio_Icon_equal(GIcon* a0, GIcon* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Icon_equal(gsize type, void *closure) {
-    GIconIface *k = g_type_interface_peek(g_type_class_ref(type), g_icon_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Icon.equal", closure); k->equal = (gpointer)vf_Gio_Icon_equal; }
+int zgtk_override_Gio_Icon_equal(gsize type, void *closure) {
+    GIconIface *k = zgtk_iface_below(type, g_icon_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Icon.equal", closure); k->equal = (gpointer)vf_Gio_Icon_equal;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Icon_equal(GIcon* a0, GIcon* a1) {
     GIconIface *k = zgtk_vfunc_parent(a0, "Gio_Icon.equal", g_icon_get_type());
@@ -1787,9 +1951,11 @@ static guint vf_Gio_Icon_hash(GIcon* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (guint)c.ret.i;
 }
-void zgtk_override_Gio_Icon_hash(gsize type, void *closure) {
-    GIconIface *k = g_type_interface_peek(g_type_class_ref(type), g_icon_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Icon.hash", closure); k->hash = (gpointer)vf_Gio_Icon_hash; }
+int zgtk_override_Gio_Icon_hash(gsize type, void *closure) {
+    GIconIface *k = zgtk_iface_below(type, g_icon_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Icon.hash", closure); k->hash = (gpointer)vf_Gio_Icon_hash;
+    return 1;
 }
 guint zgtk_parent_Gio_Icon_hash(GIcon* a0) {
     GIconIface *k = zgtk_vfunc_parent(a0, "Gio_Icon.hash", g_icon_get_type());
@@ -1802,9 +1968,11 @@ static GVariant* vf_Gio_Icon_serialize(GIcon* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GVariant*)c.ret.p;
 }
-void zgtk_override_Gio_Icon_serialize(gsize type, void *closure) {
-    GIconIface *k = g_type_interface_peek(g_type_class_ref(type), g_icon_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Icon.serialize", closure); k->serialize = (gpointer)vf_Gio_Icon_serialize; }
+int zgtk_override_Gio_Icon_serialize(gsize type, void *closure) {
+    GIconIface *k = zgtk_iface_below(type, g_icon_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Icon.serialize", closure); k->serialize = (gpointer)vf_Gio_Icon_serialize;
+    return 1;
 }
 GVariant* zgtk_parent_Gio_Icon_serialize(GIcon* a0) {
     GIconIface *k = zgtk_vfunc_parent(a0, "Gio_Icon.serialize", g_icon_get_type());
@@ -1819,9 +1987,11 @@ static gboolean vf_Gio_Icon_to_tokens(GIcon* a0, GPtrArray* a1, gint* a2) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Icon_to_tokens(gsize type, void *closure) {
-    GIconIface *k = g_type_interface_peek(g_type_class_ref(type), g_icon_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Icon.to_tokens", closure); k->to_tokens = (gpointer)vf_Gio_Icon_to_tokens; }
+int zgtk_override_Gio_Icon_to_tokens(gsize type, void *closure) {
+    GIconIface *k = zgtk_iface_below(type, g_icon_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Icon.to_tokens", closure); k->to_tokens = (gpointer)vf_Gio_Icon_to_tokens;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Icon_to_tokens(GIcon* a0, GPtrArray* a1, gint* a2) {
     GIconIface *k = zgtk_vfunc_parent(a0, "Gio_Icon.to_tokens", g_icon_get_type());
@@ -1837,9 +2007,11 @@ static void vf_Gio_LoadableIcon_load_async(GLoadableIcon* a0, int a1, GCancellab
     void *f = zgtk_vfunc_find(a0, "Gio_LoadableIcon.load_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_LoadableIcon_load_async(gsize type, void *closure) {
-    GLoadableIconIface *k = g_type_interface_peek(g_type_class_ref(type), g_loadable_icon_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_LoadableIcon.load_async", closure); k->load_async = (gpointer)vf_Gio_LoadableIcon_load_async; }
+int zgtk_override_Gio_LoadableIcon_load_async(gsize type, void *closure) {
+    GLoadableIconIface *k = zgtk_iface_below(type, g_loadable_icon_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_LoadableIcon.load_async", closure); k->load_async = (gpointer)vf_Gio_LoadableIcon_load_async;
+    return 1;
 }
 void zgtk_parent_Gio_LoadableIcon_load_async(GLoadableIcon* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GLoadableIconIface *k = zgtk_vfunc_parent(a0, "Gio_LoadableIcon.load_async", g_loadable_icon_get_type());
@@ -1851,9 +2023,11 @@ static void vf_Gio_Cancellable_cancelled(GCancellable* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Cancellable.cancelled");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Cancellable_cancelled(gsize type, void *closure) {
-    GCancellableClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Cancellable.cancelled", closure); k->cancelled = (gpointer)vf_Gio_Cancellable_cancelled; }
+int zgtk_override_Gio_Cancellable_cancelled(gsize type, void *closure) {
+    GCancellableClass *k = zgtk_class_below(type, g_cancellable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Cancellable.cancelled", closure); k->cancelled = (gpointer)vf_Gio_Cancellable_cancelled;
+    return 1;
 }
 void zgtk_parent_Gio_Cancellable_cancelled(GCancellable* a0) {
     GCancellableClass *k = zgtk_vfunc_parent(a0, "Gio_Cancellable.cancelled", 0);
@@ -1865,9 +2039,11 @@ static void vf_Gio_Converter_reset(GConverter* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Converter.reset");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Converter_reset(gsize type, void *closure) {
-    GConverterIface *k = g_type_interface_peek(g_type_class_ref(type), g_converter_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Converter.reset", closure); k->reset = (gpointer)vf_Gio_Converter_reset; }
+int zgtk_override_Gio_Converter_reset(gsize type, void *closure) {
+    GConverterIface *k = zgtk_iface_below(type, g_converter_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Converter.reset", closure); k->reset = (gpointer)vf_Gio_Converter_reset;
+    return 1;
 }
 void zgtk_parent_Gio_Converter_reset(GConverter* a0) {
     GConverterIface *k = zgtk_vfunc_parent(a0, "Gio_Converter.reset", g_converter_get_type());
@@ -1880,9 +2056,11 @@ static gboolean vf_Gio_PollableInputStream_can_poll(GPollableInputStream* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_PollableInputStream_can_poll(gsize type, void *closure) {
-    GPollableInputStreamInterface *k = g_type_interface_peek(g_type_class_ref(type), g_pollable_input_stream_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_PollableInputStream.can_poll", closure); k->can_poll = (gpointer)vf_Gio_PollableInputStream_can_poll; }
+int zgtk_override_Gio_PollableInputStream_can_poll(gsize type, void *closure) {
+    GPollableInputStreamInterface *k = zgtk_iface_below(type, g_pollable_input_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_PollableInputStream.can_poll", closure); k->can_poll = (gpointer)vf_Gio_PollableInputStream_can_poll;
+    return 1;
 }
 gboolean zgtk_parent_Gio_PollableInputStream_can_poll(GPollableInputStream* a0) {
     GPollableInputStreamInterface *k = zgtk_vfunc_parent(a0, "Gio_PollableInputStream.can_poll", g_pollable_input_stream_get_type());
@@ -1896,9 +2074,11 @@ static GSource* vf_Gio_PollableInputStream_create_source(GPollableInputStream* a
     if (f) zgtk_dispatch(f, &c);
     return (GSource*)c.ret.p;
 }
-void zgtk_override_Gio_PollableInputStream_create_source(gsize type, void *closure) {
-    GPollableInputStreamInterface *k = g_type_interface_peek(g_type_class_ref(type), g_pollable_input_stream_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_PollableInputStream.create_source", closure); k->create_source = (gpointer)vf_Gio_PollableInputStream_create_source; }
+int zgtk_override_Gio_PollableInputStream_create_source(gsize type, void *closure) {
+    GPollableInputStreamInterface *k = zgtk_iface_below(type, g_pollable_input_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_PollableInputStream.create_source", closure); k->create_source = (gpointer)vf_Gio_PollableInputStream_create_source;
+    return 1;
 }
 GSource* zgtk_parent_Gio_PollableInputStream_create_source(GPollableInputStream* a0, GCancellable* a1) {
     GPollableInputStreamInterface *k = zgtk_vfunc_parent(a0, "Gio_PollableInputStream.create_source", g_pollable_input_stream_get_type());
@@ -1911,9 +2091,11 @@ static gboolean vf_Gio_PollableInputStream_is_readable(GPollableInputStream* a0)
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_PollableInputStream_is_readable(gsize type, void *closure) {
-    GPollableInputStreamInterface *k = g_type_interface_peek(g_type_class_ref(type), g_pollable_input_stream_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_PollableInputStream.is_readable", closure); k->is_readable = (gpointer)vf_Gio_PollableInputStream_is_readable; }
+int zgtk_override_Gio_PollableInputStream_is_readable(gsize type, void *closure) {
+    GPollableInputStreamInterface *k = zgtk_iface_below(type, g_pollable_input_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_PollableInputStream.is_readable", closure); k->is_readable = (gpointer)vf_Gio_PollableInputStream_is_readable;
+    return 1;
 }
 gboolean zgtk_parent_Gio_PollableInputStream_is_readable(GPollableInputStream* a0) {
     GPollableInputStreamInterface *k = zgtk_vfunc_parent(a0, "Gio_PollableInputStream.is_readable", g_pollable_input_stream_get_type());
@@ -1926,9 +2108,11 @@ static gboolean vf_Gio_PollableOutputStream_can_poll(GPollableOutputStream* a0) 
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_PollableOutputStream_can_poll(gsize type, void *closure) {
-    GPollableOutputStreamInterface *k = g_type_interface_peek(g_type_class_ref(type), g_pollable_output_stream_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_PollableOutputStream.can_poll", closure); k->can_poll = (gpointer)vf_Gio_PollableOutputStream_can_poll; }
+int zgtk_override_Gio_PollableOutputStream_can_poll(gsize type, void *closure) {
+    GPollableOutputStreamInterface *k = zgtk_iface_below(type, g_pollable_output_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_PollableOutputStream.can_poll", closure); k->can_poll = (gpointer)vf_Gio_PollableOutputStream_can_poll;
+    return 1;
 }
 gboolean zgtk_parent_Gio_PollableOutputStream_can_poll(GPollableOutputStream* a0) {
     GPollableOutputStreamInterface *k = zgtk_vfunc_parent(a0, "Gio_PollableOutputStream.can_poll", g_pollable_output_stream_get_type());
@@ -1942,9 +2126,11 @@ static GSource* vf_Gio_PollableOutputStream_create_source(GPollableOutputStream*
     if (f) zgtk_dispatch(f, &c);
     return (GSource*)c.ret.p;
 }
-void zgtk_override_Gio_PollableOutputStream_create_source(gsize type, void *closure) {
-    GPollableOutputStreamInterface *k = g_type_interface_peek(g_type_class_ref(type), g_pollable_output_stream_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_PollableOutputStream.create_source", closure); k->create_source = (gpointer)vf_Gio_PollableOutputStream_create_source; }
+int zgtk_override_Gio_PollableOutputStream_create_source(gsize type, void *closure) {
+    GPollableOutputStreamInterface *k = zgtk_iface_below(type, g_pollable_output_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_PollableOutputStream.create_source", closure); k->create_source = (gpointer)vf_Gio_PollableOutputStream_create_source;
+    return 1;
 }
 GSource* zgtk_parent_Gio_PollableOutputStream_create_source(GPollableOutputStream* a0, GCancellable* a1) {
     GPollableOutputStreamInterface *k = zgtk_vfunc_parent(a0, "Gio_PollableOutputStream.create_source", g_pollable_output_stream_get_type());
@@ -1957,9 +2143,11 @@ static gboolean vf_Gio_PollableOutputStream_is_writable(GPollableOutputStream* a
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_PollableOutputStream_is_writable(gsize type, void *closure) {
-    GPollableOutputStreamInterface *k = g_type_interface_peek(g_type_class_ref(type), g_pollable_output_stream_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_PollableOutputStream.is_writable", closure); k->is_writable = (gpointer)vf_Gio_PollableOutputStream_is_writable; }
+int zgtk_override_Gio_PollableOutputStream_is_writable(gsize type, void *closure) {
+    GPollableOutputStreamInterface *k = zgtk_iface_below(type, g_pollable_output_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_PollableOutputStream.is_writable", closure); k->is_writable = (gpointer)vf_Gio_PollableOutputStream_is_writable;
+    return 1;
 }
 gboolean zgtk_parent_Gio_PollableOutputStream_is_writable(GPollableOutputStream* a0) {
     GPollableOutputStreamInterface *k = zgtk_vfunc_parent(a0, "Gio_PollableOutputStream.is_writable", g_pollable_output_stream_get_type());
@@ -1974,9 +2162,11 @@ static void vf_Gio_RemoteActionGroup_activate_action_full(GRemoteActionGroup* a0
     void *f = zgtk_vfunc_find(a0, "Gio_RemoteActionGroup.activate_action_full");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_RemoteActionGroup_activate_action_full(gsize type, void *closure) {
-    GRemoteActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_remote_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_RemoteActionGroup.activate_action_full", closure); k->activate_action_full = (gpointer)vf_Gio_RemoteActionGroup_activate_action_full; }
+int zgtk_override_Gio_RemoteActionGroup_activate_action_full(gsize type, void *closure) {
+    GRemoteActionGroupInterface *k = zgtk_iface_below(type, g_remote_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_RemoteActionGroup.activate_action_full", closure); k->activate_action_full = (gpointer)vf_Gio_RemoteActionGroup_activate_action_full;
+    return 1;
 }
 void zgtk_parent_Gio_RemoteActionGroup_activate_action_full(GRemoteActionGroup* a0, const gchar* a1, GVariant* a2, GVariant* a3) {
     GRemoteActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_RemoteActionGroup.activate_action_full", g_remote_action_group_get_type());
@@ -1991,9 +2181,11 @@ static void vf_Gio_RemoteActionGroup_change_action_state_full(GRemoteActionGroup
     void *f = zgtk_vfunc_find(a0, "Gio_RemoteActionGroup.change_action_state_full");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_RemoteActionGroup_change_action_state_full(gsize type, void *closure) {
-    GRemoteActionGroupInterface *k = g_type_interface_peek(g_type_class_ref(type), g_remote_action_group_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_RemoteActionGroup.change_action_state_full", closure); k->change_action_state_full = (gpointer)vf_Gio_RemoteActionGroup_change_action_state_full; }
+int zgtk_override_Gio_RemoteActionGroup_change_action_state_full(gsize type, void *closure) {
+    GRemoteActionGroupInterface *k = zgtk_iface_below(type, g_remote_action_group_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_RemoteActionGroup.change_action_state_full", closure); k->change_action_state_full = (gpointer)vf_Gio_RemoteActionGroup_change_action_state_full;
+    return 1;
 }
 void zgtk_parent_Gio_RemoteActionGroup_change_action_state_full(GRemoteActionGroup* a0, const gchar* a1, GVariant* a2, GVariant* a3) {
     GRemoteActionGroupInterface *k = zgtk_vfunc_parent(a0, "Gio_RemoteActionGroup.change_action_state_full", g_remote_action_group_get_type());
@@ -2015,9 +2207,11 @@ static GDBusObject* vf_Gio_DBusInterface_dup_object(GDBusInterface* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GDBusObject*)c.ret.p;
 }
-void zgtk_override_Gio_DBusInterface_dup_object(gsize type, void *closure) {
-    GDBusInterfaceIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_interface_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusInterface.dup_object", closure); k->dup_object = (gpointer)vf_Gio_DBusInterface_dup_object; }
+int zgtk_override_Gio_DBusInterface_dup_object(gsize type, void *closure) {
+    GDBusInterfaceIface *k = zgtk_iface_below(type, g_dbus_interface_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusInterface.dup_object", closure); k->dup_object = (gpointer)vf_Gio_DBusInterface_dup_object;
+    return 1;
 }
 GDBusObject* zgtk_parent_Gio_DBusInterface_dup_object(GDBusInterface* a0) {
     GDBusInterfaceIface *k = zgtk_vfunc_parent(a0, "Gio_DBusInterface.dup_object", g_dbus_interface_get_type());
@@ -2030,9 +2224,11 @@ static GDBusInterfaceInfo* vf_Gio_DBusInterface_get_info(GDBusInterface* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GDBusInterfaceInfo*)c.ret.p;
 }
-void zgtk_override_Gio_DBusInterface_get_info(gsize type, void *closure) {
-    GDBusInterfaceIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_interface_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusInterface.get_info", closure); k->get_info = (gpointer)vf_Gio_DBusInterface_get_info; }
+int zgtk_override_Gio_DBusInterface_get_info(gsize type, void *closure) {
+    GDBusInterfaceIface *k = zgtk_iface_below(type, g_dbus_interface_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusInterface.get_info", closure); k->get_info = (gpointer)vf_Gio_DBusInterface_get_info;
+    return 1;
 }
 GDBusInterfaceInfo* zgtk_parent_Gio_DBusInterface_get_info(GDBusInterface* a0) {
     GDBusInterfaceIface *k = zgtk_vfunc_parent(a0, "Gio_DBusInterface.get_info", g_dbus_interface_get_type());
@@ -2045,9 +2241,11 @@ static GDBusObject* vf_Gio_DBusInterface_get_object(GDBusInterface* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GDBusObject*)c.ret.p;
 }
-void zgtk_override_Gio_DBusInterface_get_object(gsize type, void *closure) {
-    GDBusInterfaceIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_interface_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusInterface.get_object", closure); k->get_object = (gpointer)vf_Gio_DBusInterface_get_object; }
+int zgtk_override_Gio_DBusInterface_get_object(gsize type, void *closure) {
+    GDBusInterfaceIface *k = zgtk_iface_below(type, g_dbus_interface_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusInterface.get_object", closure); k->get_object = (gpointer)vf_Gio_DBusInterface_get_object;
+    return 1;
 }
 GDBusObject* zgtk_parent_Gio_DBusInterface_get_object(GDBusInterface* a0) {
     GDBusInterfaceIface *k = zgtk_vfunc_parent(a0, "Gio_DBusInterface.get_object", g_dbus_interface_get_type());
@@ -2060,9 +2258,11 @@ static void vf_Gio_DBusInterface_set_object(GDBusInterface* a0, GDBusObject* a1)
     void *f = zgtk_vfunc_find(a0, "Gio_DBusInterface.set_object");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DBusInterface_set_object(gsize type, void *closure) {
-    GDBusInterfaceIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_interface_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusInterface.set_object", closure); k->set_object = (gpointer)vf_Gio_DBusInterface_set_object; }
+int zgtk_override_Gio_DBusInterface_set_object(gsize type, void *closure) {
+    GDBusInterfaceIface *k = zgtk_iface_below(type, g_dbus_interface_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusInterface.set_object", closure); k->set_object = (gpointer)vf_Gio_DBusInterface_set_object;
+    return 1;
 }
 void zgtk_parent_Gio_DBusInterface_set_object(GDBusInterface* a0, GDBusObject* a1) {
     GDBusInterfaceIface *k = zgtk_vfunc_parent(a0, "Gio_DBusInterface.set_object", g_dbus_interface_get_type());
@@ -2077,9 +2277,11 @@ static void vf_Gio_DBusInterfaceSkeleton_flush(GDBusInterfaceSkeleton* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_DBusInterfaceSkeleton.flush");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DBusInterfaceSkeleton_flush(gsize type, void *closure) {
-    GDBusInterfaceSkeletonClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusInterfaceSkeleton.flush", closure); k->flush = (gpointer)vf_Gio_DBusInterfaceSkeleton_flush; }
+int zgtk_override_Gio_DBusInterfaceSkeleton_flush(gsize type, void *closure) {
+    GDBusInterfaceSkeletonClass *k = zgtk_class_below(type, g_dbus_interface_skeleton_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusInterfaceSkeleton.flush", closure); k->flush = (gpointer)vf_Gio_DBusInterfaceSkeleton_flush;
+    return 1;
 }
 void zgtk_parent_Gio_DBusInterfaceSkeleton_flush(GDBusInterfaceSkeleton* a0) {
     GDBusInterfaceSkeletonClass *k = zgtk_vfunc_parent(a0, "Gio_DBusInterfaceSkeleton.flush", 0);
@@ -2093,9 +2295,11 @@ static gboolean vf_Gio_DBusInterfaceSkeleton_g_authorize_method(GDBusInterfaceSk
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_DBusInterfaceSkeleton_g_authorize_method(gsize type, void *closure) {
-    GDBusInterfaceSkeletonClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusInterfaceSkeleton.g_authorize_method", closure); k->g_authorize_method = (gpointer)vf_Gio_DBusInterfaceSkeleton_g_authorize_method; }
+int zgtk_override_Gio_DBusInterfaceSkeleton_g_authorize_method(gsize type, void *closure) {
+    GDBusInterfaceSkeletonClass *k = zgtk_class_below(type, g_dbus_interface_skeleton_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusInterfaceSkeleton.g_authorize_method", closure); k->g_authorize_method = (gpointer)vf_Gio_DBusInterfaceSkeleton_g_authorize_method;
+    return 1;
 }
 gboolean zgtk_parent_Gio_DBusInterfaceSkeleton_g_authorize_method(GDBusInterfaceSkeleton* a0, GDBusMethodInvocation* a1) {
     GDBusInterfaceSkeletonClass *k = zgtk_vfunc_parent(a0, "Gio_DBusInterfaceSkeleton.g_authorize_method", 0);
@@ -2108,9 +2312,11 @@ static GDBusInterfaceInfo* vf_Gio_DBusInterfaceSkeleton_get_info(GDBusInterfaceS
     if (f) zgtk_dispatch(f, &c);
     return (GDBusInterfaceInfo*)c.ret.p;
 }
-void zgtk_override_Gio_DBusInterfaceSkeleton_get_info(gsize type, void *closure) {
-    GDBusInterfaceSkeletonClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusInterfaceSkeleton.get_info", closure); k->get_info = (gpointer)vf_Gio_DBusInterfaceSkeleton_get_info; }
+int zgtk_override_Gio_DBusInterfaceSkeleton_get_info(gsize type, void *closure) {
+    GDBusInterfaceSkeletonClass *k = zgtk_class_below(type, g_dbus_interface_skeleton_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusInterfaceSkeleton.get_info", closure); k->get_info = (gpointer)vf_Gio_DBusInterfaceSkeleton_get_info;
+    return 1;
 }
 GDBusInterfaceInfo* zgtk_parent_Gio_DBusInterfaceSkeleton_get_info(GDBusInterfaceSkeleton* a0) {
     GDBusInterfaceSkeletonClass *k = zgtk_vfunc_parent(a0, "Gio_DBusInterfaceSkeleton.get_info", 0);
@@ -2123,9 +2329,11 @@ static GVariant* vf_Gio_DBusInterfaceSkeleton_get_properties(GDBusInterfaceSkele
     if (f) zgtk_dispatch(f, &c);
     return (GVariant*)c.ret.p;
 }
-void zgtk_override_Gio_DBusInterfaceSkeleton_get_properties(gsize type, void *closure) {
-    GDBusInterfaceSkeletonClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusInterfaceSkeleton.get_properties", closure); k->get_properties = (gpointer)vf_Gio_DBusInterfaceSkeleton_get_properties; }
+int zgtk_override_Gio_DBusInterfaceSkeleton_get_properties(gsize type, void *closure) {
+    GDBusInterfaceSkeletonClass *k = zgtk_class_below(type, g_dbus_interface_skeleton_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusInterfaceSkeleton.get_properties", closure); k->get_properties = (gpointer)vf_Gio_DBusInterfaceSkeleton_get_properties;
+    return 1;
 }
 GVariant* zgtk_parent_Gio_DBusInterfaceSkeleton_get_properties(GDBusInterfaceSkeleton* a0) {
     GDBusInterfaceSkeletonClass *k = zgtk_vfunc_parent(a0, "Gio_DBusInterfaceSkeleton.get_properties", 0);
@@ -2138,9 +2346,11 @@ static GDBusInterfaceVTable* vf_Gio_DBusInterfaceSkeleton_get_vtable(GDBusInterf
     if (f) zgtk_dispatch(f, &c);
     return (GDBusInterfaceVTable*)c.ret.p;
 }
-void zgtk_override_Gio_DBusInterfaceSkeleton_get_vtable(gsize type, void *closure) {
-    GDBusInterfaceSkeletonClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusInterfaceSkeleton.get_vtable", closure); k->get_vtable = (gpointer)vf_Gio_DBusInterfaceSkeleton_get_vtable; }
+int zgtk_override_Gio_DBusInterfaceSkeleton_get_vtable(gsize type, void *closure) {
+    GDBusInterfaceSkeletonClass *k = zgtk_class_below(type, g_dbus_interface_skeleton_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusInterfaceSkeleton.get_vtable", closure); k->get_vtable = (gpointer)vf_Gio_DBusInterfaceSkeleton_get_vtable;
+    return 1;
 }
 GDBusInterfaceVTable* zgtk_parent_Gio_DBusInterfaceSkeleton_get_vtable(GDBusInterfaceSkeleton* a0) {
     GDBusInterfaceSkeletonClass *k = zgtk_vfunc_parent(a0, "Gio_DBusInterfaceSkeleton.get_vtable", 0);
@@ -2156,9 +2366,11 @@ static void vf_Gio_DBusInterfaceSkeleton_method_dispatch(GDBusInterfaceSkeleton*
     void *f = zgtk_vfunc_find(a0, "Gio_DBusInterfaceSkeleton.method_dispatch");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DBusInterfaceSkeleton_method_dispatch(gsize type, void *closure) {
-    GDBusInterfaceSkeletonClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusInterfaceSkeleton.method_dispatch", closure); k->method_dispatch = (gpointer)vf_Gio_DBusInterfaceSkeleton_method_dispatch; }
+int zgtk_override_Gio_DBusInterfaceSkeleton_method_dispatch(gsize type, void *closure) {
+    GDBusInterfaceSkeletonClass *k = zgtk_class_below(type, g_dbus_interface_skeleton_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusInterfaceSkeleton.method_dispatch", closure); k->method_dispatch = (gpointer)vf_Gio_DBusInterfaceSkeleton_method_dispatch;
+    return 1;
 }
 void zgtk_parent_Gio_DBusInterfaceSkeleton_method_dispatch(GDBusInterfaceSkeleton* a0, GDBusInterfaceMethodCallFunc a1, GDBusMethodInvocation* a2, GDBusInterfaceSkeletonFlags a3, GDBusObject* a4) {
     GDBusInterfaceSkeletonClass *k = zgtk_vfunc_parent(a0, "Gio_DBusInterfaceSkeleton.method_dispatch", 0);
@@ -2175,9 +2387,11 @@ static GVariant* vf_Gio_MenuModel_get_item_attribute_value(GMenuModel* a0, gint 
     if (f) zgtk_dispatch(f, &c);
     return (GVariant*)c.ret.p;
 }
-void zgtk_override_Gio_MenuModel_get_item_attribute_value(gsize type, void *closure) {
-    GMenuModelClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MenuModel.get_item_attribute_value", closure); k->get_item_attribute_value = (gpointer)vf_Gio_MenuModel_get_item_attribute_value; }
+int zgtk_override_Gio_MenuModel_get_item_attribute_value(gsize type, void *closure) {
+    GMenuModelClass *k = zgtk_class_below(type, g_menu_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MenuModel.get_item_attribute_value", closure); k->get_item_attribute_value = (gpointer)vf_Gio_MenuModel_get_item_attribute_value;
+    return 1;
 }
 GVariant* zgtk_parent_Gio_MenuModel_get_item_attribute_value(GMenuModel* a0, gint a1, const gchar* a2, const GVariantType* a3) {
     GMenuModelClass *k = zgtk_vfunc_parent(a0, "Gio_MenuModel.get_item_attribute_value", 0);
@@ -2191,9 +2405,11 @@ static void vf_Gio_MenuModel_get_item_attributes(GMenuModel* a0, gint a1, GHashT
     void *f = zgtk_vfunc_find(a0, "Gio_MenuModel.get_item_attributes");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_MenuModel_get_item_attributes(gsize type, void *closure) {
-    GMenuModelClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MenuModel.get_item_attributes", closure); k->get_item_attributes = (gpointer)vf_Gio_MenuModel_get_item_attributes; }
+int zgtk_override_Gio_MenuModel_get_item_attributes(gsize type, void *closure) {
+    GMenuModelClass *k = zgtk_class_below(type, g_menu_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MenuModel.get_item_attributes", closure); k->get_item_attributes = (gpointer)vf_Gio_MenuModel_get_item_attributes;
+    return 1;
 }
 void zgtk_parent_Gio_MenuModel_get_item_attributes(GMenuModel* a0, gint a1, GHashTable** a2) {
     GMenuModelClass *k = zgtk_vfunc_parent(a0, "Gio_MenuModel.get_item_attributes", 0);
@@ -2208,9 +2424,11 @@ static GMenuModel* vf_Gio_MenuModel_get_item_link(GMenuModel* a0, gint a1, const
     if (f) zgtk_dispatch(f, &c);
     return (GMenuModel*)c.ret.p;
 }
-void zgtk_override_Gio_MenuModel_get_item_link(gsize type, void *closure) {
-    GMenuModelClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MenuModel.get_item_link", closure); k->get_item_link = (gpointer)vf_Gio_MenuModel_get_item_link; }
+int zgtk_override_Gio_MenuModel_get_item_link(gsize type, void *closure) {
+    GMenuModelClass *k = zgtk_class_below(type, g_menu_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MenuModel.get_item_link", closure); k->get_item_link = (gpointer)vf_Gio_MenuModel_get_item_link;
+    return 1;
 }
 GMenuModel* zgtk_parent_Gio_MenuModel_get_item_link(GMenuModel* a0, gint a1, const gchar* a2) {
     GMenuModelClass *k = zgtk_vfunc_parent(a0, "Gio_MenuModel.get_item_link", 0);
@@ -2224,9 +2442,11 @@ static void vf_Gio_MenuModel_get_item_links(GMenuModel* a0, gint a1, GHashTable*
     void *f = zgtk_vfunc_find(a0, "Gio_MenuModel.get_item_links");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_MenuModel_get_item_links(gsize type, void *closure) {
-    GMenuModelClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MenuModel.get_item_links", closure); k->get_item_links = (gpointer)vf_Gio_MenuModel_get_item_links; }
+int zgtk_override_Gio_MenuModel_get_item_links(gsize type, void *closure) {
+    GMenuModelClass *k = zgtk_class_below(type, g_menu_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MenuModel.get_item_links", closure); k->get_item_links = (gpointer)vf_Gio_MenuModel_get_item_links;
+    return 1;
 }
 void zgtk_parent_Gio_MenuModel_get_item_links(GMenuModel* a0, gint a1, GHashTable** a2) {
     GMenuModelClass *k = zgtk_vfunc_parent(a0, "Gio_MenuModel.get_item_links", 0);
@@ -2239,9 +2459,11 @@ static gint vf_Gio_MenuModel_get_n_items(GMenuModel* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gint)c.ret.i;
 }
-void zgtk_override_Gio_MenuModel_get_n_items(gsize type, void *closure) {
-    GMenuModelClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MenuModel.get_n_items", closure); k->get_n_items = (gpointer)vf_Gio_MenuModel_get_n_items; }
+int zgtk_override_Gio_MenuModel_get_n_items(gsize type, void *closure) {
+    GMenuModelClass *k = zgtk_class_below(type, g_menu_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MenuModel.get_n_items", closure); k->get_n_items = (gpointer)vf_Gio_MenuModel_get_n_items;
+    return 1;
 }
 gint zgtk_parent_Gio_MenuModel_get_n_items(GMenuModel* a0) {
     GMenuModelClass *k = zgtk_vfunc_parent(a0, "Gio_MenuModel.get_n_items", 0);
@@ -2254,9 +2476,11 @@ static gboolean vf_Gio_MenuModel_is_mutable(GMenuModel* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_MenuModel_is_mutable(gsize type, void *closure) {
-    GMenuModelClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MenuModel.is_mutable", closure); k->is_mutable = (gpointer)vf_Gio_MenuModel_is_mutable; }
+int zgtk_override_Gio_MenuModel_is_mutable(gsize type, void *closure) {
+    GMenuModelClass *k = zgtk_class_below(type, g_menu_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MenuModel.is_mutable", closure); k->is_mutable = (gpointer)vf_Gio_MenuModel_is_mutable;
+    return 1;
 }
 gboolean zgtk_parent_Gio_MenuModel_is_mutable(GMenuModel* a0) {
     GMenuModelClass *k = zgtk_vfunc_parent(a0, "Gio_MenuModel.is_mutable", 0);
@@ -2270,9 +2494,11 @@ static GMenuAttributeIter* vf_Gio_MenuModel_iterate_item_attributes(GMenuModel* 
     if (f) zgtk_dispatch(f, &c);
     return (GMenuAttributeIter*)c.ret.p;
 }
-void zgtk_override_Gio_MenuModel_iterate_item_attributes(gsize type, void *closure) {
-    GMenuModelClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MenuModel.iterate_item_attributes", closure); k->iterate_item_attributes = (gpointer)vf_Gio_MenuModel_iterate_item_attributes; }
+int zgtk_override_Gio_MenuModel_iterate_item_attributes(gsize type, void *closure) {
+    GMenuModelClass *k = zgtk_class_below(type, g_menu_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MenuModel.iterate_item_attributes", closure); k->iterate_item_attributes = (gpointer)vf_Gio_MenuModel_iterate_item_attributes;
+    return 1;
 }
 GMenuAttributeIter* zgtk_parent_Gio_MenuModel_iterate_item_attributes(GMenuModel* a0, gint a1) {
     GMenuModelClass *k = zgtk_vfunc_parent(a0, "Gio_MenuModel.iterate_item_attributes", 0);
@@ -2286,9 +2512,11 @@ static GMenuLinkIter* vf_Gio_MenuModel_iterate_item_links(GMenuModel* a0, gint a
     if (f) zgtk_dispatch(f, &c);
     return (GMenuLinkIter*)c.ret.p;
 }
-void zgtk_override_Gio_MenuModel_iterate_item_links(gsize type, void *closure) {
-    GMenuModelClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MenuModel.iterate_item_links", closure); k->iterate_item_links = (gpointer)vf_Gio_MenuModel_iterate_item_links; }
+int zgtk_override_Gio_MenuModel_iterate_item_links(gsize type, void *closure) {
+    GMenuModelClass *k = zgtk_class_below(type, g_menu_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MenuModel.iterate_item_links", closure); k->iterate_item_links = (gpointer)vf_Gio_MenuModel_iterate_item_links;
+    return 1;
 }
 GMenuLinkIter* zgtk_parent_Gio_MenuModel_iterate_item_links(GMenuModel* a0, gint a1) {
     GMenuModelClass *k = zgtk_vfunc_parent(a0, "Gio_MenuModel.iterate_item_links", 0);
@@ -2308,9 +2536,11 @@ static GDBusInterface* vf_Gio_DBusObject_get_interface(GDBusObject* a0, const gc
     if (f) zgtk_dispatch(f, &c);
     return (GDBusInterface*)c.ret.p;
 }
-void zgtk_override_Gio_DBusObject_get_interface(gsize type, void *closure) {
-    GDBusObjectIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_object_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObject.get_interface", closure); k->get_interface = (gpointer)vf_Gio_DBusObject_get_interface; }
+int zgtk_override_Gio_DBusObject_get_interface(gsize type, void *closure) {
+    GDBusObjectIface *k = zgtk_iface_below(type, g_dbus_object_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObject.get_interface", closure); k->get_interface = (gpointer)vf_Gio_DBusObject_get_interface;
+    return 1;
 }
 GDBusInterface* zgtk_parent_Gio_DBusObject_get_interface(GDBusObject* a0, const gchar* a1) {
     GDBusObjectIface *k = zgtk_vfunc_parent(a0, "Gio_DBusObject.get_interface", g_dbus_object_get_type());
@@ -2323,9 +2553,11 @@ static GList* vf_Gio_DBusObject_get_interfaces(GDBusObject* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GList*)c.ret.p;
 }
-void zgtk_override_Gio_DBusObject_get_interfaces(gsize type, void *closure) {
-    GDBusObjectIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_object_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObject.get_interfaces", closure); k->get_interfaces = (gpointer)vf_Gio_DBusObject_get_interfaces; }
+int zgtk_override_Gio_DBusObject_get_interfaces(gsize type, void *closure) {
+    GDBusObjectIface *k = zgtk_iface_below(type, g_dbus_object_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObject.get_interfaces", closure); k->get_interfaces = (gpointer)vf_Gio_DBusObject_get_interfaces;
+    return 1;
 }
 GList* zgtk_parent_Gio_DBusObject_get_interfaces(GDBusObject* a0) {
     GDBusObjectIface *k = zgtk_vfunc_parent(a0, "Gio_DBusObject.get_interfaces", g_dbus_object_get_type());
@@ -2338,9 +2570,11 @@ static const gchar* vf_Gio_DBusObject_get_object_path(GDBusObject* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const gchar*)c.ret.p;
 }
-void zgtk_override_Gio_DBusObject_get_object_path(gsize type, void *closure) {
-    GDBusObjectIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_object_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObject.get_object_path", closure); k->get_object_path = (gpointer)vf_Gio_DBusObject_get_object_path; }
+int zgtk_override_Gio_DBusObject_get_object_path(gsize type, void *closure) {
+    GDBusObjectIface *k = zgtk_iface_below(type, g_dbus_object_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObject.get_object_path", closure); k->get_object_path = (gpointer)vf_Gio_DBusObject_get_object_path;
+    return 1;
 }
 const gchar* zgtk_parent_Gio_DBusObject_get_object_path(GDBusObject* a0) {
     GDBusObjectIface *k = zgtk_vfunc_parent(a0, "Gio_DBusObject.get_object_path", g_dbus_object_get_type());
@@ -2353,9 +2587,11 @@ static void vf_Gio_DBusObject_interface_added(GDBusObject* a0, GDBusInterface* a
     void *f = zgtk_vfunc_find(a0, "Gio_DBusObject.interface_added");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DBusObject_interface_added(gsize type, void *closure) {
-    GDBusObjectIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_object_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObject.interface_added", closure); k->interface_added = (gpointer)vf_Gio_DBusObject_interface_added; }
+int zgtk_override_Gio_DBusObject_interface_added(gsize type, void *closure) {
+    GDBusObjectIface *k = zgtk_iface_below(type, g_dbus_object_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObject.interface_added", closure); k->interface_added = (gpointer)vf_Gio_DBusObject_interface_added;
+    return 1;
 }
 void zgtk_parent_Gio_DBusObject_interface_added(GDBusObject* a0, GDBusInterface* a1) {
     GDBusObjectIface *k = zgtk_vfunc_parent(a0, "Gio_DBusObject.interface_added", g_dbus_object_get_type());
@@ -2368,9 +2604,11 @@ static void vf_Gio_DBusObject_interface_removed(GDBusObject* a0, GDBusInterface*
     void *f = zgtk_vfunc_find(a0, "Gio_DBusObject.interface_removed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DBusObject_interface_removed(gsize type, void *closure) {
-    GDBusObjectIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_object_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObject.interface_removed", closure); k->interface_removed = (gpointer)vf_Gio_DBusObject_interface_removed; }
+int zgtk_override_Gio_DBusObject_interface_removed(gsize type, void *closure) {
+    GDBusObjectIface *k = zgtk_iface_below(type, g_dbus_object_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObject.interface_removed", closure); k->interface_removed = (gpointer)vf_Gio_DBusObject_interface_removed;
+    return 1;
 }
 void zgtk_parent_Gio_DBusObject_interface_removed(GDBusObject* a0, GDBusInterface* a1) {
     GDBusObjectIface *k = zgtk_vfunc_parent(a0, "Gio_DBusObject.interface_removed", g_dbus_object_get_type());
@@ -2385,9 +2623,11 @@ static GDBusInterface* vf_Gio_DBusObjectManager_get_interface(GDBusObjectManager
     if (f) zgtk_dispatch(f, &c);
     return (GDBusInterface*)c.ret.p;
 }
-void zgtk_override_Gio_DBusObjectManager_get_interface(gsize type, void *closure) {
-    GDBusObjectManagerIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_object_manager_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObjectManager.get_interface", closure); k->get_interface = (gpointer)vf_Gio_DBusObjectManager_get_interface; }
+int zgtk_override_Gio_DBusObjectManager_get_interface(gsize type, void *closure) {
+    GDBusObjectManagerIface *k = zgtk_iface_below(type, g_dbus_object_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObjectManager.get_interface", closure); k->get_interface = (gpointer)vf_Gio_DBusObjectManager_get_interface;
+    return 1;
 }
 GDBusInterface* zgtk_parent_Gio_DBusObjectManager_get_interface(GDBusObjectManager* a0, const gchar* a1, const gchar* a2) {
     GDBusObjectManagerIface *k = zgtk_vfunc_parent(a0, "Gio_DBusObjectManager.get_interface", g_dbus_object_manager_get_type());
@@ -2401,9 +2641,11 @@ static GDBusObject* vf_Gio_DBusObjectManager_get_object(GDBusObjectManager* a0, 
     if (f) zgtk_dispatch(f, &c);
     return (GDBusObject*)c.ret.p;
 }
-void zgtk_override_Gio_DBusObjectManager_get_object(gsize type, void *closure) {
-    GDBusObjectManagerIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_object_manager_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObjectManager.get_object", closure); k->get_object = (gpointer)vf_Gio_DBusObjectManager_get_object; }
+int zgtk_override_Gio_DBusObjectManager_get_object(gsize type, void *closure) {
+    GDBusObjectManagerIface *k = zgtk_iface_below(type, g_dbus_object_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObjectManager.get_object", closure); k->get_object = (gpointer)vf_Gio_DBusObjectManager_get_object;
+    return 1;
 }
 GDBusObject* zgtk_parent_Gio_DBusObjectManager_get_object(GDBusObjectManager* a0, const gchar* a1) {
     GDBusObjectManagerIface *k = zgtk_vfunc_parent(a0, "Gio_DBusObjectManager.get_object", g_dbus_object_manager_get_type());
@@ -2416,9 +2658,11 @@ static const gchar* vf_Gio_DBusObjectManager_get_object_path(GDBusObjectManager*
     if (f) zgtk_dispatch(f, &c);
     return (const gchar*)c.ret.p;
 }
-void zgtk_override_Gio_DBusObjectManager_get_object_path(gsize type, void *closure) {
-    GDBusObjectManagerIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_object_manager_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObjectManager.get_object_path", closure); k->get_object_path = (gpointer)vf_Gio_DBusObjectManager_get_object_path; }
+int zgtk_override_Gio_DBusObjectManager_get_object_path(gsize type, void *closure) {
+    GDBusObjectManagerIface *k = zgtk_iface_below(type, g_dbus_object_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObjectManager.get_object_path", closure); k->get_object_path = (gpointer)vf_Gio_DBusObjectManager_get_object_path;
+    return 1;
 }
 const gchar* zgtk_parent_Gio_DBusObjectManager_get_object_path(GDBusObjectManager* a0) {
     GDBusObjectManagerIface *k = zgtk_vfunc_parent(a0, "Gio_DBusObjectManager.get_object_path", g_dbus_object_manager_get_type());
@@ -2431,9 +2675,11 @@ static GList* vf_Gio_DBusObjectManager_get_objects(GDBusObjectManager* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GList*)c.ret.p;
 }
-void zgtk_override_Gio_DBusObjectManager_get_objects(gsize type, void *closure) {
-    GDBusObjectManagerIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_object_manager_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObjectManager.get_objects", closure); k->get_objects = (gpointer)vf_Gio_DBusObjectManager_get_objects; }
+int zgtk_override_Gio_DBusObjectManager_get_objects(gsize type, void *closure) {
+    GDBusObjectManagerIface *k = zgtk_iface_below(type, g_dbus_object_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObjectManager.get_objects", closure); k->get_objects = (gpointer)vf_Gio_DBusObjectManager_get_objects;
+    return 1;
 }
 GList* zgtk_parent_Gio_DBusObjectManager_get_objects(GDBusObjectManager* a0) {
     GDBusObjectManagerIface *k = zgtk_vfunc_parent(a0, "Gio_DBusObjectManager.get_objects", g_dbus_object_manager_get_type());
@@ -2447,9 +2693,11 @@ static void vf_Gio_DBusObjectManager_interface_added(GDBusObjectManager* a0, GDB
     void *f = zgtk_vfunc_find(a0, "Gio_DBusObjectManager.interface_added");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DBusObjectManager_interface_added(gsize type, void *closure) {
-    GDBusObjectManagerIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_object_manager_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObjectManager.interface_added", closure); k->interface_added = (gpointer)vf_Gio_DBusObjectManager_interface_added; }
+int zgtk_override_Gio_DBusObjectManager_interface_added(gsize type, void *closure) {
+    GDBusObjectManagerIface *k = zgtk_iface_below(type, g_dbus_object_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObjectManager.interface_added", closure); k->interface_added = (gpointer)vf_Gio_DBusObjectManager_interface_added;
+    return 1;
 }
 void zgtk_parent_Gio_DBusObjectManager_interface_added(GDBusObjectManager* a0, GDBusObject* a1, GDBusInterface* a2) {
     GDBusObjectManagerIface *k = zgtk_vfunc_parent(a0, "Gio_DBusObjectManager.interface_added", g_dbus_object_manager_get_type());
@@ -2463,9 +2711,11 @@ static void vf_Gio_DBusObjectManager_interface_removed(GDBusObjectManager* a0, G
     void *f = zgtk_vfunc_find(a0, "Gio_DBusObjectManager.interface_removed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DBusObjectManager_interface_removed(gsize type, void *closure) {
-    GDBusObjectManagerIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_object_manager_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObjectManager.interface_removed", closure); k->interface_removed = (gpointer)vf_Gio_DBusObjectManager_interface_removed; }
+int zgtk_override_Gio_DBusObjectManager_interface_removed(gsize type, void *closure) {
+    GDBusObjectManagerIface *k = zgtk_iface_below(type, g_dbus_object_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObjectManager.interface_removed", closure); k->interface_removed = (gpointer)vf_Gio_DBusObjectManager_interface_removed;
+    return 1;
 }
 void zgtk_parent_Gio_DBusObjectManager_interface_removed(GDBusObjectManager* a0, GDBusObject* a1, GDBusInterface* a2) {
     GDBusObjectManagerIface *k = zgtk_vfunc_parent(a0, "Gio_DBusObjectManager.interface_removed", g_dbus_object_manager_get_type());
@@ -2478,9 +2728,11 @@ static void vf_Gio_DBusObjectManager_object_added(GDBusObjectManager* a0, GDBusO
     void *f = zgtk_vfunc_find(a0, "Gio_DBusObjectManager.object_added");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DBusObjectManager_object_added(gsize type, void *closure) {
-    GDBusObjectManagerIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_object_manager_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObjectManager.object_added", closure); k->object_added = (gpointer)vf_Gio_DBusObjectManager_object_added; }
+int zgtk_override_Gio_DBusObjectManager_object_added(gsize type, void *closure) {
+    GDBusObjectManagerIface *k = zgtk_iface_below(type, g_dbus_object_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObjectManager.object_added", closure); k->object_added = (gpointer)vf_Gio_DBusObjectManager_object_added;
+    return 1;
 }
 void zgtk_parent_Gio_DBusObjectManager_object_added(GDBusObjectManager* a0, GDBusObject* a1) {
     GDBusObjectManagerIface *k = zgtk_vfunc_parent(a0, "Gio_DBusObjectManager.object_added", g_dbus_object_manager_get_type());
@@ -2493,9 +2745,11 @@ static void vf_Gio_DBusObjectManager_object_removed(GDBusObjectManager* a0, GDBu
     void *f = zgtk_vfunc_find(a0, "Gio_DBusObjectManager.object_removed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DBusObjectManager_object_removed(gsize type, void *closure) {
-    GDBusObjectManagerIface *k = g_type_interface_peek(g_type_class_ref(type), g_dbus_object_manager_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObjectManager.object_removed", closure); k->object_removed = (gpointer)vf_Gio_DBusObjectManager_object_removed; }
+int zgtk_override_Gio_DBusObjectManager_object_removed(gsize type, void *closure) {
+    GDBusObjectManagerIface *k = zgtk_iface_below(type, g_dbus_object_manager_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObjectManager.object_removed", closure); k->object_removed = (gpointer)vf_Gio_DBusObjectManager_object_removed;
+    return 1;
 }
 void zgtk_parent_Gio_DBusObjectManager_object_removed(GDBusObjectManager* a0, GDBusObject* a1) {
     GDBusObjectManagerIface *k = zgtk_vfunc_parent(a0, "Gio_DBusObjectManager.object_removed", g_dbus_object_manager_get_type());
@@ -2511,9 +2765,11 @@ static void vf_Gio_DBusObjectManagerClient_interface_proxy_properties_changed(GD
     void *f = zgtk_vfunc_find(a0, "Gio_DBusObjectManagerClient.interface_proxy_properties_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DBusObjectManagerClient_interface_proxy_properties_changed(gsize type, void *closure) {
-    GDBusObjectManagerClientClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObjectManagerClient.interface_proxy_properties_changed", closure); k->interface_proxy_properties_changed = (gpointer)vf_Gio_DBusObjectManagerClient_interface_proxy_properties_changed; }
+int zgtk_override_Gio_DBusObjectManagerClient_interface_proxy_properties_changed(gsize type, void *closure) {
+    GDBusObjectManagerClientClass *k = zgtk_class_below(type, g_dbus_object_manager_client_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObjectManagerClient.interface_proxy_properties_changed", closure); k->interface_proxy_properties_changed = (gpointer)vf_Gio_DBusObjectManagerClient_interface_proxy_properties_changed;
+    return 1;
 }
 void zgtk_parent_Gio_DBusObjectManagerClient_interface_proxy_properties_changed(GDBusObjectManagerClient* a0, GDBusObjectProxy* a1, GDBusProxy* a2, GVariant* a3, const gchar* const* a4) {
     GDBusObjectManagerClientClass *k = zgtk_vfunc_parent(a0, "Gio_DBusObjectManagerClient.interface_proxy_properties_changed", 0);
@@ -2530,9 +2786,11 @@ static void vf_Gio_DBusObjectManagerClient_interface_proxy_signal(GDBusObjectMan
     void *f = zgtk_vfunc_find(a0, "Gio_DBusObjectManagerClient.interface_proxy_signal");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DBusObjectManagerClient_interface_proxy_signal(gsize type, void *closure) {
-    GDBusObjectManagerClientClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObjectManagerClient.interface_proxy_signal", closure); k->interface_proxy_signal = (gpointer)vf_Gio_DBusObjectManagerClient_interface_proxy_signal; }
+int zgtk_override_Gio_DBusObjectManagerClient_interface_proxy_signal(gsize type, void *closure) {
+    GDBusObjectManagerClientClass *k = zgtk_class_below(type, g_dbus_object_manager_client_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObjectManagerClient.interface_proxy_signal", closure); k->interface_proxy_signal = (gpointer)vf_Gio_DBusObjectManagerClient_interface_proxy_signal;
+    return 1;
 }
 void zgtk_parent_Gio_DBusObjectManagerClient_interface_proxy_signal(GDBusObjectManagerClient* a0, GDBusObjectProxy* a1, GDBusProxy* a2, const gchar* a3, const gchar* a4, GVariant* a5) {
     GDBusObjectManagerClientClass *k = zgtk_vfunc_parent(a0, "Gio_DBusObjectManagerClient.interface_proxy_signal", 0);
@@ -2547,9 +2805,11 @@ static gboolean vf_Gio_DBusObjectSkeleton_authorize_method(GDBusObjectSkeleton* 
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_DBusObjectSkeleton_authorize_method(gsize type, void *closure) {
-    GDBusObjectSkeletonClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusObjectSkeleton.authorize_method", closure); k->authorize_method = (gpointer)vf_Gio_DBusObjectSkeleton_authorize_method; }
+int zgtk_override_Gio_DBusObjectSkeleton_authorize_method(gsize type, void *closure) {
+    GDBusObjectSkeletonClass *k = zgtk_class_below(type, g_dbus_object_skeleton_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusObjectSkeleton.authorize_method", closure); k->authorize_method = (gpointer)vf_Gio_DBusObjectSkeleton_authorize_method;
+    return 1;
 }
 gboolean zgtk_parent_Gio_DBusObjectSkeleton_authorize_method(GDBusObjectSkeleton* a0, GDBusInterfaceSkeleton* a1, GDBusMethodInvocation* a2) {
     GDBusObjectSkeletonClass *k = zgtk_vfunc_parent(a0, "Gio_DBusObjectSkeleton.authorize_method", 0);
@@ -2568,9 +2828,11 @@ static void vf_Gio_DBusProxy_g_properties_changed(GDBusProxy* a0, GVariant* a1, 
     void *f = zgtk_vfunc_find(a0, "Gio_DBusProxy.g_properties_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DBusProxy_g_properties_changed(gsize type, void *closure) {
-    GDBusProxyClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusProxy.g_properties_changed", closure); k->g_properties_changed = (gpointer)vf_Gio_DBusProxy_g_properties_changed; }
+int zgtk_override_Gio_DBusProxy_g_properties_changed(gsize type, void *closure) {
+    GDBusProxyClass *k = zgtk_class_below(type, g_dbus_proxy_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusProxy.g_properties_changed", closure); k->g_properties_changed = (gpointer)vf_Gio_DBusProxy_g_properties_changed;
+    return 1;
 }
 void zgtk_parent_Gio_DBusProxy_g_properties_changed(GDBusProxy* a0, GVariant* a1, const gchar* const* a2) {
     GDBusProxyClass *k = zgtk_vfunc_parent(a0, "Gio_DBusProxy.g_properties_changed", 0);
@@ -2585,9 +2847,11 @@ static void vf_Gio_DBusProxy_g_signal(GDBusProxy* a0, const gchar* a1, const gch
     void *f = zgtk_vfunc_find(a0, "Gio_DBusProxy.g_signal");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DBusProxy_g_signal(gsize type, void *closure) {
-    GDBusProxyClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_DBusProxy.g_signal", closure); k->g_signal = (gpointer)vf_Gio_DBusProxy_g_signal; }
+int zgtk_override_Gio_DBusProxy_g_signal(gsize type, void *closure) {
+    GDBusProxyClass *k = zgtk_class_below(type, g_dbus_proxy_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DBusProxy.g_signal", closure); k->g_signal = (gpointer)vf_Gio_DBusProxy_g_signal;
+    return 1;
 }
 void zgtk_parent_Gio_DBusProxy_g_signal(GDBusProxy* a0, const gchar* a1, const gchar* a2, GVariant* a3) {
     GDBusProxyClass *k = zgtk_vfunc_parent(a0, "Gio_DBusProxy.g_signal", 0);
@@ -2605,9 +2869,11 @@ static GIOCondition vf_Gio_DatagramBased_condition_check(GDatagramBased* a0, GIO
     if (f) zgtk_dispatch(f, &c);
     return (GIOCondition)c.ret.i;
 }
-void zgtk_override_Gio_DatagramBased_condition_check(gsize type, void *closure) {
-    GDatagramBasedInterface *k = g_type_interface_peek(g_type_class_ref(type), g_datagram_based_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DatagramBased.condition_check", closure); k->condition_check = (gpointer)vf_Gio_DatagramBased_condition_check; }
+int zgtk_override_Gio_DatagramBased_condition_check(gsize type, void *closure) {
+    GDatagramBasedInterface *k = zgtk_iface_below(type, g_datagram_based_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DatagramBased.condition_check", closure); k->condition_check = (gpointer)vf_Gio_DatagramBased_condition_check;
+    return 1;
 }
 GIOCondition zgtk_parent_Gio_DatagramBased_condition_check(GDatagramBased* a0, GIOCondition a1) {
     GDatagramBasedInterface *k = zgtk_vfunc_parent(a0, "Gio_DatagramBased.condition_check", g_datagram_based_get_type());
@@ -2622,9 +2888,11 @@ static GSource* vf_Gio_DatagramBased_create_source(GDatagramBased* a0, GIOCondit
     if (f) zgtk_dispatch(f, &c);
     return (GSource*)c.ret.p;
 }
-void zgtk_override_Gio_DatagramBased_create_source(gsize type, void *closure) {
-    GDatagramBasedInterface *k = g_type_interface_peek(g_type_class_ref(type), g_datagram_based_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DatagramBased.create_source", closure); k->create_source = (gpointer)vf_Gio_DatagramBased_create_source; }
+int zgtk_override_Gio_DatagramBased_create_source(gsize type, void *closure) {
+    GDatagramBasedInterface *k = zgtk_iface_below(type, g_datagram_based_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DatagramBased.create_source", closure); k->create_source = (gpointer)vf_Gio_DatagramBased_create_source;
+    return 1;
 }
 GSource* zgtk_parent_Gio_DatagramBased_create_source(GDatagramBased* a0, GIOCondition a1, GCancellable* a2) {
     GDatagramBasedInterface *k = zgtk_vfunc_parent(a0, "Gio_DatagramBased.create_source", g_datagram_based_get_type());
@@ -2638,9 +2906,11 @@ static gboolean vf_Gio_DebugControllerDBus_authorize(GDebugControllerDBus* a0, G
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_DebugControllerDBus_authorize(gsize type, void *closure) {
-    GDebugControllerDBusClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_DebugControllerDBus.authorize", closure); k->authorize = (gpointer)vf_Gio_DebugControllerDBus_authorize; }
+int zgtk_override_Gio_DebugControllerDBus_authorize(gsize type, void *closure) {
+    GDebugControllerDBusClass *k = zgtk_class_below(type, g_debug_controller_dbus_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DebugControllerDBus.authorize", closure); k->authorize = (gpointer)vf_Gio_DebugControllerDBus_authorize;
+    return 1;
 }
 gboolean zgtk_parent_Gio_DebugControllerDBus_authorize(GDebugControllerDBus* a0, GDBusMethodInvocation* a1) {
     GDebugControllerDBusClass *k = zgtk_vfunc_parent(a0, "Gio_DebugControllerDBus.authorize", 0);
@@ -2653,9 +2923,11 @@ static gboolean vf_Gio_Drive_can_eject(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Drive_can_eject(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.can_eject", closure); k->can_eject = (gpointer)vf_Gio_Drive_can_eject; }
+int zgtk_override_Gio_Drive_can_eject(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.can_eject", closure); k->can_eject = (gpointer)vf_Gio_Drive_can_eject;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Drive_can_eject(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.can_eject", g_drive_get_type());
@@ -2668,9 +2940,11 @@ static gboolean vf_Gio_Drive_can_poll_for_media(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Drive_can_poll_for_media(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.can_poll_for_media", closure); k->can_poll_for_media = (gpointer)vf_Gio_Drive_can_poll_for_media; }
+int zgtk_override_Gio_Drive_can_poll_for_media(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.can_poll_for_media", closure); k->can_poll_for_media = (gpointer)vf_Gio_Drive_can_poll_for_media;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Drive_can_poll_for_media(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.can_poll_for_media", g_drive_get_type());
@@ -2683,9 +2957,11 @@ static gboolean vf_Gio_Drive_can_start(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Drive_can_start(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.can_start", closure); k->can_start = (gpointer)vf_Gio_Drive_can_start; }
+int zgtk_override_Gio_Drive_can_start(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.can_start", closure); k->can_start = (gpointer)vf_Gio_Drive_can_start;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Drive_can_start(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.can_start", g_drive_get_type());
@@ -2698,9 +2974,11 @@ static gboolean vf_Gio_Drive_can_start_degraded(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Drive_can_start_degraded(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.can_start_degraded", closure); k->can_start_degraded = (gpointer)vf_Gio_Drive_can_start_degraded; }
+int zgtk_override_Gio_Drive_can_start_degraded(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.can_start_degraded", closure); k->can_start_degraded = (gpointer)vf_Gio_Drive_can_start_degraded;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Drive_can_start_degraded(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.can_start_degraded", g_drive_get_type());
@@ -2713,9 +2991,11 @@ static gboolean vf_Gio_Drive_can_stop(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Drive_can_stop(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.can_stop", closure); k->can_stop = (gpointer)vf_Gio_Drive_can_stop; }
+int zgtk_override_Gio_Drive_can_stop(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.can_stop", closure); k->can_stop = (gpointer)vf_Gio_Drive_can_stop;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Drive_can_stop(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.can_stop", g_drive_get_type());
@@ -2727,9 +3007,11 @@ static void vf_Gio_Drive_changed(GDrive* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Drive.changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Drive_changed(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.changed", closure); k->changed = (gpointer)vf_Gio_Drive_changed; }
+int zgtk_override_Gio_Drive_changed(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.changed", closure); k->changed = (gpointer)vf_Gio_Drive_changed;
+    return 1;
 }
 void zgtk_parent_Gio_Drive_changed(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.changed", g_drive_get_type());
@@ -2741,9 +3023,11 @@ static void vf_Gio_Drive_disconnected(GDrive* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Drive.disconnected");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Drive_disconnected(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.disconnected", closure); k->disconnected = (gpointer)vf_Gio_Drive_disconnected; }
+int zgtk_override_Gio_Drive_disconnected(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.disconnected", closure); k->disconnected = (gpointer)vf_Gio_Drive_disconnected;
+    return 1;
 }
 void zgtk_parent_Gio_Drive_disconnected(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.disconnected", g_drive_get_type());
@@ -2759,9 +3043,11 @@ static void vf_Gio_Drive_eject(GDrive* a0, GMountUnmountFlags a1, GCancellable* 
     void *f = zgtk_vfunc_find(a0, "Gio_Drive.eject");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Drive_eject(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.eject", closure); k->eject = (gpointer)vf_Gio_Drive_eject; }
+int zgtk_override_Gio_Drive_eject(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.eject", closure); k->eject = (gpointer)vf_Gio_Drive_eject;
+    return 1;
 }
 void zgtk_parent_Gio_Drive_eject(GDrive* a0, GMountUnmountFlags a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.eject", g_drive_get_type());
@@ -2773,9 +3059,11 @@ static void vf_Gio_Drive_eject_button(GDrive* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Drive.eject_button");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Drive_eject_button(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.eject_button", closure); k->eject_button = (gpointer)vf_Gio_Drive_eject_button; }
+int zgtk_override_Gio_Drive_eject_button(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.eject_button", closure); k->eject_button = (gpointer)vf_Gio_Drive_eject_button;
+    return 1;
 }
 void zgtk_parent_Gio_Drive_eject_button(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.eject_button", g_drive_get_type());
@@ -2792,9 +3080,11 @@ static void vf_Gio_Drive_eject_with_operation(GDrive* a0, GMountUnmountFlags a1,
     void *f = zgtk_vfunc_find(a0, "Gio_Drive.eject_with_operation");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Drive_eject_with_operation(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.eject_with_operation", closure); k->eject_with_operation = (gpointer)vf_Gio_Drive_eject_with_operation; }
+int zgtk_override_Gio_Drive_eject_with_operation(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.eject_with_operation", closure); k->eject_with_operation = (gpointer)vf_Gio_Drive_eject_with_operation;
+    return 1;
 }
 void zgtk_parent_Gio_Drive_eject_with_operation(GDrive* a0, GMountUnmountFlags a1, GMountOperation* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.eject_with_operation", g_drive_get_type());
@@ -2807,9 +3097,11 @@ static char** vf_Gio_Drive_enumerate_identifiers(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (char**)c.ret.p;
 }
-void zgtk_override_Gio_Drive_enumerate_identifiers(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.enumerate_identifiers", closure); k->enumerate_identifiers = (gpointer)vf_Gio_Drive_enumerate_identifiers; }
+int zgtk_override_Gio_Drive_enumerate_identifiers(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.enumerate_identifiers", closure); k->enumerate_identifiers = (gpointer)vf_Gio_Drive_enumerate_identifiers;
+    return 1;
 }
 char** zgtk_parent_Gio_Drive_enumerate_identifiers(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.enumerate_identifiers", g_drive_get_type());
@@ -2822,9 +3114,11 @@ static GIcon* vf_Gio_Drive_get_icon(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GIcon*)c.ret.p;
 }
-void zgtk_override_Gio_Drive_get_icon(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.get_icon", closure); k->get_icon = (gpointer)vf_Gio_Drive_get_icon; }
+int zgtk_override_Gio_Drive_get_icon(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.get_icon", closure); k->get_icon = (gpointer)vf_Gio_Drive_get_icon;
+    return 1;
 }
 GIcon* zgtk_parent_Gio_Drive_get_icon(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.get_icon", g_drive_get_type());
@@ -2838,9 +3132,11 @@ static char* vf_Gio_Drive_get_identifier(GDrive* a0, const char* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_Drive_get_identifier(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.get_identifier", closure); k->get_identifier = (gpointer)vf_Gio_Drive_get_identifier; }
+int zgtk_override_Gio_Drive_get_identifier(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.get_identifier", closure); k->get_identifier = (gpointer)vf_Gio_Drive_get_identifier;
+    return 1;
 }
 char* zgtk_parent_Gio_Drive_get_identifier(GDrive* a0, const char* a1) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.get_identifier", g_drive_get_type());
@@ -2853,9 +3149,11 @@ static char* vf_Gio_Drive_get_name(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_Drive_get_name(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.get_name", closure); k->get_name = (gpointer)vf_Gio_Drive_get_name; }
+int zgtk_override_Gio_Drive_get_name(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.get_name", closure); k->get_name = (gpointer)vf_Gio_Drive_get_name;
+    return 1;
 }
 char* zgtk_parent_Gio_Drive_get_name(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.get_name", g_drive_get_type());
@@ -2868,9 +3166,11 @@ static const gchar* vf_Gio_Drive_get_sort_key(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const gchar*)c.ret.p;
 }
-void zgtk_override_Gio_Drive_get_sort_key(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.get_sort_key", closure); k->get_sort_key = (gpointer)vf_Gio_Drive_get_sort_key; }
+int zgtk_override_Gio_Drive_get_sort_key(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.get_sort_key", closure); k->get_sort_key = (gpointer)vf_Gio_Drive_get_sort_key;
+    return 1;
 }
 const gchar* zgtk_parent_Gio_Drive_get_sort_key(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.get_sort_key", g_drive_get_type());
@@ -2883,9 +3183,11 @@ static GDriveStartStopType vf_Gio_Drive_get_start_stop_type(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GDriveStartStopType)c.ret.i;
 }
-void zgtk_override_Gio_Drive_get_start_stop_type(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.get_start_stop_type", closure); k->get_start_stop_type = (gpointer)vf_Gio_Drive_get_start_stop_type; }
+int zgtk_override_Gio_Drive_get_start_stop_type(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.get_start_stop_type", closure); k->get_start_stop_type = (gpointer)vf_Gio_Drive_get_start_stop_type;
+    return 1;
 }
 GDriveStartStopType zgtk_parent_Gio_Drive_get_start_stop_type(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.get_start_stop_type", g_drive_get_type());
@@ -2898,9 +3200,11 @@ static GIcon* vf_Gio_Drive_get_symbolic_icon(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GIcon*)c.ret.p;
 }
-void zgtk_override_Gio_Drive_get_symbolic_icon(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.get_symbolic_icon", closure); k->get_symbolic_icon = (gpointer)vf_Gio_Drive_get_symbolic_icon; }
+int zgtk_override_Gio_Drive_get_symbolic_icon(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.get_symbolic_icon", closure); k->get_symbolic_icon = (gpointer)vf_Gio_Drive_get_symbolic_icon;
+    return 1;
 }
 GIcon* zgtk_parent_Gio_Drive_get_symbolic_icon(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.get_symbolic_icon", g_drive_get_type());
@@ -2913,9 +3217,11 @@ static GList* vf_Gio_Drive_get_volumes(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GList*)c.ret.p;
 }
-void zgtk_override_Gio_Drive_get_volumes(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.get_volumes", closure); k->get_volumes = (gpointer)vf_Gio_Drive_get_volumes; }
+int zgtk_override_Gio_Drive_get_volumes(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.get_volumes", closure); k->get_volumes = (gpointer)vf_Gio_Drive_get_volumes;
+    return 1;
 }
 GList* zgtk_parent_Gio_Drive_get_volumes(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.get_volumes", g_drive_get_type());
@@ -2928,9 +3234,11 @@ static gboolean vf_Gio_Drive_has_media(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Drive_has_media(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.has_media", closure); k->has_media = (gpointer)vf_Gio_Drive_has_media; }
+int zgtk_override_Gio_Drive_has_media(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.has_media", closure); k->has_media = (gpointer)vf_Gio_Drive_has_media;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Drive_has_media(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.has_media", g_drive_get_type());
@@ -2943,9 +3251,11 @@ static gboolean vf_Gio_Drive_has_volumes(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Drive_has_volumes(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.has_volumes", closure); k->has_volumes = (gpointer)vf_Gio_Drive_has_volumes; }
+int zgtk_override_Gio_Drive_has_volumes(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.has_volumes", closure); k->has_volumes = (gpointer)vf_Gio_Drive_has_volumes;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Drive_has_volumes(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.has_volumes", g_drive_get_type());
@@ -2958,9 +3268,11 @@ static gboolean vf_Gio_Drive_is_media_check_automatic(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Drive_is_media_check_automatic(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.is_media_check_automatic", closure); k->is_media_check_automatic = (gpointer)vf_Gio_Drive_is_media_check_automatic; }
+int zgtk_override_Gio_Drive_is_media_check_automatic(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.is_media_check_automatic", closure); k->is_media_check_automatic = (gpointer)vf_Gio_Drive_is_media_check_automatic;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Drive_is_media_check_automatic(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.is_media_check_automatic", g_drive_get_type());
@@ -2973,9 +3285,11 @@ static gboolean vf_Gio_Drive_is_media_removable(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Drive_is_media_removable(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.is_media_removable", closure); k->is_media_removable = (gpointer)vf_Gio_Drive_is_media_removable; }
+int zgtk_override_Gio_Drive_is_media_removable(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.is_media_removable", closure); k->is_media_removable = (gpointer)vf_Gio_Drive_is_media_removable;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Drive_is_media_removable(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.is_media_removable", g_drive_get_type());
@@ -2988,9 +3302,11 @@ static gboolean vf_Gio_Drive_is_removable(GDrive* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Drive_is_removable(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.is_removable", closure); k->is_removable = (gpointer)vf_Gio_Drive_is_removable; }
+int zgtk_override_Gio_Drive_is_removable(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.is_removable", closure); k->is_removable = (gpointer)vf_Gio_Drive_is_removable;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Drive_is_removable(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.is_removable", g_drive_get_type());
@@ -3005,9 +3321,11 @@ static void vf_Gio_Drive_poll_for_media(GDrive* a0, GCancellable* a1, GAsyncRead
     void *f = zgtk_vfunc_find(a0, "Gio_Drive.poll_for_media");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Drive_poll_for_media(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.poll_for_media", closure); k->poll_for_media = (gpointer)vf_Gio_Drive_poll_for_media; }
+int zgtk_override_Gio_Drive_poll_for_media(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.poll_for_media", closure); k->poll_for_media = (gpointer)vf_Gio_Drive_poll_for_media;
+    return 1;
 }
 void zgtk_parent_Gio_Drive_poll_for_media(GDrive* a0, GCancellable* a1, GAsyncReadyCallback a2, gpointer a3) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.poll_for_media", g_drive_get_type());
@@ -3024,9 +3342,11 @@ static void vf_Gio_Drive_start(GDrive* a0, GDriveStartFlags a1, GMountOperation*
     void *f = zgtk_vfunc_find(a0, "Gio_Drive.start");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Drive_start(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.start", closure); k->start = (gpointer)vf_Gio_Drive_start; }
+int zgtk_override_Gio_Drive_start(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.start", closure); k->start = (gpointer)vf_Gio_Drive_start;
+    return 1;
 }
 void zgtk_parent_Gio_Drive_start(GDrive* a0, GDriveStartFlags a1, GMountOperation* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.start", g_drive_get_type());
@@ -3043,9 +3363,11 @@ static void vf_Gio_Drive_stop(GDrive* a0, GMountUnmountFlags a1, GMountOperation
     void *f = zgtk_vfunc_find(a0, "Gio_Drive.stop");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Drive_stop(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.stop", closure); k->stop = (gpointer)vf_Gio_Drive_stop; }
+int zgtk_override_Gio_Drive_stop(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.stop", closure); k->stop = (gpointer)vf_Gio_Drive_stop;
+    return 1;
 }
 void zgtk_parent_Gio_Drive_stop(GDrive* a0, GMountUnmountFlags a1, GMountOperation* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.stop", g_drive_get_type());
@@ -3057,9 +3379,11 @@ static void vf_Gio_Drive_stop_button(GDrive* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Drive.stop_button");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Drive_stop_button(gsize type, void *closure) {
-    GDriveIface *k = g_type_interface_peek(g_type_class_ref(type), g_drive_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Drive.stop_button", closure); k->stop_button = (gpointer)vf_Gio_Drive_stop_button; }
+int zgtk_override_Gio_Drive_stop_button(gsize type, void *closure) {
+    GDriveIface *k = zgtk_iface_below(type, g_drive_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Drive.stop_button", closure); k->stop_button = (gpointer)vf_Gio_Drive_stop_button;
+    return 1;
 }
 void zgtk_parent_Gio_Drive_stop_button(GDrive* a0) {
     GDriveIface *k = zgtk_vfunc_parent(a0, "Gio_Drive.stop_button", g_drive_get_type());
@@ -3074,9 +3398,11 @@ static gboolean vf_Gio_DtlsConnection_accept_certificate(GDtlsConnection* a0, GT
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_DtlsConnection_accept_certificate(gsize type, void *closure) {
-    GDtlsConnectionInterface *k = g_type_interface_peek(g_type_class_ref(type), g_dtls_connection_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DtlsConnection.accept_certificate", closure); k->accept_certificate = (gpointer)vf_Gio_DtlsConnection_accept_certificate; }
+int zgtk_override_Gio_DtlsConnection_accept_certificate(gsize type, void *closure) {
+    GDtlsConnectionInterface *k = zgtk_iface_below(type, g_dtls_connection_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DtlsConnection.accept_certificate", closure); k->accept_certificate = (gpointer)vf_Gio_DtlsConnection_accept_certificate;
+    return 1;
 }
 gboolean zgtk_parent_Gio_DtlsConnection_accept_certificate(GDtlsConnection* a0, GTlsCertificate* a1, GTlsCertificateFlags a2) {
     GDtlsConnectionInterface *k = zgtk_vfunc_parent(a0, "Gio_DtlsConnection.accept_certificate", g_dtls_connection_get_type());
@@ -3089,9 +3415,11 @@ static const gchar* vf_Gio_DtlsConnection_get_negotiated_protocol(GDtlsConnectio
     if (f) zgtk_dispatch(f, &c);
     return (const gchar*)c.ret.p;
 }
-void zgtk_override_Gio_DtlsConnection_get_negotiated_protocol(gsize type, void *closure) {
-    GDtlsConnectionInterface *k = g_type_interface_peek(g_type_class_ref(type), g_dtls_connection_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DtlsConnection.get_negotiated_protocol", closure); k->get_negotiated_protocol = (gpointer)vf_Gio_DtlsConnection_get_negotiated_protocol; }
+int zgtk_override_Gio_DtlsConnection_get_negotiated_protocol(gsize type, void *closure) {
+    GDtlsConnectionInterface *k = zgtk_iface_below(type, g_dtls_connection_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DtlsConnection.get_negotiated_protocol", closure); k->get_negotiated_protocol = (gpointer)vf_Gio_DtlsConnection_get_negotiated_protocol;
+    return 1;
 }
 const gchar* zgtk_parent_Gio_DtlsConnection_get_negotiated_protocol(GDtlsConnection* a0) {
     GDtlsConnectionInterface *k = zgtk_vfunc_parent(a0, "Gio_DtlsConnection.get_negotiated_protocol", g_dtls_connection_get_type());
@@ -3107,9 +3435,11 @@ static void vf_Gio_DtlsConnection_handshake_async(GDtlsConnection* a0, int a1, G
     void *f = zgtk_vfunc_find(a0, "Gio_DtlsConnection.handshake_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DtlsConnection_handshake_async(gsize type, void *closure) {
-    GDtlsConnectionInterface *k = g_type_interface_peek(g_type_class_ref(type), g_dtls_connection_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DtlsConnection.handshake_async", closure); k->handshake_async = (gpointer)vf_Gio_DtlsConnection_handshake_async; }
+int zgtk_override_Gio_DtlsConnection_handshake_async(gsize type, void *closure) {
+    GDtlsConnectionInterface *k = zgtk_iface_below(type, g_dtls_connection_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DtlsConnection.handshake_async", closure); k->handshake_async = (gpointer)vf_Gio_DtlsConnection_handshake_async;
+    return 1;
 }
 void zgtk_parent_Gio_DtlsConnection_handshake_async(GDtlsConnection* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GDtlsConnectionInterface *k = zgtk_vfunc_parent(a0, "Gio_DtlsConnection.handshake_async", g_dtls_connection_get_type());
@@ -3122,9 +3452,11 @@ static void vf_Gio_DtlsConnection_set_advertised_protocols(GDtlsConnection* a0, 
     void *f = zgtk_vfunc_find(a0, "Gio_DtlsConnection.set_advertised_protocols");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DtlsConnection_set_advertised_protocols(gsize type, void *closure) {
-    GDtlsConnectionInterface *k = g_type_interface_peek(g_type_class_ref(type), g_dtls_connection_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DtlsConnection.set_advertised_protocols", closure); k->set_advertised_protocols = (gpointer)vf_Gio_DtlsConnection_set_advertised_protocols; }
+int zgtk_override_Gio_DtlsConnection_set_advertised_protocols(gsize type, void *closure) {
+    GDtlsConnectionInterface *k = zgtk_iface_below(type, g_dtls_connection_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DtlsConnection.set_advertised_protocols", closure); k->set_advertised_protocols = (gpointer)vf_Gio_DtlsConnection_set_advertised_protocols;
+    return 1;
 }
 void zgtk_parent_Gio_DtlsConnection_set_advertised_protocols(GDtlsConnection* a0, const gchar* const* a1) {
     GDtlsConnectionInterface *k = zgtk_vfunc_parent(a0, "Gio_DtlsConnection.set_advertised_protocols", g_dtls_connection_get_type());
@@ -3142,9 +3474,11 @@ static void vf_Gio_DtlsConnection_shutdown_async(GDtlsConnection* a0, gboolean a
     void *f = zgtk_vfunc_find(a0, "Gio_DtlsConnection.shutdown_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_DtlsConnection_shutdown_async(gsize type, void *closure) {
-    GDtlsConnectionInterface *k = g_type_interface_peek(g_type_class_ref(type), g_dtls_connection_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_DtlsConnection.shutdown_async", closure); k->shutdown_async = (gpointer)vf_Gio_DtlsConnection_shutdown_async; }
+int zgtk_override_Gio_DtlsConnection_shutdown_async(gsize type, void *closure) {
+    GDtlsConnectionInterface *k = zgtk_iface_below(type, g_dtls_connection_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_DtlsConnection.shutdown_async", closure); k->shutdown_async = (gpointer)vf_Gio_DtlsConnection_shutdown_async;
+    return 1;
 }
 void zgtk_parent_Gio_DtlsConnection_shutdown_async(GDtlsConnection* a0, gboolean a1, gboolean a2, int a3, GCancellable* a4, GAsyncReadyCallback a5, gpointer a6) {
     GDtlsConnectionInterface *k = zgtk_vfunc_parent(a0, "Gio_DtlsConnection.shutdown_async", g_dtls_connection_get_type());
@@ -3161,9 +3495,11 @@ static void vf_Gio_File_append_to_async(GFile* a0, GFileCreateFlags a1, int a2, 
     void *f = zgtk_vfunc_find(a0, "Gio_File.append_to_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_append_to_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.append_to_async", closure); k->append_to_async = (gpointer)vf_Gio_File_append_to_async; }
+int zgtk_override_Gio_File_append_to_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.append_to_async", closure); k->append_to_async = (gpointer)vf_Gio_File_append_to_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_append_to_async(GFile* a0, GFileCreateFlags a1, int a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.append_to_async", g_file_get_type());
@@ -3183,9 +3519,11 @@ static void vf_Gio_File_copy_async(GFile* a0, GFile* a1, GFileCopyFlags a2, int 
     void *f = zgtk_vfunc_find(a0, "Gio_File.copy_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_copy_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.copy_async", closure); k->copy_async = (gpointer)vf_Gio_File_copy_async; }
+int zgtk_override_Gio_File_copy_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.copy_async", closure); k->copy_async = (gpointer)vf_Gio_File_copy_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_copy_async(GFile* a0, GFile* a1, GFileCopyFlags a2, int a3, GCancellable* a4, GFileProgressCallback a5, gpointer a6, GAsyncReadyCallback a7, gpointer a8) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.copy_async", g_file_get_type());
@@ -3202,9 +3540,11 @@ static void vf_Gio_File_create_async(GFile* a0, GFileCreateFlags a1, int a2, GCa
     void *f = zgtk_vfunc_find(a0, "Gio_File.create_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_create_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.create_async", closure); k->create_async = (gpointer)vf_Gio_File_create_async; }
+int zgtk_override_Gio_File_create_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.create_async", closure); k->create_async = (gpointer)vf_Gio_File_create_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_create_async(GFile* a0, GFileCreateFlags a1, int a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.create_async", g_file_get_type());
@@ -3221,9 +3561,11 @@ static void vf_Gio_File_create_readwrite_async(GFile* a0, GFileCreateFlags a1, i
     void *f = zgtk_vfunc_find(a0, "Gio_File.create_readwrite_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_create_readwrite_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.create_readwrite_async", closure); k->create_readwrite_async = (gpointer)vf_Gio_File_create_readwrite_async; }
+int zgtk_override_Gio_File_create_readwrite_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.create_readwrite_async", closure); k->create_readwrite_async = (gpointer)vf_Gio_File_create_readwrite_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_create_readwrite_async(GFile* a0, GFileCreateFlags a1, int a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.create_readwrite_async", g_file_get_type());
@@ -3239,9 +3581,11 @@ static void vf_Gio_File_delete_file_async(GFile* a0, int a1, GCancellable* a2, G
     void *f = zgtk_vfunc_find(a0, "Gio_File.delete_file_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_delete_file_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.delete_file_async", closure); k->delete_file_async = (gpointer)vf_Gio_File_delete_file_async; }
+int zgtk_override_Gio_File_delete_file_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.delete_file_async", closure); k->delete_file_async = (gpointer)vf_Gio_File_delete_file_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_delete_file_async(GFile* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.delete_file_async", g_file_get_type());
@@ -3254,9 +3598,11 @@ static GFile* vf_Gio_File_dup(GFile* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GFile*)c.ret.p;
 }
-void zgtk_override_Gio_File_dup(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.dup", closure); k->dup = (gpointer)vf_Gio_File_dup; }
+int zgtk_override_Gio_File_dup(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.dup", closure); k->dup = (gpointer)vf_Gio_File_dup;
+    return 1;
 }
 GFile* zgtk_parent_Gio_File_dup(GFile* a0) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.dup", g_file_get_type());
@@ -3272,9 +3618,11 @@ static void vf_Gio_File_eject_mountable(GFile* a0, GMountUnmountFlags a1, GCance
     void *f = zgtk_vfunc_find(a0, "Gio_File.eject_mountable");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_eject_mountable(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.eject_mountable", closure); k->eject_mountable = (gpointer)vf_Gio_File_eject_mountable; }
+int zgtk_override_Gio_File_eject_mountable(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.eject_mountable", closure); k->eject_mountable = (gpointer)vf_Gio_File_eject_mountable;
+    return 1;
 }
 void zgtk_parent_Gio_File_eject_mountable(GFile* a0, GMountUnmountFlags a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.eject_mountable", g_file_get_type());
@@ -3291,9 +3639,11 @@ static void vf_Gio_File_eject_mountable_with_operation(GFile* a0, GMountUnmountF
     void *f = zgtk_vfunc_find(a0, "Gio_File.eject_mountable_with_operation");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_eject_mountable_with_operation(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.eject_mountable_with_operation", closure); k->eject_mountable_with_operation = (gpointer)vf_Gio_File_eject_mountable_with_operation; }
+int zgtk_override_Gio_File_eject_mountable_with_operation(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.eject_mountable_with_operation", closure); k->eject_mountable_with_operation = (gpointer)vf_Gio_File_eject_mountable_with_operation;
+    return 1;
 }
 void zgtk_parent_Gio_File_eject_mountable_with_operation(GFile* a0, GMountUnmountFlags a1, GMountOperation* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.eject_mountable_with_operation", g_file_get_type());
@@ -3311,9 +3661,11 @@ static void vf_Gio_File_enumerate_children_async(GFile* a0, const char* a1, GFil
     void *f = zgtk_vfunc_find(a0, "Gio_File.enumerate_children_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_enumerate_children_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.enumerate_children_async", closure); k->enumerate_children_async = (gpointer)vf_Gio_File_enumerate_children_async; }
+int zgtk_override_Gio_File_enumerate_children_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.enumerate_children_async", closure); k->enumerate_children_async = (gpointer)vf_Gio_File_enumerate_children_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_enumerate_children_async(GFile* a0, const char* a1, GFileQueryInfoFlags a2, int a3, GCancellable* a4, GAsyncReadyCallback a5, gpointer a6) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.enumerate_children_async", g_file_get_type());
@@ -3327,9 +3679,11 @@ static gboolean vf_Gio_File_equal(GFile* a0, GFile* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_File_equal(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.equal", closure); k->equal = (gpointer)vf_Gio_File_equal; }
+int zgtk_override_Gio_File_equal(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.equal", closure); k->equal = (gpointer)vf_Gio_File_equal;
+    return 1;
 }
 gboolean zgtk_parent_Gio_File_equal(GFile* a0, GFile* a1) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.equal", g_file_get_type());
@@ -3345,9 +3699,11 @@ static void vf_Gio_File_find_enclosing_mount_async(GFile* a0, int a1, GCancellab
     void *f = zgtk_vfunc_find(a0, "Gio_File.find_enclosing_mount_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_find_enclosing_mount_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.find_enclosing_mount_async", closure); k->find_enclosing_mount_async = (gpointer)vf_Gio_File_find_enclosing_mount_async; }
+int zgtk_override_Gio_File_find_enclosing_mount_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.find_enclosing_mount_async", closure); k->find_enclosing_mount_async = (gpointer)vf_Gio_File_find_enclosing_mount_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_find_enclosing_mount_async(GFile* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.find_enclosing_mount_async", g_file_get_type());
@@ -3360,9 +3716,11 @@ static char* vf_Gio_File_get_basename(GFile* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_File_get_basename(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.get_basename", closure); k->get_basename = (gpointer)vf_Gio_File_get_basename; }
+int zgtk_override_Gio_File_get_basename(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.get_basename", closure); k->get_basename = (gpointer)vf_Gio_File_get_basename;
+    return 1;
 }
 char* zgtk_parent_Gio_File_get_basename(GFile* a0) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.get_basename", g_file_get_type());
@@ -3375,9 +3733,11 @@ static GFile* vf_Gio_File_get_parent(GFile* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GFile*)c.ret.p;
 }
-void zgtk_override_Gio_File_get_parent(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.get_parent", closure); k->get_parent = (gpointer)vf_Gio_File_get_parent; }
+int zgtk_override_Gio_File_get_parent(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.get_parent", closure); k->get_parent = (gpointer)vf_Gio_File_get_parent;
+    return 1;
 }
 GFile* zgtk_parent_Gio_File_get_parent(GFile* a0) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.get_parent", g_file_get_type());
@@ -3390,9 +3750,11 @@ static char* vf_Gio_File_get_parse_name(GFile* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_File_get_parse_name(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.get_parse_name", closure); k->get_parse_name = (gpointer)vf_Gio_File_get_parse_name; }
+int zgtk_override_Gio_File_get_parse_name(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.get_parse_name", closure); k->get_parse_name = (gpointer)vf_Gio_File_get_parse_name;
+    return 1;
 }
 char* zgtk_parent_Gio_File_get_parse_name(GFile* a0) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.get_parse_name", g_file_get_type());
@@ -3405,9 +3767,11 @@ static char* vf_Gio_File_get_path(GFile* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_File_get_path(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.get_path", closure); k->get_path = (gpointer)vf_Gio_File_get_path; }
+int zgtk_override_Gio_File_get_path(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.get_path", closure); k->get_path = (gpointer)vf_Gio_File_get_path;
+    return 1;
 }
 char* zgtk_parent_Gio_File_get_path(GFile* a0) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.get_path", g_file_get_type());
@@ -3421,9 +3785,11 @@ static char* vf_Gio_File_get_relative_path(GFile* a0, GFile* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_File_get_relative_path(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.get_relative_path", closure); k->get_relative_path = (gpointer)vf_Gio_File_get_relative_path; }
+int zgtk_override_Gio_File_get_relative_path(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.get_relative_path", closure); k->get_relative_path = (gpointer)vf_Gio_File_get_relative_path;
+    return 1;
 }
 char* zgtk_parent_Gio_File_get_relative_path(GFile* a0, GFile* a1) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.get_relative_path", g_file_get_type());
@@ -3436,9 +3802,11 @@ static char* vf_Gio_File_get_uri(GFile* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_File_get_uri(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.get_uri", closure); k->get_uri = (gpointer)vf_Gio_File_get_uri; }
+int zgtk_override_Gio_File_get_uri(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.get_uri", closure); k->get_uri = (gpointer)vf_Gio_File_get_uri;
+    return 1;
 }
 char* zgtk_parent_Gio_File_get_uri(GFile* a0) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.get_uri", g_file_get_type());
@@ -3451,9 +3819,11 @@ static char* vf_Gio_File_get_uri_scheme(GFile* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_File_get_uri_scheme(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.get_uri_scheme", closure); k->get_uri_scheme = (gpointer)vf_Gio_File_get_uri_scheme; }
+int zgtk_override_Gio_File_get_uri_scheme(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.get_uri_scheme", closure); k->get_uri_scheme = (gpointer)vf_Gio_File_get_uri_scheme;
+    return 1;
 }
 char* zgtk_parent_Gio_File_get_uri_scheme(GFile* a0) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.get_uri_scheme", g_file_get_type());
@@ -3467,9 +3837,11 @@ static gboolean vf_Gio_File_has_uri_scheme(GFile* a0, const char* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_File_has_uri_scheme(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.has_uri_scheme", closure); k->has_uri_scheme = (gpointer)vf_Gio_File_has_uri_scheme; }
+int zgtk_override_Gio_File_has_uri_scheme(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.has_uri_scheme", closure); k->has_uri_scheme = (gpointer)vf_Gio_File_has_uri_scheme;
+    return 1;
 }
 gboolean zgtk_parent_Gio_File_has_uri_scheme(GFile* a0, const char* a1) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.has_uri_scheme", g_file_get_type());
@@ -3482,9 +3854,11 @@ static guint vf_Gio_File_hash(GFile* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (guint)c.ret.i;
 }
-void zgtk_override_Gio_File_hash(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.hash", closure); k->hash = (gpointer)vf_Gio_File_hash; }
+int zgtk_override_Gio_File_hash(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.hash", closure); k->hash = (gpointer)vf_Gio_File_hash;
+    return 1;
 }
 guint zgtk_parent_Gio_File_hash(GFile* a0) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.hash", g_file_get_type());
@@ -3497,9 +3871,11 @@ static gboolean vf_Gio_File_is_native(GFile* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_File_is_native(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.is_native", closure); k->is_native = (gpointer)vf_Gio_File_is_native; }
+int zgtk_override_Gio_File_is_native(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.is_native", closure); k->is_native = (gpointer)vf_Gio_File_is_native;
+    return 1;
 }
 gboolean zgtk_parent_Gio_File_is_native(GFile* a0) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.is_native", g_file_get_type());
@@ -3515,9 +3891,11 @@ static void vf_Gio_File_make_directory_async(GFile* a0, int a1, GCancellable* a2
     void *f = zgtk_vfunc_find(a0, "Gio_File.make_directory_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_make_directory_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.make_directory_async", closure); k->make_directory_async = (gpointer)vf_Gio_File_make_directory_async; }
+int zgtk_override_Gio_File_make_directory_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.make_directory_async", closure); k->make_directory_async = (gpointer)vf_Gio_File_make_directory_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_make_directory_async(GFile* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.make_directory_async", g_file_get_type());
@@ -3534,9 +3912,11 @@ static void vf_Gio_File_make_symbolic_link_async(GFile* a0, const char* a1, int 
     void *f = zgtk_vfunc_find(a0, "Gio_File.make_symbolic_link_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_make_symbolic_link_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.make_symbolic_link_async", closure); k->make_symbolic_link_async = (gpointer)vf_Gio_File_make_symbolic_link_async; }
+int zgtk_override_Gio_File_make_symbolic_link_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.make_symbolic_link_async", closure); k->make_symbolic_link_async = (gpointer)vf_Gio_File_make_symbolic_link_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_make_symbolic_link_async(GFile* a0, const char* a1, int a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.make_symbolic_link_async", g_file_get_type());
@@ -3555,9 +3935,11 @@ static void vf_Gio_File_measure_disk_usage_async(GFile* a0, GFileMeasureFlags a1
     void *f = zgtk_vfunc_find(a0, "Gio_File.measure_disk_usage_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_measure_disk_usage_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.measure_disk_usage_async", closure); k->measure_disk_usage_async = (gpointer)vf_Gio_File_measure_disk_usage_async; }
+int zgtk_override_Gio_File_measure_disk_usage_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.measure_disk_usage_async", closure); k->measure_disk_usage_async = (gpointer)vf_Gio_File_measure_disk_usage_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_measure_disk_usage_async(GFile* a0, GFileMeasureFlags a1, gint a2, GCancellable* a3, GFileMeasureProgressCallback a4, gpointer a5, GAsyncReadyCallback a6, gpointer a7) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.measure_disk_usage_async", g_file_get_type());
@@ -3574,9 +3956,11 @@ static void vf_Gio_File_mount_enclosing_volume(GFile* a0, GMountMountFlags a1, G
     void *f = zgtk_vfunc_find(a0, "Gio_File.mount_enclosing_volume");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_mount_enclosing_volume(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.mount_enclosing_volume", closure); k->mount_enclosing_volume = (gpointer)vf_Gio_File_mount_enclosing_volume; }
+int zgtk_override_Gio_File_mount_enclosing_volume(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.mount_enclosing_volume", closure); k->mount_enclosing_volume = (gpointer)vf_Gio_File_mount_enclosing_volume;
+    return 1;
 }
 void zgtk_parent_Gio_File_mount_enclosing_volume(GFile* a0, GMountMountFlags a1, GMountOperation* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.mount_enclosing_volume", g_file_get_type());
@@ -3593,9 +3977,11 @@ static void vf_Gio_File_mount_mountable(GFile* a0, GMountMountFlags a1, GMountOp
     void *f = zgtk_vfunc_find(a0, "Gio_File.mount_mountable");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_mount_mountable(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.mount_mountable", closure); k->mount_mountable = (gpointer)vf_Gio_File_mount_mountable; }
+int zgtk_override_Gio_File_mount_mountable(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.mount_mountable", closure); k->mount_mountable = (gpointer)vf_Gio_File_mount_mountable;
+    return 1;
 }
 void zgtk_parent_Gio_File_mount_mountable(GFile* a0, GMountMountFlags a1, GMountOperation* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.mount_mountable", g_file_get_type());
@@ -3615,9 +4001,11 @@ static void vf_Gio_File_move_async(GFile* a0, GFile* a1, GFileCopyFlags a2, int 
     void *f = zgtk_vfunc_find(a0, "Gio_File.move_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_move_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.move_async", closure); k->move_async = (gpointer)vf_Gio_File_move_async; }
+int zgtk_override_Gio_File_move_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.move_async", closure); k->move_async = (gpointer)vf_Gio_File_move_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_move_async(GFile* a0, GFile* a1, GFileCopyFlags a2, int a3, GCancellable* a4, GFileProgressCallback a5, gpointer a6, GAsyncReadyCallback a7, gpointer a8) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.move_async", g_file_get_type());
@@ -3633,9 +4021,11 @@ static void vf_Gio_File_open_readwrite_async(GFile* a0, int a1, GCancellable* a2
     void *f = zgtk_vfunc_find(a0, "Gio_File.open_readwrite_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_open_readwrite_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.open_readwrite_async", closure); k->open_readwrite_async = (gpointer)vf_Gio_File_open_readwrite_async; }
+int zgtk_override_Gio_File_open_readwrite_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.open_readwrite_async", closure); k->open_readwrite_async = (gpointer)vf_Gio_File_open_readwrite_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_open_readwrite_async(GFile* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.open_readwrite_async", g_file_get_type());
@@ -3650,9 +4040,11 @@ static void vf_Gio_File_poll_mountable(GFile* a0, GCancellable* a1, GAsyncReadyC
     void *f = zgtk_vfunc_find(a0, "Gio_File.poll_mountable");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_poll_mountable(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.poll_mountable", closure); k->poll_mountable = (gpointer)vf_Gio_File_poll_mountable; }
+int zgtk_override_Gio_File_poll_mountable(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.poll_mountable", closure); k->poll_mountable = (gpointer)vf_Gio_File_poll_mountable;
+    return 1;
 }
 void zgtk_parent_Gio_File_poll_mountable(GFile* a0, GCancellable* a1, GAsyncReadyCallback a2, gpointer a3) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.poll_mountable", g_file_get_type());
@@ -3666,9 +4058,11 @@ static gboolean vf_Gio_File_prefix_matches(GFile* a0, GFile* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_File_prefix_matches(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.prefix_matches", closure); k->prefix_matches = (gpointer)vf_Gio_File_prefix_matches; }
+int zgtk_override_Gio_File_prefix_matches(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.prefix_matches", closure); k->prefix_matches = (gpointer)vf_Gio_File_prefix_matches;
+    return 1;
 }
 gboolean zgtk_parent_Gio_File_prefix_matches(GFile* a0, GFile* a1) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.prefix_matches", g_file_get_type());
@@ -3682,9 +4076,11 @@ static gboolean vf_Gio_File_query_exists(GFile* a0, GCancellable* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_File_query_exists(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.query_exists", closure); k->query_exists = (gpointer)vf_Gio_File_query_exists; }
+int zgtk_override_Gio_File_query_exists(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.query_exists", closure); k->query_exists = (gpointer)vf_Gio_File_query_exists;
+    return 1;
 }
 gboolean zgtk_parent_Gio_File_query_exists(GFile* a0, GCancellable* a1) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.query_exists", g_file_get_type());
@@ -3701,9 +4097,11 @@ static void vf_Gio_File_query_filesystem_info_async(GFile* a0, const char* a1, i
     void *f = zgtk_vfunc_find(a0, "Gio_File.query_filesystem_info_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_query_filesystem_info_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.query_filesystem_info_async", closure); k->query_filesystem_info_async = (gpointer)vf_Gio_File_query_filesystem_info_async; }
+int zgtk_override_Gio_File_query_filesystem_info_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.query_filesystem_info_async", closure); k->query_filesystem_info_async = (gpointer)vf_Gio_File_query_filesystem_info_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_query_filesystem_info_async(GFile* a0, const char* a1, int a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.query_filesystem_info_async", g_file_get_type());
@@ -3721,9 +4119,11 @@ static void vf_Gio_File_query_info_async(GFile* a0, const char* a1, GFileQueryIn
     void *f = zgtk_vfunc_find(a0, "Gio_File.query_info_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_query_info_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.query_info_async", closure); k->query_info_async = (gpointer)vf_Gio_File_query_info_async; }
+int zgtk_override_Gio_File_query_info_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.query_info_async", closure); k->query_info_async = (gpointer)vf_Gio_File_query_info_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_query_info_async(GFile* a0, const char* a1, GFileQueryInfoFlags a2, int a3, GCancellable* a4, GAsyncReadyCallback a5, gpointer a6) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.query_info_async", g_file_get_type());
@@ -3739,9 +4139,11 @@ static void vf_Gio_File_read_async(GFile* a0, int a1, GCancellable* a2, GAsyncRe
     void *f = zgtk_vfunc_find(a0, "Gio_File.read_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_read_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.read_async", closure); k->read_async = (gpointer)vf_Gio_File_read_async; }
+int zgtk_override_Gio_File_read_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.read_async", closure); k->read_async = (gpointer)vf_Gio_File_read_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_read_async(GFile* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.read_async", g_file_get_type());
@@ -3760,9 +4162,11 @@ static void vf_Gio_File_replace_async(GFile* a0, const char* a1, gboolean a2, GF
     void *f = zgtk_vfunc_find(a0, "Gio_File.replace_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_replace_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.replace_async", closure); k->replace_async = (gpointer)vf_Gio_File_replace_async; }
+int zgtk_override_Gio_File_replace_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.replace_async", closure); k->replace_async = (gpointer)vf_Gio_File_replace_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_replace_async(GFile* a0, const char* a1, gboolean a2, GFileCreateFlags a3, int a4, GCancellable* a5, GAsyncReadyCallback a6, gpointer a7) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.replace_async", g_file_get_type());
@@ -3781,9 +4185,11 @@ static void vf_Gio_File_replace_readwrite_async(GFile* a0, const char* a1, gbool
     void *f = zgtk_vfunc_find(a0, "Gio_File.replace_readwrite_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_replace_readwrite_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.replace_readwrite_async", closure); k->replace_readwrite_async = (gpointer)vf_Gio_File_replace_readwrite_async; }
+int zgtk_override_Gio_File_replace_readwrite_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.replace_readwrite_async", closure); k->replace_readwrite_async = (gpointer)vf_Gio_File_replace_readwrite_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_replace_readwrite_async(GFile* a0, const char* a1, gboolean a2, GFileCreateFlags a3, int a4, GCancellable* a5, GAsyncReadyCallback a6, gpointer a7) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.replace_readwrite_async", g_file_get_type());
@@ -3797,9 +4203,11 @@ static GFile* vf_Gio_File_resolve_relative_path(GFile* a0, const char* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (GFile*)c.ret.p;
 }
-void zgtk_override_Gio_File_resolve_relative_path(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.resolve_relative_path", closure); k->resolve_relative_path = (gpointer)vf_Gio_File_resolve_relative_path; }
+int zgtk_override_Gio_File_resolve_relative_path(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.resolve_relative_path", closure); k->resolve_relative_path = (gpointer)vf_Gio_File_resolve_relative_path;
+    return 1;
 }
 GFile* zgtk_parent_Gio_File_resolve_relative_path(GFile* a0, const char* a1) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.resolve_relative_path", g_file_get_type());
@@ -3817,9 +4225,11 @@ static void vf_Gio_File_set_attributes_async(GFile* a0, GFileInfo* a1, GFileQuer
     void *f = zgtk_vfunc_find(a0, "Gio_File.set_attributes_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_set_attributes_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.set_attributes_async", closure); k->set_attributes_async = (gpointer)vf_Gio_File_set_attributes_async; }
+int zgtk_override_Gio_File_set_attributes_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.set_attributes_async", closure); k->set_attributes_async = (gpointer)vf_Gio_File_set_attributes_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_set_attributes_async(GFile* a0, GFileInfo* a1, GFileQueryInfoFlags a2, int a3, GCancellable* a4, GAsyncReadyCallback a5, gpointer a6) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.set_attributes_async", g_file_get_type());
@@ -3836,9 +4246,11 @@ static void vf_Gio_File_set_display_name_async(GFile* a0, const char* a1, int a2
     void *f = zgtk_vfunc_find(a0, "Gio_File.set_display_name_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_set_display_name_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.set_display_name_async", closure); k->set_display_name_async = (gpointer)vf_Gio_File_set_display_name_async; }
+int zgtk_override_Gio_File_set_display_name_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.set_display_name_async", closure); k->set_display_name_async = (gpointer)vf_Gio_File_set_display_name_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_set_display_name_async(GFile* a0, const char* a1, int a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.set_display_name_async", g_file_get_type());
@@ -3855,9 +4267,11 @@ static void vf_Gio_File_start_mountable(GFile* a0, GDriveStartFlags a1, GMountOp
     void *f = zgtk_vfunc_find(a0, "Gio_File.start_mountable");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_start_mountable(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.start_mountable", closure); k->start_mountable = (gpointer)vf_Gio_File_start_mountable; }
+int zgtk_override_Gio_File_start_mountable(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.start_mountable", closure); k->start_mountable = (gpointer)vf_Gio_File_start_mountable;
+    return 1;
 }
 void zgtk_parent_Gio_File_start_mountable(GFile* a0, GDriveStartFlags a1, GMountOperation* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.start_mountable", g_file_get_type());
@@ -3874,9 +4288,11 @@ static void vf_Gio_File_stop_mountable(GFile* a0, GMountUnmountFlags a1, GMountO
     void *f = zgtk_vfunc_find(a0, "Gio_File.stop_mountable");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_stop_mountable(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.stop_mountable", closure); k->stop_mountable = (gpointer)vf_Gio_File_stop_mountable; }
+int zgtk_override_Gio_File_stop_mountable(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.stop_mountable", closure); k->stop_mountable = (gpointer)vf_Gio_File_stop_mountable;
+    return 1;
 }
 void zgtk_parent_Gio_File_stop_mountable(GFile* a0, GMountUnmountFlags a1, GMountOperation* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.stop_mountable", g_file_get_type());
@@ -3892,9 +4308,11 @@ static void vf_Gio_File_trash_async(GFile* a0, int a1, GCancellable* a2, GAsyncR
     void *f = zgtk_vfunc_find(a0, "Gio_File.trash_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_trash_async(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.trash_async", closure); k->trash_async = (gpointer)vf_Gio_File_trash_async; }
+int zgtk_override_Gio_File_trash_async(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.trash_async", closure); k->trash_async = (gpointer)vf_Gio_File_trash_async;
+    return 1;
 }
 void zgtk_parent_Gio_File_trash_async(GFile* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.trash_async", g_file_get_type());
@@ -3910,9 +4328,11 @@ static void vf_Gio_File_unmount_mountable(GFile* a0, GMountUnmountFlags a1, GCan
     void *f = zgtk_vfunc_find(a0, "Gio_File.unmount_mountable");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_unmount_mountable(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.unmount_mountable", closure); k->unmount_mountable = (gpointer)vf_Gio_File_unmount_mountable; }
+int zgtk_override_Gio_File_unmount_mountable(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.unmount_mountable", closure); k->unmount_mountable = (gpointer)vf_Gio_File_unmount_mountable;
+    return 1;
 }
 void zgtk_parent_Gio_File_unmount_mountable(GFile* a0, GMountUnmountFlags a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.unmount_mountable", g_file_get_type());
@@ -3929,9 +4349,11 @@ static void vf_Gio_File_unmount_mountable_with_operation(GFile* a0, GMountUnmoun
     void *f = zgtk_vfunc_find(a0, "Gio_File.unmount_mountable_with_operation");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_File_unmount_mountable_with_operation(gsize type, void *closure) {
-    GFileIface *k = g_type_interface_peek(g_type_class_ref(type), g_file_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_File.unmount_mountable_with_operation", closure); k->unmount_mountable_with_operation = (gpointer)vf_Gio_File_unmount_mountable_with_operation; }
+int zgtk_override_Gio_File_unmount_mountable_with_operation(gsize type, void *closure) {
+    GFileIface *k = zgtk_iface_below(type, g_file_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_File.unmount_mountable_with_operation", closure); k->unmount_mountable_with_operation = (gpointer)vf_Gio_File_unmount_mountable_with_operation;
+    return 1;
 }
 void zgtk_parent_Gio_File_unmount_mountable_with_operation(GFile* a0, GMountUnmountFlags a1, GMountOperation* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileIface *k = zgtk_vfunc_parent(a0, "Gio_File.unmount_mountable_with_operation", g_file_get_type());
@@ -3955,9 +4377,11 @@ static void vf_Gio_FileEnumerator_close_async(GFileEnumerator* a0, int a1, GCanc
     void *f = zgtk_vfunc_find(a0, "Gio_FileEnumerator.close_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_FileEnumerator_close_async(gsize type, void *closure) {
-    GFileEnumeratorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileEnumerator.close_async", closure); k->close_async = (gpointer)vf_Gio_FileEnumerator_close_async; }
+int zgtk_override_Gio_FileEnumerator_close_async(gsize type, void *closure) {
+    GFileEnumeratorClass *k = zgtk_class_below(type, g_file_enumerator_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileEnumerator.close_async", closure); k->close_async = (gpointer)vf_Gio_FileEnumerator_close_async;
+    return 1;
 }
 void zgtk_parent_Gio_FileEnumerator_close_async(GFileEnumerator* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GFileEnumeratorClass *k = zgtk_vfunc_parent(a0, "Gio_FileEnumerator.close_async", 0);
@@ -3974,9 +4398,11 @@ static void vf_Gio_FileEnumerator_next_files_async(GFileEnumerator* a0, int a1, 
     void *f = zgtk_vfunc_find(a0, "Gio_FileEnumerator.next_files_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_FileEnumerator_next_files_async(gsize type, void *closure) {
-    GFileEnumeratorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileEnumerator.next_files_async", closure); k->next_files_async = (gpointer)vf_Gio_FileEnumerator_next_files_async; }
+int zgtk_override_Gio_FileEnumerator_next_files_async(gsize type, void *closure) {
+    GFileEnumeratorClass *k = zgtk_class_below(type, g_file_enumerator_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileEnumerator.next_files_async", closure); k->next_files_async = (gpointer)vf_Gio_FileEnumerator_next_files_async;
+    return 1;
 }
 void zgtk_parent_Gio_FileEnumerator_next_files_async(GFileEnumerator* a0, int a1, int a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileEnumeratorClass *k = zgtk_vfunc_parent(a0, "Gio_FileEnumerator.next_files_async", 0);
@@ -3992,9 +4418,11 @@ static void vf_Gio_IOStream_close_async(GIOStream* a0, int a1, GCancellable* a2,
     void *f = zgtk_vfunc_find(a0, "Gio_IOStream.close_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_IOStream_close_async(gsize type, void *closure) {
-    GIOStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_IOStream.close_async", closure); k->close_async = (gpointer)vf_Gio_IOStream_close_async; }
+int zgtk_override_Gio_IOStream_close_async(gsize type, void *closure) {
+    GIOStreamClass *k = zgtk_class_below(type, g_io_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_IOStream.close_async", closure); k->close_async = (gpointer)vf_Gio_IOStream_close_async;
+    return 1;
 }
 void zgtk_parent_Gio_IOStream_close_async(GIOStream* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GIOStreamClass *k = zgtk_vfunc_parent(a0, "Gio_IOStream.close_async", 0);
@@ -4007,9 +4435,11 @@ static GInputStream* vf_Gio_IOStream_get_input_stream(GIOStream* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GInputStream*)c.ret.p;
 }
-void zgtk_override_Gio_IOStream_get_input_stream(gsize type, void *closure) {
-    GIOStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_IOStream.get_input_stream", closure); k->get_input_stream = (gpointer)vf_Gio_IOStream_get_input_stream; }
+int zgtk_override_Gio_IOStream_get_input_stream(gsize type, void *closure) {
+    GIOStreamClass *k = zgtk_class_below(type, g_io_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_IOStream.get_input_stream", closure); k->get_input_stream = (gpointer)vf_Gio_IOStream_get_input_stream;
+    return 1;
 }
 GInputStream* zgtk_parent_Gio_IOStream_get_input_stream(GIOStream* a0) {
     GIOStreamClass *k = zgtk_vfunc_parent(a0, "Gio_IOStream.get_input_stream", 0);
@@ -4022,9 +4452,11 @@ static GOutputStream* vf_Gio_IOStream_get_output_stream(GIOStream* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GOutputStream*)c.ret.p;
 }
-void zgtk_override_Gio_IOStream_get_output_stream(gsize type, void *closure) {
-    GIOStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_IOStream.get_output_stream", closure); k->get_output_stream = (gpointer)vf_Gio_IOStream_get_output_stream; }
+int zgtk_override_Gio_IOStream_get_output_stream(gsize type, void *closure) {
+    GIOStreamClass *k = zgtk_class_below(type, g_io_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_IOStream.get_output_stream", closure); k->get_output_stream = (gpointer)vf_Gio_IOStream_get_output_stream;
+    return 1;
 }
 GOutputStream* zgtk_parent_Gio_IOStream_get_output_stream(GIOStream* a0) {
     GIOStreamClass *k = zgtk_vfunc_parent(a0, "Gio_IOStream.get_output_stream", 0);
@@ -4037,9 +4469,11 @@ static gboolean vf_Gio_FileIOStream_can_seek(GFileIOStream* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_FileIOStream_can_seek(gsize type, void *closure) {
-    GFileIOStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileIOStream.can_seek", closure); k->can_seek = (gpointer)vf_Gio_FileIOStream_can_seek; }
+int zgtk_override_Gio_FileIOStream_can_seek(gsize type, void *closure) {
+    GFileIOStreamClass *k = zgtk_class_below(type, g_file_io_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileIOStream.can_seek", closure); k->can_seek = (gpointer)vf_Gio_FileIOStream_can_seek;
+    return 1;
 }
 gboolean zgtk_parent_Gio_FileIOStream_can_seek(GFileIOStream* a0) {
     GFileIOStreamClass *k = zgtk_vfunc_parent(a0, "Gio_FileIOStream.can_seek", 0);
@@ -4052,9 +4486,11 @@ static gboolean vf_Gio_FileIOStream_can_truncate(GFileIOStream* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_FileIOStream_can_truncate(gsize type, void *closure) {
-    GFileIOStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileIOStream.can_truncate", closure); k->can_truncate = (gpointer)vf_Gio_FileIOStream_can_truncate; }
+int zgtk_override_Gio_FileIOStream_can_truncate(gsize type, void *closure) {
+    GFileIOStreamClass *k = zgtk_class_below(type, g_file_io_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileIOStream.can_truncate", closure); k->can_truncate = (gpointer)vf_Gio_FileIOStream_can_truncate;
+    return 1;
 }
 gboolean zgtk_parent_Gio_FileIOStream_can_truncate(GFileIOStream* a0) {
     GFileIOStreamClass *k = zgtk_vfunc_parent(a0, "Gio_FileIOStream.can_truncate", 0);
@@ -4067,9 +4503,11 @@ static char* vf_Gio_FileIOStream_get_etag(GFileIOStream* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_FileIOStream_get_etag(gsize type, void *closure) {
-    GFileIOStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileIOStream.get_etag", closure); k->get_etag = (gpointer)vf_Gio_FileIOStream_get_etag; }
+int zgtk_override_Gio_FileIOStream_get_etag(gsize type, void *closure) {
+    GFileIOStreamClass *k = zgtk_class_below(type, g_file_io_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileIOStream.get_etag", closure); k->get_etag = (gpointer)vf_Gio_FileIOStream_get_etag;
+    return 1;
 }
 char* zgtk_parent_Gio_FileIOStream_get_etag(GFileIOStream* a0) {
     GFileIOStreamClass *k = zgtk_vfunc_parent(a0, "Gio_FileIOStream.get_etag", 0);
@@ -4086,9 +4524,11 @@ static void vf_Gio_FileIOStream_query_info_async(GFileIOStream* a0, const char* 
     void *f = zgtk_vfunc_find(a0, "Gio_FileIOStream.query_info_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_FileIOStream_query_info_async(gsize type, void *closure) {
-    GFileIOStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileIOStream.query_info_async", closure); k->query_info_async = (gpointer)vf_Gio_FileIOStream_query_info_async; }
+int zgtk_override_Gio_FileIOStream_query_info_async(gsize type, void *closure) {
+    GFileIOStreamClass *k = zgtk_class_below(type, g_file_io_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileIOStream.query_info_async", closure); k->query_info_async = (gpointer)vf_Gio_FileIOStream_query_info_async;
+    return 1;
 }
 void zgtk_parent_Gio_FileIOStream_query_info_async(GFileIOStream* a0, const char* a1, int a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileIOStreamClass *k = zgtk_vfunc_parent(a0, "Gio_FileIOStream.query_info_async", 0);
@@ -4101,9 +4541,11 @@ static goffset vf_Gio_FileIOStream_tell(GFileIOStream* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (goffset)c.ret.i;
 }
-void zgtk_override_Gio_FileIOStream_tell(gsize type, void *closure) {
-    GFileIOStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileIOStream.tell", closure); k->tell = (gpointer)vf_Gio_FileIOStream_tell; }
+int zgtk_override_Gio_FileIOStream_tell(gsize type, void *closure) {
+    GFileIOStreamClass *k = zgtk_class_below(type, g_file_io_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileIOStream.tell", closure); k->tell = (gpointer)vf_Gio_FileIOStream_tell;
+    return 1;
 }
 goffset zgtk_parent_Gio_FileIOStream_tell(GFileIOStream* a0) {
     GFileIOStreamClass *k = zgtk_vfunc_parent(a0, "Gio_FileIOStream.tell", 0);
@@ -4116,9 +4558,11 @@ static gboolean vf_Gio_FileInputStream_can_seek(GFileInputStream* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_FileInputStream_can_seek(gsize type, void *closure) {
-    GFileInputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileInputStream.can_seek", closure); k->can_seek = (gpointer)vf_Gio_FileInputStream_can_seek; }
+int zgtk_override_Gio_FileInputStream_can_seek(gsize type, void *closure) {
+    GFileInputStreamClass *k = zgtk_class_below(type, g_file_input_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileInputStream.can_seek", closure); k->can_seek = (gpointer)vf_Gio_FileInputStream_can_seek;
+    return 1;
 }
 gboolean zgtk_parent_Gio_FileInputStream_can_seek(GFileInputStream* a0) {
     GFileInputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_FileInputStream.can_seek", 0);
@@ -4135,9 +4579,11 @@ static void vf_Gio_FileInputStream_query_info_async(GFileInputStream* a0, const 
     void *f = zgtk_vfunc_find(a0, "Gio_FileInputStream.query_info_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_FileInputStream_query_info_async(gsize type, void *closure) {
-    GFileInputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileInputStream.query_info_async", closure); k->query_info_async = (gpointer)vf_Gio_FileInputStream_query_info_async; }
+int zgtk_override_Gio_FileInputStream_query_info_async(gsize type, void *closure) {
+    GFileInputStreamClass *k = zgtk_class_below(type, g_file_input_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileInputStream.query_info_async", closure); k->query_info_async = (gpointer)vf_Gio_FileInputStream_query_info_async;
+    return 1;
 }
 void zgtk_parent_Gio_FileInputStream_query_info_async(GFileInputStream* a0, const char* a1, int a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileInputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_FileInputStream.query_info_async", 0);
@@ -4150,9 +4596,11 @@ static goffset vf_Gio_FileInputStream_tell(GFileInputStream* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (goffset)c.ret.i;
 }
-void zgtk_override_Gio_FileInputStream_tell(gsize type, void *closure) {
-    GFileInputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileInputStream.tell", closure); k->tell = (gpointer)vf_Gio_FileInputStream_tell; }
+int zgtk_override_Gio_FileInputStream_tell(gsize type, void *closure) {
+    GFileInputStreamClass *k = zgtk_class_below(type, g_file_input_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileInputStream.tell", closure); k->tell = (gpointer)vf_Gio_FileInputStream_tell;
+    return 1;
 }
 goffset zgtk_parent_Gio_FileInputStream_tell(GFileInputStream* a0) {
     GFileInputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_FileInputStream.tell", 0);
@@ -4165,9 +4613,11 @@ static gboolean vf_Gio_FileMonitor_cancel(GFileMonitor* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_FileMonitor_cancel(gsize type, void *closure) {
-    GFileMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileMonitor.cancel", closure); k->cancel = (gpointer)vf_Gio_FileMonitor_cancel; }
+int zgtk_override_Gio_FileMonitor_cancel(gsize type, void *closure) {
+    GFileMonitorClass *k = zgtk_class_below(type, g_file_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileMonitor.cancel", closure); k->cancel = (gpointer)vf_Gio_FileMonitor_cancel;
+    return 1;
 }
 gboolean zgtk_parent_Gio_FileMonitor_cancel(GFileMonitor* a0) {
     GFileMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_FileMonitor.cancel", 0);
@@ -4182,9 +4632,11 @@ static void vf_Gio_FileMonitor_changed(GFileMonitor* a0, GFile* a1, GFile* a2, G
     void *f = zgtk_vfunc_find(a0, "Gio_FileMonitor.changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_FileMonitor_changed(gsize type, void *closure) {
-    GFileMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileMonitor.changed", closure); k->changed = (gpointer)vf_Gio_FileMonitor_changed; }
+int zgtk_override_Gio_FileMonitor_changed(gsize type, void *closure) {
+    GFileMonitorClass *k = zgtk_class_below(type, g_file_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileMonitor.changed", closure); k->changed = (gpointer)vf_Gio_FileMonitor_changed;
+    return 1;
 }
 void zgtk_parent_Gio_FileMonitor_changed(GFileMonitor* a0, GFile* a1, GFile* a2, GFileMonitorEvent a3) {
     GFileMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_FileMonitor.changed", 0);
@@ -4197,9 +4649,11 @@ static gboolean vf_Gio_FileOutputStream_can_seek(GFileOutputStream* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_FileOutputStream_can_seek(gsize type, void *closure) {
-    GFileOutputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileOutputStream.can_seek", closure); k->can_seek = (gpointer)vf_Gio_FileOutputStream_can_seek; }
+int zgtk_override_Gio_FileOutputStream_can_seek(gsize type, void *closure) {
+    GFileOutputStreamClass *k = zgtk_class_below(type, g_file_output_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileOutputStream.can_seek", closure); k->can_seek = (gpointer)vf_Gio_FileOutputStream_can_seek;
+    return 1;
 }
 gboolean zgtk_parent_Gio_FileOutputStream_can_seek(GFileOutputStream* a0) {
     GFileOutputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_FileOutputStream.can_seek", 0);
@@ -4212,9 +4666,11 @@ static gboolean vf_Gio_FileOutputStream_can_truncate(GFileOutputStream* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_FileOutputStream_can_truncate(gsize type, void *closure) {
-    GFileOutputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileOutputStream.can_truncate", closure); k->can_truncate = (gpointer)vf_Gio_FileOutputStream_can_truncate; }
+int zgtk_override_Gio_FileOutputStream_can_truncate(gsize type, void *closure) {
+    GFileOutputStreamClass *k = zgtk_class_below(type, g_file_output_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileOutputStream.can_truncate", closure); k->can_truncate = (gpointer)vf_Gio_FileOutputStream_can_truncate;
+    return 1;
 }
 gboolean zgtk_parent_Gio_FileOutputStream_can_truncate(GFileOutputStream* a0) {
     GFileOutputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_FileOutputStream.can_truncate", 0);
@@ -4227,9 +4683,11 @@ static char* vf_Gio_FileOutputStream_get_etag(GFileOutputStream* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_FileOutputStream_get_etag(gsize type, void *closure) {
-    GFileOutputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileOutputStream.get_etag", closure); k->get_etag = (gpointer)vf_Gio_FileOutputStream_get_etag; }
+int zgtk_override_Gio_FileOutputStream_get_etag(gsize type, void *closure) {
+    GFileOutputStreamClass *k = zgtk_class_below(type, g_file_output_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileOutputStream.get_etag", closure); k->get_etag = (gpointer)vf_Gio_FileOutputStream_get_etag;
+    return 1;
 }
 char* zgtk_parent_Gio_FileOutputStream_get_etag(GFileOutputStream* a0) {
     GFileOutputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_FileOutputStream.get_etag", 0);
@@ -4246,9 +4704,11 @@ static void vf_Gio_FileOutputStream_query_info_async(GFileOutputStream* a0, cons
     void *f = zgtk_vfunc_find(a0, "Gio_FileOutputStream.query_info_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_FileOutputStream_query_info_async(gsize type, void *closure) {
-    GFileOutputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileOutputStream.query_info_async", closure); k->query_info_async = (gpointer)vf_Gio_FileOutputStream_query_info_async; }
+int zgtk_override_Gio_FileOutputStream_query_info_async(gsize type, void *closure) {
+    GFileOutputStreamClass *k = zgtk_class_below(type, g_file_output_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileOutputStream.query_info_async", closure); k->query_info_async = (gpointer)vf_Gio_FileOutputStream_query_info_async;
+    return 1;
 }
 void zgtk_parent_Gio_FileOutputStream_query_info_async(GFileOutputStream* a0, const char* a1, int a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GFileOutputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_FileOutputStream.query_info_async", 0);
@@ -4261,9 +4721,11 @@ static goffset vf_Gio_FileOutputStream_tell(GFileOutputStream* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (goffset)c.ret.i;
 }
-void zgtk_override_Gio_FileOutputStream_tell(gsize type, void *closure) {
-    GFileOutputStreamClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FileOutputStream.tell", closure); k->tell = (gpointer)vf_Gio_FileOutputStream_tell; }
+int zgtk_override_Gio_FileOutputStream_tell(gsize type, void *closure) {
+    GFileOutputStreamClass *k = zgtk_class_below(type, g_file_output_stream_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FileOutputStream.tell", closure); k->tell = (gpointer)vf_Gio_FileOutputStream_tell;
+    return 1;
 }
 goffset zgtk_parent_Gio_FileOutputStream_tell(GFileOutputStream* a0) {
     GFileOutputStreamClass *k = zgtk_vfunc_parent(a0, "Gio_FileOutputStream.tell", 0);
@@ -4275,9 +4737,11 @@ static void vf_Gio_FilenameCompleter_got_completion_data(GFilenameCompleter* a0)
     void *f = zgtk_vfunc_find(a0, "Gio_FilenameCompleter.got_completion_data");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_FilenameCompleter_got_completion_data(gsize type, void *closure) {
-    GFilenameCompleterClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_FilenameCompleter.got_completion_data", closure); k->got_completion_data = (gpointer)vf_Gio_FilenameCompleter_got_completion_data; }
+int zgtk_override_Gio_FilenameCompleter_got_completion_data(gsize type, void *closure) {
+    GFilenameCompleterClass *k = zgtk_class_below(type, g_filename_completer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_FilenameCompleter.got_completion_data", closure); k->got_completion_data = (gpointer)vf_Gio_FilenameCompleter_got_completion_data;
+    return 1;
 }
 void zgtk_parent_Gio_FilenameCompleter_got_completion_data(GFilenameCompleter* a0) {
     GFilenameCompleterClass *k = zgtk_vfunc_parent(a0, "Gio_FilenameCompleter.got_completion_data", 0);
@@ -4290,9 +4754,11 @@ static int vf_Gio_SocketControlMessage_get_level(GSocketControlMessage* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (int)c.ret.i;
 }
-void zgtk_override_Gio_SocketControlMessage_get_level(gsize type, void *closure) {
-    GSocketControlMessageClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_SocketControlMessage.get_level", closure); k->get_level = (gpointer)vf_Gio_SocketControlMessage_get_level; }
+int zgtk_override_Gio_SocketControlMessage_get_level(gsize type, void *closure) {
+    GSocketControlMessageClass *k = zgtk_class_below(type, g_socket_control_message_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_SocketControlMessage.get_level", closure); k->get_level = (gpointer)vf_Gio_SocketControlMessage_get_level;
+    return 1;
 }
 int zgtk_parent_Gio_SocketControlMessage_get_level(GSocketControlMessage* a0) {
     GSocketControlMessageClass *k = zgtk_vfunc_parent(a0, "Gio_SocketControlMessage.get_level", 0);
@@ -4305,9 +4771,11 @@ static gsize vf_Gio_SocketControlMessage_get_size(GSocketControlMessage* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gsize)c.ret.i;
 }
-void zgtk_override_Gio_SocketControlMessage_get_size(gsize type, void *closure) {
-    GSocketControlMessageClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_SocketControlMessage.get_size", closure); k->get_size = (gpointer)vf_Gio_SocketControlMessage_get_size; }
+int zgtk_override_Gio_SocketControlMessage_get_size(gsize type, void *closure) {
+    GSocketControlMessageClass *k = zgtk_class_below(type, g_socket_control_message_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_SocketControlMessage.get_size", closure); k->get_size = (gpointer)vf_Gio_SocketControlMessage_get_size;
+    return 1;
 }
 gsize zgtk_parent_Gio_SocketControlMessage_get_size(GSocketControlMessage* a0) {
     GSocketControlMessageClass *k = zgtk_vfunc_parent(a0, "Gio_SocketControlMessage.get_size", 0);
@@ -4320,9 +4788,11 @@ static int vf_Gio_SocketControlMessage_get_type(GSocketControlMessage* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (int)c.ret.i;
 }
-void zgtk_override_Gio_SocketControlMessage_get_type(gsize type, void *closure) {
-    GSocketControlMessageClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_SocketControlMessage.get_type", closure); k->get_type = (gpointer)vf_Gio_SocketControlMessage_get_type; }
+int zgtk_override_Gio_SocketControlMessage_get_type(gsize type, void *closure) {
+    GSocketControlMessageClass *k = zgtk_class_below(type, g_socket_control_message_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_SocketControlMessage.get_type", closure); k->get_type = (gpointer)vf_Gio_SocketControlMessage_get_type;
+    return 1;
 }
 int zgtk_parent_Gio_SocketControlMessage_get_type(GSocketControlMessage* a0) {
     GSocketControlMessageClass *k = zgtk_vfunc_parent(a0, "Gio_SocketControlMessage.get_type", 0);
@@ -4335,9 +4805,11 @@ static void vf_Gio_SocketControlMessage_serialize(GSocketControlMessage* a0, gpo
     void *f = zgtk_vfunc_find(a0, "Gio_SocketControlMessage.serialize");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_SocketControlMessage_serialize(gsize type, void *closure) {
-    GSocketControlMessageClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_SocketControlMessage.serialize", closure); k->serialize = (gpointer)vf_Gio_SocketControlMessage_serialize; }
+int zgtk_override_Gio_SocketControlMessage_serialize(gsize type, void *closure) {
+    GSocketControlMessageClass *k = zgtk_class_below(type, g_socket_control_message_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_SocketControlMessage.serialize", closure); k->serialize = (gpointer)vf_Gio_SocketControlMessage_serialize;
+    return 1;
 }
 void zgtk_parent_Gio_SocketControlMessage_serialize(GSocketControlMessage* a0, gpointer a1) {
     GSocketControlMessageClass *k = zgtk_vfunc_parent(a0, "Gio_SocketControlMessage.serialize", 0);
@@ -4350,9 +4822,11 @@ static const guint8* vf_Gio_InetAddress_to_bytes(GInetAddress* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const guint8*)c.ret.i;
 }
-void zgtk_override_Gio_InetAddress_to_bytes(gsize type, void *closure) {
-    GInetAddressClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_InetAddress.to_bytes", closure); k->to_bytes = (gpointer)vf_Gio_InetAddress_to_bytes; }
+int zgtk_override_Gio_InetAddress_to_bytes(gsize type, void *closure) {
+    GInetAddressClass *k = zgtk_class_below(type, g_inet_address_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_InetAddress.to_bytes", closure); k->to_bytes = (gpointer)vf_Gio_InetAddress_to_bytes;
+    return 1;
 }
 const guint8* zgtk_parent_Gio_InetAddress_to_bytes(GInetAddress* a0) {
     GInetAddressClass *k = zgtk_vfunc_parent(a0, "Gio_InetAddress.to_bytes", 0);
@@ -4365,9 +4839,11 @@ static gchar* vf_Gio_InetAddress_to_string(GInetAddress* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gchar*)c.ret.p;
 }
-void zgtk_override_Gio_InetAddress_to_string(gsize type, void *closure) {
-    GInetAddressClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_InetAddress.to_string", closure); k->to_string = (gpointer)vf_Gio_InetAddress_to_string; }
+int zgtk_override_Gio_InetAddress_to_string(gsize type, void *closure) {
+    GInetAddressClass *k = zgtk_class_below(type, g_inet_address_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_InetAddress.to_string", closure); k->to_string = (gpointer)vf_Gio_InetAddress_to_string;
+    return 1;
 }
 gchar* zgtk_parent_Gio_InetAddress_to_string(GInetAddress* a0) {
     GInetAddressClass *k = zgtk_vfunc_parent(a0, "Gio_InetAddress.to_string", 0);
@@ -4380,9 +4856,11 @@ static GSocketAddressEnumerator* vf_Gio_SocketConnectable_enumerate(GSocketConne
     if (f) zgtk_dispatch(f, &c);
     return (GSocketAddressEnumerator*)c.ret.p;
 }
-void zgtk_override_Gio_SocketConnectable_enumerate(gsize type, void *closure) {
-    GSocketConnectableIface *k = g_type_interface_peek(g_type_class_ref(type), g_socket_connectable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_SocketConnectable.enumerate", closure); k->enumerate = (gpointer)vf_Gio_SocketConnectable_enumerate; }
+int zgtk_override_Gio_SocketConnectable_enumerate(gsize type, void *closure) {
+    GSocketConnectableIface *k = zgtk_iface_below(type, g_socket_connectable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_SocketConnectable.enumerate", closure); k->enumerate = (gpointer)vf_Gio_SocketConnectable_enumerate;
+    return 1;
 }
 GSocketAddressEnumerator* zgtk_parent_Gio_SocketConnectable_enumerate(GSocketConnectable* a0) {
     GSocketConnectableIface *k = zgtk_vfunc_parent(a0, "Gio_SocketConnectable.enumerate", g_socket_connectable_get_type());
@@ -4395,9 +4873,11 @@ static GSocketAddressEnumerator* vf_Gio_SocketConnectable_proxy_enumerate(GSocke
     if (f) zgtk_dispatch(f, &c);
     return (GSocketAddressEnumerator*)c.ret.p;
 }
-void zgtk_override_Gio_SocketConnectable_proxy_enumerate(gsize type, void *closure) {
-    GSocketConnectableIface *k = g_type_interface_peek(g_type_class_ref(type), g_socket_connectable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_SocketConnectable.proxy_enumerate", closure); k->proxy_enumerate = (gpointer)vf_Gio_SocketConnectable_proxy_enumerate; }
+int zgtk_override_Gio_SocketConnectable_proxy_enumerate(gsize type, void *closure) {
+    GSocketConnectableIface *k = zgtk_iface_below(type, g_socket_connectable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_SocketConnectable.proxy_enumerate", closure); k->proxy_enumerate = (gpointer)vf_Gio_SocketConnectable_proxy_enumerate;
+    return 1;
 }
 GSocketAddressEnumerator* zgtk_parent_Gio_SocketConnectable_proxy_enumerate(GSocketConnectable* a0) {
     GSocketConnectableIface *k = zgtk_vfunc_parent(a0, "Gio_SocketConnectable.proxy_enumerate", g_socket_connectable_get_type());
@@ -4410,9 +4890,11 @@ static gchar* vf_Gio_SocketConnectable_to_string(GSocketConnectable* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gchar*)c.ret.p;
 }
-void zgtk_override_Gio_SocketConnectable_to_string(gsize type, void *closure) {
-    GSocketConnectableIface *k = g_type_interface_peek(g_type_class_ref(type), g_socket_connectable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_SocketConnectable.to_string", closure); k->to_string = (gpointer)vf_Gio_SocketConnectable_to_string; }
+int zgtk_override_Gio_SocketConnectable_to_string(gsize type, void *closure) {
+    GSocketConnectableIface *k = zgtk_iface_below(type, g_socket_connectable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_SocketConnectable.to_string", closure); k->to_string = (gpointer)vf_Gio_SocketConnectable_to_string;
+    return 1;
 }
 gchar* zgtk_parent_Gio_SocketConnectable_to_string(GSocketConnectable* a0) {
     GSocketConnectableIface *k = zgtk_vfunc_parent(a0, "Gio_SocketConnectable.to_string", g_socket_connectable_get_type());
@@ -4425,9 +4907,11 @@ static GSocketFamily vf_Gio_SocketAddress_get_family(GSocketAddress* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GSocketFamily)c.ret.i;
 }
-void zgtk_override_Gio_SocketAddress_get_family(gsize type, void *closure) {
-    GSocketAddressClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_SocketAddress.get_family", closure); k->get_family = (gpointer)vf_Gio_SocketAddress_get_family; }
+int zgtk_override_Gio_SocketAddress_get_family(gsize type, void *closure) {
+    GSocketAddressClass *k = zgtk_class_below(type, g_socket_address_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_SocketAddress.get_family", closure); k->get_family = (gpointer)vf_Gio_SocketAddress_get_family;
+    return 1;
 }
 GSocketFamily zgtk_parent_Gio_SocketAddress_get_family(GSocketAddress* a0) {
     GSocketAddressClass *k = zgtk_vfunc_parent(a0, "Gio_SocketAddress.get_family", 0);
@@ -4440,9 +4924,11 @@ static gssize vf_Gio_SocketAddress_get_native_size(GSocketAddress* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gssize)c.ret.i;
 }
-void zgtk_override_Gio_SocketAddress_get_native_size(gsize type, void *closure) {
-    GSocketAddressClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_SocketAddress.get_native_size", closure); k->get_native_size = (gpointer)vf_Gio_SocketAddress_get_native_size; }
+int zgtk_override_Gio_SocketAddress_get_native_size(gsize type, void *closure) {
+    GSocketAddressClass *k = zgtk_class_below(type, g_socket_address_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_SocketAddress.get_native_size", closure); k->get_native_size = (gpointer)vf_Gio_SocketAddress_get_native_size;
+    return 1;
 }
 gssize zgtk_parent_Gio_SocketAddress_get_native_size(GSocketAddress* a0) {
     GSocketAddressClass *k = zgtk_vfunc_parent(a0, "Gio_SocketAddress.get_native_size", 0);
@@ -4466,9 +4952,11 @@ static gpointer vf_Gio_ListModel_get_item(GListModel* a0, guint a1) {
     if (f) zgtk_dispatch(f, &c);
     return (gpointer)c.ret.p;
 }
-void zgtk_override_Gio_ListModel_get_item(gsize type, void *closure) {
-    GListModelInterface *k = g_type_interface_peek(g_type_class_ref(type), g_list_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ListModel.get_item", closure); k->get_item = (gpointer)vf_Gio_ListModel_get_item; }
+int zgtk_override_Gio_ListModel_get_item(gsize type, void *closure) {
+    GListModelInterface *k = zgtk_iface_below(type, g_list_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ListModel.get_item", closure); k->get_item = (gpointer)vf_Gio_ListModel_get_item;
+    return 1;
 }
 gpointer zgtk_parent_Gio_ListModel_get_item(GListModel* a0, guint a1) {
     GListModelInterface *k = zgtk_vfunc_parent(a0, "Gio_ListModel.get_item", g_list_model_get_type());
@@ -4481,9 +4969,11 @@ static GType vf_Gio_ListModel_get_item_type(GListModel* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GType)c.ret.i;
 }
-void zgtk_override_Gio_ListModel_get_item_type(gsize type, void *closure) {
-    GListModelInterface *k = g_type_interface_peek(g_type_class_ref(type), g_list_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ListModel.get_item_type", closure); k->get_item_type = (gpointer)vf_Gio_ListModel_get_item_type; }
+int zgtk_override_Gio_ListModel_get_item_type(gsize type, void *closure) {
+    GListModelInterface *k = zgtk_iface_below(type, g_list_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ListModel.get_item_type", closure); k->get_item_type = (gpointer)vf_Gio_ListModel_get_item_type;
+    return 1;
 }
 GType zgtk_parent_Gio_ListModel_get_item_type(GListModel* a0) {
     GListModelInterface *k = zgtk_vfunc_parent(a0, "Gio_ListModel.get_item_type", g_list_model_get_type());
@@ -4496,9 +4986,11 @@ static guint vf_Gio_ListModel_get_n_items(GListModel* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (guint)c.ret.i;
 }
-void zgtk_override_Gio_ListModel_get_n_items(gsize type, void *closure) {
-    GListModelInterface *k = g_type_interface_peek(g_type_class_ref(type), g_list_model_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ListModel.get_n_items", closure); k->get_n_items = (gpointer)vf_Gio_ListModel_get_n_items; }
+int zgtk_override_Gio_ListModel_get_n_items(gsize type, void *closure) {
+    GListModelInterface *k = zgtk_iface_below(type, g_list_model_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ListModel.get_n_items", closure); k->get_n_items = (gpointer)vf_Gio_ListModel_get_n_items;
+    return 1;
 }
 guint zgtk_parent_Gio_ListModel_get_n_items(GListModel* a0) {
     GListModelInterface *k = zgtk_vfunc_parent(a0, "Gio_ListModel.get_n_items", g_list_model_get_type());
@@ -4511,9 +5003,11 @@ static void vf_Gio_MemoryMonitor_low_memory_warning(GMemoryMonitor* a0, GMemoryM
     void *f = zgtk_vfunc_find(a0, "Gio_MemoryMonitor.low_memory_warning");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_MemoryMonitor_low_memory_warning(gsize type, void *closure) {
-    GMemoryMonitorInterface *k = g_type_interface_peek(g_type_class_ref(type), g_memory_monitor_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_MemoryMonitor.low_memory_warning", closure); k->low_memory_warning = (gpointer)vf_Gio_MemoryMonitor_low_memory_warning; }
+int zgtk_override_Gio_MemoryMonitor_low_memory_warning(gsize type, void *closure) {
+    GMemoryMonitorInterface *k = zgtk_iface_below(type, g_memory_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MemoryMonitor.low_memory_warning", closure); k->low_memory_warning = (gpointer)vf_Gio_MemoryMonitor_low_memory_warning;
+    return 1;
 }
 void zgtk_parent_Gio_MemoryMonitor_low_memory_warning(GMemoryMonitor* a0, GMemoryMonitorWarningLevel a1) {
     GMemoryMonitorInterface *k = zgtk_vfunc_parent(a0, "Gio_MemoryMonitor.low_memory_warning", g_memory_monitor_get_type());
@@ -4528,9 +5022,11 @@ static gboolean vf_Gio_MenuAttributeIter_get_next(GMenuAttributeIter* a0, const 
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_MenuAttributeIter_get_next(gsize type, void *closure) {
-    GMenuAttributeIterClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MenuAttributeIter.get_next", closure); k->get_next = (gpointer)vf_Gio_MenuAttributeIter_get_next; }
+int zgtk_override_Gio_MenuAttributeIter_get_next(gsize type, void *closure) {
+    GMenuAttributeIterClass *k = zgtk_class_below(type, g_menu_attribute_iter_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MenuAttributeIter.get_next", closure); k->get_next = (gpointer)vf_Gio_MenuAttributeIter_get_next;
+    return 1;
 }
 gboolean zgtk_parent_Gio_MenuAttributeIter_get_next(GMenuAttributeIter* a0, const gchar** a1, GVariant** a2) {
     GMenuAttributeIterClass *k = zgtk_vfunc_parent(a0, "Gio_MenuAttributeIter.get_next", 0);
@@ -4545,9 +5041,11 @@ static gboolean vf_Gio_MenuLinkIter_get_next(GMenuLinkIter* a0, const gchar** a1
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_MenuLinkIter_get_next(gsize type, void *closure) {
-    GMenuLinkIterClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MenuLinkIter.get_next", closure); k->get_next = (gpointer)vf_Gio_MenuLinkIter_get_next; }
+int zgtk_override_Gio_MenuLinkIter_get_next(gsize type, void *closure) {
+    GMenuLinkIterClass *k = zgtk_class_below(type, g_menu_link_iter_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MenuLinkIter.get_next", closure); k->get_next = (gpointer)vf_Gio_MenuLinkIter_get_next;
+    return 1;
 }
 gboolean zgtk_parent_Gio_MenuLinkIter_get_next(GMenuLinkIter* a0, const gchar** a1, GMenuModel** a2) {
     GMenuLinkIterClass *k = zgtk_vfunc_parent(a0, "Gio_MenuLinkIter.get_next", 0);
@@ -4560,9 +5058,11 @@ static gboolean vf_Gio_Mount_can_eject(GMount* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Mount_can_eject(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.can_eject", closure); k->can_eject = (gpointer)vf_Gio_Mount_can_eject; }
+int zgtk_override_Gio_Mount_can_eject(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.can_eject", closure); k->can_eject = (gpointer)vf_Gio_Mount_can_eject;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Mount_can_eject(GMount* a0) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.can_eject", g_mount_get_type());
@@ -4575,9 +5075,11 @@ static gboolean vf_Gio_Mount_can_unmount(GMount* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Mount_can_unmount(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.can_unmount", closure); k->can_unmount = (gpointer)vf_Gio_Mount_can_unmount; }
+int zgtk_override_Gio_Mount_can_unmount(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.can_unmount", closure); k->can_unmount = (gpointer)vf_Gio_Mount_can_unmount;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Mount_can_unmount(GMount* a0) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.can_unmount", g_mount_get_type());
@@ -4589,9 +5091,11 @@ static void vf_Gio_Mount_changed(GMount* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Mount.changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Mount_changed(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.changed", closure); k->changed = (gpointer)vf_Gio_Mount_changed; }
+int zgtk_override_Gio_Mount_changed(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.changed", closure); k->changed = (gpointer)vf_Gio_Mount_changed;
+    return 1;
 }
 void zgtk_parent_Gio_Mount_changed(GMount* a0) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.changed", g_mount_get_type());
@@ -4607,9 +5111,11 @@ static void vf_Gio_Mount_eject(GMount* a0, GMountUnmountFlags a1, GCancellable* 
     void *f = zgtk_vfunc_find(a0, "Gio_Mount.eject");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Mount_eject(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.eject", closure); k->eject = (gpointer)vf_Gio_Mount_eject; }
+int zgtk_override_Gio_Mount_eject(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.eject", closure); k->eject = (gpointer)vf_Gio_Mount_eject;
+    return 1;
 }
 void zgtk_parent_Gio_Mount_eject(GMount* a0, GMountUnmountFlags a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.eject", g_mount_get_type());
@@ -4626,9 +5132,11 @@ static void vf_Gio_Mount_eject_with_operation(GMount* a0, GMountUnmountFlags a1,
     void *f = zgtk_vfunc_find(a0, "Gio_Mount.eject_with_operation");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Mount_eject_with_operation(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.eject_with_operation", closure); k->eject_with_operation = (gpointer)vf_Gio_Mount_eject_with_operation; }
+int zgtk_override_Gio_Mount_eject_with_operation(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.eject_with_operation", closure); k->eject_with_operation = (gpointer)vf_Gio_Mount_eject_with_operation;
+    return 1;
 }
 void zgtk_parent_Gio_Mount_eject_with_operation(GMount* a0, GMountUnmountFlags a1, GMountOperation* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.eject_with_operation", g_mount_get_type());
@@ -4641,9 +5149,11 @@ static GFile* vf_Gio_Mount_get_default_location(GMount* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GFile*)c.ret.p;
 }
-void zgtk_override_Gio_Mount_get_default_location(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.get_default_location", closure); k->get_default_location = (gpointer)vf_Gio_Mount_get_default_location; }
+int zgtk_override_Gio_Mount_get_default_location(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.get_default_location", closure); k->get_default_location = (gpointer)vf_Gio_Mount_get_default_location;
+    return 1;
 }
 GFile* zgtk_parent_Gio_Mount_get_default_location(GMount* a0) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.get_default_location", g_mount_get_type());
@@ -4656,9 +5166,11 @@ static GDrive* vf_Gio_Mount_get_drive(GMount* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GDrive*)c.ret.p;
 }
-void zgtk_override_Gio_Mount_get_drive(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.get_drive", closure); k->get_drive = (gpointer)vf_Gio_Mount_get_drive; }
+int zgtk_override_Gio_Mount_get_drive(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.get_drive", closure); k->get_drive = (gpointer)vf_Gio_Mount_get_drive;
+    return 1;
 }
 GDrive* zgtk_parent_Gio_Mount_get_drive(GMount* a0) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.get_drive", g_mount_get_type());
@@ -4671,9 +5183,11 @@ static GIcon* vf_Gio_Mount_get_icon(GMount* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GIcon*)c.ret.p;
 }
-void zgtk_override_Gio_Mount_get_icon(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.get_icon", closure); k->get_icon = (gpointer)vf_Gio_Mount_get_icon; }
+int zgtk_override_Gio_Mount_get_icon(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.get_icon", closure); k->get_icon = (gpointer)vf_Gio_Mount_get_icon;
+    return 1;
 }
 GIcon* zgtk_parent_Gio_Mount_get_icon(GMount* a0) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.get_icon", g_mount_get_type());
@@ -4686,9 +5200,11 @@ static char* vf_Gio_Mount_get_name(GMount* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_Mount_get_name(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.get_name", closure); k->get_name = (gpointer)vf_Gio_Mount_get_name; }
+int zgtk_override_Gio_Mount_get_name(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.get_name", closure); k->get_name = (gpointer)vf_Gio_Mount_get_name;
+    return 1;
 }
 char* zgtk_parent_Gio_Mount_get_name(GMount* a0) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.get_name", g_mount_get_type());
@@ -4701,9 +5217,11 @@ static GFile* vf_Gio_Mount_get_root(GMount* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GFile*)c.ret.p;
 }
-void zgtk_override_Gio_Mount_get_root(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.get_root", closure); k->get_root = (gpointer)vf_Gio_Mount_get_root; }
+int zgtk_override_Gio_Mount_get_root(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.get_root", closure); k->get_root = (gpointer)vf_Gio_Mount_get_root;
+    return 1;
 }
 GFile* zgtk_parent_Gio_Mount_get_root(GMount* a0) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.get_root", g_mount_get_type());
@@ -4716,9 +5234,11 @@ static const gchar* vf_Gio_Mount_get_sort_key(GMount* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const gchar*)c.ret.p;
 }
-void zgtk_override_Gio_Mount_get_sort_key(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.get_sort_key", closure); k->get_sort_key = (gpointer)vf_Gio_Mount_get_sort_key; }
+int zgtk_override_Gio_Mount_get_sort_key(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.get_sort_key", closure); k->get_sort_key = (gpointer)vf_Gio_Mount_get_sort_key;
+    return 1;
 }
 const gchar* zgtk_parent_Gio_Mount_get_sort_key(GMount* a0) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.get_sort_key", g_mount_get_type());
@@ -4731,9 +5251,11 @@ static GIcon* vf_Gio_Mount_get_symbolic_icon(GMount* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GIcon*)c.ret.p;
 }
-void zgtk_override_Gio_Mount_get_symbolic_icon(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.get_symbolic_icon", closure); k->get_symbolic_icon = (gpointer)vf_Gio_Mount_get_symbolic_icon; }
+int zgtk_override_Gio_Mount_get_symbolic_icon(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.get_symbolic_icon", closure); k->get_symbolic_icon = (gpointer)vf_Gio_Mount_get_symbolic_icon;
+    return 1;
 }
 GIcon* zgtk_parent_Gio_Mount_get_symbolic_icon(GMount* a0) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.get_symbolic_icon", g_mount_get_type());
@@ -4746,9 +5268,11 @@ static char* vf_Gio_Mount_get_uuid(GMount* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_Mount_get_uuid(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.get_uuid", closure); k->get_uuid = (gpointer)vf_Gio_Mount_get_uuid; }
+int zgtk_override_Gio_Mount_get_uuid(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.get_uuid", closure); k->get_uuid = (gpointer)vf_Gio_Mount_get_uuid;
+    return 1;
 }
 char* zgtk_parent_Gio_Mount_get_uuid(GMount* a0) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.get_uuid", g_mount_get_type());
@@ -4761,9 +5285,11 @@ static GVolume* vf_Gio_Mount_get_volume(GMount* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GVolume*)c.ret.p;
 }
-void zgtk_override_Gio_Mount_get_volume(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.get_volume", closure); k->get_volume = (gpointer)vf_Gio_Mount_get_volume; }
+int zgtk_override_Gio_Mount_get_volume(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.get_volume", closure); k->get_volume = (gpointer)vf_Gio_Mount_get_volume;
+    return 1;
 }
 GVolume* zgtk_parent_Gio_Mount_get_volume(GMount* a0) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.get_volume", g_mount_get_type());
@@ -4779,9 +5305,11 @@ static void vf_Gio_Mount_guess_content_type(GMount* a0, gboolean a1, GCancellabl
     void *f = zgtk_vfunc_find(a0, "Gio_Mount.guess_content_type");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Mount_guess_content_type(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.guess_content_type", closure); k->guess_content_type = (gpointer)vf_Gio_Mount_guess_content_type; }
+int zgtk_override_Gio_Mount_guess_content_type(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.guess_content_type", closure); k->guess_content_type = (gpointer)vf_Gio_Mount_guess_content_type;
+    return 1;
 }
 void zgtk_parent_Gio_Mount_guess_content_type(GMount* a0, gboolean a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.guess_content_type", g_mount_get_type());
@@ -4793,9 +5321,11 @@ static void vf_Gio_Mount_pre_unmount(GMount* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Mount.pre_unmount");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Mount_pre_unmount(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.pre_unmount", closure); k->pre_unmount = (gpointer)vf_Gio_Mount_pre_unmount; }
+int zgtk_override_Gio_Mount_pre_unmount(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.pre_unmount", closure); k->pre_unmount = (gpointer)vf_Gio_Mount_pre_unmount;
+    return 1;
 }
 void zgtk_parent_Gio_Mount_pre_unmount(GMount* a0) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.pre_unmount", g_mount_get_type());
@@ -4812,9 +5342,11 @@ static void vf_Gio_Mount_remount(GMount* a0, GMountMountFlags a1, GMountOperatio
     void *f = zgtk_vfunc_find(a0, "Gio_Mount.remount");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Mount_remount(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.remount", closure); k->remount = (gpointer)vf_Gio_Mount_remount; }
+int zgtk_override_Gio_Mount_remount(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.remount", closure); k->remount = (gpointer)vf_Gio_Mount_remount;
+    return 1;
 }
 void zgtk_parent_Gio_Mount_remount(GMount* a0, GMountMountFlags a1, GMountOperation* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.remount", g_mount_get_type());
@@ -4830,9 +5362,11 @@ static void vf_Gio_Mount_unmount(GMount* a0, GMountUnmountFlags a1, GCancellable
     void *f = zgtk_vfunc_find(a0, "Gio_Mount.unmount");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Mount_unmount(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.unmount", closure); k->unmount = (gpointer)vf_Gio_Mount_unmount; }
+int zgtk_override_Gio_Mount_unmount(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.unmount", closure); k->unmount = (gpointer)vf_Gio_Mount_unmount;
+    return 1;
 }
 void zgtk_parent_Gio_Mount_unmount(GMount* a0, GMountUnmountFlags a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.unmount", g_mount_get_type());
@@ -4849,9 +5383,11 @@ static void vf_Gio_Mount_unmount_with_operation(GMount* a0, GMountUnmountFlags a
     void *f = zgtk_vfunc_find(a0, "Gio_Mount.unmount_with_operation");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Mount_unmount_with_operation(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.unmount_with_operation", closure); k->unmount_with_operation = (gpointer)vf_Gio_Mount_unmount_with_operation; }
+int zgtk_override_Gio_Mount_unmount_with_operation(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.unmount_with_operation", closure); k->unmount_with_operation = (gpointer)vf_Gio_Mount_unmount_with_operation;
+    return 1;
 }
 void zgtk_parent_Gio_Mount_unmount_with_operation(GMount* a0, GMountUnmountFlags a1, GMountOperation* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.unmount_with_operation", g_mount_get_type());
@@ -4863,9 +5399,11 @@ static void vf_Gio_Mount_unmounted(GMount* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Mount.unmounted");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Mount_unmounted(gsize type, void *closure) {
-    GMountIface *k = g_type_interface_peek(g_type_class_ref(type), g_mount_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Mount.unmounted", closure); k->unmounted = (gpointer)vf_Gio_Mount_unmounted; }
+int zgtk_override_Gio_Mount_unmounted(gsize type, void *closure) {
+    GMountIface *k = zgtk_iface_below(type, g_mount_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Mount.unmounted", closure); k->unmounted = (gpointer)vf_Gio_Mount_unmounted;
+    return 1;
 }
 void zgtk_parent_Gio_Mount_unmounted(GMount* a0) {
     GMountIface *k = zgtk_vfunc_parent(a0, "Gio_Mount.unmounted", g_mount_get_type());
@@ -4877,9 +5415,11 @@ static void vf_Gio_MountOperation_aborted(GMountOperation* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_MountOperation.aborted");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_MountOperation_aborted(gsize type, void *closure) {
-    GMountOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MountOperation.aborted", closure); k->aborted = (gpointer)vf_Gio_MountOperation_aborted; }
+int zgtk_override_Gio_MountOperation_aborted(gsize type, void *closure) {
+    GMountOperationClass *k = zgtk_class_below(type, g_mount_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MountOperation.aborted", closure); k->aborted = (gpointer)vf_Gio_MountOperation_aborted;
+    return 1;
 }
 void zgtk_parent_Gio_MountOperation_aborted(GMountOperation* a0) {
     GMountOperationClass *k = zgtk_vfunc_parent(a0, "Gio_MountOperation.aborted", 0);
@@ -4895,9 +5435,11 @@ static void vf_Gio_MountOperation_ask_password(GMountOperation* a0, const char* 
     void *f = zgtk_vfunc_find(a0, "Gio_MountOperation.ask_password");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_MountOperation_ask_password(gsize type, void *closure) {
-    GMountOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MountOperation.ask_password", closure); k->ask_password = (gpointer)vf_Gio_MountOperation_ask_password; }
+int zgtk_override_Gio_MountOperation_ask_password(gsize type, void *closure) {
+    GMountOperationClass *k = zgtk_class_below(type, g_mount_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MountOperation.ask_password", closure); k->ask_password = (gpointer)vf_Gio_MountOperation_ask_password;
+    return 1;
 }
 void zgtk_parent_Gio_MountOperation_ask_password(GMountOperation* a0, const char* a1, const char* a2, const char* a3, GAskPasswordFlags a4) {
     GMountOperationClass *k = zgtk_vfunc_parent(a0, "Gio_MountOperation.ask_password", 0);
@@ -4911,9 +5453,11 @@ static void vf_Gio_MountOperation_ask_question(GMountOperation* a0, const char* 
     void *f = zgtk_vfunc_find(a0, "Gio_MountOperation.ask_question");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_MountOperation_ask_question(gsize type, void *closure) {
-    GMountOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MountOperation.ask_question", closure); k->ask_question = (gpointer)vf_Gio_MountOperation_ask_question; }
+int zgtk_override_Gio_MountOperation_ask_question(gsize type, void *closure) {
+    GMountOperationClass *k = zgtk_class_below(type, g_mount_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MountOperation.ask_question", closure); k->ask_question = (gpointer)vf_Gio_MountOperation_ask_question;
+    return 1;
 }
 void zgtk_parent_Gio_MountOperation_ask_question(GMountOperation* a0, const char* a1, const char** a2) {
     GMountOperationClass *k = zgtk_vfunc_parent(a0, "Gio_MountOperation.ask_question", 0);
@@ -4926,9 +5470,11 @@ static void vf_Gio_MountOperation_reply(GMountOperation* a0, GMountOperationResu
     void *f = zgtk_vfunc_find(a0, "Gio_MountOperation.reply");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_MountOperation_reply(gsize type, void *closure) {
-    GMountOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MountOperation.reply", closure); k->reply = (gpointer)vf_Gio_MountOperation_reply; }
+int zgtk_override_Gio_MountOperation_reply(gsize type, void *closure) {
+    GMountOperationClass *k = zgtk_class_below(type, g_mount_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MountOperation.reply", closure); k->reply = (gpointer)vf_Gio_MountOperation_reply;
+    return 1;
 }
 void zgtk_parent_Gio_MountOperation_reply(GMountOperation* a0, GMountOperationResult a1) {
     GMountOperationClass *k = zgtk_vfunc_parent(a0, "Gio_MountOperation.reply", 0);
@@ -4943,9 +5489,11 @@ static void vf_Gio_MountOperation_show_processes(GMountOperation* a0, const gcha
     void *f = zgtk_vfunc_find(a0, "Gio_MountOperation.show_processes");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_MountOperation_show_processes(gsize type, void *closure) {
-    GMountOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MountOperation.show_processes", closure); k->show_processes = (gpointer)vf_Gio_MountOperation_show_processes; }
+int zgtk_override_Gio_MountOperation_show_processes(gsize type, void *closure) {
+    GMountOperationClass *k = zgtk_class_below(type, g_mount_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MountOperation.show_processes", closure); k->show_processes = (gpointer)vf_Gio_MountOperation_show_processes;
+    return 1;
 }
 void zgtk_parent_Gio_MountOperation_show_processes(GMountOperation* a0, const gchar* a1, GArray* a2, const gchar** a3) {
     GMountOperationClass *k = zgtk_vfunc_parent(a0, "Gio_MountOperation.show_processes", 0);
@@ -4960,9 +5508,11 @@ static void vf_Gio_MountOperation_show_unmount_progress(GMountOperation* a0, con
     void *f = zgtk_vfunc_find(a0, "Gio_MountOperation.show_unmount_progress");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_MountOperation_show_unmount_progress(gsize type, void *closure) {
-    GMountOperationClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_MountOperation.show_unmount_progress", closure); k->show_unmount_progress = (gpointer)vf_Gio_MountOperation_show_unmount_progress; }
+int zgtk_override_Gio_MountOperation_show_unmount_progress(gsize type, void *closure) {
+    GMountOperationClass *k = zgtk_class_below(type, g_mount_operation_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_MountOperation.show_unmount_progress", closure); k->show_unmount_progress = (gpointer)vf_Gio_MountOperation_show_unmount_progress;
+    return 1;
 }
 void zgtk_parent_Gio_MountOperation_show_unmount_progress(GMountOperation* a0, const gchar* a1, gint64 a2, gint64 a3) {
     GMountOperationClass *k = zgtk_vfunc_parent(a0, "Gio_MountOperation.show_unmount_progress", 0);
@@ -4975,9 +5525,11 @@ static void vf_Gio_VolumeMonitor_drive_changed(GVolumeMonitor* a0, GDrive* a1) {
     void *f = zgtk_vfunc_find(a0, "Gio_VolumeMonitor.drive_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_VolumeMonitor_drive_changed(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.drive_changed", closure); k->drive_changed = (gpointer)vf_Gio_VolumeMonitor_drive_changed; }
+int zgtk_override_Gio_VolumeMonitor_drive_changed(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.drive_changed", closure); k->drive_changed = (gpointer)vf_Gio_VolumeMonitor_drive_changed;
+    return 1;
 }
 void zgtk_parent_Gio_VolumeMonitor_drive_changed(GVolumeMonitor* a0, GDrive* a1) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.drive_changed", 0);
@@ -4990,9 +5542,11 @@ static void vf_Gio_VolumeMonitor_drive_connected(GVolumeMonitor* a0, GDrive* a1)
     void *f = zgtk_vfunc_find(a0, "Gio_VolumeMonitor.drive_connected");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_VolumeMonitor_drive_connected(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.drive_connected", closure); k->drive_connected = (gpointer)vf_Gio_VolumeMonitor_drive_connected; }
+int zgtk_override_Gio_VolumeMonitor_drive_connected(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.drive_connected", closure); k->drive_connected = (gpointer)vf_Gio_VolumeMonitor_drive_connected;
+    return 1;
 }
 void zgtk_parent_Gio_VolumeMonitor_drive_connected(GVolumeMonitor* a0, GDrive* a1) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.drive_connected", 0);
@@ -5005,9 +5559,11 @@ static void vf_Gio_VolumeMonitor_drive_disconnected(GVolumeMonitor* a0, GDrive* 
     void *f = zgtk_vfunc_find(a0, "Gio_VolumeMonitor.drive_disconnected");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_VolumeMonitor_drive_disconnected(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.drive_disconnected", closure); k->drive_disconnected = (gpointer)vf_Gio_VolumeMonitor_drive_disconnected; }
+int zgtk_override_Gio_VolumeMonitor_drive_disconnected(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.drive_disconnected", closure); k->drive_disconnected = (gpointer)vf_Gio_VolumeMonitor_drive_disconnected;
+    return 1;
 }
 void zgtk_parent_Gio_VolumeMonitor_drive_disconnected(GVolumeMonitor* a0, GDrive* a1) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.drive_disconnected", 0);
@@ -5020,9 +5576,11 @@ static void vf_Gio_VolumeMonitor_drive_eject_button(GVolumeMonitor* a0, GDrive* 
     void *f = zgtk_vfunc_find(a0, "Gio_VolumeMonitor.drive_eject_button");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_VolumeMonitor_drive_eject_button(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.drive_eject_button", closure); k->drive_eject_button = (gpointer)vf_Gio_VolumeMonitor_drive_eject_button; }
+int zgtk_override_Gio_VolumeMonitor_drive_eject_button(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.drive_eject_button", closure); k->drive_eject_button = (gpointer)vf_Gio_VolumeMonitor_drive_eject_button;
+    return 1;
 }
 void zgtk_parent_Gio_VolumeMonitor_drive_eject_button(GVolumeMonitor* a0, GDrive* a1) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.drive_eject_button", 0);
@@ -5035,9 +5593,11 @@ static void vf_Gio_VolumeMonitor_drive_stop_button(GVolumeMonitor* a0, GDrive* a
     void *f = zgtk_vfunc_find(a0, "Gio_VolumeMonitor.drive_stop_button");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_VolumeMonitor_drive_stop_button(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.drive_stop_button", closure); k->drive_stop_button = (gpointer)vf_Gio_VolumeMonitor_drive_stop_button; }
+int zgtk_override_Gio_VolumeMonitor_drive_stop_button(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.drive_stop_button", closure); k->drive_stop_button = (gpointer)vf_Gio_VolumeMonitor_drive_stop_button;
+    return 1;
 }
 void zgtk_parent_Gio_VolumeMonitor_drive_stop_button(GVolumeMonitor* a0, GDrive* a1) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.drive_stop_button", 0);
@@ -5050,9 +5610,11 @@ static GList* vf_Gio_VolumeMonitor_get_connected_drives(GVolumeMonitor* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GList*)c.ret.p;
 }
-void zgtk_override_Gio_VolumeMonitor_get_connected_drives(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.get_connected_drives", closure); k->get_connected_drives = (gpointer)vf_Gio_VolumeMonitor_get_connected_drives; }
+int zgtk_override_Gio_VolumeMonitor_get_connected_drives(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.get_connected_drives", closure); k->get_connected_drives = (gpointer)vf_Gio_VolumeMonitor_get_connected_drives;
+    return 1;
 }
 GList* zgtk_parent_Gio_VolumeMonitor_get_connected_drives(GVolumeMonitor* a0) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.get_connected_drives", 0);
@@ -5066,9 +5628,11 @@ static GMount* vf_Gio_VolumeMonitor_get_mount_for_uuid(GVolumeMonitor* a0, const
     if (f) zgtk_dispatch(f, &c);
     return (GMount*)c.ret.p;
 }
-void zgtk_override_Gio_VolumeMonitor_get_mount_for_uuid(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.get_mount_for_uuid", closure); k->get_mount_for_uuid = (gpointer)vf_Gio_VolumeMonitor_get_mount_for_uuid; }
+int zgtk_override_Gio_VolumeMonitor_get_mount_for_uuid(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.get_mount_for_uuid", closure); k->get_mount_for_uuid = (gpointer)vf_Gio_VolumeMonitor_get_mount_for_uuid;
+    return 1;
 }
 GMount* zgtk_parent_Gio_VolumeMonitor_get_mount_for_uuid(GVolumeMonitor* a0, const char* a1) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.get_mount_for_uuid", 0);
@@ -5081,9 +5645,11 @@ static GList* vf_Gio_VolumeMonitor_get_mounts(GVolumeMonitor* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GList*)c.ret.p;
 }
-void zgtk_override_Gio_VolumeMonitor_get_mounts(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.get_mounts", closure); k->get_mounts = (gpointer)vf_Gio_VolumeMonitor_get_mounts; }
+int zgtk_override_Gio_VolumeMonitor_get_mounts(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.get_mounts", closure); k->get_mounts = (gpointer)vf_Gio_VolumeMonitor_get_mounts;
+    return 1;
 }
 GList* zgtk_parent_Gio_VolumeMonitor_get_mounts(GVolumeMonitor* a0) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.get_mounts", 0);
@@ -5097,9 +5663,11 @@ static GVolume* vf_Gio_VolumeMonitor_get_volume_for_uuid(GVolumeMonitor* a0, con
     if (f) zgtk_dispatch(f, &c);
     return (GVolume*)c.ret.p;
 }
-void zgtk_override_Gio_VolumeMonitor_get_volume_for_uuid(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.get_volume_for_uuid", closure); k->get_volume_for_uuid = (gpointer)vf_Gio_VolumeMonitor_get_volume_for_uuid; }
+int zgtk_override_Gio_VolumeMonitor_get_volume_for_uuid(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.get_volume_for_uuid", closure); k->get_volume_for_uuid = (gpointer)vf_Gio_VolumeMonitor_get_volume_for_uuid;
+    return 1;
 }
 GVolume* zgtk_parent_Gio_VolumeMonitor_get_volume_for_uuid(GVolumeMonitor* a0, const char* a1) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.get_volume_for_uuid", 0);
@@ -5112,9 +5680,11 @@ static GList* vf_Gio_VolumeMonitor_get_volumes(GVolumeMonitor* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GList*)c.ret.p;
 }
-void zgtk_override_Gio_VolumeMonitor_get_volumes(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.get_volumes", closure); k->get_volumes = (gpointer)vf_Gio_VolumeMonitor_get_volumes; }
+int zgtk_override_Gio_VolumeMonitor_get_volumes(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.get_volumes", closure); k->get_volumes = (gpointer)vf_Gio_VolumeMonitor_get_volumes;
+    return 1;
 }
 GList* zgtk_parent_Gio_VolumeMonitor_get_volumes(GVolumeMonitor* a0) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.get_volumes", 0);
@@ -5127,9 +5697,11 @@ static void vf_Gio_VolumeMonitor_mount_added(GVolumeMonitor* a0, GMount* a1) {
     void *f = zgtk_vfunc_find(a0, "Gio_VolumeMonitor.mount_added");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_VolumeMonitor_mount_added(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.mount_added", closure); k->mount_added = (gpointer)vf_Gio_VolumeMonitor_mount_added; }
+int zgtk_override_Gio_VolumeMonitor_mount_added(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.mount_added", closure); k->mount_added = (gpointer)vf_Gio_VolumeMonitor_mount_added;
+    return 1;
 }
 void zgtk_parent_Gio_VolumeMonitor_mount_added(GVolumeMonitor* a0, GMount* a1) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.mount_added", 0);
@@ -5142,9 +5714,11 @@ static void vf_Gio_VolumeMonitor_mount_changed(GVolumeMonitor* a0, GMount* a1) {
     void *f = zgtk_vfunc_find(a0, "Gio_VolumeMonitor.mount_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_VolumeMonitor_mount_changed(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.mount_changed", closure); k->mount_changed = (gpointer)vf_Gio_VolumeMonitor_mount_changed; }
+int zgtk_override_Gio_VolumeMonitor_mount_changed(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.mount_changed", closure); k->mount_changed = (gpointer)vf_Gio_VolumeMonitor_mount_changed;
+    return 1;
 }
 void zgtk_parent_Gio_VolumeMonitor_mount_changed(GVolumeMonitor* a0, GMount* a1) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.mount_changed", 0);
@@ -5157,9 +5731,11 @@ static void vf_Gio_VolumeMonitor_mount_pre_unmount(GVolumeMonitor* a0, GMount* a
     void *f = zgtk_vfunc_find(a0, "Gio_VolumeMonitor.mount_pre_unmount");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_VolumeMonitor_mount_pre_unmount(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.mount_pre_unmount", closure); k->mount_pre_unmount = (gpointer)vf_Gio_VolumeMonitor_mount_pre_unmount; }
+int zgtk_override_Gio_VolumeMonitor_mount_pre_unmount(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.mount_pre_unmount", closure); k->mount_pre_unmount = (gpointer)vf_Gio_VolumeMonitor_mount_pre_unmount;
+    return 1;
 }
 void zgtk_parent_Gio_VolumeMonitor_mount_pre_unmount(GVolumeMonitor* a0, GMount* a1) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.mount_pre_unmount", 0);
@@ -5172,9 +5748,11 @@ static void vf_Gio_VolumeMonitor_mount_removed(GVolumeMonitor* a0, GMount* a1) {
     void *f = zgtk_vfunc_find(a0, "Gio_VolumeMonitor.mount_removed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_VolumeMonitor_mount_removed(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.mount_removed", closure); k->mount_removed = (gpointer)vf_Gio_VolumeMonitor_mount_removed; }
+int zgtk_override_Gio_VolumeMonitor_mount_removed(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.mount_removed", closure); k->mount_removed = (gpointer)vf_Gio_VolumeMonitor_mount_removed;
+    return 1;
 }
 void zgtk_parent_Gio_VolumeMonitor_mount_removed(GVolumeMonitor* a0, GMount* a1) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.mount_removed", 0);
@@ -5187,9 +5765,11 @@ static void vf_Gio_VolumeMonitor_volume_added(GVolumeMonitor* a0, GVolume* a1) {
     void *f = zgtk_vfunc_find(a0, "Gio_VolumeMonitor.volume_added");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_VolumeMonitor_volume_added(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.volume_added", closure); k->volume_added = (gpointer)vf_Gio_VolumeMonitor_volume_added; }
+int zgtk_override_Gio_VolumeMonitor_volume_added(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.volume_added", closure); k->volume_added = (gpointer)vf_Gio_VolumeMonitor_volume_added;
+    return 1;
 }
 void zgtk_parent_Gio_VolumeMonitor_volume_added(GVolumeMonitor* a0, GVolume* a1) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.volume_added", 0);
@@ -5202,9 +5782,11 @@ static void vf_Gio_VolumeMonitor_volume_changed(GVolumeMonitor* a0, GVolume* a1)
     void *f = zgtk_vfunc_find(a0, "Gio_VolumeMonitor.volume_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_VolumeMonitor_volume_changed(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.volume_changed", closure); k->volume_changed = (gpointer)vf_Gio_VolumeMonitor_volume_changed; }
+int zgtk_override_Gio_VolumeMonitor_volume_changed(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.volume_changed", closure); k->volume_changed = (gpointer)vf_Gio_VolumeMonitor_volume_changed;
+    return 1;
 }
 void zgtk_parent_Gio_VolumeMonitor_volume_changed(GVolumeMonitor* a0, GVolume* a1) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.volume_changed", 0);
@@ -5217,9 +5799,11 @@ static void vf_Gio_VolumeMonitor_volume_removed(GVolumeMonitor* a0, GVolume* a1)
     void *f = zgtk_vfunc_find(a0, "Gio_VolumeMonitor.volume_removed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_VolumeMonitor_volume_removed(gsize type, void *closure) {
-    GVolumeMonitorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_VolumeMonitor.volume_removed", closure); k->volume_removed = (gpointer)vf_Gio_VolumeMonitor_volume_removed; }
+int zgtk_override_Gio_VolumeMonitor_volume_removed(gsize type, void *closure) {
+    GVolumeMonitorClass *k = zgtk_class_below(type, g_volume_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_VolumeMonitor.volume_removed", closure); k->volume_removed = (gpointer)vf_Gio_VolumeMonitor_volume_removed;
+    return 1;
 }
 void zgtk_parent_Gio_VolumeMonitor_volume_removed(GVolumeMonitor* a0, GVolume* a1) {
     GVolumeMonitorClass *k = zgtk_vfunc_parent(a0, "Gio_VolumeMonitor.volume_removed", 0);
@@ -5235,9 +5819,11 @@ static void vf_Gio_NetworkMonitor_can_reach_async(GNetworkMonitor* a0, GSocketCo
     void *f = zgtk_vfunc_find(a0, "Gio_NetworkMonitor.can_reach_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_NetworkMonitor_can_reach_async(gsize type, void *closure) {
-    GNetworkMonitorInterface *k = g_type_interface_peek(g_type_class_ref(type), g_network_monitor_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_NetworkMonitor.can_reach_async", closure); k->can_reach_async = (gpointer)vf_Gio_NetworkMonitor_can_reach_async; }
+int zgtk_override_Gio_NetworkMonitor_can_reach_async(gsize type, void *closure) {
+    GNetworkMonitorInterface *k = zgtk_iface_below(type, g_network_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_NetworkMonitor.can_reach_async", closure); k->can_reach_async = (gpointer)vf_Gio_NetworkMonitor_can_reach_async;
+    return 1;
 }
 void zgtk_parent_Gio_NetworkMonitor_can_reach_async(GNetworkMonitor* a0, GSocketConnectable* a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GNetworkMonitorInterface *k = zgtk_vfunc_parent(a0, "Gio_NetworkMonitor.can_reach_async", g_network_monitor_get_type());
@@ -5250,9 +5836,11 @@ static void vf_Gio_NetworkMonitor_network_changed(GNetworkMonitor* a0, gboolean 
     void *f = zgtk_vfunc_find(a0, "Gio_NetworkMonitor.network_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_NetworkMonitor_network_changed(gsize type, void *closure) {
-    GNetworkMonitorInterface *k = g_type_interface_peek(g_type_class_ref(type), g_network_monitor_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_NetworkMonitor.network_changed", closure); k->network_changed = (gpointer)vf_Gio_NetworkMonitor_network_changed; }
+int zgtk_override_Gio_NetworkMonitor_network_changed(gsize type, void *closure) {
+    GNetworkMonitorInterface *k = zgtk_iface_below(type, g_network_monitor_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_NetworkMonitor.network_changed", closure); k->network_changed = (gpointer)vf_Gio_NetworkMonitor_network_changed;
+    return 1;
 }
 void zgtk_parent_Gio_NetworkMonitor_network_changed(GNetworkMonitor* a0, gboolean a1) {
     GNetworkMonitorInterface *k = zgtk_vfunc_parent(a0, "Gio_NetworkMonitor.network_changed", g_network_monitor_get_type());
@@ -5277,9 +5865,11 @@ static void vf_Gio_Permission_acquire_async(GPermission* a0, GCancellable* a1, G
     void *f = zgtk_vfunc_find(a0, "Gio_Permission.acquire_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Permission_acquire_async(gsize type, void *closure) {
-    GPermissionClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Permission.acquire_async", closure); k->acquire_async = (gpointer)vf_Gio_Permission_acquire_async; }
+int zgtk_override_Gio_Permission_acquire_async(gsize type, void *closure) {
+    GPermissionClass *k = zgtk_class_below(type, g_permission_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Permission.acquire_async", closure); k->acquire_async = (gpointer)vf_Gio_Permission_acquire_async;
+    return 1;
 }
 void zgtk_parent_Gio_Permission_acquire_async(GPermission* a0, GCancellable* a1, GAsyncReadyCallback a2, gpointer a3) {
     GPermissionClass *k = zgtk_vfunc_parent(a0, "Gio_Permission.acquire_async", 0);
@@ -5294,9 +5884,11 @@ static void vf_Gio_Permission_release_async(GPermission* a0, GCancellable* a1, G
     void *f = zgtk_vfunc_find(a0, "Gio_Permission.release_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Permission_release_async(gsize type, void *closure) {
-    GPermissionClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Permission.release_async", closure); k->release_async = (gpointer)vf_Gio_Permission_release_async; }
+int zgtk_override_Gio_Permission_release_async(gsize type, void *closure) {
+    GPermissionClass *k = zgtk_class_below(type, g_permission_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Permission.release_async", closure); k->release_async = (gpointer)vf_Gio_Permission_release_async;
+    return 1;
 }
 void zgtk_parent_Gio_Permission_release_async(GPermission* a0, GCancellable* a1, GAsyncReadyCallback a2, gpointer a3) {
     GPermissionClass *k = zgtk_vfunc_parent(a0, "Gio_Permission.release_async", 0);
@@ -5313,9 +5905,11 @@ static void vf_Gio_Proxy_connect_async(GProxy* a0, GIOStream* a1, GProxyAddress*
     void *f = zgtk_vfunc_find(a0, "Gio_Proxy.connect_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Proxy_connect_async(gsize type, void *closure) {
-    GProxyInterface *k = g_type_interface_peek(g_type_class_ref(type), g_proxy_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Proxy.connect_async", closure); k->connect_async = (gpointer)vf_Gio_Proxy_connect_async; }
+int zgtk_override_Gio_Proxy_connect_async(gsize type, void *closure) {
+    GProxyInterface *k = zgtk_iface_below(type, g_proxy_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Proxy.connect_async", closure); k->connect_async = (gpointer)vf_Gio_Proxy_connect_async;
+    return 1;
 }
 void zgtk_parent_Gio_Proxy_connect_async(GProxy* a0, GIOStream* a1, GProxyAddress* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GProxyInterface *k = zgtk_vfunc_parent(a0, "Gio_Proxy.connect_async", g_proxy_get_type());
@@ -5328,9 +5922,11 @@ static gboolean vf_Gio_Proxy_supports_hostname(GProxy* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Proxy_supports_hostname(gsize type, void *closure) {
-    GProxyInterface *k = g_type_interface_peek(g_type_class_ref(type), g_proxy_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Proxy.supports_hostname", closure); k->supports_hostname = (gpointer)vf_Gio_Proxy_supports_hostname; }
+int zgtk_override_Gio_Proxy_supports_hostname(gsize type, void *closure) {
+    GProxyInterface *k = zgtk_iface_below(type, g_proxy_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Proxy.supports_hostname", closure); k->supports_hostname = (gpointer)vf_Gio_Proxy_supports_hostname;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Proxy_supports_hostname(GProxy* a0) {
     GProxyInterface *k = zgtk_vfunc_parent(a0, "Gio_Proxy.supports_hostname", g_proxy_get_type());
@@ -5345,9 +5941,11 @@ static void vf_Gio_SocketAddressEnumerator_next_async(GSocketAddressEnumerator* 
     void *f = zgtk_vfunc_find(a0, "Gio_SocketAddressEnumerator.next_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_SocketAddressEnumerator_next_async(gsize type, void *closure) {
-    GSocketAddressEnumeratorClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_SocketAddressEnumerator.next_async", closure); k->next_async = (gpointer)vf_Gio_SocketAddressEnumerator_next_async; }
+int zgtk_override_Gio_SocketAddressEnumerator_next_async(gsize type, void *closure) {
+    GSocketAddressEnumeratorClass *k = zgtk_class_below(type, g_socket_address_enumerator_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_SocketAddressEnumerator.next_async", closure); k->next_async = (gpointer)vf_Gio_SocketAddressEnumerator_next_async;
+    return 1;
 }
 void zgtk_parent_Gio_SocketAddressEnumerator_next_async(GSocketAddressEnumerator* a0, GCancellable* a1, GAsyncReadyCallback a2, gpointer a3) {
     GSocketAddressEnumeratorClass *k = zgtk_vfunc_parent(a0, "Gio_SocketAddressEnumerator.next_async", 0);
@@ -5360,9 +5958,11 @@ static gboolean vf_Gio_ProxyResolver_is_supported(GProxyResolver* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_ProxyResolver_is_supported(gsize type, void *closure) {
-    GProxyResolverInterface *k = g_type_interface_peek(g_type_class_ref(type), g_proxy_resolver_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ProxyResolver.is_supported", closure); k->is_supported = (gpointer)vf_Gio_ProxyResolver_is_supported; }
+int zgtk_override_Gio_ProxyResolver_is_supported(gsize type, void *closure) {
+    GProxyResolverInterface *k = zgtk_iface_below(type, g_proxy_resolver_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ProxyResolver.is_supported", closure); k->is_supported = (gpointer)vf_Gio_ProxyResolver_is_supported;
+    return 1;
 }
 gboolean zgtk_parent_Gio_ProxyResolver_is_supported(GProxyResolver* a0) {
     GProxyResolverInterface *k = zgtk_vfunc_parent(a0, "Gio_ProxyResolver.is_supported", g_proxy_resolver_get_type());
@@ -5378,9 +5978,11 @@ static void vf_Gio_ProxyResolver_lookup_async(GProxyResolver* a0, const gchar* a
     void *f = zgtk_vfunc_find(a0, "Gio_ProxyResolver.lookup_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_ProxyResolver_lookup_async(gsize type, void *closure) {
-    GProxyResolverInterface *k = g_type_interface_peek(g_type_class_ref(type), g_proxy_resolver_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_ProxyResolver.lookup_async", closure); k->lookup_async = (gpointer)vf_Gio_ProxyResolver_lookup_async; }
+int zgtk_override_Gio_ProxyResolver_lookup_async(gsize type, void *closure) {
+    GProxyResolverInterface *k = zgtk_iface_below(type, g_proxy_resolver_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ProxyResolver.lookup_async", closure); k->lookup_async = (gpointer)vf_Gio_ProxyResolver_lookup_async;
+    return 1;
 }
 void zgtk_parent_Gio_ProxyResolver_lookup_async(GProxyResolver* a0, const gchar* a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GProxyResolverInterface *k = zgtk_vfunc_parent(a0, "Gio_ProxyResolver.lookup_async", g_proxy_resolver_get_type());
@@ -5396,9 +5998,11 @@ static void vf_Gio_Resolver_lookup_by_address_async(GResolver* a0, GInetAddress*
     void *f = zgtk_vfunc_find(a0, "Gio_Resolver.lookup_by_address_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Resolver_lookup_by_address_async(gsize type, void *closure) {
-    GResolverClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Resolver.lookup_by_address_async", closure); k->lookup_by_address_async = (gpointer)vf_Gio_Resolver_lookup_by_address_async; }
+int zgtk_override_Gio_Resolver_lookup_by_address_async(gsize type, void *closure) {
+    GResolverClass *k = zgtk_class_below(type, g_resolver_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Resolver.lookup_by_address_async", closure); k->lookup_by_address_async = (gpointer)vf_Gio_Resolver_lookup_by_address_async;
+    return 1;
 }
 void zgtk_parent_Gio_Resolver_lookup_by_address_async(GResolver* a0, GInetAddress* a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GResolverClass *k = zgtk_vfunc_parent(a0, "Gio_Resolver.lookup_by_address_async", 0);
@@ -5414,9 +6018,11 @@ static void vf_Gio_Resolver_lookup_by_name_async(GResolver* a0, const gchar* a1,
     void *f = zgtk_vfunc_find(a0, "Gio_Resolver.lookup_by_name_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Resolver_lookup_by_name_async(gsize type, void *closure) {
-    GResolverClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Resolver.lookup_by_name_async", closure); k->lookup_by_name_async = (gpointer)vf_Gio_Resolver_lookup_by_name_async; }
+int zgtk_override_Gio_Resolver_lookup_by_name_async(gsize type, void *closure) {
+    GResolverClass *k = zgtk_class_below(type, g_resolver_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Resolver.lookup_by_name_async", closure); k->lookup_by_name_async = (gpointer)vf_Gio_Resolver_lookup_by_name_async;
+    return 1;
 }
 void zgtk_parent_Gio_Resolver_lookup_by_name_async(GResolver* a0, const gchar* a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GResolverClass *k = zgtk_vfunc_parent(a0, "Gio_Resolver.lookup_by_name_async", 0);
@@ -5433,9 +6039,11 @@ static void vf_Gio_Resolver_lookup_by_name_with_flags_async(GResolver* a0, const
     void *f = zgtk_vfunc_find(a0, "Gio_Resolver.lookup_by_name_with_flags_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Resolver_lookup_by_name_with_flags_async(gsize type, void *closure) {
-    GResolverClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Resolver.lookup_by_name_with_flags_async", closure); k->lookup_by_name_with_flags_async = (gpointer)vf_Gio_Resolver_lookup_by_name_with_flags_async; }
+int zgtk_override_Gio_Resolver_lookup_by_name_with_flags_async(gsize type, void *closure) {
+    GResolverClass *k = zgtk_class_below(type, g_resolver_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Resolver.lookup_by_name_with_flags_async", closure); k->lookup_by_name_with_flags_async = (gpointer)vf_Gio_Resolver_lookup_by_name_with_flags_async;
+    return 1;
 }
 void zgtk_parent_Gio_Resolver_lookup_by_name_with_flags_async(GResolver* a0, const gchar* a1, GResolverNameLookupFlags a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GResolverClass *k = zgtk_vfunc_parent(a0, "Gio_Resolver.lookup_by_name_with_flags_async", 0);
@@ -5452,9 +6060,11 @@ static void vf_Gio_Resolver_lookup_records_async(GResolver* a0, const gchar* a1,
     void *f = zgtk_vfunc_find(a0, "Gio_Resolver.lookup_records_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Resolver_lookup_records_async(gsize type, void *closure) {
-    GResolverClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Resolver.lookup_records_async", closure); k->lookup_records_async = (gpointer)vf_Gio_Resolver_lookup_records_async; }
+int zgtk_override_Gio_Resolver_lookup_records_async(gsize type, void *closure) {
+    GResolverClass *k = zgtk_class_below(type, g_resolver_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Resolver.lookup_records_async", closure); k->lookup_records_async = (gpointer)vf_Gio_Resolver_lookup_records_async;
+    return 1;
 }
 void zgtk_parent_Gio_Resolver_lookup_records_async(GResolver* a0, const gchar* a1, GResolverRecordType a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GResolverClass *k = zgtk_vfunc_parent(a0, "Gio_Resolver.lookup_records_async", 0);
@@ -5470,9 +6080,11 @@ static void vf_Gio_Resolver_lookup_service_async(GResolver* a0, const gchar* a1,
     void *f = zgtk_vfunc_find(a0, "Gio_Resolver.lookup_service_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Resolver_lookup_service_async(gsize type, void *closure) {
-    GResolverClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Resolver.lookup_service_async", closure); k->lookup_service_async = (gpointer)vf_Gio_Resolver_lookup_service_async; }
+int zgtk_override_Gio_Resolver_lookup_service_async(gsize type, void *closure) {
+    GResolverClass *k = zgtk_class_below(type, g_resolver_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Resolver.lookup_service_async", closure); k->lookup_service_async = (gpointer)vf_Gio_Resolver_lookup_service_async;
+    return 1;
 }
 void zgtk_parent_Gio_Resolver_lookup_service_async(GResolver* a0, const gchar* a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GResolverClass *k = zgtk_vfunc_parent(a0, "Gio_Resolver.lookup_service_async", 0);
@@ -5484,9 +6096,11 @@ static void vf_Gio_Resolver_reload(GResolver* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Resolver.reload");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Resolver_reload(gsize type, void *closure) {
-    GResolverClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Resolver.reload", closure); k->reload = (gpointer)vf_Gio_Resolver_reload; }
+int zgtk_override_Gio_Resolver_reload(gsize type, void *closure) {
+    GResolverClass *k = zgtk_class_below(type, g_resolver_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Resolver.reload", closure); k->reload = (gpointer)vf_Gio_Resolver_reload;
+    return 1;
 }
 void zgtk_parent_Gio_Resolver_reload(GResolver* a0) {
     GResolverClass *k = zgtk_vfunc_parent(a0, "Gio_Resolver.reload", 0);
@@ -5501,9 +6115,11 @@ static gboolean vf_Gio_Settings_change_event(GSettings* a0, const GQuark* a1, gi
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Settings_change_event(gsize type, void *closure) {
-    GSettingsClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Settings.change_event", closure); k->change_event = (gpointer)vf_Gio_Settings_change_event; }
+int zgtk_override_Gio_Settings_change_event(gsize type, void *closure) {
+    GSettingsClass *k = zgtk_class_below(type, g_settings_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Settings.change_event", closure); k->change_event = (gpointer)vf_Gio_Settings_change_event;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Settings_change_event(GSettings* a0, const GQuark* a1, gint a2) {
     GSettingsClass *k = zgtk_vfunc_parent(a0, "Gio_Settings.change_event", 0);
@@ -5516,9 +6132,11 @@ static void vf_Gio_Settings_changed(GSettings* a0, const gchar* a1) {
     void *f = zgtk_vfunc_find(a0, "Gio_Settings.changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Settings_changed(gsize type, void *closure) {
-    GSettingsClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Settings.changed", closure); k->changed = (gpointer)vf_Gio_Settings_changed; }
+int zgtk_override_Gio_Settings_changed(gsize type, void *closure) {
+    GSettingsClass *k = zgtk_class_below(type, g_settings_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Settings.changed", closure); k->changed = (gpointer)vf_Gio_Settings_changed;
+    return 1;
 }
 void zgtk_parent_Gio_Settings_changed(GSettings* a0, const gchar* a1) {
     GSettingsClass *k = zgtk_vfunc_parent(a0, "Gio_Settings.changed", 0);
@@ -5532,9 +6150,11 @@ static gboolean vf_Gio_Settings_writable_change_event(GSettings* a0, GQuark a1) 
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Settings_writable_change_event(gsize type, void *closure) {
-    GSettingsClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Settings.writable_change_event", closure); k->writable_change_event = (gpointer)vf_Gio_Settings_writable_change_event; }
+int zgtk_override_Gio_Settings_writable_change_event(gsize type, void *closure) {
+    GSettingsClass *k = zgtk_class_below(type, g_settings_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Settings.writable_change_event", closure); k->writable_change_event = (gpointer)vf_Gio_Settings_writable_change_event;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Settings_writable_change_event(GSettings* a0, GQuark a1) {
     GSettingsClass *k = zgtk_vfunc_parent(a0, "Gio_Settings.writable_change_event", 0);
@@ -5547,9 +6167,11 @@ static void vf_Gio_Settings_writable_changed(GSettings* a0, const gchar* a1) {
     void *f = zgtk_vfunc_find(a0, "Gio_Settings.writable_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Settings_writable_changed(gsize type, void *closure) {
-    GSettingsClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Settings.writable_changed", closure); k->writable_changed = (gpointer)vf_Gio_Settings_writable_changed; }
+int zgtk_override_Gio_Settings_writable_changed(gsize type, void *closure) {
+    GSettingsClass *k = zgtk_class_below(type, g_settings_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Settings.writable_changed", closure); k->writable_changed = (gpointer)vf_Gio_Settings_writable_changed;
+    return 1;
 }
 void zgtk_parent_Gio_Settings_writable_changed(GSettings* a0, const gchar* a1) {
     GSettingsClass *k = zgtk_vfunc_parent(a0, "Gio_Settings.writable_changed", 0);
@@ -5564,9 +6186,11 @@ static void vf_Gio_SocketClient_event(GSocketClient* a0, GSocketClientEvent a1, 
     void *f = zgtk_vfunc_find(a0, "Gio_SocketClient.event");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_SocketClient_event(gsize type, void *closure) {
-    GSocketClientClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_SocketClient.event", closure); k->event = (gpointer)vf_Gio_SocketClient_event; }
+int zgtk_override_Gio_SocketClient_event(gsize type, void *closure) {
+    GSocketClientClass *k = zgtk_class_below(type, g_socket_client_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_SocketClient.event", closure); k->event = (gpointer)vf_Gio_SocketClient_event;
+    return 1;
 }
 void zgtk_parent_Gio_SocketClient_event(GSocketClient* a0, GSocketClientEvent a1, GSocketConnectable* a2, GIOStream* a3) {
     GSocketClientClass *k = zgtk_vfunc_parent(a0, "Gio_SocketClient.event", 0);
@@ -5578,9 +6202,11 @@ static void vf_Gio_SocketListener_changed(GSocketListener* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_SocketListener.changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_SocketListener_changed(gsize type, void *closure) {
-    GSocketListenerClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_SocketListener.changed", closure); k->changed = (gpointer)vf_Gio_SocketListener_changed; }
+int zgtk_override_Gio_SocketListener_changed(gsize type, void *closure) {
+    GSocketListenerClass *k = zgtk_class_below(type, g_socket_listener_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_SocketListener.changed", closure); k->changed = (gpointer)vf_Gio_SocketListener_changed;
+    return 1;
 }
 void zgtk_parent_Gio_SocketListener_changed(GSocketListener* a0) {
     GSocketListenerClass *k = zgtk_vfunc_parent(a0, "Gio_SocketListener.changed", 0);
@@ -5594,9 +6220,11 @@ static void vf_Gio_SocketListener_event(GSocketListener* a0, GSocketListenerEven
     void *f = zgtk_vfunc_find(a0, "Gio_SocketListener.event");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_SocketListener_event(gsize type, void *closure) {
-    GSocketListenerClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_SocketListener.event", closure); k->event = (gpointer)vf_Gio_SocketListener_event; }
+int zgtk_override_Gio_SocketListener_event(gsize type, void *closure) {
+    GSocketListenerClass *k = zgtk_class_below(type, g_socket_listener_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_SocketListener.event", closure); k->event = (gpointer)vf_Gio_SocketListener_event;
+    return 1;
 }
 void zgtk_parent_Gio_SocketListener_event(GSocketListener* a0, GSocketListenerEvent a1, GSocket* a2) {
     GSocketListenerClass *k = zgtk_vfunc_parent(a0, "Gio_SocketListener.event", 0);
@@ -5611,9 +6239,11 @@ static gboolean vf_Gio_SocketService_incoming(GSocketService* a0, GSocketConnect
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_SocketService_incoming(gsize type, void *closure) {
-    GSocketServiceClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_SocketService.incoming", closure); k->incoming = (gpointer)vf_Gio_SocketService_incoming; }
+int zgtk_override_Gio_SocketService_incoming(gsize type, void *closure) {
+    GSocketServiceClass *k = zgtk_class_below(type, g_socket_service_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_SocketService.incoming", closure); k->incoming = (gpointer)vf_Gio_SocketService_incoming;
+    return 1;
 }
 gboolean zgtk_parent_Gio_SocketService_incoming(GSocketService* a0, GSocketConnection* a1, GObject* a2) {
     GSocketServiceClass *k = zgtk_vfunc_parent(a0, "Gio_SocketService.incoming", 0);
@@ -5629,9 +6259,11 @@ static gboolean vf_Gio_ThreadedSocketService_run(GThreadedSocketService* a0, GSo
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_ThreadedSocketService_run(gsize type, void *closure) {
-    GThreadedSocketServiceClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_ThreadedSocketService.run", closure); k->run = (gpointer)vf_Gio_ThreadedSocketService_run; }
+int zgtk_override_Gio_ThreadedSocketService_run(gsize type, void *closure) {
+    GThreadedSocketServiceClass *k = zgtk_class_below(type, g_threaded_socket_service_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_ThreadedSocketService.run", closure); k->run = (gpointer)vf_Gio_ThreadedSocketService_run;
+    return 1;
 }
 gboolean zgtk_parent_Gio_ThreadedSocketService_run(GThreadedSocketService* a0, GSocketConnection* a1, GObject* a2) {
     GThreadedSocketServiceClass *k = zgtk_vfunc_parent(a0, "Gio_ThreadedSocketService.run", 0);
@@ -5644,9 +6276,11 @@ static GTlsDatabase* vf_Gio_TlsBackend_get_default_database(GTlsBackend* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GTlsDatabase*)c.ret.p;
 }
-void zgtk_override_Gio_TlsBackend_get_default_database(gsize type, void *closure) {
-    GTlsBackendInterface *k = g_type_interface_peek(g_type_class_ref(type), g_tls_backend_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsBackend.get_default_database", closure); k->get_default_database = (gpointer)vf_Gio_TlsBackend_get_default_database; }
+int zgtk_override_Gio_TlsBackend_get_default_database(gsize type, void *closure) {
+    GTlsBackendInterface *k = zgtk_iface_below(type, g_tls_backend_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsBackend.get_default_database", closure); k->get_default_database = (gpointer)vf_Gio_TlsBackend_get_default_database;
+    return 1;
 }
 GTlsDatabase* zgtk_parent_Gio_TlsBackend_get_default_database(GTlsBackend* a0) {
     GTlsBackendInterface *k = zgtk_vfunc_parent(a0, "Gio_TlsBackend.get_default_database", g_tls_backend_get_type());
@@ -5659,9 +6293,11 @@ static gboolean vf_Gio_TlsBackend_supports_dtls(GTlsBackend* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_TlsBackend_supports_dtls(gsize type, void *closure) {
-    GTlsBackendInterface *k = g_type_interface_peek(g_type_class_ref(type), g_tls_backend_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsBackend.supports_dtls", closure); k->supports_dtls = (gpointer)vf_Gio_TlsBackend_supports_dtls; }
+int zgtk_override_Gio_TlsBackend_supports_dtls(gsize type, void *closure) {
+    GTlsBackendInterface *k = zgtk_iface_below(type, g_tls_backend_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsBackend.supports_dtls", closure); k->supports_dtls = (gpointer)vf_Gio_TlsBackend_supports_dtls;
+    return 1;
 }
 gboolean zgtk_parent_Gio_TlsBackend_supports_dtls(GTlsBackend* a0) {
     GTlsBackendInterface *k = zgtk_vfunc_parent(a0, "Gio_TlsBackend.supports_dtls", g_tls_backend_get_type());
@@ -5674,9 +6310,11 @@ static gboolean vf_Gio_TlsBackend_supports_tls(GTlsBackend* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_TlsBackend_supports_tls(gsize type, void *closure) {
-    GTlsBackendInterface *k = g_type_interface_peek(g_type_class_ref(type), g_tls_backend_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsBackend.supports_tls", closure); k->supports_tls = (gpointer)vf_Gio_TlsBackend_supports_tls; }
+int zgtk_override_Gio_TlsBackend_supports_tls(gsize type, void *closure) {
+    GTlsBackendInterface *k = zgtk_iface_below(type, g_tls_backend_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsBackend.supports_tls", closure); k->supports_tls = (gpointer)vf_Gio_TlsBackend_supports_tls;
+    return 1;
 }
 gboolean zgtk_parent_Gio_TlsBackend_supports_tls(GTlsBackend* a0) {
     GTlsBackendInterface *k = zgtk_vfunc_parent(a0, "Gio_TlsBackend.supports_tls", g_tls_backend_get_type());
@@ -5691,9 +6329,11 @@ static GTlsCertificateFlags vf_Gio_TlsCertificate_verify(GTlsCertificate* a0, GS
     if (f) zgtk_dispatch(f, &c);
     return (GTlsCertificateFlags)c.ret.i;
 }
-void zgtk_override_Gio_TlsCertificate_verify(gsize type, void *closure) {
-    GTlsCertificateClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsCertificate.verify", closure); k->verify = (gpointer)vf_Gio_TlsCertificate_verify; }
+int zgtk_override_Gio_TlsCertificate_verify(gsize type, void *closure) {
+    GTlsCertificateClass *k = zgtk_class_below(type, g_tls_certificate_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsCertificate.verify", closure); k->verify = (gpointer)vf_Gio_TlsCertificate_verify;
+    return 1;
 }
 GTlsCertificateFlags zgtk_parent_Gio_TlsCertificate_verify(GTlsCertificate* a0, GSocketConnectable* a1, GTlsCertificate* a2) {
     GTlsCertificateClass *k = zgtk_vfunc_parent(a0, "Gio_TlsCertificate.verify", 0);
@@ -5706,9 +6346,11 @@ static void vf_Gio_TlsClientConnection_copy_session_state(GTlsClientConnection* 
     void *f = zgtk_vfunc_find(a0, "Gio_TlsClientConnection.copy_session_state");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_TlsClientConnection_copy_session_state(gsize type, void *closure) {
-    GTlsClientConnectionInterface *k = g_type_interface_peek(g_type_class_ref(type), g_tls_client_connection_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsClientConnection.copy_session_state", closure); k->copy_session_state = (gpointer)vf_Gio_TlsClientConnection_copy_session_state; }
+int zgtk_override_Gio_TlsClientConnection_copy_session_state(gsize type, void *closure) {
+    GTlsClientConnectionInterface *k = zgtk_iface_below(type, g_tls_client_connection_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsClientConnection.copy_session_state", closure); k->copy_session_state = (gpointer)vf_Gio_TlsClientConnection_copy_session_state;
+    return 1;
 }
 void zgtk_parent_Gio_TlsClientConnection_copy_session_state(GTlsClientConnection* a0, GTlsClientConnection* a1) {
     GTlsClientConnectionInterface *k = zgtk_vfunc_parent(a0, "Gio_TlsClientConnection.copy_session_state", g_tls_client_connection_get_type());
@@ -5723,9 +6365,11 @@ static gboolean vf_Gio_TlsConnection_accept_certificate(GTlsConnection* a0, GTls
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_TlsConnection_accept_certificate(gsize type, void *closure) {
-    GTlsConnectionClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsConnection.accept_certificate", closure); k->accept_certificate = (gpointer)vf_Gio_TlsConnection_accept_certificate; }
+int zgtk_override_Gio_TlsConnection_accept_certificate(gsize type, void *closure) {
+    GTlsConnectionClass *k = zgtk_class_below(type, g_tls_connection_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsConnection.accept_certificate", closure); k->accept_certificate = (gpointer)vf_Gio_TlsConnection_accept_certificate;
+    return 1;
 }
 gboolean zgtk_parent_Gio_TlsConnection_accept_certificate(GTlsConnection* a0, GTlsCertificate* a1, GTlsCertificateFlags a2) {
     GTlsConnectionClass *k = zgtk_vfunc_parent(a0, "Gio_TlsConnection.accept_certificate", 0);
@@ -5738,9 +6382,11 @@ static const gchar* vf_Gio_TlsConnection_get_negotiated_protocol(GTlsConnection*
     if (f) zgtk_dispatch(f, &c);
     return (const gchar*)c.ret.p;
 }
-void zgtk_override_Gio_TlsConnection_get_negotiated_protocol(gsize type, void *closure) {
-    GTlsConnectionClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsConnection.get_negotiated_protocol", closure); k->get_negotiated_protocol = (gpointer)vf_Gio_TlsConnection_get_negotiated_protocol; }
+int zgtk_override_Gio_TlsConnection_get_negotiated_protocol(gsize type, void *closure) {
+    GTlsConnectionClass *k = zgtk_class_below(type, g_tls_connection_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsConnection.get_negotiated_protocol", closure); k->get_negotiated_protocol = (gpointer)vf_Gio_TlsConnection_get_negotiated_protocol;
+    return 1;
 }
 const gchar* zgtk_parent_Gio_TlsConnection_get_negotiated_protocol(GTlsConnection* a0) {
     GTlsConnectionClass *k = zgtk_vfunc_parent(a0, "Gio_TlsConnection.get_negotiated_protocol", 0);
@@ -5756,9 +6402,11 @@ static void vf_Gio_TlsConnection_handshake_async(GTlsConnection* a0, int a1, GCa
     void *f = zgtk_vfunc_find(a0, "Gio_TlsConnection.handshake_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_TlsConnection_handshake_async(gsize type, void *closure) {
-    GTlsConnectionClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsConnection.handshake_async", closure); k->handshake_async = (gpointer)vf_Gio_TlsConnection_handshake_async; }
+int zgtk_override_Gio_TlsConnection_handshake_async(gsize type, void *closure) {
+    GTlsConnectionClass *k = zgtk_class_below(type, g_tls_connection_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsConnection.handshake_async", closure); k->handshake_async = (gpointer)vf_Gio_TlsConnection_handshake_async;
+    return 1;
 }
 void zgtk_parent_Gio_TlsConnection_handshake_async(GTlsConnection* a0, int a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GTlsConnectionClass *k = zgtk_vfunc_parent(a0, "Gio_TlsConnection.handshake_async", 0);
@@ -5772,9 +6420,11 @@ static gchar* vf_Gio_TlsDatabase_create_certificate_handle(GTlsDatabase* a0, GTl
     if (f) zgtk_dispatch(f, &c);
     return (gchar*)c.ret.p;
 }
-void zgtk_override_Gio_TlsDatabase_create_certificate_handle(gsize type, void *closure) {
-    GTlsDatabaseClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsDatabase.create_certificate_handle", closure); k->create_certificate_handle = (gpointer)vf_Gio_TlsDatabase_create_certificate_handle; }
+int zgtk_override_Gio_TlsDatabase_create_certificate_handle(gsize type, void *closure) {
+    GTlsDatabaseClass *k = zgtk_class_below(type, g_tls_database_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsDatabase.create_certificate_handle", closure); k->create_certificate_handle = (gpointer)vf_Gio_TlsDatabase_create_certificate_handle;
+    return 1;
 }
 gchar* zgtk_parent_Gio_TlsDatabase_create_certificate_handle(GTlsDatabase* a0, GTlsCertificate* a1) {
     GTlsDatabaseClass *k = zgtk_vfunc_parent(a0, "Gio_TlsDatabase.create_certificate_handle", 0);
@@ -5792,9 +6442,11 @@ static void vf_Gio_TlsDatabase_lookup_certificate_for_handle_async(GTlsDatabase*
     void *f = zgtk_vfunc_find(a0, "Gio_TlsDatabase.lookup_certificate_for_handle_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_TlsDatabase_lookup_certificate_for_handle_async(gsize type, void *closure) {
-    GTlsDatabaseClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsDatabase.lookup_certificate_for_handle_async", closure); k->lookup_certificate_for_handle_async = (gpointer)vf_Gio_TlsDatabase_lookup_certificate_for_handle_async; }
+int zgtk_override_Gio_TlsDatabase_lookup_certificate_for_handle_async(gsize type, void *closure) {
+    GTlsDatabaseClass *k = zgtk_class_below(type, g_tls_database_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsDatabase.lookup_certificate_for_handle_async", closure); k->lookup_certificate_for_handle_async = (gpointer)vf_Gio_TlsDatabase_lookup_certificate_for_handle_async;
+    return 1;
 }
 void zgtk_parent_Gio_TlsDatabase_lookup_certificate_for_handle_async(GTlsDatabase* a0, const gchar* a1, GTlsInteraction* a2, GTlsDatabaseLookupFlags a3, GCancellable* a4, GAsyncReadyCallback a5, gpointer a6) {
     GTlsDatabaseClass *k = zgtk_vfunc_parent(a0, "Gio_TlsDatabase.lookup_certificate_for_handle_async", 0);
@@ -5812,9 +6464,11 @@ static void vf_Gio_TlsDatabase_lookup_certificate_issuer_async(GTlsDatabase* a0,
     void *f = zgtk_vfunc_find(a0, "Gio_TlsDatabase.lookup_certificate_issuer_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_TlsDatabase_lookup_certificate_issuer_async(gsize type, void *closure) {
-    GTlsDatabaseClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsDatabase.lookup_certificate_issuer_async", closure); k->lookup_certificate_issuer_async = (gpointer)vf_Gio_TlsDatabase_lookup_certificate_issuer_async; }
+int zgtk_override_Gio_TlsDatabase_lookup_certificate_issuer_async(gsize type, void *closure) {
+    GTlsDatabaseClass *k = zgtk_class_below(type, g_tls_database_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsDatabase.lookup_certificate_issuer_async", closure); k->lookup_certificate_issuer_async = (gpointer)vf_Gio_TlsDatabase_lookup_certificate_issuer_async;
+    return 1;
 }
 void zgtk_parent_Gio_TlsDatabase_lookup_certificate_issuer_async(GTlsDatabase* a0, GTlsCertificate* a1, GTlsInteraction* a2, GTlsDatabaseLookupFlags a3, GCancellable* a4, GAsyncReadyCallback a5, gpointer a6) {
     GTlsDatabaseClass *k = zgtk_vfunc_parent(a0, "Gio_TlsDatabase.lookup_certificate_issuer_async", 0);
@@ -5832,9 +6486,11 @@ static void vf_Gio_TlsDatabase_lookup_certificates_issued_by_async(GTlsDatabase*
     void *f = zgtk_vfunc_find(a0, "Gio_TlsDatabase.lookup_certificates_issued_by_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_TlsDatabase_lookup_certificates_issued_by_async(gsize type, void *closure) {
-    GTlsDatabaseClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsDatabase.lookup_certificates_issued_by_async", closure); k->lookup_certificates_issued_by_async = (gpointer)vf_Gio_TlsDatabase_lookup_certificates_issued_by_async; }
+int zgtk_override_Gio_TlsDatabase_lookup_certificates_issued_by_async(gsize type, void *closure) {
+    GTlsDatabaseClass *k = zgtk_class_below(type, g_tls_database_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsDatabase.lookup_certificates_issued_by_async", closure); k->lookup_certificates_issued_by_async = (gpointer)vf_Gio_TlsDatabase_lookup_certificates_issued_by_async;
+    return 1;
 }
 void zgtk_parent_Gio_TlsDatabase_lookup_certificates_issued_by_async(GTlsDatabase* a0, GByteArray* a1, GTlsInteraction* a2, GTlsDatabaseLookupFlags a3, GCancellable* a4, GAsyncReadyCallback a5, gpointer a6) {
     GTlsDatabaseClass *k = zgtk_vfunc_parent(a0, "Gio_TlsDatabase.lookup_certificates_issued_by_async", 0);
@@ -5854,9 +6510,11 @@ static void vf_Gio_TlsDatabase_verify_chain_async(GTlsDatabase* a0, GTlsCertific
     void *f = zgtk_vfunc_find(a0, "Gio_TlsDatabase.verify_chain_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_TlsDatabase_verify_chain_async(gsize type, void *closure) {
-    GTlsDatabaseClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsDatabase.verify_chain_async", closure); k->verify_chain_async = (gpointer)vf_Gio_TlsDatabase_verify_chain_async; }
+int zgtk_override_Gio_TlsDatabase_verify_chain_async(gsize type, void *closure) {
+    GTlsDatabaseClass *k = zgtk_class_below(type, g_tls_database_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsDatabase.verify_chain_async", closure); k->verify_chain_async = (gpointer)vf_Gio_TlsDatabase_verify_chain_async;
+    return 1;
 }
 void zgtk_parent_Gio_TlsDatabase_verify_chain_async(GTlsDatabase* a0, GTlsCertificate* a1, const gchar* a2, GSocketConnectable* a3, GTlsInteraction* a4, GTlsDatabaseVerifyFlags a5, GCancellable* a6, GAsyncReadyCallback a7, gpointer a8) {
     GTlsDatabaseClass *k = zgtk_vfunc_parent(a0, "Gio_TlsDatabase.verify_chain_async", 0);
@@ -5872,9 +6530,11 @@ static void vf_Gio_TlsInteraction_ask_password_async(GTlsInteraction* a0, GTlsPa
     void *f = zgtk_vfunc_find(a0, "Gio_TlsInteraction.ask_password_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_TlsInteraction_ask_password_async(gsize type, void *closure) {
-    GTlsInteractionClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsInteraction.ask_password_async", closure); k->ask_password_async = (gpointer)vf_Gio_TlsInteraction_ask_password_async; }
+int zgtk_override_Gio_TlsInteraction_ask_password_async(gsize type, void *closure) {
+    GTlsInteractionClass *k = zgtk_class_below(type, g_tls_interaction_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsInteraction.ask_password_async", closure); k->ask_password_async = (gpointer)vf_Gio_TlsInteraction_ask_password_async;
+    return 1;
 }
 void zgtk_parent_Gio_TlsInteraction_ask_password_async(GTlsInteraction* a0, GTlsPassword* a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GTlsInteractionClass *k = zgtk_vfunc_parent(a0, "Gio_TlsInteraction.ask_password_async", 0);
@@ -5891,9 +6551,11 @@ static void vf_Gio_TlsInteraction_request_certificate_async(GTlsInteraction* a0,
     void *f = zgtk_vfunc_find(a0, "Gio_TlsInteraction.request_certificate_async");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_TlsInteraction_request_certificate_async(gsize type, void *closure) {
-    GTlsInteractionClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsInteraction.request_certificate_async", closure); k->request_certificate_async = (gpointer)vf_Gio_TlsInteraction_request_certificate_async; }
+int zgtk_override_Gio_TlsInteraction_request_certificate_async(gsize type, void *closure) {
+    GTlsInteractionClass *k = zgtk_class_below(type, g_tls_interaction_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsInteraction.request_certificate_async", closure); k->request_certificate_async = (gpointer)vf_Gio_TlsInteraction_request_certificate_async;
+    return 1;
 }
 void zgtk_parent_Gio_TlsInteraction_request_certificate_async(GTlsInteraction* a0, GTlsConnection* a1, GTlsCertificateRequestFlags a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GTlsInteractionClass *k = zgtk_vfunc_parent(a0, "Gio_TlsInteraction.request_certificate_async", 0);
@@ -5906,9 +6568,11 @@ static const gchar* vf_Gio_TlsPassword_get_default_warning(GTlsPassword* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const gchar*)c.ret.p;
 }
-void zgtk_override_Gio_TlsPassword_get_default_warning(gsize type, void *closure) {
-    GTlsPasswordClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsPassword.get_default_warning", closure); k->get_default_warning = (gpointer)vf_Gio_TlsPassword_get_default_warning; }
+int zgtk_override_Gio_TlsPassword_get_default_warning(gsize type, void *closure) {
+    GTlsPasswordClass *k = zgtk_class_below(type, g_tls_password_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsPassword.get_default_warning", closure); k->get_default_warning = (gpointer)vf_Gio_TlsPassword_get_default_warning;
+    return 1;
 }
 const gchar* zgtk_parent_Gio_TlsPassword_get_default_warning(GTlsPassword* a0) {
     GTlsPasswordClass *k = zgtk_vfunc_parent(a0, "Gio_TlsPassword.get_default_warning", 0);
@@ -5922,9 +6586,11 @@ static const guchar* vf_Gio_TlsPassword_get_value(GTlsPassword* a0, gsize* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (const guchar*)c.ret.p;
 }
-void zgtk_override_Gio_TlsPassword_get_value(gsize type, void *closure) {
-    GTlsPasswordClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsPassword.get_value", closure); k->get_value = (gpointer)vf_Gio_TlsPassword_get_value; }
+int zgtk_override_Gio_TlsPassword_get_value(gsize type, void *closure) {
+    GTlsPasswordClass *k = zgtk_class_below(type, g_tls_password_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsPassword.get_value", closure); k->get_value = (gpointer)vf_Gio_TlsPassword_get_value;
+    return 1;
 }
 const guchar* zgtk_parent_Gio_TlsPassword_get_value(GTlsPassword* a0, gsize* a1) {
     GTlsPasswordClass *k = zgtk_vfunc_parent(a0, "Gio_TlsPassword.get_value", 0);
@@ -5939,9 +6605,11 @@ static void vf_Gio_TlsPassword_set_value(GTlsPassword* a0, guchar* a1, gssize a2
     void *f = zgtk_vfunc_find(a0, "Gio_TlsPassword.set_value");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_TlsPassword_set_value(gsize type, void *closure) {
-    GTlsPasswordClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_TlsPassword.set_value", closure); k->set_value = (gpointer)vf_Gio_TlsPassword_set_value; }
+int zgtk_override_Gio_TlsPassword_set_value(gsize type, void *closure) {
+    GTlsPasswordClass *k = zgtk_class_below(type, g_tls_password_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_TlsPassword.set_value", closure); k->set_value = (gpointer)vf_Gio_TlsPassword_set_value;
+    return 1;
 }
 void zgtk_parent_Gio_TlsPassword_set_value(GTlsPassword* a0, guchar* a1, gssize a2, GDestroyNotify a3) {
     GTlsPasswordClass *k = zgtk_vfunc_parent(a0, "Gio_TlsPassword.set_value", 0);
@@ -5954,9 +6622,11 @@ static void vf_Gio_Vfs_add_writable_namespaces(GVfs* a0, GFileAttributeInfoList*
     void *f = zgtk_vfunc_find(a0, "Gio_Vfs.add_writable_namespaces");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Vfs_add_writable_namespaces(gsize type, void *closure) {
-    GVfsClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Vfs.add_writable_namespaces", closure); k->add_writable_namespaces = (gpointer)vf_Gio_Vfs_add_writable_namespaces; }
+int zgtk_override_Gio_Vfs_add_writable_namespaces(gsize type, void *closure) {
+    GVfsClass *k = zgtk_class_below(type, g_vfs_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Vfs.add_writable_namespaces", closure); k->add_writable_namespaces = (gpointer)vf_Gio_Vfs_add_writable_namespaces;
+    return 1;
 }
 void zgtk_parent_Gio_Vfs_add_writable_namespaces(GVfs* a0, GFileAttributeInfoList* a1) {
     GVfsClass *k = zgtk_vfunc_parent(a0, "Gio_Vfs.add_writable_namespaces", 0);
@@ -5970,9 +6640,11 @@ static GIcon* vf_Gio_Vfs_deserialize_icon(GVfs* a0, GVariant* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (GIcon*)c.ret.p;
 }
-void zgtk_override_Gio_Vfs_deserialize_icon(gsize type, void *closure) {
-    GVfsClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Vfs.deserialize_icon", closure); k->deserialize_icon = (gpointer)vf_Gio_Vfs_deserialize_icon; }
+int zgtk_override_Gio_Vfs_deserialize_icon(gsize type, void *closure) {
+    GVfsClass *k = zgtk_class_below(type, g_vfs_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Vfs.deserialize_icon", closure); k->deserialize_icon = (gpointer)vf_Gio_Vfs_deserialize_icon;
+    return 1;
 }
 GIcon* zgtk_parent_Gio_Vfs_deserialize_icon(GVfs* a0, GVariant* a1) {
     GVfsClass *k = zgtk_vfunc_parent(a0, "Gio_Vfs.deserialize_icon", 0);
@@ -5986,9 +6658,11 @@ static GFile* vf_Gio_Vfs_get_file_for_path(GVfs* a0, const char* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (GFile*)c.ret.p;
 }
-void zgtk_override_Gio_Vfs_get_file_for_path(gsize type, void *closure) {
-    GVfsClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Vfs.get_file_for_path", closure); k->get_file_for_path = (gpointer)vf_Gio_Vfs_get_file_for_path; }
+int zgtk_override_Gio_Vfs_get_file_for_path(gsize type, void *closure) {
+    GVfsClass *k = zgtk_class_below(type, g_vfs_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Vfs.get_file_for_path", closure); k->get_file_for_path = (gpointer)vf_Gio_Vfs_get_file_for_path;
+    return 1;
 }
 GFile* zgtk_parent_Gio_Vfs_get_file_for_path(GVfs* a0, const char* a1) {
     GVfsClass *k = zgtk_vfunc_parent(a0, "Gio_Vfs.get_file_for_path", 0);
@@ -6002,9 +6676,11 @@ static GFile* vf_Gio_Vfs_get_file_for_uri(GVfs* a0, const char* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (GFile*)c.ret.p;
 }
-void zgtk_override_Gio_Vfs_get_file_for_uri(gsize type, void *closure) {
-    GVfsClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Vfs.get_file_for_uri", closure); k->get_file_for_uri = (gpointer)vf_Gio_Vfs_get_file_for_uri; }
+int zgtk_override_Gio_Vfs_get_file_for_uri(gsize type, void *closure) {
+    GVfsClass *k = zgtk_class_below(type, g_vfs_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Vfs.get_file_for_uri", closure); k->get_file_for_uri = (gpointer)vf_Gio_Vfs_get_file_for_uri;
+    return 1;
 }
 GFile* zgtk_parent_Gio_Vfs_get_file_for_uri(GVfs* a0, const char* a1) {
     GVfsClass *k = zgtk_vfunc_parent(a0, "Gio_Vfs.get_file_for_uri", 0);
@@ -6017,9 +6693,11 @@ static const gchar* const* vf_Gio_Vfs_get_supported_uri_schemes(GVfs* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const gchar* const*)c.ret.p;
 }
-void zgtk_override_Gio_Vfs_get_supported_uri_schemes(gsize type, void *closure) {
-    GVfsClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Vfs.get_supported_uri_schemes", closure); k->get_supported_uri_schemes = (gpointer)vf_Gio_Vfs_get_supported_uri_schemes; }
+int zgtk_override_Gio_Vfs_get_supported_uri_schemes(gsize type, void *closure) {
+    GVfsClass *k = zgtk_class_below(type, g_vfs_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Vfs.get_supported_uri_schemes", closure); k->get_supported_uri_schemes = (gpointer)vf_Gio_Vfs_get_supported_uri_schemes;
+    return 1;
 }
 const gchar* const* zgtk_parent_Gio_Vfs_get_supported_uri_schemes(GVfs* a0) {
     GVfsClass *k = zgtk_vfunc_parent(a0, "Gio_Vfs.get_supported_uri_schemes", 0);
@@ -6032,9 +6710,11 @@ static gboolean vf_Gio_Vfs_is_active(GVfs* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Vfs_is_active(gsize type, void *closure) {
-    GVfsClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Vfs.is_active", closure); k->is_active = (gpointer)vf_Gio_Vfs_is_active; }
+int zgtk_override_Gio_Vfs_is_active(gsize type, void *closure) {
+    GVfsClass *k = zgtk_class_below(type, g_vfs_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Vfs.is_active", closure); k->is_active = (gpointer)vf_Gio_Vfs_is_active;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Vfs_is_active(GVfs* a0) {
     GVfsClass *k = zgtk_vfunc_parent(a0, "Gio_Vfs.is_active", 0);
@@ -6053,9 +6733,11 @@ static void vf_Gio_Vfs_local_file_add_info(GVfs* a0, const char* a1, guint64 a2,
     void *f = zgtk_vfunc_find(a0, "Gio_Vfs.local_file_add_info");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Vfs_local_file_add_info(gsize type, void *closure) {
-    GVfsClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Vfs.local_file_add_info", closure); k->local_file_add_info = (gpointer)vf_Gio_Vfs_local_file_add_info; }
+int zgtk_override_Gio_Vfs_local_file_add_info(gsize type, void *closure) {
+    GVfsClass *k = zgtk_class_below(type, g_vfs_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Vfs.local_file_add_info", closure); k->local_file_add_info = (gpointer)vf_Gio_Vfs_local_file_add_info;
+    return 1;
 }
 void zgtk_parent_Gio_Vfs_local_file_add_info(GVfs* a0, const char* a1, guint64 a2, GFileAttributeMatcher* a3, GFileInfo* a4, GCancellable* a5, gpointer* a6, GDestroyNotify* a7) {
     GVfsClass *k = zgtk_vfunc_parent(a0, "Gio_Vfs.local_file_add_info", 0);
@@ -6069,9 +6751,11 @@ static void vf_Gio_Vfs_local_file_moved(GVfs* a0, const char* a1, const char* a2
     void *f = zgtk_vfunc_find(a0, "Gio_Vfs.local_file_moved");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Vfs_local_file_moved(gsize type, void *closure) {
-    GVfsClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Vfs.local_file_moved", closure); k->local_file_moved = (gpointer)vf_Gio_Vfs_local_file_moved; }
+int zgtk_override_Gio_Vfs_local_file_moved(gsize type, void *closure) {
+    GVfsClass *k = zgtk_class_below(type, g_vfs_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Vfs.local_file_moved", closure); k->local_file_moved = (gpointer)vf_Gio_Vfs_local_file_moved;
+    return 1;
 }
 void zgtk_parent_Gio_Vfs_local_file_moved(GVfs* a0, const char* a1, const char* a2) {
     GVfsClass *k = zgtk_vfunc_parent(a0, "Gio_Vfs.local_file_moved", 0);
@@ -6084,9 +6768,11 @@ static void vf_Gio_Vfs_local_file_removed(GVfs* a0, const char* a1) {
     void *f = zgtk_vfunc_find(a0, "Gio_Vfs.local_file_removed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Vfs_local_file_removed(gsize type, void *closure) {
-    GVfsClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Vfs.local_file_removed", closure); k->local_file_removed = (gpointer)vf_Gio_Vfs_local_file_removed; }
+int zgtk_override_Gio_Vfs_local_file_removed(gsize type, void *closure) {
+    GVfsClass *k = zgtk_class_below(type, g_vfs_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Vfs.local_file_removed", closure); k->local_file_removed = (gpointer)vf_Gio_Vfs_local_file_removed;
+    return 1;
 }
 void zgtk_parent_Gio_Vfs_local_file_removed(GVfs* a0, const char* a1) {
     GVfsClass *k = zgtk_vfunc_parent(a0, "Gio_Vfs.local_file_removed", 0);
@@ -6100,9 +6786,11 @@ static GFile* vf_Gio_Vfs_parse_name(GVfs* a0, const char* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (GFile*)c.ret.p;
 }
-void zgtk_override_Gio_Vfs_parse_name(gsize type, void *closure) {
-    GVfsClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Gio_Vfs.parse_name", closure); k->parse_name = (gpointer)vf_Gio_Vfs_parse_name; }
+int zgtk_override_Gio_Vfs_parse_name(gsize type, void *closure) {
+    GVfsClass *k = zgtk_class_below(type, g_vfs_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Vfs.parse_name", closure); k->parse_name = (gpointer)vf_Gio_Vfs_parse_name;
+    return 1;
 }
 GFile* zgtk_parent_Gio_Vfs_parse_name(GVfs* a0, const char* a1) {
     GVfsClass *k = zgtk_vfunc_parent(a0, "Gio_Vfs.parse_name", 0);
@@ -6115,9 +6803,11 @@ static gboolean vf_Gio_Volume_can_eject(GVolume* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Volume_can_eject(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.can_eject", closure); k->can_eject = (gpointer)vf_Gio_Volume_can_eject; }
+int zgtk_override_Gio_Volume_can_eject(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.can_eject", closure); k->can_eject = (gpointer)vf_Gio_Volume_can_eject;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Volume_can_eject(GVolume* a0) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.can_eject", g_volume_get_type());
@@ -6130,9 +6820,11 @@ static gboolean vf_Gio_Volume_can_mount(GVolume* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Volume_can_mount(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.can_mount", closure); k->can_mount = (gpointer)vf_Gio_Volume_can_mount; }
+int zgtk_override_Gio_Volume_can_mount(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.can_mount", closure); k->can_mount = (gpointer)vf_Gio_Volume_can_mount;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Volume_can_mount(GVolume* a0) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.can_mount", g_volume_get_type());
@@ -6144,9 +6836,11 @@ static void vf_Gio_Volume_changed(GVolume* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Volume.changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Volume_changed(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.changed", closure); k->changed = (gpointer)vf_Gio_Volume_changed; }
+int zgtk_override_Gio_Volume_changed(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.changed", closure); k->changed = (gpointer)vf_Gio_Volume_changed;
+    return 1;
 }
 void zgtk_parent_Gio_Volume_changed(GVolume* a0) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.changed", g_volume_get_type());
@@ -6162,9 +6856,11 @@ static void vf_Gio_Volume_eject(GVolume* a0, GMountUnmountFlags a1, GCancellable
     void *f = zgtk_vfunc_find(a0, "Gio_Volume.eject");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Volume_eject(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.eject", closure); k->eject = (gpointer)vf_Gio_Volume_eject; }
+int zgtk_override_Gio_Volume_eject(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.eject", closure); k->eject = (gpointer)vf_Gio_Volume_eject;
+    return 1;
 }
 void zgtk_parent_Gio_Volume_eject(GVolume* a0, GMountUnmountFlags a1, GCancellable* a2, GAsyncReadyCallback a3, gpointer a4) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.eject", g_volume_get_type());
@@ -6181,9 +6877,11 @@ static void vf_Gio_Volume_eject_with_operation(GVolume* a0, GMountUnmountFlags a
     void *f = zgtk_vfunc_find(a0, "Gio_Volume.eject_with_operation");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Volume_eject_with_operation(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.eject_with_operation", closure); k->eject_with_operation = (gpointer)vf_Gio_Volume_eject_with_operation; }
+int zgtk_override_Gio_Volume_eject_with_operation(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.eject_with_operation", closure); k->eject_with_operation = (gpointer)vf_Gio_Volume_eject_with_operation;
+    return 1;
 }
 void zgtk_parent_Gio_Volume_eject_with_operation(GVolume* a0, GMountUnmountFlags a1, GMountOperation* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.eject_with_operation", g_volume_get_type());
@@ -6196,9 +6894,11 @@ static char** vf_Gio_Volume_enumerate_identifiers(GVolume* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (char**)c.ret.p;
 }
-void zgtk_override_Gio_Volume_enumerate_identifiers(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.enumerate_identifiers", closure); k->enumerate_identifiers = (gpointer)vf_Gio_Volume_enumerate_identifiers; }
+int zgtk_override_Gio_Volume_enumerate_identifiers(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.enumerate_identifiers", closure); k->enumerate_identifiers = (gpointer)vf_Gio_Volume_enumerate_identifiers;
+    return 1;
 }
 char** zgtk_parent_Gio_Volume_enumerate_identifiers(GVolume* a0) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.enumerate_identifiers", g_volume_get_type());
@@ -6211,9 +6911,11 @@ static GFile* vf_Gio_Volume_get_activation_root(GVolume* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GFile*)c.ret.p;
 }
-void zgtk_override_Gio_Volume_get_activation_root(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.get_activation_root", closure); k->get_activation_root = (gpointer)vf_Gio_Volume_get_activation_root; }
+int zgtk_override_Gio_Volume_get_activation_root(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.get_activation_root", closure); k->get_activation_root = (gpointer)vf_Gio_Volume_get_activation_root;
+    return 1;
 }
 GFile* zgtk_parent_Gio_Volume_get_activation_root(GVolume* a0) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.get_activation_root", g_volume_get_type());
@@ -6226,9 +6928,11 @@ static GDrive* vf_Gio_Volume_get_drive(GVolume* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GDrive*)c.ret.p;
 }
-void zgtk_override_Gio_Volume_get_drive(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.get_drive", closure); k->get_drive = (gpointer)vf_Gio_Volume_get_drive; }
+int zgtk_override_Gio_Volume_get_drive(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.get_drive", closure); k->get_drive = (gpointer)vf_Gio_Volume_get_drive;
+    return 1;
 }
 GDrive* zgtk_parent_Gio_Volume_get_drive(GVolume* a0) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.get_drive", g_volume_get_type());
@@ -6241,9 +6945,11 @@ static GIcon* vf_Gio_Volume_get_icon(GVolume* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GIcon*)c.ret.p;
 }
-void zgtk_override_Gio_Volume_get_icon(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.get_icon", closure); k->get_icon = (gpointer)vf_Gio_Volume_get_icon; }
+int zgtk_override_Gio_Volume_get_icon(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.get_icon", closure); k->get_icon = (gpointer)vf_Gio_Volume_get_icon;
+    return 1;
 }
 GIcon* zgtk_parent_Gio_Volume_get_icon(GVolume* a0) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.get_icon", g_volume_get_type());
@@ -6257,9 +6963,11 @@ static char* vf_Gio_Volume_get_identifier(GVolume* a0, const char* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_Volume_get_identifier(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.get_identifier", closure); k->get_identifier = (gpointer)vf_Gio_Volume_get_identifier; }
+int zgtk_override_Gio_Volume_get_identifier(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.get_identifier", closure); k->get_identifier = (gpointer)vf_Gio_Volume_get_identifier;
+    return 1;
 }
 char* zgtk_parent_Gio_Volume_get_identifier(GVolume* a0, const char* a1) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.get_identifier", g_volume_get_type());
@@ -6272,9 +6980,11 @@ static GMount* vf_Gio_Volume_get_mount(GVolume* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GMount*)c.ret.p;
 }
-void zgtk_override_Gio_Volume_get_mount(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.get_mount", closure); k->get_mount = (gpointer)vf_Gio_Volume_get_mount; }
+int zgtk_override_Gio_Volume_get_mount(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.get_mount", closure); k->get_mount = (gpointer)vf_Gio_Volume_get_mount;
+    return 1;
 }
 GMount* zgtk_parent_Gio_Volume_get_mount(GVolume* a0) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.get_mount", g_volume_get_type());
@@ -6287,9 +6997,11 @@ static char* vf_Gio_Volume_get_name(GVolume* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_Volume_get_name(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.get_name", closure); k->get_name = (gpointer)vf_Gio_Volume_get_name; }
+int zgtk_override_Gio_Volume_get_name(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.get_name", closure); k->get_name = (gpointer)vf_Gio_Volume_get_name;
+    return 1;
 }
 char* zgtk_parent_Gio_Volume_get_name(GVolume* a0) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.get_name", g_volume_get_type());
@@ -6302,9 +7014,11 @@ static const gchar* vf_Gio_Volume_get_sort_key(GVolume* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const gchar*)c.ret.p;
 }
-void zgtk_override_Gio_Volume_get_sort_key(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.get_sort_key", closure); k->get_sort_key = (gpointer)vf_Gio_Volume_get_sort_key; }
+int zgtk_override_Gio_Volume_get_sort_key(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.get_sort_key", closure); k->get_sort_key = (gpointer)vf_Gio_Volume_get_sort_key;
+    return 1;
 }
 const gchar* zgtk_parent_Gio_Volume_get_sort_key(GVolume* a0) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.get_sort_key", g_volume_get_type());
@@ -6317,9 +7031,11 @@ static GIcon* vf_Gio_Volume_get_symbolic_icon(GVolume* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (GIcon*)c.ret.p;
 }
-void zgtk_override_Gio_Volume_get_symbolic_icon(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.get_symbolic_icon", closure); k->get_symbolic_icon = (gpointer)vf_Gio_Volume_get_symbolic_icon; }
+int zgtk_override_Gio_Volume_get_symbolic_icon(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.get_symbolic_icon", closure); k->get_symbolic_icon = (gpointer)vf_Gio_Volume_get_symbolic_icon;
+    return 1;
 }
 GIcon* zgtk_parent_Gio_Volume_get_symbolic_icon(GVolume* a0) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.get_symbolic_icon", g_volume_get_type());
@@ -6332,9 +7048,11 @@ static char* vf_Gio_Volume_get_uuid(GVolume* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (char*)c.ret.p;
 }
-void zgtk_override_Gio_Volume_get_uuid(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.get_uuid", closure); k->get_uuid = (gpointer)vf_Gio_Volume_get_uuid; }
+int zgtk_override_Gio_Volume_get_uuid(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.get_uuid", closure); k->get_uuid = (gpointer)vf_Gio_Volume_get_uuid;
+    return 1;
 }
 char* zgtk_parent_Gio_Volume_get_uuid(GVolume* a0) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.get_uuid", g_volume_get_type());
@@ -6351,9 +7069,11 @@ static void vf_Gio_Volume_mount_fn(GVolume* a0, GMountMountFlags a1, GMountOpera
     void *f = zgtk_vfunc_find(a0, "Gio_Volume.mount_fn");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Volume_mount_fn(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.mount_fn", closure); k->mount_fn = (gpointer)vf_Gio_Volume_mount_fn; }
+int zgtk_override_Gio_Volume_mount_fn(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.mount_fn", closure); k->mount_fn = (gpointer)vf_Gio_Volume_mount_fn;
+    return 1;
 }
 void zgtk_parent_Gio_Volume_mount_fn(GVolume* a0, GMountMountFlags a1, GMountOperation* a2, GCancellable* a3, GAsyncReadyCallback a4, gpointer a5) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.mount_fn", g_volume_get_type());
@@ -6365,9 +7085,11 @@ static void vf_Gio_Volume_removed(GVolume* a0) {
     void *f = zgtk_vfunc_find(a0, "Gio_Volume.removed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Gio_Volume_removed(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.removed", closure); k->removed = (gpointer)vf_Gio_Volume_removed; }
+int zgtk_override_Gio_Volume_removed(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.removed", closure); k->removed = (gpointer)vf_Gio_Volume_removed;
+    return 1;
 }
 void zgtk_parent_Gio_Volume_removed(GVolume* a0) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.removed", g_volume_get_type());
@@ -6380,9 +7102,11 @@ static gboolean vf_Gio_Volume_should_automount(GVolume* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Gio_Volume_should_automount(gsize type, void *closure) {
-    GVolumeIface *k = g_type_interface_peek(g_type_class_ref(type), g_volume_get_type());
-    if (k) { zgtk_vfunc_set(type, "Gio_Volume.should_automount", closure); k->should_automount = (gpointer)vf_Gio_Volume_should_automount; }
+int zgtk_override_Gio_Volume_should_automount(gsize type, void *closure) {
+    GVolumeIface *k = zgtk_iface_below(type, g_volume_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Gio_Volume.should_automount", closure); k->should_automount = (gpointer)vf_Gio_Volume_should_automount;
+    return 1;
 }
 gboolean zgtk_parent_Gio_Volume_should_automount(GVolume* a0) {
     GVolumeIface *k = zgtk_vfunc_parent(a0, "Gio_Volume.should_automount", g_volume_get_type());

@@ -11,6 +11,11 @@ is written.
 - **`App.runSignalsInBackground id view`** runs a signals program that goes on with no window:
   closing the window leaves it running, starting the program again shows the window (a new one
   from the same signals, if it was closed), and **`App.quit ()`** ends it. Nothing to rewrite.
+- **An `overrideX` panics for a type it can't hold the method of:** one not made from the
+  method's class (or without its interface), or the class itself. Before, it wrote the method
+  into that type's class, past its end or over GTK's own. A program that did so must give a type
+  made with `Glue.subclass` from the class. **`Glue.subclass`** gives 0 for a parent that is no
+  GObject class. A list GTK gives is read in one walk, not one walk an element.
 
 ## 0.1.0 (2026-11-13)
 

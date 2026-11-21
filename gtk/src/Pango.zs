@@ -2457,55 +2457,60 @@ module Font =
       Ok zv
 
   /// Gives a type made with `Glue.subclass` its own `create_hb_font`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCreateHbFont (gtype: usize) (handler: Font -> cptr) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let font = Font (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (handler font))
-    Internal.PangoC.zgtk_override_Pango_Font_create_hb_font (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Font_create_hb_font (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Pango_Font_create_hb_font`.
   let parentCreateHbFont (self: Font) : cptr =
     ((Internal.PangoC.zgtk_parent_Pango_Font_create_hb_font (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `describe`: Returns a description of the font, with font size set in points.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDescribe (gtype: usize) (handler: Font -> FontDescription) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let font = Font (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler font).Id (Internal.PangoC.pango_font_description_get_type ())) (Internal.PangoC.pango_font_description_get_type ())))
-    Internal.PangoC.zgtk_override_Pango_Font_describe (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Font_describe (Internal.Raw.gtype gtype) zcb)
 
   /// Returns a description of the font, with font size set in points.
   let parentDescribe (self: Font) : FontDescription =
     FontDescription (Internal.Raw.wrapBoxed ((Internal.PangoC.zgtk_parent_Pango_Font_describe (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_get_type ())))) (Internal.PangoC.pango_font_description_get_type ()) true)
 
   /// Gives a type made with `Glue.subclass` its own `describe_absolute`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDescribeAbsolute (gtype: usize) (handler: Font -> FontDescription) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let font = Font (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler font).Id (Internal.PangoC.pango_font_description_get_type ())) (Internal.PangoC.pango_font_description_get_type ())))
-    Internal.PangoC.zgtk_override_Pango_Font_describe_absolute (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Font_describe_absolute (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Pango_Font_describe_absolute`.
   let parentDescribeAbsolute (self: Font) : FontDescription =
     FontDescription (Internal.Raw.wrapBoxed ((Internal.PangoC.zgtk_parent_Pango_Font_describe_absolute (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_get_type ())))) (Internal.PangoC.pango_font_description_get_type ()) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_coverage`: Computes the coverage map for a given font and language tag.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetCoverage (gtype: usize) (handler: Font -> Language -> Coverage) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let font = Font (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let language = Language (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.PangoC.pango_language_get_type ()) false)
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler font language).Id (Internal.PangoC.pango_coverage_get_type ()))))
-    Internal.PangoC.zgtk_override_Pango_Font_get_coverage (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Font_get_coverage (Internal.Raw.gtype gtype) zcb)
 
   /// Computes the coverage map for a given font and language tag.
   let parentGetCoverage (self: Font) (language: Language) : Coverage =
     Coverage (Internal.Raw.wrap ((Internal.PangoC.zgtk_parent_Pango_Font_get_coverage (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_get_type ())) (Internal.Raw.obj language.Id (Internal.PangoC.pango_language_get_type ())))) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_features`: Obtain the OpenType features that are provided by the font.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFeatures (gtype: usize) (handler: Font -> cptr -> int -> int -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -2515,7 +2520,7 @@ module Font =
         let numFeatures = Internal.Raw.getI32 3
         let numFeaturesAfter = handler font features len numFeatures
         Internal.Raw.setI32 3 numFeaturesAfter)
-    Internal.PangoC.zgtk_override_Pango_Font_get_features (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Font_get_features (Internal.Raw.gtype gtype) zcb)
 
   /// Obtain the OpenType features that are provided by the font.
   [<Unsafe>]
@@ -2528,6 +2533,7 @@ module Font =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_font_map`: Gets the font map for which the font was created.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFontMap (gtype: usize) (handler: option<Font> -> option<FontMap>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -2536,7 +2542,7 @@ module Font =
         match handler font with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.PangoC.pango_font_map_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.PangoC.zgtk_override_Pango_Font_get_font_map (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Font_get_font_map (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the font map for which the font was created.
   let parentGetFontMap (self: Font) : option<FontMap> =
@@ -2545,6 +2551,7 @@ module Font =
     (if zid1 = 0 then None else Some (FontMap zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_glyph_extents`: Gets the logical and ink extents of a glyph within a font.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetGlyphExtents (gtype: usize) (handler: option<Font> -> int -> (Rectangle * Rectangle)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -2554,7 +2561,7 @@ module Font =
         let (inkRect, logicalRect) = handler font glyph
         Internal.Raw.setRecord 2 (Internal.Raw.obj inkRect.Id (Internal.PangoC.zgtk_tag_Pango_Rectangle ())) (Internal.PangoC.zgtk_sizeof_Pango_Rectangle ())
         Internal.Raw.setRecord 3 (Internal.Raw.obj logicalRect.Id (Internal.PangoC.zgtk_tag_Pango_Rectangle ())) (Internal.PangoC.zgtk_sizeof_Pango_Rectangle ()))
-    Internal.PangoC.zgtk_override_Pango_Font_get_glyph_extents (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Font_get_glyph_extents (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the logical and ink extents of a glyph within a font.
   let parentGetGlyphExtents (self: Font) (glyph: int) : (Rectangle * Rectangle) =
@@ -2564,6 +2571,7 @@ module Font =
     (Rectangle zo1, Rectangle zo2)
 
   /// Gives a type made with `Glue.subclass` its own `get_metrics`: Gets overall metric information for a font.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetMetrics (gtype: usize) (handler: option<Font> -> option<Language> -> FontMetrics) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -2572,7 +2580,7 @@ module Font =
         let zid2 = Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.PangoC.pango_language_get_type ()) false
         let language = (if zid2 = 0 then None else Some (Language zid2))
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler font language).Id (Internal.PangoC.pango_font_metrics_get_type ())) (Internal.PangoC.pango_font_metrics_get_type ())))
-    Internal.PangoC.zgtk_override_Pango_Font_get_metrics (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Font_get_metrics (Internal.Raw.gtype gtype) zcb)
 
   /// Gets overall metric information for a font.
   let parentGetMetrics (self: Font) (language: option<Language>) : FontMetrics =
@@ -2797,54 +2805,59 @@ module FontFace =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `describe`: Returns a font description that matches the face.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDescribe (gtype: usize) (handler: FontFace -> FontDescription) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let face = FontFace (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler face).Id (Internal.PangoC.pango_font_description_get_type ())) (Internal.PangoC.pango_font_description_get_type ())))
-    Internal.PangoC.zgtk_override_Pango_FontFace_describe (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontFace_describe (Internal.Raw.gtype gtype) zcb)
 
   /// Returns a font description that matches the face.
   let parentDescribe (self: FontFace) : FontDescription =
     FontDescription (Internal.Raw.wrapBoxed ((Internal.PangoC.zgtk_parent_Pango_FontFace_describe (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_face_get_type ())))) (Internal.PangoC.pango_font_description_get_type ()) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_face_name`: Gets a name representing the style of this face.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFaceName (gtype: usize) (handler: FontFace -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let face = FontFace (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler face)))
-    Internal.PangoC.zgtk_override_Pango_FontFace_get_face_name (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontFace_get_face_name (Internal.Raw.gtype gtype) zcb)
 
   /// Gets a name representing the style of this face.
   let parentGetFaceName (self: FontFace) : string =
     Internal.Raw.text ((Internal.PangoC.zgtk_parent_Pango_FontFace_get_face_name (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_face_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_family`: Gets the `PangoFontFamily` that @face belongs to.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFamily (gtype: usize) (handler: FontFace -> FontFamily) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let face = FontFace (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler face).Id (Internal.PangoC.pango_font_family_get_type ()))))
-    Internal.PangoC.zgtk_override_Pango_FontFace_get_family (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontFace_get_family (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the `PangoFontFamily` that @face belongs to.
   let parentGetFamily (self: FontFace) : FontFamily =
     FontFamily (Internal.Raw.wrap ((Internal.PangoC.zgtk_parent_Pango_FontFace_get_family (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_face_get_type ())))) false)
 
   /// Gives a type made with `Glue.subclass` its own `is_synthesized`: Returns whether a `PangoFontFace` is synthesized.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsSynthesized (gtype: usize) (handler: FontFace -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let face = FontFace (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler face))
-    Internal.PangoC.zgtk_override_Pango_FontFace_is_synthesized (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontFace_is_synthesized (Internal.Raw.gtype gtype) zcb)
 
   /// Returns whether a `PangoFontFace` is synthesized.
   let parentIsSynthesized (self: FontFace) : bool =
     (((Internal.PangoC.zgtk_parent_Pango_FontFace_is_synthesized (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_face_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `list_sizes`: List the available sizes for a font.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideListSizes (gtype: usize) (handler: FontFace -> cptr -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -2852,7 +2865,7 @@ module FontFace =
         let sizes = Internal.Raw.argPointer 1
         let nSizes = handler face sizes
         Internal.Raw.setI32 2 nSizes)
-    Internal.PangoC.zgtk_override_Pango_FontFace_list_sizes (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontFace_list_sizes (Internal.Raw.gtype gtype) zcb)
 
   /// List the available sizes for a font.
   let parentListSizes (self: FontFace) : list<int> =
@@ -2929,6 +2942,7 @@ module FontFamily =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_family_get_type ())) "notify::name" handler
 
   /// Gives a type made with `Glue.subclass` its own `get_face`: Gets the `PangoFontFace` of @family with the given name.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFace (gtype: usize) (handler: FontFamily -> option<string> -> option<FontFace>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -2937,7 +2951,7 @@ module FontFamily =
         match handler family name with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.PangoC.pango_font_face_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.PangoC.zgtk_override_Pango_FontFamily_get_face (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontFamily_get_face (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the `PangoFontFace` of @family with the given name.
   let parentGetFace (self: FontFamily) (name: option<string>) : option<FontFace> =
@@ -2949,42 +2963,46 @@ module FontFamily =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_name`: Gets the name of the family.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetName (gtype: usize) (handler: FontFamily -> string) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let family = FontFamily (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.intern (handler family)))
-    Internal.PangoC.zgtk_override_Pango_FontFamily_get_name (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontFamily_get_name (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the name of the family.
   let parentGetName (self: FontFamily) : string =
     Internal.Raw.text ((Internal.PangoC.zgtk_parent_Pango_FontFamily_get_name (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_family_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `is_monospace`: A monospace font is a font designed for text display where the the characters form a regular grid.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsMonospace (gtype: usize) (handler: FontFamily -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let family = FontFamily (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler family))
-    Internal.PangoC.zgtk_override_Pango_FontFamily_is_monospace (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontFamily_is_monospace (Internal.Raw.gtype gtype) zcb)
 
   /// A monospace font is a font designed for text display where the the characters form a regular grid.
   let parentIsMonospace (self: FontFamily) : bool =
     (((Internal.PangoC.zgtk_parent_Pango_FontFamily_is_monospace (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_family_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `is_variable`: A variable font is a font which has axes that can be modified to produce different faces.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideIsVariable (gtype: usize) (handler: FontFamily -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let family = FontFamily (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler family))
-    Internal.PangoC.zgtk_override_Pango_FontFamily_is_variable (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontFamily_is_variable (Internal.Raw.gtype gtype) zcb)
 
   /// A variable font is a font which has axes that can be modified to produce different faces.
   let parentIsVariable (self: FontFamily) : bool =
     (((Internal.PangoC.zgtk_parent_Pango_FontFamily_is_variable (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_family_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `list_faces`: Lists the different font faces that make up @family.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideListFaces (gtype: usize) (handler: FontFamily -> cptr -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -2992,7 +3010,7 @@ module FontFamily =
         let faces = Internal.Raw.argPointer 1
         let nFaces = handler family faces
         Internal.Raw.setI32 2 nFaces)
-    Internal.PangoC.zgtk_override_Pango_FontFamily_list_faces (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontFamily_list_faces (Internal.Raw.gtype gtype) zcb)
 
   /// Lists the different font faces that make up @family.
   let parentListFaces (self: FontFamily) : list<FontFace> =
@@ -3091,31 +3109,34 @@ module FontMap =
   let getNItems (self: FontMap) : int = Internal.Raw.getInt (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_map_get_type ())) "n-items"
 
   /// Gives a type made with `Glue.subclass` its own `changed`: Forces a change in the fontmap, which will cause any `PangoContext` using this fontmap to change.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideChanged (gtype: usize) (handler: FontMap -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let fontmap = FontMap (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler fontmap)
-    Internal.PangoC.zgtk_override_Pango_FontMap_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontMap_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Forces a change in the fontmap, which will cause any `PangoContext` using this fontmap to change.
   let parentChanged (self: FontMap) : unit =
     Internal.PangoC.zgtk_parent_Pango_FontMap_changed (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_map_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `get_face`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFace (gtype: usize) (handler: FontMap -> Font -> FontFace) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let fontmap = FontMap (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let font = Font (Internal.Raw.wrap (Internal.Raw.argPointer 1) false)
         Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj (handler fontmap font).Id (Internal.PangoC.pango_font_face_get_type ()))))
-    Internal.PangoC.zgtk_override_Pango_FontMap_get_face (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontMap_get_face (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Pango_FontMap_get_face`.
   let parentGetFace (self: FontMap) (font: Font) : FontFace =
     FontFace (Internal.Raw.wrap ((Internal.PangoC.zgtk_parent_Pango_FontMap_get_face (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_map_get_type ())) (Internal.Raw.obj font.Id (Internal.PangoC.pango_font_get_type ())))) false)
 
   /// Gives a type made with `Glue.subclass` its own `get_family`: Gets a font family by name.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFamily (gtype: usize) (handler: FontMap -> string -> option<FontFamily>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -3124,7 +3145,7 @@ module FontMap =
         match handler fontmap name with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.lend (Internal.Raw.obj zo.Id (Internal.PangoC.pango_font_family_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.PangoC.zgtk_override_Pango_FontMap_get_family (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontMap_get_family (Internal.Raw.gtype gtype) zcb)
 
   /// Gets a font family by name.
   let parentGetFamily (self: FontMap) (name: string) : option<FontFamily> =
@@ -3133,18 +3154,20 @@ module FontMap =
     (if zid1 = 0 then None else Some (FontFamily zid1))
 
   /// Gives a type made with `Glue.subclass` its own `get_serial`: Returns the current serial number of @fontmap.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSerial (gtype: usize) (handler: FontMap -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let fontmap = FontMap (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnInt (handler fontmap))
-    Internal.PangoC.zgtk_override_Pango_FontMap_get_serial (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontMap_get_serial (Internal.Raw.gtype gtype) zcb)
 
   /// Returns the current serial number of @fontmap.
   let parentGetSerial (self: FontMap) : int =
     (int ((Internal.PangoC.zgtk_parent_Pango_FontMap_get_serial (Internal.Raw.obj self.Id (Internal.PangoC.pango_font_map_get_type ())))))
 
   /// Gives a type made with `Glue.subclass` its own `list_families`: List all families for a fontmap.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideListFamilies (gtype: usize) (handler: FontMap -> cptr -> int) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -3152,7 +3175,7 @@ module FontMap =
         let families = Internal.Raw.argPointer 1
         let nFamilies = handler fontmap families
         Internal.Raw.setI32 2 nFamilies)
-    Internal.PangoC.zgtk_override_Pango_FontMap_list_families (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontMap_list_families (Internal.Raw.gtype gtype) zcb)
 
   /// List all families for a fontmap.
   let parentListFamilies (self: FontMap) : list<FontFamily> =
@@ -3163,6 +3186,7 @@ module FontMap =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `load_font`: Load the font in the fontmap that is the closest match for @desc.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLoadFont (gtype: usize) (handler: FontMap -> Context -> FontDescription -> option<Font>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -3172,7 +3196,7 @@ module FontMap =
         match handler fontmap context desc with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.PangoC.pango_font_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.PangoC.zgtk_override_Pango_FontMap_load_font (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontMap_load_font (Internal.Raw.gtype gtype) zcb)
 
   /// Load the font in the fontmap that is the closest match for @desc.
   let parentLoadFont (self: FontMap) (context: Context) (desc: FontDescription) : option<Font> =
@@ -3181,6 +3205,7 @@ module FontMap =
     (if zid1 = 0 then None else Some (Font zid1))
 
   /// Gives a type made with `Glue.subclass` its own `load_fontset`: Load a set of fonts in the fontmap that can be used to render a font matching @desc.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLoadFontset (gtype: usize) (handler: FontMap -> Context -> FontDescription -> Language -> option<Fontset>) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -3191,7 +3216,7 @@ module FontMap =
         match handler fontmap context desc language with
         | Some zo -> Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj zo.Id (Internal.PangoC.pango_fontset_get_type ())))
         | None -> Internal.Raw.returnPointer (Internal.Raw.none ()))
-    Internal.PangoC.zgtk_override_Pango_FontMap_load_fontset (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_FontMap_load_fontset (Internal.Raw.gtype gtype) zcb)
 
   /// Load a set of fonts in the fontmap that can be used to render a font matching @desc.
   let parentLoadFontset (self: FontMap) (context: Context) (desc: FontDescription) (language: Language) : option<Fontset> =
@@ -3284,6 +3309,7 @@ module Fontset =
     FontMetrics (Internal.Raw.wrapBoxed ((Internal.PangoC.pango_fontset_get_metrics (Internal.Raw.obj self.Id (Internal.PangoC.pango_fontset_get_type ())))) (Internal.PangoC.pango_font_metrics_get_type ()) true)
 
   /// Gives a type made with `Glue.subclass` its own `foreach`: Iterates through all the fonts in a fontset, calling @func for each one.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideForeach (gtype: usize) (handler: Fontset -> cptr -> cptr -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -3291,7 +3317,7 @@ module Fontset =
         let func = Internal.Raw.argPointer 1
         let data = Internal.Raw.argPointer 2
         handler fontset func data)
-    Internal.PangoC.zgtk_override_Pango_Fontset_foreach (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Fontset_foreach (Internal.Raw.gtype gtype) zcb)
 
   /// Iterates through all the fonts in a fontset, calling @func for each one.
   let parentForeach (self: Fontset) (func: Fontset -> Font -> bool) : unit =
@@ -3304,37 +3330,40 @@ module Fontset =
     Internal.Raw.drop zcb1
 
   /// Gives a type made with `Glue.subclass` its own `get_font`: Returns the font in the fontset that contains the best glyph for a Unicode character.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetFont (gtype: usize) (handler: Fontset -> int -> Font) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let fontset = Fontset (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let wc = Internal.Raw.argInt 1
         Internal.Raw.returnPointer (Internal.Raw.give (Internal.Raw.obj (handler fontset wc).Id (Internal.PangoC.pango_font_get_type ()))))
-    Internal.PangoC.zgtk_override_Pango_Fontset_get_font (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Fontset_get_font (Internal.Raw.gtype gtype) zcb)
 
   /// Returns the font in the fontset that contains the best glyph for a Unicode character.
   let parentGetFont (self: Fontset) (wc: int) : Font =
     Font (Internal.Raw.wrap ((Internal.PangoC.zgtk_parent_Pango_Fontset_get_font (Internal.Raw.obj self.Id (Internal.PangoC.pango_fontset_get_type ())) (u32 wc))) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_language`: a function to get the language of the fontset.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetLanguage (gtype: usize) (handler: Fontset -> Language) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let fontset = Fontset (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler fontset).Id (Internal.PangoC.pango_language_get_type ())) (Internal.PangoC.pango_language_get_type ())))
-    Internal.PangoC.zgtk_override_Pango_Fontset_get_language (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Fontset_get_language (Internal.Raw.gtype gtype) zcb)
 
   /// a function to get the language of the fontset.
   let parentGetLanguage (self: Fontset) : Language =
     Language (Internal.Raw.wrapBoxed ((Internal.PangoC.zgtk_parent_Pango_Fontset_get_language (Internal.Raw.obj self.Id (Internal.PangoC.pango_fontset_get_type ())))) (Internal.PangoC.pango_language_get_type ()) true)
 
   /// Gives a type made with `Glue.subclass` its own `get_metrics`: Get overall metric information for the fonts in the fontset.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetMetrics (gtype: usize) (handler: Fontset -> FontMetrics) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let fontset = Fontset (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnPointer (Internal.Raw.giveBoxed (Internal.Raw.obj (handler fontset).Id (Internal.PangoC.pango_font_metrics_get_type ())) (Internal.PangoC.pango_font_metrics_get_type ())))
-    Internal.PangoC.zgtk_override_Pango_Fontset_get_metrics (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Fontset_get_metrics (Internal.Raw.gtype gtype) zcb)
 
   /// Get overall metric information for the fonts in the fontset.
   let parentGetMetrics (self: Fontset) : FontMetrics =
@@ -4560,18 +4589,20 @@ module Renderer =
     Internal.PangoC.pango_renderer_set_matrix (Internal.Raw.obj self.Id (Internal.PangoC.pango_renderer_get_type ())) zp1
 
   /// Gives a type made with `Glue.subclass` its own `begin`: Do renderer-specific initialization before drawing
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideBegin (gtype: usize) (handler: Renderer -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let renderer = Renderer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler renderer)
-    Internal.PangoC.zgtk_override_Pango_Renderer_begin (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Renderer_begin (Internal.Raw.gtype gtype) zcb)
 
   /// Do renderer-specific initialization before drawing
   let parentBegin (self: Renderer) : unit =
     Internal.PangoC.zgtk_parent_Pango_Renderer_begin (Internal.Raw.obj self.Id (Internal.PangoC.pango_renderer_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `draw_error_underline`: Draw a squiggly line that approximately covers the given rectangle in the style of an underline used to indicate a spelling error.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDrawErrorUnderline (gtype: usize) (handler: Renderer -> int -> int -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -4581,13 +4612,14 @@ module Renderer =
         let width = Internal.Raw.argInt 3
         let height = Internal.Raw.argInt 4
         handler renderer x y width height)
-    Internal.PangoC.zgtk_override_Pango_Renderer_draw_error_underline (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Renderer_draw_error_underline (Internal.Raw.gtype gtype) zcb)
 
   /// Draw a squiggly line that approximately covers the given rectangle in the style of an underline used to indicate a spelling error.
   let parentDrawErrorUnderline (self: Renderer) (x: int) (y: int) (width: int) (height: int) : unit =
     Internal.PangoC.zgtk_parent_Pango_Renderer_draw_error_underline (Internal.Raw.obj self.Id (Internal.PangoC.pango_renderer_get_type ())) (i32 x) (i32 y) (i32 width) (i32 height)
 
   /// Gives a type made with `Glue.subclass` its own `draw_glyph`: Draws a single glyph with coordinates in device space.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDrawGlyph (gtype: usize) (handler: Renderer -> Font -> int -> float -> float -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -4597,13 +4629,14 @@ module Renderer =
         let x = Internal.Raw.argFloat 3
         let y = Internal.Raw.argFloat 4
         handler renderer font glyph x y)
-    Internal.PangoC.zgtk_override_Pango_Renderer_draw_glyph (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Renderer_draw_glyph (Internal.Raw.gtype gtype) zcb)
 
   /// Draws a single glyph with coordinates in device space.
   let parentDrawGlyph (self: Renderer) (font: Font) (glyph: int) (x: float) (y: float) : unit =
     Internal.PangoC.zgtk_parent_Pango_Renderer_draw_glyph (Internal.Raw.obj self.Id (Internal.PangoC.pango_renderer_get_type ())) (Internal.Raw.obj font.Id (Internal.PangoC.pango_font_get_type ())) (u32 glyph) x y
 
   /// Gives a type made with `Glue.subclass` its own `draw_glyph_item`: Draws the glyphs in @glyph_item with the specified `PangoRenderer`, embedding the text associated with the glyphs in the output if the output format supports it.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDrawGlyphItem (gtype: usize) (handler: Renderer -> option<string> -> GlyphItem -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -4613,7 +4646,7 @@ module Renderer =
         let x = Internal.Raw.argInt 3
         let y = Internal.Raw.argInt 4
         handler renderer text glyphItem x y)
-    Internal.PangoC.zgtk_override_Pango_Renderer_draw_glyph_item (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Renderer_draw_glyph_item (Internal.Raw.gtype gtype) zcb)
 
   /// Draws the glyphs in @glyph_item with the specified `PangoRenderer`, embedding the text associated with the glyphs in the output if the output format supports it.
   let parentDrawGlyphItem (self: Renderer) (text: option<string>) (glyphItem: GlyphItem) (x: int) (y: int) : unit =
@@ -4622,6 +4655,7 @@ module Renderer =
     Internal.Raw.free zs1
 
   /// Gives a type made with `Glue.subclass` its own `draw_glyphs`: Draws the glyphs in @glyphs with the specified `PangoRenderer`.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDrawGlyphs (gtype: usize) (handler: Renderer -> Font -> GlyphString -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -4631,13 +4665,14 @@ module Renderer =
         let x = Internal.Raw.argInt 3
         let y = Internal.Raw.argInt 4
         handler renderer font glyphs x y)
-    Internal.PangoC.zgtk_override_Pango_Renderer_draw_glyphs (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Renderer_draw_glyphs (Internal.Raw.gtype gtype) zcb)
 
   /// Draws the glyphs in @glyphs with the specified `PangoRenderer`.
   let parentDrawGlyphs (self: Renderer) (font: Font) (glyphs: GlyphString) (x: int) (y: int) : unit =
     Internal.PangoC.zgtk_parent_Pango_Renderer_draw_glyphs (Internal.Raw.obj self.Id (Internal.PangoC.pango_renderer_get_type ())) (Internal.Raw.obj font.Id (Internal.PangoC.pango_font_get_type ())) (Internal.Raw.obj glyphs.Id (Internal.PangoC.pango_glyph_string_get_type ())) (i32 x) (i32 y)
 
   /// Gives a type made with `Glue.subclass` its own `draw_rectangle`: Draws an axis-aligned rectangle in user space coordinates with the specified `PangoRenderer`.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDrawRectangle (gtype: usize) (handler: Renderer -> RenderPart -> int -> int -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -4648,13 +4683,14 @@ module Renderer =
         let width = Internal.Raw.argInt 4
         let height = Internal.Raw.argInt 5
         handler renderer part x y width height)
-    Internal.PangoC.zgtk_override_Pango_Renderer_draw_rectangle (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Renderer_draw_rectangle (Internal.Raw.gtype gtype) zcb)
 
   /// Draws an axis-aligned rectangle in user space coordinates with the specified `PangoRenderer`.
   let parentDrawRectangle (self: Renderer) (part: RenderPart) (x: int) (y: int) (width: int) (height: int) : unit =
     Internal.PangoC.zgtk_parent_Pango_Renderer_draw_rectangle (Internal.Raw.obj self.Id (Internal.PangoC.pango_renderer_get_type ())) (i32 part.Int) (i32 x) (i32 y) (i32 width) (i32 height)
 
   /// Gives a type made with `Glue.subclass` its own `draw_shape`: draw content for a glyph shaped with `PangoAttrShape` @x, @y are the coordinates of the left edge of the baseline, in user coordinates.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDrawShape (gtype: usize) (handler: Renderer -> AttrShape -> int -> int -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -4663,13 +4699,14 @@ module Renderer =
         let x = Internal.Raw.argInt 2
         let y = Internal.Raw.argInt 3
         handler renderer attr x y)
-    Internal.PangoC.zgtk_override_Pango_Renderer_draw_shape (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Renderer_draw_shape (Internal.Raw.gtype gtype) zcb)
 
   /// draw content for a glyph shaped with `PangoAttrShape` @x, @y are the coordinates of the left edge of the baseline, in user coordinates.
   let parentDrawShape (self: Renderer) (attr: AttrShape) (x: int) (y: int) : unit =
     Internal.PangoC.zgtk_parent_Pango_Renderer_draw_shape (Internal.Raw.obj self.Id (Internal.PangoC.pango_renderer_get_type ())) (Internal.Raw.obj attr.Id (Internal.PangoC.zgtk_tag_Pango_AttrShape ())) (i32 x) (i32 y)
 
   /// Gives a type made with `Glue.subclass` its own `draw_trapezoid`: Draws a trapezoid with the parallel sides aligned with the X axis using the given `PangoRenderer`; coordinates are in device space.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDrawTrapezoid (gtype: usize) (handler: Renderer -> RenderPart -> float -> float -> float -> float -> float -> float -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -4682,45 +4719,48 @@ module Renderer =
         let x12 = Internal.Raw.argFloat 6
         let x22 = Internal.Raw.argFloat 7
         handler renderer part y1 x11 x21 y2 x12 x22)
-    Internal.PangoC.zgtk_override_Pango_Renderer_draw_trapezoid (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Renderer_draw_trapezoid (Internal.Raw.gtype gtype) zcb)
 
   /// Draws a trapezoid with the parallel sides aligned with the X axis using the given `PangoRenderer`; coordinates are in device space.
   let parentDrawTrapezoid (self: Renderer) (part: RenderPart) (y1: float) (x11: float) (x21: float) (y2: float) (x12: float) (x22: float) : unit =
     Internal.PangoC.zgtk_parent_Pango_Renderer_draw_trapezoid (Internal.Raw.obj self.Id (Internal.PangoC.pango_renderer_get_type ())) (i32 part.Int) y1 x11 x21 y2 x12 x22
 
   /// Gives a type made with `Glue.subclass` its own `end`: Do renderer-specific cleanup after drawing
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideEnd (gtype: usize) (handler: Renderer -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let renderer = Renderer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler renderer)
-    Internal.PangoC.zgtk_override_Pango_Renderer_end (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Renderer_end (Internal.Raw.gtype gtype) zcb)
 
   /// Do renderer-specific cleanup after drawing
   let parentEnd (self: Renderer) : unit =
     Internal.PangoC.zgtk_parent_Pango_Renderer_end (Internal.Raw.obj self.Id (Internal.PangoC.pango_renderer_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `part_changed`: Informs Pango that the way that the rendering is done for @part has changed.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePartChanged (gtype: usize) (handler: Renderer -> RenderPart -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let renderer = Renderer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let part = RenderPart (int (Internal.Raw.argInt 1))
         handler renderer part)
-    Internal.PangoC.zgtk_override_Pango_Renderer_part_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Renderer_part_changed (Internal.Raw.gtype gtype) zcb)
 
   /// Informs Pango that the way that the rendering is done for @part has changed.
   let parentPartChanged (self: Renderer) (part: RenderPart) : unit =
     Internal.PangoC.zgtk_parent_Pango_Renderer_part_changed (Internal.Raw.obj self.Id (Internal.PangoC.pango_renderer_get_type ())) (i32 part.Int)
 
   /// Gives a type made with `Glue.subclass` its own `prepare_run`: updates the renderer for a new run
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overridePrepareRun (gtype: usize) (handler: Renderer -> GlyphItem -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let renderer = Renderer (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let run = GlyphItem (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 1) (Internal.PangoC.pango_glyph_item_get_type ()) false)
         handler renderer run)
-    Internal.PangoC.zgtk_override_Pango_Renderer_prepare_run (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.PangoC.zgtk_override_Pango_Renderer_prepare_run (Internal.Raw.gtype gtype) zcb)
 
   /// updates the renderer for a new run
   let parentPrepareRun (self: Renderer) (run: GlyphItem) : unit =

@@ -4039,24 +4039,26 @@ module Dialog =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.AdwC.adw_dialog_get_type ())) "notify::title" handler
 
   /// Gives a type made with `Glue.subclass` its own `close_attempt`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideCloseAttempt (gtype: usize) (handler: Dialog -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let dialog = Dialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler dialog)
-    Internal.AdwC.zgtk_override_Adw_Dialog_close_attempt (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.AdwC.zgtk_override_Adw_Dialog_close_attempt (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Adw_Dialog_close_attempt`.
   let parentCloseAttempt (self: Dialog) : unit =
     Internal.AdwC.zgtk_parent_Adw_Dialog_close_attempt (Internal.Raw.obj self.Id (Internal.AdwC.adw_dialog_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `closed`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideClosed (gtype: usize) (handler: Dialog -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let dialog = Dialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler dialog)
-    Internal.AdwC.zgtk_override_Adw_Dialog_closed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.AdwC.zgtk_override_Adw_Dialog_closed (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Adw_Dialog_closed`.
   let parentClosed (self: Dialog) : unit =
@@ -5063,12 +5065,13 @@ module ActionRow =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.AdwC.adw_action_row_get_type ())) "notify::title-lines" handler
 
   /// Gives a type made with `Glue.subclass` its own `activate`: Activates @self.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideActivate (gtype: usize) (handler: ActionRow -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = ActionRow (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.AdwC.zgtk_override_Adw_ActionRow_activate (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.AdwC.zgtk_override_Adw_ActionRow_activate (Internal.Raw.gtype gtype) zcb)
 
   /// Activates @self.
   let parentActivate (self: ActionRow) : unit =
@@ -5296,13 +5299,14 @@ module AlertDialog =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.AdwC.adw_alert_dialog_get_type ())) "notify::prefer-wide-layout" handler
 
   /// Gives a type made with `Glue.subclass` its own `response`: a virtual method.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideResponse (gtype: usize) (handler: AlertDialog -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = AlertDialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let response = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler self_ response)
-    Internal.AdwC.zgtk_override_Adw_AlertDialog_response (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.AdwC.zgtk_override_Adw_AlertDialog_response (Internal.Raw.gtype gtype) zcb)
 
   /// `zgtk_parent_Adw_AlertDialog_response`.
   let parentResponse (self: AlertDialog) (response: string) : unit =
@@ -5847,42 +5851,46 @@ module Swipeable =
     Gdk.Rectangle zo1
 
   /// Gives a type made with `Glue.subclass` its own `get_cancel_progress`: Gets the progress @self will snap back to after the gesture is canceled.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetCancelProgress (gtype: usize) (handler: Swipeable -> float) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = Swipeable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnFloat (handler self_))
-    Internal.AdwC.zgtk_override_Adw_Swipeable_get_cancel_progress (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.AdwC.zgtk_override_Adw_Swipeable_get_cancel_progress (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the progress @self will snap back to after the gesture is canceled.
   let parentGetCancelProgress (self: Swipeable) : float =
     ((Internal.AdwC.zgtk_parent_Adw_Swipeable_get_cancel_progress (Internal.Raw.obj self.Id (Internal.AdwC.adw_swipeable_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_distance`: Gets the swipe distance of @self.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetDistance (gtype: usize) (handler: Swipeable -> float) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = Swipeable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnFloat (handler self_))
-    Internal.AdwC.zgtk_override_Adw_Swipeable_get_distance (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.AdwC.zgtk_override_Adw_Swipeable_get_distance (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the swipe distance of @self.
   let parentGetDistance (self: Swipeable) : float =
     ((Internal.AdwC.zgtk_parent_Adw_Swipeable_get_distance (Internal.Raw.obj self.Id (Internal.AdwC.adw_swipeable_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_progress`: Gets the current progress of @self.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetProgress (gtype: usize) (handler: Swipeable -> float) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = Swipeable (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnFloat (handler self_))
-    Internal.AdwC.zgtk_override_Adw_Swipeable_get_progress (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.AdwC.zgtk_override_Adw_Swipeable_get_progress (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the current progress of @self.
   let parentGetProgress (self: Swipeable) : float =
     ((Internal.AdwC.zgtk_parent_Adw_Swipeable_get_progress (Internal.Raw.obj self.Id (Internal.AdwC.adw_swipeable_get_type ()))))
 
   /// Gives a type made with `Glue.subclass` its own `get_snap_points`: Gets the snap points of @self.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSnapPoints (gtype: usize) (handler: Swipeable -> (cptr * int)) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -5890,7 +5898,7 @@ module Swipeable =
         let (zres, nSnapPoints) = handler self_
         Internal.Raw.setI32 1 nSnapPoints
         Internal.Raw.returnPointer (zres))
-    Internal.AdwC.zgtk_override_Adw_Swipeable_get_snap_points (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.AdwC.zgtk_override_Adw_Swipeable_get_snap_points (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the snap points of @self.
   let parentGetSnapPoints (self: Swipeable) : list<float> =
@@ -5901,6 +5909,7 @@ module Swipeable =
     zv
 
   /// Gives a type made with `Glue.subclass` its own `get_swipe_area`: Gets the area @self can start a swipe from for the given direction and gesture type.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetSwipeArea (gtype: usize) (handler: Swipeable -> NavigationDirection -> bool -> Gdk.Rectangle) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -5909,7 +5918,7 @@ module Swipeable =
         let isDrag = (Internal.Raw.argInt 2 <> 0)
         let rect = handler self_ navigationDirection isDrag
         Internal.Raw.setRecord 3 (Internal.Raw.obj rect.Id (Internal.GdkC.gdk_rectangle_get_type ())) (Internal.GdkC.zgtk_sizeof_Gdk_Rectangle ()))
-    Internal.AdwC.zgtk_override_Adw_Swipeable_get_swipe_area (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.AdwC.zgtk_override_Adw_Swipeable_get_swipe_area (Internal.Raw.gtype gtype) zcb)
 
   /// Gets the area @self can start a swipe from for the given direction and gesture type.
   let parentGetSwipeArea (self: Swipeable) (navigationDirection: NavigationDirection) (isDrag: bool) : Gdk.Rectangle =
@@ -8576,13 +8585,14 @@ module MessageDialog =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.AdwC.adw_message_dialog_get_type ())) "notify::heading-use-markup" handler
 
   /// Gives a type made with `Glue.subclass` its own `response`: Deprecated. Emits the [signal@MessageDialog::response] signal with the given response ID.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideResponse (gtype: usize) (handler: MessageDialog -> string -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = MessageDialog (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let response = Internal.Raw.text (Internal.Raw.argPointer 1)
         handler self_ response)
-    Internal.AdwC.zgtk_override_Adw_MessageDialog_response (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.AdwC.zgtk_override_Adw_MessageDialog_response (Internal.Raw.gtype gtype) zcb)
 
   /// Deprecated. Emits the [signal@MessageDialog::response] signal with the given response ID.
   let parentResponse (self: MessageDialog) (response: string) : unit =
@@ -8775,48 +8785,52 @@ module NavigationPage =
     Internal.Raw.connect (Internal.Raw.obj self.Id (Internal.AdwC.adw_navigation_page_get_type ())) "notify::title" handler
 
   /// Gives a type made with `Glue.subclass` its own `hidden`: Called when the navigation view transition has been completed and the page is fully hidden.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideHidden (gtype: usize) (handler: NavigationPage -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = NavigationPage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.AdwC.zgtk_override_Adw_NavigationPage_hidden (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.AdwC.zgtk_override_Adw_NavigationPage_hidden (Internal.Raw.gtype gtype) zcb)
 
   /// Called when the navigation view transition has been completed and the page is fully hidden.
   let parentHidden (self: NavigationPage) : unit =
     Internal.AdwC.zgtk_parent_Adw_NavigationPage_hidden (Internal.Raw.obj self.Id (Internal.AdwC.adw_navigation_page_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `hiding`: Called when the page starts hiding at the beginning of the navigation view transition.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideHiding (gtype: usize) (handler: NavigationPage -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = NavigationPage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.AdwC.zgtk_override_Adw_NavigationPage_hiding (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.AdwC.zgtk_override_Adw_NavigationPage_hiding (Internal.Raw.gtype gtype) zcb)
 
   /// Called when the page starts hiding at the beginning of the navigation view transition.
   let parentHiding (self: NavigationPage) : unit =
     Internal.AdwC.zgtk_parent_Adw_NavigationPage_hiding (Internal.Raw.obj self.Id (Internal.AdwC.adw_navigation_page_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `showing`: Called when the page shows at the beginning of the navigation view transition.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideShowing (gtype: usize) (handler: NavigationPage -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = NavigationPage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.AdwC.zgtk_override_Adw_NavigationPage_showing (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.AdwC.zgtk_override_Adw_NavigationPage_showing (Internal.Raw.gtype gtype) zcb)
 
   /// Called when the page shows at the beginning of the navigation view transition.
   let parentShowing (self: NavigationPage) : unit =
     Internal.AdwC.zgtk_parent_Adw_NavigationPage_showing (Internal.Raw.obj self.Id (Internal.AdwC.adw_navigation_page_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `shown`: Called when the navigation view transition has been completed and the page is fully shown.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideShown (gtype: usize) (handler: NavigationPage -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let self_ = NavigationPage (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler self_)
-    Internal.AdwC.zgtk_override_Adw_NavigationPage_shown (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.AdwC.zgtk_override_Adw_NavigationPage_shown (Internal.Raw.gtype gtype) zcb)
 
   /// Called when the navigation view transition has been completed and the page is fully shown.
   let parentShown (self: NavigationPage) : unit =

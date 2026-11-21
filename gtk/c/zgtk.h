@@ -30,6 +30,10 @@ int64_t zgtk_wrap_counted(void *p, GType type, void *(*ref)(void *), void (*unre
 void zgtk_vfunc_set(gsize type, const char *key, void *closure);
 void *zgtk_vfunc_find(void *instance, const char *key);
 void *zgtk_vfunc_parent(void *instance, const char *key, gsize iface);
+// The class (or the interface's table) of a type made from `owner`, for an override to write
+// in: NULL for `owner` itself and for a type of another line.
+void *zgtk_class_below(gsize type, gsize owner);
+void *zgtk_iface_below(gsize type, gsize iface);
 
 // What a handler gives C only to borrow, held until the main loop next turns.
 void *zgtk_lend_counted(void *p, void *(*ref)(void *), void (*unref)(void *));

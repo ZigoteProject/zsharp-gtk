@@ -86,9 +86,11 @@ static void vf_GdkPixbuf_PixbufLoader_area_prepared(GdkPixbufLoader* a0) {
     void *f = zgtk_vfunc_find(a0, "GdkPixbuf_PixbufLoader.area_prepared");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_GdkPixbuf_PixbufLoader_area_prepared(gsize type, void *closure) {
-    GdkPixbufLoaderClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "GdkPixbuf_PixbufLoader.area_prepared", closure); k->area_prepared = (gpointer)vf_GdkPixbuf_PixbufLoader_area_prepared; }
+int zgtk_override_GdkPixbuf_PixbufLoader_area_prepared(gsize type, void *closure) {
+    GdkPixbufLoaderClass *k = zgtk_class_below(type, gdk_pixbuf_loader_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "GdkPixbuf_PixbufLoader.area_prepared", closure); k->area_prepared = (gpointer)vf_GdkPixbuf_PixbufLoader_area_prepared;
+    return 1;
 }
 void zgtk_parent_GdkPixbuf_PixbufLoader_area_prepared(GdkPixbufLoader* a0) {
     GdkPixbufLoaderClass *k = zgtk_vfunc_parent(a0, "GdkPixbuf_PixbufLoader.area_prepared", 0);
@@ -104,9 +106,11 @@ static void vf_GdkPixbuf_PixbufLoader_area_updated(GdkPixbufLoader* a0, int a1, 
     void *f = zgtk_vfunc_find(a0, "GdkPixbuf_PixbufLoader.area_updated");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_GdkPixbuf_PixbufLoader_area_updated(gsize type, void *closure) {
-    GdkPixbufLoaderClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "GdkPixbuf_PixbufLoader.area_updated", closure); k->area_updated = (gpointer)vf_GdkPixbuf_PixbufLoader_area_updated; }
+int zgtk_override_GdkPixbuf_PixbufLoader_area_updated(gsize type, void *closure) {
+    GdkPixbufLoaderClass *k = zgtk_class_below(type, gdk_pixbuf_loader_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "GdkPixbuf_PixbufLoader.area_updated", closure); k->area_updated = (gpointer)vf_GdkPixbuf_PixbufLoader_area_updated;
+    return 1;
 }
 void zgtk_parent_GdkPixbuf_PixbufLoader_area_updated(GdkPixbufLoader* a0, int a1, int a2, int a3, int a4) {
     GdkPixbufLoaderClass *k = zgtk_vfunc_parent(a0, "GdkPixbuf_PixbufLoader.area_updated", 0);
@@ -118,9 +122,11 @@ static void vf_GdkPixbuf_PixbufLoader_closed(GdkPixbufLoader* a0) {
     void *f = zgtk_vfunc_find(a0, "GdkPixbuf_PixbufLoader.closed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_GdkPixbuf_PixbufLoader_closed(gsize type, void *closure) {
-    GdkPixbufLoaderClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "GdkPixbuf_PixbufLoader.closed", closure); k->closed = (gpointer)vf_GdkPixbuf_PixbufLoader_closed; }
+int zgtk_override_GdkPixbuf_PixbufLoader_closed(gsize type, void *closure) {
+    GdkPixbufLoaderClass *k = zgtk_class_below(type, gdk_pixbuf_loader_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "GdkPixbuf_PixbufLoader.closed", closure); k->closed = (gpointer)vf_GdkPixbuf_PixbufLoader_closed;
+    return 1;
 }
 void zgtk_parent_GdkPixbuf_PixbufLoader_closed(GdkPixbufLoader* a0) {
     GdkPixbufLoaderClass *k = zgtk_vfunc_parent(a0, "GdkPixbuf_PixbufLoader.closed", 0);
@@ -134,9 +140,11 @@ static void vf_GdkPixbuf_PixbufLoader_size_prepared(GdkPixbufLoader* a0, int a1,
     void *f = zgtk_vfunc_find(a0, "GdkPixbuf_PixbufLoader.size_prepared");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_GdkPixbuf_PixbufLoader_size_prepared(gsize type, void *closure) {
-    GdkPixbufLoaderClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "GdkPixbuf_PixbufLoader.size_prepared", closure); k->size_prepared = (gpointer)vf_GdkPixbuf_PixbufLoader_size_prepared; }
+int zgtk_override_GdkPixbuf_PixbufLoader_size_prepared(gsize type, void *closure) {
+    GdkPixbufLoaderClass *k = zgtk_class_below(type, gdk_pixbuf_loader_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "GdkPixbuf_PixbufLoader.size_prepared", closure); k->size_prepared = (gpointer)vf_GdkPixbuf_PixbufLoader_size_prepared;
+    return 1;
 }
 void zgtk_parent_GdkPixbuf_PixbufLoader_size_prepared(GdkPixbufLoader* a0, int a1, int a2) {
     GdkPixbufLoaderClass *k = zgtk_vfunc_parent(a0, "GdkPixbuf_PixbufLoader.size_prepared", 0);

@@ -34,9 +34,11 @@ static void vf_Adw_Dialog_close_attempt(AdwDialog* a0) {
     void *f = zgtk_vfunc_find(a0, "Adw_Dialog.close_attempt");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Adw_Dialog_close_attempt(gsize type, void *closure) {
-    AdwDialogClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Adw_Dialog.close_attempt", closure); k->close_attempt = (gpointer)vf_Adw_Dialog_close_attempt; }
+int zgtk_override_Adw_Dialog_close_attempt(gsize type, void *closure) {
+    AdwDialogClass *k = zgtk_class_below(type, adw_dialog_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Adw_Dialog.close_attempt", closure); k->close_attempt = (gpointer)vf_Adw_Dialog_close_attempt;
+    return 1;
 }
 void zgtk_parent_Adw_Dialog_close_attempt(AdwDialog* a0) {
     AdwDialogClass *k = zgtk_vfunc_parent(a0, "Adw_Dialog.close_attempt", 0);
@@ -48,9 +50,11 @@ static void vf_Adw_Dialog_closed(AdwDialog* a0) {
     void *f = zgtk_vfunc_find(a0, "Adw_Dialog.closed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Adw_Dialog_closed(gsize type, void *closure) {
-    AdwDialogClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Adw_Dialog.closed", closure); k->closed = (gpointer)vf_Adw_Dialog_closed; }
+int zgtk_override_Adw_Dialog_closed(gsize type, void *closure) {
+    AdwDialogClass *k = zgtk_class_below(type, adw_dialog_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Adw_Dialog.closed", closure); k->closed = (gpointer)vf_Adw_Dialog_closed;
+    return 1;
 }
 void zgtk_parent_Adw_Dialog_closed(AdwDialog* a0) {
     AdwDialogClass *k = zgtk_vfunc_parent(a0, "Adw_Dialog.closed", 0);
@@ -62,9 +66,11 @@ static void vf_Adw_ActionRow_activate(AdwActionRow* a0) {
     void *f = zgtk_vfunc_find(a0, "Adw_ActionRow.activate");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Adw_ActionRow_activate(gsize type, void *closure) {
-    AdwActionRowClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Adw_ActionRow.activate", closure); k->activate = (gpointer)vf_Adw_ActionRow_activate; }
+int zgtk_override_Adw_ActionRow_activate(gsize type, void *closure) {
+    AdwActionRowClass *k = zgtk_class_below(type, adw_action_row_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Adw_ActionRow.activate", closure); k->activate = (gpointer)vf_Adw_ActionRow_activate;
+    return 1;
 }
 void zgtk_parent_Adw_ActionRow_activate(AdwActionRow* a0) {
     AdwActionRowClass *k = zgtk_vfunc_parent(a0, "Adw_ActionRow.activate", 0);
@@ -77,9 +83,11 @@ static void vf_Adw_AlertDialog_response(AdwAlertDialog* a0, const char* a1) {
     void *f = zgtk_vfunc_find(a0, "Adw_AlertDialog.response");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Adw_AlertDialog_response(gsize type, void *closure) {
-    AdwAlertDialogClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Adw_AlertDialog.response", closure); k->response = (gpointer)vf_Adw_AlertDialog_response; }
+int zgtk_override_Adw_AlertDialog_response(gsize type, void *closure) {
+    AdwAlertDialogClass *k = zgtk_class_below(type, adw_alert_dialog_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Adw_AlertDialog.response", closure); k->response = (gpointer)vf_Adw_AlertDialog_response;
+    return 1;
 }
 void zgtk_parent_Adw_AlertDialog_response(AdwAlertDialog* a0, const char* a1) {
     AdwAlertDialogClass *k = zgtk_vfunc_parent(a0, "Adw_AlertDialog.response", 0);
@@ -92,9 +100,11 @@ static double vf_Adw_Swipeable_get_cancel_progress(AdwSwipeable* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (double)c.ret.d;
 }
-void zgtk_override_Adw_Swipeable_get_cancel_progress(gsize type, void *closure) {
-    AdwSwipeableInterface *k = g_type_interface_peek(g_type_class_ref(type), adw_swipeable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Adw_Swipeable.get_cancel_progress", closure); k->get_cancel_progress = (gpointer)vf_Adw_Swipeable_get_cancel_progress; }
+int zgtk_override_Adw_Swipeable_get_cancel_progress(gsize type, void *closure) {
+    AdwSwipeableInterface *k = zgtk_iface_below(type, adw_swipeable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Adw_Swipeable.get_cancel_progress", closure); k->get_cancel_progress = (gpointer)vf_Adw_Swipeable_get_cancel_progress;
+    return 1;
 }
 double zgtk_parent_Adw_Swipeable_get_cancel_progress(AdwSwipeable* a0) {
     AdwSwipeableInterface *k = zgtk_vfunc_parent(a0, "Adw_Swipeable.get_cancel_progress", adw_swipeable_get_type());
@@ -107,9 +117,11 @@ static double vf_Adw_Swipeable_get_distance(AdwSwipeable* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (double)c.ret.d;
 }
-void zgtk_override_Adw_Swipeable_get_distance(gsize type, void *closure) {
-    AdwSwipeableInterface *k = g_type_interface_peek(g_type_class_ref(type), adw_swipeable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Adw_Swipeable.get_distance", closure); k->get_distance = (gpointer)vf_Adw_Swipeable_get_distance; }
+int zgtk_override_Adw_Swipeable_get_distance(gsize type, void *closure) {
+    AdwSwipeableInterface *k = zgtk_iface_below(type, adw_swipeable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Adw_Swipeable.get_distance", closure); k->get_distance = (gpointer)vf_Adw_Swipeable_get_distance;
+    return 1;
 }
 double zgtk_parent_Adw_Swipeable_get_distance(AdwSwipeable* a0) {
     AdwSwipeableInterface *k = zgtk_vfunc_parent(a0, "Adw_Swipeable.get_distance", adw_swipeable_get_type());
@@ -122,9 +134,11 @@ static double vf_Adw_Swipeable_get_progress(AdwSwipeable* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (double)c.ret.d;
 }
-void zgtk_override_Adw_Swipeable_get_progress(gsize type, void *closure) {
-    AdwSwipeableInterface *k = g_type_interface_peek(g_type_class_ref(type), adw_swipeable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Adw_Swipeable.get_progress", closure); k->get_progress = (gpointer)vf_Adw_Swipeable_get_progress; }
+int zgtk_override_Adw_Swipeable_get_progress(gsize type, void *closure) {
+    AdwSwipeableInterface *k = zgtk_iface_below(type, adw_swipeable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Adw_Swipeable.get_progress", closure); k->get_progress = (gpointer)vf_Adw_Swipeable_get_progress;
+    return 1;
 }
 double zgtk_parent_Adw_Swipeable_get_progress(AdwSwipeable* a0) {
     AdwSwipeableInterface *k = zgtk_vfunc_parent(a0, "Adw_Swipeable.get_progress", adw_swipeable_get_type());
@@ -138,9 +152,11 @@ static double* vf_Adw_Swipeable_get_snap_points(AdwSwipeable* a0, int* a1) {
     if (f) zgtk_dispatch(f, &c);
     return (double*)c.ret.p;
 }
-void zgtk_override_Adw_Swipeable_get_snap_points(gsize type, void *closure) {
-    AdwSwipeableInterface *k = g_type_interface_peek(g_type_class_ref(type), adw_swipeable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Adw_Swipeable.get_snap_points", closure); k->get_snap_points = (gpointer)vf_Adw_Swipeable_get_snap_points; }
+int zgtk_override_Adw_Swipeable_get_snap_points(gsize type, void *closure) {
+    AdwSwipeableInterface *k = zgtk_iface_below(type, adw_swipeable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Adw_Swipeable.get_snap_points", closure); k->get_snap_points = (gpointer)vf_Adw_Swipeable_get_snap_points;
+    return 1;
 }
 double* zgtk_parent_Adw_Swipeable_get_snap_points(AdwSwipeable* a0, int* a1) {
     AdwSwipeableInterface *k = zgtk_vfunc_parent(a0, "Adw_Swipeable.get_snap_points", adw_swipeable_get_type());
@@ -155,9 +171,11 @@ static void vf_Adw_Swipeable_get_swipe_area(AdwSwipeable* a0, AdwNavigationDirec
     void *f = zgtk_vfunc_find(a0, "Adw_Swipeable.get_swipe_area");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Adw_Swipeable_get_swipe_area(gsize type, void *closure) {
-    AdwSwipeableInterface *k = g_type_interface_peek(g_type_class_ref(type), adw_swipeable_get_type());
-    if (k) { zgtk_vfunc_set(type, "Adw_Swipeable.get_swipe_area", closure); k->get_swipe_area = (gpointer)vf_Adw_Swipeable_get_swipe_area; }
+int zgtk_override_Adw_Swipeable_get_swipe_area(gsize type, void *closure) {
+    AdwSwipeableInterface *k = zgtk_iface_below(type, adw_swipeable_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Adw_Swipeable.get_swipe_area", closure); k->get_swipe_area = (gpointer)vf_Adw_Swipeable_get_swipe_area;
+    return 1;
 }
 void zgtk_parent_Adw_Swipeable_get_swipe_area(AdwSwipeable* a0, AdwNavigationDirection a1, gboolean a2, GdkRectangle* a3) {
     AdwSwipeableInterface *k = zgtk_vfunc_parent(a0, "Adw_Swipeable.get_swipe_area", adw_swipeable_get_type());
@@ -170,9 +188,11 @@ static void vf_Adw_MessageDialog_response(AdwMessageDialog* a0, const char* a1) 
     void *f = zgtk_vfunc_find(a0, "Adw_MessageDialog.response");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Adw_MessageDialog_response(gsize type, void *closure) {
-    AdwMessageDialogClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Adw_MessageDialog.response", closure); k->response = (gpointer)vf_Adw_MessageDialog_response; }
+int zgtk_override_Adw_MessageDialog_response(gsize type, void *closure) {
+    AdwMessageDialogClass *k = zgtk_class_below(type, adw_message_dialog_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Adw_MessageDialog.response", closure); k->response = (gpointer)vf_Adw_MessageDialog_response;
+    return 1;
 }
 void zgtk_parent_Adw_MessageDialog_response(AdwMessageDialog* a0, const char* a1) {
     AdwMessageDialogClass *k = zgtk_vfunc_parent(a0, "Adw_MessageDialog.response", 0);
@@ -184,9 +204,11 @@ static void vf_Adw_NavigationPage_hidden(AdwNavigationPage* a0) {
     void *f = zgtk_vfunc_find(a0, "Adw_NavigationPage.hidden");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Adw_NavigationPage_hidden(gsize type, void *closure) {
-    AdwNavigationPageClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Adw_NavigationPage.hidden", closure); k->hidden = (gpointer)vf_Adw_NavigationPage_hidden; }
+int zgtk_override_Adw_NavigationPage_hidden(gsize type, void *closure) {
+    AdwNavigationPageClass *k = zgtk_class_below(type, adw_navigation_page_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Adw_NavigationPage.hidden", closure); k->hidden = (gpointer)vf_Adw_NavigationPage_hidden;
+    return 1;
 }
 void zgtk_parent_Adw_NavigationPage_hidden(AdwNavigationPage* a0) {
     AdwNavigationPageClass *k = zgtk_vfunc_parent(a0, "Adw_NavigationPage.hidden", 0);
@@ -198,9 +220,11 @@ static void vf_Adw_NavigationPage_hiding(AdwNavigationPage* a0) {
     void *f = zgtk_vfunc_find(a0, "Adw_NavigationPage.hiding");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Adw_NavigationPage_hiding(gsize type, void *closure) {
-    AdwNavigationPageClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Adw_NavigationPage.hiding", closure); k->hiding = (gpointer)vf_Adw_NavigationPage_hiding; }
+int zgtk_override_Adw_NavigationPage_hiding(gsize type, void *closure) {
+    AdwNavigationPageClass *k = zgtk_class_below(type, adw_navigation_page_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Adw_NavigationPage.hiding", closure); k->hiding = (gpointer)vf_Adw_NavigationPage_hiding;
+    return 1;
 }
 void zgtk_parent_Adw_NavigationPage_hiding(AdwNavigationPage* a0) {
     AdwNavigationPageClass *k = zgtk_vfunc_parent(a0, "Adw_NavigationPage.hiding", 0);
@@ -212,9 +236,11 @@ static void vf_Adw_NavigationPage_showing(AdwNavigationPage* a0) {
     void *f = zgtk_vfunc_find(a0, "Adw_NavigationPage.showing");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Adw_NavigationPage_showing(gsize type, void *closure) {
-    AdwNavigationPageClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Adw_NavigationPage.showing", closure); k->showing = (gpointer)vf_Adw_NavigationPage_showing; }
+int zgtk_override_Adw_NavigationPage_showing(gsize type, void *closure) {
+    AdwNavigationPageClass *k = zgtk_class_below(type, adw_navigation_page_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Adw_NavigationPage.showing", closure); k->showing = (gpointer)vf_Adw_NavigationPage_showing;
+    return 1;
 }
 void zgtk_parent_Adw_NavigationPage_showing(AdwNavigationPage* a0) {
     AdwNavigationPageClass *k = zgtk_vfunc_parent(a0, "Adw_NavigationPage.showing", 0);
@@ -226,9 +252,11 @@ static void vf_Adw_NavigationPage_shown(AdwNavigationPage* a0) {
     void *f = zgtk_vfunc_find(a0, "Adw_NavigationPage.shown");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Adw_NavigationPage_shown(gsize type, void *closure) {
-    AdwNavigationPageClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Adw_NavigationPage.shown", closure); k->shown = (gpointer)vf_Adw_NavigationPage_shown; }
+int zgtk_override_Adw_NavigationPage_shown(gsize type, void *closure) {
+    AdwNavigationPageClass *k = zgtk_class_below(type, adw_navigation_page_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Adw_NavigationPage.shown", closure); k->shown = (gpointer)vf_Adw_NavigationPage_shown;
+    return 1;
 }
 void zgtk_parent_Adw_NavigationPage_shown(AdwNavigationPage* a0) {
     AdwNavigationPageClass *k = zgtk_vfunc_parent(a0, "Adw_NavigationPage.shown", 0);

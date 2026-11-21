@@ -130,9 +130,11 @@ static hb_font_t* vf_Pango_Font_create_hb_font(PangoFont* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (hb_font_t*)c.ret.p;
 }
-void zgtk_override_Pango_Font_create_hb_font(gsize type, void *closure) {
-    PangoFontClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Font.create_hb_font", closure); k->create_hb_font = (gpointer)vf_Pango_Font_create_hb_font; }
+int zgtk_override_Pango_Font_create_hb_font(gsize type, void *closure) {
+    PangoFontClass *k = zgtk_class_below(type, pango_font_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Font.create_hb_font", closure); k->create_hb_font = (gpointer)vf_Pango_Font_create_hb_font;
+    return 1;
 }
 hb_font_t* zgtk_parent_Pango_Font_create_hb_font(PangoFont* a0) {
     PangoFontClass *k = zgtk_vfunc_parent(a0, "Pango_Font.create_hb_font", 0);
@@ -145,9 +147,11 @@ static PangoFontDescription* vf_Pango_Font_describe(PangoFont* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (PangoFontDescription*)c.ret.p;
 }
-void zgtk_override_Pango_Font_describe(gsize type, void *closure) {
-    PangoFontClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Font.describe", closure); k->describe = (gpointer)vf_Pango_Font_describe; }
+int zgtk_override_Pango_Font_describe(gsize type, void *closure) {
+    PangoFontClass *k = zgtk_class_below(type, pango_font_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Font.describe", closure); k->describe = (gpointer)vf_Pango_Font_describe;
+    return 1;
 }
 PangoFontDescription* zgtk_parent_Pango_Font_describe(PangoFont* a0) {
     PangoFontClass *k = zgtk_vfunc_parent(a0, "Pango_Font.describe", 0);
@@ -160,9 +164,11 @@ static PangoFontDescription* vf_Pango_Font_describe_absolute(PangoFont* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (PangoFontDescription*)c.ret.p;
 }
-void zgtk_override_Pango_Font_describe_absolute(gsize type, void *closure) {
-    PangoFontClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Font.describe_absolute", closure); k->describe_absolute = (gpointer)vf_Pango_Font_describe_absolute; }
+int zgtk_override_Pango_Font_describe_absolute(gsize type, void *closure) {
+    PangoFontClass *k = zgtk_class_below(type, pango_font_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Font.describe_absolute", closure); k->describe_absolute = (gpointer)vf_Pango_Font_describe_absolute;
+    return 1;
 }
 PangoFontDescription* zgtk_parent_Pango_Font_describe_absolute(PangoFont* a0) {
     PangoFontClass *k = zgtk_vfunc_parent(a0, "Pango_Font.describe_absolute", 0);
@@ -176,9 +182,11 @@ static PangoCoverage* vf_Pango_Font_get_coverage(PangoFont* a0, PangoLanguage* a
     if (f) zgtk_dispatch(f, &c);
     return (PangoCoverage*)c.ret.p;
 }
-void zgtk_override_Pango_Font_get_coverage(gsize type, void *closure) {
-    PangoFontClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Font.get_coverage", closure); k->get_coverage = (gpointer)vf_Pango_Font_get_coverage; }
+int zgtk_override_Pango_Font_get_coverage(gsize type, void *closure) {
+    PangoFontClass *k = zgtk_class_below(type, pango_font_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Font.get_coverage", closure); k->get_coverage = (gpointer)vf_Pango_Font_get_coverage;
+    return 1;
 }
 PangoCoverage* zgtk_parent_Pango_Font_get_coverage(PangoFont* a0, PangoLanguage* a1) {
     PangoFontClass *k = zgtk_vfunc_parent(a0, "Pango_Font.get_coverage", 0);
@@ -193,9 +201,11 @@ static void vf_Pango_Font_get_features(PangoFont* a0, hb_feature_t* a1, guint a2
     void *f = zgtk_vfunc_find(a0, "Pango_Font.get_features");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_Font_get_features(gsize type, void *closure) {
-    PangoFontClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Font.get_features", closure); k->get_features = (gpointer)vf_Pango_Font_get_features; }
+int zgtk_override_Pango_Font_get_features(gsize type, void *closure) {
+    PangoFontClass *k = zgtk_class_below(type, pango_font_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Font.get_features", closure); k->get_features = (gpointer)vf_Pango_Font_get_features;
+    return 1;
 }
 void zgtk_parent_Pango_Font_get_features(PangoFont* a0, hb_feature_t* a1, guint a2, guint* a3) {
     PangoFontClass *k = zgtk_vfunc_parent(a0, "Pango_Font.get_features", 0);
@@ -208,9 +218,11 @@ static PangoFontMap* vf_Pango_Font_get_font_map(PangoFont* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (PangoFontMap*)c.ret.p;
 }
-void zgtk_override_Pango_Font_get_font_map(gsize type, void *closure) {
-    PangoFontClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Font.get_font_map", closure); k->get_font_map = (gpointer)vf_Pango_Font_get_font_map; }
+int zgtk_override_Pango_Font_get_font_map(gsize type, void *closure) {
+    PangoFontClass *k = zgtk_class_below(type, pango_font_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Font.get_font_map", closure); k->get_font_map = (gpointer)vf_Pango_Font_get_font_map;
+    return 1;
 }
 PangoFontMap* zgtk_parent_Pango_Font_get_font_map(PangoFont* a0) {
     PangoFontClass *k = zgtk_vfunc_parent(a0, "Pango_Font.get_font_map", 0);
@@ -225,9 +237,11 @@ static void vf_Pango_Font_get_glyph_extents(PangoFont* a0, PangoGlyph a1, PangoR
     void *f = zgtk_vfunc_find(a0, "Pango_Font.get_glyph_extents");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_Font_get_glyph_extents(gsize type, void *closure) {
-    PangoFontClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Font.get_glyph_extents", closure); k->get_glyph_extents = (gpointer)vf_Pango_Font_get_glyph_extents; }
+int zgtk_override_Pango_Font_get_glyph_extents(gsize type, void *closure) {
+    PangoFontClass *k = zgtk_class_below(type, pango_font_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Font.get_glyph_extents", closure); k->get_glyph_extents = (gpointer)vf_Pango_Font_get_glyph_extents;
+    return 1;
 }
 void zgtk_parent_Pango_Font_get_glyph_extents(PangoFont* a0, PangoGlyph a1, PangoRectangle* a2, PangoRectangle* a3) {
     PangoFontClass *k = zgtk_vfunc_parent(a0, "Pango_Font.get_glyph_extents", 0);
@@ -241,9 +255,11 @@ static PangoFontMetrics* vf_Pango_Font_get_metrics(PangoFont* a0, PangoLanguage*
     if (f) zgtk_dispatch(f, &c);
     return (PangoFontMetrics*)c.ret.p;
 }
-void zgtk_override_Pango_Font_get_metrics(gsize type, void *closure) {
-    PangoFontClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Font.get_metrics", closure); k->get_metrics = (gpointer)vf_Pango_Font_get_metrics; }
+int zgtk_override_Pango_Font_get_metrics(gsize type, void *closure) {
+    PangoFontClass *k = zgtk_class_below(type, pango_font_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Font.get_metrics", closure); k->get_metrics = (gpointer)vf_Pango_Font_get_metrics;
+    return 1;
 }
 PangoFontMetrics* zgtk_parent_Pango_Font_get_metrics(PangoFont* a0, PangoLanguage* a1) {
     PangoFontClass *k = zgtk_vfunc_parent(a0, "Pango_Font.get_metrics", 0);
@@ -256,9 +272,11 @@ static PangoFontDescription* vf_Pango_FontFace_describe(PangoFontFace* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (PangoFontDescription*)c.ret.p;
 }
-void zgtk_override_Pango_FontFace_describe(gsize type, void *closure) {
-    PangoFontFaceClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontFace.describe", closure); k->describe = (gpointer)vf_Pango_FontFace_describe; }
+int zgtk_override_Pango_FontFace_describe(gsize type, void *closure) {
+    PangoFontFaceClass *k = zgtk_class_below(type, pango_font_face_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontFace.describe", closure); k->describe = (gpointer)vf_Pango_FontFace_describe;
+    return 1;
 }
 PangoFontDescription* zgtk_parent_Pango_FontFace_describe(PangoFontFace* a0) {
     PangoFontFaceClass *k = zgtk_vfunc_parent(a0, "Pango_FontFace.describe", 0);
@@ -271,9 +289,11 @@ static const char* vf_Pango_FontFace_get_face_name(PangoFontFace* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const char*)c.ret.p;
 }
-void zgtk_override_Pango_FontFace_get_face_name(gsize type, void *closure) {
-    PangoFontFaceClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontFace.get_face_name", closure); k->get_face_name = (gpointer)vf_Pango_FontFace_get_face_name; }
+int zgtk_override_Pango_FontFace_get_face_name(gsize type, void *closure) {
+    PangoFontFaceClass *k = zgtk_class_below(type, pango_font_face_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontFace.get_face_name", closure); k->get_face_name = (gpointer)vf_Pango_FontFace_get_face_name;
+    return 1;
 }
 const char* zgtk_parent_Pango_FontFace_get_face_name(PangoFontFace* a0) {
     PangoFontFaceClass *k = zgtk_vfunc_parent(a0, "Pango_FontFace.get_face_name", 0);
@@ -286,9 +306,11 @@ static PangoFontFamily* vf_Pango_FontFace_get_family(PangoFontFace* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (PangoFontFamily*)c.ret.p;
 }
-void zgtk_override_Pango_FontFace_get_family(gsize type, void *closure) {
-    PangoFontFaceClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontFace.get_family", closure); k->get_family = (gpointer)vf_Pango_FontFace_get_family; }
+int zgtk_override_Pango_FontFace_get_family(gsize type, void *closure) {
+    PangoFontFaceClass *k = zgtk_class_below(type, pango_font_face_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontFace.get_family", closure); k->get_family = (gpointer)vf_Pango_FontFace_get_family;
+    return 1;
 }
 PangoFontFamily* zgtk_parent_Pango_FontFace_get_family(PangoFontFace* a0) {
     PangoFontFaceClass *k = zgtk_vfunc_parent(a0, "Pango_FontFace.get_family", 0);
@@ -301,9 +323,11 @@ static gboolean vf_Pango_FontFace_is_synthesized(PangoFontFace* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Pango_FontFace_is_synthesized(gsize type, void *closure) {
-    PangoFontFaceClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontFace.is_synthesized", closure); k->is_synthesized = (gpointer)vf_Pango_FontFace_is_synthesized; }
+int zgtk_override_Pango_FontFace_is_synthesized(gsize type, void *closure) {
+    PangoFontFaceClass *k = zgtk_class_below(type, pango_font_face_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontFace.is_synthesized", closure); k->is_synthesized = (gpointer)vf_Pango_FontFace_is_synthesized;
+    return 1;
 }
 gboolean zgtk_parent_Pango_FontFace_is_synthesized(PangoFontFace* a0) {
     PangoFontFaceClass *k = zgtk_vfunc_parent(a0, "Pango_FontFace.is_synthesized", 0);
@@ -317,9 +341,11 @@ static void vf_Pango_FontFace_list_sizes(PangoFontFace* a0, int** a1, int* a2) {
     void *f = zgtk_vfunc_find(a0, "Pango_FontFace.list_sizes");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_FontFace_list_sizes(gsize type, void *closure) {
-    PangoFontFaceClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontFace.list_sizes", closure); k->list_sizes = (gpointer)vf_Pango_FontFace_list_sizes; }
+int zgtk_override_Pango_FontFace_list_sizes(gsize type, void *closure) {
+    PangoFontFaceClass *k = zgtk_class_below(type, pango_font_face_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontFace.list_sizes", closure); k->list_sizes = (gpointer)vf_Pango_FontFace_list_sizes;
+    return 1;
 }
 void zgtk_parent_Pango_FontFace_list_sizes(PangoFontFace* a0, int** a1, int* a2) {
     PangoFontFaceClass *k = zgtk_vfunc_parent(a0, "Pango_FontFace.list_sizes", 0);
@@ -333,9 +359,11 @@ static PangoFontFace* vf_Pango_FontFamily_get_face(PangoFontFamily* a0, const ch
     if (f) zgtk_dispatch(f, &c);
     return (PangoFontFace*)c.ret.p;
 }
-void zgtk_override_Pango_FontFamily_get_face(gsize type, void *closure) {
-    PangoFontFamilyClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontFamily.get_face", closure); k->get_face = (gpointer)vf_Pango_FontFamily_get_face; }
+int zgtk_override_Pango_FontFamily_get_face(gsize type, void *closure) {
+    PangoFontFamilyClass *k = zgtk_class_below(type, pango_font_family_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontFamily.get_face", closure); k->get_face = (gpointer)vf_Pango_FontFamily_get_face;
+    return 1;
 }
 PangoFontFace* zgtk_parent_Pango_FontFamily_get_face(PangoFontFamily* a0, const char* a1) {
     PangoFontFamilyClass *k = zgtk_vfunc_parent(a0, "Pango_FontFamily.get_face", 0);
@@ -348,9 +376,11 @@ static const char* vf_Pango_FontFamily_get_name(PangoFontFamily* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (const char*)c.ret.p;
 }
-void zgtk_override_Pango_FontFamily_get_name(gsize type, void *closure) {
-    PangoFontFamilyClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontFamily.get_name", closure); k->get_name = (gpointer)vf_Pango_FontFamily_get_name; }
+int zgtk_override_Pango_FontFamily_get_name(gsize type, void *closure) {
+    PangoFontFamilyClass *k = zgtk_class_below(type, pango_font_family_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontFamily.get_name", closure); k->get_name = (gpointer)vf_Pango_FontFamily_get_name;
+    return 1;
 }
 const char* zgtk_parent_Pango_FontFamily_get_name(PangoFontFamily* a0) {
     PangoFontFamilyClass *k = zgtk_vfunc_parent(a0, "Pango_FontFamily.get_name", 0);
@@ -363,9 +393,11 @@ static gboolean vf_Pango_FontFamily_is_monospace(PangoFontFamily* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Pango_FontFamily_is_monospace(gsize type, void *closure) {
-    PangoFontFamilyClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontFamily.is_monospace", closure); k->is_monospace = (gpointer)vf_Pango_FontFamily_is_monospace; }
+int zgtk_override_Pango_FontFamily_is_monospace(gsize type, void *closure) {
+    PangoFontFamilyClass *k = zgtk_class_below(type, pango_font_family_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontFamily.is_monospace", closure); k->is_monospace = (gpointer)vf_Pango_FontFamily_is_monospace;
+    return 1;
 }
 gboolean zgtk_parent_Pango_FontFamily_is_monospace(PangoFontFamily* a0) {
     PangoFontFamilyClass *k = zgtk_vfunc_parent(a0, "Pango_FontFamily.is_monospace", 0);
@@ -378,9 +410,11 @@ static gboolean vf_Pango_FontFamily_is_variable(PangoFontFamily* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (gboolean)c.ret.i;
 }
-void zgtk_override_Pango_FontFamily_is_variable(gsize type, void *closure) {
-    PangoFontFamilyClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontFamily.is_variable", closure); k->is_variable = (gpointer)vf_Pango_FontFamily_is_variable; }
+int zgtk_override_Pango_FontFamily_is_variable(gsize type, void *closure) {
+    PangoFontFamilyClass *k = zgtk_class_below(type, pango_font_family_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontFamily.is_variable", closure); k->is_variable = (gpointer)vf_Pango_FontFamily_is_variable;
+    return 1;
 }
 gboolean zgtk_parent_Pango_FontFamily_is_variable(PangoFontFamily* a0) {
     PangoFontFamilyClass *k = zgtk_vfunc_parent(a0, "Pango_FontFamily.is_variable", 0);
@@ -394,9 +428,11 @@ static void vf_Pango_FontFamily_list_faces(PangoFontFamily* a0, PangoFontFace***
     void *f = zgtk_vfunc_find(a0, "Pango_FontFamily.list_faces");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_FontFamily_list_faces(gsize type, void *closure) {
-    PangoFontFamilyClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontFamily.list_faces", closure); k->list_faces = (gpointer)vf_Pango_FontFamily_list_faces; }
+int zgtk_override_Pango_FontFamily_list_faces(gsize type, void *closure) {
+    PangoFontFamilyClass *k = zgtk_class_below(type, pango_font_family_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontFamily.list_faces", closure); k->list_faces = (gpointer)vf_Pango_FontFamily_list_faces;
+    return 1;
 }
 void zgtk_parent_Pango_FontFamily_list_faces(PangoFontFamily* a0, PangoFontFace*** a1, int* a2) {
     PangoFontFamilyClass *k = zgtk_vfunc_parent(a0, "Pango_FontFamily.list_faces", 0);
@@ -408,9 +444,11 @@ static void vf_Pango_FontMap_changed(PangoFontMap* a0) {
     void *f = zgtk_vfunc_find(a0, "Pango_FontMap.changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_FontMap_changed(gsize type, void *closure) {
-    PangoFontMapClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontMap.changed", closure); k->changed = (gpointer)vf_Pango_FontMap_changed; }
+int zgtk_override_Pango_FontMap_changed(gsize type, void *closure) {
+    PangoFontMapClass *k = zgtk_class_below(type, pango_font_map_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontMap.changed", closure); k->changed = (gpointer)vf_Pango_FontMap_changed;
+    return 1;
 }
 void zgtk_parent_Pango_FontMap_changed(PangoFontMap* a0) {
     PangoFontMapClass *k = zgtk_vfunc_parent(a0, "Pango_FontMap.changed", 0);
@@ -424,9 +462,11 @@ static PangoFontFace* vf_Pango_FontMap_get_face(PangoFontMap* a0, PangoFont* a1)
     if (f) zgtk_dispatch(f, &c);
     return (PangoFontFace*)c.ret.p;
 }
-void zgtk_override_Pango_FontMap_get_face(gsize type, void *closure) {
-    PangoFontMapClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontMap.get_face", closure); k->get_face = (gpointer)vf_Pango_FontMap_get_face; }
+int zgtk_override_Pango_FontMap_get_face(gsize type, void *closure) {
+    PangoFontMapClass *k = zgtk_class_below(type, pango_font_map_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontMap.get_face", closure); k->get_face = (gpointer)vf_Pango_FontMap_get_face;
+    return 1;
 }
 PangoFontFace* zgtk_parent_Pango_FontMap_get_face(PangoFontMap* a0, PangoFont* a1) {
     PangoFontMapClass *k = zgtk_vfunc_parent(a0, "Pango_FontMap.get_face", 0);
@@ -440,9 +480,11 @@ static PangoFontFamily* vf_Pango_FontMap_get_family(PangoFontMap* a0, const char
     if (f) zgtk_dispatch(f, &c);
     return (PangoFontFamily*)c.ret.p;
 }
-void zgtk_override_Pango_FontMap_get_family(gsize type, void *closure) {
-    PangoFontMapClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontMap.get_family", closure); k->get_family = (gpointer)vf_Pango_FontMap_get_family; }
+int zgtk_override_Pango_FontMap_get_family(gsize type, void *closure) {
+    PangoFontMapClass *k = zgtk_class_below(type, pango_font_map_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontMap.get_family", closure); k->get_family = (gpointer)vf_Pango_FontMap_get_family;
+    return 1;
 }
 PangoFontFamily* zgtk_parent_Pango_FontMap_get_family(PangoFontMap* a0, const char* a1) {
     PangoFontMapClass *k = zgtk_vfunc_parent(a0, "Pango_FontMap.get_family", 0);
@@ -455,9 +497,11 @@ static guint vf_Pango_FontMap_get_serial(PangoFontMap* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (guint)c.ret.i;
 }
-void zgtk_override_Pango_FontMap_get_serial(gsize type, void *closure) {
-    PangoFontMapClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontMap.get_serial", closure); k->get_serial = (gpointer)vf_Pango_FontMap_get_serial; }
+int zgtk_override_Pango_FontMap_get_serial(gsize type, void *closure) {
+    PangoFontMapClass *k = zgtk_class_below(type, pango_font_map_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontMap.get_serial", closure); k->get_serial = (gpointer)vf_Pango_FontMap_get_serial;
+    return 1;
 }
 guint zgtk_parent_Pango_FontMap_get_serial(PangoFontMap* a0) {
     PangoFontMapClass *k = zgtk_vfunc_parent(a0, "Pango_FontMap.get_serial", 0);
@@ -471,9 +515,11 @@ static void vf_Pango_FontMap_list_families(PangoFontMap* a0, PangoFontFamily*** 
     void *f = zgtk_vfunc_find(a0, "Pango_FontMap.list_families");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_FontMap_list_families(gsize type, void *closure) {
-    PangoFontMapClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontMap.list_families", closure); k->list_families = (gpointer)vf_Pango_FontMap_list_families; }
+int zgtk_override_Pango_FontMap_list_families(gsize type, void *closure) {
+    PangoFontMapClass *k = zgtk_class_below(type, pango_font_map_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontMap.list_families", closure); k->list_families = (gpointer)vf_Pango_FontMap_list_families;
+    return 1;
 }
 void zgtk_parent_Pango_FontMap_list_families(PangoFontMap* a0, PangoFontFamily*** a1, int* a2) {
     PangoFontMapClass *k = zgtk_vfunc_parent(a0, "Pango_FontMap.list_families", 0);
@@ -488,9 +534,11 @@ static PangoFont* vf_Pango_FontMap_load_font(PangoFontMap* a0, PangoContext* a1,
     if (f) zgtk_dispatch(f, &c);
     return (PangoFont*)c.ret.p;
 }
-void zgtk_override_Pango_FontMap_load_font(gsize type, void *closure) {
-    PangoFontMapClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontMap.load_font", closure); k->load_font = (gpointer)vf_Pango_FontMap_load_font; }
+int zgtk_override_Pango_FontMap_load_font(gsize type, void *closure) {
+    PangoFontMapClass *k = zgtk_class_below(type, pango_font_map_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontMap.load_font", closure); k->load_font = (gpointer)vf_Pango_FontMap_load_font;
+    return 1;
 }
 PangoFont* zgtk_parent_Pango_FontMap_load_font(PangoFontMap* a0, PangoContext* a1, const PangoFontDescription* a2) {
     PangoFontMapClass *k = zgtk_vfunc_parent(a0, "Pango_FontMap.load_font", 0);
@@ -506,9 +554,11 @@ static PangoFontset* vf_Pango_FontMap_load_fontset(PangoFontMap* a0, PangoContex
     if (f) zgtk_dispatch(f, &c);
     return (PangoFontset*)c.ret.p;
 }
-void zgtk_override_Pango_FontMap_load_fontset(gsize type, void *closure) {
-    PangoFontMapClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_FontMap.load_fontset", closure); k->load_fontset = (gpointer)vf_Pango_FontMap_load_fontset; }
+int zgtk_override_Pango_FontMap_load_fontset(gsize type, void *closure) {
+    PangoFontMapClass *k = zgtk_class_below(type, pango_font_map_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_FontMap.load_fontset", closure); k->load_fontset = (gpointer)vf_Pango_FontMap_load_fontset;
+    return 1;
 }
 PangoFontset* zgtk_parent_Pango_FontMap_load_fontset(PangoFontMap* a0, PangoContext* a1, const PangoFontDescription* a2, PangoLanguage* a3) {
     PangoFontMapClass *k = zgtk_vfunc_parent(a0, "Pango_FontMap.load_fontset", 0);
@@ -523,9 +573,11 @@ static void vf_Pango_Fontset_foreach(PangoFontset* a0, PangoFontsetForeachFunc a
     void *f = zgtk_vfunc_find(a0, "Pango_Fontset.foreach");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_Fontset_foreach(gsize type, void *closure) {
-    PangoFontsetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Fontset.foreach", closure); k->foreach = (gpointer)vf_Pango_Fontset_foreach; }
+int zgtk_override_Pango_Fontset_foreach(gsize type, void *closure) {
+    PangoFontsetClass *k = zgtk_class_below(type, pango_fontset_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Fontset.foreach", closure); k->foreach = (gpointer)vf_Pango_Fontset_foreach;
+    return 1;
 }
 void zgtk_parent_Pango_Fontset_foreach(PangoFontset* a0, PangoFontsetForeachFunc a1, gpointer a2) {
     PangoFontsetClass *k = zgtk_vfunc_parent(a0, "Pango_Fontset.foreach", 0);
@@ -539,9 +591,11 @@ static PangoFont* vf_Pango_Fontset_get_font(PangoFontset* a0, guint a1) {
     if (f) zgtk_dispatch(f, &c);
     return (PangoFont*)c.ret.p;
 }
-void zgtk_override_Pango_Fontset_get_font(gsize type, void *closure) {
-    PangoFontsetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Fontset.get_font", closure); k->get_font = (gpointer)vf_Pango_Fontset_get_font; }
+int zgtk_override_Pango_Fontset_get_font(gsize type, void *closure) {
+    PangoFontsetClass *k = zgtk_class_below(type, pango_fontset_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Fontset.get_font", closure); k->get_font = (gpointer)vf_Pango_Fontset_get_font;
+    return 1;
 }
 PangoFont* zgtk_parent_Pango_Fontset_get_font(PangoFontset* a0, guint a1) {
     PangoFontsetClass *k = zgtk_vfunc_parent(a0, "Pango_Fontset.get_font", 0);
@@ -554,9 +608,11 @@ static PangoLanguage* vf_Pango_Fontset_get_language(PangoFontset* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (PangoLanguage*)c.ret.p;
 }
-void zgtk_override_Pango_Fontset_get_language(gsize type, void *closure) {
-    PangoFontsetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Fontset.get_language", closure); k->get_language = (gpointer)vf_Pango_Fontset_get_language; }
+int zgtk_override_Pango_Fontset_get_language(gsize type, void *closure) {
+    PangoFontsetClass *k = zgtk_class_below(type, pango_fontset_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Fontset.get_language", closure); k->get_language = (gpointer)vf_Pango_Fontset_get_language;
+    return 1;
 }
 PangoLanguage* zgtk_parent_Pango_Fontset_get_language(PangoFontset* a0) {
     PangoFontsetClass *k = zgtk_vfunc_parent(a0, "Pango_Fontset.get_language", 0);
@@ -569,9 +625,11 @@ static PangoFontMetrics* vf_Pango_Fontset_get_metrics(PangoFontset* a0) {
     if (f) zgtk_dispatch(f, &c);
     return (PangoFontMetrics*)c.ret.p;
 }
-void zgtk_override_Pango_Fontset_get_metrics(gsize type, void *closure) {
-    PangoFontsetClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Fontset.get_metrics", closure); k->get_metrics = (gpointer)vf_Pango_Fontset_get_metrics; }
+int zgtk_override_Pango_Fontset_get_metrics(gsize type, void *closure) {
+    PangoFontsetClass *k = zgtk_class_below(type, pango_fontset_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Fontset.get_metrics", closure); k->get_metrics = (gpointer)vf_Pango_Fontset_get_metrics;
+    return 1;
 }
 PangoFontMetrics* zgtk_parent_Pango_Fontset_get_metrics(PangoFontset* a0) {
     PangoFontsetClass *k = zgtk_vfunc_parent(a0, "Pango_Fontset.get_metrics", 0);
@@ -656,9 +714,11 @@ static void vf_Pango_Renderer_begin(PangoRenderer* a0) {
     void *f = zgtk_vfunc_find(a0, "Pango_Renderer.begin");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_Renderer_begin(gsize type, void *closure) {
-    PangoRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Renderer.begin", closure); k->begin = (gpointer)vf_Pango_Renderer_begin; }
+int zgtk_override_Pango_Renderer_begin(gsize type, void *closure) {
+    PangoRendererClass *k = zgtk_class_below(type, pango_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Renderer.begin", closure); k->begin = (gpointer)vf_Pango_Renderer_begin;
+    return 1;
 }
 void zgtk_parent_Pango_Renderer_begin(PangoRenderer* a0) {
     PangoRendererClass *k = zgtk_vfunc_parent(a0, "Pango_Renderer.begin", 0);
@@ -674,9 +734,11 @@ static void vf_Pango_Renderer_draw_error_underline(PangoRenderer* a0, int a1, in
     void *f = zgtk_vfunc_find(a0, "Pango_Renderer.draw_error_underline");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_Renderer_draw_error_underline(gsize type, void *closure) {
-    PangoRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Renderer.draw_error_underline", closure); k->draw_error_underline = (gpointer)vf_Pango_Renderer_draw_error_underline; }
+int zgtk_override_Pango_Renderer_draw_error_underline(gsize type, void *closure) {
+    PangoRendererClass *k = zgtk_class_below(type, pango_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Renderer.draw_error_underline", closure); k->draw_error_underline = (gpointer)vf_Pango_Renderer_draw_error_underline;
+    return 1;
 }
 void zgtk_parent_Pango_Renderer_draw_error_underline(PangoRenderer* a0, int a1, int a2, int a3, int a4) {
     PangoRendererClass *k = zgtk_vfunc_parent(a0, "Pango_Renderer.draw_error_underline", 0);
@@ -692,9 +754,11 @@ static void vf_Pango_Renderer_draw_glyph(PangoRenderer* a0, PangoFont* a1, Pango
     void *f = zgtk_vfunc_find(a0, "Pango_Renderer.draw_glyph");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_Renderer_draw_glyph(gsize type, void *closure) {
-    PangoRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Renderer.draw_glyph", closure); k->draw_glyph = (gpointer)vf_Pango_Renderer_draw_glyph; }
+int zgtk_override_Pango_Renderer_draw_glyph(gsize type, void *closure) {
+    PangoRendererClass *k = zgtk_class_below(type, pango_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Renderer.draw_glyph", closure); k->draw_glyph = (gpointer)vf_Pango_Renderer_draw_glyph;
+    return 1;
 }
 void zgtk_parent_Pango_Renderer_draw_glyph(PangoRenderer* a0, PangoFont* a1, PangoGlyph a2, double a3, double a4) {
     PangoRendererClass *k = zgtk_vfunc_parent(a0, "Pango_Renderer.draw_glyph", 0);
@@ -710,9 +774,11 @@ static void vf_Pango_Renderer_draw_glyph_item(PangoRenderer* a0, const char* a1,
     void *f = zgtk_vfunc_find(a0, "Pango_Renderer.draw_glyph_item");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_Renderer_draw_glyph_item(gsize type, void *closure) {
-    PangoRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Renderer.draw_glyph_item", closure); k->draw_glyph_item = (gpointer)vf_Pango_Renderer_draw_glyph_item; }
+int zgtk_override_Pango_Renderer_draw_glyph_item(gsize type, void *closure) {
+    PangoRendererClass *k = zgtk_class_below(type, pango_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Renderer.draw_glyph_item", closure); k->draw_glyph_item = (gpointer)vf_Pango_Renderer_draw_glyph_item;
+    return 1;
 }
 void zgtk_parent_Pango_Renderer_draw_glyph_item(PangoRenderer* a0, const char* a1, PangoGlyphItem* a2, int a3, int a4) {
     PangoRendererClass *k = zgtk_vfunc_parent(a0, "Pango_Renderer.draw_glyph_item", 0);
@@ -728,9 +794,11 @@ static void vf_Pango_Renderer_draw_glyphs(PangoRenderer* a0, PangoFont* a1, Pang
     void *f = zgtk_vfunc_find(a0, "Pango_Renderer.draw_glyphs");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_Renderer_draw_glyphs(gsize type, void *closure) {
-    PangoRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Renderer.draw_glyphs", closure); k->draw_glyphs = (gpointer)vf_Pango_Renderer_draw_glyphs; }
+int zgtk_override_Pango_Renderer_draw_glyphs(gsize type, void *closure) {
+    PangoRendererClass *k = zgtk_class_below(type, pango_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Renderer.draw_glyphs", closure); k->draw_glyphs = (gpointer)vf_Pango_Renderer_draw_glyphs;
+    return 1;
 }
 void zgtk_parent_Pango_Renderer_draw_glyphs(PangoRenderer* a0, PangoFont* a1, PangoGlyphString* a2, int a3, int a4) {
     PangoRendererClass *k = zgtk_vfunc_parent(a0, "Pango_Renderer.draw_glyphs", 0);
@@ -747,9 +815,11 @@ static void vf_Pango_Renderer_draw_rectangle(PangoRenderer* a0, PangoRenderPart 
     void *f = zgtk_vfunc_find(a0, "Pango_Renderer.draw_rectangle");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_Renderer_draw_rectangle(gsize type, void *closure) {
-    PangoRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Renderer.draw_rectangle", closure); k->draw_rectangle = (gpointer)vf_Pango_Renderer_draw_rectangle; }
+int zgtk_override_Pango_Renderer_draw_rectangle(gsize type, void *closure) {
+    PangoRendererClass *k = zgtk_class_below(type, pango_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Renderer.draw_rectangle", closure); k->draw_rectangle = (gpointer)vf_Pango_Renderer_draw_rectangle;
+    return 1;
 }
 void zgtk_parent_Pango_Renderer_draw_rectangle(PangoRenderer* a0, PangoRenderPart a1, int a2, int a3, int a4, int a5) {
     PangoRendererClass *k = zgtk_vfunc_parent(a0, "Pango_Renderer.draw_rectangle", 0);
@@ -764,9 +834,11 @@ static void vf_Pango_Renderer_draw_shape(PangoRenderer* a0, PangoAttrShape* a1, 
     void *f = zgtk_vfunc_find(a0, "Pango_Renderer.draw_shape");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_Renderer_draw_shape(gsize type, void *closure) {
-    PangoRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Renderer.draw_shape", closure); k->draw_shape = (gpointer)vf_Pango_Renderer_draw_shape; }
+int zgtk_override_Pango_Renderer_draw_shape(gsize type, void *closure) {
+    PangoRendererClass *k = zgtk_class_below(type, pango_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Renderer.draw_shape", closure); k->draw_shape = (gpointer)vf_Pango_Renderer_draw_shape;
+    return 1;
 }
 void zgtk_parent_Pango_Renderer_draw_shape(PangoRenderer* a0, PangoAttrShape* a1, int a2, int a3) {
     PangoRendererClass *k = zgtk_vfunc_parent(a0, "Pango_Renderer.draw_shape", 0);
@@ -785,9 +857,11 @@ static void vf_Pango_Renderer_draw_trapezoid(PangoRenderer* a0, PangoRenderPart 
     void *f = zgtk_vfunc_find(a0, "Pango_Renderer.draw_trapezoid");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_Renderer_draw_trapezoid(gsize type, void *closure) {
-    PangoRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Renderer.draw_trapezoid", closure); k->draw_trapezoid = (gpointer)vf_Pango_Renderer_draw_trapezoid; }
+int zgtk_override_Pango_Renderer_draw_trapezoid(gsize type, void *closure) {
+    PangoRendererClass *k = zgtk_class_below(type, pango_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Renderer.draw_trapezoid", closure); k->draw_trapezoid = (gpointer)vf_Pango_Renderer_draw_trapezoid;
+    return 1;
 }
 void zgtk_parent_Pango_Renderer_draw_trapezoid(PangoRenderer* a0, PangoRenderPart a1, double a2, double a3, double a4, double a5, double a6, double a7) {
     PangoRendererClass *k = zgtk_vfunc_parent(a0, "Pango_Renderer.draw_trapezoid", 0);
@@ -799,9 +873,11 @@ static void vf_Pango_Renderer_end(PangoRenderer* a0) {
     void *f = zgtk_vfunc_find(a0, "Pango_Renderer.end");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_Renderer_end(gsize type, void *closure) {
-    PangoRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Renderer.end", closure); k->end = (gpointer)vf_Pango_Renderer_end; }
+int zgtk_override_Pango_Renderer_end(gsize type, void *closure) {
+    PangoRendererClass *k = zgtk_class_below(type, pango_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Renderer.end", closure); k->end = (gpointer)vf_Pango_Renderer_end;
+    return 1;
 }
 void zgtk_parent_Pango_Renderer_end(PangoRenderer* a0) {
     PangoRendererClass *k = zgtk_vfunc_parent(a0, "Pango_Renderer.end", 0);
@@ -814,9 +890,11 @@ static void vf_Pango_Renderer_part_changed(PangoRenderer* a0, PangoRenderPart a1
     void *f = zgtk_vfunc_find(a0, "Pango_Renderer.part_changed");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_Renderer_part_changed(gsize type, void *closure) {
-    PangoRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Renderer.part_changed", closure); k->part_changed = (gpointer)vf_Pango_Renderer_part_changed; }
+int zgtk_override_Pango_Renderer_part_changed(gsize type, void *closure) {
+    PangoRendererClass *k = zgtk_class_below(type, pango_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Renderer.part_changed", closure); k->part_changed = (gpointer)vf_Pango_Renderer_part_changed;
+    return 1;
 }
 void zgtk_parent_Pango_Renderer_part_changed(PangoRenderer* a0, PangoRenderPart a1) {
     PangoRendererClass *k = zgtk_vfunc_parent(a0, "Pango_Renderer.part_changed", 0);
@@ -829,9 +907,11 @@ static void vf_Pango_Renderer_prepare_run(PangoRenderer* a0, PangoLayoutRun* a1)
     void *f = zgtk_vfunc_find(a0, "Pango_Renderer.prepare_run");
     if (f) zgtk_dispatch(f, &c);
 }
-void zgtk_override_Pango_Renderer_prepare_run(gsize type, void *closure) {
-    PangoRendererClass *k = g_type_class_ref(type);
-    if (k) { zgtk_vfunc_set(type, "Pango_Renderer.prepare_run", closure); k->prepare_run = (gpointer)vf_Pango_Renderer_prepare_run; }
+int zgtk_override_Pango_Renderer_prepare_run(gsize type, void *closure) {
+    PangoRendererClass *k = zgtk_class_below(type, pango_renderer_get_type());
+    if (!k) { zgtk_drop(closure); return 0; }
+    zgtk_vfunc_set(type, "Pango_Renderer.prepare_run", closure); k->prepare_run = (gpointer)vf_Pango_Renderer_prepare_run;
+    return 1;
 }
 void zgtk_parent_Pango_Renderer_prepare_run(PangoRenderer* a0, PangoLayoutRun* a1) {
     PangoRendererClass *k = zgtk_vfunc_parent(a0, "Pango_Renderer.prepare_run", 0);

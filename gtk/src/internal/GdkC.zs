@@ -654,18 +654,18 @@ extern zgtk_lend_Gdk_ProximityEvent : cptr -> cptr
 extern zgtk_lend_Gdk_ScrollEvent : cptr -> cptr
 extern zgtk_lend_Gdk_TouchEvent : cptr -> cptr
 extern zgtk_lend_Gdk_TouchpadEvent : cptr -> cptr
-extern zgtk_override_Gdk_ContentProvider_attach_clipboard : usize -> cptr -> unit
-extern zgtk_override_Gdk_ContentProvider_content_changed : usize -> cptr -> unit
-extern zgtk_override_Gdk_ContentProvider_detach_clipboard : usize -> cptr -> unit
-extern zgtk_override_Gdk_ContentProvider_ref_formats : usize -> cptr -> unit
-extern zgtk_override_Gdk_ContentProvider_ref_storable_formats : usize -> cptr -> unit
-extern zgtk_override_Gdk_ContentProvider_write_mime_type_async : usize -> cptr -> unit
-extern zgtk_override_Gdk_Paintable_get_current_image : usize -> cptr -> unit
-extern zgtk_override_Gdk_Paintable_get_flags : usize -> cptr -> unit
-extern zgtk_override_Gdk_Paintable_get_intrinsic_aspect_ratio : usize -> cptr -> unit
-extern zgtk_override_Gdk_Paintable_get_intrinsic_height : usize -> cptr -> unit
-extern zgtk_override_Gdk_Paintable_get_intrinsic_width : usize -> cptr -> unit
-extern zgtk_override_Gdk_Paintable_snapshot : usize -> cptr -> unit
+extern zgtk_override_Gdk_ContentProvider_attach_clipboard : usize -> cptr -> i32
+extern zgtk_override_Gdk_ContentProvider_content_changed : usize -> cptr -> i32
+extern zgtk_override_Gdk_ContentProvider_detach_clipboard : usize -> cptr -> i32
+extern zgtk_override_Gdk_ContentProvider_ref_formats : usize -> cptr -> i32
+extern zgtk_override_Gdk_ContentProvider_ref_storable_formats : usize -> cptr -> i32
+extern zgtk_override_Gdk_ContentProvider_write_mime_type_async : usize -> cptr -> i32
+extern zgtk_override_Gdk_Paintable_get_current_image : usize -> cptr -> i32
+extern zgtk_override_Gdk_Paintable_get_flags : usize -> cptr -> i32
+extern zgtk_override_Gdk_Paintable_get_intrinsic_aspect_ratio : usize -> cptr -> i32
+extern zgtk_override_Gdk_Paintable_get_intrinsic_height : usize -> cptr -> i32
+extern zgtk_override_Gdk_Paintable_get_intrinsic_width : usize -> cptr -> i32
+extern zgtk_override_Gdk_Paintable_snapshot : usize -> cptr -> i32
 extern zgtk_parent_Gdk_ContentProvider_attach_clipboard : cptr -> cptr -> unit
 extern zgtk_parent_Gdk_ContentProvider_content_changed : cptr -> unit
 extern zgtk_parent_Gdk_ContentProvider_detach_clipboard : cptr -> cptr -> unit

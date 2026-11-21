@@ -91,8 +91,8 @@ extern zgtk_strv_len : cptr -> int
 extern zgtk_strv_get : cptr -> int -> cptr
 extern zgtk_strv_free : cptr -> unit
 extern zgtk_free : cptr -> unit
-extern zgtk_list_len : cptr -> i32 -> int
-extern zgtk_list_nth : cptr -> int -> i32 -> cptr
+extern zgtk_list_data : cptr -> cptr
+extern zgtk_list_next : cptr -> cptr
 extern zgtk_list_free : cptr -> i32 -> unit
 extern zgtk_list_new : cptr -> int -> i32 -> cptr
 extern zgtk_array_new : int -> i32 -> cptr
@@ -270,6 +270,12 @@ let dupOption (s: option<string>) : cptr =
   | Some text -> zgtk_dup text
   | None -> zgtk_null ()
 
+/// What a class's `overrideX` did: panics for a type it was given that isn't made from the
+/// class (or the class itself), or hasn't the interface, whose virtual method it is.
+let overridden (given: i32) : unit =
+  if given = i32 0 then
+    panic "not a type made from the class, or with the interface, whose virtual method this is"
+
 /// A Z# function as a GClosure, for a function that takes one. Inside it, `argInt` and the
 /// others read what it's called with, and `returnInt` and the others set what it gives.
 let closure (f: unit -> unit) : cptr = zgtk_closure_new f
@@ -411,12 +417,11 @@ let strvList (v: cptr) (mode: int) : list<string> =
 
 /// The pointers a GList (or a GSList: `single`) holds. `free`: the list is the caller's.
 let pointers (l: cptr) (single: bool) (free: bool) : list<cptr> =
-  let s = if single then i32 1 else i32 0
-  let n = zgtk_list_len l s
-  let rec go (i: int) (acc: list<cptr>) : list<cptr> =
-    if i < 0 then acc else go (i - 1) (zgtk_list_nth l i s :: acc)
-  let xs = go (n - 1) []
-  if free then zgtk_list_free l s
+  // one walk: the nth element from the start each time is a walk an element
+  let rec go (at: cptr) (acc: list<cptr>) : list<cptr> =
+    if isNull at then List.rev acc else go (zgtk_list_next at) (zgtk_list_data at :: acc)
+  let xs = go l []
+  if free then zgtk_list_free l (if single then i32 1 else i32 0)
   xs
 
 /// A C array of integers of `size` bytes each, for `free` or a function that takes it over.

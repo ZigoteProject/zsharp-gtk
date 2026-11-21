@@ -1546,9 +1546,10 @@ class Gen:
                     print("gir: %s.%s (virtual): %s" % (full, name, why), file=sys.stderr)
                 continue
             key = "%s.%s" % (cn, name)
-            klass = "g_type_class_ref(type)"
-            if iface:
-                klass = "g_type_interface_peek(g_type_class_ref(type), %s())" % g.types[full].gtype
+            info = g.types[full]
+            # a fundamental type has no function of its own to give it: it's found by its name
+            owner = "%s()" % info.gtype if info.gtype != "intern" else 'g_type_from_name("%s")' % el.get(GLIB + "type-name")
+            klass = "zgtk_%s_below(type, %s)" % ("iface" if iface else "class", owner)
             self.c.append("static %s vf_%s_%s(%s) {" % (rct, cn, name, ", ".join(sig)))
             self.c.append("    ZCall c; memset(&c, 0, sizeof c); c.n = %d;" % len(params))
             self.c += ["    " + x for x in sets]
@@ -1557,23 +1558,26 @@ class Gen:
             if member:
                 self.c.append("    return (%s)c.ret.%s;" % (rct, member))
             self.c.append("}")
-            self.c.append("void zgtk_override_%s_%s(gsize type, void *closure) {" % (cn, name))
+            self.c.append("int zgtk_override_%s_%s(gsize type, void *closure) {" % (cn, name))
             self.c.append("    %s *k = %s;" % (struct.ctype, klass))
-            self.c.append('    if (k) { zgtk_vfunc_set(type, "%s", closure); k->%s = (gpointer)vf_%s_%s; }' % (key, name, cn, name))
+            self.c.append("    if (!k) { zgtk_drop(closure); return 0; }")
+            self.c.append('    zgtk_vfunc_set(type, "%s", closure); k->%s = (gpointer)vf_%s_%s;' % (key, name, cn, name))
+            self.c.append("    return 1;")
             self.c.append("}")
             names.add(fn)
             self.given += 1
             self.gave["vfunc"] += 1
-            self.ext("  extern zgtk_override_%s_%s : usize -> cptr -> unit" % (cn, name))
+            self.ext("  extern zgtk_override_%s_%s : usize -> cptr -> i32" % (cn, name))
             self.emit()
             self.emit("  /// Gives a type made with `Glue.subclass` its own `%s`: %s" % (name, doc(vm, "a virtual method.")))
+            self.emit("  /// Panics for a type not made from the class, or without the interface, or the class itself.")
             self.emit("  let %s (gtype: usize) (handler: %s) : unit =" % (fn, ftype))
             self.emit("    let zcb =")
             self.emit("      Internal.Raw.hold (fun () ->")
             for line in lines[:-1]:
                 self.emit("        " + line)
             self.emit("        %s)" % lines[-1])
-            self.emit("    %szgtk_override_%s_%s (Internal.Raw.gtype gtype) zcb" % (self.cmod(g.name), cn, name))
+            self.emit("    Internal.Raw.overridden (%szgtk_override_%s_%s (Internal.Raw.gtype gtype) zcb)" % (self.cmod(g.name), cn, name))
             self.emit()
             # the one it took the place of: its parent type's
             mark, cmark = len(self.out), len(self.c)

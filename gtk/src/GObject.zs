@@ -1095,18 +1095,20 @@ module Object =
       handler pspec)
 
   /// Gives a type made with `Glue.subclass` its own `constructed`: the @constructed function is called by g_object_new() as the final step of the object creation process.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideConstructed (gtype: usize) (handler: Object -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let object = Object (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler object)
-    Internal.GObjectC.zgtk_override_GObject_Object_constructed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GObjectC.zgtk_override_GObject_Object_constructed (Internal.Raw.gtype gtype) zcb)
 
   /// the @constructed function is called by g_object_new() as the final step of the object creation process.
   let parentConstructed (self: Object) : unit =
     Internal.GObjectC.zgtk_parent_GObject_Object_constructed (Internal.Raw.obj self.Id (Internal.GObjectC.g_object_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `dispatch_properties_changed`: emits property change notification for a bunch of properties.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDispatchPropertiesChanged (gtype: usize) (handler: Object -> int -> ParamSpec -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -1114,37 +1116,40 @@ module Object =
         let nPspecs = Internal.Raw.argInt 1
         let pspecs = ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (Internal.Raw.argPointer 2) (i32 0))
         handler object nPspecs pspecs)
-    Internal.GObjectC.zgtk_override_GObject_Object_dispatch_properties_changed (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GObjectC.zgtk_override_GObject_Object_dispatch_properties_changed (Internal.Raw.gtype gtype) zcb)
 
   /// emits property change notification for a bunch of properties.
   let parentDispatchPropertiesChanged (self: Object) (nPspecs: int) (pspecs: ParamSpec) : unit =
     Internal.GObjectC.zgtk_parent_GObject_Object_dispatch_properties_changed (Internal.Raw.obj self.Id (Internal.GObjectC.g_object_get_type ())) (u32 nPspecs) (Internal.Raw.obj pspecs.Id (Internal.GObjectC.zgtk_type_GObject_ParamSpec ()))
 
   /// Gives a type made with `Glue.subclass` its own `dispose`: the @dispose function is supposed to drop all references to other objects, but keep the instance otherwise intact, so that client method invocations still work.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideDispose (gtype: usize) (handler: Object -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let object = Object (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler object)
-    Internal.GObjectC.zgtk_override_GObject_Object_dispose (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GObjectC.zgtk_override_GObject_Object_dispose (Internal.Raw.gtype gtype) zcb)
 
   /// the @dispose function is supposed to drop all references to other objects, but keep the instance otherwise intact, so that client method invocations still work.
   let parentDispose (self: Object) : unit =
     Internal.GObjectC.zgtk_parent_GObject_Object_dispose (Internal.Raw.obj self.Id (Internal.GObjectC.g_object_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `finalize`: instance finalization function, should finish the finalization of the instance begun in @dispose and chain up to the @finalize method of the parent class.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideFinalize (gtype: usize) (handler: Object -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let object = Object (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler object)
-    Internal.GObjectC.zgtk_override_GObject_Object_finalize (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GObjectC.zgtk_override_GObject_Object_finalize (Internal.Raw.gtype gtype) zcb)
 
   /// instance finalization function, should finish the finalization of the instance begun in @dispose and chain up to the @finalize method of the parent class.
   let parentFinalize (self: Object) : unit =
     Internal.GObjectC.zgtk_parent_GObject_Object_finalize (Internal.Raw.obj self.Id (Internal.GObjectC.g_object_get_type ()))
 
   /// Gives a type made with `Glue.subclass` its own `get_property`: the generic getter for all properties of this type.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideGetProperty (gtype: usize) (handler: Object -> int -> Value -> ParamSpec -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -1153,26 +1158,28 @@ module Object =
         let value = Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GObjectC.g_value_get_type ()) false)
         let pspec = ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (Internal.Raw.argPointer 3) (i32 0))
         handler object propertyId value pspec)
-    Internal.GObjectC.zgtk_override_GObject_Object_get_property (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GObjectC.zgtk_override_GObject_Object_get_property (Internal.Raw.gtype gtype) zcb)
 
   /// the generic getter for all properties of this type.
   let parentGetProperty (self: Object) (propertyId: int) (value: Value) (pspec: ParamSpec) : unit =
     Internal.GObjectC.zgtk_parent_GObject_Object_get_property (Internal.Raw.obj self.Id (Internal.GObjectC.g_object_get_type ())) (u32 propertyId) (Internal.Raw.obj value.Id (Internal.GObjectC.g_value_get_type ())) (Internal.Raw.obj pspec.Id (Internal.GObjectC.zgtk_type_GObject_ParamSpec ()))
 
   /// Gives a type made with `Glue.subclass` its own `notify`: Emits a "notify" signal for the property @property_name on @object.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideNotify (gtype: usize) (handler: Object -> ParamSpec -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let object = Object (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         let pspec = ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (Internal.Raw.argPointer 1) (i32 0))
         handler object pspec)
-    Internal.GObjectC.zgtk_override_GObject_Object_notify (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GObjectC.zgtk_override_GObject_Object_notify (Internal.Raw.gtype gtype) zcb)
 
   /// Emits a "notify" signal for the property @property_name on @object.
   let parentNotify (self: Object) (pspec: ParamSpec) : unit =
     Internal.GObjectC.zgtk_parent_GObject_Object_notify (Internal.Raw.obj self.Id (Internal.GObjectC.g_object_get_type ())) (Internal.Raw.obj pspec.Id (Internal.GObjectC.zgtk_type_GObject_ParamSpec ()))
 
   /// Gives a type made with `Glue.subclass` its own `set_property`: the generic setter for all properties of this type.
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideSetProperty (gtype: usize) (handler: Object -> int -> Value -> ParamSpec -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
@@ -1181,7 +1188,7 @@ module Object =
         let value = Value (Internal.Raw.wrapBoxed (Internal.Raw.argPointer 2) (Internal.GObjectC.g_value_get_type ()) false)
         let pspec = ParamSpec (Internal.GObjectC.zgtk_wrap_GObject_ParamSpec (Internal.Raw.argPointer 3) (i32 0))
         handler object propertyId value pspec)
-    Internal.GObjectC.zgtk_override_GObject_Object_set_property (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GObjectC.zgtk_override_GObject_Object_set_property (Internal.Raw.gtype gtype) zcb)
 
   /// the generic setter for all properties of this type.
   let parentSetProperty (self: Object) (propertyId: int) (value: Value) (pspec: ParamSpec) : unit =
@@ -2448,24 +2455,26 @@ module TypeModule =
     (((Internal.GObjectC.g_type_module_use (Internal.Raw.obj self.Id (Internal.GObjectC.g_type_module_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `load`: loads the module and registers one or more types using g_type_module_register_type().
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideLoad (gtype: usize) (handler: TypeModule -> bool) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let module_ = TypeModule (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         Internal.Raw.returnBool (handler module_))
-    Internal.GObjectC.zgtk_override_GObject_TypeModule_load (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GObjectC.zgtk_override_GObject_TypeModule_load (Internal.Raw.gtype gtype) zcb)
 
   /// loads the module and registers one or more types using g_type_module_register_type().
   let parentLoad (self: TypeModule) : bool =
     (((Internal.GObjectC.zgtk_parent_GObject_TypeModule_load (Internal.Raw.obj self.Id (Internal.GObjectC.g_type_module_get_type ())))) <> i32 0)
 
   /// Gives a type made with `Glue.subclass` its own `unload`: unloads the module
+  /// Panics for a type not made from the class, or without the interface, or the class itself.
   let overrideUnload (gtype: usize) (handler: TypeModule -> unit) : unit =
     let zcb =
       Internal.Raw.hold (fun () ->
         let module_ = TypeModule (Internal.Raw.wrap (Internal.Raw.argPointer 0) false)
         handler module_)
-    Internal.GObjectC.zgtk_override_GObject_TypeModule_unload (Internal.Raw.gtype gtype) zcb
+    Internal.Raw.overridden (Internal.GObjectC.zgtk_override_GObject_TypeModule_unload (Internal.Raw.gtype gtype) zcb)
 
   /// unloads the module
   let parentUnload (self: TypeModule) : unit =

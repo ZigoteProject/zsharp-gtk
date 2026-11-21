@@ -6,3 +6,6 @@ a made-up type, asked of an object: panic
 a made-up type, to make an object of: panic
 a made-up type, given to a library function: panic
 a made-up type, to make a type from: panic
+an override for a type of another class: panic
+an override for the class itself: panic
+an interface override for a type without it: panic

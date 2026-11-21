@@ -80,6 +80,19 @@ let tests =
           Glue.isA label.Id (usize 0))
       expect (known, Gio.ListModel.getItemType (Gio.ListStore.toListModel store) = mine) "((true, false, false), true)"
       Glue.drain ())
+    test "a type is made only from an object's" (fun () ->
+      Gtk4.init ()
+      expect (Glue.subclass (GObject.typeFromName "GParam") "ZsNotObject" = usize 0) "true")
+    test "a GSList's elements come in its order" (fun () ->
+      Gtk4.init ()
+      let group = Gtk4.SizeGroup.create Gtk4.SizeGroupMode.horizontal
+      let labels = List.map (fun s -> Gtk4.Label.create (Some s)) [ "a"; "b"; "c" ]
+      List.iter (fun (l: Gtk4.Label) -> Gtk4.SizeGroup.addWidget group (Gtk4.Label.toWidget l)) labels
+      // GTK puts each widget it's given first
+      let names =
+        List.map (fun (w: Gtk4.Widget) -> Gtk4.Label.getText (Gtk4.Label w.Id)) (Gtk4.SizeGroup.getWidgets group)
+      expect names "[c; b; a]"
+      Glue.drain ())
     test "a handle is alive while something holds its object" (fun () ->
       Gtk4.init ()
       let w = Gtk4.Window.create ()
