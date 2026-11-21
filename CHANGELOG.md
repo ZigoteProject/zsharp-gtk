@@ -8,6 +8,9 @@ is written.
 
 - **`Embed.signals view`** gives a GTK widget showing a tree that runs on signals, for a window
   `App` doesn't make: one with no header bar, one of several. Nothing to rewrite.
+- **`App.runSignalsInBackground id view`** runs a signals program that goes on with no window:
+  closing the window leaves it running, starting the program again shows the window (a new one
+  from the same signals, if it was closed), and **`App.quit ()`** ends it. Nothing to rewrite.
 
 ## 0.1.0 (2026-11-13)
 

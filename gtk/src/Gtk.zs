@@ -2362,19 +2362,53 @@ let private mountSignals (frame: Host) (view: unit -> Window<unit -> unit>) : Pr
   Gtk4.Widget.onDestroy (Gtk4.Window.toWidget frame.window) stop
   { model = ref (); window = frame.window; shell = shell }
 
+// A window of an application, for a view to be shown in.
+let private appFrame (app: Adw.Application) : Host =
+  let w = Adw.ApplicationWindow.create (Adw.Application.toGtkApplication app)
+  { window = Adw.ApplicationWindow.toGtkWindow w
+    setContent = fun content -> Adw.ApplicationWindow.setContent w (Some content)
+    animate = true
+    narrow = fun split ->
+      Internal.Raw.collapseWhenNarrow (Internal.Raw.obj w.Id (usize 0)) (Internal.Raw.obj split.Id (usize 0)) }
+
 // An application that opens a window when it's activated, run until the window closes.
 let private runApp (id: string) (opened: Host -> unit) : int =
   let app = Adw.Application.create (Some id) Gio.ApplicationFlags.defaultFlags
   Gio.Application.onActivate (Adw.Application.toGioApplication app) (fun () ->
-    let w = Adw.ApplicationWindow.create (Adw.Application.toGtkApplication app)
-    opened
-      { window = Adw.ApplicationWindow.toGtkWindow w
-        setContent = fun content -> Adw.ApplicationWindow.setContent w (Some content)
-        animate = true
-        narrow = fun split ->
-          Internal.Raw.collapseWhenNarrow (Internal.Raw.obj w.Id (usize 0)) (Internal.Raw.obj split.Id (usize 0)) })
+    opened (appFrame app))
   // on Z#'s event loop, so a command's task runs beside the window
   Loop.run app.GtkApplication
+
+// the application that is running in the background, until it's asked to quit
+let private held : ref<option<Gtk4.Application>> = ref None
+
+// An application that goes on with no window: activating it shows the window it has, or
+// opens one, and it runs until `App.quit`.
+let private runHeld (id: string) (opened: Host -> unit) : int =
+  let app = Adw.Application.create (Some id) Gio.ApplicationFlags.defaultFlags
+  let gio = Adw.Application.toGioApplication app
+  // by its number, to take it off when the run ends: the application outlives the run, and
+  // would keep the handler and the view it holds
+  let activated =
+    Glue.connectId gio.Id "activate" false (fun () ->
+      match Gtk4.Application.getWindows app.GtkApplication with
+      | window :: _ -> Gtk4.Window.present window
+      | [] -> opened (appFrame app))
+  let code =
+    match Gio.Application.register gio None with
+    | Error e ->
+      eprintln $"{e.message}"
+      1
+    | Ok _ ->
+      held.Value <- Some app.GtkApplication
+      // started a second time, the program is remote: activating it shows the window of the
+      // one that is running, and this one has nothing more to do
+      let going () : bool = Option.isSome held.Value && not (Gio.Application.getIsRemote gio)
+      Loop.runWhile going (fun () -> Gio.Application.activate gio)
+      held.Value <- None
+      0
+  Glue.disconnect gio.Id activated
+  code
 
 // A window of no application and no animations, for a test.
 let private testFrame () : Host =
@@ -2407,6 +2441,22 @@ module App =
   /// changes. A widget's message is the function to run for its event, which sets signals.
   let runSignals (id: string) (view: unit -> Window<unit -> unit>) : int =
     runApp id (fun frame -> mountSignals frame view |> ignore)
+
+  /// `runSignals` for a program that goes on with no window, as one that watches a device
+  /// or plays music does: closing the window leaves the program running, starting it again
+  /// shows the window (a new one, from the same signals, if it was closed), and it ends at
+  /// `App.quit ()`. Only a signals program runs this way, as its state is not the window's.
+  let runSignalsInBackground (id: string) (view: unit -> Window<unit -> unit>) : int =
+    runHeld id (fun frame -> mountSignals frame view |> ignore)
+
+  /// Ends a program run with `runSignalsInBackground`: its window is closed, and the function
+  /// that runs it returns. Nothing happens in a program run another way.
+  let quit () : unit =
+    match held.Value with
+    | Some app ->
+      List.iter Gtk4.Window.destroy (Gtk4.Application.getWindows app)
+      held.Value <- None
+    | None -> ()
 
 /// A tree of widgets in a GTK widget of the program's own, for a place `App` doesn't make: a
 /// window with no header bar, one of several windows, a popover.

@@ -74,6 +74,10 @@ let main () =
 Anything may set the signals: a timer, a task, another window's handler. The view stops with
 its window.
 
+`App.runSignalsInBackground` runs the same view for a program that goes on when its window is
+closed: the signals stay, whatever sets them goes on setting them, and a window opened again
+(by starting the program a second time) shows what they hold now. `App.quit ()` ends it.
+
 ## A whole program on signals
 
 [examples/trellis](../examples/trellis/src/main.zs) is one, a folder a feature. Its pattern:

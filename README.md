@@ -91,6 +91,9 @@ let main () = App.run "org.example.Counter" 0 update view
   gives commands: `Cmd.after`, `Cmd.soon`, `Cmd.ofTask`, `Cmd.openFile`, `Cmd.saveFile`,
   `Cmd.run`), and
   `App.runSignals` (the view reads signals, and runs again when one changes).
+- **A program that goes on with no window** is run with `App.runSignalsInBackground`:
+  closing the window leaves it running, starting it again shows the window, `App.quit ()` ends
+  it.
 - **`Gtk.Test`** drives a view from a test and reads GTK's widgets back: `click`, `typeText`,
   `toggle`, `setNumber`, `choose`, `press`, `labels`, `rows`, `pages`, `dialog`, `toasts`.
 

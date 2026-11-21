@@ -14,6 +14,11 @@ where they differ. [Getting started](getting-started.md) has the smallest progra
 
 Each returns the exit code when the window closes.
 
+**A program that goes on with no window** (one that watches a device, or plays music) is run
+with `App.runSignalsInBackground id view`: closing the window leaves it running, starting the
+program again shows the window, and `App.quit ()` ends it. Its state is in signals, which is
+why it can: a window opened later is drawn from the same ones.
+
 ## Widgets
 
 A widget is a case of `Widget<'msg>`. Each one's doc comment in `gtk/src/Gtk.zs` says what its
