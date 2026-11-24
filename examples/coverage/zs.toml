@@ -1,0 +1,5 @@
+[package]
+name = "coverage"
+
+[dependencies]
+gtk = { path = "../../gtk" }

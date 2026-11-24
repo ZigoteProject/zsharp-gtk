@@ -25,6 +25,7 @@ libraries at least as new as the image's. Nothing else needs anything of the hos
 | `./generate` | writes the generated modules, their C and `gtk/COVERAGE.md` again |
 | `./run [example]` | builds an example in the container and runs it on the host |
 | `./shot [example [arguments…]]` | a picture of an example's window from Xvfb: `build/<example>.png`. `SHOT_SIZE=1040x720` sets the screen |
+| `./coverage` | the lines of both packages' hand-written sources their tests run: `build/coverage.lcov`, which `./run coverage` shows. Each test file runs from a copy beside `src/`, as `zs test --coverage` counts only the lines under a test file's own folder |
 | `./release <version>` | checks the tree is ready to be that release and writes its archive ([releases](release.md)) |
 
 ## What `./test` runs
@@ -43,6 +44,7 @@ In order, stopping at the first failure:
 | `gtk/tests/sealed.sh` | a dependent program reaches a pointer or a C function of the package, or can't build with what is public |
 | `tools/docs.sh` | a ` ```zsharp ` block of the README or `docs/` doesn't type-check |
 | the examples | one doesn't build with `--strict` |
+| `examples/coverage`'s tests | the viewer reads an lcov file other than as its tests say |
 
 There is no CI. A change is tested when `./test` has passed on it.
 

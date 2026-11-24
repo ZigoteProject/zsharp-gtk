@@ -16,6 +16,9 @@ is written.
   into that type's class, past its end or over GTK's own. A program that did so must give a type
   made with `Glue.subclass` from the class. **`Glue.subclass`** gives 0 for a parent that is no
   GObject class. A list GTK gives is read in one walk, not one walk an element.
+- **`./coverage`** writes `build/coverage.lcov`, the lines of both packages' hand-written
+  sources that their tests run, and **`examples/coverage`** shows an lcov file in a window
+  (`./run coverage`). Nothing to rewrite.
 
 ## 0.1.0 (2026-11-13)
 

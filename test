@@ -24,4 +24,6 @@ cd "$(dirname "$0")"
   (cd gtk && timeout 600 tests/sealed.sh | diff - tests/sealed.expected && echo "ok   sealed: a dependent program is refused the pointers and C functions")
   # the programs in the README and docs/ check against the packages
   timeout 900 tools/docs.sh
-  for e in examples/*/; do (cd "$e" && timeout 300 zs build --strict); done'
+  for e in examples/*/; do (cd "$e" && timeout 300 zs build --strict); done
+  # the coverage viewer reads lcov as zs test --coverage writes it
+  (cd examples/coverage && ZS_LEAKCHECK=1 timeout 300 zs test --strict)'

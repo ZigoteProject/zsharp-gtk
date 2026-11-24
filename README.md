@@ -175,11 +175,13 @@ Gtk4.Button.onClicked button (fun () -> Gtk4.ListBox.append list row.Widget)
                    # clicked and typed in (xdotool on Xvfb), the documents' programs, the examples
 ./run trellis      # an example, built in the container and run here (the host needs GTK 4)
 ./shot trellis     # its picture without a display: build/trellis.png, from Xvfb
+./coverage         # the lines the packages' tests run: build/coverage.lcov
+./run coverage     # shown file by file, line by line
 ./generate         # the generated modules again, after a change to the generator or the image
 ./dev zs check …   # anything else, in the container
 ```
 
-Two examples, the two ways to write a program:
+Three examples: the two ways to write a program, and a tool.
 
 - **`counter`** is the smallest: a model, the messages that change it, and the window for a
   model, in one file.
@@ -192,6 +194,10 @@ Two examples, the two ways to write a program:
   modifiers (`Label "Done" |> styled [ "heading" ] |> expand`).
   [Its main file](examples/trellis/src/main.zs) is the map. `SHOT_SIZE=1040x720 ./shot
   trellis Board` is its picture.
+- **`coverage`** shows an lcov file (`build/coverage.lcov` unless another is its argument): the
+  source files in a sidebar with the share of their lines that ran, and the one chosen line by
+  line, green where it ran, red where it didn't. Its reading of lcov is a module of its own,
+  with tests.
 
 `./dev` runs in its own image (`zsharp-gtk-dev`: `zsharp-dev` plus GTK 4, libadwaita and Xvfb),
 built on first use, with the compiler from the Z# checkout beside this one (`ZSHARP`, default

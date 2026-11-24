@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# The lines of both packages' hand-written sources that their tests run, as build/coverage.lcov
+# for `./run coverage` (or genhtml) to show. In the container: each tests/*.zs is run with
+# `zs test --coverage` from a copy beside src/, as zs counts only the lines under a test file's
+# own folder; the copies are removed. Paths are from the repository's root, and the generated
+# modules and the copies themselves are left out.
+set -euo pipefail
+cd "$(dirname "$0")"
+mkdir -p build
+./dev sh -c 'set -e
+  out=build/coverage.lcov
+  trap "rm -f signals/CoverageRun*.zs signals/coverage.lcov gtk/CoverageRun*.zs gtk/coverage.lcov" EXIT
+  : > "$out.part"
+  for t in signals/tests/*.zs gtk/tests/*.zs; do
+    pkg=${t%%/*}
+    copy=CoverageRun$(basename "$t")
+    cp "$t" "$pkg/$copy"
+    if [ "$pkg" = gtk ]; then
+      (cd gtk && GSK_RENDERER=cairo GDK_DISABLE=gl,vulkan GTK_A11Y=none timeout 900 xvfb-run -a zs test --coverage "$copy")
+    else
+      (cd signals && timeout 300 zs test --coverage "$copy")
+    fi
+    cat "$pkg/coverage.lcov" >> "$out.part"
+    rm -f "$pkg/$copy" "$pkg/coverage.lcov"
+  done
+  # a record is kept whole or dropped whole: dropped for a copy and for a generated module
+  awk -v root="$PWD/" "
+    /^SF:/ { path = substr(\$0, 4); sub(\"^\" root, \"\", path); keep = path !~ /CoverageRun/
+             if (keep && (getline first < path) > 0 && first ~ /^\\/\\/ provided by/) keep = 0
+             close(path); \$0 = \"SF:\" path }
+    keep { print }
+    /^end_of_record/ { keep = 0 }
+  " "$out.part" > "$out"
+  rm -f "$out.part"
+  echo "$out"'

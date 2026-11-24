@@ -25,10 +25,10 @@ says how the language differs from F#.
 | `gtk/tests/`, `gtk/e2e/` | the package's tests; the program `tests/e2e.sh` clicks and types in |
 | `signals/` | the signals package and its tests |
 | `tools/` | the generator (`zs-provider-gir`, `generate.sh`, `extra/` for cairo), `docs.sh`, `parity.py`, `xwd2png.py`, `some.py` |
-| `examples/` | `counter` (a model, messages, a view, in one file) and `trellis` (a whole application on signals, a folder a feature), each a project that depends on `gtk` by path |
+| `examples/` | `counter` (a model, messages, a view, in one file), `trellis` (a whole application on signals, a folder a feature) and `coverage` (a viewer of lcov files, with tests), each a project that depends on `gtk` by path |
 | `docs/` | the guide's pages and the contributor pages ([index](docs/README.md)) |
 | `dev`, `Containerfile` | the development container and its launcher |
-| `test`, `generate`, `run`, `shot`, `release` | the commands, below |
+| `test`, `generate`, `run`, `shot`, `coverage`, `release` | the commands, below |
 | `build/`, `dist/`, `.zs-cache/` | build outputs, not in git |
 
 ## Build and test
@@ -43,6 +43,7 @@ Everything runs in the dev container (podman), through `./dev`. Don't build on t
 ./generate            # write the generated modules again
 ./run trellis         # build an example in the container, run it on the host's display
 ./shot trellis        # its picture without a display: build/trellis.png
+./coverage            # the lines the tests run: build/coverage.lcov; ./run coverage shows it
 ./dev                 # a shell in the container
 ```
 
